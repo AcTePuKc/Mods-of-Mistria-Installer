@@ -2,7 +2,7 @@
 
 [← MMAPI](MMAPI.md)
 
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **116 hooks**, fed by **125 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **101 hooks**, fed by **109 seams**, **4 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -71,16 +71,10 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [player.status_effect_cancel](hooks/player.status_effect_cancel.md) | event | Know when the game cancels a status effect. |
 | [player.status_effect_expired](hooks/player.status_effect_expired.md) | event | Know the moment a status effect runs out. |
 | [fishing.should_reel](hooks/fishing.should_reel.md) | filter | Change whether the player reels from the fishing Wait state this frame. |
-| [fishing.fish_selected](hooks/fishing.fish_selected.md) | event | Observe when fishing accepts a fish candidate. |
-| [museum.donation_attempted](hooks/museum.donation_attempted.md) | event | Observe an attempted museum donation before it is registered. |
-| [pet.reward_generated](hooks/pet.reward_generated.md) | event | Observe each pet reward item as it is generated. |
-| [crop.harvest_destroy](hooks/crop.harvest_destroy.md) | filter | Change whether a harvested crop node is destroyed. |
 | [gossip.selections](hooks/gossip.selections.md) | filter | Change which NPCs the day's gossip offers. |
 | [npc.heart_points](hooks/npc.heart_points.md) | filter | Adjust the heart points a villager gains. |
 | [npc.gift_received](hooks/npc.gift_received.md) | event | Know when the player gives an NPC a gift. |
 | [date.run](hooks/date.run.md) | override | Take over a date the moment the player commits to it. |
-| [date.cutscene](hooks/date.cutscene.md) | filter | Swap which cutscene a date plays while keeping the vanilla date pipeline. |
-| [date.cooldown](hooks/date.cooldown.md) | filter | Change the cooldown between dates with the same NPC. |
 | [animal.heart_points](hooks/animal.heart_points.md) | filter | Adjust the heart points a barn animal gains. |
 | [animal.pet](hooks/animal.pet.md) | event | Know when the player pets or puts down an animal. |
 | [combat.damage](hooks/combat.damage.md) | filter | Change any hit before it resolves. |
@@ -111,7 +105,6 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [items.dig_artifact](hooks/items.dig_artifact.md) | filter | Swap the artifact an archaeology dig spot yields. |
 | [items.treasure_distribution](hooks/items.treasure_distribution.md) | filter | Change what the dungeon treasure roll drops. |
 | [items.infusion_generate](hooks/items.infusion_generate.md) | guard | Stop a recipe from rolling infusions. |
-| [items.infusion_chance](hooks/items.infusion_chance.md) | filter | Change the odds that a crafted item rolls an infusion. |
 | [item.display_description](hooks/item.display_description.md) | filter | Reword the description an item's tooltip renders. |
 | [crafting.max_crafts](hooks/crafting.max_crafts.md) | override | Take over how many of a recipe can be crafted. |
 | [crafting.pay_component_costs](hooks/crafting.pay_component_costs.md) | guard | Veto a recipe's material payment, craft for free. |
@@ -130,9 +123,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [ui.item_icon](hooks/ui.item_icon.md) | filter | Swap the sprite an item shows as its icon. |
 | [ui.item_node](hooks/ui.item_node.md) | filter | Adjust UI item slots as they are populated. |
 | [ui.button_sprites](hooks/ui.button_sprites.md) | filter | Swap the sprite set a UI button is built from. |
-| [ui.spawn_tutorial_guard](hooks/ui.spawn_tutorial_guard.md) | guard | Block a tutorial popup before it spawns. |
-| [ui.backplate_sprite](hooks/ui.backplate_sprite.md) | filter | Swap the backplate sprites behind the mines menu and spell cards. |
-| [ui.preset_popup_layout](hooks/ui.preset_popup_layout.md) | filter | Resize the customization menu's preset popup frames and grid. |
+| [ui.sprite](hooks/ui.sprite.md) | filter | Swap the backplate sprites behind the mines menu and spell cards. |
 | [dialogue.play_guard](hooks/dialogue.play_guard.md) | guard | Block a conversation before it starts. |
 | [dialogue.path](hooks/dialogue.path.md) | filter | Change which conversation plays before it starts. |
 | [dialogue.line](hooks/dialogue.line.md) | filter | Reword any dialogue line before the textbox shows it. |
@@ -207,9 +198,6 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [npc_heart_points](seams/npc_heart_points.md) | Reroutes every villager heart-point delta through a filter before it applies. |
 | [npc_receive_gift](seams/npc_receive_gift.md) | Announces every gift the moment an NPC receives it. |
 | [date_run](seams/date_run.md) | Puts a claim-scoped override in front of every player-initiated date. |
-| [date_cutscene](seams/date_cutscene.md) | Threads the date cutscene name through a filter and into the completion chain. |
-| [date_cutscene_chain_args](seams/date_cutscene_chain_args.md) | Extends the date chain's args so the filtered cutscene name reaches the reward gate. |
-| [date_cooldown](seams/date_cooldown.md) | Threads the date cooldown through a filter before the eligibility scan uses it. |
 | [animal_heart_points](seams/animal_heart_points.md) | Reroutes every barn-animal heart-point delta through a filter before it applies. |
 | [animal_on_pet](seams/animal_on_pet.md) | Announces the moment the player pets a barn animal. |
 | [animal_put_down](seams/animal_put_down.md) | Announces the moment a held animal is set back down. |
@@ -226,7 +214,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [spells_cast_override](seams/spells_cast_override.md) | Puts an override at the head of `cast_spell()` that can consume the whole cast. |
 | [spells_cast_done](seams/spells_cast_done.md) | Emits at the end of the engine's `cast_spell()`. |
 | [spells_cost_can_cast](seams/spells_cost_can_cast.md) | Filters the mana-cost read inside `can_cast_spell()`'s mana check. |
-| [spells_cost_menu](seams/spells_cost_menu.md) | Filters the mana-cost read behind the spellcasting menu's cost display and renders it at quarter granularity. |
+| [spells_cost_menu](seams/spells_cost_menu.md) | Filters the mana-cost read behind the spellcasting menu's cost display. |
 | [spells_cost_fsm_loop](seams/spells_cost_fsm_loop.md) | Filters the mana deduction in the player's looping cast state. |
 | [spells_cost_fsm_default](seams/spells_cost_fsm_default.md) | Filters the mana deduction in the player's default cast state. |
 | [fsm_transition](seams/fsm_transition.md) | Filters every executed shared-FSM state transition through one funnel. |
@@ -245,7 +233,6 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [items_treasure_distribution_none](seams/items_treasure_distribution_none.md) | Filters the treasure roll's empty exit so mods can inject a drop where there was none. |
 | [items_treasure_distribution_result](seams/items_treasure_distribution_result.md) | Filters the treasure roll's rolled result on its way out. |
 | [items_infusion_generate](seams/items_infusion_generate.md) | Puts a veto check in front of a recipe's infusion generation. |
-| [items_infusion_chance](seams/items_infusion_chance.md) | Filters the infusion roll chance in `craft_into()`, hoisted out of the roll condition before `chance_percent` consumes it. |
 | [item_display_description](seams/item_display_description.md) | Wraps the item-description getter, the string the tooltip body actually renders. |
 | [crafting_max_crafts](seams/crafting_max_crafts.md) | Puts an override in front of the craft-count ceiling before the engine computes it. |
 | [crafting_pay_component_costs](seams/crafting_pay_component_costs.md) | Puts a veto check in front of a recipe's material payment. |
@@ -269,10 +256,8 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [ui_item_node_set_to_item](seams/ui_item_node_set_to_item.md) | Hands every populated UI item node to mods, right after its icon is set. |
 | [ui_item_node_crafting_menu](seams/ui_item_node_crafting_menu.md) | Hands each crafting-grid icon node to mods as the menu builds. |
 | [ui_button_sprites](seams/ui_button_sprites.md) | Puts a filter on each built button sprite set before it enters the cache. |
-| [ui_spawn_tutorial_guard](seams/ui_spawn_tutorial_guard.md) | Puts a veto check at the head of `spawn_tutorial()`. |
-| [ui_backplate_sprite_mines](seams/ui_backplate_sprite_mines.md) | Routes the mines menu backplate sprite through a filter on dungeon room start. |
-| [ui_backplate_sprite_spell_card](seams/ui_backplate_sprite_spell_card.md) | Routes each spell card's backplate sprite through a filter. |
-| [ui_preset_popup_layout](seams/ui_preset_popup_layout.md) | Rebuilds the preset popup's layout constants through a filter each time the popup body is generated. |
+| [ui_sprite_mines_backplate](seams/ui_sprite_mines_backplate.md) | Routes the mines menu backplate sprite through a filter on dungeon room start. |
+| [ui_sprite_spell_card_backplate](seams/ui_sprite_spell_card_backplate.md) | Routes each spell card's backplate sprite through a filter. |
 | [dialogue_play_guard](seams/dialogue_play_guard.md) | Puts a veto check at the head of `play_conversation()`. |
 | [dialogue_path](seams/dialogue_path.md) | Rebuilds `play_conversation()`'s four arguments through the `dialogue.path` filter. |
 | [dialogue_line](seams/dialogue_line.md) | Filters each localized dialogue line before the textbox shows it. |
@@ -291,6 +276,7 @@ Hook-less edits the catalog also carries:
 | Name | Kind | Description |
 | ---- | ---- | ----------- |
 | [game_step_begin_installs](seams/game_step_begin_installs.md) | engine fix | Installs the MMAPI per-frame drain at the top of the game's `step_begin`, the framework's lifecycle root. |
+| [statue_hp_death_sweep](seams/statue_hp_death_sweep.md) | engine fix | Adds the Living Griffin Statue's missing depleted-hp death check, closing a potential soft-lock and matching every other monster's sweep. |
 | [tarball_chop_burn_flag](seams/tarball_chop_burn_flag.md) | engine fix | Passes the tarball's real fire flag to its grid chop, so non-fire chops stop being burn-throttled by stump/fruit-tree iframes. |
 | [max_crafts_zero_component](seams/max_crafts_zero_component.md) | engine fix | Skips zero-cost components in the craft-ceiling loop, mirroring the zero guard the duration branch already has. |
 | [local_get_dispatch](seams/local_get_dispatch.md) | call rewrite | Reroutes every direct GML `local_get()` call through the framework's localisation waist, feeding [local.get](hooks/local.get.md) and [local.missing](hooks/local.missing.md). |
