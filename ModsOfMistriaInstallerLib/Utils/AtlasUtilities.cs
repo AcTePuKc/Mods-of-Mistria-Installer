@@ -350,11 +350,11 @@ public class AtlasUtilities
             return CreateAtlas(type, 0);
         }
         
-        private Atlas CreateAtlas(string type, int number)
+        private Atlas CreateAtlas(string type, int number, AtlasAssetProperties? template = null)
         {
             var atlas = new Atlas(type, number, _atlasDirectory, _fileModifier);
             atlas.EnsureImageExists();
-            atlas.EnsureMetaExists();
+            atlas.EnsureMetaExists(template);
             _atlases.Add(atlas);
             return atlas;
         }
@@ -413,7 +413,8 @@ public class AtlasUtilities
                 .OrderBy(a => a.Number)
                 .LastOrDefault()!;
 
-            CreateAtlas(atlasType, last.Number + 1);
+            // The page that just filled donates its sampling settings to the new one
+            CreateAtlas(atlasType, last.Number + 1, GetAtlas(last.PngPath)?.Data.Asset);
             _currentAtlasTypes.Remove(atlasType);
             return OpenState(atlasType);
         }

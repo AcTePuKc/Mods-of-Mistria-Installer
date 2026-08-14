@@ -30,4 +30,3 @@ With zero handlers all three changes are behaviorally equivalent to pristine. Ev
 
 - [player.xp_delta](../hooks/player.xp_delta.md) - This is the hook this seam dispatches.
 - [player_essence_delta](player_essence_delta.md) - This seam's sibling: the other delta filter that carries its own floor.
-- [statue_hp_death_sweep](statue_hp_death_sweep.md) - The other place the catalog patches an engine gap vanilla cannot reach.
