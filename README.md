@@ -36,6 +36,8 @@ Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1
 - Staged installation diagnostics, archive validation and recovery when an installation fails.
 - A Play button that is available when the game can be launched, including before any mod is installed.
 - Play uses Steam by default. Enable **Launch game directly** from the gear menu to launch the detected `FieldsOfMistria.exe` instead; the preference is saved between launches and falls back to Steam if direct launching is unavailable.
+- At startup, AIM performs an experimental advisory scan of discovered mods for known legacy GML, hook and loading-screen signatures. It does not block those mods automatically; the warning icon and its hover text explain the detected risk.
+- Before installation, AIM also checks selected mods for shared destination files and detectable keyboard-shortcut conflicts. These checks are warnings unless the selected mods cannot safely be combined.
 
 This project is intended for Fields of Mistria 1.0.x. Individual mods may still require a specific AIM version or game patch; check the mod author's compatibility notes.
 
@@ -84,7 +86,11 @@ AIM preserves a pristine backup and writes a staged archive before replacing the
 
 ## Optional localized mod metadata
 
-AIM supports optional language-specific manifest fields for the mod name and description. The normal `name` and `description` fields remain the fallback, so existing mods do not need to change:
+AIM supports optional language-specific manifest fields for the mod name and description. The normal `name` and `description` fields remain the fallback, so existing mods do not need to change. The supported suffixes are:
+
+`en`, `bg`, `pl`, `de`, `fr`, `nl`, `pt-br`, `ru`, `id`, `zh-hans`, `zh-hant`, `ko`, `ja`, `es`, and `uk`.
+
+For example:
 
 ```toml
 name = "Bulgarian Localization"
@@ -93,7 +99,7 @@ description = "Adds Bulgarian Language to the game."
 description_bg = "Добавя български език в играта."
 ```
 
-When the AIM interface is set to Bulgarian, it uses `name_bg` and `description_bg`. If a language-specific field is missing, AIM uses the standard English field instead. These optional fields are ignored by MOMI and do not change the normal manifest format.
+When the AIM interface is set to a supported language, it uses that language's suffix, such as `name_bg`/`description_bg` or `name_pl`/`description_pl`. If a language-specific field is missing, AIM uses the standard `name` and `description` fields instead. These optional fields are ignored by MOMI and do not change the normal manifest format.
 
 ## Updating the game
 

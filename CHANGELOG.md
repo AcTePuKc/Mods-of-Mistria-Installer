@@ -26,6 +26,9 @@
   versions. It is advisory only and may need updates after future game patches.
 - Compatibility warnings are calculated off the UI thread and are visible
   before installation; hovering the warning icon shows the full reason.
+- The startup compatibility scan covers every discovered mod, not only the
+  currently selected mods. It reports known legacy signatures as advisory
+  warnings and does not treat a warning as a validation error.
 - Legacy GML warnings are shown for all discovered mods without disabling
   selection or installation; selected-mod conflicts remain a separate check.
 - Fixed warning and error rows so compatibility messages display their icons
@@ -35,15 +38,18 @@
 - Added selection-time asset conflict detection for folders, ZIPs and RARs;
   mods that replace the same destination files now show a warning before
   installation.
-- Added non-blocking warnings for likely keyboard-shortcut conflicts, including
-  F6/F8 and the Auxiliary Bag default F1-F7 bindings.
+- Added non-blocking warnings for detectable keyboard-shortcut conflicts across
+  selected GML mods, including F1-F12 bindings and the Auxiliary Bag default
+  F1-F7 bindings. F6 and F8 are examples, not special-case-only checks.
 - Documentation files such as README, text and license files are ignored when
   checking shared destinations.
 - Clarified that shared localization metadata does not automatically mean that
   only one language mod can be installed; duplicate entries may still follow
   load order.
-- Added optional language-specific manifest fields such as `name_bg` and
-  `description_bg`, with the standard fields retained as a fallback.
+- Added optional language-specific manifest fields for all AIM interface
+  languages (`en`, `bg`, `pl`, `de`, `fr`, `nl`, `pt-br`, `ru`, `id`,
+  `zh-hans`, `zh-hant`, `ko`, `ja`, `es`, and `uk`), with the standard fields
+  retained as a fallback.
 - Recomputed conflict warnings after startup, installation and uninstallation
   on a background task instead of persisting potentially stale warnings.
 
