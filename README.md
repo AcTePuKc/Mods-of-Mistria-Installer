@@ -90,13 +90,26 @@ AIM supports optional language-specific manifest fields for the mod name and des
 
 `en`, `bg`, `pl`, `de`, `fr`, `nl`, `pt-br`, `ru`, `id`, `zh-hans`, `zh-hant`, `ko`, `ja`, `es`, and `uk`.
 
-For example:
+For example, in a TOML manifest:
 
 ```toml
 name = "Bulgarian Localization"
 name_bg = "Българска локализация"
 description = "Adds Bulgarian Language to the game."
 description_bg = "Добавя български език в играта."
+```
+
+The same optional fields can be used in a JSON manifest. The suffix can be
+different for each field; for example, this uses a Japanese name and a
+French description:
+
+```json
+{
+  "name": "Example Mod",
+  "name_ja": "サンプル Mod",
+  "description": "Adds a small example feature.",
+  "description_fr": "Ajoute une petite fonctionnalité d'exemple."
+}
 ```
 
 When the AIM interface is set to a supported language, it uses that language's suffix, such as `name_bg`/`description_bg` or `name_pl`/`description_pl`. If a language-specific field is missing, AIM uses the standard `name` and `description` fields instead. These optional fields are ignored by MOMI and do not change the normal manifest format.
