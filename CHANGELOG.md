@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.3 — Unreleased
+## 0.1.3 — 2026-08-17
 
 - Added duplicate-source detection for the same logical mod when it exists as
   an extracted folder and as a ZIP/RAR archive; installation is blocked until
