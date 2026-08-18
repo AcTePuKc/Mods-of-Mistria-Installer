@@ -1,8 +1,8 @@
 # Seam: player_xp_delta
 
-Filters the XP delta at the head of `gain_xp()`, floors the total at zero, and narrows the level celebration to genuine gains.
+Filters the XP delta at the head of `gain_xp()`, floors the total at zero, narrows the level celebration to genuine gains, and emits the skill level-up.
 
-`player_xp_delta` is a **text seam** (`anchor` + `replace`). It feeds [player.xp_delta](../hooks/player.xp_delta.md). Mod authors never write seams. You register handlers for the hooks they dispatch. See [Seams](../SEAMS.md).
+`player_xp_delta` is a **text seam** (`anchor` + `replace`). It feeds [player.xp_delta](../hooks/player.xp_delta.md) and [player.skill_leveled](../hooks/player.skill_leveled.md). Mod authors never write seams. You register handlers for the hooks they dispatch. See [Seams](../SEAMS.md).
 
 ## Placement
 
@@ -11,7 +11,7 @@ Filters the XP delta at the head of `gain_xp()`, floors the total at zero, and n
 | **File** | `gml/scripts/GameplaySystems/Player/Ari.gml` |
 | **Locator** | text anchor spanning `gain_xp(skill, xp, silent)` from its head through the level-celebration condition |
 | **Op** | text (`anchor` + `replace`) |
-| **Feeds** | [`player.xp_delta`](../hooks/player.xp_delta.md) |
+| **Feeds** | [`player.xp_delta`](../hooks/player.xp_delta.md), [`player.skill_leveled`](../hooks/player.skill_leveled.md) |
 | **Value filtered** | `xp` - the XP delta |
 | **ctx built** | `{ player: self, skill: skill, silent: silent }` |
 | **Marker** | `mmapi_player_run_xp_delta_filters` |
@@ -28,5 +28,6 @@ With zero handlers all three changes are behaviorally equivalent to pristine. Ev
 
 ## See Also
 
-- [player.xp_delta](../hooks/player.xp_delta.md) - This is the hook this seam dispatches.
+- [player.xp_delta](../hooks/player.xp_delta.md) - This is the filter this seam dispatches.
+- [player.skill_leveled](../hooks/player.skill_leveled.md) - This is the level-up event the same edit emits.
 - [player_essence_delta](player_essence_delta.md) - This seam's sibling: the other delta filter that carries its own floor.
