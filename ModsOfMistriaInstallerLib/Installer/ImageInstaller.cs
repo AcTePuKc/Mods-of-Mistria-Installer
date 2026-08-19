@@ -44,26 +44,13 @@ public class ImageInstaller(
 
             var metaToml = TomlSerializer.Deserialize<SpriteMetaFile>(animationGroup.AnimationMetaRelPath!.ReadString(mod))!;
 
-            if (metaToml.Asset is null)
-            {
-                reportStatus($"Skipping {animationGroup.BaseName}: missing animation metadata.", "");
-                continue;
-            }
-
-            var atlas = metaToml.Asset.Atlas;
-            if (string.IsNullOrEmpty(atlas) || metaToml.Asset.FrameWidth == 0 || metaToml.Asset.FrameHeight == 0)
+            if (string.IsNullOrEmpty(metaToml.Asset?.Atlas) || metaToml.Asset.FrameWidth == 0 || metaToml.Asset.FrameHeight == 0)
             {
                 reportStatus($"Skipping {animationGroup.BaseName}: missing animation metadata.", "");
                 continue;
             }
             if (metaToml.Asset.FrameCount is null or <= 0) metaToml.Asset.FrameCount = 1; // frame_len omitted = single frame
-            atlas = Atlas.CanonicalType(atlas);
-            if (string.IsNullOrEmpty(atlas))
-            {
-                reportStatus($"Skipping {animationGroup.BaseName}: unsupported atlas type.", "");
-                continue;
-            }
-            metaToml.Asset.Atlas = atlas;
+            metaToml.Asset.Atlas = Atlas.CanonicalType(metaToml.Asset.Atlas);
 
             if (metaToml.Meta is not null)
             {
@@ -85,7 +72,7 @@ public class ImageInstaller(
 
             using var pngStream = mod.ReadFileAsStream(animationGroup.PngRelPath!);
             var id = atlasUtils.AddStrip(
-                atlas,
+                metaToml.Asset.Atlas, 
                 metaToml.Asset.FrameWidth, 
                 metaToml.Asset.FrameHeight, 
                 metaToml.Asset.FrameCount ?? 1, 
@@ -179,10 +166,12 @@ public class ImageInstaller(
 
             if (gameMeta.Asset.Atlas is null)
             {
-                // Atlas-less animations render from the standalone PNG next to
-                // their metadata file. Replace that file directly.
+                // Atlas-less animations (wrapping textures, tiled layer assets) render from
+                // their standalone PNG, so overwrite that file in place. The meta rewrite
+                // above already recorded any resize.
                 var gamePngPath = gameMetaPath[..^".meta.toml".Length] + ".png";
                 fileModifier.Write(gamePngPath, pngBytes);
+
                 reportStatus($"Replaced {spriteName} → standalone PNG (id {gameMeta.Meta.ReplaceId ?? gameMeta.Meta.Id})", "");
                 continue;
             }

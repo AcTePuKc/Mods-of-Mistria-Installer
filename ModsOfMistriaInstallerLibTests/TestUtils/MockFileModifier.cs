@@ -17,7 +17,9 @@ public class MockFileModifier: IFileModifier
     public bool Exists(string file)
     {
         file = file.Replace("\\", "/");
-        
+
+        // Directories count too, as in the real modifiers (Directory.Exists on disk,
+        // "file/" entries in the zip). Installers probe a folder before searching it.
         return _resultingFiles.ContainsKey(file)
                || _binaryFiles.ContainsKey(file)
                || _resultingFiles.Keys.Any(x => x.StartsWith(file + "/"))
@@ -65,15 +67,12 @@ public class MockFileModifier: IFileModifier
     public void Write(string file, byte[] contents)
     {
         file = file.Replace("\\", "/");
-        _binaryFiles[file] = contents.ToArray();
+
+        // Binary payloads stay byte-exact. The string store gets a lossy mirror so the
+        // path still shows up in Exists and FindFiles.
+        _binaryFiles[file] = contents;
         _resultingFiles[file] = System.Text.Encoding.UTF8.GetString(contents);
     }
-
-    public bool HasBinaryFile(string file) =>
-        _binaryFiles.ContainsKey(file.Replace("\\", "/"));
-
-    public byte[] GetBinaryFile(string file) =>
-        _binaryFiles[file.Replace("\\", "/")];
 
     public Stream GetWriteStream(string file)
     {
@@ -100,4 +99,17 @@ public class MockFileModifier: IFileModifier
         return _resultingFiles[file];
     }
 
+    public byte[] GetBinaryFile(string file)
+    {
+        file = file.Replace("\\", "/");
+
+        return _binaryFiles[file];
+    }
+
+    public bool HasBinaryFile(string file)
+    {
+        file = file.Replace("\\", "/");
+
+        return _binaryFiles.ContainsKey(file);
+    }
 }
