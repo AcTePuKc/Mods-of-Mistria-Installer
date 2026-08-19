@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 — Unreleased
+
+- Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
+- Kept the 0.1.3 compatibility, warning, archive-worker and localized metadata changes unchanged.
+
 ## 0.1.3 — 2026-08-17
 
 - Added duplicate-source detection for the same logical mod when it exists as

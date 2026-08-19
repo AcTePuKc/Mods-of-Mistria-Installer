@@ -1,4 +1,4 @@
-# AIM — Alternative Installer for Mistria 0.1.3
+# AIM — Alternative Installer for Mistria 0.1.4
 
 This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
 
@@ -6,7 +6,7 @@ AIM is a fork of MOMI. It was renamed to avoid confusion between the two applica
 
 AIM is not intended to replace MOMI. It exists to provide capabilities that are currently needed by this fork while remaining compatible with the upstream project. If MOMI later adopts at least the capabilities that motivated this fork and fully meets the project's needs, AIM may be retired in favour of the upstream project.
 
-The current AIM application version is `0.1.3`.
+The current AIM application version is `0.1.4`.
 
 ## Preview
 
@@ -39,7 +39,7 @@ Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1
 - At startup, AIM performs an experimental advisory scan of discovered mods for known legacy GML, hook and loading-screen signatures. It does not block those mods automatically; the warning icon and its hover text explain the detected risk.
 - Before installation, AIM also checks selected mods for shared destination files and detectable keyboard-shortcut conflicts. These checks are warnings unless the selected mods cannot safely be combined.
 
-This project is intended for Fields of Mistria 1.0.x. Individual mods may still require a specific AIM version or game patch; check the mod author's compatibility notes.
+This project is intended for Fields of Mistria 1.0.4 and later 1.0.x patches. Individual mods may still require a specific AIM version or game patch; check the mod author's compatibility notes.
 
 ## Installation
 
