@@ -9,11 +9,10 @@ on:
         default: false
         type: boolean
 
-# Windows upload is opt-in twice: the manual input must be true and the
+# Nexus upload is opt-in twice: the manual input must be true and the
 # repository variable NEXUS_UPLOAD_ENABLED must be set to the string "true".
-# Linux and macOS packages are artifact-only for manual Nexus upload.
-# Future upload configuration should use NEXUS_API_KEY, NEXUS_MOD_ID and
-# NEXUS_FILE_ID (the Nexus "Group ID" for the specific file).
+# Windows, Linux/SteamOS and macOS portable packages upload to their existing
+# Nexus file groups through the corresponding NEXUS_FILE_ID_* secrets.
 
 jobs:
   # This workflow is its own run, so it cannot reach compile.yml's artifacts:
@@ -137,7 +136,7 @@ jobs:
 
       # Nexus upload is deliberately disabled unless both switches are enabled.
       # Keep NEXUS_UPLOAD_ENABLED unset/false while a release is under review.
-      - name: Upload Windows test package to Nexus
+      - name: Upload Windows portable to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
         uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
         with:
@@ -145,5 +144,27 @@ jobs:
           file_group_id: ${{ secrets.NEXUS_FILE_ID_WINDOWS }}
           filename: Release/AIM-${{ env.APP_VERSION }}-windows-portable.zip
           version: ${{ env.APP_VERSION }}
-          display_name: "AIM Windows test"
-          description: "Temporary Windows package for Nexus upload testing"
+          display_name: "AIM Windows Portable"
+          description: "Portable version of AIM for Windows."
+
+      - name: Upload Linux / SteamOS portable to Nexus
+        if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
+        uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
+        with:
+          api_key: ${{ secrets.NEXUS_API_KEY }}
+          file_group_id: ${{ secrets.NEXUS_FILE_ID_LINUX }}
+          filename: Release/AIM-${{ env.APP_VERSION }}-linux-portable.zip
+          version: ${{ env.APP_VERSION }}
+          display_name: "AIM Linux / SteamOS Portable"
+          description: "Portable version of AIM for Linux and SteamOS."
+
+      - name: Upload macOS portable to Nexus
+        if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
+        uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
+        with:
+          api_key: ${{ secrets.NEXUS_API_KEY }}
+          file_group_id: ${{ secrets.NEXUS_FILE_ID_MACOS }}
+          filename: Release/AIM-${{ env.APP_VERSION }}-macos-portable.zip
+          version: ${{ env.APP_VERSION }}
+          display_name: "AIM macOS Portable"
+          description: "Portable version of AIM for macOS."
