@@ -155,7 +155,7 @@ jobs:
           file_group_id: ${{ secrets.NEXUS_FILE_ID_LINUX }}
           filename: Release/AIM-${{ env.APP_VERSION }}-linux-portable.zip
           version: ${{ env.APP_VERSION }}
-          display_name: "AIM Linux / SteamOS Portable"
+          display_name: "AIM Linux and SteamOS Portable"
           description: "Portable version of AIM for Linux and SteamOS."
 
       - name: Upload macOS portable to Nexus
