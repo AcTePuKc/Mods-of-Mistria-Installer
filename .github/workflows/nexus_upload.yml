@@ -106,26 +106,20 @@ jobs:
           VERSION=$(dotnet msbuild -nologo -verbosity:quiet -getProperty:AssemblyVersion ModsOfMistriaGUI)
           echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
         
-      - name: Compile Windows portable
-        run: dotnet publish ModsOfMistriaGUI -c Release -r win-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=false -p:PublishReadyToRun=false -p:IncludeAllContentForSelfExtract=false -o Release/windows
-      - name: Add Windows archive worker
-        run: dotnet publish ModsOfMistriaArchiveWorker -c Release -r win-x64 -p:PublishSingleFile=true -p:PublishReadyToRun=false -p:IncludeAllContentForSelfExtract=false -o Release/windows
-      - name: Zip Windows portable
-        run: (cd Release/windows && zip -r "../AIM-${{ env.APP_VERSION }}-windows-portable.zip" .)
+      - name: Compile Windows package
+        run: dotnet publish ModsOfMistriaGUI -c Release -r win-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:IncludeAllContentForSelfExtract=true -o Release/windows
+      - name: Zip Windows package
+        run: (cd Release/windows && zip -r "../AIM-${{ env.APP_VERSION }}-windows.zip" .)
 
-      - name: Compile Linux portable
-        run: dotnet publish ModsOfMistriaGUI -c Release -r linux-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=false -p:PublishReadyToRun=false -p:IncludeAllContentForSelfExtract=false -o Release/linux
-      - name: Add Linux archive worker
-        run: dotnet publish ModsOfMistriaArchiveWorker -c Release -r linux-x64 -p:PublishSingleFile=true -p:PublishReadyToRun=false -p:IncludeAllContentForSelfExtract=false -o Release/linux
-      - name: Zip Linux portable
-        run: (cd Release/linux && zip -r "../AIM-${{ env.APP_VERSION }}-linux-portable.zip" .)
+      - name: Compile Linux package
+        run: dotnet publish ModsOfMistriaGUI -c Release -r linux-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:IncludeAllContentForSelfExtract=true -o Release/linux
+      - name: Zip Linux package
+        run: (cd Release/linux && zip -r "../AIM-${{ env.APP_VERSION }}-linux.zip" .)
 
-      - name: Compile macOS portable
-        run: dotnet publish ModsOfMistriaGUI -c Release -r osx-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=false -p:PublishReadyToRun=false -p:IncludeAllContentForSelfExtract=false -o Release/macos
-      - name: Add macOS archive worker
-        run: dotnet publish ModsOfMistriaArchiveWorker -c Release -r osx-x64 -p:PublishSingleFile=true -p:PublishReadyToRun=false -p:IncludeAllContentForSelfExtract=false -o Release/macos
-      - name: Zip macOS portable
-        run: (cd Release/macos && zip -r "../AIM-${{ env.APP_VERSION }}-macos-portable.zip" .)
+      - name: Compile macOS package
+        run: dotnet publish ModsOfMistriaGUI -c Release -r osx-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:IncludeAllContentForSelfExtract=true -o Release/macos
+      - name: Zip macOS package
+        run: (cd Release/macos && zip -r "../AIM-${{ env.APP_VERSION }}-macos.zip" .)
 
       - name: Upload test artifacts to GitHub Actions only
         uses: actions/upload-artifact@v7
@@ -136,35 +130,35 @@ jobs:
 
       # Nexus upload is deliberately disabled unless both switches are enabled.
       # Keep NEXUS_UPLOAD_ENABLED unset/false while a release is under review.
-      - name: Upload Windows portable to Nexus
+      - name: Upload Windows package to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
         uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
         with:
           api_key: ${{ secrets.NEXUS_API_KEY }}
           file_group_id: ${{ secrets.NEXUS_FILE_ID_WINDOWS }}
-          filename: Release/AIM-${{ env.APP_VERSION }}-windows-portable.zip
+          filename: Release/AIM-${{ env.APP_VERSION }}-windows.zip
           version: ${{ env.APP_VERSION }}
-          display_name: "AIM Windows Portable"
-          description: "Portable version of AIM for Windows."
+          display_name: "AIM Windows"
+          description: "Self-contained AIM package for Windows."
 
-      - name: Upload Linux / SteamOS portable to Nexus
+      - name: Upload Linux / SteamOS package to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
         uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
         with:
           api_key: ${{ secrets.NEXUS_API_KEY }}
           file_group_id: ${{ secrets.NEXUS_FILE_ID_LINUX }}
-          filename: Release/AIM-${{ env.APP_VERSION }}-linux-portable.zip
+          filename: Release/AIM-${{ env.APP_VERSION }}-linux.zip
           version: ${{ env.APP_VERSION }}
-          display_name: "AIM Linux and SteamOS Portable"
-          description: "Portable version of AIM for Linux and SteamOS."
+          display_name: "AIM Linux and SteamOS"
+          description: "Self-contained AIM package for Linux and SteamOS."
 
-      - name: Upload macOS portable to Nexus
+      - name: Upload macOS package to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
         uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
         with:
           api_key: ${{ secrets.NEXUS_API_KEY }}
           file_group_id: ${{ secrets.NEXUS_FILE_ID_MACOS }}
-          filename: Release/AIM-${{ env.APP_VERSION }}-macos-portable.zip
+          filename: Release/AIM-${{ env.APP_VERSION }}-macos.zip
           version: ${{ env.APP_VERSION }}
-          display_name: "AIM macOS Portable"
-          description: "Portable version of AIM for macOS."
+          display_name: "AIM macOS"
+          description: "Self-contained AIM package for macOS."
