@@ -164,6 +164,13 @@ public partial class ModlistPageView : UserControl
         UpdateLanguageCheckmark();
     }
 
+    private void SettingsMenuClick(object? sender, RoutedEventArgs e)
+    {
+        if (TopLevel.GetTopLevel(this) is MainWindow window &&
+            window.DataContext is MainWindowViewModel viewModel)
+            viewModel.ShowSettings();
+    }
+
     private void UpdateLanguageCheckmark()
     {
         var selected = LocalizationService.Instance.LanguageCode;

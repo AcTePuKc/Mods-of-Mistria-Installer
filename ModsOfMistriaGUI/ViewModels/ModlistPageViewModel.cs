@@ -717,6 +717,13 @@ public partial class ModlistPageViewModel : PageViewBase
     // ModModel on the UI thread so the update badge appears as responses arrive.
     private static async Task CheckModUpdatesAsync(List<ModModel> models)
     {
+#if AIM_NEXUS_DISTRIBUTION
+        // Nexus packages must not use GitHub as an update source. This remains
+        // disabled until Nexus approves the application's OAuth/API flow.
+        PerformanceDiagnostics.Log("Mod update checks skipped for Nexus distribution");
+        return;
+#else
+
         var stopwatch = Stopwatch.StartNew();
         var tasks = models.Select(async model =>
         {
@@ -735,6 +742,28 @@ public partial class ModlistPageViewModel : PageViewBase
         });
         await Task.WhenAll(tasks);
         PerformanceDiagnostics.Log($"Mod update checks: {stopwatch.ElapsedMilliseconds} ms, mods={models.Count}");
+#endif
+    }
+
+    public async Task CheckForModUpdatesNowAsync()
+    {
+#if AIM_NEXUS_DISTRIBUTION
+        foreach (var mod in Mods)
+        {
+            mod.LatestVersion = $"{mod.Mod.GetVersion()} (test)";
+            mod.UpdateDownloadUrl = mod.Mod.GetDownloadUrl();
+            mod.UpdateAvailable = true;
+        }
+#else
+        await CheckModUpdatesAsync(Mods.ToList());
+#endif
+    }
+
+    [RelayCommand]
+    private async Task CheckForUpdatesNow()
+    {
+        if (IsInstalling) return;
+        await CheckForModUpdatesNowAsync();
     }
 
     // ── Observable properties ─────────────────────────────────────────────────────

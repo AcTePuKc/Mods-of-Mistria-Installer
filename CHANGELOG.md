@@ -1,6 +1,13 @@
 # Changelog
 
-## 0.1.4 — Unreleased
+## 0.1.5 — Unreleased
+
+- Added the initial disabled Nexus OAuth/API distribution boundary for testing.
+- Nexus test builds do not use GitHub mod update checks until the application
+  registration and authentication flow are approved.
+- No Nexus credentials are included in the source tree or application build.
+
+## 0.1.4 — 2026-08-20
 
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker and localized metadata changes unchanged.

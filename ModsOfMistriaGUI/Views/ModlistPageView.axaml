@@ -23,10 +23,17 @@
                             </Image.Source>
                         </Image>
                     </MenuItem.Header>
+                    <MenuItem Header="Check for updates"
+                              Command="{Binding CheckForUpdatesNowCommand}"
+                              IsEnabled="{Binding !IsInstalling}"
+                              ToolTip.Tip="Check for newer versions of the selected mod sources." />
+                    <Separator />
                     <MenuItem Header="{Binding Texts.GUIReloadModlist}" Command="{Binding ReloadModlistCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUISaveLogFile}" Command="{Binding SaveLogFileCommand}" />
                     <MenuItem Header="{Binding Texts.GUIEnableAllMods}" Command="{Binding EnableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUIDisableAllMods}" Command="{Binding DisableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
+                    <Separator />
+                    <MenuItem Header="Settings…" Click="SettingsMenuClick" IsEnabled="{Binding !IsInstalling}" />
                     <Separator />
                     <MenuItem Header="{Binding Texts.GUILaunchGameDirectly}"
                               ToggleType="CheckBox"

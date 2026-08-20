@@ -12,7 +12,8 @@ namespace Garethp.ModsOfMistriaGUI.ViewModels;
 internal enum Pages
 {
     GettingStarted,
-    Modlist
+    Modlist,
+    Settings
 }
 
 public partial class MainWindowViewModel : ViewModelBase
@@ -71,6 +72,14 @@ public partial class MainWindowViewModel : ViewModelBase
             modlist.SaveCurrentProfileState();
     }
 
+    public void ShowSettings() => CurrentPage = _pages[Pages.Settings];
+
+    public void ShowModlist()
+    {
+        if (_settings.ValidMistriaLocation() && _settings.ValidModsLocation())
+            CurrentPage = _pages[Pages.Modlist];
+    }
+
     public MainWindowViewModel()
     {
         var stopwatch = Stopwatch.StartNew();
@@ -86,10 +95,12 @@ public partial class MainWindowViewModel : ViewModelBase
         _settings.ModsLocation = MistriaLocator.GetModsLocation(_settings.MistriaLocation) ?? "";
         PerformanceDiagnostics.Log($"Startup: location detection={locationStopwatch.ElapsedMilliseconds} ms, gameFound={!string.IsNullOrEmpty(_settings.MistriaLocation)}, modsFound={!string.IsNullOrEmpty(_settings.ModsLocation)}");
 
+        var modlistPage = new ModlistPageViewModel(_settings);
         _pages = new Dictionary<Pages, PageViewBase>
         {
             { Pages.GettingStarted , new GettingStartedPageViewModel(_settings) },
-            { Pages.Modlist, new ModlistPageViewModel(_settings) }
+            { Pages.Modlist, modlistPage },
+            { Pages.Settings, new SettingsPageViewModel(_settings, modlistPage, ShowModlist) }
         };
 
         foreach (var page in _pages.Values)
