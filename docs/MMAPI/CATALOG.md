@@ -2,7 +2,7 @@
 
 [← MMAPI](MMAPI.md)
 
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **115 hooks**, fed by **124 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **116 hooks**, fed by **125 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -80,6 +80,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [npc.gift_received](hooks/npc.gift_received.md) | event | Know when the player gives an NPC a gift. |
 | [date.run](hooks/date.run.md) | override | Take over a date the moment the player commits to it. |
 | [date.cutscene](hooks/date.cutscene.md) | filter | Swap which cutscene a date plays while keeping the vanilla date pipeline. |
+| [date.cooldown](hooks/date.cooldown.md) | filter | Change the cooldown between dates with the same NPC. |
 | [animal.heart_points](hooks/animal.heart_points.md) | filter | Adjust the heart points a barn animal gains. |
 | [animal.pet](hooks/animal.pet.md) | event | Know when the player pets or puts down an animal. |
 | [combat.damage](hooks/combat.damage.md) | filter | Change any hit before it resolves. |
@@ -208,6 +209,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [date_run](seams/date_run.md) | Puts a claim-scoped override in front of every player-initiated date. |
 | [date_cutscene](seams/date_cutscene.md) | Threads the date cutscene name through a filter and into the completion chain. |
 | [date_cutscene_chain_args](seams/date_cutscene_chain_args.md) | Extends the date chain's args so the filtered cutscene name reaches the reward gate. |
+| [date_cooldown](seams/date_cooldown.md) | Threads the date cooldown through a filter before the eligibility scan uses it. |
 | [animal_heart_points](seams/animal_heart_points.md) | Reroutes every barn-animal heart-point delta through a filter before it applies. |
 | [animal_on_pet](seams/animal_on_pet.md) | Announces the moment the player pets a barn animal. |
 | [animal_put_down](seams/animal_put_down.md) | Announces the moment a held animal is set back down. |
