@@ -42,6 +42,16 @@ $hasLicence = (Test-Path $licenceFile) -or
               (-not [string]::IsNullOrWhiteSpace($env:SixLaborsLicenseKey)) -or
               (-not [string]::IsNullOrWhiteSpace($env:SixLaborsLicenseFile))
 
+# Only ImageSharp 4.0.0 and later demand a key, so the pinned version decides whether the check
+# below applies at all.
+$libraryProject = Join-Path $PSScriptRoot 'ModsOfMistriaInstallerLib/ModsOfMistriaInstallerLib.csproj'
+$pinnedImageSharp = [regex]::Match(
+    (Get-Content -Raw -Path $libraryProject),
+    'SixLabors\.ImageSharp"\s+Version="([^"]+)"').Groups[1].Value
+
+$needsLicence = $false
+if ($pinnedImageSharp -match '^(\d+)') { $needsLicence = [int]$Matches[1] -ge 4 }
+
 $overridePath = Join-Path $PSScriptRoot 'Directory.Build.targets'
 $wroteOverride = $false
 
@@ -62,7 +72,7 @@ if ($UseImageSharp3) {
 '@ | Set-Content -Path $overridePath -Encoding UTF8
     $wroteOverride = $true
 }
-elseif (-not $hasLicence) {
+elseif ($needsLicence -and -not $hasLicence) {
     Write-Host ''
     Write-Warning @'
 This fork builds against SixLabors.ImageSharp 4.x, which refuses to compile without a license key.
@@ -81,6 +91,9 @@ You have three options:
 '@
     Write-Host ''
     throw 'No Six Labors license key found - see the options above.'
+}
+elseif (-not $needsLicence) {
+    Write-Host "ImageSharp $pinnedImageSharp is pinned, which needs no license key." -ForegroundColor DarkGray
 }
 
 # ── Build ─────────────────────────────────────────────────────────────────────
