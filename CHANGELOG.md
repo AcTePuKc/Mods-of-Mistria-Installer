@@ -2,6 +2,19 @@
 
 ## 0.1.4 — Unreleased
 
+- Added support for the Nexus Mods **Mod Manager Download** button. AIM can register itself as the
+  `nxm://` protocol handler on Windows and Linux, and a clicked link is handed to the window that is
+  already open instead of starting a second one.
+- Added a Nexus API key screen. The key is validated against the Nexus API before it is saved, and is
+  stored per-user outside the mods folder - DPAPI-encrypted on Windows, owner-only on Linux.
+- Downloads show progress in the mod list page and can be cancelled. Finished rows can be dismissed.
+- Downloaded archives (zip, rar, 7z) are unpacked relative to the mod's own `manifest.toml`, so an
+  archive with an extra wrapper folder installs correctly. Archives containing several mods install
+  each of them.
+- Replacing an already-installed mod asks first and keeps the previous copy until the new one has been
+  written successfully. Archive entries that point outside the mods folder are refused.
+- Added "Install from a copied nxm:// link" for browsers that cannot launch an external handler,
+  such as Flatpak or Snap builds.
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker and localized metadata changes unchanged.
 

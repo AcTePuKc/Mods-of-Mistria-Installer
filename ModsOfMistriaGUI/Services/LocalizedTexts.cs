@@ -97,4 +97,12 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIModSkipped => T("GUIModSkipped");
     public string GUIModInstalled => T("GUIModInstalled");
     public string GUIModAlreadyInstalled => T("GUIModAlreadyInstalled");
+
+    // Nexus "Mod Manager Download" support
+    public string GUINexusMenu => T("GUINexusMenu");
+    public string GUINexusHandlerMenuItem => T("GUINexusHandlerMenuItem");
+    public string GUINexusApiKeyMenuItem => T("GUINexusApiKeyMenuItem");
+    public string GUINexusPasteLinkMenuItem => T("GUINexusPasteLinkMenuItem");
+    public string GUINexusDownloadsHeader => T("GUINexusDownloadsHeader");
+    public string GUINexusClearFinished => T("GUINexusClearFinished");
 }

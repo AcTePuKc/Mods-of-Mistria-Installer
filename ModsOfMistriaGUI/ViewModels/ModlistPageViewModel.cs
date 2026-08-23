@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using Avalonia.Platform.Storage;
@@ -40,9 +40,16 @@ public partial class ModlistPageViewModel : PageViewBase
     private string? _archiveStatusKey;
     private int _archiveStatusModCount;
 
-    public ModlistPageViewModel(Settings settings)
+    public ModlistPageViewModel(Settings settings, NexusDownloadsViewModel? nexus = null)
     {
         _settings = settings;
+        Nexus = nexus;
+
+        // A mod that arrives from Nexus is a new folder in the mods directory, so the list has to
+        // be rebuilt before it can be selected and installed.
+        if (Nexus is not null)
+            Nexus.ModsChanged += (_, _) => Dispatcher.UIThread.Post(() => UpdateModlist(true));
+
         SetLanguageCommand = new RelayCommand<string?>(SetLanguage);
         Localization.LanguageChanged += OnLocalizationChanged;
         _settings.PropertyChanged += (_, e) =>
@@ -53,6 +60,9 @@ public partial class ModlistPageViewModel : PageViewBase
         };
         Task.Run(UpdateModlist);
     }
+
+    /// <summary>Null in design-time and test contexts that build the page on its own.</summary>
+    public NexusDownloadsViewModel? Nexus { get; }
 
     public IRelayCommand<string?> SetLanguageCommand { get; }
 

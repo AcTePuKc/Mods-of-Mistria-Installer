@@ -646,4 +646,37 @@ Open download page(s) in browser?</value></data>
   <data name="GUILanguagePolish" xml:space="preserve"><value>Polski</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Warning: This mod contains a known pre-1.0.3 compatibility signature. It may be outdated and could prevent the game from starting or cause a crash. AIM will not block it automatically.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Nexus downloads</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Handle "Mod Manager Download" links</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API key...</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Install from a copied nxm:// link</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Downloading from Nexus</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>Clear finished</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus mod {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus download</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>That download is for another game ({0}), so AIM cannot install it.</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Set up your Fields of Mistria and mods folders before downloading mods.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Already installed</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>This download would replace mods you already have installed: {0}&#xD;&#xA;&#xD;&#xA;Replace them?</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Mod Manager Download links</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM handles "Mod Manager Download" links.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>"Mod Manager Download" links are not being handled by AIM yet.</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Another program currently handles these links ({0}).</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Handling these links is only supported on Windows and Linux.</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM will now open "Mod Manager Download" links from the Nexus website.&#xD;&#xA;&#xD;&#xA;Your browser may ask for permission the first time you click one.</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Could not register AIM for these links: {0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>These links are currently handled by another program ({0}).&#xD;&#xA;&#xD;&#xA;Hand them to AIM instead?</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Install from a link</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>The clipboard does not contain an nxm:// link. Right-click "Mod Manager Download" on the mod page and copy the link address first.</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus API key</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM needs your personal Nexus Mods API key to download mods for you. Open your Nexus account settings, scroll to "API Key", generate a personal key and paste it below. The key is stored on this computer only.</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Open Nexus account settings</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Paste your personal API key here</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>A key is already saved. Enter a new one to replace it.</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Paste your API key first.</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Checking the key with Nexus...</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Signed in as {0}.</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Remove saved key</value></data>
+  <data name="GUISave" xml:space="preserve"><value>Save</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>Cancel</value></data>
 </root>

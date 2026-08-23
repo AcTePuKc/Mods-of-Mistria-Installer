@@ -23,6 +23,7 @@ Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1
 - TOML validation, custom font installation and manual-load animation content are supported for current 1.0.x mods.
 - The UI remembers profiles and load order, behaves better on high-DPI displays, and includes a guarded **Play** button.
 - Update checks, release uploads and the GitHub link belong to this fork rather than the upstream repository.
+- Nexus **Mod Manager Download** links (`nxm://`) can be handled directly, so mods download and unpack into the mods folder without a manual extract step.
 
 ## What this fork supports
 
@@ -83,6 +84,48 @@ This project is intended for Fields of Mistria 1.0.4 and later 1.0.x patches. In
 > Close AIM before moving, replacing, or deleting mod files. An open mod archive may be locked while AIM is running.
 
 AIM preserves a pristine backup and writes a staged archive before replacing the live `assets.zip`. Do not delete the backup while AIM is managing the installation. Keep a separate game backup before testing unfamiliar mods.
+
+## Downloading mods from Nexus ("Mod Manager Download")
+
+AIM can register itself as the handler for `nxm://` links, which is what the **Mod Manager Download**
+button on a Nexus Mods page uses. Once it is set up, clicking that button downloads the mod and
+unpacks it straight into your mods folder, the way Vortex does for other games.
+
+### Setting it up
+
+1. Open the gear menu → **Nexus downloads** → **Nexus API key...**
+2. Click **Open Nexus account settings**, scroll to **API Key**, generate a personal key and paste it
+   into AIM. The key is checked immediately, and is stored on this computer only (encrypted with
+   Windows DPAPI; on Linux in a file only your user can read).
+3. Back in the gear menu, choose **Handle "Mod Manager Download" links**. The line underneath the menu
+   item shows whether AIM currently owns those links.
+4. Click **Mod Manager Download** on any Fields of Mistria mod page. Your browser will ask once
+   whether to open the link with AIM.
+
+### What happens on a download
+
+- The link is handed to the AIM window you already have open. A second window is never opened.
+- The mod is downloaded from Nexus and unpacked into your mods folder, anchored on the mod's
+  `manifest.toml`, so an archive with an extra wrapper folder still lands in the right place.
+- Downloading a mod you already have asks before replacing it, and the previous copy is kept until
+  the new one is written successfully.
+- Downloading does not install mods into the game. The new mod appears in the list, and you still
+  choose when to press **Install**.
+
+### Notes and limits
+
+- A Nexus API key is required. Free accounts can only download through the website's **Mod Manager
+  Download** button, because the download token lives in the link itself; an `nxm://` link typed by
+  hand will be refused by Nexus for a non-premium account.
+- Registration is per-user and never needs administrator rights: `HKCU\Software\Classes\nxm` on
+  Windows, a `~/.local/share/applications/aim-nxm-handler.desktop` entry plus `mimeapps.list` on
+  Linux and the Steam Deck.
+- If another mod manager already owns `nxm://`, AIM says so and asks before taking over. Turning the
+  option off again only removes AIM's own registration.
+- A browser installed as a Flatpak or Snap may not be able to launch a handler outside its sandbox.
+  In that case, right-click **Mod Manager Download**, copy the link address, and use gear menu →
+  **Nexus downloads** → **Install from a copied nxm:// link**.
+- Nexus collections are not supported; download the mods in them individually.
 
 ## Optional localized mod metadata
 
