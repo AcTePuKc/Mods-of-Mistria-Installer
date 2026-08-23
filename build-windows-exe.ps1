@@ -92,10 +92,30 @@ dotnet publish ModsOfMistriaGUI/ModsOfMistriaGUI.csproj `
     --output $OutputDirectory
 if ($LASTEXITCODE -ne 0) { throw "Publish failed (exit code $LASTEXITCODE)." }
 
-$executable = Join-Path $OutputDirectory 'ModsOfMistriaInstaller.exe'
-if (Test-Path $executable) {
-    Write-Host "Done: $((Resolve-Path $executable).Path)" -ForegroundColor Green
+# The GUI project renames its assembly per runtime identifier (AIM, AIM-win-x86, AIM-linux,
+# AIM-osx), so the produced file is whichever executable publish has just written.
+$guiProject = Join-Path $PSScriptRoot 'ModsOfMistriaGUI/ModsOfMistriaGUI.csproj'
+$guiProjectText = Get-Content -Raw -Path $guiProject
+
+$assemblyNames = [regex]::Matches($guiProjectText, '<AssemblyName>([^<]+)</AssemblyName>') |
+    ForEach-Object { $_.Groups[1].Value }
+
+$executable = $assemblyNames |
+    ForEach-Object { Join-Path $OutputDirectory "$_.exe" } |
+    Where-Object { Test-Path $_ } |
+    Sort-Object { (Get-Item $_).LastWriteTime } -Descending |
+    Select-Object -First 1
+
+if (-not $executable) {
+    $executable = Get-ChildItem -Path $OutputDirectory -Filter *.exe -ErrorAction SilentlyContinue |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1 -ExpandProperty FullName
+}
+
+if ($executable) {
+    $size = [math]::Round((Get-Item $executable).Length / 1MB)
+    Write-Host "Done: $((Resolve-Path $executable).Path) (${size} MB)" -ForegroundColor Green
     Write-Host 'Run it once, then use the gear menu -> Nexus downloads to set your API key and register "Mod Manager Download" links.'
 } else {
-    Write-Warning "Publish finished but $executable was not found. Check the output above."
+    Write-Warning "Publish finished but no executable was found in $OutputDirectory. Check the output above."
 }
