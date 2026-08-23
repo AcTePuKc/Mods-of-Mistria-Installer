@@ -56,7 +56,8 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
         string modsLocation,
         IProgress<NxmDownloadProgress>? progress = null,
         Func<List<string>, Task<bool>>? confirmOverwrite = null,
-        CancellationToken ct = default)
+        CancellationToken ct = default,
+        string? previousVersion = null)
     {
         var fileName = $"{link.ModId}-{link.FileId}";
         string? temporaryFile = null;
@@ -93,12 +94,18 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
 
             progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Installing, $"Unpacking {fileInfo.Name}"));
 
-            var (installed, abandoned) = await InstallAsync(temporaryFile, modsLocation, fileName, confirmOverwrite, ct);
+            var (installed, abandoned) = await InstallAsync(
+                temporaryFile, modsLocation, fileName, confirmOverwrite, ct,
+                new ModBackupStore(modsLocation), previousVersion);
             if (abandoned)
             {
                 progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Cancelled, "Install cancelled"));
                 return new NxmDownloadResult(false, fileName, [], null, true);
             }
+
+            // Remember where each folder came from, so it can be checked for updates, opened on its
+            // page, or frozen later on.
+            RecordProvenance(modsLocation, link, fileInfo, installed);
 
             var summary = installed.Count == 1
                 ? $"Installed {installed[0].Name}"
@@ -200,6 +207,26 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
             $"Could not download the file from Nexus: {lastFailure?.Message ?? "no download server responded"}");
     }
 
+    private static void RecordProvenance(
+        string modsLocation, NxmLink link, NexusFileInfo fileInfo, List<InstalledModFolder> installed)
+    {
+        if (installed.Count == 0) return;
+
+        try
+        {
+            var index = new NexusInstallIndex(modsLocation);
+            foreach (var folder in installed)
+                index.Record(folder.Path, new NexusInstallRecord(
+                    link.Game, link.ModId, fileInfo.FileId, fileInfo.FileName,
+                    fileInfo.Version, DateTimeOffset.UtcNow));
+        }
+        catch (Exception e)
+        {
+            // Losing provenance costs update checks, not the install that just succeeded.
+            Logger.Log($"Could not record where {fileInfo.FileName} came from: {e.Message}");
+        }
+    }
+
     /// <summary>
     /// Unpacks the archive, pausing to ask about folders that already exist. Extraction itself is
     /// blocking work and is pushed off the calling thread; the confirmation is awaited rather than
@@ -210,12 +237,15 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
         string modsLocation,
         string fileName,
         Func<List<string>, Task<bool>>? confirmOverwrite,
-        CancellationToken ct)
+        CancellationToken ct,
+        ModBackupStore? backups = null,
+        string? previousVersion = null)
     {
         try
         {
             var installed = await Task.Run(
-                () => ModArchiveInstaller.Install(archivePath, modsLocation, fileName), ct);
+                () => ModArchiveInstaller.Install(archivePath, modsLocation, fileName,
+                    ArchiveConflictBehaviour.Fail, backups, previousVersion), ct);
             return (installed, false);
         }
         catch (ModArchiveConflictException conflict)
@@ -226,7 +256,8 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
             if (!replace) return ([], true);
 
             var installed = await Task.Run(() => ModArchiveInstaller.Install(
-                archivePath, modsLocation, fileName, ArchiveConflictBehaviour.Replace), ct);
+                archivePath, modsLocation, fileName, ArchiveConflictBehaviour.Replace,
+                backups, previousVersion), ct);
             return (installed, false);
         }
     }

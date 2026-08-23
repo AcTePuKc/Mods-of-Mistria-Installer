@@ -22,6 +22,7 @@ public class NexusSettings
     private const string ApiKeyField = "nexusApiKey";
     private const string ProtectedApiKeyField = "nexusApiKeyProtected";
     private const string HandlerRegisteredField = "nxmHandlerRegistered";
+    private const string HandlerPromptField = "nxmHandlerPromptAnswered";
 
     private readonly string _path;
     private JObject _data;
@@ -106,6 +107,20 @@ public class NexusSettings
         set
         {
             _data[HandlerRegisteredField] = value;
+            Save();
+        }
+    }
+
+    /// <summary>
+    /// Whether the user has already been asked to let AIM handle nxm:// links. Recorded whichever
+    /// way they answered, so the offer is made once rather than at every launch.
+    /// </summary>
+    public bool HandlerPromptAnswered
+    {
+        get => _data.Value<bool?>(HandlerPromptField) ?? false;
+        set
+        {
+            _data[HandlerPromptField] = value;
             Save();
         }
     }

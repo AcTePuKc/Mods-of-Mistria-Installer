@@ -11,6 +11,7 @@ using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
+using Garethp.ModsOfMistriaInstallerLib.Nexus;
 using Garethp.ModsOfMistriaInstallerLib.Store;
 using Garethp.ModsOfMistriaInstallerLib.Worker;
 using MsBox.Avalonia;
@@ -42,6 +43,11 @@ public partial class ModlistPageViewModel : PageViewBase
 
     // Notices mods copied into the folder while AIM is open.
     private ModsFolderWatcher? _modsFolderWatcher;
+
+    // Nexus update checking, bound to the current mods folder.
+    private NexusUpdateService? _updateService;
+    private ModBackupStore? _backupStore;
+    private ModRowCommands? _rowCommands;
 
     public ModlistPageViewModel(Settings settings, NexusDownloadsViewModel? nexus = null)
     {
@@ -316,6 +322,53 @@ public partial class ModlistPageViewModel : PageViewBase
         if (watcher.Start()) _modsFolderWatcher = watcher;
     }
 
+    private NexusUpdateService? UpdateService
+    {
+        get
+        {
+            if (Nexus is null || string.IsNullOrEmpty(ModsLocation)) return null;
+            return _updateService ??= Nexus.CreateUpdateService(ModsLocation);
+        }
+    }
+
+    private ModBackupStore? BackupStore
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(ModsLocation)) return null;
+            return _backupStore ??= new ModBackupStore(ModsLocation);
+        }
+    }
+
+    private ModRowCommands RowCommands => _rowCommands ??= new ModRowCommands(
+        new RelayCommand<ModModel>(OpenNexusPage),
+        new AsyncRelayCommand<ModModel>(CheckModForUpdate),
+        new AsyncRelayCommand<ModModel>(UpdateModFromNexus),
+        new RelayCommand<ModModel>(ToggleModFreeze),
+        new AsyncRelayCommand<ModModel>(RestorePreviousVersion),
+        new RelayCommand<ModModel>(OpenModFolder));
+
+    /// <summary>
+    /// Fills in what AIM knows about each row from Nexus: which page it came from, whether the user
+    /// froze it, and whether a previous version is kept. No network calls - this is all local
+    /// bookkeeping, so it runs on every list load.
+    /// </summary>
+    private void RefreshNexusState()
+    {
+        var service = UpdateService;
+        var backups = BackupStore;
+
+        foreach (var model in Mods)
+        {
+            model.Commands = RowCommands;
+
+            var record = service?.Resolve(model.Mod);
+            model.NexusPageUrl = record?.PageUrl;
+            model.IsFrozen = service?.IsFrozen(model.Mod) ?? false;
+            model.HasBackup = backups?.HasBackups(ModBackupStore.ModNameFor(model.Mod.GetSourcePath())) ?? false;
+        }
+    }
+
     private void RefreshPositions()
     {
         for (var i = 0; i < Mods.Count; i++)
@@ -547,6 +600,9 @@ public partial class ModlistPageViewModel : PageViewBase
 
             RefreshProfileList();
             _isDirty = false;
+            _updateService = null;
+            _backupStore = null;
+            RefreshNexusState();
             RefreshSelectionSummary();
             WatchModsFolder();
             var modSnapshot = Mods.ToList();
@@ -993,6 +1049,212 @@ public partial class ModlistPageViewModel : PageViewBase
 
         await MessageBoxManager.GetMessageBoxStandard(
             Texts.GUILoadOrderTitle, body, ButtonEnum.Ok).ShowAsync();
+    }
+
+    // ── Nexus: per-mod actions ────────────────────────────────────────────────────
+
+    private void OpenNexusPage(ModModel? model)
+    {
+        if (model?.NexusPageUrl is null) return;
+        NexusDownloadsViewModel.OpenUrl(model.NexusPageUrl);
+    }
+
+    private void OpenModFolder(ModModel? model)
+    {
+        var path = model?.Mod.GetSourcePath();
+        if (string.IsNullOrEmpty(path)) return;
+
+        var folder = Directory.Exists(path) ? path : Path.GetDirectoryName(path);
+        if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder)) return;
+
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = folder, UseShellExecute = true });
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not open {folder}: {e.Message}");
+        }
+    }
+
+    private void ToggleModFreeze(ModModel? model)
+    {
+        if (model is null || UpdateService is null) return;
+
+        var frozen = !model.IsFrozen;
+        UpdateService.SetFrozen(model.Mod, frozen);
+        model.IsFrozen = frozen;
+
+        // A frozen mod's pending update badge is noise: the user has said they do not want it.
+        if (!frozen) return;
+        model.UpdateAvailable = false;
+        model.UpdateFileId = null;
+    }
+
+    private async Task CheckModForUpdate(ModModel? model)
+    {
+        if (model is null || UpdateService is null) return;
+        if (Nexus is not null && !await Nexus.EnsureApiKeyAsync()) return;
+
+        model.IsCheckingUpdate = true;
+        try
+        {
+            var status = await Task.Run(() => UpdateService.CheckAsync(model.Mod));
+            ApplyUpdateStatus(model, status);
+            await ReportUpdateStatusAsync(model, status);
+        }
+        finally
+        {
+            model.IsCheckingUpdate = false;
+        }
+    }
+
+    private async Task UpdateModFromNexus(ModModel? model)
+    {
+        if (model is null || Nexus is null || UpdateService is null) return;
+
+        // The badge may be from a check made minutes ago; ask Nexus again so the file id being
+        // installed is the one the page offers right now.
+        var status = await Task.Run(() => UpdateService.CheckAsync(model.Mod));
+        ApplyUpdateStatus(model, status);
+
+        if (!status.HasUpdate)
+        {
+            await ReportUpdateStatusAsync(model, status);
+            return;
+        }
+
+        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUIUpdateModTitle,
+            string.Format(Texts.GUIUpdateModConfirm, model.Mod.GetName(),
+                model.Mod.GetVersion(), status.LatestVersion ?? "?"),
+            ButtonEnum.YesNo).ShowAsync();
+
+        if (confirm != ButtonResult.Yes) return;
+
+        if (await Nexus.RunUpdateAsync(UpdateService, model.Mod, status, ModsLocation))
+            UpdateModlist(true);
+    }
+
+    private async Task RestorePreviousVersion(ModModel? model)
+    {
+        if (model is null || BackupStore is null) return;
+
+        var source = model.Mod.GetSourcePath();
+        var modName = ModBackupStore.ModNameFor(source);
+        var backups = BackupStore.List(modName);
+
+        if (backups.Count == 0)
+        {
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUIRestoreVersionTitle, Texts.GUIRestoreVersionNone, ButtonEnum.Ok).ShowAsync();
+            return;
+        }
+
+        var newest = backups[0];
+        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUIRestoreVersionTitle,
+            string.Format(Texts.GUIRestoreVersionConfirm, model.Mod.GetName(), newest.Describe()),
+            ButtonEnum.YesNo).ShowAsync();
+
+        if (confirm != ButtonResult.Yes) return;
+
+        try
+        {
+            var destination = Directory.Exists(source)
+                ? source
+                : Path.Combine(ModsLocation, modName);
+
+            BackupStore.Restore(newest, destination);
+
+            // The index still names the file that was just rolled back, which would make the
+            // restored version look up to date for ever. Dropping the record falls back to
+            // comparing versions, which is right for a copy AIM did not install.
+            UpdateService?.Index.Forget(destination);
+
+            UpdateModlist(true);
+        }
+        catch (Exception e)
+        {
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUIRestoreVersionTitle, e.Message, ButtonEnum.Ok).ShowAsync();
+        }
+    }
+
+    // ── Nexus: bulk checks ────────────────────────────────────────────────────────
+
+    [RelayCommand]
+    private Task CheckSelectedModsForUpdates() =>
+        CheckManyForUpdates(Mods.Where(model => model.Enabled).ToList());
+
+    [RelayCommand]
+    private Task CheckAllModsForUpdates() => CheckManyForUpdates(Mods.ToList());
+
+    private async Task CheckManyForUpdates(List<ModModel> models)
+    {
+        if (models.Count == 0 || UpdateService is null) return;
+        if (Nexus is not null && !await Nexus.EnsureApiKeyAsync()) return;
+
+        var checkable = models.Where(model => !model.IsFrozen).ToList();
+        foreach (var model in checkable) model.IsCheckingUpdate = true;
+
+        try
+        {
+            var progress = new Progress<(int Done, int Total)>(step =>
+                InstallStatus = string.Format(Texts.GUICheckingForUpdates, step.Done, step.Total));
+
+            var statuses = await Task.Run(() =>
+                UpdateService.CheckManyAsync(checkable.Select(model => model.Mod).ToList(), progress));
+
+            foreach (var model in checkable)
+                if (statuses.TryGetValue(model.Mod.GetId(), out var status))
+                    ApplyUpdateStatus(model, status);
+
+            var withUpdates = checkable.Count(model => model.CanUpdateFromNexus);
+            var unavailable = statuses.Values.Count(status => status.State == NexusUpdateState.Unavailable);
+
+            InstallStatus = "";
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUICheckForUpdatesTitle,
+                string.Format(Texts.GUICheckForUpdatesResult, checkable.Count, withUpdates, unavailable),
+                ButtonEnum.Ok).ShowAsync();
+        }
+        finally
+        {
+            foreach (var model in checkable) model.IsCheckingUpdate = false;
+        }
+    }
+
+    private static void ApplyUpdateStatus(ModModel model, NexusUpdateStatus status)
+    {
+        model.NexusPageUrl = status.Record?.PageUrl ?? model.NexusPageUrl;
+        model.IsFrozen = status.State == NexusUpdateState.Frozen || model.IsFrozen;
+        model.UpdateFileId = status.HasUpdate ? status.LatestFileId : null;
+
+        if (!status.HasUpdate) return;
+
+        // The badge is shared with the manifest-based check that runs at startup, so a Nexus result
+        // only ever adds to it. Clearing it here would hide a GitHub release the other check found,
+        // and the badge needs somewhere to go: without a download url it opens nothing.
+        model.UpdateAvailable = true;
+        model.LatestVersion = status.LatestVersion ?? model.LatestVersion;
+        model.UpdateDownloadUrl ??= status.Record?.FilesPageUrl;
+    }
+
+    private async Task ReportUpdateStatusAsync(ModModel model, NexusUpdateStatus status)
+    {
+        var message = status.State switch
+        {
+            NexusUpdateState.UpdateAvailable => string.Format(Texts.GUIUpdateAvailableForMod,
+                model.Mod.GetName(), status.LatestVersion ?? "?"),
+            NexusUpdateState.UpToDate => string.Format(Texts.GUIModIsUpToDate, model.Mod.GetName()),
+            NexusUpdateState.Frozen => string.Format(Texts.GUIModIsFrozen, model.Mod.GetName()),
+            NexusUpdateState.NotFromNexus => string.Format(Texts.GUIModNotFromNexus, model.Mod.GetName()),
+            _ => status.Message ?? Texts.GUICheckForUpdatesFailed
+        };
+
+        await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUICheckForUpdatesTitle, message, ButtonEnum.Ok).ShowAsync();
     }
 
     [RelayCommand]

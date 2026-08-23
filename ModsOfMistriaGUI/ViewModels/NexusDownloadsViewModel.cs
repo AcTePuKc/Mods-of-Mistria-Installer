@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -6,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Views;
 using Garethp.ModsOfMistriaInstallerLib;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using Garethp.ModsOfMistriaInstallerLib.Nexus;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
@@ -44,6 +46,133 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     {
         RestoreHandlerRegistration();
         RefreshHandlerStatus();
+        _ = OfferToHandleLinksAsync();
+    }
+
+    /// <summary>
+    /// Asks once whether AIM should take over "Mod Manager Download" links, the way Vortex and
+    /// Stardrop do on first run. Declining is remembered: a mod manager that asks every launch is
+    /// a mod manager people stop reading dialogs from.
+    /// </summary>
+    private async Task OfferToHandleLinksAsync()
+    {
+        if (!NxmProtocolHandler.IsSupported()) return;
+        if (_nexusSettings.HandlerPromptAnswered) return;
+
+        var status = NxmProtocolHandler.GetStatus();
+        if (status is { IsRegistered: true, IsThisExecutable: true }) return;
+
+        // Another manager holding the protocol is a deliberate choice by the user; offering to
+        // take it over unprompted at startup would be presumptuous.
+        if (status.IsClaimedByAnother) return;
+
+        var answer = await ShowBoxAsync(
+            Localization["GUINexusHandlerTitle"],
+            Localization["GUINexusHandlerOffer"],
+            ButtonEnum.YesNo);
+
+        _nexusSettings.HandlerPromptAnswered = true;
+        if (answer != ButtonResult.Yes) return;
+
+        if (NxmProtocolHandler.Register(out var error))
+        {
+            _nexusSettings.HandlerRegistered = true;
+            await ShowMessage(Localization["GUINexusHandlerTitle"], Localization["GUINexusHandlerRegistered"]);
+        }
+        else
+        {
+            await ShowMessage(Localization["GUINexusHandlerTitle"],
+                string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+        }
+
+        RefreshHandlerStatus();
+    }
+
+    /// <summary>An update service bound to one mods folder. The caller owns the lifetime.</summary>
+    public NexusUpdateService CreateUpdateService(string modsLocation) => new(_nexusSettings, modsLocation);
+
+    /// <summary>
+    /// Makes sure there is an API key, asking for one if not. Returns false when the user closed
+    /// the dialog without saving a working key.
+    /// </summary>
+    public async Task<bool> EnsureApiKeyAsync()
+    {
+        if (_nexusSettings.HasApiKey()) return true;
+        if (App.TopLevel is not Window owner) return false;
+
+        var saved = await NexusApiKeyWindow.ShowAsync(owner, _nexusSettings);
+        OnPropertyChanged(nameof(HasApiKey));
+        return saved;
+    }
+
+    /// <summary>
+    /// Runs an update as a normal download, so it shows in the same downloads strip with the same
+    /// progress and cancel button. Returns true when the mod was replaced.
+    /// </summary>
+    public async Task<bool> RunUpdateAsync(
+        NexusUpdateService service, IMod mod, NexusUpdateStatus status, string modsLocation)
+    {
+        if (!await EnsureApiKeyAsync()) return false;
+
+        var download = new NexusDownloadModel(mod.GetName());
+        Downloads.Add(download);
+        HasDownloads = true;
+
+        var progress = new Progress<NxmDownloadProgress>(update =>
+            Dispatcher.UIThread.Post(() => download.Apply(update)));
+
+        NxmDownloadResult result;
+        try
+        {
+            result = await Task.Run(() =>
+                service.UpdateAsync(mod, status, modsLocation, progress, download.Token));
+        }
+        catch (Exception e)
+        {
+            download.Apply(new NxmDownloadProgress(NxmDownloadStage.Failed, e.Message));
+            await ShowMessage(Localization["GUINexusDownloadFailedTitle"], e.Message);
+            return false;
+        }
+
+        if (result.Success)
+        {
+            ModsChanged?.Invoke(this, EventArgs.Empty);
+            _ = DismissWhenReadAsync(download);
+            return true;
+        }
+
+        if (result.Cancelled)
+        {
+            _ = DismissWhenReadAsync(download);
+            return false;
+        }
+
+        // The usual reason: a free account cannot be given a download link without the token that
+        // only the website's button carries. Sending them to the page is the whole remedy.
+        var openPage = await ShowBoxAsync(
+            Localization["GUINexusDownloadFailedTitle"],
+            string.Format(Localization["GUINexusUpdateNeedsPage"], result.Error ?? ""),
+            ButtonEnum.YesNo);
+
+        if (openPage == ButtonResult.Yes && status.Record is not null)
+            OpenUrl(status.Record.FilesPageUrl);
+
+        return false;
+    }
+
+    /// <summary>Opens a page in the user's browser, refusing anything that is not plain https.</summary>
+    public static void OpenUrl(string? url)
+    {
+        if (!ExternalUrl.IsAllowed(url)) return;
+
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not open {url}: {e.Message}");
+        }
     }
 
     public ObservableCollection<NexusDownloadModel> Downloads { get; } = [];

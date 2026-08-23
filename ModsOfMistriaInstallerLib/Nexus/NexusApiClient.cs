@@ -8,7 +8,15 @@ namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
 public record NexusUser(int UserId, string Name, bool IsPremium, bool IsSupporter);
 
-public record NexusFileInfo(int FileId, string FileName, string Name, string? Version, long SizeInBytes);
+public record NexusFileInfo(int FileId, string FileName, string Name, string? Version, long SizeInBytes)
+{
+    public DateTimeOffset UploadedAt { get; init; } = DateTimeOffset.MinValue;
+
+    /// <summary>The category Nexus files it under: MAIN, UPDATE, OPTIONAL, OLD_VERSION...</summary>
+    public string Category { get; init; } = "";
+
+    public bool IsPrimary { get; init; }
+}
 
 public record NexusRateLimit(int? HourlyRemaining, int? DailyRemaining);
 
@@ -91,6 +99,42 @@ public class NexusApiClient
             json.Value<long?>("size_in_bytes") ?? (json.Value<long?>("size_kb") ?? 0) * 1024
         );
     }
+
+    /// <summary>
+    /// The file a visitor to the mod page would download: the author's primary file if they marked
+    /// one, otherwise the newest file in the MAIN category. Update and optional files are ignored -
+    /// they are patches and extras, not the mod itself.
+    /// </summary>
+    public async Task<NexusFileInfo?> GetLatestMainFileAsync(string game, int modId, CancellationToken ct = default)
+    {
+        var json = await GetJsonAsync($"{BaseUrl}/games/{game}/mods/{modId}/files.json", ct);
+
+        var files = (json["files"] as JArray ?? [])
+            .OfType<JObject>()
+            .Select(ReadFile)
+            .Where(file => file.Category.Equals("MAIN", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if (files.Count == 0) return null;
+
+        return files.FirstOrDefault(file => file.IsPrimary)
+               ?? files.OrderByDescending(file => file.UploadedAt).First();
+    }
+
+    private static NexusFileInfo ReadFile(JObject entry) =>
+        new(
+            entry.Value<int?>("file_id") ?? 0,
+            entry.Value<string>("file_name") ?? "",
+            entry.Value<string>("name") ?? "",
+            entry.Value<string>("version"),
+            entry.Value<long?>("size_in_bytes") ?? (entry.Value<long?>("size_kb") ?? 0) * 1024)
+        {
+            Category = entry.Value<string>("category_name") ?? "",
+            IsPrimary = entry.Value<bool?>("is_primary") ?? false,
+            UploadedAt = entry.Value<long?>("uploaded_timestamp") is { } stamp
+                ? DateTimeOffset.FromUnixTimeSeconds(stamp)
+                : DateTimeOffset.MinValue
+        };
 
     public async Task<string?> GetModNameAsync(NxmLink link, CancellationToken ct = default)
     {

@@ -98,6 +98,33 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIModInstalled => T("GUIModInstalled");
     public string GUIModAlreadyInstalled => T("GUIModAlreadyInstalled");
 
+    // Nexus updates, freezing and backups
+    public string GUIOpenNexusPage => T("GUIOpenNexusPage");
+    public string GUIOpenModFolder => T("GUIOpenModFolder");
+    public string GUICheckForUpdate => T("GUICheckForUpdate");
+    public string GUIUpdateFromNexus => T("GUIUpdateFromNexus");
+    public string GUIFreezeMod => T("GUIFreezeMod");
+    public string GUIUnfreezeMod => T("GUIUnfreezeMod");
+    public string GUIModFrozenTooltip => T("GUIModFrozenTooltip");
+    public string GUIRestorePreviousVersion => T("GUIRestorePreviousVersion");
+    public string GUIRestoreVersionTitle => T("GUIRestoreVersionTitle");
+    public string GUIRestoreVersionNone => T("GUIRestoreVersionNone");
+    public string GUIRestoreVersionConfirm => T("GUIRestoreVersionConfirm");
+    public string GUICheckSelectedForUpdates => T("GUICheckSelectedForUpdates");
+    public string GUICheckAllForUpdates => T("GUICheckAllForUpdates");
+    public string GUICheckForUpdatesTitle => T("GUICheckForUpdatesTitle");
+    public string GUICheckingForUpdates => T("GUICheckingForUpdates");
+    public string GUICheckForUpdatesResult => T("GUICheckForUpdatesResult");
+    public string GUICheckForUpdatesFailed => T("GUICheckForUpdatesFailed");
+    public string GUIUpdateAvailableForMod => T("GUIUpdateAvailableForMod");
+    public string GUIModIsUpToDate => T("GUIModIsUpToDate");
+    public string GUIModIsFrozen => T("GUIModIsFrozen");
+    public string GUIModNotFromNexus => T("GUIModNotFromNexus");
+    public string GUIUpdateModTitle => T("GUIUpdateModTitle");
+    public string GUIUpdateModConfirm => T("GUIUpdateModConfirm");
+    public string GUINexusUpdateNeedsPage => T("GUINexusUpdateNeedsPage");
+    public string GUINexusHandlerOffer => T("GUINexusHandlerOffer");
+
     // Mod list header and load order
     public string GUIModSelectionSummary => T("GUIModSelectionSummary");
     public string GUIToggleAllMods => T("GUIToggleAllMods");

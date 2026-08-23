@@ -11,7 +11,7 @@ namespace Garethp.ModsOfMistriaInstallerLib;
 public sealed class ModsFolderWatcher : IDisposable
 {
     private static readonly string[] IgnoredNames =
-        ["momi_profiles.json", "aim_profiles.json", "nexus.json"];
+        ["momi_profiles.json", "aim_profiles.json", "nexus.json", Nexus.NexusInstallIndex.FileName];
 
     private readonly string _modsLocation;
     private readonly Action _onSettled;

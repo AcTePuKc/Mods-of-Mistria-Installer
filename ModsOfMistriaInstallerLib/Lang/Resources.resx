@@ -687,4 +687,29 @@ Open download page(s) in browser?</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mods were reordered so each one loads after the mods it requires.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nothing to change: every mod already loads after the mods it requires, and no two mods replace the same file.</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>New mods were found in the mods folder.</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>Open the mod's Nexus page</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Open the mod's folder</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>Check for an update</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Update from Nexus</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>Freeze at this version</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>Allow updates again</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>Frozen: update checks skip this mod and it will not be updated.</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>Restore the previous version</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>Restore a previous version</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM has no earlier copy of this mod. Backups are kept from the point it is first updated through AIM.</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>Replace "{0}" with the backup from {1}?&#xD;&#xA;&#xD;&#xA;The copy being replaced is kept as a backup too, so this can be undone.</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>Check selected mods for updates</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>Check all mods for updates</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Nexus updates</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>Checking for updates ({0} of {1})...</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>Checked {0} mods: {1} with an update available, {2} that could not be checked.</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus could not be asked about that mod.</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>"{0}" has version {1} available on Nexus.</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>"{0}" is the version its Nexus page offers.</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>"{0}" is frozen, so it was not checked.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM cannot tell which Nexus mod "{0}" is. Mods it downloaded are tracked automatically; others need a Nexus page link in their manifest.</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Update mod</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Update "{0}" from {1} to {2}?&#xD;&#xA;&#xD;&#xA;The current version is kept as a backup you can restore.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Open the mod's files page so you can use its "Mod Manager Download" button?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Let AIM handle "Mod Manager Download" links from the Nexus website?&#xD;&#xA;&#xD;&#xA;Clicking that button on a mod page will then download the mod straight into your mods folder. You can change this later from the gear menu.</value></data>
 </root>

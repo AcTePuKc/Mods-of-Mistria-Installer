@@ -25,6 +25,18 @@
   replace, requirements that are not installed, and requirement loops.
 - The mods folder is now watched while AIM is open, so a mod copied in by hand appears in the list
   without reopening the application.
+- Added Nexus update management. A mod downloaded through AIM records which Nexus mod and file it
+  came from, and mods installed by hand are recognised when their manifest links to a Nexus page.
+  From there: check one mod, the selected mods, or every mod against its Nexus page; update from the
+  right-click menu; and freeze a mod so update checks leave it alone.
+- Updating keeps the previous copy in `.aim-backups` inside the mods folder, and "Restore the
+  previous version" puts it back. The copy being replaced is kept too, so a rollback is undoable.
+- Added a right-click menu on each mod: open its Nexus page, check for an update, update, freeze,
+  restore the previous version, or open its folder.
+- On first run AIM offers to handle "Mod Manager Download" links, and remembers the answer either
+  way. It stays quiet when another mod manager already holds them.
+- Update checks work on any Nexus account, but only premium accounts can download without going
+  through the website: a free account is offered the mod's files page instead.
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker and localized metadata changes unchanged.
 

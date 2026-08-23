@@ -42,6 +42,13 @@
                                   Command="{Binding Nexus.SetApiKeyCommand}" />
                         <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"
                                   Command="{Binding Nexus.PasteLinkCommand}" />
+                        <Separator />
+                        <MenuItem Header="{Binding Texts.GUICheckSelectedForUpdates}"
+                                  Command="{Binding CheckSelectedModsForUpdatesCommand}"
+                                  IsEnabled="{Binding !IsInstalling}" />
+                        <MenuItem Header="{Binding Texts.GUICheckAllForUpdates}"
+                                  Command="{Binding CheckAllModsForUpdatesCommand}"
+                                  IsEnabled="{Binding !IsInstalling}" />
                     </MenuItem>
                 </MenuItem>
             </Menu>
@@ -208,6 +215,33 @@
                                       DragDrop.DragLeave="OnModRowDragLeave"
                                       DragDrop.Drop="OnModRowDrop"
                                       Margin="0 2 0 2">
+                                    <Grid.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuItem Header="{Binding Texts.GUIOpenNexusPage}"
+                                                      IsEnabled="{Binding IsFromNexus}"
+                                                      Command="{Binding Commands.OpenNexusPage}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUICheckForUpdate}"
+                                                      Command="{Binding Commands.CheckForUpdate}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIUpdateFromNexus}"
+                                                      IsEnabled="{Binding CanUpdateFromNexus}"
+                                                      Command="{Binding Commands.UpdateFromNexus}"
+                                                      CommandParameter="{Binding}" />
+                                            <Separator />
+                                            <MenuItem Header="{Binding FreezeMenuHeader}"
+                                                      Command="{Binding Commands.ToggleFreeze}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIRestorePreviousVersion}"
+                                                      IsEnabled="{Binding HasBackup}"
+                                                      Command="{Binding Commands.RestorePreviousVersion}"
+                                                      CommandParameter="{Binding}" />
+                                            <Separator />
+                                            <MenuItem Header="{Binding Texts.GUIOpenModFolder}"
+                                                      Command="{Binding Commands.OpenModFolder}"
+                                                      CommandParameter="{Binding}" />
+                                        </MenuFlyout>
+                                    </Grid.ContextFlyout>
                                     <Grid.Styles>
                                         <Style Selector="Grid.alt">
                                             <Setter Property="Background" Value="{DynamicResource ModAlternateRowBrush}" />
@@ -243,18 +277,28 @@
                                                               HorizontalAlignment="Stretch"
                                                               IsEnabled="{Binding $parent[ItemsRepeater].DataContext.CanChangeModSelection}"
                                                               DataContext="{Binding}" />
-                                    <!-- Update available badge -->
-                                    <Button Grid.Column="3"
-                                            IsVisible="{Binding UpdateAvailable}"
-                                            Command="{Binding OpenUpdateUrlCommand}"
-                                            Margin="6 0 0 0"
-                                            Padding="5 1"
-                                            Background="#2e7d32"
-                                            Foreground="White"
-                                            CornerRadius="4"
-                                            VerticalAlignment="Center"
-                                            Content="{Binding Texts.GUIUpdateMod}"
-                                            ToolTip.Tip="{Binding UpdateTooltip}" />
+                                    <!-- Row-trailing badges. They share column 3, so they sit in a
+                                         stack rather than on top of each other. -->
+                                    <StackPanel Grid.Column="3"
+                                                Orientation="Horizontal"
+                                                VerticalAlignment="Center"
+                                                Spacing="6">
+                                        <!-- Frozen: this mod is deliberately held at its current version -->
+                                        <TextBlock Text="&#x1F512;"
+                                                   IsVisible="{Binding IsFrozen}"
+                                                   VerticalAlignment="Center"
+                                                   ToolTip.Tip="{Binding Texts.GUIModFrozenTooltip}" />
+                                        <!-- Update available badge -->
+                                        <Button IsVisible="{Binding UpdateAvailable}"
+                                                Command="{Binding OpenUpdateUrlCommand}"
+                                                Padding="5 1"
+                                                Background="#2e7d32"
+                                                Foreground="White"
+                                                CornerRadius="4"
+                                                VerticalAlignment="Center"
+                                                Content="{Binding Texts.GUIUpdateMod}"
+                                                ToolTip.Tip="{Binding UpdateTooltip}" />
+                                    </StackPanel>
                                     <!-- The active line makes the exact insertion point obvious while dragging. -->
                                     <Border x:Name="DropBeforeIndicator"
                                             Grid.ColumnSpan="4"

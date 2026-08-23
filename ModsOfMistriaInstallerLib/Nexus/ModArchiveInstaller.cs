@@ -39,11 +39,18 @@ public static class ModArchiveInstaller
     /// <paramref name="fallbackName"/> names the folder when the mod sits at the archive root and
     /// so has no directory name of its own - the file name from Nexus is a good choice.
     /// </summary>
+    /// <param name="backups">
+    /// When given, a folder being replaced is moved into the backup store instead of being deleted,
+    /// so the user can roll the update back.
+    /// </param>
+    /// <param name="previousVersion">Labels the backup with the version it holds.</param>
     public static List<InstalledModFolder> Install(
         string archivePath,
         string modsLocation,
         string fallbackName,
-        ArchiveConflictBehaviour conflictBehaviour = ArchiveConflictBehaviour.Fail)
+        ArchiveConflictBehaviour conflictBehaviour = ArchiveConflictBehaviour.Fail,
+        ModBackupStore? backups = null,
+        string? previousVersion = null)
     {
         if (!File.Exists(archivePath)) throw new ModArchiveException("The downloaded file is missing.");
         if (!Directory.Exists(modsLocation)) throw new ModArchiveException("The mods folder could not be found.");
@@ -87,7 +94,7 @@ public static class ModArchiveInstaller
         {
             try
             {
-                installed.Add(ExtractRoot(entries, root, target));
+                installed.Add(ExtractRoot(entries, root, target, backups, previousVersion));
             }
             catch
             {
@@ -103,17 +110,35 @@ public static class ModArchiveInstaller
 
     // ── Extraction ───────────────────────────────────────────────────────────────
 
-    private static InstalledModFolder ExtractRoot(List<IArchiveEntry> entries, string root, string target)
+    private static InstalledModFolder ExtractRoot(
+        List<IArchiveEntry> entries,
+        string root,
+        string target,
+        ModBackupStore? backups = null,
+        string? previousVersion = null)
     {
         var replaced = Directory.Exists(target);
 
         // The old folder is kept aside rather than deleted outright: if extraction dies halfway
-        // through, the user still has the mod they had before instead of a half-written one.
-        var backup = replaced ? target + ".aim-old" : null;
-        if (backup is not null)
+        // through, the user still has the mod they had before instead of a half-written one. When a
+        // backup store is supplied it keeps that copy for good, so the update can be undone later.
+        string? backup = null;
+        var backupIsKept = false;
+
+        if (replaced)
         {
-            if (Directory.Exists(backup)) Directory.Delete(backup, true);
-            Directory.Move(target, backup);
+            var kept = backups?.Archive(target, previousVersion);
+            if (kept is not null)
+            {
+                backup = kept.Path;
+                backupIsKept = true;
+            }
+            else
+            {
+                backup = target + ".aim-old";
+                if (Directory.Exists(backup)) Directory.Delete(backup, true);
+                Directory.Move(target, backup);
+            }
         }
 
         try
@@ -136,7 +161,8 @@ public static class ModArchiveInstaller
                 input.CopyTo(output);
             }
 
-            if (backup is not null) Directory.Delete(backup, true);
+            // A kept backup is the whole point of the store; only the throwaway copy is removed.
+            if (backup is not null && !backupIsKept) Directory.Delete(backup, true);
             return new InstalledModFolder(Path.GetFileName(target), target, replaced);
         }
         catch (Exception e)
