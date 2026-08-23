@@ -62,14 +62,13 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         var status = NxmProtocolHandler.GetStatus();
         if (status is { IsRegistered: true, IsThisExecutable: true }) return;
 
-        // Another manager holding the protocol is a deliberate choice by the user; offering to
-        // take it over unprompted at startup would be presumptuous.
-        if (status.IsClaimedByAnother) return;
+        // When another manager holds the protocol the offer names it, so the choice is informed
+        // rather than a blind "yes" that quietly takes downloads away from Vortex.
+        var message = status.IsClaimedByAnother
+            ? string.Format(Localization["GUINexusHandlerOfferTakeOver"], status.HandlerName ?? status.CurrentHandler)
+            : Localization["GUINexusHandlerOffer"];
 
-        var answer = await ShowBoxAsync(
-            Localization["GUINexusHandlerTitle"],
-            Localization["GUINexusHandlerOffer"],
-            ButtonEnum.YesNo);
+        var answer = await ShowBoxAsync(Localization["GUINexusHandlerTitle"], message, ButtonEnum.YesNo);
 
         _nexusSettings.HandlerPromptAnswered = true;
         if (answer != ButtonResult.Yes) return;
@@ -299,7 +298,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         {
             var confirm = await MessageBoxManager.GetMessageBoxStandard(
                 Localization["GUINexusHandlerTitle"],
-                string.Format(Localization["GUINexusHandlerTakeOver"], status.CurrentHandler),
+                string.Format(Localization["GUINexusHandlerTakeOver"], status.HandlerName ?? status.CurrentHandler),
                 ButtonEnum.YesNo).ShowAsync();
 
             if (confirm != ButtonResult.Yes) return;
@@ -408,7 +407,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         }
         else if (status.IsClaimedByAnother)
         {
-            HandlerStatus = string.Format(Localization["GUINexusHandlerOtherApp"], status.CurrentHandler);
+            HandlerStatus = string.Format(Localization["GUINexusHandlerOtherApp"], status.HandlerName ?? status.CurrentHandler);
             HandlerNeedsAttention = true;
         }
         else

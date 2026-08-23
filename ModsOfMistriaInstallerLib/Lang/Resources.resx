@@ -712,4 +712,5 @@ Open download page(s) in browser?</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Update "{0}" from {1} to {2}?&#xD;&#xA;&#xD;&#xA;The current version is kept as a backup you can restore.</value></data>
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Open the mod's files page so you can use its "Mod Manager Download" button?</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Let AIM handle "Mod Manager Download" links from the Nexus website?&#xD;&#xA;&#xD;&#xA;Clicking that button on a mod page will then download the mod straight into your mods folder. You can change this later from the gear menu.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>"Mod Manager Download" links from the Nexus website are currently handled by {0}.&#xD;&#xA;&#xD;&#xA;Hand them to AIM instead? Clicking that button on a mod page will then download the mod straight into your mods folder. You can change this later from the gear menu.</value></data>
 </root>

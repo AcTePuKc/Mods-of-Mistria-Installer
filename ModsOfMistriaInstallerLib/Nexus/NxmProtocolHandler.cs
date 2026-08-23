@@ -9,6 +9,36 @@ public record NxmHandlerStatus(bool IsRegistered, bool IsThisExecutable, string?
 {
     /// <summary>Another program (Vortex, MO2, an older copy of AIM) currently owns nxm://.</summary>
     public bool IsClaimedByAnother => IsRegistered && !IsThisExecutable;
+
+    /// <summary>
+    /// The owning program as a person would name it - "Vortex" rather than the whole registered
+    /// command line, which is long enough to be cut off wherever it is shown.
+    /// </summary>
+    public string? HandlerName
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(CurrentHandler)) return null;
+
+            var command = CurrentHandler.Trim();
+            string executable;
+
+            // Windows records a command line: "C:\path\Vortex.exe" -d "%1"
+            if (command.StartsWith('"'))
+            {
+                var closing = command.IndexOf('"', 1);
+                executable = closing > 1 ? command[1..closing] : command[1..];
+            }
+            else
+            {
+                executable = command.Split(' ')[0];
+            }
+
+            // Linux records a .desktop file name instead.
+            var name = Path.GetFileNameWithoutExtension(executable);
+            return string.IsNullOrWhiteSpace(name) ? command : name;
+        }
+    }
 }
 
 /// <summary>
