@@ -187,7 +187,9 @@ pull request from a fork cannot read the repository secret, so its CI run will s
 
 `build-windows-exe.ps1` publishes the single-file Windows executable the same way the release
 workflow does, and checks for the license key before it starts. Passing `-UseImageSharp3` builds
-against ImageSharp 3.1.5, which needs no key, for a local test build only.
+against ImageSharp 3.1.11 instead, for a local build without a key: the 3.x line is still covered by
+the Six Labors Split License and the key requirement begins at 4.0.0. 3.1.11 is also the version that
+fixes CVE-2025-54575, so do not pin anything older.
 
 The release workflow builds the GUI and CLI for the supported desktop targets and uploads artifacts only to releases in this fork. Nexus publishing is manual and is not triggered by a normal GitHub release.
 

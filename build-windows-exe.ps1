@@ -12,9 +12,11 @@
     first and explains the options rather than letting the build fail three steps later. CI does the
     same thing with the SIXLABORS_LICENSE secret (see .github/workflows/compile.yml).
 
-        -UseImageSharp3   Build against ImageSharp 3.1.5, which needs no license key. Local builds
-                          only: it writes a temporary Directory.Build.targets, removes it afterwards,
-                          and does not change what the repository ships.
+        -UseImageSharp3   Build against ImageSharp 3.1.11, the newest 3.1.x. The 3.x line is still
+                          covered by the Six Labors Split License (Apache 2.0 for open-source and
+                          non-commercial use) and needs no license key - the key requirement starts
+                          at 4.0.0. It writes a temporary Directory.Build.targets, removes it
+                          afterwards, and does not change what the repository ships.
 #>
 
 [CmdletBinding()]
@@ -48,13 +50,13 @@ if ($UseImageSharp3) {
         throw "A Directory.Build.targets already exists at $overridePath. Remove or rename it before using -UseImageSharp3."
     }
 
-    Write-Host 'Building against ImageSharp 3.1.5 (no license key needed). This is a local build only.' -ForegroundColor Yellow
+    Write-Host 'Building against ImageSharp 3.1.11 (no license key needed). This is a local build only.' -ForegroundColor Yellow
     @'
 <!-- Written by build-windows-exe.ps1 -UseImageSharp3 and deleted when it finishes.
      Imported after each project, so this Update overrides the version in the csproj. -->
 <Project>
   <ItemGroup>
-    <PackageReference Update="SixLabors.ImageSharp" Version="3.1.5" />
+    <PackageReference Update="SixLabors.ImageSharp" Version="3.1.11" />
   </ItemGroup>
 </Project>
 '@ | Set-Content -Path $overridePath -Encoding UTF8
@@ -74,7 +76,7 @@ You have three options:
   2. Set the key for one session instead:
          $env:SixLaborsLicenseKey = "<your key>"
 
-  3. Build against ImageSharp 3.1.5, which needs no key, for a local test build:
+  3. Build against ImageSharp 3.1.11, which needs no key (the requirement starts at 4.0.0):
          ./build-windows-exe.ps1 -UseImageSharp3
 '@
     Write-Host ''
