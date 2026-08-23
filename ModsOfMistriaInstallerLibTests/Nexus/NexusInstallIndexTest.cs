@@ -40,6 +40,8 @@ public class NexusInstallIndexTest
             Assert.That(recalled.FileId, Is.EqualTo(900));
             Assert.That(recalled.Version, Is.EqualTo("1.2"));
             Assert.That(recalled.PageUrl, Is.EqualTo("https://www.nexusmods.com/fieldsofmistria/mods/175"));
+            // The timestamp has to survive the round trip through JSON, not just the ids.
+            Assert.That(recalled.InstalledAt, Is.EqualTo(DateTimeOffset.UtcNow).Within(TimeSpan.FromMinutes(5)));
         });
     }
 

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
@@ -69,7 +70,7 @@ public class NexusInstallIndex
             fileId.Value,
             entry.Value<string>("fileName") ?? "",
             entry.Value<string>("version"),
-            entry.Value<DateTimeOffset?>("installedAt") ?? DateTimeOffset.MinValue,
+            ReadTimestamp(entry, "installedAt"),
             entry.Value<bool?>("frozen") ?? false);
     }
 
@@ -89,7 +90,9 @@ public class NexusInstallIndex
             ["fileId"] = record.FileId,
             ["fileName"] = record.FileName,
             ["version"] = record.Version,
-            ["installedAt"] = record.InstalledAt,
+            // Written as a round-trip string rather than a date: Json.NET parses a bare timestamp
+            // back into a DateTime, which cannot be cast to DateTimeOffset on the way out.
+            ["installedAt"] = record.InstalledAt.ToString("O"),
             ["frozen"] = frozen
         };
 
@@ -100,6 +103,16 @@ public class NexusInstallIndex
     /// Reads the freeze flag straight off the entry rather than through <see cref="Get"/>: a mod
     /// the user installed by hand has a freeze but no Nexus ids, and Get requires the ids.
     /// </summary>
+    private static DateTimeOffset ReadTimestamp(JObject entry, string field)
+    {
+        var raw = entry.Value<string>(field);
+
+        return DateTimeOffset.TryParse(raw, CultureInfo.InvariantCulture,
+            DateTimeStyles.RoundtripKind, out var value)
+            ? value
+            : DateTimeOffset.MinValue;
+    }
+
     public bool IsFrozen(string sourcePath)
     {
         var key = KeyFor(sourcePath);
