@@ -9,14 +9,9 @@
     installed .NET runtime. Requires the .NET 10 SDK: https://dotnet.microsoft.com/download
 
     ImageSharp 4.x refuses to build without a Six Labors license key, so this script checks for one
-    first and explains the options rather than letting the build fail three steps later. CI does the
-    same thing with the SIXLABORS_LICENSE secret (see .github/workflows/compile.yml).
-
-        -UseImageSharp3   Build against ImageSharp 3.1.11, the newest 3.1.x. The 3.x line is still
-                          covered by the Six Labors Split License (Apache 2.0 for open-source and
-                          non-commercial use) and needs no license key - the key requirement starts
-                          at 4.0.0. It writes a temporary Directory.Build.targets, removes it
-                          afterwards, and does not change what the repository ships.
+    before starting rather than letting the build fail three steps later. Supply it either as
+    ModsOfMistriaInstallerLib\sixlabors.lic (git-ignored) or through the SixLaborsLicenseKey
+    environment variable. Never commit the file or the key: it is personal to the license holder.
 #>
 
 [CmdletBinding()]
@@ -24,8 +19,7 @@ param(
     [string] $Runtime = 'win-x64',
     [string] $Configuration = 'Release',
     [string] $OutputDirectory = 'Release',
-    [switch] $SkipTests,
-    [switch] $UseImageSharp3
+    [switch] $SkipTests
 )
 
 $ErrorActionPreference = 'Stop'
@@ -52,75 +46,51 @@ $pinnedImageSharp = [regex]::Match(
 $needsLicence = $false
 if ($pinnedImageSharp -match '^(\d+)') { $needsLicence = [int]$Matches[1] -ge 4 }
 
-$overridePath = Join-Path $PSScriptRoot 'Directory.Build.targets'
-$wroteOverride = $false
-
-if ($UseImageSharp3) {
-    if (Test-Path $overridePath) {
-        throw "A Directory.Build.targets already exists at $overridePath. Remove or rename it before using -UseImageSharp3."
-    }
-
-    Write-Host 'Building against ImageSharp 3.1.11 (no license key needed). This is a local build only.' -ForegroundColor Yellow
-    @'
-<!-- Written by build-windows-exe.ps1 -UseImageSharp3 and deleted when it finishes.
-     Imported after each project, so this Update overrides the version in the csproj. -->
-<Project>
-  <ItemGroup>
-    <PackageReference Update="SixLabors.ImageSharp" Version="3.1.11" />
-  </ItemGroup>
-</Project>
-'@ | Set-Content -Path $overridePath -Encoding UTF8
-    $wroteOverride = $true
-}
-elseif ($needsLicence -and -not $hasLicence) {
+if ($needsLicence -and -not $hasLicence) {
     Write-Host ''
     Write-Warning @'
-This fork builds against SixLabors.ImageSharp 4.x, which refuses to compile without a license key.
-You have three options:
+This project builds against SixLabors.ImageSharp 4.x, which refuses to compile without a license
+key. Supply one of the following:
 
-  1. Get your own key (free for open-source and non-commercial use) from
-     https://licensing.sixlabors.com and save it to:
+  1. A license file at:
          ModsOfMistriaInstallerLib\sixlabors.lic
-     That path is already in .gitignore, so it will never be committed.
+     That path is in .gitignore. Never commit it - keys are personal to the license holder.
 
-  2. Set the key for one session instead:
-         $env:SixLaborsLicenseKey = "<your key>"
+  2. The key itself, for one session:
+         $env:SixLaborsLicenseKey = Get-Content -Raw path\to\sixlabors.lic
 
-  3. Build against ImageSharp 3.1.11, which needs no key (the requirement starts at 4.0.0):
-         ./build-windows-exe.ps1 -UseImageSharp3
+Community licenses are free for open-source and non-commercial projects and can be requested at
+https://licensing.sixlabors.com. They last a year, so an expired key produces this same error.
 '@
     Write-Host ''
     throw 'No Six Labors license key found - see the options above.'
 }
-elseif (-not $needsLicence) {
-    Write-Host "ImageSharp $pinnedImageSharp is pinned, which needs no license key." -ForegroundColor DarkGray
+
+if ($needsLicence) {
+    $source = if (Test-Path $licenceFile) { 'ModsOfMistriaInstallerLib\sixlabors.lic' } else { 'the environment' }
+    Write-Host "Using the Six Labors license from $source for ImageSharp $pinnedImageSharp." -ForegroundColor DarkGray
 }
 
 # ── Build ─────────────────────────────────────────────────────────────────────
 
-try {
-    Write-Host 'Restoring packages...' -ForegroundColor Cyan
-    dotnet restore ModsOfMistriaInstaller.sln
-    if ($LASTEXITCODE -ne 0) { throw "Restore failed (exit code $LASTEXITCODE)." }
+Write-Host 'Restoring packages...' -ForegroundColor Cyan
+dotnet restore ModsOfMistriaInstaller.sln
+if ($LASTEXITCODE -ne 0) { throw "Restore failed (exit code $LASTEXITCODE)." }
 
-    if (-not $SkipTests) {
-        Write-Host 'Running tests...' -ForegroundColor Cyan
-        dotnet test ModsOfMistriaInstaller.sln --configuration $Configuration
-        if ($LASTEXITCODE -ne 0) { throw "Tests failed (exit code $LASTEXITCODE)." }
-    }
+if (-not $SkipTests) {
+    Write-Host 'Running tests...' -ForegroundColor Cyan
+    dotnet test ModsOfMistriaInstaller.sln --configuration $Configuration
+    if ($LASTEXITCODE -ne 0) { throw "Tests failed (exit code $LASTEXITCODE). Use -SkipTests to publish anyway." }
+}
 
-    Write-Host "Publishing the GUI for $Runtime..." -ForegroundColor Cyan
-    dotnet publish ModsOfMistriaGUI/ModsOfMistriaGUI.csproj `
-        --configuration $Configuration `
-        --runtime $Runtime `
-        --self-contained true `
-        -p:PublishSingleFile=true `
-        --output $OutputDirectory
-    if ($LASTEXITCODE -ne 0) { throw "Publish failed (exit code $LASTEXITCODE)." }
-}
-finally {
-    if ($wroteOverride -and (Test-Path $overridePath)) { Remove-Item $overridePath -Force }
-}
+Write-Host "Publishing the GUI for $Runtime..." -ForegroundColor Cyan
+dotnet publish ModsOfMistriaGUI/ModsOfMistriaGUI.csproj `
+    --configuration $Configuration `
+    --runtime $Runtime `
+    --self-contained true `
+    -p:PublishSingleFile=true `
+    --output $OutputDirectory
+if ($LASTEXITCODE -ne 0) { throw "Publish failed (exit code $LASTEXITCODE)." }
 
 $executable = Join-Path $OutputDirectory 'ModsOfMistriaInstaller.exe'
 if (Test-Path $executable) {
