@@ -179,6 +179,16 @@ dotnet build ModsOfMistriaInstaller.sln --configuration Release
 dotnet test ModsOfMistriaInstaller.sln --configuration Release
 ```
 
+The build depends on SixLabors.ImageSharp 4.x, which refuses to compile without a license key. CI
+writes one from the `SIXLABORS_LICENSE` secret; for a local build, obtain your own key (free for
+open-source and non-commercial use) from [licensing.sixlabors.com](https://licensing.sixlabors.com)
+and save it as `ModsOfMistriaInstallerLib/sixlabors.lic`, which is already git-ignored. Note that a
+pull request from a fork cannot read the repository secret, so its CI run will stop at that step.
+
+`build-windows-exe.ps1` publishes the single-file Windows executable the same way the release
+workflow does, and checks for the license key before it starts. Passing `-UseImageSharp3` builds
+against ImageSharp 3.1.5, which needs no key, for a local test build only.
+
 The release workflow builds the GUI and CLI for the supported desktop targets and uploads artifacts only to releases in this fork. Nexus publishing is manual and is not triggered by a normal GitHub release.
 
 The repository does not include game archives or copyrighted game localization data.
