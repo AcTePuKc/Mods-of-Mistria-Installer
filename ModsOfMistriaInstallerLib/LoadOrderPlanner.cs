@@ -102,7 +102,7 @@ public static class LoadOrderPlanner
                 string.Join(", ", cyclic
                     .Select(id => byId[id].GetName())
                     .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
-                    .Select(name => $"\"{name}\"")));
+                    .Select(name => $"\"{name}\""))));
         }
 
         var order = mods.ToList();
