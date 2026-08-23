@@ -23,7 +23,36 @@ Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1
 - TOML validation, custom font installation and manual-load animation content are supported for current 1.0.x mods.
 - The UI remembers profiles and load order, behaves better on high-DPI displays, and includes a guarded **Play** button.
 - Update checks, release uploads and the GitHub link belong to this fork rather than the upstream repository.
-- Nexus **Mod Manager Download** links (`nxm://`) can be handled directly, so mods download and unpack into the mods folder without a manual extract step.
+
+## Nexus integration and mod list tools (added by this branch)
+
+Everything above describes AIM as it already is. This section is the part added here, kept separate
+so it is obvious what is new and what is not. Nothing in AIM's existing install, rebuild or profile
+behaviour changes.
+
+| What | Where it lives in the UI |
+| --- | --- |
+| Nexus **Mod Manager Download** (`nxm://`) links download and unpack straight into the mods folder | Gear menu → **Nexus downloads** |
+| Check one mod, the selected mods, or every mod for updates on its Nexus page | Right-click a mod, or gear menu → **Nexus downloads** |
+| Update a mod from Nexus, keeping the previous version as a backup you can restore | Right-click a mod |
+| Freeze a mod so update checks leave it on the version it is on | Right-click a mod |
+| Open a mod's Nexus page or its folder | Right-click a mod |
+| Select or clear every mod at once, with a summary of what the selection means | Checkbox above the mod list |
+| **Suggest order** — order mods so each loads after what it requires, and report what it cannot decide | Button above the mod list |
+| Mods copied into the mods folder appear without reopening AIM | Automatic |
+
+Full details are in [Downloading mods from Nexus](#downloading-mods-from-nexus-mod-manager-download)
+and [Mod list tools](#mod-list-tools) below.
+
+### What it does not change
+
+- Installing still rebuilds `assets.zip` from the pristine backup using the mods that are ticked, so
+  a ticked mod means "in the game" and nothing is unticked for you. Downloading a mod does not install
+  it; it appears in the list and waits for **Install** like any other mod.
+- ZIP and RAR mods are still read in place. A downloaded archive is unpacked because AIM knows it is
+  a fresh download, but an archive you drop in yourself is left exactly as it is.
+- No existing file format, profile or command-line flag changes. The new state lives in two new
+  files: `aim_nexus.json` in the mods folder, and `nexus.json` in `%LOCALAPPDATA%\AIM`.
 
 ## What this fork supports
 
@@ -127,6 +156,48 @@ unpacks it straight into your mods folder, the way Vortex does for other games.
   **Nexus downloads** → **Install from a copied nxm:// link**.
 - Nexus collections are not supported; download the mods in them individually.
 
+### Keeping mods up to date
+
+AIM remembers which Nexus mod and file each download came from, in `aim_nexus.json` beside the
+profiles. Mods installed by hand are recognised too, as long as their manifest points at a Nexus page.
+
+- Right-click a mod → **Check for an update**, or use gear menu → **Nexus downloads** → **Check
+  selected mods for updates** / **Check all mods for updates**.
+- A mod with an update shows the green badge. Right-click → **Update from Nexus** downloads and
+  replaces it.
+- Checking works on any Nexus account. Downloading an update directly does not: Nexus only issues a
+  download link to a non-premium account when the request carries the token from a website button
+  click, so free accounts are offered the mod's files page instead.
+- Update sweeps run a few mods at a time and stop early if Nexus reports a rate limit, keeping the
+  results already gathered.
+
+### Freezing a mod
+
+Right-click a mod → **Freeze at this version** to hold it where it is. Frozen mods show a 🔒, are
+skipped by update checks, and stay frozen if the mod is reinstalled. Mods AIM never downloaded can be
+frozen too, which is how to protect a mod you have edited yourself.
+
+### Backups and rolling back
+
+Updating a mod moves the copy it replaces into `.aim-backups` inside the mods folder, keeping the
+three most recent. Right-click → **Restore the previous version** puts the newest backup back, and
+keeps the copy it replaces, so a rollback can itself be undone. The backup folder starts with a dot
+so the installer's own scan of the mods folder ignores it.
+
+## Mod list tools
+
+- **Select all.** The checkbox above the list selects everything, or clears the selection when
+  everything is selected. Beside it, a summary reads for example "4 of 5 selected — 3 already in the
+  game, 1 will be added", because a tick means the mod will be in the game after the next install,
+  not that it is queued to be added.
+- **Suggest order.** Moves each mod below the mods it requires, using the smallest changes that
+  satisfy those requirements, so mods you deliberately ordered stay where you put them. It then
+  reports what it cannot decide for you: files that two selected mods both replace (naming the one
+  that currently wins), requirements that are not installed, and requirement loops. Load order is
+  saved with the profile as before.
+- **Automatic refresh.** The mods folder is watched while AIM is open, so a mod folder or archive
+  copied in appears in the list a couple of seconds later.
+
 ## Optional localized mod metadata
 
 AIM supports optional language-specific manifest fields for the mod name and description. The normal `name` and `description` fields remain the fallback, so existing mods do not need to change. The supported suffixes are:
@@ -167,6 +238,13 @@ After a Fields of Mistria update, start AIM and reinstall the enabled mods. When
 - If no mods appear, check that AIM is looking at the intended mods folder, that the manifest is at the mod root, and that the mod supports Fields of Mistria 1.0.x. The folder may be next to the game, next to AIM, or selected manually.
 - If installation fails, AIM keeps the previous live archive, shows the failing mod when available, and writes a diagnostic log under the AIM local data directory.
 - If the game was modified outside AIM or the pristine backup is missing, restore/verify the game files through Steam before trying again.
+
+Nexus downloads and updates:
+
+- If clicking **Mod Manager Download** does nothing, check gear menu → **Nexus downloads**: the line under **Handle "Mod Manager Download" links** says who currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler, in which case copy the link address and use **Install from a copied nxm:// link**.
+- If an update check says AIM cannot tell which Nexus mod something is, that mod was not downloaded through AIM and its manifest has no Nexus link. Downloading it once through AIM records the connection.
+- If an update refuses to download and offers the mod's page instead, the account is not premium. Nexus only issues download links to free accounts through the website button; the page it opens is the supported route.
+- Previous versions live in `.aim-backups` inside the mods folder. If a rollback is not offered, no backup exists yet — they start being kept the first time a mod is updated through AIM.
 
 For bugs and fork-specific support, use the [fork issue tracker](https://github.com/AcTePuKc/Mods-of-Mistria-Installer/issues). The upstream project and its documentation remain available at [Garethp/Mods-of-Mistria-Installer](https://github.com/Garethp/Mods-of-Mistria-Installer).
 
