@@ -679,4 +679,12 @@ Open download page(s) in browser?</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Remove saved key</value></data>
   <data name="GUISave" xml:space="preserve"><value>Save</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} of {1} selected — {2} already in the game, {3} will be added</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>Select or clear every mod</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Suggest order</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Order mods so each one loads after the mods it requires, and report files that two mods both replace</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>Load order</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mods were reordered so each one loads after the mods it requires.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nothing to change: every mod already loads after the mods it requires, and no two mods replace the same file.</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>New mods were found in the mods folder.</value></data>
 </root>

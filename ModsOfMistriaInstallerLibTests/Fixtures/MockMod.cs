@@ -23,6 +23,9 @@ public class MockMod : IMod
 
     public List<string> RequiredHooks { get; init; } = [];
 
+    // Mods this one declares a dependency on, as they would appear in manifest.toml.
+    public List<ModRequirement> Requirements { get; init; } = [];
+
     public MockMod(List<string> files)
     {
         files.ForEach(file =>
@@ -161,7 +164,7 @@ public class MockMod : IMod
         };
     }
 
-    public List<ModRequirement> GetRequirements() => [];
+    public List<ModRequirement> GetRequirements() => Requirements;
 
     public List<string> GetRequiredHooks() => RequiredHooks;
 

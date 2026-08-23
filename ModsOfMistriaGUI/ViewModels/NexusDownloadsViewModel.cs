@@ -115,8 +115,13 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         if (result.Success)
         {
             ModsChanged?.Invoke(this, EventArgs.Empty);
+            _ = DismissWhenReadAsync(download);
         }
-        else if (!result.Cancelled && result.Error is not null)
+        else if (result.Cancelled)
+        {
+            _ = DismissWhenReadAsync(download);
+        }
+        else if (result.Error is not null)
         {
             await ShowMessage(Localization["GUINexusDownloadFailedTitle"], result.Error);
         }
@@ -204,6 +209,22 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         }
 
         await HandleLinkAsync(text!);
+    }
+
+    /// <summary>
+    /// Clears a finished row after long enough to read it. Only downloads that worked, or that the
+    /// user cancelled themselves, disappear on their own: a failure is the one case where the row
+    /// is the only record of what went wrong, so it waits to be dismissed by hand.
+    /// </summary>
+    private async Task DismissWhenReadAsync(NexusDownloadModel download)
+    {
+        await Task.Delay(TimeSpan.FromSeconds(6));
+
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            Downloads.Remove(download);
+            HasDownloads = Downloads.Count > 0;
+        });
     }
 
     [RelayCommand]

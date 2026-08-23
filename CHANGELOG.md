@@ -15,6 +15,16 @@
   written successfully. Archive entries that point outside the mods folder are refused.
 - Added "Install from a copied nxm:// link" for browsers that cannot launch an external handler,
   such as Flatpak or Snap builds.
+- Finished Nexus downloads clear themselves after a few seconds. A failed download stays until it is
+  dismissed, since the row is the only record of what went wrong.
+- Added a select-all checkbox above the mod list, along with a summary of what the selection means:
+  how many mods are selected, how many of those are already in the game, and how many the next
+  install would add. Ticking a mod is what keeps it in the game, so nothing is unticked automatically.
+- Added a "Suggest order" button. It moves each mod below the mods it requires, using the smallest
+  edits that satisfy those requirements, and reports what it cannot decide: files that two mods both
+  replace, requirements that are not installed, and requirement loops.
+- The mods folder is now watched while AIM is open, so a mod copied in by hand appears in the list
+  without reopening the application.
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker and localized metadata changes unchanged.
 

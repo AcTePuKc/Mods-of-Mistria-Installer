@@ -98,6 +98,15 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIModInstalled => T("GUIModInstalled");
     public string GUIModAlreadyInstalled => T("GUIModAlreadyInstalled");
 
+    // Mod list header and load order
+    public string GUIModSelectionSummary => T("GUIModSelectionSummary");
+    public string GUIToggleAllMods => T("GUIToggleAllMods");
+    public string GUISuggestLoadOrder => T("GUISuggestLoadOrder");
+    public string GUISuggestLoadOrderTooltip => T("GUISuggestLoadOrderTooltip");
+    public string GUILoadOrderTitle => T("GUILoadOrderTitle");
+    public string GUILoadOrderChanged => T("GUILoadOrderChanged");
+    public string GUILoadOrderAlreadyGood => T("GUILoadOrderAlreadyGood");
+
     // Nexus "Mod Manager Download" support
     public string GUINexusMenu => T("GUINexusMenu");
     public string GUINexusHandlerMenuItem => T("GUINexusHandlerMenuItem");

@@ -40,6 +40,9 @@ public partial class ModlistPageViewModel : PageViewBase
     private string? _archiveStatusKey;
     private int _archiveStatusModCount;
 
+    // Notices mods copied into the folder while AIM is open.
+    private ModsFolderWatcher? _modsFolderWatcher;
+
     public ModlistPageViewModel(Settings settings, NexusDownloadsViewModel? nexus = null)
     {
         _settings = settings;
@@ -290,10 +293,71 @@ public partial class ModlistPageViewModel : PageViewBase
         _isDirty = true;
     }
 
+    /// <summary>
+    /// Points the folder watcher at the current mods folder. Reloading is skipped while an install
+    /// is running: that writes to the game archive, and a mod list rebuilding underneath it would
+    /// change the selection the install is working from.
+    /// </summary>
+    private void WatchModsFolder()
+    {
+        _modsFolderWatcher?.Dispose();
+        _modsFolderWatcher = null;
+
+        if (string.IsNullOrEmpty(ModsLocation) || !Directory.Exists(ModsLocation)) return;
+
+        var watcher = new ModsFolderWatcher(ModsLocation, () =>
+            Dispatcher.UIThread.Post(() =>
+            {
+                if (IsInstalling) return;
+                Logger.Log("The mods folder changed; reloading the mod list.");
+                UpdateModlist(true);
+            }));
+
+        if (watcher.Start()) _modsFolderWatcher = watcher;
+    }
+
     private void RefreshPositions()
     {
         for (var i = 0; i < Mods.Count; i++)
             Mods[i].Position = i + 1;
+    }
+
+    // ── Selection summary ─────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Reads "how much of this list is selected" for the header checkbox: true for all, false for
+    /// none, null for a mix, which is what makes it show the indeterminate mark.
+    /// </summary>
+    public bool? AllModsSelected
+    {
+        get
+        {
+            if (Mods.Count == 0) return false;
+            var selected = Mods.Count(mod => mod.Enabled);
+            if (selected == 0) return false;
+            return selected == Mods.Count ? true : null;
+        }
+    }
+
+    /// <summary>
+    /// A ticked mod is a mod that will be in the game after the next install, not one queued to be
+    /// added - installing rebuilds the archive from the ticked set. The counts spell that out, so
+    /// "already installed" mods can be recognised at a glance without unticking them.
+    /// </summary>
+    [ObservableProperty] private string _selectionSummary = "";
+
+    private void RefreshSelectionSummary()
+    {
+        var total = Mods.Count;
+        var selected = Mods.Count(mod => mod.Enabled);
+        var installed = Mods.Count(mod => mod.WasAlreadyInstalled);
+        var pending = Mods.Count(mod => mod.Enabled && !mod.WasAlreadyInstalled);
+
+        SelectionSummary = total == 0
+            ? ""
+            : string.Format(Texts.GUIModSelectionSummary, selected, total, installed, pending);
+
+        OnPropertyChanged(nameof(AllModsSelected));
     }
 
     // When a mod is enabled, walk its requirements and enable them transitively.
@@ -483,6 +547,8 @@ public partial class ModlistPageViewModel : PageViewBase
 
             RefreshProfileList();
             _isDirty = false;
+            RefreshSelectionSummary();
+            WatchModsFolder();
             var modSnapshot = Mods.ToList();
             _ = Task.Run(() => CheckModUpdatesAsync(modSnapshot));
 
@@ -503,6 +569,7 @@ public partial class ModlistPageViewModel : PageViewBase
         {
             if (e.PropertyName != nameof(ModModel.Enabled) || _suppressDirty) return;
             _isDirty = true;
+            RefreshSelectionSummary();
             RefreshArchiveStatus();
             RefreshSelectedModConflicts();
             if (_cascading) return;
@@ -785,6 +852,8 @@ public partial class ModlistPageViewModel : PageViewBase
     [NotifyCanExecuteChangedFor(nameof(LaunchGameCommand))]
     [NotifyPropertyChangedFor(nameof(CanReorderMods))]
     [NotifyPropertyChangedFor(nameof(CanChangeModSelection))]
+    [NotifyCanExecuteChangedFor(nameof(ToggleAllModsCommand))]
+    [NotifyCanExecuteChangedFor(nameof(SuggestLoadOrderCommand))]
     [ObservableProperty] private bool _isInstalling;
 
     // Load order is part of the same profile state as the checkboxes. Do not let a
@@ -869,11 +938,69 @@ public partial class ModlistPageViewModel : PageViewBase
         UpdateModlist(true);
     }
 
+    /// <summary>
+    /// One button for the header checkbox: select everything, or clear the selection when
+    /// everything is already selected. A partial selection fills up rather than clearing, which is
+    /// what a half-ticked box invites you to do.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanChangeModSelection))]
+    private void ToggleAllMods()
+    {
+        if (Mods.Count == 0) return;
+
+        var select = Mods.Any(mod => !mod.Enabled);
+        foreach (var mod in Mods) mod.Enabled = select;
+
+        _isDirty = true;
+        RefreshSelectionSummary();
+        RefreshArchiveStatus();
+        InstallModsCommand.NotifyCanExecuteChanged();
+    }
+
+    /// <summary>
+    /// Reorders the list so every mod loads after the mods it requires, and reports the file
+    /// collisions that the user has to settle themselves.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanReorderMods))]
+    private async Task SuggestLoadOrder()
+    {
+        if (Mods.Count == 0) return;
+
+        var current = Mods.Select(model => model.Mod).ToList();
+        var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
+
+        var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
+
+        if (plan.ChangesAnything)
+        {
+            var byId = Mods.ToDictionary(model => model.Mod.GetId(), StringComparer.OrdinalIgnoreCase);
+            var reordered = plan.Order
+                .Select(mod => byId.TryGetValue(mod.GetId(), out var model) ? model : null)
+                .Where(model => model is not null)
+                .Select(model => model!)
+                .ToList();
+
+            Mods.Clear();
+            foreach (var model in reordered) Mods.Add(model);
+
+            RefreshPositions();
+            _isDirty = true;
+        }
+
+        var body = plan.Notes.Count == 0
+            ? (plan.ChangesAnything ? Texts.GUILoadOrderChanged : Texts.GUILoadOrderAlreadyGood)
+            : string.Join("\r\n\r\n", plan.Notes.Select(note => $"• {note.Message}"));
+
+        await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUILoadOrderTitle, body, ButtonEnum.Ok).ShowAsync();
+    }
+
     [RelayCommand]
     private void EnableAllMods()
     {
         foreach (var m in Mods) m.Enabled = true;
         _isDirty = true;
+        RefreshSelectionSummary();
         RefreshArchiveStatus();
         InstallModsCommand.NotifyCanExecuteChanged();
     }
@@ -883,6 +1010,7 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         foreach (var m in Mods) m.Enabled = false;
         _isDirty = true;
+        RefreshSelectionSummary();
         RefreshArchiveStatus();
         InstallModsCommand.NotifyCanExecuteChanged();
     }
@@ -1275,6 +1403,8 @@ public partial class ModlistPageViewModel : PageViewBase
                                     string.Equals(installedVersion, mod.Mod.GetVersion(), StringComparison.OrdinalIgnoreCase);
             mod.SetAlreadyInstalled(alreadyInstalled);
         }
+
+        RefreshSelectionSummary();
 
         var matches = desired.Count == actual.Count &&
                       desired.All(pair => actual.TryGetValue(pair.Key, out var version) &&

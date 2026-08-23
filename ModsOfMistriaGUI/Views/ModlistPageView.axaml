@@ -167,6 +167,29 @@
                         </ItemsControl>
                     </StackPanel>
                 </Border>
+                <!-- List header: select everything at once, see what the selection means, and ask
+                     for a load order that satisfies the mods' declared requirements. -->
+                <Grid ColumnDefinitions="Auto,*,Auto" Margin="0 12 0 2">
+                    <CheckBox Grid.Column="0"
+                              Margin="0 0 4 0"
+                              IsThreeState="True"
+                              IsChecked="{Binding AllModsSelected, Mode=OneWay}"
+                              IsEnabled="{Binding CanChangeModSelection}"
+                              Command="{Binding ToggleAllModsCommand}"
+                              ToolTip.Tip="{Binding Texts.GUIToggleAllMods}" />
+
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Foreground="Gray"
+                               TextTrimming="CharacterEllipsis"
+                               Text="{Binding SelectionSummary}" />
+
+                    <Button Grid.Column="2"
+                            Padding="8 2"
+                            Content="{Binding Texts.GUISuggestLoadOrder}"
+                            ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
+                            Command="{Binding SuggestLoadOrderCommand}" />
+                </Grid>
             </StackPanel>
 
             <!-- Mod list. The recoverable error is an overlay so it does not
