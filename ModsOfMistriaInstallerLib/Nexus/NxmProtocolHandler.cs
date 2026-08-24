@@ -35,7 +35,9 @@ public record NxmHandlerStatus(bool IsRegistered, bool IsThisExecutable, string?
             }
 
             // Linux records a .desktop file name instead.
-            var name = Path.GetFileNameWithoutExtension(executable);
+            // Windows registrations can be inspected on Linux/macOS in tests or in diagnostic
+            // data. Normalize the separator before using the host OS path APIs.
+            var name = Path.GetFileNameWithoutExtension(executable.Replace('\\', '/'));
             return string.IsNullOrWhiteSpace(name) ? command : name;
         }
     }
