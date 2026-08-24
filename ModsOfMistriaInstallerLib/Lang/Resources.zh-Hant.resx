@@ -283,4 +283,40 @@
   <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>正在透過 Nexus 檢查金鑰…</value></data>
   <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>已登入為 {0}。</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>移除已儲存的金鑰</value></data>
+  <data name="GUISave" xml:space="preserve"><value>儲存</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>取消</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 — {2} 個已在遊戲中，{3} 個將被加入</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>選取或清除所有模組</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>建議載入順序</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>依照相依性排列模組，並列出兩個模組同時取代的檔案</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>載入順序</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>已重新排列模組，讓每個模組都在其相依模組之後載入。</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>無需變更：所有模組都在其相依模組之後載入，也沒有兩個模組取代同一個檔案。</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>在模組資料夾中找到新的模組。</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>開啟模組的 Nexus 頁面</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>開啟模組資料夾</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>檢查更新</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>從 Nexus 更新</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>鎖定此版本</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>再次允許更新</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>已鎖定：檢查更新時會跳過此模組，也不會更新它。</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>還原上一個版本</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>還原上一個版本</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM 沒有此模組的較舊副本。透過 AIM 進行第一次更新後才會保留備份。</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>要用「{0}」取代 {1} 的備份嗎？&#xD;&#xA;&#xD;&#xA;被取代的副本也會保留為備份，因此可以復原此操作。</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>檢查所選模組的更新</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>檢查所有模組的更新</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Nexus 更新</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>正在檢查更新（{0}/{1}）…</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>已檢查 {0} 個模組：{1} 個有更新，{2} 個無法檢查。</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus 無法檢查此模組。</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>Nexus 上有「{0}」的版本 {1}。</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>「{0}」已是其 Nexus 頁面提供的版本。</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>「{0}」已鎖定，因此未進行檢查。</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM 無法確定「{0}」是哪個 Nexus 模組。透過 AIM 下載的模組會自動追蹤；其他模組需要在 manifest 中提供 Nexus 頁面。</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>更新模組</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>要將「{0}」從 {1} 更新到 {2} 嗎？&#xD;&#xA;&#xD;&#xA;目前版本會保留為可還原的備份。</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;要開啟模組檔案頁面以使用「Mod Manager Download」按鈕嗎？</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>允許 AIM 處理 Nexus 網站上的「Mod Manager Download」連結嗎？&#xD;&#xA;&#xD;&#xA;在模組頁面按下此按鈕會將模組直接下載到模組資料夾。你可以稍後在齒輪選單中變更。</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexus 網站上的「Mod Manager Download」連結目前由 {0} 處理。&#xD;&#xA;&#xD;&#xA;要交給 AIM 處理嗎？在模組頁面按下此按鈕會將模組直接下載到模組資料夾。你可以稍後在齒輪選單中變更。</value></data>
 </root>

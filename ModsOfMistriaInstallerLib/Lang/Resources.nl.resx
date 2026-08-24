@@ -608,4 +608,40 @@ De links aan AIM overdragen?</value></data>
   <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>De sleutel wordt gecontroleerd bij Nexus…</value></data>
   <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Aangemeld als {0}.</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Opgeslagen sleutel verwijderen</value></data>
+  <data name="GUISave" xml:space="preserve"><value>Opslaan</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} van {1} geselecteerd — {2} al in het spel, {3} worden toegevoegd</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>Alle mods selecteren of wissen</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Volgorde voorstellen</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Orden mods zodat elke mod na de mods waarvan hij afhankelijk is wordt geladen en meld bestanden die door twee mods worden vervangen</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>Laadvolgorde</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>De mods zijn opnieuw geordend zodat elke mod na zijn vereisten wordt geladen.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Niets te wijzigen: elke mod wordt na zijn vereisten geladen en geen twee mods vervangen hetzelfde bestand.</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>Nieuwe mods gevonden in de modsmap.</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>Nexuspagina van de mod openen</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Modmap openen</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>Controleren op updates</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Bijwerken vanaf Nexus</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>Deze versie vastzetten</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>Updates weer toestaan</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>Vastgezet: deze mod wordt niet gecontroleerd of bijgewerkt.</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>Vorige versie herstellen</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>Vorige versie herstellen</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM heeft geen eerdere kopie van deze mod. Back-ups worden bewaard vanaf de eerste update via AIM.</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>„{0}“ vervangen door de back-up van {1}?&#xD;&#xA;&#xD;&#xA;De vervangen kopie wordt ook als back-up bewaard, zodat je dit kunt terugdraaien.</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>Geselecteerde mods op updates controleren</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>Alle mods op updates controleren</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Nexus-updates</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>Controleren op updates ({0} van {1})…</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>{0} mods gecontroleerd: {1} hebben een update, {2} konden niet worden gecontroleerd.</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus kon deze mod niet controleren.</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>Versie {0} van „{1}“ is beschikbaar op Nexus.</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>„{0}“ is de versie die op de Nexuspagina wordt aangeboden.</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>„{0}“ staat vast en is niet gecontroleerd.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM kan niet bepalen welke Nexus-mod „{0}“ is. Mods die via AIM zijn gedownload worden automatisch gevolgd; andere hebben een Nexuspagina in hun manifest nodig.</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Mod bijwerken</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>„{0}“ bijwerken van {1} naar {2}?&#xD;&#xA;&#xD;&#xA;De huidige versie wordt bewaard als back-up die je kunt herstellen.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;De bestandspagina van de mod openen zodat je de knop „Mod Manager Download“ kunt gebruiken?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>AIM de „Mod Manager Download“-links van de Nexuswebsite laten beheren?&#xD;&#xA;&#xD;&#xA;Met die knop wordt de mod rechtstreeks naar je modsmap gedownload. Je kunt dit later wijzigen via het tandwielmenu.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>De „Mod Manager Download“-links worden momenteel verwerkt door {0}.&#xD;&#xA;&#xD;&#xA;Aan AIM overdragen? Met die knop wordt de mod rechtstreeks naar je modsmap gedownload. Je kunt dit later wijzigen via het tandwielmenu.</value></data>
 </root>

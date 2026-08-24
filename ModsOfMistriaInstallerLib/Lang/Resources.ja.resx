@@ -283,4 +283,40 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Nexusでキーを確認中…</value></data>
   <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>{0}としてサインインしました。</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>保存したキーを削除</value></data>
+  <data name="GUISave" xml:space="preserve"><value>保存</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} 個中 {1} 個を選択 — {2} 個はゲーム内にあり、{3} 個を追加します</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>すべてのModを選択／選択解除</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>読み込み順を提案</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>必要なModの後に読み込まれるよう順序を並べ替え、2つのModが同じファイルを置き換える場合に知らせます</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>読み込み順</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>必要なModの後に読み込まれるよう、Modの順序を変更しました。</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>変更はありません。すべてのModが必要なModの後に読み込まれ、同じファイルを置き換えるModもありません。</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>Modフォルダーに新しいModが見つかりました。</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>ModのNexusページを開く</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Modフォルダーを開く</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>更新を確認</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Nexusから更新</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>このバージョンで固定</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>更新を再び許可</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>固定中：このModは更新確認の対象外で、更新されません。</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>以前のバージョンを復元</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>以前のバージョンを復元</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIMにはこのModの以前のコピーがありません。AIMで最初に更新した時点からバックアップが保存されます。</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>「{0}」を{1}のバックアップに置き換えますか？&#xD;&#xA;&#xD;&#xA;置き換えられたコピーもバックアップとして保存されるため、元に戻せます。</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>選択したModの更新を確認</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>すべてのModの更新を確認</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Nexusの更新</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>更新を確認中（{0}/{1}）…</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>{0}個のModを確認：更新あり {1}、確認できないもの {2}。</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>NexusでこのModを確認できませんでした。</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>「{0}」のバージョン{1}がNexusで利用できます。</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>「{0}」はNexusページで提供されているバージョンです。</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>「{0}」は固定中のため確認されませんでした。</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIMは「{0}」がどのNexus Modか判断できません。AIMでダウンロードしたModは自動的に追跡されますが、それ以外はmanifestにNexusページが必要です。</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Modを更新</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>「{0}」を{1}から{2}に更新しますか？&#xD;&#xA;&#xD;&#xA;現在のバージョンは復元可能なバックアップとして保存されます。</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Modのファイルページを開いて「Mod Manager Download」ボタンを使用しますか？</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Nexusサイトの「Mod Manager Download」リンクをAIMで処理しますか？&#xD;&#xA;&#xD;&#xA;Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexusの「Mod Manager Download」リンクは現在{0}が処理しています。&#xD;&#xA;&#xD;&#xA;AIMに引き継ぎますか？Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
 </root>

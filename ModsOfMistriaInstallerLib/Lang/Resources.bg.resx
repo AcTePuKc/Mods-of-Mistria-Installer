@@ -283,4 +283,40 @@
   <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Проверка на ключа в Nexus…</value></data>
   <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Влезли сте като {0}.</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Премахване на запазения ключ</value></data>
+  <data name="GUISave" xml:space="preserve"><value>Запази</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>Отказ</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода — {2} вече са в играта, {3} ще бъдат добавени</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>Избери или изчисти всички модове</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Предложи подреждане</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Подреди модовете така, че всеки да се зарежда след модовете, от които зависи, и покажи файловете, които два мода заменят едновременно</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ред на зареждане</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>Модовете са подредени така, че всеки да се зарежда след модовете, от които зависи.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Няма какво да се променя: всеки мод се зарежда след необходимите му модове и няма два мода, които заменят един и същ файл.</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>В папката с модове са открити нови модове.</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>Отвори Nexus страницата на мода</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Отвори папката на мода</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>Провери за обновление</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Обнови от Nexus</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>Замрази тази версия</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>Разреши обновленията отново</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>Замразен: този мод няма да се проверява и обновява.</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>Възстанови предишната версия</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>Възстановяване на предишна версия</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM няма по-старо копие на този мод. Резервни копия се запазват от първото обновяване чрез AIM.</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>Да заменя ли „{0}“ с резервното копие от {1}?&#xD;&#xA;&#xD;&#xA;Замененото копие също се запазва като резервно, така че действието може да бъде отменено.</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>Провери избраните модове за обновления</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>Провери всички модове за обновления</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Обновления в Nexus</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>Проверка за обновления ({0} от {1})…</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>Проверени са {0} мода: {1} имат налично обновление, а {2} не можаха да бъдат проверени.</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus не успя да провери този мод.</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>За „{0}“ е налична версия {1} в Nexus.</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>„{0}“ е версията, която Nexus страницата му предлага.</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>„{0}“ е замразен и не беше проверен.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM не може да определи кой Nexus мод е „{0}“. Изтеглените чрез AIM модове се проследяват автоматично; за останалите в манифеста трябва да има Nexus страница.</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Обновяване на мод</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Да обновя ли „{0}“ от {1} до {2}?&#xD;&#xA;&#xD;&#xA;Текущата версия ще бъде запазена като резервно копие, което можеш да възстановиш.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Да отворя ли файловата страница на мода, за да използваш бутона „Mod Manager Download“?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Да обработва ли AIM връзките „Mod Manager Download“ от сайта на Nexus?&#xD;&#xA;&#xD;&#xA;Натискането на този бутон на страницата на мода ще го изтегля директно в папката ти с модове. По-късно можеш да промениш това от менюто със зъбното колело.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>В момента връзките „Mod Manager Download“ от сайта на Nexus се обработват от {0}.&#xD;&#xA;&#xD;&#xA;Да ги прехвърля ли към AIM? Натискането на този бутон на страницата на мода ще го изтегля директно в папката ти с модове. По-късно можеш да промениш това от менюто със зъбното колело.</value></data>
 </root>

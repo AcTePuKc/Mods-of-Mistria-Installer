@@ -283,4 +283,40 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Comprobando la clave con Nexus…</value></data>
   <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Has iniciado sesión como {0}.</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Eliminar la clave guardada</value></data>
+  <data name="GUISave" xml:space="preserve"><value>Guardar</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} de {1} seleccionados — {2} ya están en el juego, se añadirán {3}</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>Seleccionar o borrar todos los mods</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Sugerir orden</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Ordena los mods para que cada uno se cargue después de los mods que necesita y muestra los archivos que reemplazan dos mods</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>Orden de carga</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>Los mods se reordenaron para que cada uno se cargue después de los mods que necesita.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>No hay nada que cambiar: todos los mods se cargan después de sus requisitos y ningún par reemplaza el mismo archivo.</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>Se encontraron mods nuevos en la carpeta de mods.</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>Abrir la página de Nexus del mod</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Abrir la carpeta del mod</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>Buscar una actualización</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Actualizar desde Nexus</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>Congelar esta versión</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>Permitir actualizaciones de nuevo</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>Congelado: no se comprobará ni actualizará este mod.</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>Restaurar la versión anterior</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>Restaurar una versión anterior</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM no tiene una copia anterior de este mod. Las copias de seguridad se guardan desde la primera actualización mediante AIM.</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>¿Reemplazar «{0}» con la copia de seguridad de {1}?&#xD;&#xA;&#xD;&#xA;La copia reemplazada también se conservará como copia de seguridad para poder deshacerlo.</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>Buscar actualizaciones en los mods seleccionados</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>Buscar actualizaciones en todos los mods</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Actualizaciones de Nexus</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>Buscando actualizaciones ({0} de {1})…</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>Mods comprobados: {0}; con actualización: {1}; no comprobados: {2}.</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus no pudo comprobar ese mod.</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>Hay disponible en Nexus la versión {0} de «{1}».</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>«{0}» ya es la versión ofrecida por su página de Nexus.</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>«{0}» está congelado, por lo que no se comprobó.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM no puede determinar qué mod de Nexus es «{0}». Los mods descargados con AIM se siguen automáticamente; los demás necesitan un enlace de Nexus en su manifest.</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Actualizar mod</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>¿Actualizar «{0}» de {1} a {2}?&#xD;&#xA;&#xD;&#xA;La versión actual se conservará como copia de seguridad para restaurarla.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;¿Abrir la página de archivos del mod para que puedas usar el botón «Mod Manager Download»?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>¿Quieres que AIM gestione los enlaces «Mod Manager Download» de la web de Nexus?&#xD;&#xA;&#xD;&#xA;Al pulsar ese botón en la página de un mod, se descargará directamente en tu carpeta de mods. Puedes cambiarlo después desde el menú del engranaje.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Actualmente {0} gestiona los enlaces «Mod Manager Download» de Nexus.&#xD;&#xA;&#xD;&#xA;¿Quieres transferirlos a AIM? Al pulsar ese botón en la página de un mod, se descargará directamente en tu carpeta de mods. Puedes cambiarlo después desde el menú del engranaje.</value></data>
 </root>

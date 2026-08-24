@@ -283,4 +283,40 @@ Alihkan ke AIM?</value></data>
   <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Memeriksa kunci dengan Nexus…</value></data>
   <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Masuk sebagai {0}.</value></data>
   <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Hapus kunci yang disimpan</value></data>
+  <data name="GUISave" xml:space="preserve"><value>Simpan</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>Batal</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih — {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>Pilih atau hapus pilihan semua mod</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Sarankan urutan</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Urutkan mod agar setiap mod dimuat setelah mod yang dibutuhkannya, lalu tampilkan file yang digantikan oleh dua mod</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>Urutan pemuatan</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mod telah diurutkan ulang agar setiap mod dimuat setelah mod yang dibutuhkannya.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Tidak ada yang perlu diubah: setiap mod sudah dimuat setelah dependensinya dan tidak ada dua mod yang mengganti file yang sama.</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>Mod baru ditemukan di folder mod.</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>Buka halaman Nexus mod</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Buka folder mod</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>Periksa pembaruan</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Perbarui dari Nexus</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>Bekukan versi ini</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>Izinkan pembaruan lagi</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>Dibekukan: pemeriksaan pembaruan melewati mod ini dan mod tidak akan diperbarui.</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>Pulihkan versi sebelumnya</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>Pulihkan versi sebelumnya</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM tidak memiliki salinan versi sebelumnya dari mod ini. Cadangan disimpan sejak pembaruan pertama melalui AIM.</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>Ganti “{0}” dengan cadangan dari {1}?&#xD;&#xA;&#xD;&#xA;Salinan yang diganti juga disimpan sebagai cadangan sehingga tindakan ini dapat dibatalkan.</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>Periksa pembaruan mod yang dipilih</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>Periksa pembaruan semua mod</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Pembaruan Nexus</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>Memeriksa pembaruan ({0} dari {1})…</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>{0} mod diperiksa: {1} memiliki pembaruan, {2} tidak dapat diperiksa.</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus tidak dapat memeriksa mod tersebut.</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>Versi {0} untuk “{1}” tersedia di Nexus.</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>“{0}” sudah merupakan versi yang ditawarkan halaman Nexus-nya.</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>“{0}” dibekukan sehingga tidak diperiksa.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM tidak dapat menentukan mod Nexus mana yang dimaksud “{0}”. Mod yang diunduh melalui AIM dilacak otomatis; mod lainnya memerlukan halaman Nexus di manifest.</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Perbarui mod</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Perbarui “{0}” dari {1} ke {2}?&#xD;&#xA;&#xD;&#xA;Versi saat ini disimpan sebagai cadangan yang dapat dipulihkan.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Buka halaman file mod agar kamu dapat menggunakan tombol “Mod Manager Download”?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Izinkan AIM menangani tautan “Mod Manager Download” dari situs Nexus?&#xD;&#xA;&#xD;&#xA;Menekan tombol itu di halaman mod akan mengunduh mod langsung ke folder mod. Kamu dapat mengubahnya nanti dari menu roda gigi.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Tautan “Mod Manager Download” saat ini ditangani oleh {0}.&#xD;&#xA;&#xD;&#xA;Alihkan ke AIM? Menekan tombol itu di halaman mod akan mengunduh mod langsung ke folder mod. Kamu dapat mengubahnya nanti dari menu roda gigi.</value></data>
 </root>
