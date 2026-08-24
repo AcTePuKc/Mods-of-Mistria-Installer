@@ -1189,6 +1189,10 @@ public partial class ModlistPageViewModel : PageViewBase
         try
         {
             var status = await Task.Run(() => UpdateService.CheckAsync(model.Mod));
+            // A page-URL association starts with fileId=0. Once Nexus confirms that the
+            // installed version is current, persist the exact file identity without downloading
+            // the archive or asking the user to confirm a replacement.
+            UpdateService.RecordCurrentFileIdentity(model.Mod, status);
             ApplyUpdateStatus(model, status);
             await ReportUpdateStatusAsync(model, status);
         }

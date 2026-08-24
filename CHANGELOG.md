@@ -16,6 +16,9 @@
 - Added atlas-less PNG replacement support with focused regression coverage and documentation.
 - Documented the known limitation for older local installations that have no recorded Nexus file
   identity. Users can associate those mods manually before using update checks.
+- When a manually associated mod is already on the current Nexus version, AIM now records the exact
+  Nexus file identity without downloading the archive. Declining a replacement for a different
+  version leaves the existing association unchanged.
 
 ## 0.1.5 — 2026-08-24
 

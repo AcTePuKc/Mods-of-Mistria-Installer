@@ -119,6 +119,29 @@ public class NexusUpdateService
     }
 
     /// <summary>
+    /// Completes provenance for a manually associated mod when the current Nexus file is already
+    /// the installed version. This must not replace a recorded file or download anything.
+    /// </summary>
+    public void RecordCurrentFileIdentity(IMod mod, NexusUpdateStatus status)
+    {
+        if (status.HasUpdate || status.LatestFileId is not > 0 ||
+            string.IsNullOrWhiteSpace(status.LatestFileName)) return;
+
+        var record = Resolve(mod);
+        if (record is null || record.FileId > 0) return;
+
+        _index.Record(mod.GetSourcePath(), record with
+        {
+            FileId = status.LatestFileId.Value,
+            FileName = status.LatestFileName,
+            Version = status.LatestVersion ?? record.Version,
+            InstalledAt = record.InstalledAt == DateTimeOffset.MinValue
+                ? DateTimeOffset.UtcNow
+                : record.InstalledAt
+        });
+    }
+
+    /// <summary>
     /// Checks several mods, a few at a time. Nexus rate-limits by the hour, so a rate-limit reply
     /// stops the whole sweep instead of burning the remaining allowance on requests that will fail.
     /// </summary>
