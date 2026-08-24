@@ -30,19 +30,14 @@
 
                         <StackPanel IsVisible="{Binding IsNexusSelected}" Spacing="8">
                             <TextBlock Text="Nexus" FontSize="22" FontWeight="Bold" />
-                            <TextBlock Text="OAuth/API integration is only a test placeholder in this build. No key is stored or sent." TextWrapping="Wrap" />
-                            <TextBlock Text="Nexus API key (test field)" FontWeight="Bold" />
-                            <TextBox Text="{Binding NexusApiKeyDraft, Mode=TwoWay}" PasswordChar="•" Watermark="Paste a key here for UI testing only" />
-                            <Button Content="Get your AIM API key" Command="{Binding OpenNexusApiKeysCommand}" HorizontalAlignment="Left" />
-                            <TextBlock Text="After Nexus approves the application flow, this section can be connected to real authentication." TextWrapping="Wrap" Foreground="Gray" />
+                            <TextBlock Text="AIM uses your personal Nexus API key for Nexus downloads and update checks. The key is stored locally and is never included in a mod or release package." TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding Nexus.HasApiKey, StringFormat='API key status: {0}'}" />
+                            <Button Content="Set or change Nexus API key…"
+                                    Command="{Binding SetNexusApiKeyCommand}"
+                                    HorizontalAlignment="Left" />
+                            <TextBlock Text="The same key is used by the Nexus downloads menu in the Cog menu." TextWrapping="Wrap" Foreground="Gray" />
                         </StackPanel>
 
-                        <StackPanel IsVisible="{Binding IsTestSelected}" Spacing="8">
-                            <TextBlock Text="Test" FontSize="22" FontWeight="Bold" />
-                            <TextBlock Text="These controls exist only in the Nexus test distribution." TextWrapping="Wrap" />
-                            <Button Content="Simulate an update for every mod" Command="{Binding SimulateUpdatesCommand}" IsVisible="{Binding IsNexusDistribution}" HorizontalAlignment="Left" />
-                            <TextBlock Text="{Binding TestStatus}" TextWrapping="Wrap" Foreground="#58D1B2" />
-                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </Border>

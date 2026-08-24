@@ -23,11 +23,6 @@
                             </Image.Source>
                         </Image>
                     </MenuItem.Header>
-                    <MenuItem Header="Check for updates"
-                              Command="{Binding CheckForUpdatesNowCommand}"
-                              IsEnabled="{Binding !IsInstalling}"
-                              ToolTip.Tip="Check for newer versions of the selected mod sources." />
-                    <Separator />
                     <MenuItem Header="{Binding Texts.GUIReloadModlist}" Command="{Binding ReloadModlistCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUISaveLogFile}" Command="{Binding SaveLogFileCommand}" />
                     <MenuItem Header="{Binding Texts.GUIEnableAllMods}" Command="{Binding EnableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
@@ -40,8 +35,9 @@
                               IsChecked="{Binding LaunchGameDirectly, Mode=TwoWay}" />
                     <Separator />
                     <!-- Nexus "Mod Manager Download" support -->
-                    <MenuItem Header="{Binding Texts.GUINexusMenu}">
-                        <MenuItem Header="{Binding Texts.GUINexusHandlerMenuItem}"
+                    <MenuItem Header="{Binding Texts.GUINexusMenu}"
+                              IsEnabled="{Binding !IsInstalling}">
+                        <MenuItem Header="{Binding Nexus.HandlerActionText}"
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
                         <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
                         <Separator />
@@ -225,10 +221,15 @@
                                     <Grid.ContextFlyout>
                                         <MenuFlyout>
                                             <MenuItem Header="{Binding Texts.GUIOpenNexusPage}"
-                                                      IsEnabled="{Binding IsFromNexus}"
+                                                      IsEnabled="{Binding CanOpenNexusPage}"
                                                       Command="{Binding Commands.OpenNexusPage}"
                                                       CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUINexusAssociate}"
+                                                      IsEnabled="{Binding CanAssociateWithNexus}"
+                                                      Command="{Binding Commands.AssociateWithNexus}"
+                                                      CommandParameter="{Binding}" />
                                             <MenuItem Header="{Binding Texts.GUICheckForUpdate}"
+                                                      IsEnabled="{Binding CanCheckForUpdate}"
                                                       Command="{Binding Commands.CheckForUpdate}"
                                                       CommandParameter="{Binding}" />
                                             <MenuItem Header="{Binding Texts.GUIUpdateFromNexus}"
@@ -237,14 +238,16 @@
                                                       CommandParameter="{Binding}" />
                                             <Separator />
                                             <MenuItem Header="{Binding FreezeMenuHeader}"
+                                                      IsEnabled="{Binding CanToggleFreeze}"
                                                       Command="{Binding Commands.ToggleFreeze}"
                                                       CommandParameter="{Binding}" />
                                             <MenuItem Header="{Binding Texts.GUIRestorePreviousVersion}"
-                                                      IsEnabled="{Binding HasBackup}"
+                                                      IsEnabled="{Binding CanRestorePreviousVersion}"
                                                       Command="{Binding Commands.RestorePreviousVersion}"
                                                       CommandParameter="{Binding}" />
                                             <Separator />
                                             <MenuItem Header="{Binding Texts.GUIOpenModFolder}"
+                                                      IsEnabled="{Binding CanOpenModFolder}"
                                                       Command="{Binding Commands.OpenModFolder}"
                                                       CommandParameter="{Binding}" />
                                         </MenuFlyout>

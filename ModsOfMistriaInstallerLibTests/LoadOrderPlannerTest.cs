@@ -178,4 +178,19 @@ public class LoadOrderPlannerTest
             Assert.That(plan.ChangesAnything, Is.False);
         });
     }
+
+    [Test]
+    public void ShouldNotCrashWhenFolderAndArchiveCopiesShareAnId()
+    {
+        var folderCopy = new MockMod(new Dictionary<string, object> { ["manifest.toml"] = "folder" })
+        {
+            Id = "author.same", Name = "Same Mod", DirName = "folder-copy"
+        };
+        var archiveCopy = new MockMod(new Dictionary<string, object> { ["manifest.toml"] = "archive" })
+        {
+            Id = "author.same", Name = "Same Mod", DirName = "archive-copy"
+        };
+
+        Assert.DoesNotThrow(() => LoadOrderPlanner.Plan([folderCopy, archiveCopy], [folderCopy]));
+    }
 }

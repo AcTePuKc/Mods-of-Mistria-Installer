@@ -237,4 +237,50 @@
   <data name="GUILanguagePolish" xml:space="preserve"><value>Полски</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Внимание: Този мод съдържа познат признак за съвместимост от преди версия 1.0.3. Може да е остарял и да попречи на играта да стартира или да причини срив. AIM няма да го блокира автоматично.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Вече е инсталиран</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Това изтегляне ще замени вече инсталирани модове: {0}&#xD;&#xA;&#xD;&#xA;Да ги заменя ли?</value></data>
+  <data name="GUINexusAssociate" xml:space="preserve"><value>Свързване с Nexus…</value></data>
+  <data name="GUINexusAssociateTitle" xml:space="preserve"><value>Свързване на мода с Nexus</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>Поставете URL адреса на страницата на мода в Nexus или nxm:// линк. AIM ще запомни връзката и ще я използва за проверки за обновления.</value></data>
+  <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/…</value></data>
+  <data name="GUINexusAssociateMissing" xml:space="preserve"><value>Първо поставете URL адрес на Nexus страница или nxm:// линк.</value></data>
+  <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Това не е валиден Nexus URL или nxm:// линк за Fields of Mistria. {0}</value></data>
+  <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Този nxm:// линк е за друга игра.</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Nexus изтегляния</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Обработване на връзки „Mod Manager Download“</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Обработване на връзки „Mod Manager Download“ с AIM</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Спиране на обработването на връзки „Mod Manager Download“ от AIM</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API ключ…</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Инсталиране от копирана nxm:// връзка</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Изтегляне от Nexus</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>Изчистване на завършените</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus мод {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus изтегляне</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова AIM не може да го инсталира.</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Настройте папките за Fields of Mistria и модовете, преди да изтегляте модове.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Връзки „Mod Manager Download“</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM обработва връзките „Mod Manager Download“.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>Връзките „Mod Manager Download“ все още не се обработват от AIM.</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Друга програма обработва тези връзки ({0}).</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Обработването на тези връзки се поддържа само в Windows и Linux.</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM вече ще отваря връзките „Mod Manager Download“ от сайта на Nexus.
+
+Браузърът може да поиска разрешение при първото натискане на такава връзка.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM вече няма да отваря връзките „Mod Manager Download“ от сайта на Nexus.</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM не можа да се регистрира за тези връзки: {0}</value></data>
+  <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM не можа да спре обработването на тези връзки: {0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>В момента друга програма обработва тези връзки ({0}).
+
+Да ги прехвърля ли към AIM?</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Инсталиране от връзка</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>В клипборда няма nxm:// връзка. В страницата на мода щракнете с десния бутон върху „Mod Manager Download“ и първо копирайте адреса на връзката.</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus API ключ</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM се нуждае от личния ви Nexus Mods API ключ, за да изтегля модове вместо вас. Отворете настройките на Nexus профила си, превъртете до „API Key“, създайте личен ключ и го поставете по-долу. Ключът се съхранява само на този компютър.</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Отваряне на настройките на Nexus профила</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Поставете личния си API ключ тук</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Вече има запазен ключ. Въведете нов, за да го замените.</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Първо поставете API ключа си.</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Проверка на ключа в Nexus…</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Влезли сте като {0}.</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Премахване на запазения ключ</value></data>
 </root>

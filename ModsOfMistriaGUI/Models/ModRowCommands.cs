@@ -11,6 +11,7 @@ namespace Garethp.ModsOfMistriaGUI.Models;
 /// </summary>
 public sealed record ModRowCommands(
     IRelayCommand<ModModel> OpenNexusPage,
+    IRelayCommand<ModModel> AssociateWithNexus,
     IRelayCommand<ModModel> CheckForUpdate,
     IRelayCommand<ModModel> UpdateFromNexus,
     IRelayCommand<ModModel> ToggleFreeze,

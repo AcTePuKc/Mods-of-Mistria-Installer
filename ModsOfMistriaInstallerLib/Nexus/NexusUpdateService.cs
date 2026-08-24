@@ -26,6 +26,7 @@ public record NexusUpdateStatus(
     NexusInstallRecord? Record = null,
     string? LatestVersion = null,
     int? LatestFileId = null,
+    string? LatestFileName = null,
     string? Message = null)
 {
     public bool HasUpdate => State == NexusUpdateState.UpdateAvailable;
@@ -105,7 +106,7 @@ public class NexusUpdateService
 
             return new NexusUpdateStatus(
                 newer ? NexusUpdateState.UpdateAvailable : NexusUpdateState.UpToDate,
-                record, latest.Version, latest.FileId);
+                record, latest.Version, latest.FileId, latest.FileName);
         }
         catch (OperationCanceledException)
         {
@@ -208,11 +209,17 @@ public class NexusUpdateService
 
     private static bool IsNewer(NexusInstallRecord record, IMod mod, NexusFileInfo latest)
     {
-        // A file id is exact: it identifies the very file that was installed, so a different id on
-        // the page means the author has published something since.
+        var installed = string.IsNullOrWhiteSpace(record.Version) ? mod.GetVersion() : record.Version;
+
+        // The installed file may be an Optional/Patch file while Nexus' update endpoint returns
+        // the current Main file. Their file IDs are expected to differ, so an ID-only comparison
+        // falsely reported an update even when the installed version was already current.
+        if (!string.IsNullOrWhiteSpace(installed) && !string.IsNullOrWhiteSpace(latest.Version))
+            return IsVersionNewer(installed, latest.Version);
+
+        // If either side has no comparable version, retain the exact file-ID fallback.
         if (record.FileId > 0) return latest.FileId != record.FileId;
 
-        var installed = string.IsNullOrWhiteSpace(record.Version) ? mod.GetVersion() : record.Version;
         return IsVersionNewer(installed, latest.Version);
     }
 

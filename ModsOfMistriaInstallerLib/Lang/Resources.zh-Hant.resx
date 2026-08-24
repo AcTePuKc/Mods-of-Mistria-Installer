@@ -237,4 +237,50 @@
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>已安裝。</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>警告：此模組包含已知的 1.0.3 之前版本相容性特徵。它可能已經過時，可能導致遊戲無法啟動或發生崩潰。AIM 不會自動封鎖它。</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>已安裝</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>此下載將取代已安裝的模組：{0}&#xD;&#xA;&#xD;&#xA;要取代它們嗎？</value></data>
+  <data name="GUINexusAssociate" xml:space="preserve"><value>連結至 Nexus…</value></data>
+  <data name="GUINexusAssociateTitle" xml:space="preserve"><value>將模組連結至 Nexus</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>貼上 Nexus 模組頁面的 URL 或 nxm:// 連結。AIM 會記住此連結，並用它檢查更新。</value></data>
+  <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/…</value></data>
+  <data name="GUINexusAssociateMissing" xml:space="preserve"><value>請先貼上 Nexus 頁面 URL 或 nxm:// 連結。</value></data>
+  <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>這不是適用於 Fields of Mistria 的有效 Nexus URL 或 nxm:// 連結。{0}</value></data>
+  <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>此 nxm:// 連結屬於其他遊戲。</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Nexus 下載</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>處理「Mod Manager Download」連結</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>使用 AIM 處理「Mod Manager Download」連結</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>停止使用 AIM 處理「Mod Manager Download」連結</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API 金鑰…</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>從複製的 nxm:// 連結安裝</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>正在從 Nexus 下載</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>清除已完成項目</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus 模組 {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus 下載</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>此下載屬於其他遊戲（{0}），因此 AIM 無法安裝。</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>請先設定 Fields of Mistria 資料夾和模組資料夾。</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Mod Manager Download」連結</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM 正在處理「Mod Manager Download」連結。</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>「Mod Manager Download」連結尚未由 AIM 處理。</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>目前有其他程式正在處理這些連結（{0}）。</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>僅 Windows 和 Linux 支援處理這些連結。</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>現在 AIM 將開啟 Nexus 網站上的「Mod Manager Download」連結。
+
+第一次點選時，瀏覽器可能會要求權限。</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM 將不再開啟 Nexus 網站上的「Mod Manager Download」連結。</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>無法為這些連結註冊 AIM：{0}</value></data>
+  <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>無法停止 AIM 處理這些連結：{0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>目前有其他程式正在處理這些連結（{0}）。
+
+要交給 AIM 處理嗎？</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>從連結安裝</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>剪貼簿中沒有 nxm:// 連結。請在模組頁面上以滑鼠右鍵點選「Mod Manager Download」，然後先複製連結位址。</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus API 金鑰</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM 需要你的個人 Nexus Mods API 金鑰來為你下載模組。開啟 Nexus 帳戶設定，捲動至「API Key」，產生個人金鑰後貼到下方。金鑰只會儲存在此電腦上。</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>開啟 Nexus 帳戶設定</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>在此貼上個人 API 金鑰</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>金鑰已儲存。輸入新的金鑰即可取代它。</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>請先貼上 API 金鑰。</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>正在透過 Nexus 檢查金鑰…</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>已登入為 {0}。</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>移除已儲存的金鑰</value></data>
 </root>

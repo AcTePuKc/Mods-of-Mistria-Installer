@@ -23,6 +23,13 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     private readonly Settings _settings;
     private readonly NexusSettings _nexusSettings;
     private readonly NxmDownloadService _service;
+    private bool _handlerIsActive;
+
+    /// <summary>Action shown in the Nexus submenu; it reflects the current handler state.</summary>
+    public string HandlerActionText =>
+        _handlerIsActive
+            ? Localization["GUINexusHandlerDisableMenuItem"]
+            : Localization["GUINexusHandlerEnableMenuItem"];
 
     /// <summary>Raised after a download installs, so the mod list can pick the new folder up.</summary>
     public event EventHandler? ModsChanged;
@@ -154,7 +161,12 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             ButtonEnum.YesNo);
 
         if (openPage == ButtonResult.Yes && status.Record is not null)
-            OpenUrl(status.Record.FilesPageUrl);
+        {
+            var url = status.LatestFileId is > 0
+                ? status.Record.FilePageUrl(status.LatestFileId.Value)
+                : status.Record.FilesPageUrl;
+            OpenUrl(url);
+        }
 
         return false;
     }
@@ -198,6 +210,78 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             return;
         }
 
+        await DownloadLinkAsync(link, confirmOverwrite: true);
+    }
+
+    /// <summary>
+    /// Handles an NXM link attached to an already listed mod. The file metadata is checked before
+    /// the download starts, so replacing the same version never shows a progress row first.
+    /// </summary>
+    public async Task<bool> HandleAssociatedLinkAsync(
+        string rawLink, string existingSourcePath, string existingVersion)
+    {
+        if (!NxmLink.TryParse(rawLink, out var link, out var error) || link is null)
+        {
+            await ShowMessage(Localization["GUINexusDownloadFailedTitle"], error ?? "");
+            return false;
+        }
+
+        if (!link.IsForMistria())
+        {
+            await ShowMessage(Localization["GUINexusDownloadFailedTitle"],
+                string.Format(Localization["GUINexusWrongGame"], link.Game));
+            return false;
+        }
+
+        if (!await EnsureApiKeyAsync()) return false;
+
+        NexusFileInfo fileInfo;
+        try
+        {
+            var client = new NexusApiClient(_nexusSettings.GetApiKey()!);
+            fileInfo = await client.GetFileInfoAsync(link);
+        }
+        catch (NexusApiException e)
+        {
+            await ShowMessage(Localization["GUINexusDownloadFailedTitle"], e.Message);
+            return false;
+        }
+
+        var sameVersion = !string.IsNullOrWhiteSpace(existingVersion) &&
+                          !string.IsNullOrWhiteSpace(fileInfo.Version) &&
+                          !NexusUpdateService.IsVersionNewer(existingVersion, fileInfo.Version) &&
+                          !NexusUpdateService.IsVersionNewer(fileInfo.Version, existingVersion);
+
+        if (sameVersion)
+        {
+            // Association must not download a copy that is already present. The API lookup gives
+            // us the exact file identity even when the user originally installed it manually.
+            new NexusInstallIndex(_settings.ModsLocation).Record(existingSourcePath,
+                new NexusInstallRecord(link.Game, link.ModId, fileInfo.FileId, fileInfo.FileName,
+                    existingVersion, DateTimeOffset.UtcNow));
+            return true;
+        }
+
+        // Association is initiated from a mod that already exists in the list. Never let a
+        // missing/non-standard Nexus version silently turn this into a replacement download.
+        // The downloader's overwrite callback is skipped below because this confirmation is the
+        // single confirmation for the whole association action.
+        var version = string.IsNullOrWhiteSpace(fileInfo.Version) ? "?" : fileInfo.Version;
+        var answer = await ShowBoxAsync(
+            Localization["GUINexusAlreadyInstalledTitle"],
+            string.Format(Localization["GUINexusAlreadyInstalledMessage"],
+                $"{fileInfo.FileName} (v{version})"),
+            ButtonEnum.YesNo);
+
+        if (answer != ButtonResult.Yes) return false;
+
+        await DownloadLinkAsync(link, confirmOverwrite: false);
+        return true;
+    }
+
+    private async Task DownloadLinkAsync(NxmLink link, bool confirmOverwrite)
+    {
+
         if (!link.IsForMistria())
         {
             await ShowMessage(Localization["GUINexusDownloadFailedTitle"],
@@ -235,7 +319,9 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             link,
             _settings.ModsLocation,
             progress,
-            folders => ConfirmOverwriteAsync(folders, download.Token),
+            confirmOverwrite
+                ? folders => ConfirmOverwriteAsync(folders, download.Token)
+                : _ => Task.FromResult(true),
             download.Token));
 
         download.Title = result.FileName;
@@ -268,14 +354,16 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     // ── Commands ─────────────────────────────────────────────────────────────────
 
-    [RelayCommand]
-    private async Task SetApiKey()
+    public async Task SetApiKeyAsync()
     {
         if (App.TopLevel is not Window owner) return;
 
         await NexusApiKeyWindow.ShowAsync(owner, _nexusSettings);
         OnPropertyChanged(nameof(HasApiKey));
     }
+
+    [RelayCommand]
+    private Task SetApiKey() => SetApiKeyAsync();
 
     /// <summary>
     /// Claims (or gives up) the nxm:// protocol. Registering is what makes the website's
@@ -288,8 +376,18 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
         if (status is { IsRegistered: true, IsThisExecutable: true })
         {
-            NxmProtocolHandler.Unregister(out _);
-            _nexusSettings.HandlerRegistered = false;
+            if (NxmProtocolHandler.Unregister(out var unregisterError))
+            {
+                _nexusSettings.HandlerRegistered = false;
+                await ShowMessage(Localization["GUINexusHandlerTitle"],
+                    Localization["GUINexusHandlerUnregistered"]);
+            }
+            else
+            {
+                await ShowMessage(Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerUnregisterFailed"], unregisterError ?? ""));
+            }
+
             RefreshHandlerStatus();
             return;
         }
@@ -383,18 +481,29 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         if (!_nexusSettings.HandlerRegistered || !NxmProtocolHandler.IsSupported()) return;
 
         var status = NxmProtocolHandler.GetStatus();
-        if (status.IsRegistered) return;
+        if (status.IsThisExecutable) return;
+
+        // A new local/released AIM build has a different executable path. Keep the user's
+        // previous opt-in and silently move the registration to this build, but never take over
+        // Vortex, ModDrop, or another unrelated manager without asking first.
+        var isOlderAim = status.IsClaimedByAnother &&
+                         status.HandlerName?.Contains("aim", StringComparison.OrdinalIgnoreCase) == true;
+        if (status.IsClaimedByAnother && !isOlderAim) return;
 
         if (!NxmProtocolHandler.Register(out var error))
             Logger.Log($"Could not restore the nxm:// registration: {error}");
+        else
+            Logger.Log($"Updated the nxm:// registration from {status.CurrentHandler ?? "an older handler"} to {NxmProtocolHandler.GetExecutablePath()}");
     }
 
     private void RefreshHandlerStatus()
     {
         if (!NxmProtocolHandler.IsSupported())
         {
+            _handlerIsActive = false;
             HandlerStatus = Localization["GUINexusHandlerUnsupported"];
             HandlerNeedsAttention = false;
+            OnPropertyChanged(nameof(HandlerActionText));
             return;
         }
 
@@ -402,19 +511,24 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
         if (status is { IsRegistered: true, IsThisExecutable: true })
         {
+            _handlerIsActive = true;
             HandlerStatus = Localization["GUINexusHandlerActive"];
             HandlerNeedsAttention = false;
         }
         else if (status.IsClaimedByAnother)
         {
+            _handlerIsActive = false;
             HandlerStatus = string.Format(Localization["GUINexusHandlerOtherApp"], status.HandlerName ?? status.CurrentHandler);
             HandlerNeedsAttention = true;
         }
         else
         {
+            _handlerIsActive = false;
             HandlerStatus = Localization["GUINexusHandlerInactive"];
             HandlerNeedsAttention = true;
         }
+
+        OnPropertyChanged(nameof(HandlerActionText));
     }
 
     private static Task ShowMessage(string title, string message) =>

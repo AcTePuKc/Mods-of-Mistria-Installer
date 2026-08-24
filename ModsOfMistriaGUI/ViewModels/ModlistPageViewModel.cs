@@ -1,12 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
+using Garethp.ModsOfMistriaGUI.Views;
 using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Lang;
@@ -342,6 +344,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
     private ModRowCommands RowCommands => _rowCommands ??= new ModRowCommands(
         new RelayCommand<ModModel>(OpenNexusPage),
+        new AsyncRelayCommand<ModModel>(AssociateWithNexus),
         new AsyncRelayCommand<ModModel>(CheckModForUpdate),
         new AsyncRelayCommand<ModModel>(UpdateModFromNexus),
         new RelayCommand<ModModel>(ToggleModFreeze),
@@ -589,7 +592,8 @@ public partial class ModlistPageViewModel : PageViewBase
                 var model = new ModModel(mod)
                 {
                     Enabled = IsProfileSelected(mod, result.EnabledIds, result.EnabledSources, result.DuplicateCopies),
-                    Position = i + 1
+                    Position = i + 1,
+                    ContextActionsLocked = IsInstalling
                 };
                 if (result.DuplicateCopies.TryGetValue(
                         DuplicateModDetector.NormalizeSource(mod.GetSourcePath()), out var copies))
@@ -881,12 +885,9 @@ public partial class ModlistPageViewModel : PageViewBase
     public async Task CheckForModUpdatesNowAsync()
     {
 #if AIM_NEXUS_DISTRIBUTION
-        foreach (var mod in Mods)
-        {
-            mod.LatestVersion = $"{mod.Mod.GetVersion()} (test)";
-            mod.UpdateDownloadUrl = mod.Mod.GetDownloadUrl();
-            mod.UpdateAvailable = true;
-        }
+        // The Nexus build uses the user's personal API key for both NMD downloads and explicit
+        // update checks. No fake/test badges are produced here.
+        await CheckManyForUpdates(Mods.ToList());
 #else
         await CheckModUpdatesAsync(Mods.ToList());
 #endif
@@ -940,6 +941,12 @@ public partial class ModlistPageViewModel : PageViewBase
     [NotifyCanExecuteChangedFor(nameof(ToggleAllModsCommand))]
     [NotifyCanExecuteChangedFor(nameof(SuggestLoadOrderCommand))]
     [ObservableProperty] private bool _isInstalling;
+
+    partial void OnIsInstallingChanged(bool value)
+    {
+        foreach (var model in Mods)
+            model.ContextActionsLocked = value;
+    }
 
     // Load order is part of the same profile state as the checkboxes. Do not let a
     // drag operation alter it while an archive operation is using that state.
@@ -1051,33 +1058,45 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (Mods.Count == 0) return;
 
-        var current = Mods.Select(model => model.Mod).ToList();
-        var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
-
-        var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
-
-        if (plan.ChangesAnything)
+        try
         {
-            var byId = Mods.ToDictionary(model => model.Mod.GetId(), StringComparer.OrdinalIgnoreCase);
-            var reordered = plan.Order
-                .Select(mod => byId.TryGetValue(mod.GetId(), out var model) ? model : null)
-                .Where(model => model is not null)
-                .Select(model => model!)
-                .ToList();
+            var current = Mods.Select(model => model.Mod).ToList();
+            var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
 
-            Mods.Clear();
-            foreach (var model in reordered) Mods.Add(model);
+            var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
 
-            RefreshPositions();
-            _isDirty = true;
+            if (plan.ChangesAnything)
+            {
+                var reordered = plan.Order
+                    // IDs are not unique when both a folder and an archive copy are present.
+                    // Match the actual mod instance so Suggest Order never collapses duplicate rows.
+                    .Select(mod => Mods.FirstOrDefault(model => ReferenceEquals(model.Mod, mod)))
+                    .Where(model => model is not null)
+                    .Select(model => model!)
+                    .ToList();
+
+                if (reordered.Count == Mods.Count)
+                {
+                    Mods.Clear();
+                    foreach (var model in reordered) Mods.Add(model);
+                }
+
+                RefreshPositions();
+                _isDirty = true;
+            }
+
+            var body = plan.Notes.Count == 0
+                ? (plan.ChangesAnything ? Texts.GUILoadOrderChanged : Texts.GUILoadOrderAlreadyGood)
+                : string.Join("\r\n\r\n", plan.Notes.Select(note => $"• {note.Message}"));
+
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUILoadOrderTitle, body, ButtonEnum.Ok).ShowAsync();
         }
-
-        var body = plan.Notes.Count == 0
-            ? (plan.ChangesAnything ? Texts.GUILoadOrderChanged : Texts.GUILoadOrderAlreadyGood)
-            : string.Join("\r\n\r\n", plan.Notes.Select(note => $"• {note.Message}"));
-
-        await MessageBoxManager.GetMessageBoxStandard(
-            Texts.GUILoadOrderTitle, body, ButtonEnum.Ok).ShowAsync();
+        catch (Exception exception)
+        {
+            Logger.Log($"Suggest load order failed: {exception}");
+            Exception = $"{Texts.GUILoadOrderTitle}: {exception.Message}";
+        }
     }
 
     // ── Nexus: per-mod actions ────────────────────────────────────────────────────
@@ -1086,6 +1105,47 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (model?.NexusPageUrl is null) return;
         NexusDownloadsViewModel.OpenUrl(model.NexusPageUrl);
+    }
+
+    private async Task AssociateWithNexus(ModModel? model)
+    {
+        if (model is null || UpdateService is null || Nexus is null || App.TopLevel is not Window owner) return;
+
+        var input = await NexusAssociationWindow.ShowAsync(owner);
+        if (string.IsNullOrWhiteSpace(input)) return;
+
+        string game;
+        int modId;
+        var fileId = 0;
+
+        if (NxmLink.TryParse(input, out var nxm, out var linkError))
+        {
+            if (!nxm!.IsForMistria())
+            {
+                await MessageBoxManager.GetMessageBoxStandard(Texts.GUINexusAssociateTitle,
+                    Texts.GUINexusAssociateWrongGame, ButtonEnum.Ok).ShowAsync();
+                return;
+            }
+
+            // An NXM link is an actionable download, not merely a page reference. Use the same
+            // path as the Nexus website handler so its temporary key/expires pair is honoured,
+            // and let the normal overwrite prompt and provenance recording run as usual.
+            if (await Nexus.HandleAssociatedLinkAsync(
+                    input, model.Mod.GetSourcePath(), model.Mod.GetVersion()))
+                model.NexusPageUrl = $"https://www.nexusmods.com/{nxm.Game}/mods/{nxm.ModId}";
+            return;
+        }
+        else if (!NexusInstallIndex.TryReadNexusUrl(input, out game, out modId))
+        {
+            await MessageBoxManager.GetMessageBoxStandard(Texts.GUINexusAssociateTitle,
+                string.Format(Texts.GUINexusAssociateInvalid, linkError ?? ""), ButtonEnum.Ok).ShowAsync();
+            return;
+        }
+
+        UpdateService.Index.Record(model.Mod.GetSourcePath(), new NexusInstallRecord(
+            game, modId, fileId, "", model.Mod.GetVersion(), DateTimeOffset.UtcNow));
+        model.NexusPageUrl = $"https://www.nexusmods.com/{game}/mods/{modId}";
+        await CheckModForUpdate(model);
     }
 
     private void OpenModFolder(ModModel? model)
@@ -1267,7 +1327,9 @@ public partial class ModlistPageViewModel : PageViewBase
         // and the badge needs somewhere to go: without a download url it opens nothing.
         model.UpdateAvailable = true;
         model.LatestVersion = status.LatestVersion ?? model.LatestVersion;
-        model.UpdateDownloadUrl ??= status.Record?.FilesPageUrl;
+        model.UpdateDownloadUrl ??= status.Record is not null && status.LatestFileId is > 0
+            ? status.Record.FilePageUrl(status.LatestFileId.Value)
+            : status.Record?.FilesPageUrl;
     }
 
     private async Task ReportUpdateStatusAsync(ModModel model, NexusUpdateStatus status)

@@ -76,6 +76,12 @@
       than guessing from a mod's own version number.
 * [x] Catch GUI exceptions and provide a consistent user-facing error log.
 
+## Image replacement documentation
+
+* [x] Document the atlas-backed and atlas-less ImageInstaller paths,
+      filename matching rules, 1.0.4 examples and current limitations in
+      [`docs/MMAPI/IMAGE_REPLACEMENTS.md`](docs/MMAPI/IMAGE_REPLACEMENTS.md).
+
 ## Future/Unknown
 * [ ] Allow all "localised" text in easy JSON structures to be multi-lingual
 * [ ] Investigate optional per-mod localization selection. This should only be

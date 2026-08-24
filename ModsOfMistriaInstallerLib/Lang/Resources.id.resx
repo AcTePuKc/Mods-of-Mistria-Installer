@@ -237,4 +237,50 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>Sudah terpasang.</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Peringatan: Mod ini berisi tanda kompatibilitas yang diketahui berasal dari sebelum versi 1.0.3. Mod ini mungkin sudah usang dan dapat mencegah game dimulai atau menyebabkan crash. AIM tidak akan memblokirnya secara otomatis.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Sudah terpasang</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Unduhan ini akan menggantikan mod yang sudah terpasang: {0}&#xD;&#xA;&#xD;&#xA;Ganti mod tersebut?</value></data>
+  <data name="GUINexusAssociate" xml:space="preserve"><value>Hubungkan dengan Nexus…</value></data>
+  <data name="GUINexusAssociateTitle" xml:space="preserve"><value>Hubungkan mod dengan Nexus</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>Tempel URL halaman mod di Nexus atau tautan nxm://. AIM akan mengingat hubungan ini dan menggunakannya untuk memeriksa pembaruan.</value></data>
+  <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/…</value></data>
+  <data name="GUINexusAssociateMissing" xml:space="preserve"><value>Tempel URL halaman Nexus atau tautan nxm:// terlebih dahulu.</value></data>
+  <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Ini bukan URL Nexus atau tautan nxm:// yang valid untuk Fields of Mistria. {0}</value></data>
+  <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Tautan nxm:// ini ditujukan untuk game lain.</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Unduhan Nexus</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Kelola tautan “Mod Manager Download”</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Kelola tautan “Mod Manager Download” dengan AIM</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Hentikan AIM dari mengelola tautan “Mod Manager Download”</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Kunci API Nexus…</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Instal dari tautan nxm:// yang disalin</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Mengunduh dari Nexus</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>Hapus yang selesai</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Mod Nexus {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Unduhan Nexus</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>Unduhan ini ditujukan untuk game lain ({0}), jadi AIM tidak dapat menginstalnya.</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Atur folder Fields of Mistria dan folder mod terlebih dahulu.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Tautan “Mod Manager Download”</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM mengelola tautan “Mod Manager Download”.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>Tautan “Mod Manager Download” belum dikelola oleh AIM.</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Program lain saat ini mengelola tautan ini ({0}).</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Pengelolaan tautan ini hanya didukung di Windows dan Linux.</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Sekarang AIM akan membuka tautan “Mod Manager Download” dari situs Nexus.
+
+Browser mungkin meminta izin saat pertama kali kamu mengekliknya.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM tidak akan lagi membuka tautan “Mod Manager Download” dari situs Nexus.</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM tidak dapat didaftarkan untuk tautan ini: {0}</value></data>
+  <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM tidak dapat berhenti mengelola tautan ini: {0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>Program lain saat ini mengelola tautan ini ({0}).
+
+Alihkan ke AIM?</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Instal dari tautan</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Clipboard tidak berisi tautan nxm://. Di halaman mod, klik kanan “Mod Manager Download”, lalu salin alamat tautannya terlebih dahulu.</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Kunci API Nexus</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM memerlukan kunci API pribadi Nexus Mods untuk mengunduh mod untukmu. Buka pengaturan akun Nexus, gulir ke “API Key”, buat kunci pribadi, lalu tempelkan di bawah. Kunci hanya disimpan di komputer ini.</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Buka pengaturan akun Nexus</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Tempel kunci API pribadi di sini</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Kunci sudah disimpan. Masukkan kunci baru untuk menggantinya.</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Tempel kunci API terlebih dahulu.</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Memeriksa kunci dengan Nexus…</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Masuk sebagai {0}.</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Hapus kunci yang disimpan</value></data>
 </root>

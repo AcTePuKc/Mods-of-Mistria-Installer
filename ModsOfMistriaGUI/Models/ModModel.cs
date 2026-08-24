@@ -53,6 +53,8 @@ public partial class ModModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
     [ObservableProperty] private int? _updateFileId;
 
+    [ObservableProperty] private bool _contextActionsLocked;
+
     /// <summary>The user asked for this mod to be left on the version it is on.</summary>
     [ObservableProperty] private bool _isFrozen;
 
@@ -66,11 +68,38 @@ public partial class ModModel : ObservableObject
 
     public bool IsFromNexus => !string.IsNullOrEmpty(NexusPageUrl);
 
-    public bool CanUpdateFromNexus => UpdateAvailable && UpdateFileId is not null;
+    public bool CanOpenNexusPage => IsFromNexus && !ContextActionsLocked;
+    public bool CanAssociateWithNexus => !IsFromNexus && !ContextActionsLocked;
+    public bool CanCheckForUpdate => !ContextActionsLocked;
+
+    public bool CanUpdateFromNexus => UpdateAvailable && UpdateFileId is not null && !ContextActionsLocked;
+    public bool CanToggleFreeze => !ContextActionsLocked;
+    public bool CanRestorePreviousVersion => HasBackup && !ContextActionsLocked;
+    public bool CanOpenModFolder => !ContextActionsLocked;
 
     public string FreezeMenuHeader => IsFrozen ? Texts.GUIUnfreezeMod : Texts.GUIFreezeMod;
 
     partial void OnIsFrozenChanged(bool value) => OnPropertyChanged(nameof(FreezeMenuHeader));
+
+    partial void OnContextActionsLockedChanged(bool value)
+    {
+        OnPropertyChanged(nameof(CanOpenNexusPage));
+        OnPropertyChanged(nameof(CanAssociateWithNexus));
+        OnPropertyChanged(nameof(CanCheckForUpdate));
+        OnPropertyChanged(nameof(CanUpdateFromNexus));
+        OnPropertyChanged(nameof(CanToggleFreeze));
+        OnPropertyChanged(nameof(CanRestorePreviousVersion));
+        OnPropertyChanged(nameof(CanOpenModFolder));
+    }
+
+    partial void OnNexusPageUrlChanged(string? value)
+    {
+        OnPropertyChanged(nameof(CanOpenNexusPage));
+        OnPropertyChanged(nameof(CanAssociateWithNexus));
+    }
+
+    partial void OnHasBackupChanged(bool value)
+        => OnPropertyChanged(nameof(CanRestorePreviousVersion));
 
     public ModModel(IMod mod)
     {

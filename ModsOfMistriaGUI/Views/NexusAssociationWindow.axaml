@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.NexusAssociationWindow"
+        Width="600" SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock x:Name="HeadingText" FontSize="16" FontWeight="SemiBold" />
+        <TextBlock x:Name="ExplanationText" TextWrapping="Wrap" />
+        <TextBox x:Name="LinkBox" AcceptsReturn="False" KeyDown="OnLinkKeyDown" />
+        <TextBlock x:Name="StatusText" TextWrapping="Wrap" Foreground="Gray" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button x:Name="CancelButton" Click="OnCancel" />
+            <Button x:Name="SaveButton" Click="OnSave" IsDefault="True" />
+        </StackPanel>
+    </StackPanel>
+</Window>

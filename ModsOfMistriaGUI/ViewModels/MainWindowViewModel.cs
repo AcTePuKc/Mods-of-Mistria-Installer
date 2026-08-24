@@ -113,7 +113,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             { Pages.GettingStarted , new GettingStartedPageViewModel(_settings) },
             { Pages.Modlist, modlistPage },
-            { Pages.Settings, new SettingsPageViewModel(_settings, modlistPage, ShowModlist) }
+            { Pages.Settings, new SettingsPageViewModel(_settings, Nexus, ShowModlist) }
         };
 
         foreach (var page in _pages.Values)

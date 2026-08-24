@@ -103,6 +103,10 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIOpenModFolder => T("GUIOpenModFolder");
     public string GUICheckForUpdate => T("GUICheckForUpdate");
     public string GUIUpdateFromNexus => T("GUIUpdateFromNexus");
+    public string GUINexusAssociate => T("GUINexusAssociate");
+    public string GUINexusAssociateTitle => T("GUINexusAssociateTitle");
+    public string GUINexusAssociateInvalid => T("GUINexusAssociateInvalid");
+    public string GUINexusAssociateWrongGame => T("GUINexusAssociateWrongGame");
     public string GUIFreezeMod => T("GUIFreezeMod");
     public string GUIUnfreezeMod => T("GUIUnfreezeMod");
     public string GUIModFrozenTooltip => T("GUIModFrozenTooltip");

@@ -565,4 +565,50 @@ Download-Seite(n) im Browser öffnen?</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>Bereits installiert.</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Warnung: Dieser Mod enthält ein bekanntes Kompatibilitätsmerkmal aus der Zeit vor Version 1.0.3. Er ist möglicherweise veraltet und kann den Spielstart verhindern oder einen Absturz verursachen. AIM blockiert ihn nicht automatisch.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Bereits installiert</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Dieser Download ersetzt bereits installierte Mods: {0}&#xD;&#xA;&#xD;&#xA;Sollen sie ersetzt werden?</value></data>
+  <data name="GUINexusAssociate" xml:space="preserve"><value>Mit Nexus verknüpfen…</value></data>
+  <data name="GUINexusAssociateTitle" xml:space="preserve"><value>Mod mit Nexus verknüpfen</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>Füge die URL der Modseite auf Nexus oder einen nxm://-Link ein. AIM merkt sich die Verknüpfung und verwendet sie für die Suche nach Updates.</value></data>
+  <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/…</value></data>
+  <data name="GUINexusAssociateMissing" xml:space="preserve"><value>Füge zuerst eine Nexus-Seiten-URL oder einen nxm://-Link ein.</value></data>
+  <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Das ist keine gültige Nexus-URL oder kein gültiger nxm://-Link für Fields of Mistria. {0}</value></data>
+  <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Dieser nxm://-Link gehört zu einem anderen Spiel.</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Nexus-Downloads</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>„Mod Manager Download“-Links verarbeiten</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>„Mod Manager Download“-Links mit AIM verarbeiten</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIM soll „Mod Manager Download“-Links nicht mehr verarbeiten</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus-API-Schlüssel…</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Aus einem kopierten nxm://-Link installieren</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Download von Nexus</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>Abgeschlossene löschen</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus-Mod {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus-Download</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>Dieser Download ist für ein anderes Spiel ({0}) bestimmt, daher kann AIM ihn nicht installieren.</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Richte zuerst deine Fields-of-Mistria- und Mod-Ordner ein.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Mod Manager Download“-Links</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM verarbeitet „Mod Manager Download“-Links.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>„Mod Manager Download“-Links werden noch nicht von AIM verarbeitet.</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Derzeit verarbeitet ein anderes Programm diese Links ({0}).</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Die Verarbeitung dieser Links wird nur unter Windows und Linux unterstützt.</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM öffnet jetzt „Mod Manager Download“-Links von der Nexus-Website.
+
+Beim ersten Klick bittet dein Browser möglicherweise um Erlaubnis.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM öffnet „Mod Manager Download“-Links von der Nexus-Website nicht mehr.</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM konnte nicht für diese Links registriert werden: {0}</value></data>
+  <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM konnte die Verarbeitung dieser Links nicht beenden: {0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>Derzeit verarbeitet ein anderes Programm diese Links ({0}).
+
+An AIM übergeben?</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Aus einem Link installieren</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Die Zwischenablage enthält keinen nxm://-Link. Klicke auf der Modseite mit der rechten Maustaste auf „Mod Manager Download“ und kopiere zuerst die Linkadresse.</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus-API-Schlüssel</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM benötigt deinen persönlichen Nexus-Mods-API-Schlüssel, um Mods für dich herunterzuladen. Öffne deine Nexus-Kontoeinstellungen, scrolle zu „API Key“, erstelle einen persönlichen Schlüssel und füge ihn unten ein. Der Schlüssel wird nur auf diesem Computer gespeichert.</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Nexus-Kontoeinstellungen öffnen</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Persönlichen API-Schlüssel hier einfügen</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Ein Schlüssel ist bereits gespeichert. Gib einen neuen ein, um ihn zu ersetzen.</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Füge zuerst deinen API-Schlüssel ein.</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Schlüssel wird bei Nexus überprüft…</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Angemeldet als {0}.</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Gespeicherten Schlüssel entfernen</value></data>
 </root>

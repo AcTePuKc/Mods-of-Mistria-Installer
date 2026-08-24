@@ -17,6 +17,8 @@ public record NexusInstallRecord(
     public string PageUrl => $"https://www.nexusmods.com/{Game}/mods/{ModId}";
 
     public string FilesPageUrl => $"{PageUrl}?tab=files";
+
+    public string FilePageUrl(int fileId) => $"{PageUrl}?tab=files&file_id={fileId}";
 }
 
 /// <summary>

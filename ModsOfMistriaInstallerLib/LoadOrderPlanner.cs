@@ -48,7 +48,9 @@ public static class LoadOrderPlanner
 
         notes.AddRange(DescribeFileConflicts(conflictScope ?? mods, order));
 
-        var changed = !order.Select(mod => mod.GetId()).SequenceEqual(mods.Select(mod => mod.GetId()));
+        // IDs identify a mod package, not necessarily one row in the UI. A folder and a ZIP
+        // copy may legitimately expose the same ID, so compare the actual instances here.
+        var changed = !order.SequenceEqual(mods);
         return new LoadOrderPlan(order, notes) { ChangesAnything = changed };
     }
 
@@ -181,22 +183,33 @@ public static class LoadOrderPlanner
 
     private static void AddDependencyMoveNotes(IReadOnlyList<IMod> before, List<IMod> after, List<LoadOrderNote> notes)
     {
+        // Duplicate package copies share an ID. They cannot be named unambiguously in a
+        // dependency-move note, so only use IDs that occur exactly once in each list.
         var beforeIndex = before
-            .Select((mod, index) => (id: mod.GetId(), index))
-            .ToDictionary(pair => pair.id, pair => pair.index, StringComparer.OrdinalIgnoreCase);
+            .Select((mod, index) => (mod.GetId(), index))
+            .GroupBy(pair => pair.Item1, StringComparer.OrdinalIgnoreCase)
+            .Where(group => group.Count() == 1)
+            .ToDictionary(group => group.Key, group => group.Single().index, StringComparer.OrdinalIgnoreCase);
 
         var afterIndex = after
-            .Select((mod, index) => (id: mod.GetId(), index))
-            .ToDictionary(pair => pair.id, pair => pair.index, StringComparer.OrdinalIgnoreCase);
+            .Select((mod, index) => (mod.GetId(), index))
+            .GroupBy(pair => pair.Item1, StringComparer.OrdinalIgnoreCase)
+            .Where(group => group.Count() == 1)
+            .ToDictionary(group => group.Key, group => group.Single().index, StringComparer.OrdinalIgnoreCase);
 
-        var names = after.ToDictionary(mod => mod.GetId(), mod => mod.GetName(), StringComparer.OrdinalIgnoreCase);
+        var names = after
+            .GroupBy(mod => mod.GetId(), StringComparer.OrdinalIgnoreCase)
+            .Where(group => group.Count() == 1)
+            .ToDictionary(group => group.Key, group => group.Single().GetName(), StringComparer.OrdinalIgnoreCase);
 
         foreach (var mod in after)
         {
+            if (!beforeIndex.ContainsKey(mod.GetId()) || !afterIndex.ContainsKey(mod.GetId())) continue;
+
             foreach (var requirement in mod.GetRequirements())
             {
                 var requiredId = requirement.GetId();
-                if (!afterIndex.ContainsKey(requiredId)) continue;
+                if (!beforeIndex.ContainsKey(requiredId) || !afterIndex.ContainsKey(requiredId)) continue;
 
                 // Only worth reporting when the order was wrong before and is right now. A mod
                 // caught in a requirement cycle stays where it was, and claiming it moved would be
@@ -219,11 +232,16 @@ public static class LoadOrderPlanner
     /// </summary>
     private static List<LoadOrderNote> DescribeFileConflicts(IReadOnlyList<IMod> scope, List<IMod> order)
     {
+        // A folder and an archive copy can have the same manifest ID. Keep one stable position
+        // and name for conflict reporting; the detector already returns distinct owners/files.
         var position = order
-            .Select((mod, index) => (id: mod.GetId(), index))
-            .ToDictionary(pair => pair.id, pair => pair.index, StringComparer.OrdinalIgnoreCase);
+            .Select((mod, index) => (mod.GetId(), index))
+            .GroupBy(pair => pair.Item1, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.Last().index, StringComparer.OrdinalIgnoreCase);
 
-        var names = order.ToDictionary(mod => mod.GetId(), mod => mod.GetName(), StringComparer.OrdinalIgnoreCase);
+        var names = order
+            .GroupBy(mod => mod.GetId(), StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.First().GetName(), StringComparer.OrdinalIgnoreCase);
 
         IReadOnlyList<ModFileConflict> conflicts;
         try

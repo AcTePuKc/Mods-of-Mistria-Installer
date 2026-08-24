@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.6 — 2026-08-24
+
+- Updated all supported interface languages with the current Nexus, update, conflict and UI/UX
+  messages.
+- Removed leftover Nexus test controls, simulated update badges and other test-only UI experiments
+  from the normal application build.
+- Added manual Nexus association for locally installed mods, including exact file identification,
+  same-version detection without a duplicate download, and confirmation before replacing another
+  version.
+- Fixed `nxm://` handler state, migration between AIM builds, and disabling Nexus/context actions
+  while installation or uninstallation is running.
+- Improved duplicate-source handling and load-order suggestions when a mod exists both as a folder
+  and as an archive.
+- Added atlas-less PNG replacement support with focused regression coverage and documentation.
+- Documented the known limitation for older local installations that have no recorded Nexus file
+  identity. Users can associate those mods manually before using update checks.
+
 ## 0.1.5 — 2026-08-24
 
 - Added support for the Nexus Mods **Mod Manager Download** button. AIM can register itself as the
@@ -26,6 +43,9 @@
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker, hotkey, conflict-detection, and localized
   metadata changes unchanged.
+- Fixed manual Nexus association: AIM can resolve the exact Nexus file ID and filename through the
+  API, record an already installed matching version without downloading it again, and ask before
+  replacing a different version.
 
 ## 0.1.4 — 2026-08-20
 

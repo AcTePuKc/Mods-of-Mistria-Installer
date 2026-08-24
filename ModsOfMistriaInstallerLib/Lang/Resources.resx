@@ -648,6 +648,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Nexus downloads</value></data>
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Handle "Mod Manager Download" links</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Handle "Mod Manager Download" links with AIM</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Stop AIM from handling "Mod Manager Download" links</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API key...</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Install from a copied nxm:// link</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Downloading from Nexus</value></data>
@@ -664,7 +666,16 @@ Open download page(s) in browser?</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Another program currently handles these links ({0}).</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Handling these links is only supported on Windows and Linux.</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM will now open "Mod Manager Download" links from the Nexus website.&#xD;&#xA;&#xD;&#xA;Your browser may ask for permission the first time you click one.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM will no longer open "Mod Manager Download" links from the Nexus website.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Could not register AIM for these links: {0}</value></data>
+  <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Could not stop AIM from handling these links: {0}</value></data>
+  <data name="GUINexusAssociate" xml:space="preserve"><value>Associate with Nexus...</value></data>
+  <data name="GUINexusAssociateTitle" xml:space="preserve"><value>Associate mod with Nexus</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>Paste the Nexus mod page URL or an nxm:// download link. AIM will remember the association and use it for update checks.</value></data>
+  <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/...</value></data>
+  <data name="GUINexusAssociateMissing" xml:space="preserve"><value>Paste a Nexus page URL or nxm:// link first.</value></data>
+  <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>That is not a valid Fields of Mistria Nexus page or nxm:// link. {0}</value></data>
+  <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>This nxm:// link is for a different game.</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>These links are currently handled by another program ({0}).&#xD;&#xA;&#xD;&#xA;Hand them to AIM instead?</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Install from a link</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>The clipboard does not contain an nxm:// link. Right-click "Mod Manager Download" on the mod page and copy the link address first.</value></data>

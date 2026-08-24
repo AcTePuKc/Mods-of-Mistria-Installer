@@ -1,4 +1,4 @@
-# AIM — Alternative Installer for Mistria 0.1.5
+# AIM — Alternative Installer for Mistria 0.1.6
 
 This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
 
@@ -6,7 +6,7 @@ AIM is a fork of MOMI. It was renamed to avoid confusion between the two applica
 
 AIM is not intended to replace MOMI. It exists to provide capabilities that are currently needed by this fork while remaining compatible with the upstream project. If MOMI later adopts at least the capabilities that motivated this fork and fully meets the project's needs, AIM may be retired in favour of the upstream project.
 
-The current AIM application version is `0.1.5`.
+The current AIM application version is `0.1.6`.
 
 ## Preview
 
@@ -154,12 +154,20 @@ unpacks it straight into your mods folder, the way Vortex does for other games.
 - A browser installed as a Flatpak or Snap may not be able to launch a handler outside its sandbox.
   In that case, right-click **Mod Manager Download**, copy the link address, and use gear menu →
   **Nexus downloads** → **Install from a copied nxm:// link**.
+- You can also associate a manually installed mod with Nexus by right-clicking the mod's name or
+  row and choosing **Associate with Nexus...**. A normal Nexus page URL enables version checks;
+  a copied `nxm://` link identifies the exact Nexus file. If the same version is already present,
+  AIM records the association without downloading it again. If you choose **Yes** when AIM asks
+  whether to replace an existing file, it might download that file again.
 - Nexus collections are not supported; download the mods in them individually.
 
 ### Keeping mods up to date
 
 AIM remembers which Nexus mod and file each download came from, in `aim_nexus.json` beside the
 profiles. Mods installed by hand are recognised too, as long as their manifest points at a Nexus page.
+You can also right-click the mod's name or row and choose **Associate with Nexus...**. Use a normal
+Nexus page URL for version checks, or a copied `nxm://` link when the exact Nexus file must be
+identified.
 
 - Right-click a mod → **Check for an update**, or use gear menu → **Nexus downloads** → **Check
   selected mods for updates** / **Check all mods for updates**.
@@ -241,6 +249,12 @@ After a Fields of Mistria update, start AIM and reinstall the enabled mods. When
 
 Nexus downloads and updates:
 
+- **Known issue for older local installations:** mods installed manually or by an older AIM build
+  before AIM 0.1.5 may not have a Nexus file identity recorded. To update one from AIM, right-click
+  its name or row, choose **Associate with Nexus...**, and provide its Nexus page URL or an exact
+  `nxm://` link.
+- AIM currently uses each user's personal Nexus API key for Nexus downloads and update checks.
+  OAuth support for AIM is not available yet and depends on Nexus application approval.
 - If clicking **Mod Manager Download** does nothing, check gear menu → **Nexus downloads**: the line under **Handle "Mod Manager Download" links** says who currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler, in which case copy the link address and use **Install from a copied nxm:// link**.
 - If an update check says AIM cannot tell which Nexus mod something is, that mod was not downloaded through AIM and its manifest has no Nexus link. Downloading it once through AIM records the connection.
 - If an update refuses to download and offers the mod's page instead, the account is not premium. Nexus only issues download links to free accounts through the website button; the page it opens is the supported route.

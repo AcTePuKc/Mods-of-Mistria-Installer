@@ -237,4 +237,50 @@
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>インストール済み。</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>警告：このMODにはバージョン1.0.3以前の既知の互換性シグネチャが含まれています。古いMODである可能性があり、ゲームが起動しなかったりクラッシュしたりする場合があります。AIMは自動的にはブロックしません。</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>インストール済み</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>このダウンロードは、すでにインストールされているMODを置き換えます：{0}&#xD;&#xA;&#xD;&#xA;置き換えますか？</value></data>
+  <data name="GUINexusAssociate" xml:space="preserve"><value>Nexusと関連付ける…</value></data>
+  <data name="GUINexusAssociateTitle" xml:space="preserve"><value>MODをNexusと関連付ける</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>NexusのMODページのURLまたはnxm://リンクを貼り付けてください。AIMは関連付けを記憶し、更新の確認に使用します。</value></data>
+  <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/…</value></data>
+  <data name="GUINexusAssociateMissing" xml:space="preserve"><value>先にNexusページのURLまたはnxm://リンクを貼り付けてください。</value></data>
+  <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Fields of Mistria用の有効なNexus URLまたはnxm://リンクではありません。{0}</value></data>
+  <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>このnxm://リンクは別のゲーム用です。</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Nexusダウンロード</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>「Mod Manager Download」リンクを処理</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>AIMで「Mod Manager Download」リンクを処理</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIMによる「Mod Manager Download」リンクの処理を停止</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus APIキー…</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>コピーしたnxm://リンクからインストール</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Nexusからダウンロード中</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>完了した項目を消去</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus MOD {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexusダウンロード</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>このダウンロードは別のゲーム用（{0}）のため、AIMではインストールできません。</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>先にFields of MistriaフォルダーとMODフォルダーを設定してください。</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Mod Manager Download」リンク</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIMが「Mod Manager Download」リンクを処理しています。</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>「Mod Manager Download」リンクはまだAIMで処理されていません。</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>現在、別のプログラムがこれらのリンクを処理しています（{0}）。</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>これらのリンクの処理はWindowsとLinuxでのみ対応しています。</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>これからAIMがNexusサイトの「Mod Manager Download」リンクを開きます。
+
+初めてクリックするとき、ブラウザーで許可を求められる場合があります。</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIMはNexusサイトの「Mod Manager Download」リンクを開かなくなります。</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>これらのリンクにAIMを登録できませんでした：{0}</value></data>
+  <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIMによるこれらのリンクの処理を停止できませんでした：{0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>現在、別のプログラムがこれらのリンクを処理しています（{0}）。
+
+AIMに引き継ぎますか？</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>リンクからインストール</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>クリップボードにnxm://リンクがありません。MODページで「Mod Manager Download」を右クリックし、先にリンクアドレスをコピーしてください。</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus APIキー</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>MODをダウンロードするには、個人用のNexus Mods APIキーが必要です。Nexusアカウント設定を開き、「API Key」までスクロールして個人用キーを生成し、下に貼り付けてください。キーはこのコンピューターにのみ保存されます。</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Nexusアカウント設定を開く</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>個人用APIキーをここに貼り付け</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>キーはすでに保存されています。置き換えるには新しいキーを入力してください。</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>先にAPIキーを貼り付けてください。</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Nexusでキーを確認中…</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>{0}としてサインインしました。</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>保存したキーを削除</value></data>
 </root>
