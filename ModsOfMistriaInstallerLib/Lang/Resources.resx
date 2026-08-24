@@ -646,4 +646,71 @@ Open download page(s) in browser?</value></data>
   <data name="GUILanguagePolish" xml:space="preserve"><value>Polski</value></data>
  <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Warning: This mod contains a known pre-1.0.3 compatibility signature. It may be outdated and could prevent the game from starting or cause a crash. AIM will not block it automatically.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
+  <data name="GUINexusMenu" xml:space="preserve"><value>Nexus downloads</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Handle "Mod Manager Download" links</value></data>
+  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API key...</value></data>
+  <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Install from a copied nxm:// link</value></data>
+  <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Downloading from Nexus</value></data>
+  <data name="GUINexusClearFinished" xml:space="preserve"><value>Clear finished</value></data>
+  <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus mod {0}</value></data>
+  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus download</value></data>
+  <data name="GUINexusWrongGame" xml:space="preserve"><value>That download is for another game ({0}), so AIM cannot install it.</value></data>
+  <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Set up your Fields of Mistria and mods folders before downloading mods.</value></data>
+  <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Already installed</value></data>
+  <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>This download would replace mods you already have installed: {0}&#xD;&#xA;&#xD;&#xA;Replace them?</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Mod Manager Download links</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM handles "Mod Manager Download" links.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>"Mod Manager Download" links are not being handled by AIM yet.</value></data>
+  <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Another program currently handles these links ({0}).</value></data>
+  <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Handling these links is only supported on Windows and Linux.</value></data>
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM will now open "Mod Manager Download" links from the Nexus website.&#xD;&#xA;&#xD;&#xA;Your browser may ask for permission the first time you click one.</value></data>
+  <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Could not register AIM for these links: {0}</value></data>
+  <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>These links are currently handled by another program ({0}).&#xD;&#xA;&#xD;&#xA;Hand them to AIM instead?</value></data>
+  <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Install from a link</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>The clipboard does not contain an nxm:// link. Right-click "Mod Manager Download" on the mod page and copy the link address first.</value></data>
+  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus API key</value></data>
+  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM needs your personal Nexus Mods API key to download mods for you. Open your Nexus account settings, scroll to "API Key", generate a personal key and paste it below. The key is stored on this computer only.</value></data>
+  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Open Nexus account settings</value></data>
+  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Paste your personal API key here</value></data>
+  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>A key is already saved. Enter a new one to replace it.</value></data>
+  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Paste your API key first.</value></data>
+  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Checking the key with Nexus...</value></data>
+  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Signed in as {0}.</value></data>
+  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Remove saved key</value></data>
+  <data name="GUISave" xml:space="preserve"><value>Save</value></data>
+  <data name="GUICancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} of {1} selected — {2} already in the game, {3} will be added</value></data>
+  <data name="GUIToggleAllMods" xml:space="preserve"><value>Select or clear every mod</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Suggest order</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Order mods so each one loads after the mods it requires, and report files that two mods both replace</value></data>
+  <data name="GUILoadOrderTitle" xml:space="preserve"><value>Load order</value></data>
+  <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mods were reordered so each one loads after the mods it requires.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nothing to change: every mod already loads after the mods it requires, and no two mods replace the same file.</value></data>
+  <data name="GUIModsFolderChanged" xml:space="preserve"><value>New mods were found in the mods folder.</value></data>
+  <data name="GUIOpenNexusPage" xml:space="preserve"><value>Open the mod's Nexus page</value></data>
+  <data name="GUIOpenModFolder" xml:space="preserve"><value>Open the mod's folder</value></data>
+  <data name="GUICheckForUpdate" xml:space="preserve"><value>Check for an update</value></data>
+  <data name="GUIUpdateFromNexus" xml:space="preserve"><value>Update from Nexus</value></data>
+  <data name="GUIFreezeMod" xml:space="preserve"><value>Freeze at this version</value></data>
+  <data name="GUIUnfreezeMod" xml:space="preserve"><value>Allow updates again</value></data>
+  <data name="GUIModFrozenTooltip" xml:space="preserve"><value>Frozen: update checks skip this mod and it will not be updated.</value></data>
+  <data name="GUIRestorePreviousVersion" xml:space="preserve"><value>Restore the previous version</value></data>
+  <data name="GUIRestoreVersionTitle" xml:space="preserve"><value>Restore a previous version</value></data>
+  <data name="GUIRestoreVersionNone" xml:space="preserve"><value>AIM has no earlier copy of this mod. Backups are kept from the point it is first updated through AIM.</value></data>
+  <data name="GUIRestoreVersionConfirm" xml:space="preserve"><value>Replace "{0}" with the backup from {1}?&#xD;&#xA;&#xD;&#xA;The copy being replaced is kept as a backup too, so this can be undone.</value></data>
+  <data name="GUICheckSelectedForUpdates" xml:space="preserve"><value>Check selected mods for updates</value></data>
+  <data name="GUICheckAllForUpdates" xml:space="preserve"><value>Check all mods for updates</value></data>
+  <data name="GUICheckForUpdatesTitle" xml:space="preserve"><value>Nexus updates</value></data>
+  <data name="GUICheckingForUpdates" xml:space="preserve"><value>Checking for updates ({0} of {1})...</value></data>
+  <data name="GUICheckForUpdatesResult" xml:space="preserve"><value>Checked {0} mods: {1} with an update available, {2} that could not be checked.</value></data>
+  <data name="GUICheckForUpdatesFailed" xml:space="preserve"><value>Nexus could not be asked about that mod.</value></data>
+  <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>"{0}" has version {1} available on Nexus.</value></data>
+  <data name="GUIModIsUpToDate" xml:space="preserve"><value>"{0}" is the version its Nexus page offers.</value></data>
+  <data name="GUIModIsFrozen" xml:space="preserve"><value>"{0}" is frozen, so it was not checked.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM cannot tell which Nexus mod "{0}" is. Mods it downloaded are tracked automatically; others need a Nexus page link in their manifest.</value></data>
+  <data name="GUIUpdateModTitle" xml:space="preserve"><value>Update mod</value></data>
+  <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Update "{0}" from {1} to {2}?&#xD;&#xA;&#xD;&#xA;The current version is kept as a backup you can restore.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Open the mod's files page so you can use its "Mod Manager Download" button?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Let AIM handle "Mod Manager Download" links from the Nexus website?&#xD;&#xA;&#xD;&#xA;Clicking that button on a mod page will then download the mod straight into your mods folder. You can change this later from the gear menu.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>"Mod Manager Download" links from the Nexus website are currently handled by {0}.&#xD;&#xA;&#xD;&#xA;Hand them to AIM instead? Clicking that button on a mod page will then download the mod straight into your mods folder. You can change this later from the gear menu.</value></data>
 </root>

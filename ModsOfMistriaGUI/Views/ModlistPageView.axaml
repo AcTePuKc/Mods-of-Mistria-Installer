@@ -23,14 +23,40 @@
                             </Image.Source>
                         </Image>
                     </MenuItem.Header>
+                    <MenuItem Header="Check for updates"
+                              Command="{Binding CheckForUpdatesNowCommand}"
+                              IsEnabled="{Binding !IsInstalling}"
+                              ToolTip.Tip="Check for newer versions of the selected mod sources." />
+                    <Separator />
                     <MenuItem Header="{Binding Texts.GUIReloadModlist}" Command="{Binding ReloadModlistCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUISaveLogFile}" Command="{Binding SaveLogFileCommand}" />
                     <MenuItem Header="{Binding Texts.GUIEnableAllMods}" Command="{Binding EnableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUIDisableAllMods}" Command="{Binding DisableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <Separator />
+                    <MenuItem Header="Settings…" Click="SettingsMenuClick" IsEnabled="{Binding !IsInstalling}" />
+                    <Separator />
                     <MenuItem Header="{Binding Texts.GUILaunchGameDirectly}"
                               ToggleType="CheckBox"
                               IsChecked="{Binding LaunchGameDirectly, Mode=TwoWay}" />
+                    <Separator />
+                    <!-- Nexus "Mod Manager Download" support -->
+                    <MenuItem Header="{Binding Texts.GUINexusMenu}">
+                        <MenuItem Header="{Binding Texts.GUINexusHandlerMenuItem}"
+                                  Command="{Binding Nexus.ToggleHandlerCommand}" />
+                        <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
+                        <Separator />
+                        <MenuItem Header="{Binding Texts.GUINexusApiKeyMenuItem}"
+                                  Command="{Binding Nexus.SetApiKeyCommand}" />
+                        <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"
+                                  Command="{Binding Nexus.PasteLinkCommand}" />
+                        <Separator />
+                        <MenuItem Header="{Binding Texts.GUICheckSelectedForUpdates}"
+                                  Command="{Binding CheckSelectedModsForUpdatesCommand}"
+                                  IsEnabled="{Binding !IsInstalling}" />
+                        <MenuItem Header="{Binding Texts.GUICheckAllForUpdates}"
+                                  Command="{Binding CheckAllModsForUpdatesCommand}"
+                                  IsEnabled="{Binding !IsInstalling}" />
+                    </MenuItem>
                 </MenuItem>
             </Menu>
 
@@ -99,6 +125,85 @@
                     <Button Margin="4 0 0 0" ToolTip.Tip="{Binding Texts.GUIDeleteCurrentProfile}"
                             Command="{Binding DeleteCurrentProfileCommand}">-</Button>
                 </WrapPanel>
+                <!-- Nexus downloads in progress. Hidden entirely when nothing is
+                     downloading so the page looks exactly as it did before. -->
+                <Border IsVisible="{Binding Nexus.HasDownloads, FallbackValue=False, TargetNullValue=False}"
+                        Margin="0 10 0 0"
+                        Padding="10 8"
+                        CornerRadius="4"
+                        BorderThickness="1"
+                        BorderBrush="Gray">
+                    <StackPanel Spacing="6">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right"
+                                    Padding="6 1"
+                                    Content="{Binding Texts.GUINexusClearFinished}"
+                                    Command="{Binding Nexus.ClearFinishedDownloadsCommand}" />
+                            <TextBlock FontWeight="SemiBold"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Texts.GUINexusDownloadsHeader}" />
+                        </DockPanel>
+
+                        <ItemsControl ItemsSource="{Binding Nexus.Downloads}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Margin="0 2">
+                                        <StackPanel Spacing="2">
+                                            <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                                            <ProgressBar Height="6"
+                                                         Minimum="0" Maximum="100"
+                                                         Value="{Binding Progress}"
+                                                         IsIndeterminate="{Binding IsIndeterminate}"
+                                                         IsVisible="{Binding !IsFinished}" />
+                                            <TextBlock Text="{Binding Status}"
+                                                       FontSize="11"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="Gray" />
+                                        </StackPanel>
+                                        <Button Grid.Column="1"
+                                                Margin="8 0 0 0"
+                                                Padding="6 1"
+                                                VerticalAlignment="Center"
+                                                IsVisible="{Binding CanCancel}"
+                                                Command="{Binding CancelCommand}"
+                                                Content="&#x2715;" />
+                                        <Button Grid.Column="1"
+                                                Margin="8 0 0 0"
+                                                Padding="6 1"
+                                                VerticalAlignment="Center"
+                                                IsVisible="{Binding IsFinished}"
+                                                Command="{Binding $parent[ItemsControl].DataContext.Nexus.DismissDownloadCommand}"
+                                                CommandParameter="{Binding}"
+                                                Content="&#x2715;" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+                <!-- List header: select everything at once, see what the selection means, and ask
+                     for a load order that satisfies the mods' declared requirements. -->
+                <Grid ColumnDefinitions="Auto,*,Auto" Margin="0 12 0 2">
+                    <CheckBox Grid.Column="0"
+                              Margin="0 0 4 0"
+                              IsThreeState="True"
+                              IsChecked="{Binding AllModsSelected, Mode=OneWay}"
+                              IsEnabled="{Binding CanChangeModSelection}"
+                              Command="{Binding ToggleAllModsCommand}"
+                              ToolTip.Tip="{Binding Texts.GUIToggleAllMods}" />
+
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Foreground="Gray"
+                               TextTrimming="CharacterEllipsis"
+                               Text="{Binding SelectionSummary}" />
+
+                    <Button Grid.Column="2"
+                            Padding="8 2"
+                            Content="{Binding Texts.GUISuggestLoadOrder}"
+                            ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
+                            Command="{Binding SuggestLoadOrderCommand}" />
+                </Grid>
             </StackPanel>
 
             <!-- Mod list. The recoverable error is an overlay so it does not
@@ -117,6 +222,33 @@
                                       DragDrop.DragLeave="OnModRowDragLeave"
                                       DragDrop.Drop="OnModRowDrop"
                                       Margin="0 2 0 2">
+                                    <Grid.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuItem Header="{Binding Texts.GUIOpenNexusPage}"
+                                                      IsEnabled="{Binding IsFromNexus}"
+                                                      Command="{Binding Commands.OpenNexusPage}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUICheckForUpdate}"
+                                                      Command="{Binding Commands.CheckForUpdate}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIUpdateFromNexus}"
+                                                      IsEnabled="{Binding CanUpdateFromNexus}"
+                                                      Command="{Binding Commands.UpdateFromNexus}"
+                                                      CommandParameter="{Binding}" />
+                                            <Separator />
+                                            <MenuItem Header="{Binding FreezeMenuHeader}"
+                                                      Command="{Binding Commands.ToggleFreeze}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIRestorePreviousVersion}"
+                                                      IsEnabled="{Binding HasBackup}"
+                                                      Command="{Binding Commands.RestorePreviousVersion}"
+                                                      CommandParameter="{Binding}" />
+                                            <Separator />
+                                            <MenuItem Header="{Binding Texts.GUIOpenModFolder}"
+                                                      Command="{Binding Commands.OpenModFolder}"
+                                                      CommandParameter="{Binding}" />
+                                        </MenuFlyout>
+                                    </Grid.ContextFlyout>
                                     <Grid.Styles>
                                         <Style Selector="Grid.alt">
                                             <Setter Property="Background" Value="{DynamicResource ModAlternateRowBrush}" />
@@ -152,18 +284,28 @@
                                                               HorizontalAlignment="Stretch"
                                                               IsEnabled="{Binding $parent[ItemsRepeater].DataContext.CanChangeModSelection}"
                                                               DataContext="{Binding}" />
-                                    <!-- Update available badge -->
-                                    <Button Grid.Column="3"
-                                            IsVisible="{Binding UpdateAvailable}"
-                                            Command="{Binding OpenUpdateUrlCommand}"
-                                            Margin="6 0 0 0"
-                                            Padding="5 1"
-                                            Background="#2e7d32"
-                                            Foreground="White"
-                                            CornerRadius="4"
-                                            VerticalAlignment="Center"
-                                            Content="{Binding Texts.GUIUpdateMod}"
-                                            ToolTip.Tip="{Binding UpdateTooltip}" />
+                                    <!-- Row-trailing badges. They share column 3, so they sit in a
+                                         stack rather than on top of each other. -->
+                                    <StackPanel Grid.Column="3"
+                                                Orientation="Horizontal"
+                                                VerticalAlignment="Center"
+                                                Spacing="6">
+                                        <!-- Frozen: this mod is deliberately held at its current version -->
+                                        <TextBlock Text="&#x1F512;"
+                                                   IsVisible="{Binding IsFrozen}"
+                                                   VerticalAlignment="Center"
+                                                   ToolTip.Tip="{Binding Texts.GUIModFrozenTooltip}" />
+                                        <!-- Update available badge -->
+                                        <Button IsVisible="{Binding UpdateAvailable}"
+                                                Command="{Binding OpenUpdateUrlCommand}"
+                                                Padding="5 1"
+                                                Background="#2e7d32"
+                                                Foreground="White"
+                                                CornerRadius="4"
+                                                VerticalAlignment="Center"
+                                                Content="{Binding Texts.GUIUpdateMod}"
+                                                ToolTip.Tip="{Binding UpdateTooltip}" />
+                                    </StackPanel>
                                     <!-- The active line makes the exact insertion point obvious while dragging. -->
                                     <Border x:Name="DropBeforeIndicator"
                                             Grid.ColumnSpan="4"

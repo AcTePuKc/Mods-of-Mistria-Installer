@@ -1,7 +1,49 @@
 # Changelog
 
-## 0.1.4 — Unreleased
+## 0.1.5 — Unreleased
 
+- Added the initial disabled Nexus OAuth/API distribution boundary for testing.
+- Nexus test builds do not use GitHub mod update checks until the application
+  registration and authentication flow are approved.
+- No Nexus credentials are included in the source tree or application build.
+
+## 0.1.4 — 2026-08-20
+
+- Added support for the Nexus Mods **Mod Manager Download** button. AIM can register itself as the
+  `nxm://` protocol handler on Windows and Linux, and a clicked link is handed to the window that is
+  already open instead of starting a second one.
+- Added a Nexus API key screen. The key is validated against the Nexus API before it is saved, and is
+  stored per-user outside the mods folder - DPAPI-encrypted on Windows, owner-only on Linux.
+- Downloads show progress in the mod list page and can be cancelled. Finished rows can be dismissed.
+- Downloaded archives (zip, rar, 7z) are unpacked relative to the mod's own `manifest.toml`, so an
+  archive with an extra wrapper folder installs correctly. Archives containing several mods install
+  each of them.
+- Replacing an already-installed mod asks first and keeps the previous copy until the new one has been
+  written successfully. Archive entries that point outside the mods folder are refused.
+- Added "Install from a copied nxm:// link" for browsers that cannot launch an external handler,
+  such as Flatpak or Snap builds.
+- Finished Nexus downloads clear themselves after a few seconds. A failed download stays until it is
+  dismissed, since the row is the only record of what went wrong.
+- Added a select-all checkbox above the mod list, along with a summary of what the selection means:
+  how many mods are selected, how many of those are already in the game, and how many the next
+  install would add. Ticking a mod is what keeps it in the game, so nothing is unticked automatically.
+- Added a "Suggest order" button. It moves each mod below the mods it requires, using the smallest
+  edits that satisfy those requirements, and reports what it cannot decide: files that two mods both
+  replace, requirements that are not installed, and requirement loops.
+- The mods folder is now watched while AIM is open, so a mod copied in by hand appears in the list
+  without reopening the application.
+- Added Nexus update management. A mod downloaded through AIM records which Nexus mod and file it
+  came from, and mods installed by hand are recognised when their manifest links to a Nexus page.
+  From there: check one mod, the selected mods, or every mod against its Nexus page; update from the
+  right-click menu; and freeze a mod so update checks leave it alone.
+- Updating keeps the previous copy in `.aim-backups` inside the mods folder, and "Restore the
+  previous version" puts it back. The copy being replaced is kept too, so a rollback is undoable.
+- Added a right-click menu on each mod: open its Nexus page, check for an update, update, freeze,
+  restore the previous version, or open its folder.
+- On first run AIM offers to handle "Mod Manager Download" links, and remembers the answer either
+  way. It stays quiet when another mod manager already holds them.
+- Update checks work on any Nexus account, but only premium accounts can download without going
+  through the website: a free account is offered the mod's files page instead.
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker and localized metadata changes unchanged.
 

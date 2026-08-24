@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Garethp.ModsOfMistriaGUI.ViewModels"
+             x:Class="Garethp.ModsOfMistriaGUI.Views.SettingsPageView"
+             x:DataType="vm:SettingsPageViewModel">
+    <Grid RowDefinitions="Auto,*" Margin="4">
+        <Button Content="← Back" Command="{Binding BackCommand}" HorizontalAlignment="Left" />
+
+        <Grid Grid.Row="1" ColumnDefinitions="170,*" Margin="0 12 0 0">
+            <Border Grid.Column="0" Background="#202020" Padding="8" CornerRadius="4">
+                <ListBox ItemsSource="{Binding Sections}"
+                         SelectedItem="{Binding SelectedSection, Mode=TwoWay}" />
+            </Border>
+
+            <Border Grid.Column="1" Margin="12 0 0 0" Padding="16" Background="#171717" CornerRadius="4">
+                <ScrollViewer>
+                    <StackPanel Spacing="12">
+                        <StackPanel IsVisible="{Binding IsGeneralSelected}" Spacing="8">
+                            <TextBlock Text="General" FontSize="22" FontWeight="Bold" />
+                            <TextBlock Text="Choose the game and mods folders used by AIM." TextWrapping="Wrap" />
+                            <TextBlock Text="Game folder" FontWeight="Bold" />
+                            <TextBox Text="{Binding Settings.MistriaLocation}" IsReadOnly="True" />
+                            <TextBlock Text="Mods folder" FontWeight="Bold" />
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBox Text="{Binding Settings.ModsLocation, Mode=TwoWay}" />
+                                <Button Grid.Column="1" Content="Choose…" Margin="8 0 0 0" Command="{Binding SelectModsLocationCommand}" />
+                            </Grid>
+                            <TextBlock Text="The mods folder can be changed at any time; AIM will reload it when you return to the mod list." TextWrapping="Wrap" Foreground="Gray" />
+                        </StackPanel>
+
+                        <StackPanel IsVisible="{Binding IsNexusSelected}" Spacing="8">
+                            <TextBlock Text="Nexus" FontSize="22" FontWeight="Bold" />
+                            <TextBlock Text="OAuth/API integration is only a test placeholder in this build. No key is stored or sent." TextWrapping="Wrap" />
+                            <TextBlock Text="Nexus API key (test field)" FontWeight="Bold" />
+                            <TextBox Text="{Binding NexusApiKeyDraft, Mode=TwoWay}" PasswordChar="•" Watermark="Paste a key here for UI testing only" />
+                            <Button Content="Get your AIM API key" Command="{Binding OpenNexusApiKeysCommand}" HorizontalAlignment="Left" />
+                            <TextBlock Text="After Nexus approves the application flow, this section can be connected to real authentication." TextWrapping="Wrap" Foreground="Gray" />
+                        </StackPanel>
+
+                        <StackPanel IsVisible="{Binding IsTestSelected}" Spacing="8">
+                            <TextBlock Text="Test" FontSize="22" FontWeight="Bold" />
+                            <TextBlock Text="These controls exist only in the Nexus test distribution." TextWrapping="Wrap" />
+                            <Button Content="Simulate an update for every mod" Command="{Binding SimulateUpdatesCommand}" IsVisible="{Binding IsNexusDistribution}" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding TestStatus}" TextWrapping="Wrap" Foreground="#58D1B2" />
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

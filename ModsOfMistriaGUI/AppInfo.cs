@@ -4,6 +4,13 @@ namespace Garethp.ModsOfMistriaGUI;
 
 public static class AppInfo
 {
+    public const bool IsNexusDistribution =
+#if AIM_NEXUS_DISTRIBUTION
+        true;
+#else
+        false;
+#endif
+
     public const string GitHubUrl = "https://github.com/AcTePuKc/Mods-of-Mistria-Installer";
     public const string ReleasesUrl = "https://github.com/AcTePuKc/Mods-of-Mistria-Installer/releases";
     public const string ReleaseApiUrl = "https://api.github.com/repos/AcTePuKc/Mods-of-Mistria-Installer/releases?per_page=20";

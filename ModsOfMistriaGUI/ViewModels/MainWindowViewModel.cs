@@ -12,7 +12,8 @@ namespace Garethp.ModsOfMistriaGUI.ViewModels;
 internal enum Pages
 {
     GettingStarted,
-    Modlist
+    Modlist,
+    Settings
 }
 
 public partial class MainWindowViewModel : ViewModelBase
@@ -22,6 +23,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly Dictionary<Pages, PageViewBase> _pages;
 
     private GameRestartMonitor? _restartMonitor;
+
+    /// <summary>
+    /// Nexus "Mod Manager Download" support. It lives here rather than on the mod list page so
+    /// that a link clicked while the setup page is showing is still handled.
+    /// </summary>
+    public NexusDownloadsViewModel Nexus { get; }
 
     [ObservableProperty] private PageViewBase _currentPage;
     [ObservableProperty] private bool _updateAvailable;
@@ -65,10 +72,24 @@ public partial class MainWindowViewModel : ViewModelBase
         UpdateAvailable = false;
     }
 
+    /// <summary>
+    /// Handles an nxm:// link, whether this process was started by one or another instance passed
+    /// one along. Failures are reported to the user by the download view model itself.
+    /// </summary>
+    public Task HandleNxmLinkAsync(string link) => Nexus.HandleLinkAsync(link);
+
     public void SaveCurrentState()
     {
         if (CurrentPage is ModlistPageViewModel modlist)
             modlist.SaveCurrentProfileState();
+    }
+
+    public void ShowSettings() => CurrentPage = _pages[Pages.Settings];
+
+    public void ShowModlist()
+    {
+        if (_settings.ValidMistriaLocation() && _settings.ValidModsLocation())
+            CurrentPage = _pages[Pages.Modlist];
     }
 
     public MainWindowViewModel()
@@ -86,10 +107,13 @@ public partial class MainWindowViewModel : ViewModelBase
         _settings.ModsLocation = MistriaLocator.GetModsLocation(_settings.MistriaLocation) ?? "";
         PerformanceDiagnostics.Log($"Startup: location detection={locationStopwatch.ElapsedMilliseconds} ms, gameFound={!string.IsNullOrEmpty(_settings.MistriaLocation)}, modsFound={!string.IsNullOrEmpty(_settings.ModsLocation)}");
 
+        Nexus = new NexusDownloadsViewModel(_settings);
+        var modlistPage = new ModlistPageViewModel(_settings, Nexus);
         _pages = new Dictionary<Pages, PageViewBase>
         {
             { Pages.GettingStarted , new GettingStartedPageViewModel(_settings) },
-            { Pages.Modlist, new ModlistPageViewModel(_settings) }
+            { Pages.Modlist, modlistPage },
+            { Pages.Settings, new SettingsPageViewModel(_settings, modlistPage, ShowModlist) }
         };
 
         foreach (var page in _pages.Values)

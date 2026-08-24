@@ -1,4 +1,4 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -9,6 +9,7 @@ using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
 using Garethp.ModsOfMistriaGUI.Views;
 using Garethp.ModsOfMistriaInstallerLib;
+using Garethp.ModsOfMistriaInstallerLib.Nexus;
 using MsBox.Avalonia;
 using Newtonsoft.Json.Linq;
 
@@ -18,8 +19,15 @@ public class App : Application
 {
     public static TopLevel? TopLevel { get; private set; }
 
+    /// <summary>
+    /// An nxm:// link this process was started with, set by <see cref="Program"/> before the UI
+    /// exists. It is handled once the main window is up.
+    /// </summary>
+    public static string? StartupNxmLink { get; set; }
+
     private readonly MainWindowViewModel _mainViewModel;
     private CancellationTokenSource? _updateCheckCancellation;
+    private NxmLinkListener? _nxmListener;
 
     public App()
     {
@@ -46,12 +54,34 @@ public class App : Application
             TopLevel = TopLevel.GetTopLevel(mainWindow);
 
             _updateCheckCancellation = new CancellationTokenSource();
+
+            // Deliberately not done in the view model constructor: it touches the registry and the
+            // user's config directory, which the headless UI tests must not do.
+            _mainViewModel.Nexus.Initialise();
+
+            // Links clicked while this window is open arrive here from the short-lived process the
+            // browser started. Failing to listen is not fatal: those processes then handle their
+            // own link in a second window.
+            _nxmListener = NxmLinkListener.TryStart(link =>
+                Dispatcher.UIThread.Post(() => HandleNxmLink(mainWindow, link)));
+
             mainWindow.Closed += (_, _) =>
             {
                 _mainViewModel.SaveCurrentState();
                 _updateCheckCancellation.Cancel();
+                // Disposal waits on a background accept loop, so it must not run on the UI thread.
+                var listener = _nxmListener;
+                _nxmListener = null;
+                Task.Run(() => listener?.Dispose());
                 ArchiveWorkerClient.StopAll();
             };
+
+            if (StartupNxmLink is not null)
+            {
+                var startupLink = StartupNxmLink;
+                StartupNxmLink = null;
+                Dispatcher.UIThread.Post(() => HandleNxmLink(mainWindow, startupLink));
+            }
 
             if (Environment.Is64BitOperatingSystem && !Environment.Is64BitProcess)
             {
@@ -71,6 +101,14 @@ public class App : Application
         PerformanceDiagnostics.Log($"Startup: framework initialization={stopwatch.ElapsedMilliseconds} ms");
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void HandleNxmLink(Window mainWindow, string link)
+    {
+        // The click happened in the browser, so the window is behind it and the user would
+        // otherwise have no sign that anything is downloading.
+        mainWindow.Activate();
+        _ = _mainViewModel.HandleNxmLinkAsync(link);
     }
 
     private async Task CheckForUpdatesAsync(CancellationToken cancellationToken)
