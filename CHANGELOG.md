@@ -17,6 +17,9 @@
 - Added the initial disabled Nexus OAuth/API distribution boundary for testing. Nexus update checks use
   the Nexus integration path rather than GitHub release checks until the application registration and
   authentication flow are approved.
+- Updated `Tmds.DBus.Protocol` from the vulnerable `0.20.0` release to patched `0.21.3` to address
+  CVE-2026-39959 / GHSA-xrw6-gwf8-vvr9 involving D-Bus signal spoofing, file-descriptor exhaustion,
+  and malformed-message crashes.
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker, hotkey, conflict-detection, and localized
   metadata changes unchanged.
