@@ -264,6 +264,11 @@ Nexus downloads and updates:
 
 For bugs and fork-specific support, use the [fork issue tracker](https://github.com/AcTePuKc/Mods-of-Mistria-Installer/issues). The upstream project and its documentation remain available at [Garethp/Mods-of-Mistria-Installer](https://github.com/Garethp/Mods-of-Mistria-Installer).
 
+## Contributors
+
+See [Contributors.md](Contributors.md) for the people who have contributed to
+AIM and the areas they worked on.
+
 ## Development
 
 Build the solution with .NET 10:
