@@ -20,6 +20,9 @@
 - Updated `Tmds.DBus.Protocol` from the vulnerable `0.20.0` release to patched `0.21.3` to address
   CVE-2026-39959 / GHSA-xrw6-gwf8-vvr9 involving D-Bus signal spoofing, file-descriptor exhaustion,
   and malformed-message crashes.
+- Updated Six Labors ImageSharp from `3.1.5` to `4.0.0`; the older release was reported with
+  `GHSA-rxmq-m78w-7wmc`. ImageSharp 4.x requires the documented open-source license handling for
+  local and CI builds.
 - Updated the dungeon floor compatibility seam for Fields of Mistria 1.0.4.
 - Kept the 0.1.3 compatibility, warning, archive-worker, hotkey, conflict-detection, and localized
   metadata changes unchanged.
