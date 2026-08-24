@@ -6,6 +6,9 @@ public class ValidationComparer: IEqualityComparer<Validation>
 {
     public bool Equals(Validation? x, Validation? y)
     {
+        if (ReferenceEquals(x, y)) return true;
+        if (x is null || y is null) return false;
+
         if (x.Warnings.Count != y.Warnings.Count) return false;
         if (x.Errors.Count != y.Errors.Count) return false;
 

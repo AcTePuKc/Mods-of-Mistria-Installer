@@ -126,7 +126,9 @@ public static class StatementDecompiler
         if (initialiserObject is not null && initialiserObject is not JObject)
             throw new Exception("Var has an unexpected initialiser");
         
-        var initialiser = MistConverter.ToExpression(initialiserObject as JObject);
+        var initialiser = initialiserObject is JObject initialiserJson
+            ? MistConverter.ToExpression(initialiserJson)
+            : null;
 
         return new VariableDeclaration(
             NodeList.Create(new List<VariableDeclarator>
@@ -235,7 +237,7 @@ public static class StatementDecompiler
             return new ReturnStatement(null);
 
         if (statementObject["value"] is not JObject valueObject)
-            throw new Exception($"Unexpected return value type: {statementObject["value"].Type}");
+            throw new Exception($"Unexpected return value type: {statementObject["value"]?.Type ?? JTokenType.Null}");
 
         return new ReturnStatement(MistConverter.ToExpression(valueObject));
     }

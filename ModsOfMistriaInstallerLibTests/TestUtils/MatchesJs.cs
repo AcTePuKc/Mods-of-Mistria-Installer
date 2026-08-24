@@ -17,7 +17,8 @@ public class MatchesJs: Constraint
     {
         var parser = new JavaScriptParser();
         
-        var actualJs = parser.ParseScript(actual.ToString()).ToJavaScriptString(true);
+        var actualJs = parser.ParseScript(actual?.ToString() ?? throw new ArgumentException("Expected JavaScript text", nameof(actual)))
+            .ToJavaScriptString(true);
         var expectedJs = parser.ParseScript(_expected).ToJavaScriptString(true);
         
         var equals = actualJs.Equals(expectedJs);

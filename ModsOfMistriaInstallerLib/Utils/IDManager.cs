@@ -36,6 +36,7 @@ public static class IDManager
             if (!fileModifier.Exists(atlas.MetaPath)) continue;
 
             var data = TomlSerializer.Deserialize<TomlTable>(fileModifier.Read(atlas.MetaPath));
+            if (data is null) continue;
 
             if (!data.TryGetValue("asset_properties", out var apObj) ||
                 apObj is not TomlTable ap) continue;
@@ -49,7 +50,11 @@ public static class IDManager
                     texObj is not TomlArray textureIds) continue;
 
                 foreach (var tex in textureIds)
-                    AllUsedIds.Add(tex.ToString()!.Split("::")[0]);
+                {
+                    var id = tex?.ToString();
+                    if (!string.IsNullOrEmpty(id))
+                        AllUsedIds.Add(id.Split("::")[0]);
+                }
             }
         }
     }

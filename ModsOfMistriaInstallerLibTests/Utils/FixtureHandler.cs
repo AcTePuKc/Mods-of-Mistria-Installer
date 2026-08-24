@@ -8,7 +8,7 @@ public class FixtureHandler
     {
         var currentPath = Assembly.GetExecutingAssembly().Location;
         var projectFile = "ModsOfMistriaInstallerLibTests.csproj";
-        string finalPath = null;
+        string? finalPath = null;
 
         for (var i = 0; i < 7; i++)
         {

@@ -252,7 +252,7 @@ public class MistriaLocator
 
             // I might just be dum but I don't think we have a checksums.json anymore.
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // Ignored
         }

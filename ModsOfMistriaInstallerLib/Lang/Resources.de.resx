@@ -575,9 +575,9 @@ Download-Seite(n) im Browser öffnen?</value></data>
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Das ist keine gültige Nexus-URL oder kein gültiger nxm://-Link für Fields of Mistria. {0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Dieser nxm://-Link gehört zu einem anderen Spiel.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Nexus-Downloads</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>„Mod Manager Download“-Links verarbeiten</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>„Mod Manager Download“-Links mit AIM verarbeiten</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIM soll „Mod Manager Download“-Links nicht mehr verarbeiten</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMD-Links</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>NMD mit AIM öffnen</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIM für NMD stoppen</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus-API-Schlüssel…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Aus einem kopierten nxm://-Link installieren</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Download von Nexus</value></data>
@@ -647,4 +647,18 @@ An AIM übergeben?</value></data>
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Die Dateiseite des Mods öffnen, damit du die Schaltfläche „Mod Manager Download“ verwenden kannst?</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Soll AIM „Mod Manager Download“-Links von der Nexus-Website verarbeiten?&#xD;&#xA;&#xD;&#xA;Ein Klick auf diese Schaltfläche lädt den Mod direkt in deinen Mods-Ordner. Du kannst dies später über das Zahnradmenü ändern.</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>„Mod Manager Download“-Links werden derzeit von {0} verarbeitet.&#xD;&#xA;&#xD;&#xA;An AIM übergeben? Ein Klick auf diese Schaltfläche lädt den Mod direkt in deinen Mods-Ordner. Du kannst dies später über das Zahnradmenü ändern.</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>Einstellungen…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← Zurück</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>Allgemein</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>Wähle die Spiel- und Mod-Ordner für AIM.</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>Spieleordner</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>Mod-Ordner</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Auswählen…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Der Mod-Ordner kann jederzeit geändert werden; AIM lädt die Liste neu, wenn du zur Mod-Liste zurückkehrst.</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM verwendet deinen persönlichen Nexus-API-Schlüssel für Downloads und Update-Prüfungen. Er wird lokal gespeichert und nie in Mods oder Releases aufgenommen.</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>API-Schlüsselstatus: {0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Nexus-API-Schlüssel festlegen oder ändern…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Derselbe Schlüssel wird im Nexus-Downloadmenü verwendet.</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Mod-Ordner auswählen</value></data>
 </root>

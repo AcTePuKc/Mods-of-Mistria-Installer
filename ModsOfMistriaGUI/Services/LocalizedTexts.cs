@@ -145,4 +145,20 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUINexusPasteLinkMenuItem => T("GUINexusPasteLinkMenuItem");
     public string GUINexusDownloadsHeader => T("GUINexusDownloadsHeader");
     public string GUINexusClearFinished => T("GUINexusClearFinished");
+
+    // Settings page
+    public string GUISettingsMenu => T("GUISettingsMenu");
+    public string GUISettingsBack => T("GUISettingsBack");
+    public string GUISettingsGeneral => T("GUISettingsGeneral");
+    public string GUISettingsGeneralDescription => T("GUISettingsGeneralDescription");
+    public string GUISettingsGameFolder => T("GUISettingsGameFolder");
+    public string GUISettingsModsFolder => T("GUISettingsModsFolder");
+    public string GUISettingsChooseModsFolder => T("GUISettingsChooseModsFolder");
+    public string GUISettingsModsFolderNote => T("GUISettingsModsFolderNote");
+    public string GUISettingsNexus => T("GUISettingsNexus");
+    public string GUISettingsNexusDescription => T("GUISettingsNexusDescription");
+    public string GUISettingsApiKeyStatus => T("GUISettingsApiKeyStatus");
+    public string GUISettingsApiKeyButton => T("GUISettingsApiKeyButton");
+    public string GUISettingsNexusNote => T("GUISettingsNexusNote");
+    public string GUISettingsSelectModsFolderTitle => T("GUISettingsSelectModsFolderTitle");
 }

@@ -30,28 +30,28 @@ public class OutfitFile
     [TomlPropertyName("outfit_sprite")]
     public string? LegacyOutfitSprite
     {
-        get;
+        get => null;
         init => OutfitSprite ??= value;
     }
 
     [TomlPropertyName("lut_sprite")]
     public string? LegacyLutSprite
     {
-        get;
+        get => null;
         init => LutSprite ??= value;
     }
     
     [TomlPropertyName("icon_sprite")]
     public string? LegacyIconSprite
     {
-        get;
+        get => null;
         init => IconSprite ??= value;
     }
     
     [TomlPropertyName("outline_sprite")]
     public string? LegacyOutlineSprite
     {
-        get;
+        get => null;
         init => OutlineSprite ??= value;
     }
 
@@ -69,5 +69,5 @@ public class OutfitFile
             FrameWidth = value[0];
             FrameHeight = value[1];
         }
-    }
+    } = [];
 }

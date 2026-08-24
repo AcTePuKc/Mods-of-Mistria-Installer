@@ -28,7 +28,7 @@
                     <MenuItem Header="{Binding Texts.GUIEnableAllMods}" Command="{Binding EnableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUIDisableAllMods}" Command="{Binding DisableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <Separator />
-                    <MenuItem Header="Settings…" Click="SettingsMenuClick" IsEnabled="{Binding !IsInstalling}" />
+                    <MenuItem Header="{Binding Texts.GUISettingsMenu}" Click="SettingsMenuClick" IsEnabled="{Binding !IsInstalling}" />
                     <Separator />
                     <MenuItem Header="{Binding Texts.GUILaunchGameDirectly}"
                               ToggleType="CheckBox"
@@ -205,7 +205,10 @@
             <!-- Mod list. The recoverable error is an overlay so it does not
                  reduce the list viewport or move the normal page content. -->
             <Grid>
-                <ScrollViewer Margin="0 5 0 0">
+                <ScrollViewer x:Name="ModListScrollViewer"
+                              Margin="0 5 0 0"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
                     <ItemsRepeater ItemsSource="{Binding Mods}" x:Name="ModRepeater">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate>

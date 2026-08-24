@@ -167,7 +167,7 @@ public class ModManifest
         );
     }
 
-    private static Dictionary<string, string> ReadLocalizedFields(IEnumerable<KeyValuePair<string, object?>> fields,
+    private static Dictionary<string, string> ReadLocalizedFields(IEnumerable<KeyValuePair<string, object>> fields,
         string prefix)
     {
         return fields

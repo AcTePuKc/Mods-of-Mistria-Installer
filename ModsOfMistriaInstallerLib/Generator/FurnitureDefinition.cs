@@ -72,6 +72,7 @@ public class FurnitureDefinition
         try
         {
             var root = Tomlyn.TomlSerializer.Deserialize<TomlTable>(tomlContent);
+            if (root is null) return result;
             foreach (var (key, value) in root)
             {
                 if (value is not TomlTable section) continue;

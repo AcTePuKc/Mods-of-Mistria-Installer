@@ -213,7 +213,9 @@ public partial class ModlistPageViewModel : PageViewBase
         var enabledSources = Mods.Where(m => m.Enabled)
             .Select(m => DuplicateModDetector.NormalizeSource(m.Mod.GetSourcePath())).ToList();
         var loadOrder = Mods.Select(m => m.Mod.GetId()).ToList();
-        _profileManager.SaveCurrentProfile(enabled, loadOrder, enabledSources);
+        var loadOrderSources = Mods
+            .Select(m => DuplicateModDetector.NormalizeSource(m.Mod.GetSourcePath())).ToList();
+        _profileManager.SaveCurrentProfile(enabled, loadOrder, enabledSources, loadOrderSources);
         _isDirty = false;
     }
 
@@ -241,6 +243,7 @@ public partial class ModlistPageViewModel : PageViewBase
         try
         {
             var (enabledIds, loadOrder) = _profileManager.GetCurrentProfile();
+            var loadOrderSources = _profileManager.GetCurrentProfileLoadOrderSources();
 
             // If profile has never been saved (both empty), default to all enabled
             var allMods    = Mods.Select(m => m.Mod).ToList();
@@ -255,7 +258,7 @@ public partial class ModlistPageViewModel : PageViewBase
             if (enabledSources.Count == 0)
                 enabledSources = DefaultDuplicateSources(allMods, duplicateCopies, enabledSet, freshProfile);
 
-            var sorted = ProfileManager.SortByLoadOrder(allMods, loadOrder);
+            var sorted = ProfileManager.SortByLoadOrder(allMods, loadOrder, loadOrderSources);
 
             var newModels = sorted.Select((mod, idx) =>
             {
@@ -296,7 +299,12 @@ public partial class ModlistPageViewModel : PageViewBase
         if (sourceIndex < destinationIndex) destinationIndex--;
         if (sourceIndex == destinationIndex) return;
 
-        Mods.Move(sourceIndex, destinationIndex);
+        // ItemsRepeater can retain a stale visual container after an
+        // ObservableCollection.Move notification, which briefly renders the
+        // moved row twice. Remove and insert emit unambiguous container
+        // lifecycle events while preserving the same model instance/state.
+        Mods.RemoveAt(sourceIndex);
+        Mods.Insert(destinationIndex, draggedMod);
         RefreshPositions();
         _isDirty = true;
     }
@@ -554,6 +562,7 @@ public partial class ModlistPageViewModel : PageViewBase
             if (profileManager is not null)
             {
                 var (profileEnabledIds, loadOrder) = profileManager.GetCurrentProfile();
+                var loadOrderSources = profileManager.GetCurrentProfileLoadOrderSources();
                 var resolvedEnabled = profileEnabledIds.Count == 0 && loadOrder.Count == 0
                     ? rawMods.Select(m => m.GetId()).ToList()
                     : ProfileManager.ResolveEnabledWithDeps(rawMods, profileEnabledIds);
@@ -564,7 +573,7 @@ public partial class ModlistPageViewModel : PageViewBase
                 enabledSources = configuredSources.Count > 0
                     ? configuredSources
                     : DefaultDuplicateSources(rawMods, duplicateCopies, enabledIds, false);
-                orderedMods = ProfileManager.SortByLoadOrder(rawMods, loadOrder);
+                orderedMods = ProfileManager.SortByLoadOrder(rawMods, loadOrder, loadOrderSources);
             }
             else
             {
@@ -977,16 +986,10 @@ public partial class ModlistPageViewModel : PageViewBase
             return;
         }
 
-        var hardConflict = FindSelectedHardReplacementConflict();
-        if (hardConflict is not null)
-        {
-            var selected = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
-            var message = Localized("GUIHardFileConflictBlocked") + "\n\n" + FormatFileConflict(hardConflict, selected);
-            Exception = message;
-            InstallStatus = message;
-            return;
-        }
-
+        // Hard replacements are advisory, not fatal: the selected load order decides
+        // which replacement is written last. The conflict is already shown on the
+        // affected mod rows. Keep blocking only duplicate physical copies of the
+        // same mod, which have no meaningful load-order winner.
         Exception = "";
 
         // Auto-save profile state before installing so load order is persisted
@@ -1782,13 +1785,6 @@ public partial class ModlistPageViewModel : PageViewBase
         return groups.FirstOrDefault(group =>
             group.Copies.Count(copy => Mods.Any(model =>
                 ReferenceEquals(model.Mod, copy) && model.Enabled)) > 1);
-    }
-
-    private ModFileConflict? FindSelectedHardReplacementConflict()
-    {
-        var selected = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
-        return ModFileConflictDetector.Find(selected)
-            .FirstOrDefault(conflict => conflict.Kind == ModFileConflictKind.HardReplacement);
     }
 
     private bool CanInstall() =>

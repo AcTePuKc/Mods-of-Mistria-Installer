@@ -575,9 +575,9 @@ Ouvrir les pages de téléchargement dans le navigateur ?</value></data>
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Ce n’est pas une URL Nexus ou un lien nxm:// valide pour Fields of Mistria. {0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Ce lien nxm:// concerne un autre jeu.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Téléchargements Nexus</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Gérer les liens « Mod Manager Download »</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Gérer les liens « Mod Manager Download » avec AIM</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Ne plus laisser AIM gérer les liens « Mod Manager Download »</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Liens NMD</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Utiliser AIM pour NMD</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Arrêter AIM pour NMD</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Clé API Nexus…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Installer depuis un lien nxm:// copié</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Téléchargement depuis Nexus</value></data>
@@ -647,4 +647,18 @@ Les confier à AIM ?</value></data>
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Ouvrir la page des fichiers du mod pour utiliser le bouton « Mod Manager Download » ?</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Autoriser AIM à gérer les liens « Mod Manager Download » du site Nexus ?&#xD;&#xA;&#xD;&#xA;Un clic sur ce bouton téléchargera le mod directement dans votre dossier de mods. Vous pourrez modifier ce choix dans le menu de l’engrenage.</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Les liens « Mod Manager Download » sont actuellement gérés par {0}.&#xD;&#xA;&#xD;&#xA;Les confier à AIM ? Un clic sur ce bouton téléchargera le mod directement dans votre dossier de mods. Vous pourrez modifier ce choix dans le menu de l’engrenage.</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>Paramètres…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← Retour</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>Général</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>Choisissez les dossiers du jeu et des mods utilisés par AIM.</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>Dossier du jeu</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>Dossier des mods</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Choisir…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Le dossier des mods peut être changé à tout moment ; AIM rechargera la liste lorsque vous reviendrez à la liste des mods.</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM utilise votre clé API Nexus personnelle pour les téléchargements et la recherche de mises à jour. Elle est stockée localement et n’est jamais incluse dans les mods ou les versions.</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>État de la clé API : {0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Définir ou modifier la clé API Nexus…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>La même clé est utilisée dans le menu des téléchargements Nexus.</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Choisir le dossier des mods</value></data>
 </root>

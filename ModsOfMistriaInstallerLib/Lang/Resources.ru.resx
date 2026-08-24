@@ -247,9 +247,9 @@
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Это недействительная страница Nexus или ссылка nxm:// для Fields of Mistria. {0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Эта ссылка nxm:// предназначена для другой игры.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Загрузки Nexus</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Обрабатывать ссылки «Mod Manager Download»</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Обрабатывать ссылки «Mod Manager Download» с помощью AIM</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Остановить обработку ссылок «Mod Manager Download» в AIM</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Ссылки NMD</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Использовать AIM для NMD</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Остановить AIM для NMD</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>API-ключ Nexus…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Установить из скопированной ссылки nxm://</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Загрузка из Nexus</value></data>
@@ -319,4 +319,18 @@
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Открыть страницу файлов мода, чтобы использовать кнопку «Mod Manager Download»?</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Разрешить AIM обрабатывать ссылки «Mod Manager Download» с сайта Nexus?&#xD;&#xA;&#xD;&#xA;Нажатие этой кнопки на странице мода загрузит его прямо в папку модов. Позже это можно изменить в меню с шестерёнкой.</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Сейчас ссылки «Mod Manager Download» обрабатывает {0}.&#xD;&#xA;&#xD;&#xA;Передать их AIM? Нажатие этой кнопки на странице мода загрузит его прямо в папку модов. Позже это можно изменить в меню с шестерёнкой.</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>Настройки…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← Назад</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>Общие</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>Выберите папки игры и модов, которые использует AIM.</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>Папка игры</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>Папка модов</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Выбрать…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Папку модов можно изменить в любое время; AIM перезагрузит список после возвращения к списку модов.</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM использует ваш личный API-ключ Nexus для загрузки модов и проверки обновлений. Ключ хранится локально и никогда не добавляется в моды или версии.</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>Состояние API-ключа: {0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Настроить или изменить API-ключ Nexus…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Тот же ключ используется в меню загрузок Nexus.</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Выбрать папку модов</value></data>
 </root>

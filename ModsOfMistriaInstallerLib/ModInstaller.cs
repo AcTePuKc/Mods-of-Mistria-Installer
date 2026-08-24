@@ -32,7 +32,8 @@ public class ModInstaller
     private readonly string _fomLocation;
     private readonly string _assetsLocation;
     private readonly string _atlasDirectory;
-    private IFileModifier _fileModifier;
+    // Assigned when an archive rebuild transaction begins, before any installer uses it.
+    private IFileModifier _fileModifier = null!;
 
     public ModInstaller(string fomLocation, string modsLocation)
     {

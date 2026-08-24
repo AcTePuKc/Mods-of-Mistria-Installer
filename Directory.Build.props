@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <!-- Single source of truth for GUI, CLI and release packaging. -->
-    <Version>0.1.6</Version>
+    <Version>0.1.7</Version>
     <!-- The Nexus test package must not contact GitHub for update checks. -->
     <AimDistribution Condition="'$(AimDistribution)' == ''">GitHub</AimDistribution>
     <DefineConstants Condition="'$(AimDistribution)' == 'Nexus'">$(DefineConstants);AIM_NEXUS_DISTRIBUTION</DefineConstants>

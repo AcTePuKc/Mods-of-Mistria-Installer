@@ -158,8 +158,10 @@ public static class MOMIOperations
         return clone;
     }
 
-    private static object? CloneValue(object? value) =>
-        value is TomlTable t ? CloneTable(t) : value;
+    private static object CloneValue(object? value) =>
+        value is TomlTable t
+            ? CloneTable(t)
+            : value ?? throw new InvalidOperationException("TOML values cannot be null.");
 
     // JSON
 

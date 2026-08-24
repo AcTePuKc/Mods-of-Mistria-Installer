@@ -4,9 +4,9 @@ namespace Garethp.ModsOfMistriaInstallerLib.Models.SDK;
 
 public class MetaProperties
 {
-    [TomlPropertyName("id")] public string Id { get; set; }
+    [TomlPropertyName("id")] public string Id { get; set; } = "";
     
-    [TomlPropertyName("asset_kind")] public string AssetKind { get; set; }
+    [TomlPropertyName("asset_kind")] public string AssetKind { get; set; } = "";
     
     [TomlPropertyName("required_assets")] public List<string>? RequiredAssets { get; set; }
     

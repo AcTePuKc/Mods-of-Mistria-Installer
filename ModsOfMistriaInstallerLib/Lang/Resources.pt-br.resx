@@ -575,9 +575,9 @@ Abrir as páginas de download no navegador?</value></data>
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Esta não é uma URL do Nexus nem um link nxm:// válido para Fields of Mistria. {0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Este link nxm:// é para outro jogo.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Downloads do Nexus</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Gerenciar links “Mod Manager Download”</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Gerenciar links “Mod Manager Download” com o AIM</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Parar de gerenciar links “Mod Manager Download” com o AIM</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Links NMD</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Usar AIM para NMD</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Parar de usar AIM para NMD</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Chave de API do Nexus…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Instalar de um link nxm:// copiado</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Baixando do Nexus</value></data>
@@ -647,4 +647,18 @@ Passá-los para o AIM?</value></data>
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Abrir a página de arquivos do mod para usar o botão “Mod Manager Download”?</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Permitir que o AIM gerencie links “Mod Manager Download” do site do Nexus?&#xD;&#xA;&#xD;&#xA;Clicar nesse botão na página de um mod o baixará diretamente para a pasta de mods. Você pode mudar isso depois no menu de configurações.</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Os links “Mod Manager Download” são gerenciados atualmente por {0}.&#xD;&#xA;&#xD;&#xA;Transferi-los para o AIM? Clicar nesse botão na página de um mod o baixará diretamente para a pasta de mods. Você pode mudar isso depois no menu de configurações.</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>Configurações…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← Voltar</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>Geral</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>Escolha as pastas do jogo e dos mods usadas pelo AIM.</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>Pasta do jogo</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>Pasta de mods</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Escolher…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>A pasta de mods pode ser alterada a qualquer momento; o AIM recarregará a lista quando você voltar à lista de mods.</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>O AIM usa sua chave pessoal da API do Nexus para downloads e verificações de atualizações. Ela é armazenada localmente e nunca é incluída em mods ou versões.</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>Status da chave da API: {0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Definir ou alterar a chave da API do Nexus…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>A mesma chave é usada no menu de downloads do Nexus.</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Escolher pasta de mods</value></data>
 </root>

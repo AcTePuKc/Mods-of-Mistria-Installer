@@ -12,7 +12,7 @@ public class AtlasMetaFile
 
 public class AtlasAssetProperties
 {
-    [TomlPropertyName("dimensions")] public List<int> Dimensions { get; set; }
+    [TomlPropertyName("dimensions")] public List<int> Dimensions { get; set; } = [];
     
     [TomlPropertyName("filter_kind")] public string? Filter { get; set; }
     
@@ -28,7 +28,7 @@ public class AtlasAssetProperties
 
 public class AtlasAnimation
 {
-    [TomlPropertyName("texture_ids")] public List<string> TextureIds { get; set; }
+    [TomlPropertyName("texture_ids")] public List<string> TextureIds { get; set; } = [];
     
-    [TomlPropertyName("placement")] public List<int> Placement { get; set; }
+    [TomlPropertyName("placement")] public List<int> Placement { get; set; } = [];
 }

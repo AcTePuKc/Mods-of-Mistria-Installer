@@ -38,7 +38,8 @@ public class ImageInstallerTest
             Assert.That(statuses, Has.Some.Contains("standalone PNG"));
         });
 
-        var meta = TomlSerializer.Deserialize<SpriteMetaFile>(modifier.GetFile(GameMetaPath));
+        var meta = TomlSerializer.Deserialize<SpriteMetaFile>(modifier.GetFile(GameMetaPath))
+                   ?? throw new AssertionException("Expected sprite metadata");
         Assert.Multiple(() =>
         {
             Assert.That(meta.Meta?.Id, Is.EqualTo("19f4c499cafbf498"));
@@ -52,7 +53,8 @@ public class ImageInstallerTest
         var pngBytes = MakePng(16, 16);
         var (modifier, _) = InstallReplacement(pngBytes, AtlasLessMeta);
 
-        var meta = TomlSerializer.Deserialize<SpriteMetaFile>(modifier.GetFile(GameMetaPath));
+        var meta = TomlSerializer.Deserialize<SpriteMetaFile>(modifier.GetFile(GameMetaPath))
+                   ?? throw new AssertionException("Expected sprite metadata");
         Assert.Multiple(() =>
         {
             Assert.That(modifier.GetBinaryFile(GamePngPath), Is.EqualTo(pngBytes));

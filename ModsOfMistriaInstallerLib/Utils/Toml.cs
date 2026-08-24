@@ -7,7 +7,7 @@ namespace Garethp.ModsOfMistriaInstallerLib.Utils;
 public static class Toml
 {
     public static TomlTable ParseToml(string content) =>
-        TomlSerializer.Deserialize<TomlTable>(content);
+        TomlSerializer.Deserialize<TomlTable>(content) ?? new TomlTable();
 
     // Builds the document model from the event parser instead of
     // TomlSerializer: the serializer replaces a table array when its [[name]]
@@ -116,8 +116,11 @@ public static class Toml
         table[key ?? throw new InvalidOperationException("value with no property name")] = value!;
     }
 
-    public static bool Compare(object aObject, object bObject)
+    public static bool Compare(object? aObject, object? bObject)
     {
+        if (ReferenceEquals(aObject, bObject)) return true;
+        if (aObject is null || bObject is null) return false;
+
         // This is to account for the behavior of `[TomlSingleOrArray]`
         if (aObject is TomlArray aArray1 && bObject is not TomlArray && aArray1.Count == 1)
             return Compare(aArray1.First(), bObject);

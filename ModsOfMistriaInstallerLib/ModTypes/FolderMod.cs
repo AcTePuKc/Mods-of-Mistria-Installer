@@ -11,19 +11,19 @@ namespace Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 public class FolderMod : IMod
 {
-    private string _author;
+    private string _author = "";
 
-    private string _name;
+    private string _name = "";
 
     private string _description = "";
 
-    private string _version;
+    private string _version = "";
 
-    private string _location;
+    private string _location = "";
 
-    private string _minimumInstallerVersion;
+    private string _minimumInstallerVersion = "";
 
-    private string _manifestVersion;
+    private string _manifestVersion = "";
 
     private Validation _validation = new();
 
@@ -260,7 +260,7 @@ public class FolderMod : IMod
         return files.Select(file => file.FullName).ToList();
     }
 
-    public string? ReadFile(string path)
+    public string ReadFile(string path)
     {
         var fullPath = ResolveModPath(path);
         return !File.Exists(fullPath) ? "" : File.ReadAllText(fullPath);

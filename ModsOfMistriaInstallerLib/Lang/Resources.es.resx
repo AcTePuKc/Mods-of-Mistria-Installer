@@ -247,9 +247,9 @@
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>No es una URL de Nexus ni un enlace nxm:// válido para Fields of Mistria. {0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>Este enlace nxm:// es para otro juego.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Descargas de Nexus</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Gestionar enlaces «Mod Manager Download»</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Gestionar enlaces «Mod Manager Download» con AIM</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Dejar de gestionar enlaces «Mod Manager Download» con AIM</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Enlaces NMD</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Usar AIM para NMD</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Dejar de usar AIM para NMD</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Clave de API de Nexus…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Instalar desde un enlace nxm:// copiado</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Descargando desde Nexus</value></data>
@@ -319,4 +319,18 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;¿Abrir la página de archivos del mod para que puedas usar el botón «Mod Manager Download»?</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>¿Quieres que AIM gestione los enlaces «Mod Manager Download» de la web de Nexus?&#xD;&#xA;&#xD;&#xA;Al pulsar ese botón en la página de un mod, se descargará directamente en tu carpeta de mods. Puedes cambiarlo después desde el menú del engranaje.</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Actualmente {0} gestiona los enlaces «Mod Manager Download» de Nexus.&#xD;&#xA;&#xD;&#xA;¿Quieres transferirlos a AIM? Al pulsar ese botón en la página de un mod, se descargará directamente en tu carpeta de mods. Puedes cambiarlo después desde el menú del engranaje.</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>Ajustes…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← Atrás</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>General</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>Elige las carpetas del juego y de mods que usa AIM.</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>Carpeta del juego</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>Carpeta de mods</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Elegir…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>La carpeta de mods se puede cambiar en cualquier momento; AIM volverá a cargar la lista al regresar a ella.</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM usa tu clave personal de API de Nexus para descargas y comprobaciones de actualizaciones. Se guarda localmente y nunca se incluye en mods ni versiones.</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>Estado de la clave API: {0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Establecer o cambiar la clave API de Nexus…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>La misma clave se usa en el menú de descargas de Nexus.</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Seleccionar carpeta de mods</value></data>
 </root>

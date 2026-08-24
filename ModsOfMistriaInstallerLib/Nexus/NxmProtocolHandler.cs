@@ -103,8 +103,38 @@ public static class NxmProtocolHandler
         // the executable path.
         if (current.Equals(LinuxDesktopFileName, StringComparison.OrdinalIgnoreCase)) return true;
 
-        return current.Contains(us, StringComparison.OrdinalIgnoreCase) ||
-               current.Contains(Path.GetFileName(us), StringComparison.OrdinalIgnoreCase);
+        // On Windows every local/release build has the same file name (AIM.exe). Matching only
+        // that name makes an older copy look like the current executable and prevents the
+        // automatic re-registration after a portable build is replaced or moved.
+        if (OperatingSystem.IsWindows())
+        {
+            var registeredExecutable = current.Trim();
+            if (registeredExecutable.StartsWith('"'))
+            {
+                var closingQuote = registeredExecutable.IndexOf('"', 1);
+                registeredExecutable = closingQuote > 1
+                    ? registeredExecutable[1..closingQuote]
+                    : registeredExecutable[1..];
+            }
+            else
+            {
+                registeredExecutable = registeredExecutable.Split(' ', 2)[0];
+            }
+
+            try
+            {
+                return string.Equals(
+                    Path.GetFullPath(registeredExecutable),
+                    Path.GetFullPath(us),
+                    StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        return current.Contains(us, StringComparison.OrdinalIgnoreCase);
     }
 
     // ── Register / unregister ────────────────────────────────────────────────────

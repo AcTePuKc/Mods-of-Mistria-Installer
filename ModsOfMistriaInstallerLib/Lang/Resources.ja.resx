@@ -247,9 +247,9 @@
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>Fields of Mistria用の有効なNexus URLまたはnxm://リンクではありません。{0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>このnxm://リンクは別のゲーム用です。</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Nexusダウンロード</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>「Mod Manager Download」リンクを処理</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>AIMで「Mod Manager Download」リンクを処理</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIMによる「Mod Manager Download」リンクの処理を停止</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMDリンク</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>NMDにAIMを使用</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIMによるNMDを停止</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus APIキー…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>コピーしたnxm://リンクからインストール</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Nexusからダウンロード中</value></data>
@@ -319,4 +319,18 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Modのファイルページを開いて「Mod Manager Download」ボタンを使用しますか？</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Nexusサイトの「Mod Manager Download」リンクをAIMで処理しますか？&#xD;&#xA;&#xD;&#xA;Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexusの「Mod Manager Download」リンクは現在{0}が処理しています。&#xD;&#xA;&#xD;&#xA;AIMに引き継ぎますか？Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>設定…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← 戻る</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>全般</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>AIMで使用するゲームフォルダーとModフォルダーを選択します。</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>ゲームフォルダー</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>Modフォルダー</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>選択…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Modフォルダーはいつでも変更できます。Mod一覧に戻るとAIMが一覧を再読み込みします。</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIMはダウンロードと更新チェックに個人のNexus APIキーを使用します。キーはこのPCにのみ保存され、Modやリリースには含まれません。</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>APIキーの状態: {0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Nexus APIキーを設定または変更…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>同じキーをNexusダウンロードメニューで使用します。</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modフォルダーを選択</value></data>
 </root>

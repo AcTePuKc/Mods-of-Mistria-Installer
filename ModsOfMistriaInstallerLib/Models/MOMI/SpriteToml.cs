@@ -17,13 +17,13 @@ public class SpriteToml
             
             field = value;
         }
-    }
+    } = "";
 
     [TomlPropertyName("location")]
-    public string Location;
+    public string Location = "";
 
     [TomlPropertyName("sprite_type")]
-    public string Type;
+    public string Type = "";
 
     [TomlPropertyName("install_location")]
     public string? InstallLocation
@@ -68,11 +68,11 @@ public class SpriteToml
     public double Duration;
 
     [TomlPropertyName("offset")]
-    public List<int> Offset;
+    public List<int> Offset = [];
 
     [TomlPropertyName("poly_kind")]
-    public string PolyKind;
+    public string PolyKind = "";
 
     [TomlPropertyName("poly_offset")]
-    public List<int> PolyOffset;
+    public List<int> PolyOffset = [];
 }

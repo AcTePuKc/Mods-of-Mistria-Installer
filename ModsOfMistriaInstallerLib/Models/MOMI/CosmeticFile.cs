@@ -39,16 +39,16 @@ public class CosmeticFile
         { "feet", 41 },
     };
     
-    public string Id;
+    public string Id = "";
 
     [TomlPropertyName("name")] 
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     [TomlPropertyName("ui_slot")]
-    public string UiSlot { get; set; }
+    public string UiSlot { get; set; } = "";
 
     [TomlPropertyName("ui_sub_category")]
-    public string UiSubCategory { get; set; }
+    public string UiSubCategory { get; set; } = "";
     
     /**
      * Either this or lut_sprite must be defined

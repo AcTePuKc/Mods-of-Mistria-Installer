@@ -14,7 +14,7 @@ public class LogAddedEventArgs : EventArgs
 
 public class Logger
 {
-    public static event EventHandler<LogAddedEventArgs> LogAdded; 
+    public static event EventHandler<LogAddedEventArgs>? LogAdded;
     
     private static readonly List<string> Logs = [];
     private static readonly object Sync = new();

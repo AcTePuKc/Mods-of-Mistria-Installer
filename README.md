@@ -1,4 +1,4 @@
-# AIM — Alternative Installer for Mistria 0.1.6
+# AIM — Alternative Installer for Mistria 0.1.7
 
 This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
 
@@ -6,7 +6,7 @@ AIM is a fork of MOMI. It was renamed to avoid confusion between the two applica
 
 AIM is not intended to replace MOMI. It exists to provide capabilities that are currently needed by this fork while remaining compatible with the upstream project. If MOMI later adopts at least the capabilities that motivated this fork and fully meets the project's needs, AIM may be retired in favour of the upstream project.
 
-The current AIM application version is `0.1.6`.
+The current AIM application version is `0.1.7`.
 
 ## Preview
 
@@ -203,6 +203,8 @@ so the installer's own scan of the mods folder ignores it.
   reports what it cannot decide for you: files that two selected mods both replace (naming the one
   that currently wins), requirements that are not installed, and requirement loops. Load order is
   saved with the profile as before.
+- **Drag/drop load order.** Drag a mod by its grip to reorder it. When holding it near the top or
+  bottom edge of the list, AIM scrolls automatically so long lists do not require repeated drags.
 - **Automatic refresh.** The mods folder is watched while AIM is open, so a mod folder or archive
   copied in appears in the list a couple of seconds later.
 

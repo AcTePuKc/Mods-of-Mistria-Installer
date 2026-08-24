@@ -64,7 +64,7 @@ public class OutfitInstaller(
 
         if (_fileModifier.Exists(dest))
         {
-            var existing = TomlSerializer.Deserialize<TomlTable>(_fileModifier.Read(dest));
+            var existing = TomlSerializer.Deserialize<TomlTable>(_fileModifier.Read(dest)) ?? new TomlTable();
             Operations.MOMIOperations.MergeTomlTables(existing, patch);
             _fileModifier.Write(dest, TomlSerializer.Serialize(existing));
         }

@@ -98,7 +98,7 @@ public class FurnitureInstaller(
             if (string.IsNullOrWhiteSpace(content)) continue;
 
             TomlTable table;
-            try { table = TomlSerializer.Deserialize<TomlTable>(content); }
+            try { table = TomlSerializer.Deserialize<TomlTable>(content) ?? new TomlTable(); }
             catch
             {
                 reportStatus($"Skipping {relPath}: invalid TOML.", "");
@@ -120,7 +120,7 @@ public class FurnitureInstaller(
             if (string.IsNullOrWhiteSpace(content)) continue;
 
             TomlTable table;
-            try { table = TomlSerializer.Deserialize<TomlTable>(content); }
+            try { table = TomlSerializer.Deserialize<TomlTable>(content) ?? new TomlTable(); }
             catch
             {
                 reportStatus($"Skipping {relPath}: invalid TOML.", "");
@@ -240,7 +240,7 @@ public class FurnitureInstaller(
     {
         if (fileModifier.Exists(destPath))
         {
-            var existing = TomlSerializer.Deserialize<TomlTable>(fileModifier.Read(destPath));
+            var existing = TomlSerializer.Deserialize<TomlTable>(fileModifier.Read(destPath)) ?? new TomlTable();
             MOMIOperations.MergeTomlTables(existing, patch);
             fileModifier.Write(destPath, TomlSerializer.Serialize(existing));
         }

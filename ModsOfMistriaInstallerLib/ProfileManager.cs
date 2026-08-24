@@ -53,6 +53,13 @@ public class ProfileManager
             .Select(t => t.ToString()).ToList();
     }
 
+    public List<string> GetCurrentProfileLoadOrderSources()
+    {
+        var profile = GetProfileObject(CurrentProfileName);
+        return (profile["loadOrderSources"] as JArray ?? [])
+            .Select(t => t.ToString()).ToList();
+    }
+
     // ── Mutating operations ───────────────────────────────────────────────────────
 
     public void SaveProfile(string name, List<string> enabledMods, List<string> loadOrder)
@@ -60,6 +67,10 @@ public class ProfileManager
 
     public void SaveProfile(string name, List<string> enabledMods, List<string> loadOrder,
         List<string>? enabledSources)
+        => SaveProfile(name, enabledMods, loadOrder, enabledSources, null);
+
+    public void SaveProfile(string name, List<string> enabledMods, List<string> loadOrder,
+        List<string>? enabledSources, List<string>? loadOrderSources)
     {
         EnsureProfilesObject();
         var profiles = (JObject)_data["profiles"]!;
@@ -68,6 +79,7 @@ public class ProfileManager
             ["enabledMods"] = new JArray(enabledMods),
             ["loadOrder"]   = new JArray(loadOrder),
             ["enabledSources"] = new JArray(enabledSources ?? []),
+            ["loadOrderSources"] = new JArray(loadOrderSources ?? []),
         };
         Save();
     }
@@ -78,6 +90,10 @@ public class ProfileManager
     public void SaveCurrentProfile(List<string> enabledMods, List<string> loadOrder,
         List<string> enabledSources) =>
         SaveProfile(CurrentProfileName, enabledMods, loadOrder, enabledSources);
+
+    public void SaveCurrentProfile(List<string> enabledMods, List<string> loadOrder,
+        List<string> enabledSources, List<string> loadOrderSources) =>
+        SaveProfile(CurrentProfileName, enabledMods, loadOrder, enabledSources, loadOrderSources);
 
     public void SwitchProfile(string name)
     {
@@ -141,7 +157,8 @@ public class ProfileManager
     // Sort allMods so that items in preferredOrder come first (in that order),
     // then remaining mods in their original order. Hard dependency ordering is
     // enforced: if A depends on B, B is moved before A regardless of user preference.
-    public static List<IMod> SortByLoadOrder(List<IMod> allMods, List<string> preferredOrder)
+    public static List<IMod> SortByLoadOrder(List<IMod> allMods, List<string> preferredOrder,
+        List<string>? preferredSources = null)
     {
         if (preferredOrder.Count == 0) return allMods;
 
@@ -152,6 +169,22 @@ public class ProfileManager
         if (allMods.GroupBy(m => m.GetId(), StringComparer.OrdinalIgnoreCase)
                    .Any(group => group.Count() > 1))
         {
+            if (preferredSources is { Count: > 0 })
+            {
+                var sourceRanks = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                for (var i = 0; i < preferredSources.Count; i++)
+                    sourceRanks.TryAdd(DuplicateModDetector.NormalizeSource(preferredSources[i]), i);
+
+                return allMods
+                    .Select((mod, index) => (mod, index))
+                    .OrderBy(item => sourceRanks.TryGetValue(
+                        DuplicateModDetector.NormalizeSource(item.mod.GetSourcePath()), out var rank)
+                        ? rank : int.MaxValue)
+                    .ThenBy(item => item.index)
+                    .Select(item => item.mod)
+                    .ToList();
+            }
+
             var ranks = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             for (var i = 0; i < preferredOrder.Count; i++)
                 ranks.TryAdd(preferredOrder[i], i);

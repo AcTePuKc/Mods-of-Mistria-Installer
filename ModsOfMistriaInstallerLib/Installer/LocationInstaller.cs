@@ -51,7 +51,8 @@ public class LocationInstaller
         var modList = mods.ToList();
 
         // ── 1. Read vanilla location keys (vanilla is restored before this runs) ──
-        var vanillaTable = TomlSerializer.Deserialize<TomlTable>(_fileModifier.Read("assets/fiddle/locations.toml"));
+        var vanillaTable = TomlSerializer.Deserialize<TomlTable>(_fileModifier.Read("assets/fiddle/locations.toml"))
+                           ?? new TomlTable();
         var vanillaKeys  = SortedLocationKeys(vanillaTable);
 
         // ── 2. Collect new locations from every mod ────────────────────────────

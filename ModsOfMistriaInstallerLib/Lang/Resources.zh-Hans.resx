@@ -247,9 +247,9 @@
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>这不是适用于 Fields of Mistria 的有效 Nexus URL 或 nxm:// 链接。{0}</value></data>
   <data name="GUINexusAssociateWrongGame" xml:space="preserve"><value>此 nxm:// 链接属于其他游戏。</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Nexus 下载</value></data>
-  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>处理“Mod Manager Download”链接</value></data>
-  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>使用 AIM 处理“Mod Manager Download”链接</value></data>
-  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>停止使用 AIM 处理“Mod Manager Download”链接</value></data>
+  <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMD 链接</value></data>
+  <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>使用 AIM 处理 NMD</value></data>
+  <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>停止使用 AIM 处理 NMD</value></data>
   <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API 密钥…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>从复制的 nxm:// 链接安装</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>正在从 Nexus 下载</value></data>
@@ -319,4 +319,18 @@
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;要打开模组文件页面以使用“Mod Manager Download”按钮吗？</value></data>
   <data name="GUINexusHandlerOffer" xml:space="preserve"><value>允许 AIM 处理 Nexus 网站上的“Mod Manager Download”链接吗？&#xD;&#xA;&#xD;&#xA;在模组页面上点击此按钮会将模组直接下载到模组文件夹。你可以稍后在齿轮菜单中更改此设置。</value></data>
   <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexus 网站上的“Mod Manager Download”链接目前由 {0} 处理。&#xD;&#xA;&#xD;&#xA;要交给 AIM 处理吗？在模组页面上点击此按钮会将模组直接下载到模组文件夹。你可以稍后在齿轮菜单中更改此设置。</value></data>
+  <data name="GUISettingsMenu" xml:space="preserve"><value>设置…</value></data>
+  <data name="GUISettingsBack" xml:space="preserve"><value>← 返回</value></data>
+  <data name="GUISettingsGeneral" xml:space="preserve"><value>常规</value></data>
+  <data name="GUISettingsGeneralDescription" xml:space="preserve"><value>选择 AIM 使用的游戏文件夹和模组文件夹。</value></data>
+  <data name="GUISettingsGameFolder" xml:space="preserve"><value>游戏文件夹</value></data>
+  <data name="GUISettingsModsFolder" xml:space="preserve"><value>模组文件夹</value></data>
+  <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>选择…</value></data>
+  <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>模组文件夹可随时更改；返回模组列表时，AIM 会重新加载列表。</value></data>
+  <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM 使用你的个人 Nexus API 密钥进行下载和更新检查。密钥仅保存在本机，不会包含在模组或发布包中。</value></data>
+  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>API 密钥状态：{0}</value></data>
+  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>设置或更改 Nexus API 密钥…</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus 下载菜单也使用同一个密钥。</value></data>
+  <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>选择模组文件夹</value></data>
 </root>

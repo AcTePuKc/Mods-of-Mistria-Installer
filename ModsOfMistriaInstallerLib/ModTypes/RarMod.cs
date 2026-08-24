@@ -69,12 +69,13 @@ public class RarMod() : IMod
         if (manifestFile is null) return;
 
         ModManifest manifest;
-        if (manifestFile.Key.EndsWith(".json"))
+        if (manifestFile.Key is { } manifestKey && manifestKey.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
         {
             manifest = ModManifest.FromJson(JObject.Parse(ReadEntry(manifestFile)));
-        } else if (manifestFile.Key.EndsWith(".toml"))
+        } else if (manifestFile.Key is not null && manifestFile.Key.EndsWith(".toml", StringComparison.OrdinalIgnoreCase))
         {
-            manifest = ModManifest.FromToml(TomlSerializer.Deserialize<TomlTable>(ReadEntry(manifestFile))!);
+            manifest = ModManifest.FromToml(
+                TomlSerializer.Deserialize<TomlTable>(ReadEntry(manifestFile)) ?? new TomlTable());
         }
         else return;
 
@@ -118,11 +119,15 @@ public class RarMod() : IMod
 
         var rarFile = RarArchive.OpenArchive(rarPath, new ReaderOptions());
 
-        var manifestFiles = rarFile.Entries.Where(entry => entry.Key.EndsWith("manifest.json") || entry.Key.EndsWith("manifest.toml")).ToList();
+        var manifestFiles = rarFile.Entries
+            .Where(entry => entry.Key is not null &&
+                            (entry.Key.EndsWith("manifest.json", StringComparison.OrdinalIgnoreCase) ||
+                             entry.Key.EndsWith("manifest.toml", StringComparison.OrdinalIgnoreCase)))
+            .ToList();
 
         if (manifestFiles.Count != 1) return null;
 
-        var manifestPath = manifestFiles.First().Key;
+        var manifestPath = manifestFiles.First().Key!;
         var internalLocation = manifestPath[..manifestPath.LastIndexOf("manifest", StringComparison.Ordinal)];
 
         var mod = new RarMod(rarFile, internalLocation)
@@ -223,12 +228,14 @@ public class RarMod() : IMod
 
     public bool HasFilesInFolder(string folder, string extension) => _rarFile is not null && _rarFile.Entries.Any(
         entry =>
+            entry.Key is not null &&
             entry.Key.StartsWith($"{_basePath}{folder}".Replace('/', Path.DirectorySeparatorChar)) &&
             !entry.IsDirectory);
 
     public bool FileExists(string path) => _rarFile is not null &&
                                            _rarFile.Entries.Any(entry =>
-                                               entry.Key == $"{_basePath}{path}".Replace('/', Path.DirectorySeparatorChar) && !entry.IsDirectory);
+                                                entry.Key is not null &&
+                                                entry.Key == $"{_basePath}{path}".Replace('/', Path.DirectorySeparatorChar) && !entry.IsDirectory);
 
     public bool FolderExists(string path) => GetEntry($"{_basePath}{path}/") != null;
 
@@ -239,16 +246,16 @@ public class RarMod() : IMod
         if (_rarFile is null) return [];
 
         return _rarFile.Entries
-            .Where(entry => !entry.IsDirectory && entry.Key.EndsWith(extension))
-            .Select(entry => entry.Key)
+            .Where(entry => !entry.IsDirectory && entry.Key is not null && entry.Key.EndsWith(extension))
+            .Select(entry => entry.Key!)
             .ToList();
     }
 
     public List<string> GetFilesInFolder(string folder, string? extension) =>
         _rarFile?.Entries
-            .Where(entry => entry.Key.StartsWith($"{_basePath}{folder}".Replace('/', Path.DirectorySeparatorChar)) && !entry.IsDirectory &&
-                            entry.Key.EndsWith(extension ?? ""))
-            .Select(entry => entry.Key).ToList() ?? new List<string>();
+             .Where(entry => entry.Key is not null && entry.Key.StartsWith($"{_basePath}{folder}".Replace('/', Path.DirectorySeparatorChar)) && !entry.IsDirectory &&
+                             entry.Key.EndsWith(extension ?? ""))
+             .Select(entry => entry.Key!).ToList() ?? new List<string>();
 
     public string ReadFile(string path)
     {

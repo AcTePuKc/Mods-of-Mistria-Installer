@@ -16,7 +16,7 @@ public class ContainsTomlConstraint(TomlTable expected): Constraint
     
     public override ConstraintResult ApplyTo<TActual>(TActual actual)
     {
-        TomlTable actualToml;
+        TomlTable? actualToml;
         
         switch (actual)
         {

@@ -258,7 +258,7 @@ public class CompactFurnitureGenerator
             if (string.IsNullOrWhiteSpace(content)) continue;
 
             TomlTable root;
-            try { root = Tomlyn.TomlSerializer.Deserialize<TomlTable>(content); }
+            try { root = Tomlyn.TomlSerializer.Deserialize<TomlTable>(content) ?? new TomlTable(); }
             catch { continue; }
 
             foreach (var (name, value) in root)

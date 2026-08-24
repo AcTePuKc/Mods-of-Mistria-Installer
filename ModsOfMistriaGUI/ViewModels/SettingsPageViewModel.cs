@@ -11,24 +11,46 @@ public partial class SettingsPageViewModel : PageViewBase
     private readonly NexusDownloadsViewModel _nexus;
 
     [ObservableProperty] private Settings _settings;
-    [ObservableProperty] private string _selectedSection = "General";
+    private string _selectedSectionId = "general";
 
-    public IReadOnlyList<string> Sections { get; } = ["General", "Nexus"];
-    public bool IsGeneralSelected => SelectedSection == "General";
-    public bool IsNexusSelected => SelectedSection == "Nexus";
+    public IReadOnlyList<string> Sections => [Texts.GUISettingsGeneral, Texts.GUISettingsNexus];
+    public string SelectedSection
+    {
+        get => _selectedSectionId == "nexus" ? Texts.GUISettingsNexus : Texts.GUISettingsGeneral;
+        set
+        {
+            var newId = value == Texts.GUISettingsNexus ? "nexus" : "general";
+            if (_selectedSectionId == newId) return;
+            _selectedSectionId = newId;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IsGeneralSelected));
+            OnPropertyChanged(nameof(IsNexusSelected));
+        }
+    }
+
+    public bool IsGeneralSelected => _selectedSectionId == "general";
+    public bool IsNexusSelected => _selectedSectionId == "nexus";
     public NexusDownloadsViewModel Nexus => _nexus;
+    public string ApiKeyStatus => string.Format(Texts.GUISettingsApiKeyStatus, Nexus.HasApiKey);
 
     public SettingsPageViewModel(Settings settings, NexusDownloadsViewModel nexus, Action back)
     {
         _settings = settings;
         _nexus = nexus;
         _back = back;
-    }
-
-    partial void OnSelectedSectionChanged(string value)
-    {
-        OnPropertyChanged(nameof(IsGeneralSelected));
-        OnPropertyChanged(nameof(IsNexusSelected));
+        Texts.PropertyChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(Sections));
+            OnPropertyChanged(nameof(SelectedSection));
+            OnPropertyChanged(nameof(IsGeneralSelected));
+            OnPropertyChanged(nameof(IsNexusSelected));
+            OnPropertyChanged(nameof(ApiKeyStatus));
+        };
+        _nexus.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(NexusDownloadsViewModel.HasApiKey))
+                OnPropertyChanged(nameof(ApiKeyStatus));
+        };
     }
 
     [RelayCommand]
@@ -45,7 +67,7 @@ public partial class SettingsPageViewModel : PageViewBase
 
         var folders = await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
         {
-            Title = "Select mods folder",
+            Title = Texts.GUISettingsSelectModsFolderTitle,
             AllowMultiple = false
         });
 

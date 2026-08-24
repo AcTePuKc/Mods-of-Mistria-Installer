@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.7 — Unreleased
+
+- Fixed automatic `nxm://` re-registration when a portable AIM build is moved or replaced. Windows
+  now compares the normalized full executable path instead of treating every `AIM.exe` as the
+  same installation.
+- Changed hard asset replacements from a blocking error to a warning. The selected load order now
+  determines which cosmetic, house or farm replacement is written last.
+- Added defensive null handling for several generated models, SDK metadata tables and TOML merge
+  paths without changing the handling of invalid mod data.
+- Cleared the remaining nullable/compiler warnings in the installer, archive parsers, TOML/atlas
+  handling, JavaScript compiler/decompiler and test helpers. Removed two framework-provided package
+  references that were no longer needed. Release build and runtime smoke-tested locally.
+- Added drag-and-drop auto-scroll near the top and bottom edges of the mod list, so long load orders
+  can be rearranged without repeatedly releasing and restarting the drag operation.
+
 ## 0.1.6 — 2026-08-24
 
 - Updated all supported interface languages with the current Nexus, update, conflict and UI/UX

@@ -7,6 +7,7 @@ using Avalonia.Media;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using CommunityToolkit.Mvvm.Input;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
@@ -15,12 +16,22 @@ namespace Garethp.ModsOfMistriaGUI.Views;
 
 public partial class ModlistPageView : UserControl
 {
-    private const string ModDragDataFormat = "application/x-aim-mod-id";
+    // A logical mod ID is shared by folder/ZIP/RAR copies. Drag data must
+    // identify the physical source so moving one copy cannot move another.
+    private const string ModDragDataFormat = "application/x-aim-mod-source";
+    private const double DragAutoScrollEdge = 48;
     private Grid? _activeDropTarget;
+    private int _dragAutoScrollDirection;
+    private readonly DispatcherTimer _dragAutoScrollTimer;
 
     public ModlistPageView()
     {
         InitializeComponent();
+        _dragAutoScrollTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(50)
+        };
+        _dragAutoScrollTimer.Tick += OnDragAutoScrollTick;
         AttachedToVisualTree += (_, _) => UpdateLanguageCheckmark();
     }
 
@@ -52,7 +63,7 @@ public partial class ModlistPageView : UserControl
         if (DataContext is not ModlistPageViewModel { CanReorderMods: true }) return;
 
         var data = new DataObject();
-        data.Set(ModDragDataFormat, mod.Mod.GetId());
+        data.Set(ModDragDataFormat, DuplicateModDetector.NormalizeSource(mod.Mod.GetSourcePath()));
         var row = grip.GetVisualAncestors()
             .OfType<Grid>()
             .FirstOrDefault(grid => grid.DataContext is ModModel);
@@ -63,6 +74,7 @@ public partial class ModlistPageView : UserControl
         }
         finally
         {
+            StopDragAutoScroll();
             row?.Classes.Remove("dragging");
             if (_activeDropTarget is not null) ClearDropIndicator(_activeDropTarget);
         }
@@ -85,25 +97,37 @@ public partial class ModlistPageView : UserControl
             : DragDropEffects.None;
 
         if (e.DragEffects == DragDropEffects.Move)
+        {
             ShowDropIndicator(target, e.GetPosition(target).Y < target.Bounds.Height / 2);
+            UpdateDragAutoScroll(e);
+        }
+        else
+        {
+            StopDragAutoScroll();
+        }
 
         e.Handled = true;
     }
 
     private void OnModRowDragLeave(object? sender, RoutedEventArgs e)
     {
+        StopDragAutoScroll();
         if (sender is Grid target && ReferenceEquals(target, _activeDropTarget))
             ClearDropIndicator(target);
     }
 
     private void OnModRowDrop(object? sender, DragEventArgs e)
     {
+        StopDragAutoScroll();
         if (sender is not Grid target || target.DataContext is not ModModel targetMod) return;
         if (DataContext is not ModlistPageViewModel { CanReorderMods: true } vm) return;
-        if (e.Data.Get(ModDragDataFormat) is not string draggedId) return;
+        if (e.Data.Get(ModDragDataFormat) is not string draggedSource) return;
 
         var draggedMod = vm.Mods.FirstOrDefault(mod =>
-            string.Equals(mod.Mod.GetId(), draggedId, StringComparison.OrdinalIgnoreCase));
+            string.Equals(
+                DuplicateModDetector.NormalizeSource(mod.Mod.GetSourcePath()),
+                draggedSource,
+                StringComparison.OrdinalIgnoreCase));
         if (draggedMod is null) return;
 
         var insertBeforeTarget = e.GetPosition(target).Y < target.Bounds.Height / 2;
@@ -120,6 +144,50 @@ public partial class ModlistPageView : UserControl
             if (movedRow is not null) ShowDropCompleteFlash(movedRow);
         }, DispatcherPriority.Background);
         e.Handled = true;
+    }
+
+    private void UpdateDragAutoScroll(DragEventArgs e)
+    {
+        var position = e.GetPosition(ModListScrollViewer);
+        var viewportHeight = ModListScrollViewer.Bounds.Height;
+
+        if (viewportHeight <= 0 || position.Y < 0 || position.Y > viewportHeight)
+        {
+            StopDragAutoScroll();
+            return;
+        }
+
+        var direction = position.Y <= DragAutoScrollEdge
+            ? -1
+            : position.Y >= viewportHeight - DragAutoScrollEdge
+                ? 1
+                : 0;
+
+        if (direction == 0)
+        {
+            StopDragAutoScroll();
+            return;
+        }
+
+        _dragAutoScrollDirection = direction;
+        if (!_dragAutoScrollTimer.IsEnabled)
+            _dragAutoScrollTimer.Start();
+    }
+
+    private void OnDragAutoScrollTick(object? sender, EventArgs e)
+    {
+        if (_dragAutoScrollDirection < 0)
+            ModListScrollViewer.LineUp();
+        else if (_dragAutoScrollDirection > 0)
+            ModListScrollViewer.LineDown();
+        else
+            StopDragAutoScroll();
+    }
+
+    private void StopDragAutoScroll()
+    {
+        _dragAutoScrollDirection = 0;
+        _dragAutoScrollTimer.Stop();
     }
 
     private void ShowDropIndicator(Grid target, bool before)

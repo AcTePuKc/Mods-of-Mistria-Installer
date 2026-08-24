@@ -82,6 +82,64 @@
       filename matching rules, 1.0.4 examples and current limitations in
       [`docs/MMAPI/IMAGE_REPLACEMENTS.md`](docs/MMAPI/IMAGE_REPLACEMENTS.md).
 
+## 0.1.7 technical hardening
+
+* [x] Use a physical source key, not only the logical mod ID, for drag/drop,
+      load-order persistence and duplicate-copy UI state. Two folder/ZIP/RAR
+      copies can share one ID; moving one must never move or select the other.
+      Quick fix: drag/drop now identifies the physical source path.
+* [x] Fix automatic `nxm://` re-registration after replacing or moving a
+      portable build. Windows now compares the normalized full executable path;
+      matching only `AIM.exe` could incorrectly treat an older copy as current.
+* [x] Add drag/drop auto-scroll near the top and bottom edges of the mod list so
+      a mod can be moved across a long list without releasing it repeatedly.
+
+## 0.1.7 current backlog
+
+* [x] Complete and verify translations for the newer Settings, Nexus,
+      update, context-menu and mod-description strings in every supported UI
+      language.
+* [x] Test the drag/source fix with two physical copies sharing one manifest
+      ID, including a folder plus ZIP/RAR and two different versions.
+* [x] Verify that drag/drop does not leave a stale duplicate visual row in the
+      Avalonia `ItemsRepeater` after moving a mod. Confirmed with a removed and
+      re-added Bulgarian folder/archive copy; positions remained stable.
+* [x] Review profile load-order persistence so duplicate physical copies are
+      not collapsed back to one logical ID after restarting AIM.
+* [x] Re-test NXM downloads and folder-watcher reloads for transient duplicate
+      rows after a download or move. NXM startup/closed-app handling is verified;
+      duplicate-row handling is verified separately.
+* [x] Finish the remaining user-facing documentation and release notes only
+      after the above behavior is verified.
+
+## 0.1.8 or later — larger features
+
+* [ ] Design a real per-mod translation-pack contract: target mod identity,
+      target version range, language, priority, fallback and safe ownership
+      rules. Do not implement it as an undocumented `l10n.meta.toml` trick.
+* [ ] Evaluate additional MMAPI hooks and seams individually with a working
+      mod example before adding them to the default catalog.
+* [ ] Revisit the remaining automatic-update and mod-source improvements after
+      the 0.1.7 Nexus/NXM behavior is stable.
+* [x] Reduce the existing nullable-reference warnings across the installer,
+      ImageInstaller, OutfitInstaller, furniture generation and mod-loading
+      paths. Verified with a clean Release build and runtime smoke test.
+* [x] Add explicit validation and user-facing handling for missing or invalid
+      TOML tables, atlas metadata and required file paths, especially for
+      malformed or partially supported mods.
+* [x] Resolve nullable initialization warnings for `FilePath`, `LogAdded`,
+      `_fileModifier`, `SpriteToml.Id` and related model members.
+* [x] Align the `FolderMod.ReadFile` nullable contract with `IMod`.
+* [x] Review nullable returns and comparisons in `Utils/Toml.cs`.
+* [x] Review nullable paths in `CompactFurnitureGenerator`,
+      `FurnitureDefinition`, `FurnitureInstaller` and `LocationInstaller`.
+* [x] Replace the intentional legacy `OutfitFile` alias auto-properties with
+      explicit compatibility setters and remove the corresponding compiler
+      warnings.
+* [x] Remove framework-provided `Microsoft.Win32.Registry` and
+      `System.IO.Compression.ZipFile` package references after a clean restore,
+      build and test run.
+
 ## Future/Unknown
 * [ ] Allow all "localised" text in easy JSON structures to be multi-lingual
 * [ ] Investigate optional per-mod localization selection. This should only be

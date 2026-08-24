@@ -28,7 +28,7 @@ public class GeneratedInformation
 
 public class GeneratedTomlItem
 {
-    public string FilePath;
+    public string FilePath = "";
     
     public string? ReadFilePath;
 
@@ -87,7 +87,7 @@ public class GeneratedTomlItem
 
 public class JsonItem
 {
-    public string FilePath;
+    public string FilePath = "";
     
     public string? ReadFilePath;
 

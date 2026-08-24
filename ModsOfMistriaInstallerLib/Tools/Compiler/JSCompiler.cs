@@ -74,13 +74,15 @@ public static class JsCompiler
 
     private static JObject CompileFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
+        var functionName = functionDeclaration.Id?.Name
+                           ?? throw new InvalidOperationException("Function declaration has no name");
         var bodyStatements = functionDeclaration.Body.Body.Select(Compile);
 
         var resolve = bodyStatements
-            .Where(statement => statement["stmt_type"].ToString() == "Resolve")
+            .Where(statement => statement["stmt_type"]?.ToString() == "Resolve")
             .FirstOrDefault();
         bodyStatements = bodyStatements
-            .Where(statement => statement["stmt_type"].ToString() != "Resolve")
+            .Where(statement => statement["stmt_type"]?.ToString() != "Resolve")
             .ToList();
 
         var functionObj = new JObject
@@ -90,7 +92,7 @@ public static class JsCompiler
                 "name", new JObject
                 {
                     { "token_type", "Identifier" },
-                    { "value", functionDeclaration.Id.Name }
+                    { "value", functionName }
                 }
             },
             {

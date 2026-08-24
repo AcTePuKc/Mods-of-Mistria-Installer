@@ -4,7 +4,7 @@
              x:Class="Garethp.ModsOfMistriaGUI.Views.SettingsPageView"
              x:DataType="vm:SettingsPageViewModel">
     <Grid RowDefinitions="Auto,*" Margin="4">
-        <Button Content="← Back" Command="{Binding BackCommand}" HorizontalAlignment="Left" />
+        <Button Content="{Binding Texts.GUISettingsBack}" Command="{Binding BackCommand}" HorizontalAlignment="Left" />
 
         <Grid Grid.Row="1" ColumnDefinitions="170,*" Margin="0 12 0 0">
             <Border Grid.Column="0" Background="#202020" Padding="8" CornerRadius="4">
@@ -16,26 +16,26 @@
                 <ScrollViewer>
                     <StackPanel Spacing="12">
                         <StackPanel IsVisible="{Binding IsGeneralSelected}" Spacing="8">
-                            <TextBlock Text="General" FontSize="22" FontWeight="Bold" />
-                            <TextBlock Text="Choose the game and mods folders used by AIM." TextWrapping="Wrap" />
-                            <TextBlock Text="Game folder" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Texts.GUISettingsGeneral}" FontSize="22" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Texts.GUISettingsGeneralDescription}" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding Texts.GUISettingsGameFolder}" FontWeight="Bold" />
                             <TextBox Text="{Binding Settings.MistriaLocation}" IsReadOnly="True" />
-                            <TextBlock Text="Mods folder" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Texts.GUISettingsModsFolder}" FontWeight="Bold" />
                             <Grid ColumnDefinitions="*,Auto">
                                 <TextBox Text="{Binding Settings.ModsLocation, Mode=TwoWay}" />
-                                <Button Grid.Column="1" Content="Choose…" Margin="8 0 0 0" Command="{Binding SelectModsLocationCommand}" />
+                                <Button Grid.Column="1" Content="{Binding Texts.GUISettingsChooseModsFolder}" Margin="8 0 0 0" Command="{Binding SelectModsLocationCommand}" />
                             </Grid>
-                            <TextBlock Text="The mods folder can be changed at any time; AIM will reload it when you return to the mod list." TextWrapping="Wrap" Foreground="Gray" />
+                            <TextBlock Text="{Binding Texts.GUISettingsModsFolderNote}" TextWrapping="Wrap" Foreground="Gray" />
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding IsNexusSelected}" Spacing="8">
-                            <TextBlock Text="Nexus" FontSize="22" FontWeight="Bold" />
-                            <TextBlock Text="AIM uses your personal Nexus API key for Nexus downloads and update checks. The key is stored locally and is never included in a mod or release package." TextWrapping="Wrap" />
-                            <TextBlock Text="{Binding Nexus.HasApiKey, StringFormat='API key status: {0}'}" />
-                            <Button Content="Set or change Nexus API key…"
+                            <TextBlock Text="{Binding Texts.GUISettingsNexus}" FontSize="22" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Texts.GUISettingsNexusDescription}" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding ApiKeyStatus}" />
+                            <Button Content="{Binding Texts.GUISettingsApiKeyButton}"
                                     Command="{Binding SetNexusApiKeyCommand}"
                                     HorizontalAlignment="Left" />
-                            <TextBlock Text="The same key is used by the Nexus downloads menu in the Cog menu." TextWrapping="Wrap" Foreground="Gray" />
+                            <TextBlock Text="{Binding Texts.GUISettingsNexusNote}" TextWrapping="Wrap" Foreground="Gray" />
                         </StackPanel>
 
                     </StackPanel>
