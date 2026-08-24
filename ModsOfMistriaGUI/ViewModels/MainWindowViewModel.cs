@@ -24,6 +24,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private GameRestartMonitor? _restartMonitor;
 
+    /// <summary>
+    /// Nexus "Mod Manager Download" support. It lives here rather than on the mod list page so
+    /// that a link clicked while the setup page is showing is still handled.
+    /// </summary>
+    public NexusDownloadsViewModel Nexus { get; }
+
     [ObservableProperty] private PageViewBase _currentPage;
     [ObservableProperty] private bool _updateAvailable;
     [ObservableProperty] private string _updateMessage = "";
@@ -66,6 +72,12 @@ public partial class MainWindowViewModel : ViewModelBase
         UpdateAvailable = false;
     }
 
+    /// <summary>
+    /// Handles an nxm:// link, whether this process was started by one or another instance passed
+    /// one along. Failures are reported to the user by the download view model itself.
+    /// </summary>
+    public Task HandleNxmLinkAsync(string link) => Nexus.HandleLinkAsync(link);
+
     public void SaveCurrentState()
     {
         if (CurrentPage is ModlistPageViewModel modlist)
@@ -95,7 +107,8 @@ public partial class MainWindowViewModel : ViewModelBase
         _settings.ModsLocation = MistriaLocator.GetModsLocation(_settings.MistriaLocation) ?? "";
         PerformanceDiagnostics.Log($"Startup: location detection={locationStopwatch.ElapsedMilliseconds} ms, gameFound={!string.IsNullOrEmpty(_settings.MistriaLocation)}, modsFound={!string.IsNullOrEmpty(_settings.ModsLocation)}");
 
-        var modlistPage = new ModlistPageViewModel(_settings);
+        Nexus = new NexusDownloadsViewModel(_settings);
+        var modlistPage = new ModlistPageViewModel(_settings, Nexus);
         _pages = new Dictionary<Pages, PageViewBase>
         {
             { Pages.GettingStarted , new GettingStartedPageViewModel(_settings) },

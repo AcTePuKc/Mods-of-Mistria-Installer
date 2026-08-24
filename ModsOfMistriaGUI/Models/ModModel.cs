@@ -1,4 +1,4 @@
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.Generator;
@@ -38,9 +38,39 @@ public partial class ModModel : ObservableObject
         => OnPropertyChanged(nameof(IsAlternateRow));
 
     // Set by UpdateChecker after startup — true when a newer release is available
+    [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
     [ObservableProperty] private bool _updateAvailable;
     [ObservableProperty] private string? _latestVersion;
     [ObservableProperty] private string? _updateDownloadUrl;
+
+    // ── Nexus ────────────────────────────────────────────────────────────────────
+
+    /// <summary>The mod's page, when AIM knows which Nexus mod this is.</summary>
+    [NotifyPropertyChangedFor(nameof(IsFromNexus))]
+    [ObservableProperty] private string? _nexusPageUrl;
+
+    /// <summary>The file id an update would install. Null when the update cannot be fetched.</summary>
+    [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
+    [ObservableProperty] private int? _updateFileId;
+
+    /// <summary>The user asked for this mod to be left on the version it is on.</summary>
+    [ObservableProperty] private bool _isFrozen;
+
+    [ObservableProperty] private bool _isCheckingUpdate;
+
+    /// <summary>A previous version is in the backup store and can be restored.</summary>
+    [ObservableProperty] private bool _hasBackup;
+
+    /// <summary>The right-click actions, supplied by the page view model.</summary>
+    public ModRowCommands? Commands { get; set; }
+
+    public bool IsFromNexus => !string.IsNullOrEmpty(NexusPageUrl);
+
+    public bool CanUpdateFromNexus => UpdateAvailable && UpdateFileId is not null;
+
+    public string FreezeMenuHeader => IsFrozen ? Texts.GUIUnfreezeMod : Texts.GUIFreezeMod;
+
+    partial void OnIsFrozenChanged(bool value) => OnPropertyChanged(nameof(FreezeMenuHeader));
 
     public ModModel(IMod mod)
     {

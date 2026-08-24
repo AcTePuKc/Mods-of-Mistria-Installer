@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using Avalonia.Platform.Storage;
@@ -11,6 +11,7 @@ using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
+using Garethp.ModsOfMistriaInstallerLib.Nexus;
 using Garethp.ModsOfMistriaInstallerLib.Store;
 using Garethp.ModsOfMistriaInstallerLib.Worker;
 using MsBox.Avalonia;
@@ -40,9 +41,24 @@ public partial class ModlistPageViewModel : PageViewBase
     private string? _archiveStatusKey;
     private int _archiveStatusModCount;
 
-    public ModlistPageViewModel(Settings settings)
+    // Notices mods copied into the folder while AIM is open.
+    private ModsFolderWatcher? _modsFolderWatcher;
+
+    // Nexus update checking, bound to the current mods folder.
+    private NexusUpdateService? _updateService;
+    private ModBackupStore? _backupStore;
+    private ModRowCommands? _rowCommands;
+
+    public ModlistPageViewModel(Settings settings, NexusDownloadsViewModel? nexus = null)
     {
         _settings = settings;
+        Nexus = nexus;
+
+        // A mod that arrives from Nexus is a new folder in the mods directory, so the list has to
+        // be rebuilt before it can be selected and installed.
+        if (Nexus is not null)
+            Nexus.ModsChanged += (_, _) => Dispatcher.UIThread.Post(() => UpdateModlist(true));
+
         SetLanguageCommand = new RelayCommand<string?>(SetLanguage);
         Localization.LanguageChanged += OnLocalizationChanged;
         _settings.PropertyChanged += (_, e) =>
@@ -53,6 +69,9 @@ public partial class ModlistPageViewModel : PageViewBase
         };
         Task.Run(UpdateModlist);
     }
+
+    /// <summary>Null in design-time and test contexts that build the page on its own.</summary>
+    public NexusDownloadsViewModel? Nexus { get; }
 
     public IRelayCommand<string?> SetLanguageCommand { get; }
 
@@ -280,10 +299,118 @@ public partial class ModlistPageViewModel : PageViewBase
         _isDirty = true;
     }
 
+    /// <summary>
+    /// Points the folder watcher at the current mods folder. Reloading is skipped while an install
+    /// is running: that writes to the game archive, and a mod list rebuilding underneath it would
+    /// change the selection the install is working from.
+    /// </summary>
+    private void WatchModsFolder()
+    {
+        _modsFolderWatcher?.Dispose();
+        _modsFolderWatcher = null;
+
+        if (string.IsNullOrEmpty(ModsLocation) || !Directory.Exists(ModsLocation)) return;
+
+        var watcher = new ModsFolderWatcher(ModsLocation, () =>
+            Dispatcher.UIThread.Post(() =>
+            {
+                if (IsInstalling) return;
+                Logger.Log("The mods folder changed; reloading the mod list.");
+                UpdateModlist(true);
+            }));
+
+        if (watcher.Start()) _modsFolderWatcher = watcher;
+    }
+
+    private NexusUpdateService? UpdateService
+    {
+        get
+        {
+            if (Nexus is null || string.IsNullOrEmpty(ModsLocation)) return null;
+            return _updateService ??= Nexus.CreateUpdateService(ModsLocation);
+        }
+    }
+
+    private ModBackupStore? BackupStore
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(ModsLocation)) return null;
+            return _backupStore ??= new ModBackupStore(ModsLocation);
+        }
+    }
+
+    private ModRowCommands RowCommands => _rowCommands ??= new ModRowCommands(
+        new RelayCommand<ModModel>(OpenNexusPage),
+        new AsyncRelayCommand<ModModel>(CheckModForUpdate),
+        new AsyncRelayCommand<ModModel>(UpdateModFromNexus),
+        new RelayCommand<ModModel>(ToggleModFreeze),
+        new AsyncRelayCommand<ModModel>(RestorePreviousVersion),
+        new RelayCommand<ModModel>(OpenModFolder));
+
+    /// <summary>
+    /// Fills in what AIM knows about each row from Nexus: which page it came from, whether the user
+    /// froze it, and whether a previous version is kept. No network calls - this is all local
+    /// bookkeeping, so it runs on every list load.
+    /// </summary>
+    private void RefreshNexusState()
+    {
+        var service = UpdateService;
+        var backups = BackupStore;
+
+        foreach (var model in Mods)
+        {
+            model.Commands = RowCommands;
+
+            var record = service?.Resolve(model.Mod);
+            model.NexusPageUrl = record?.PageUrl;
+            model.IsFrozen = service?.IsFrozen(model.Mod) ?? false;
+            model.HasBackup = backups?.HasBackups(ModBackupStore.ModNameFor(model.Mod.GetSourcePath())) ?? false;
+        }
+    }
+
     private void RefreshPositions()
     {
         for (var i = 0; i < Mods.Count; i++)
             Mods[i].Position = i + 1;
+    }
+
+    // ── Selection summary ─────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Reads "how much of this list is selected" for the header checkbox: true for all, false for
+    /// none, null for a mix, which is what makes it show the indeterminate mark.
+    /// </summary>
+    public bool? AllModsSelected
+    {
+        get
+        {
+            if (Mods.Count == 0) return false;
+            var selected = Mods.Count(mod => mod.Enabled);
+            if (selected == 0) return false;
+            return selected == Mods.Count ? true : null;
+        }
+    }
+
+    /// <summary>
+    /// A ticked mod is a mod that will be in the game after the next install, not one queued to be
+    /// added - installing rebuilds the archive from the ticked set. The counts spell that out, so
+    /// "already installed" mods can be recognised at a glance without unticking them.
+    /// </summary>
+    [ObservableProperty] private string _selectionSummary = "";
+
+    private void RefreshSelectionSummary()
+    {
+        var total = Mods.Count;
+        var selected = Mods.Count(mod => mod.Enabled);
+        var installed = Mods.Count(mod => mod.WasAlreadyInstalled);
+        var pending = Mods.Count(mod => mod.Enabled && !mod.WasAlreadyInstalled);
+
+        SelectionSummary = total == 0
+            ? ""
+            : string.Format(Texts.GUIModSelectionSummary, selected, total, installed, pending);
+
+        OnPropertyChanged(nameof(AllModsSelected));
     }
 
     // When a mod is enabled, walk its requirements and enable them transitively.
@@ -473,6 +600,11 @@ public partial class ModlistPageViewModel : PageViewBase
 
             RefreshProfileList();
             _isDirty = false;
+            _updateService = null;
+            _backupStore = null;
+            RefreshNexusState();
+            RefreshSelectionSummary();
+            WatchModsFolder();
             var modSnapshot = Mods.ToList();
             _ = Task.Run(() => CheckModUpdatesAsync(modSnapshot));
 
@@ -493,6 +625,7 @@ public partial class ModlistPageViewModel : PageViewBase
         {
             if (e.PropertyName != nameof(ModModel.Enabled) || _suppressDirty) return;
             _isDirty = true;
+            RefreshSelectionSummary();
             RefreshArchiveStatus();
             RefreshSelectedModConflicts();
             if (_cascading) return;
@@ -804,6 +937,8 @@ public partial class ModlistPageViewModel : PageViewBase
     [NotifyCanExecuteChangedFor(nameof(LaunchGameCommand))]
     [NotifyPropertyChangedFor(nameof(CanReorderMods))]
     [NotifyPropertyChangedFor(nameof(CanChangeModSelection))]
+    [NotifyCanExecuteChangedFor(nameof(ToggleAllModsCommand))]
+    [NotifyCanExecuteChangedFor(nameof(SuggestLoadOrderCommand))]
     [ObservableProperty] private bool _isInstalling;
 
     // Load order is part of the same profile state as the checkboxes. Do not let a
@@ -888,11 +1023,275 @@ public partial class ModlistPageViewModel : PageViewBase
         UpdateModlist(true);
     }
 
+    /// <summary>
+    /// One button for the header checkbox: select everything, or clear the selection when
+    /// everything is already selected. A partial selection fills up rather than clearing, which is
+    /// what a half-ticked box invites you to do.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanChangeModSelection))]
+    private void ToggleAllMods()
+    {
+        if (Mods.Count == 0) return;
+
+        var select = Mods.Any(mod => !mod.Enabled);
+        foreach (var mod in Mods) mod.Enabled = select;
+
+        _isDirty = true;
+        RefreshSelectionSummary();
+        RefreshArchiveStatus();
+        InstallModsCommand.NotifyCanExecuteChanged();
+    }
+
+    /// <summary>
+    /// Reorders the list so every mod loads after the mods it requires, and reports the file
+    /// collisions that the user has to settle themselves.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanReorderMods))]
+    private async Task SuggestLoadOrder()
+    {
+        if (Mods.Count == 0) return;
+
+        var current = Mods.Select(model => model.Mod).ToList();
+        var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
+
+        var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
+
+        if (plan.ChangesAnything)
+        {
+            var byId = Mods.ToDictionary(model => model.Mod.GetId(), StringComparer.OrdinalIgnoreCase);
+            var reordered = plan.Order
+                .Select(mod => byId.TryGetValue(mod.GetId(), out var model) ? model : null)
+                .Where(model => model is not null)
+                .Select(model => model!)
+                .ToList();
+
+            Mods.Clear();
+            foreach (var model in reordered) Mods.Add(model);
+
+            RefreshPositions();
+            _isDirty = true;
+        }
+
+        var body = plan.Notes.Count == 0
+            ? (plan.ChangesAnything ? Texts.GUILoadOrderChanged : Texts.GUILoadOrderAlreadyGood)
+            : string.Join("\r\n\r\n", plan.Notes.Select(note => $"• {note.Message}"));
+
+        await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUILoadOrderTitle, body, ButtonEnum.Ok).ShowAsync();
+    }
+
+    // ── Nexus: per-mod actions ────────────────────────────────────────────────────
+
+    private void OpenNexusPage(ModModel? model)
+    {
+        if (model?.NexusPageUrl is null) return;
+        NexusDownloadsViewModel.OpenUrl(model.NexusPageUrl);
+    }
+
+    private void OpenModFolder(ModModel? model)
+    {
+        var path = model?.Mod.GetSourcePath();
+        if (string.IsNullOrEmpty(path)) return;
+
+        var folder = Directory.Exists(path) ? path : Path.GetDirectoryName(path);
+        if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder)) return;
+
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = folder, UseShellExecute = true });
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not open {folder}: {e.Message}");
+        }
+    }
+
+    private void ToggleModFreeze(ModModel? model)
+    {
+        if (model is null || UpdateService is null) return;
+
+        var frozen = !model.IsFrozen;
+        UpdateService.SetFrozen(model.Mod, frozen);
+        model.IsFrozen = frozen;
+
+        // A frozen mod's pending update badge is noise: the user has said they do not want it.
+        if (!frozen) return;
+        model.UpdateAvailable = false;
+        model.UpdateFileId = null;
+    }
+
+    private async Task CheckModForUpdate(ModModel? model)
+    {
+        if (model is null || UpdateService is null) return;
+        if (Nexus is not null && !await Nexus.EnsureApiKeyAsync()) return;
+
+        model.IsCheckingUpdate = true;
+        try
+        {
+            var status = await Task.Run(() => UpdateService.CheckAsync(model.Mod));
+            ApplyUpdateStatus(model, status);
+            await ReportUpdateStatusAsync(model, status);
+        }
+        finally
+        {
+            model.IsCheckingUpdate = false;
+        }
+    }
+
+    private async Task UpdateModFromNexus(ModModel? model)
+    {
+        if (model is null || Nexus is null || UpdateService is null) return;
+
+        // The badge may be from a check made minutes ago; ask Nexus again so the file id being
+        // installed is the one the page offers right now.
+        var status = await Task.Run(() => UpdateService.CheckAsync(model.Mod));
+        ApplyUpdateStatus(model, status);
+
+        if (!status.HasUpdate)
+        {
+            await ReportUpdateStatusAsync(model, status);
+            return;
+        }
+
+        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUIUpdateModTitle,
+            string.Format(Texts.GUIUpdateModConfirm, model.Mod.GetName(),
+                model.Mod.GetVersion(), status.LatestVersion ?? "?"),
+            ButtonEnum.YesNo).ShowAsync();
+
+        if (confirm != ButtonResult.Yes) return;
+
+        if (await Nexus.RunUpdateAsync(UpdateService, model.Mod, status, ModsLocation))
+            UpdateModlist(true);
+    }
+
+    private async Task RestorePreviousVersion(ModModel? model)
+    {
+        if (model is null || BackupStore is null) return;
+
+        var source = model.Mod.GetSourcePath();
+        var modName = ModBackupStore.ModNameFor(source);
+        var backups = BackupStore.List(modName);
+
+        if (backups.Count == 0)
+        {
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUIRestoreVersionTitle, Texts.GUIRestoreVersionNone, ButtonEnum.Ok).ShowAsync();
+            return;
+        }
+
+        var newest = backups[0];
+        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUIRestoreVersionTitle,
+            string.Format(Texts.GUIRestoreVersionConfirm, model.Mod.GetName(), newest.Describe()),
+            ButtonEnum.YesNo).ShowAsync();
+
+        if (confirm != ButtonResult.Yes) return;
+
+        try
+        {
+            var destination = Directory.Exists(source)
+                ? source
+                : Path.Combine(ModsLocation, modName);
+
+            BackupStore.Restore(newest, destination);
+
+            // The index still names the file that was just rolled back, which would make the
+            // restored version look up to date for ever. Dropping the record falls back to
+            // comparing versions, which is right for a copy AIM did not install.
+            UpdateService?.Index.Forget(destination);
+
+            UpdateModlist(true);
+        }
+        catch (Exception e)
+        {
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUIRestoreVersionTitle, e.Message, ButtonEnum.Ok).ShowAsync();
+        }
+    }
+
+    // ── Nexus: bulk checks ────────────────────────────────────────────────────────
+
+    [RelayCommand]
+    private Task CheckSelectedModsForUpdates() =>
+        CheckManyForUpdates(Mods.Where(model => model.Enabled).ToList());
+
+    [RelayCommand]
+    private Task CheckAllModsForUpdates() => CheckManyForUpdates(Mods.ToList());
+
+    private async Task CheckManyForUpdates(List<ModModel> models)
+    {
+        if (models.Count == 0 || UpdateService is null) return;
+        if (Nexus is not null && !await Nexus.EnsureApiKeyAsync()) return;
+
+        var checkable = models.Where(model => !model.IsFrozen).ToList();
+        foreach (var model in checkable) model.IsCheckingUpdate = true;
+
+        try
+        {
+            var progress = new Progress<(int Done, int Total)>(step =>
+                InstallStatus = string.Format(Texts.GUICheckingForUpdates, step.Done, step.Total));
+
+            var statuses = await Task.Run(() =>
+                UpdateService.CheckManyAsync(checkable.Select(model => model.Mod).ToList(), progress));
+
+            foreach (var model in checkable)
+                if (statuses.TryGetValue(model.Mod.GetId(), out var status))
+                    ApplyUpdateStatus(model, status);
+
+            var withUpdates = checkable.Count(model => model.CanUpdateFromNexus);
+            var unavailable = statuses.Values.Count(status => status.State == NexusUpdateState.Unavailable);
+
+            InstallStatus = "";
+            await MessageBoxManager.GetMessageBoxStandard(
+                Texts.GUICheckForUpdatesTitle,
+                string.Format(Texts.GUICheckForUpdatesResult, checkable.Count, withUpdates, unavailable),
+                ButtonEnum.Ok).ShowAsync();
+        }
+        finally
+        {
+            foreach (var model in checkable) model.IsCheckingUpdate = false;
+        }
+    }
+
+    private static void ApplyUpdateStatus(ModModel model, NexusUpdateStatus status)
+    {
+        model.NexusPageUrl = status.Record?.PageUrl ?? model.NexusPageUrl;
+        model.IsFrozen = status.State == NexusUpdateState.Frozen || model.IsFrozen;
+        model.UpdateFileId = status.HasUpdate ? status.LatestFileId : null;
+
+        if (!status.HasUpdate) return;
+
+        // The badge is shared with the manifest-based check that runs at startup, so a Nexus result
+        // only ever adds to it. Clearing it here would hide a GitHub release the other check found,
+        // and the badge needs somewhere to go: without a download url it opens nothing.
+        model.UpdateAvailable = true;
+        model.LatestVersion = status.LatestVersion ?? model.LatestVersion;
+        model.UpdateDownloadUrl ??= status.Record?.FilesPageUrl;
+    }
+
+    private async Task ReportUpdateStatusAsync(ModModel model, NexusUpdateStatus status)
+    {
+        var message = status.State switch
+        {
+            NexusUpdateState.UpdateAvailable => string.Format(Texts.GUIUpdateAvailableForMod,
+                model.Mod.GetName(), status.LatestVersion ?? "?"),
+            NexusUpdateState.UpToDate => string.Format(Texts.GUIModIsUpToDate, model.Mod.GetName()),
+            NexusUpdateState.Frozen => string.Format(Texts.GUIModIsFrozen, model.Mod.GetName()),
+            NexusUpdateState.NotFromNexus => string.Format(Texts.GUIModNotFromNexus, model.Mod.GetName()),
+            _ => status.Message ?? Texts.GUICheckForUpdatesFailed
+        };
+
+        await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUICheckForUpdatesTitle, message, ButtonEnum.Ok).ShowAsync();
+    }
+
     [RelayCommand]
     private void EnableAllMods()
     {
         foreach (var m in Mods) m.Enabled = true;
         _isDirty = true;
+        RefreshSelectionSummary();
         RefreshArchiveStatus();
         InstallModsCommand.NotifyCanExecuteChanged();
     }
@@ -902,6 +1301,7 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         foreach (var m in Mods) m.Enabled = false;
         _isDirty = true;
+        RefreshSelectionSummary();
         RefreshArchiveStatus();
         InstallModsCommand.NotifyCanExecuteChanged();
     }
@@ -1294,6 +1694,8 @@ public partial class ModlistPageViewModel : PageViewBase
                                     string.Equals(installedVersion, mod.Mod.GetVersion(), StringComparison.OrdinalIgnoreCase);
             mod.SetAlreadyInstalled(alreadyInstalled);
         }
+
+        RefreshSelectionSummary();
 
         var matches = desired.Count == actual.Count &&
                       desired.All(pair => actual.TryGetValue(pair.Key, out var version) &&

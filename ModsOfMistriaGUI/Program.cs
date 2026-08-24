@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Garethp.ModsOfMistriaInstallerLib.Nexus;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.FontAwesome;
 
@@ -17,6 +18,14 @@ public static class Program
             Garethp.ModsOfMistriaInstallerLib.Worker.ArchiveWorkerRunner.RunAsync(args).GetAwaiter().GetResult();
             return;
         }
+
+        // The browser starts a fresh process for every clicked "Mod Manager Download" link. If a
+        // window is already open it should take the download, so the link is handed over and this
+        // process exits without ever building a UI.
+        var nxmLink = args.FirstOrDefault(NxmLink.IsNxmUri);
+        if (nxmLink is not null && NxmLinkListener.TrySend(nxmLink)) return;
+
+        App.StartupNxmLink = nxmLink;
 
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
