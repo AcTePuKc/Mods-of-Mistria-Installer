@@ -21,3 +21,6 @@ assets.vanilla.zip
 assets.momi.tmp.zip
 assets.momi.state.toml
 localization_inspection/
+
+# Local AIM experiments and retired worktrees are kept outside version control.
+_archive/
