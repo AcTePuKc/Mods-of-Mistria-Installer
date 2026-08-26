@@ -319,3 +319,19 @@ workflow does, and checks for the key before it starts.
 The release workflow builds the GUI and CLI for the supported desktop targets and uploads artifacts only to releases in this fork. Nexus publishing is manual and is not triggered by a normal GitHub release.
 
 The repository does not include game archives or copyrighted game localization data.
+
+## Licensing
+
+This project is licensed under GPLv3 or later (see `LICENCE.txt`).
+
+The MMAPI framework in `ModsOfMistriaInstallerLib/Seam/Payload/mmapi` is
+copyright © 2026 AnnaNomoly and is licensed under GPLv3 or later with
+additional terms under GPLv3 section 7. Those terms require preservation of
+the copyright, licence, and attribution notices, prohibit misrepresentation
+of origin, and grant no trademark rights to the MMAPI name or branding. They
+are included in `ModsOfMistriaInstallerLib/Seam/Payload/mmapi/LICENSE`, and
+the MMAPI source files retain their licence headers.
+
+The MMAPI seam catalog contains excerpts of Fields of Mistria game code used
+as anchor patterns. That content belongs to NPC Studio; see the notice at the
+top of `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`.
