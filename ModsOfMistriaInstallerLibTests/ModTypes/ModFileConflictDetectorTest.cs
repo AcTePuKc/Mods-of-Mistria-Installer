@@ -49,4 +49,19 @@ public class ModFileConflictDetectorTest
         Assert.That(conflicts.Single(x => x.Path == "localization/l10n.meta.toml").Kind,
             Is.EqualTo(ModFileConflictKind.SharedLocalization));
     }
+
+    [Test]
+    public void IgnoresSharedLegacyCosmeticCategoryIcon()
+    {
+        var alpha = new MockMod(new Dictionary<string, object>
+        {
+            ["animations/UI NEW/Store Menu/spr_ui_store_category_icon_moddedcosmetic.png"] = new byte[] { 1 }
+        }) { Id = "alpha" };
+        var beta = new MockMod(new Dictionary<string, object>
+        {
+            ["animations/UI NEW/Store Menu/spr_ui_store_category_icon_moddedcosmetic.png"] = new byte[] { 2 }
+        }) { Id = "beta" };
+
+        Assert.That(ModFileConflictDetector.Find([alpha, beta]), Is.Empty);
+    }
 }

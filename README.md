@@ -199,12 +199,16 @@ so the installer's own scan of the mods folder ignores it.
   game, 1 will be added", because a tick means the mod will be in the game after the next install,
   not that it is queued to be added.
 - **Suggest order.** Moves each mod below the mods it requires, using the smallest changes that
-  satisfy those requirements, so mods you deliberately ordered stay where you put them. It then
-  reports what it cannot decide for you: files that two selected mods both replace (naming the one
-  that currently wins), requirements that are not installed, and requirement loops. Load order is
-  saved with the profile as before.
+  satisfy those requirements, so mods you deliberately ordered stay where you put them. Load order
+  is saved with the profile as before.
+- **Check issues.** Opens an on-demand, copyable report with exact shared destination files,
+  missing requirements, dependency loops, hook and keyboard-shortcut clashes, and compatibility
+  warnings. It does not change the order or install anything.
 - **Drag/drop load order.** Drag a mod by its grip to reorder it. When holding it near the top or
   bottom edge of the list, AIM scrolls automatically so long lists do not require repeated drags.
+- **Search.** The search field filters the already discovered list by localized or original mod
+  name, author, description, and version. It does not rescan archives or contact Nexus. Filtering
+  does not change the saved selection or order; drag/drop is paused until the search is cleared.
 - **Automatic refresh.** The mods folder is watched while AIM is open, so a mod folder or archive
   copied in appears in the list a couple of seconds later.
 

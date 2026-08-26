@@ -56,8 +56,8 @@
   <data name="GUIProfileName" xml:space="preserve"><value>プロファイル {0}</value></data>
   <data name="GUINewProfile" xml:space="preserve"><value>新しいプロファイル</value></data>
   <data name="GUIDeleteCurrentProfile" xml:space="preserve"><value>現在のプロファイルを削除</value></data>
-  <data name="GUIEnableAllMods" xml:space="preserve"><value>すべてのMODを有効化</value></data>
-  <data name="GUIDisableAllMods" xml:space="preserve"><value>すべてのMODを無効化</value></data>
+  <data name="GUIEnableAllMods" xml:space="preserve"><value>すべてのMODを選択</value></data>
+  <data name="GUIDisableAllMods" xml:space="preserve"><value>すべてのMODの選択を解除</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>MOD一覧を再読み込み</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>ログファイルを保存</value></data>
   <data name="GUIUninstallButtonText" xml:space="preserve"><value>すべてアンインストール</value></data>
@@ -225,8 +225,8 @@
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>選択したMODは同じ保存先ファイルを使用しています。AIMがそれぞれの処理方法を表示します：
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>警告：このMODにはフックが宣言されていない古いGMLコードが含まれています。現在のゲームバージョンとの互換性を確認できません。古いMODである可能性があり、ゲームが起動しなかったりクラッシュしたりする場合があります。AIMは自動的にはブロックしません。</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>選択したMODが同じキーボードショートカットを使用している可能性があります。これは警告にすぎません。必要に応じて設定を確認してください：
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>このMODにはフックが宣言されていない古いGMLコードが含まれています。現在のゲームバージョンとの互換性を確認できません。古いMODである可能性があり、ゲームが起動しなかったりクラッシュしたりする場合があります。AIMは自動的にはブロックしません。</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>選択したMODが同じキーボードショートカットを使用している可能性があります。これは警告にすぎません。必要に応じてゲーム内の設定を確認してください：
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value>（変更できる可能性があります）</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>インストールを停止しました：選択したMODが同じアセットを置き換えます。競合するMODは1つだけ選択してください。</value></data>
@@ -235,7 +235,7 @@
   <data name="GUIFileConflictLocalization" xml:space="preserve"><value>共有ローカライズメタデータです。これらのMODは同時に動作する可能性がありますが、重複する項目は読み込み順によって上書きされる場合があります。</value></data>
   <data name="GUIFileConflictShared" xml:space="preserve"><value>共有された保存先です。処理方法はファイルの種類によって異なります。</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>インストール済み。</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>警告：このMODにはバージョン1.0.3以前の既知の互換性シグネチャが含まれています。古いMODである可能性があり、ゲームが起動しなかったりクラッシュしたりする場合があります。AIMは自動的にはブロックしません。</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>このMODにはバージョン1.0.3以前の既知の互換性シグネチャが含まれています。古いMODである可能性があり、ゲームが起動しなかったりクラッシュしたりする場合があります。AIMは自動的にはブロックしません。</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>インストール済み</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>このダウンロードは、すでにインストールされているMODを置き換えます：{0}&#xD;&#xA;&#xD;&#xA;置き換えますか？</value></data>
@@ -286,12 +286,20 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUISave" xml:space="preserve"><value>保存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>キャンセル</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} 個中 {1} 個を選択 — {2} 個はゲーム内にあり、{3} 個を追加します</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Modを検索…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>検索をクリア</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>すべてのModを選択／選択解除</value></data>
-  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>読み込み順を提案</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>必要なModの後に読み込まれるよう順序を並べ替え、2つのModが同じファイルを置き換える場合に知らせます</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>順序を提案</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>必要なModの後に読み込まれるよう順序を並べ替えます</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>読み込み順</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>必要なModの後に読み込まれるよう、Modの順序を変更しました。</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>変更はありません。すべてのModが必要なModの後に読み込まれ、同じファイルを置き換えるModもありません。</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>変更はありません。すべてのModが必要なModの後に読み込まれます。</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>問題を確認</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>問題の確認</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>詳細を表示</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>閉じる</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>詳しい情報は「提案して確認」で確認できます。</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>レポートをコピー</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>Modフォルダーに新しいModが見つかりました。</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>ModのNexusページを開く</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Modフォルダーを開く</value></data>

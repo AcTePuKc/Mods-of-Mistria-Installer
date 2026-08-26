@@ -1,6 +1,27 @@
 # Changelog
 
-## 0.1.7 — Unreleased
+## 0.1.8 — Unreleased
+
+- Added immediate local mod-list search by localized or original name, author, description, and
+  version. Filtering never rescans archives or contacts Nexus; it preserves the selected mods and
+  their saved order. Drag-and-drop is temporarily paused while a filter is active so hidden rows
+  cannot be reordered accidentally.
+- Split load-order tools into **Suggest order** and **Check issues**. Suggest order now performs
+  only safe dependency ordering; Check issues opens an on-demand, copyable report with exact shared
+  paths, hook and keyboard-shortcut clashes, missing requirements, and compatibility warnings.
+- Kept the normal mod list compact: warnings and successful-install status are shown as icons with
+  hover details, while failed installs still show their full error inline.
+- Removed redundant "Warning" prefixes from legacy compatibility details; the warning icon already
+  provides that status.
+- Fixed Select all / Deselect all for large mod lists. AIM now batches the selection change and
+  performs the archive-state and conflict refresh once, instead of once per row.
+- Added read-only validation for legacy `momi/outfit` cosmetics using AIM's generator contract.
+  The installer reports missing or malformed generated cosmetic assets without modifying the mod.
+- Stopped reporting the shared legacy cosmetic category icon as a file conflict. AIM registers the
+  individual cosmetic assets and store entries independently, so that icon does not decide which
+  cosmetic mod works.
+
+## 0.1.7
 
 - Fixed automatic `nxm://` re-registration when a portable AIM build is moved or replaced. Windows
   now compares the normalized full executable path instead of treating every `AIM.exe` as the

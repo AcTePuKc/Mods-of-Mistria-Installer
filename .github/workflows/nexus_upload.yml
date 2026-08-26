@@ -12,7 +12,9 @@ on:
 # Nexus upload is opt-in twice: the manual input must be true and the
 # repository variable NEXUS_UPLOAD_ENABLED must be set to the string "true".
 # Windows, Linux/SteamOS and macOS portable packages upload to their existing
-# Nexus file groups through the corresponding NEXUS_FILE_ID_* secrets.
+# Nexus files through the corresponding NEXUS_FILE_ID_* secrets. Each upload
+# archives the previous version of that platform file and updates the mod's
+# displayed version to the release version.
 
 jobs:
   # This workflow is its own run, so it cannot reach compile.yml's artifacts:
@@ -132,33 +134,39 @@ jobs:
       # Keep NEXUS_UPLOAD_ENABLED unset/false while a release is under review.
       - name: Upload Windows package to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
-        uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
+        uses: Nexus-Mods/upload-action@c96019556046053aa26044b44396cd38929daf23
         with:
           api_key: ${{ secrets.NEXUS_API_KEY }}
-          file_group_id: ${{ secrets.NEXUS_FILE_ID_WINDOWS }}
+          file_id: ${{ secrets.NEXUS_FILE_ID_WINDOWS }}
           filename: Release/AIM-${{ env.APP_VERSION }}-windows.zip
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Windows"
           description: "Self-contained AIM package for Windows."
+          archive_existing_version: true
+          update_mod_version: true
 
       - name: Upload Linux / SteamOS package to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
-        uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
+        uses: Nexus-Mods/upload-action@c96019556046053aa26044b44396cd38929daf23
         with:
           api_key: ${{ secrets.NEXUS_API_KEY }}
-          file_group_id: ${{ secrets.NEXUS_FILE_ID_LINUX }}
+          file_id: ${{ secrets.NEXUS_FILE_ID_LINUX }}
           filename: Release/AIM-${{ env.APP_VERSION }}-linux.zip
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Linux and SteamOS"
           description: "Self-contained AIM package for Linux and SteamOS."
+          archive_existing_version: true
+          update_mod_version: true
 
       - name: Upload macOS package to Nexus
         if: ${{ inputs.upload_to_nexus == true && vars.NEXUS_UPLOAD_ENABLED == 'true' }}
-        uses: Nexus-Mods/upload-action@d0321c96e04e91da2caf74cad0c8824f4c748f99 # v1.0.0-beta.4
+        uses: Nexus-Mods/upload-action@c96019556046053aa26044b44396cd38929daf23
         with:
           api_key: ${{ secrets.NEXUS_API_KEY }}
-          file_group_id: ${{ secrets.NEXUS_FILE_ID_MACOS }}
+          file_id: ${{ secrets.NEXUS_FILE_ID_MACOS }}
           filename: Release/AIM-${{ env.APP_VERSION }}-macos.zip
           version: ${{ env.APP_VERSION }}
           display_name: "AIM macOS"
           description: "Self-contained AIM package for macOS."
+          archive_existing_version: true
+          update_mod_version: true

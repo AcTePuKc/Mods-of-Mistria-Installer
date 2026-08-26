@@ -141,6 +141,7 @@ public class LoadOrderPlannerTest
             // The later mod wins, and the note has to say so rather than reordering them: which
             // sprite should survive is a preference, not something the planner can know.
             Assert.That(note!.Message, Does.Contain("\"Second\" overrides \"First\""));
+            Assert.That(note.Details, Is.EqualTo(new[] { "images/replace/shared.png" }));
             Assert.That(plan.ChangesAnything, Is.False);
         });
     }

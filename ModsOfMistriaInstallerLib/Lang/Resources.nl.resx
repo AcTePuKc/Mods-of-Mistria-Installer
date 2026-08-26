@@ -388,10 +388,10 @@
     <value>Kies een locatie voor het logbestand</value>
   </data>
   <data name="GUIEnableAllMods" xml:space="preserve">
-    <value>Alle mods inschakelen</value>
+    <value>Alle mods selecteren</value>
   </data>
   <data name="GUIDisableAllMods" xml:space="preserve">
-    <value>Alle mods uitschakelen</value>
+    <value>Alle mods deselecteren</value>
   </data>
   <data name="GUIReloadModlist" xml:space="preserve">
     <value>Modlijst vernieuwen</value>
@@ -550,8 +550,8 @@ Downloadpagina's openen in de browser?</value></data>
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>De geselecteerde mods gebruiken dezelfde doelbestanden. AIM laat zien hoe elk bestand wordt verwerkt:
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>Waarschuwing: Deze mod bevat verouderde GML-code zonder gedeclareerde hooks. Compatibiliteit met de huidige gameversie kan niet worden gecontroleerd; de mod is mogelijk verouderd en kan voorkomen dat de game start of een crash veroorzaken. AIM blokkeert de mod niet automatisch.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Deze geselecteerde mods gebruiken mogelijk dezelfde sneltoets. Dit is alleen een waarschuwing; controleer indien nodig hun instellingen:
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>Deze mod bevat verouderde GML-code zonder gedeclareerde hooks. Compatibiliteit met de huidige gameversie kan niet worden gecontroleerd; de mod is mogelijk verouderd en kan voorkomen dat de game start of een crash veroorzaken. AIM blokkeert de mod niet automatisch.</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Deze geselecteerde mods gebruiken mogelijk dezelfde sneltoets. Dit is alleen een waarschuwing; controleer indien nodig hun instellingen in de game:
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (mogelijk opnieuw toewijsbaar)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Installatie gestopt: de geselecteerde mods vervangen hetzelfde asset. Laat slechts één van de conflicterende mods geselecteerd.</value></data>
@@ -560,7 +560,7 @@ Downloadpagina's openen in de browser?</value></data>
   <data name="GUIFileConflictLocalization" xml:space="preserve"><value>Gedeelde lokalisatiemetadata; deze mods kunnen samen werken, maar dubbele vermeldingen kunnen worden overschreven door de laadvolgorde.</value></data>
   <data name="GUIFileConflictShared" xml:space="preserve"><value>Gedeelde bestemming; de verwerking hangt af van het bestandstype.</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>Al geïnstalleerd.</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Waarschuwing: Deze mod bevat een bekende compatibiliteitssignatuur van vóór versie 1.0.3. De mod is mogelijk verouderd en kan voorkomen dat de game start of een crash veroorzaken. AIM blokkeert de mod niet automatisch.</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Deze mod bevat een bekende compatibiliteitssignatuur van vóór versie 1.0.3. De mod is mogelijk verouderd en kan voorkomen dat de game start of een crash veroorzaken. AIM blokkeert de mod niet automatisch.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Al geïnstalleerd</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Deze download vervangt al geïnstalleerde mods: {0}&#xD;&#xA;&#xD;&#xA;Wil je ze vervangen?</value></data>
@@ -611,12 +611,20 @@ De links aan AIM overdragen?</value></data>
   <data name="GUISave" xml:space="preserve"><value>Opslaan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Annuleren</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} van {1} geselecteerd — {2} al in het spel, {3} worden toegevoegd</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Mods zoeken…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>Zoekopdracht wissen</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Alle mods selecteren of wissen</value></data>
   <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Volgorde voorstellen</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Orden mods zodat elke mod na de mods waarvan hij afhankelijk is wordt geladen en meld bestanden die door twee mods worden vervangen</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Orden mods zodat elke mod na de mods waarvan hij afhankelijk is wordt geladen</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Laadvolgorde</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>De mods zijn opnieuw geordend zodat elke mod na zijn vereisten wordt geladen.</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Niets te wijzigen: elke mod wordt na zijn vereisten geladen en geen twee mods vervangen hetzelfde bestand.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Niets te wijzigen: elke mod wordt na zijn vereisten geladen.</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problemen controleren</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>Probleemcontrole</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>Details tonen</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>Sluiten</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>Meer informatie vind je bij ‘Voorstellen &amp; controleren’.</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>Rapport kopiëren</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>Nieuwe mods gevonden in de modsmap.</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>Nexuspagina van de mod openen</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Modmap openen</value></data>

@@ -27,7 +27,8 @@ public static class ModFileConflictDetector
             foreach (var file in mod.GetAllFiles(""))
             {
                 var relative = RelativePath(mod, file);
-                if (relative.Length == 0 || IsIgnorableDocumentation(relative) || IsManifest(relative)) continue;
+                if (relative.Length == 0 || IsIgnorableDocumentation(relative) || IsManifest(relative) ||
+                    IsSharedGeneratedCosmeticCategoryIcon(relative)) continue;
                 if (!paths.TryGetValue(relative, out var owners))
                     paths[relative] = owners = new(StringComparer.OrdinalIgnoreCase);
                 owners.Add(mod.GetId());
@@ -81,6 +82,14 @@ public static class ModFileConflictDetector
     private static bool IsManifest(string path) =>
         path.Equals("manifest.json", StringComparison.OrdinalIgnoreCase) ||
         path.Equals("manifest.toml", StringComparison.OrdinalIgnoreCase);
+
+    // Legacy outfit mods share this category icon, but AIM registers each mod's
+    // player assets and store entries independently. It is not a load-order
+    // conflict and should not drown out genuine cosmetic compatibility issues.
+    private static bool IsSharedGeneratedCosmeticCategoryIcon(string path) =>
+        path.Replace('\\', '/').Equals(
+            "animations/UI NEW/Store Menu/spr_ui_store_category_icon_moddedcosmetic.png",
+            StringComparison.OrdinalIgnoreCase);
 
     private static bool IsIgnorableDocumentation(string path)
     {

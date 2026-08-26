@@ -423,4 +423,72 @@ public class CosmeticsTest
             })
         );
     }
+
+    [Test]
+    public void ShouldKeepIndependentHairFaceGearAndLayeredTopAssets()
+    {
+        var fileModifier = new MockFileModifier(new());
+        var mod = new MockMod(new Dictionary<string, object>
+        {
+            ["momi/cosmetics/test_cosmetics.toml"] = """
+                [example_hair]
+                name = "Example Hair"
+                ui_slot = "hair"
+                ui_sub_category = "long_hair"
+                lut = "images/lut.png"
+                ui_sprites = { asset = "images/ui.png", body = "images/ui.png", merged = "images/ui.png", merged_outline = "images/outline.png" }
+                cosmetic_sprites = { hair_back = "images/part.png", hair_mid = "images/part.png" }
+
+                [example_glasses]
+                name = "Example Glasses"
+                ui_slot = "face_gear"
+                ui_sub_category = "glasses"
+                lut = "images/lut.png"
+                ui_sprites = { asset = "images/ui.png", body = "images/ui.png", merged = "images/ui.png", merged_outline = "images/outline.png" }
+                cosmetic_sprites = { face_gear = "images/part.png" }
+
+                [example_jacket]
+                name = "Example Jacket"
+                ui_slot = "top"
+                ui_sub_category = "long_sleeve"
+                lut = "images/lut.png"
+                ui_sprites = { ui = "images/ui.png", outline = "images/outline.png" }
+                cosmetic_sprites = { torso = "images/part.png", sleeve_left = "images/part.png", sleeve_right = "images/part.png" }
+                """,
+            ["images/part.png"] = FixtureHandler.ReadAllBytes("OutfitMod/skirt.png"),
+            ["images/lut.png"] = FixtureHandler.ReadAllBytes("OutfitMod/lut.png"),
+            ["images/ui.png"] = FixtureHandler.ReadAllBytes("OutfitMod/ui.png"),
+            ["images/outline.png"] = FixtureHandler.ReadAllBytes("OutfitMod/outline.png"),
+        });
+
+        new MockInstaller().InstallMod(mod, fileModifier);
+
+        Assert.That(fileModifier.GetFile("assets/data_files/animation/player_asset_parts.json"),
+            new ContainsJsonConstraint(new JObject
+            {
+                ["example_hair"] = new JObject
+                {
+                    ["hair_back"] = "spr_example_hair_hair_back",
+                    ["hair_mid"] = "spr_example_hair_hair_mid",
+                },
+                ["example_glasses"] = new JObject
+                {
+                    ["face_gear"] = "spr_example_glasses_face_gear",
+                },
+                ["example_jacket"] = new JObject
+                {
+                    ["torso"] = "spr_example_jacket_torso",
+                    ["sleeve_left"] = "spr_example_jacket_sleeve_left",
+                    ["sleeve_right"] = "spr_example_jacket_sleeve_right",
+                },
+            }));
+
+        Assert.That(fileModifier.GetFile("assets/fiddle/player_assets.toml"),
+            new ContainsTomlConstraint(new TomlTable
+            {
+                ["example_hair"] = new TomlTable { ["lut"] = "spr_example_hair_lut", ["ui_slot"] = "hair" },
+                ["example_glasses"] = new TomlTable { ["lut"] = "spr_example_glasses_lut", ["ui_slot"] = "face_gear" },
+                ["example_jacket"] = new TomlTable { ["lut"] = "spr_example_jacket_lut", ["ui_slot"] = "top" },
+            }));
+    }
 }

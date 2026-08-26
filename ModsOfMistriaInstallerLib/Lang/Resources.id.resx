@@ -56,8 +56,8 @@
   <data name="GUIProfileName" xml:space="preserve"><value>Profil {0}</value></data>
   <data name="GUINewProfile" xml:space="preserve"><value>Profil Baru</value></data>
   <data name="GUIDeleteCurrentProfile" xml:space="preserve"><value>Hapus Profil Saat Ini</value></data>
-  <data name="GUIEnableAllMods" xml:space="preserve"><value>Aktifkan Semua Mod</value></data>
-  <data name="GUIDisableAllMods" xml:space="preserve"><value>Nonaktifkan Semua Mod</value></data>
+  <data name="GUIEnableAllMods" xml:space="preserve"><value>Pilih semua mod</value></data>
+  <data name="GUIDisableAllMods" xml:space="preserve"><value>Batalkan pilihan semua mod</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>Muat Ulang Daftar Mod</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>Simpan File Log</value></data>
   <data name="GUIUninstallButtonText" xml:space="preserve"><value>Copot Semua</value></data>
@@ -225,8 +225,8 @@ Buka halaman unduhan di browser?</value></data>
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>Mod yang dipilih menggunakan file tujuan yang sama. AIM akan menunjukkan cara setiap file ditangani:
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>Peringatan: Mod ini berisi kode GML lama tanpa hook yang dideklarasikan. Kompatibilitas dengan versi game saat ini tidak dapat diverifikasi; mod ini mungkin sudah usang dan dapat mencegah game dimulai atau menyebabkan crash. AIM tidak akan memblokirnya secara otomatis.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Mod yang dipilih mungkin menggunakan pintasan keyboard yang sama. Ini hanya peringatan; periksa pengaturannya jika diperlukan:
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>Mod ini berisi kode GML lama tanpa hook yang dideklarasikan. Kompatibilitas dengan versi game saat ini tidak dapat diverifikasi; mod ini mungkin sudah usang dan dapat mencegah game dimulai atau menyebabkan crash. AIM tidak akan memblokirnya secara otomatis.</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Mod yang dipilih mungkin menggunakan pintasan keyboard yang sama. Ini hanya peringatan; periksa pengaturannya di dalam game jika diperlukan:
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (mungkin dapat diubah)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Instalasi dihentikan: mod yang dipilih mengganti aset yang sama. Pilih hanya satu mod yang berkonflik.</value></data>
@@ -235,7 +235,7 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUIFileConflictLocalization" xml:space="preserve"><value>Metadata pelokalan bersama; mod ini mungkin dapat bekerja bersama, tetapi entri duplikat dapat ditimpa berdasarkan urutan pemuatan.</value></data>
   <data name="GUIFileConflictShared" xml:space="preserve"><value>Tujuan bersama; penanganannya bergantung pada jenis file.</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>Sudah terpasang.</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Peringatan: Mod ini berisi tanda kompatibilitas yang diketahui berasal dari sebelum versi 1.0.3. Mod ini mungkin sudah usang dan dapat mencegah game dimulai atau menyebabkan crash. AIM tidak akan memblokirnya secara otomatis.</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Mod ini berisi tanda kompatibilitas yang diketahui berasal dari sebelum versi 1.0.3. Mod ini mungkin sudah usang dan dapat mencegah game dimulai atau menyebabkan crash. AIM tidak akan memblokirnya secara otomatis.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Sudah terpasang</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Unduhan ini akan menggantikan mod yang sudah terpasang: {0}&#xD;&#xA;&#xD;&#xA;Ganti mod tersebut?</value></data>
@@ -286,12 +286,20 @@ Alihkan ke AIM?</value></data>
   <data name="GUISave" xml:space="preserve"><value>Simpan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Batal</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih — {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Cari mod…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>Hapus pencarian</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Pilih atau hapus pilihan semua mod</value></data>
   <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Sarankan urutan</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Urutkan mod agar setiap mod dimuat setelah mod yang dibutuhkannya, lalu tampilkan file yang digantikan oleh dua mod</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Urutkan mod agar setiap mod dimuat setelah mod yang dibutuhkannya</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Urutan pemuatan</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mod telah diurutkan ulang agar setiap mod dimuat setelah mod yang dibutuhkannya.</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Tidak ada yang perlu diubah: setiap mod sudah dimuat setelah dependensinya dan tidak ada dua mod yang mengganti file yang sama.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Tidak ada yang perlu diubah: setiap mod sudah dimuat setelah dependensinya.</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Periksa masalah</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>Pemeriksaan masalah</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>Tampilkan detail</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>Tutup</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>Informasi lebih lanjut tersedia di “Sarankan &amp; periksa”.</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>Salin laporan</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>Mod baru ditemukan di folder mod.</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>Buka halaman Nexus mod</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Buka folder mod</value></data>

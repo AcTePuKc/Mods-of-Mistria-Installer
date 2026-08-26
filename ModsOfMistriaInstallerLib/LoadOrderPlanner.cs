@@ -3,7 +3,11 @@ using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 namespace Garethp.ModsOfMistriaInstallerLib;
 
 /// <summary>One thing the planner did, or one thing it wants the user to decide.</summary>
-public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message);
+public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message)
+{
+    /// <summary>Exact destination paths involved in this note, when available.</summary>
+    public IReadOnlyList<string> Details { get; init; } = [];
+}
 
 public enum LoadOrderNoteKind
 {
@@ -17,7 +21,16 @@ public enum LoadOrderNoteKind
     CircularRequirement,
 
     /// <summary>A required mod is not in the list at all.</summary>
-    MissingRequirement
+    MissingRequirement,
+
+    /// <summary>Two selected GML mods contend for an exclusive hook.</summary>
+    HookConflict,
+
+    /// <summary>Two selected GML mods appear to use the same keyboard shortcut.</summary>
+    HotkeyConflict,
+
+    /// <summary>A selected mod has a known or generic compatibility warning.</summary>
+    CompatibilityWarning
 }
 
 public sealed record LoadOrderPlan(List<IMod> Order, List<LoadOrderNote> Notes)
@@ -256,21 +269,32 @@ public static class LoadOrderPlanner
 
         return conflicts
             .Where(conflict => conflict.Kind is ModFileConflictKind.HardReplacement or ModFileConflictKind.SharedDestination)
-            .Select(conflict => conflict.ModIds.Where(position.ContainsKey).ToList())
-            .Where(ids => ids.Count > 1)
+            .Select(conflict => new
+            {
+                Conflict = conflict,
+                ModIds = conflict.ModIds.Where(position.ContainsKey).ToList()
+            })
+            .Where(item => item.ModIds.Count > 1)
             // One note per set of mods, however many files they happen to share.
-            .GroupBy(ids => string.Join("|", ids.OrderBy(id => id, StringComparer.OrdinalIgnoreCase)),
+            .GroupBy(item => string.Join("|", item.ModIds.OrderBy(id => id, StringComparer.OrdinalIgnoreCase)),
                 StringComparer.OrdinalIgnoreCase)
             .Select(group =>
             {
-                var ids = group.First().OrderBy(id => position[id]).ToList();
+                var ids = group.First().ModIds.OrderBy(id => position[id]).ToList();
                 var winner = names[ids[^1]];
                 var others = string.Join(", ", ids[..^1].Select(id => $"\"{names[id]}\""));
                 var files = group.Count();
 
                 return new LoadOrderNote(LoadOrderNoteKind.FileConflict,
                     $"\"{winner}\" overrides {others} ({files} shared file{(files == 1 ? "" : "s")}). " +
-                    "Drag whichever should win to the bottom of that pair.");
+                    "Drag whichever should win to the bottom of that pair.")
+                {
+                    Details = group
+                        .Select(item => item.Conflict.Path)
+                        .Distinct(StringComparer.OrdinalIgnoreCase)
+                        .Order(StringComparer.OrdinalIgnoreCase)
+                        .ToList()
+                };
             })
             .ToList();
     }

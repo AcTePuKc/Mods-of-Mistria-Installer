@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.LoadOrderResultWindow"
+        Width="720"
+        Height="560"
+        MinWidth="520"
+        MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="18" RowDefinitions="Auto,* ,Auto">
+    <SelectableTextBlock x:Name="SummaryText" TextWrapping="Wrap" />
+    <ScrollViewer Grid.Row="1" MaxHeight="560" VerticalScrollBarVisibility="Auto">
+      <StackPanel x:Name="NotesPanel" Spacing="10" HorizontalAlignment="Stretch" />
+    </ScrollViewer>
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button x:Name="CopyButton" IsDefault="False" />
+      <Button x:Name="CloseButton" IsDefault="True" />
+    </StackPanel>
+  </Grid>
+</Window>

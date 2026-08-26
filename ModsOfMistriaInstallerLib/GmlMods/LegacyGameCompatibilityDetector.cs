@@ -9,14 +9,18 @@ namespace Garethp.ModsOfMistriaInstallerLib.GmlMods;
 /// </summary>
 public static class LegacyGameCompatibilityDetector
 {
-    private const string BulgarianLocalizationId = "actepukc.bulgarian_localization";
+    private static readonly string[] KnownGoodBulgarianLocalizationIds =
+    [
+        "actepukc.bulgarian_localization",
+        "bulgarian_localization_act"
+    ];
 
     public static IReadOnlyList<string> Find(IMod mod)
     {
         // The Bulgarian package carries compatibility assets and a hook of its
         // own. It is known-good for our current 1.0.3 test path and must not
         // become a false positive in its own installer.
-        if (mod.GetId().Equals(BulgarianLocalizationId, StringComparison.OrdinalIgnoreCase))
+        if (KnownGoodBulgarianLocalizationIds.Contains(mod.GetId(), StringComparer.OrdinalIgnoreCase))
             return [];
 
         var findings = new List<string>();

@@ -7,8 +7,8 @@
   <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Алтернативен инсталатор за Мистрия</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>Обнови списъка с модове</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>Запази лог файла</value></data>
-  <data name="GUIEnableAllMods" xml:space="preserve"><value>Включи всички модове</value></data>
-  <data name="GUIDisableAllMods" xml:space="preserve"><value>Изключи всички модове</value></data>
+  <data name="GUIEnableAllMods" xml:space="preserve"><value>Избери всички модове</value></data>
+  <data name="GUIDisableAllMods" xml:space="preserve"><value>Премахни избора на всички модове</value></data>
   <data name="GUIUninstallButtonText" xml:space="preserve"><value>Деинсталирай всички</value></data>
   <data name="GUIFieldsOfMistriaDetectedLocation" xml:space="preserve"><value>Fields of Mistria е открита в: </value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>Играй</value></data>
@@ -104,8 +104,8 @@
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>Избраните модове споделят едни и същи файлове. AIM показва как се обработва всеки от тях:
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>Внимание: Този мод съдържа стар GML код без декларирани hook-ове. Съвместимостта с текущата версия на играта не може да бъде потвърдена; модът може да е остарял и да попречи на играта да стартира или да причини срив. AIM няма да го блокира автоматично.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Избраните модове може да използват един и същ клавиш. Това е само предупреждение; при нужда провери настройките им:
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>Този мод съдържа стар GML код без декларирани hook-ове. Съвместимостта с текущата версия на играта не може да бъде потвърдена; модът може да е остарял и да попречи на играта да стартира или да причини срив. AIM няма да го блокира автоматично.</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Избраните модове може да използват един и същ клавиш. Това е само предупреждение; при нужда провери настройките им в играта:
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (може да се пренастрои)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Инсталацията е спряна: избраните модове заменят един и същ ресурс. Оставете избран само един от конфликтните модове.</value></data>
@@ -235,7 +235,7 @@
   <data name="CoreInstallSummary" xml:space="preserve"><value>Инсталирани модове: {0}</value></data>
   <data name="CoreInstallSummaryWithSkipped" xml:space="preserve"><value>Инсталирани модове: {0}; пропуснати: {1}</value></data>
   <data name="GUILanguagePolish" xml:space="preserve"><value>Полски</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Внимание: Този мод съдържа познат признак за съвместимост от преди версия 1.0.3. Може да е остарял и да попречи на играта да стартира или да причини срив. AIM няма да го блокира автоматично.</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Този мод съдържа познат признак за съвместимост от преди версия 1.0.3. Може да е остарял и да попречи на играта да стартира или да причини срив. AIM няма да го блокира автоматично.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Вече е инсталиран</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Това изтегляне ще замени вече инсталирани модове: {0}&#xD;&#xA;&#xD;&#xA;Да ги заменя ли?</value></data>
@@ -286,12 +286,20 @@
   <data name="GUISave" xml:space="preserve"><value>Запази</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Отказ</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода — {2} вече са в играта, {3} ще бъдат добавени</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Търси модове…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>Изчисти търсенето</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Избери или изчисти всички модове</value></data>
-  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Предложи подреждане</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Подреди модовете така, че всеки да се зарежда след модовете, от които зависи, и покажи файловете, които два мода заменят едновременно</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Предложи ред</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Подреди модовете така, че всеки да се зарежда след модовете, от които зависи</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ред на зареждане</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Модовете са подредени така, че всеки да се зарежда след модовете, от които зависи.</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Няма какво да се променя: всеки мод се зарежда след необходимите му модове и няма два мода, които заменят един и същ файл.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Няма какво да се променя: всеки мод се зарежда след необходимите му модове.</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Провери проблеми</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>Проверка за проблеми</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>Покажи подробности</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>Затвори</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>Повече информация има в „Предложи и провери“.</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>Копирай отчета</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>В папката с модове са открити нови модове.</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>Отвори Nexus страницата на мода</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Отвори папката на мода</value></data>

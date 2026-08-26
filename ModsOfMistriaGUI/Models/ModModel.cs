@@ -124,6 +124,7 @@ public partial class ModModel : ObservableObject
             OnPropertyChanged(nameof(HasDuplicateWarning));
             OnPropertyChanged(nameof(InWarning));
             OnPropertyChanged(nameof(Warnings));
+            OnPropertyChanged(nameof(WarningTooltip));
             OnPropertyChanged(nameof(ShowPlainRow));
             OnPropertyChanged(nameof(ShowStatusRow));
         }
@@ -135,7 +136,11 @@ public partial class ModModel : ObservableObject
     // selection and are shown only for enabled mods.
     public bool HasConflictWarning =>
         (Enabled && _conflictWarnings.Count > 0) || _compatibilityWarnings.Count > 0;
-    public bool InWarning => Mod.GetValidation().Status == ValidationStatus.Warning || HasDuplicateWarning || HasConflictWarning;
+    public bool HasInlineWarning =>
+        Mod.GetValidation().Warnings.Any(w => !string.IsNullOrWhiteSpace(w.Message))
+        || HasDuplicateWarning
+        || _compatibilityWarnings.Count > 0;
+    public bool InWarning => HasInlineWarning || HasConflictWarning;
     public bool InError   => Mod.GetValidation().Status == ValidationStatus.Invalid;
     public bool IsValid   => Mod.GetValidation().Status == ValidationStatus.Valid;
 
@@ -154,9 +159,30 @@ public partial class ModModel : ObservableObject
                     }));
                 warnings.Add(string.Format(Texts.GUIModDuplicateCopies, copies));
             }
-            warnings.AddRange(_conflictWarnings);
             warnings.AddRange(_compatibilityWarnings);
+            // A warning status without a message must never create an empty
+            // status expander. Keep the status visible, but provide a useful
+            // fallback instead of rendering a blank panel.
+            if (warnings.Count == 0 && Mod.GetValidation().Status == ValidationStatus.Warning)
+                warnings.Add(Texts.GUIModHasWarnings);
             return string.Join("\r\n", warnings);
+        }
+    }
+    public string ConflictWarnings => string.Join("\r\n", _conflictWarnings);
+
+    /// <summary>
+    /// The main list intentionally keeps warnings out of an expanded panel.
+    /// Every warning source therefore feeds one hover tooltip: validation,
+    /// duplicate copies, game compatibility, and selected-mod conflicts.
+    /// </summary>
+    public string WarningTooltip
+    {
+        get
+        {
+            var messages = new List<string>();
+            if (!string.IsNullOrWhiteSpace(Warnings)) messages.Add(Warnings);
+            messages.AddRange(_conflictWarnings.Where(message => !string.IsNullOrWhiteSpace(message)));
+            return messages.Count == 0 ? Texts.GUIModHasWarnings : string.Join("\r\n\r\n", messages);
         }
     }
     public string Errors   => string.Join("\r\n", Mod.GetValidation().Errors.Select(w => w.Message));
@@ -166,8 +192,11 @@ public partial class ModModel : ObservableObject
         _duplicateCopies = copies;
         OnPropertyChanged(nameof(HasDuplicateWarning));
         OnPropertyChanged(nameof(HasConflictWarning));
+        OnPropertyChanged(nameof(HasInlineWarning));
         OnPropertyChanged(nameof(InWarning));
         OnPropertyChanged(nameof(Warnings));
+        OnPropertyChanged(nameof(ConflictWarnings));
+        OnPropertyChanged(nameof(WarningTooltip));
         OnPropertyChanged(nameof(ShowPlainRow));
         OnPropertyChanged(nameof(ShowStatusRow));
     }
@@ -176,8 +205,11 @@ public partial class ModModel : ObservableObject
     {
         _conflictWarnings = warnings;
         OnPropertyChanged(nameof(HasConflictWarning));
+        OnPropertyChanged(nameof(HasInlineWarning));
         OnPropertyChanged(nameof(InWarning));
         OnPropertyChanged(nameof(Warnings));
+        OnPropertyChanged(nameof(ConflictWarnings));
+        OnPropertyChanged(nameof(WarningTooltip));
         OnPropertyChanged(nameof(ShowPlainRow));
         OnPropertyChanged(nameof(ShowStatusRow));
     }
@@ -186,8 +218,10 @@ public partial class ModModel : ObservableObject
     {
         _compatibilityWarnings = warnings;
         OnPropertyChanged(nameof(HasConflictWarning));
+        OnPropertyChanged(nameof(HasInlineWarning));
         OnPropertyChanged(nameof(InWarning));
         OnPropertyChanged(nameof(Warnings));
+        OnPropertyChanged(nameof(WarningTooltip));
         OnPropertyChanged(nameof(ShowPlainRow));
         OnPropertyChanged(nameof(ShowStatusRow));
     }
@@ -207,15 +241,17 @@ public partial class ModModel : ObservableObject
     public bool WasSkipped        => _installState == ModInstallState.Skipped;
     public bool WasFailed         => _installState == ModInstallState.Failed;
     public bool HasInstallOutcome => _installState != ModInstallState.None;
+    public bool ShowInstallDetail => HasInstallOutcome && !WasAlreadyInstalled;
 
     // A skipped mod's reasons also land as validation errors; the red X and
     // InstallDetail already carry them, so the error triangle and error text
     // stand down while the skip is showing
     public bool ShowErrorIcon => InError && !WasSkipped;
 
-    // The plain checkbox row is for a valid mod with nothing to report; any
-    // validation message or install outcome swaps in the expander
-    public bool ShowPlainRow  => IsValid && !HasInstallOutcome && !HasDuplicateWarning && !InWarning;
+    // Warnings and successful installs are deliberately compact: their full
+    // detail lives in an icon tooltip or the conflict report. The expandable
+    // row is reserved for an error that needs the user's immediate attention.
+    public bool ShowPlainRow  => !InError && !WasSkipped && !WasFailed;
     public bool ShowStatusRow => !ShowPlainRow;
 
     public void SetInstallOutcome(ModInstallState state, string detail = "")
@@ -229,6 +265,7 @@ public partial class ModModel : ObservableObject
         OnPropertyChanged(nameof(WasSkipped));
         OnPropertyChanged(nameof(WasFailed));
         OnPropertyChanged(nameof(HasInstallOutcome));
+        OnPropertyChanged(nameof(ShowInstallDetail));
         OnPropertyChanged(nameof(InstallDetail));
         OnPropertyChanged(nameof(ShowErrorIcon));
         OnPropertyChanged(nameof(ShowPlainRow));
@@ -268,6 +305,7 @@ public partial class ModModel : ObservableObject
         OnPropertyChanged(nameof(InError));
         OnPropertyChanged(nameof(IsValid));
         OnPropertyChanged(nameof(Warnings));
+        OnPropertyChanged(nameof(WarningTooltip));
         OnPropertyChanged(nameof(Errors));
         OnPropertyChanged(nameof(Enabled));
         OnPropertyChanged(nameof(ShowErrorIcon));
@@ -275,7 +313,11 @@ public partial class ModModel : ObservableObject
         OnPropertyChanged(nameof(ShowStatusRow));
     }
 
-    public bool NeedsLocalizedValidation => InError || InWarning;
+    // Only validation messages are rebuilt on a language switch. Conflict and
+    // compatibility messages are regenerated by the background conflict pass;
+    // treating every selected conflict as a validation target used to reopen
+    // almost every archive and could stall the UI with a large mod list.
+    public bool NeedsLocalizedValidation => Mod.GetValidation().Status != ValidationStatus.Valid;
 
     public void RefreshLocalizedText()
     {
@@ -296,8 +338,17 @@ public partial class ModModel : ObservableObject
         // measure and arrange every row repeatedly.
         OnPropertyChanged(nameof(Full));
         OnPropertyChanged(nameof(Description));
-        OnPropertyChanged(nameof(UpdateTooltip));
-        OnPropertyChanged(nameof(Warnings));
+        if (UpdateAvailable)
+            OnPropertyChanged(nameof(UpdateTooltip));
+
+        // Duplicate and validation tooltip text is localized here. Conflict
+        // and compatibility tooltip text is refreshed by the background pass
+        // that owns those warning sources.
+        if (HasDuplicateWarning || NeedsLocalizedValidation)
+        {
+            OnPropertyChanged(nameof(Warnings));
+            OnPropertyChanged(nameof(WarningTooltip));
+        }
     }
 
     public void RevalidateForLocalization()

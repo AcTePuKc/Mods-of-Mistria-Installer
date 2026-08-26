@@ -369,8 +369,8 @@
     <value>Selected mods share destination files. AIM will classify how each one is handled:
 {0}</value>
   </data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>Warning: This mod contains legacy GML code without declared hooks. Compatibility with the current game version cannot be verified; it may be outdated and could prevent the game from starting or cause a crash. AIM will not block it automatically.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>These selected mods may use the same keyboard shortcut. This is only a warning; check their settings if needed:
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>This mod contains legacy GML code without declared hooks. Compatibility with the current game version cannot be verified; it may be outdated and could prevent the game from starting or cause a crash. AIM will not block it automatically.</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>These selected mods may use the same keyboard shortcut. This is only a warning; check their in-game settings if needed:
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (may be rebindable)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Installation stopped: selected mods replace the same asset. Keep only one of the conflicting mods selected.</value></data>
@@ -427,10 +427,10 @@
     <value>Pick a location for the log file</value>
   </data>
   <data name="GUIEnableAllMods" xml:space="preserve">
-    <value>Enable All Mods</value>
+    <value>Select All Mods</value>
   </data>
   <data name="GUIDisableAllMods" xml:space="preserve">
-    <value>Disable All Mods</value>
+    <value>Deselect All Mods</value>
   </data>
   <data name="GUIReloadModlist" xml:space="preserve">
     <value>Reload mod list</value>
@@ -644,7 +644,7 @@ Open download page(s) in browser?</value></data>
   <data name="GUILocationModsDetected" xml:space="preserve"><value>Mods folder detected.</value></data>
   <data name="GUIPreparingGmlLayer" xml:space="preserve"><value>Preparing GML layer</value></data>
   <data name="GUILanguagePolish" xml:space="preserve"><value>Polski</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Warning: This mod contains a known pre-1.0.3 compatibility signature. It may be outdated and could prevent the game from starting or cause a crash. AIM will not block it automatically.</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>This mod contains a known pre-1.0.3 compatibility signature. It may be outdated and could prevent the game from starting or cause a crash. AIM will not block it automatically.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusMenu" xml:space="preserve"><value>Nexus downloads</value></data>
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMD links</value></data>
@@ -691,12 +691,20 @@ Open download page(s) in browser?</value></data>
   <data name="GUISave" xml:space="preserve"><value>Save</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Cancel</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} of {1} selected — {2} already in the game, {3} will be added</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Search mods…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>Clear search</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Select or clear every mod</value></data>
   <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Suggest order</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Order mods so each one loads after the mods it requires, and report files that two mods both replace</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Order mods so each one loads after the mods it requires</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Load order</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mods were reordered so each one loads after the mods it requires.</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nothing to change: every mod already loads after the mods it requires, and no two mods replace the same file.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nothing to change: every mod already loads after the mods it requires.</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Check issues</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>Issue check</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>Show details</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>Close</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>More information is available in Suggest &amp; check.</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>Copy report</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>New mods were found in the mods folder.</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>Open the mod's Nexus page</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Open the mod's folder</value></data>

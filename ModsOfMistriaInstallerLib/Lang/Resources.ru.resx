@@ -56,8 +56,8 @@
   <data name="GUIProfileName" xml:space="preserve"><value>Профиль {0}</value></data>
   <data name="GUINewProfile" xml:space="preserve"><value>Новый профиль</value></data>
   <data name="GUIDeleteCurrentProfile" xml:space="preserve"><value>Удалить текущий профиль</value></data>
-  <data name="GUIEnableAllMods" xml:space="preserve"><value>Включить все моды</value></data>
-  <data name="GUIDisableAllMods" xml:space="preserve"><value>Отключить все моды</value></data>
+  <data name="GUIEnableAllMods" xml:space="preserve"><value>Выбрать все моды</value></data>
+  <data name="GUIDisableAllMods" xml:space="preserve"><value>Снять выбор со всех модов</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>Обновить список модов</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>Сохранить файл журнала (лог)</value></data>
   <data name="GUIUninstallButtonText" xml:space="preserve"><value>Удалить все</value></data>
@@ -225,8 +225,8 @@
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>Выбранные моды используют одни и те же целевые файлы. AIM покажет способ обработки каждого из них:
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>Внимание: этот мод содержит устаревший код GML без объявленных хуков. Совместимость с текущей версией игры невозможно проверить; мод может быть устаревшим, помешать запуску игры или вызвать сбой. AIM не будет блокировать его автоматически.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Эти выбранные моды могут использовать одну и ту же клавиатурную комбинацию. Это только предупреждение; при необходимости проверьте их настройки:
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>Этот мод содержит устаревший код GML без объявленных хуков. Совместимость с текущей версией игры невозможно проверить; мод может быть устаревшим, помешать запуску игры или вызвать сбой. AIM не будет блокировать его автоматически.</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Эти выбранные моды могут использовать одну и ту же клавиатурную комбинацию. Это только предупреждение; при необходимости проверьте их настройки в игре:
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (возможно, можно переназначить)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Установка остановлена: выбранные моды заменяют один и тот же ресурс. Оставьте выбранным только один конфликтующий мод.</value></data>
@@ -235,7 +235,7 @@
   <data name="GUIFileConflictLocalization" xml:space="preserve"><value>Общие метаданные локализации; эти моды могут работать вместе, но дублирующиеся записи могут быть перезаписаны в соответствии с порядком загрузки.</value></data>
   <data name="GUIFileConflictShared" xml:space="preserve"><value>Общее назначение; способ обработки зависит от типа файла.</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>Уже установлено.</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Внимание: этот мод содержит известный признак совместимости, относящийся к версии до 1.0.3. Мод может быть устаревшим, помешать запуску игры или вызвать сбой. AIM не будет блокировать его автоматически.</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Этот мод содержит известный признак совместимости, относящийся к версии до 1.0.3. Мод может быть устаревшим, помешать запуску игры или вызвать сбой. AIM не будет блокировать его автоматически.</value></data>
  <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Уже установлено</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Эта загрузка заменит уже установленные моды: {0}&#xD;&#xA;&#xD;&#xA;Заменить их?</value></data>
@@ -286,12 +286,20 @@
   <data name="GUISave" xml:space="preserve"><value>Сохранить</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Отмена</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>Выбрано {0} из {1} — {2} уже в игре, будет добавлено: {3}</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Поиск модов…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>Очистить поиск</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Выбрать или снять выбор со всех модов</value></data>
   <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Предложить порядок</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Упорядочить моды так, чтобы каждый загружался после необходимых ему модов, и показать файлы, которые заменяют два мода</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Упорядочить моды так, чтобы каждый загружался после необходимых ему модов</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Порядок загрузки</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Моды перестроены так, чтобы каждый загружался после необходимых ему модов.</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Нечего менять: каждый мод загружается после необходимых модов, и два мода не заменяют один и тот же файл.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Нечего менять: каждый мод загружается после необходимых модов.</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Проверить проблемы</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>Проверка проблем</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>Показать подробности</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>Подробнее см. в разделе «Предложить и проверить».</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>Копировать отчёт</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>В папке модов найдены новые моды.</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>Открыть страницу мода на Nexus</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Открыть папку мода</value></data>

@@ -56,11 +56,27 @@ public partial class ModlistPageView : UserControl
             cb.SelectedItem = vm.CurrentProfile;
     }
 
+    // The header checkbox is a visual summary (checked / unchecked / mixed), not
+    // a two-way boolean setting. Route its click through the same commands as the
+    // Cog menu so both entry points always change the complete selection alike.
+    private void ToggleAllModsClick(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ModlistPageViewModel vm || !vm.CanChangeModSelection)
+            return;
+
+        if (vm.AllModsSelected == true)
+            vm.DisableAllModsCommand.Execute(null);
+        else
+            vm.EnableAllModsCommand.Execute(null);
+
+        e.Handled = true;
+    }
+
     private void OnModDragGripPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (sender is not Control grip || grip.DataContext is not ModModel mod) return;
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
-        if (DataContext is not ModlistPageViewModel { CanReorderMods: true }) return;
+        if (DataContext is not ModlistPageViewModel { CanDragReorderMods: true }) return;
 
         var data = new DataObject();
         data.Set(ModDragDataFormat, DuplicateModDetector.NormalizeSource(mod.Mod.GetSourcePath()));
@@ -85,7 +101,7 @@ public partial class ModlistPageView : UserControl
     {
         if (sender is not Grid target) return;
 
-        if (DataContext is not ModlistPageViewModel { CanReorderMods: true })
+        if (DataContext is not ModlistPageViewModel { CanDragReorderMods: true })
         {
             e.DragEffects = DragDropEffects.None;
             e.Handled = true;
@@ -120,7 +136,7 @@ public partial class ModlistPageView : UserControl
     {
         StopDragAutoScroll();
         if (sender is not Grid target || target.DataContext is not ModModel targetMod) return;
-        if (DataContext is not ModlistPageViewModel { CanReorderMods: true } vm) return;
+        if (DataContext is not ModlistPageViewModel { CanDragReorderMods: true } vm) return;
         if (e.Data.Get(ModDragDataFormat) is not string draggedSource) return;
 
         var draggedMod = vm.Mods.FirstOrDefault(mod =>

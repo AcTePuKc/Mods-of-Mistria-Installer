@@ -57,8 +57,8 @@
   <data name="GUIProfileName" xml:space="preserve"><value>配置文件 {0}</value></data>
   <data name="GUINewProfile" xml:space="preserve"><value>新建配置文件</value></data>
   <data name="GUIDeleteCurrentProfile" xml:space="preserve"><value>删除当前配置文件</value></data>
-  <data name="GUIEnableAllMods" xml:space="preserve"><value>启用所有模组</value></data>
-  <data name="GUIDisableAllMods" xml:space="preserve"><value>禁用所有模组</value></data>
+  <data name="GUIEnableAllMods" xml:space="preserve"><value>选择所有模组</value></data>
+  <data name="GUIDisableAllMods" xml:space="preserve"><value>取消选择所有模组</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>重新加载模组列表</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>保存日志文件</value></data>
   <data name="GUIUninstallButtonText" xml:space="preserve"><value>卸载全部</value></data>
@@ -225,8 +225,8 @@
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>选中的模组使用了相同的目标文件。AIM 将显示每个文件的处理方式：
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>警告：此模组包含未声明钩子的旧版 GML 代码。无法验证它与当前游戏版本的兼容性；它可能已经过时，可能导致游戏无法启动或崩溃。AIM 不会自动阻止它。</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>这些选中的模组可能使用相同的键盘快捷键。这只是警告；如有需要，请检查它们的设置：
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>此模组包含未声明钩子的旧版 GML 代码。无法验证它与当前游戏版本的兼容性；它可能已经过时，可能导致游戏无法启动或崩溃。AIM 不会自动阻止它。</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>这些选中的模组可能使用相同的键盘快捷键。这只是警告；如有需要，请在游戏内检查它们的设置：
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value>（可能可以重新绑定）</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>安装已停止：选中的模组会替换同一资源。请只选择一个冲突的模组。</value></data>
@@ -235,7 +235,7 @@
   <data name="GUIFileConflictLocalization" xml:space="preserve"><value>共享的本地化元数据；这些模组可能可以一起运行，但重复条目可能根据加载顺序被覆盖。</value></data>
   <data name="GUIFileConflictShared" xml:space="preserve"><value>共享目标；处理方式取决于文件类型。</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>已安装。</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>警告：此模组包含已知的 1.0.3 之前版本兼容性特征。它可能已经过时，可能导致游戏无法启动或崩溃。AIM 不会自动阻止它。</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>此模组包含已知的 1.0.3 之前版本兼容性特征。它可能已经过时，可能导致游戏无法启动或崩溃。AIM 不会自动阻止它。</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>已安装</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>此下载将替换已安装的模组：{0}&#xD;&#xA;&#xD;&#xA;要替换它们吗？</value></data>
@@ -286,12 +286,20 @@
   <data name="GUISave" xml:space="preserve"><value>保存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>取消</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>已选择 {0}/{1} 个 — {2} 个已在游戏中，{3} 个将被添加</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>搜索模组…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>清除搜索</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>选择或取消选择所有模组</value></data>
-  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>建议加载顺序</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>按依赖关系排列模组，并报告两个模组同时替换的文件</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>建议顺序</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>按依赖关系排列模组</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>加载顺序</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>已重新排列模组，使每个模组都在其依赖项之后加载。</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>无需更改：所有模组都在其依赖项之后加载，也没有两个模组替换同一个文件。</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>无需更改：所有模组都在其依赖项之后加载。</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>检查问题</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>问题检查</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>显示详细信息</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>关闭</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>更多信息请参见“建议并检查”。</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>复制报告</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>在模组文件夹中发现了新模组。</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>打开模组的 Nexus 页面</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>打开模组文件夹</value></data>

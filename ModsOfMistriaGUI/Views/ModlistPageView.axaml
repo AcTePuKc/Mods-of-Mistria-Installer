@@ -177,15 +177,30 @@
                         </ItemsControl>
                     </StackPanel>
                 </Border>
+                <!-- Local filtering only: it searches already discovered metadata and
+                     deliberately never performs archive or Nexus work while typing. -->
+                <Grid ColumnDefinitions="*,Auto" Margin="0 10 0 0">
+                    <TextBox Grid.Column="0"
+                             Text="{Binding ModSearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Watermark="{Binding Texts.GUIModSearch}"
+                             IsEnabled="{Binding !IsInstalling}" />
+                    <Button Grid.Column="1"
+                            Margin="6 0 0 0"
+                            Padding="8 2"
+                            Content="×"
+                            IsVisible="{Binding HasModSearch}"
+                            ToolTip.Tip="{Binding Texts.GUIClearModSearch}"
+                            Command="{Binding ClearModSearchCommand}" />
+                </Grid>
                 <!-- List header: select everything at once, see what the selection means, and ask
                      for a load order that satisfies the mods' declared requirements. -->
-                <Grid ColumnDefinitions="Auto,*,Auto" Margin="0 12 0 2">
+                <Grid ColumnDefinitions="Auto,*,Auto,Auto" Margin="0 12 0 2">
                     <CheckBox Grid.Column="0"
                               Margin="0 0 4 0"
                               IsThreeState="True"
                               IsChecked="{Binding AllModsSelected, Mode=OneWay}"
                               IsEnabled="{Binding CanChangeModSelection}"
-                              Command="{Binding ToggleAllModsCommand}"
+                              Click="ToggleAllModsClick"
                               ToolTip.Tip="{Binding Texts.GUIToggleAllMods}" />
 
                     <TextBlock Grid.Column="1"
@@ -199,6 +214,12 @@
                             Content="{Binding Texts.GUISuggestLoadOrder}"
                             ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
                             Command="{Binding SuggestLoadOrderCommand}" />
+                    <Button Grid.Column="3"
+                            Margin="8 0 0 0"
+                            Padding="8 2"
+                            Content="{Binding Texts.GUIReportConflicts}"
+                            ToolTip.Tip="{Binding Texts.GUIReportConflicts}"
+                            Command="{Binding ReportConflictsCommand}" />
                 </Grid>
             </StackPanel>
 
@@ -209,7 +230,7 @@
                               Margin="0 5 0 0"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled">
-                    <ItemsRepeater ItemsSource="{Binding Mods}" x:Name="ModRepeater">
+                    <ItemsRepeater ItemsSource="{Binding FilteredMods}" x:Name="ModRepeater">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="22,24,*,Auto"
@@ -270,7 +291,7 @@
                                             Margin="0 0 4 0"
                                             VerticalAlignment="Stretch"
                                             Cursor="SizeAll"
-                                            IsEnabled="{Binding $parent[ItemsRepeater].DataContext.CanReorderMods}"
+                                            IsEnabled="{Binding $parent[ItemsRepeater].DataContext.CanDragReorderMods}"
                                             PointerPressed="OnModDragGripPointerPressed">
                                         <TextBlock Text="⠿"
                                                    FontSize="16"

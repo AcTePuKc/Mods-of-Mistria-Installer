@@ -391,10 +391,10 @@
     <value>Choisissez un emplacement pour le fichier de logs</value>
   </data>
   <data name="GUIEnableAllMods" xml:space="preserve">
-    <value>Activer Tous Les Mods</value>
+    <value>Sélectionner tous les mods</value>
   </data>
   <data name="GUIDisableAllMods" xml:space="preserve">
-    <value>Désactiver Tous Les Mods</value>
+    <value>Désélectionner tous les mods</value>
   </data>
   <data name="GUIReloadModlist" xml:space="preserve">
     <value>Rafraichir la liste des mods</value>
@@ -553,8 +553,8 @@ Ouvrir les pages de téléchargement dans le navigateur ?</value></data>
 {0}</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>Les mods sélectionnés utilisent les mêmes fichiers de destination. AIM indiquera comment chacun est traité :
 {0}</value></data>
-  <data name="GUIModLegacyGml" xml:space="preserve"><value>Avertissement : ce mod contient du code GML ancien sans hooks déclarés. Sa compatibilité avec la version actuelle du jeu ne peut pas être vérifiée ; il est peut-être obsolète et peut empêcher le jeu de démarrer ou provoquer un crash. AIM ne le bloquera pas automatiquement.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Ces mods sélectionnés utilisent peut-être le même raccourci clavier. Ceci est seulement un avertissement ; vérifiez leurs paramètres si nécessaire :
+  <data name="GUIModLegacyGml" xml:space="preserve"><value>Ce mod contient du code GML ancien sans hooks déclarés. Sa compatibilité avec la version actuelle du jeu ne peut pas être vérifiée ; il est peut-être obsolète et peut empêcher le jeu de démarrer ou provoquer un crash. AIM ne le bloquera pas automatiquement.</value></data>
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Ces mods sélectionnés utilisent peut-être le même raccourci clavier. Ceci est seulement un avertissement ; vérifiez leurs paramètres en jeu si nécessaire :
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (peut-être reconfigurable)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Installation arrêtée : les mods sélectionnés remplacent le même asset. Ne laissez qu'un seul des mods en conflit sélectionné.</value></data>
@@ -563,7 +563,7 @@ Ouvrir les pages de téléchargement dans le navigateur ?</value></data>
   <data name="GUIFileConflictLocalization" xml:space="preserve"><value>Métadonnées de localisation partagées ; ces mods peuvent fonctionner ensemble, mais les entrées en double peuvent être remplacées selon l'ordre de chargement.</value></data>
   <data name="GUIFileConflictShared" xml:space="preserve"><value>Destination partagée ; le traitement dépend du type de fichier.</value></data>
   <data name="GUIModAlreadyInstalled" xml:space="preserve"><value>Déjà installé.</value></data>
- <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Avertissement : ce mod contient une signature de compatibilité connue antérieure à la version 1.0.3. Il est peut-être obsolète et peut empêcher le jeu de démarrer ou provoquer un crash. AIM ne le bloquera pas automatiquement.</value></data>
+ <data name="GUIModLegacyGamePatch" xml:space="preserve"><value>Ce mod contient une signature de compatibilité connue antérieure à la version 1.0.3. Il est peut-être obsolète et peut empêcher le jeu de démarrer ou provoquer un crash. AIM ne le bloquera pas automatiquement.</value></data>
   <data name="GUIModLegacyGamePatchError" xml:space="preserve"><value>Installation blocked: this mod contains a known pre-1.0.3 compatibility signature. It may break the game on the current version. Update the mod or use a version compatible with the current game.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Déjà installé</value></data>
   <data name="GUINexusAlreadyInstalledMessage" xml:space="preserve"><value>Ce téléchargement remplacera les mods déjà installés : {0}&#xD;&#xA;&#xD;&#xA;Les remplacer ?</value></data>
@@ -614,12 +614,20 @@ Les confier à AIM ?</value></data>
   <data name="GUISave" xml:space="preserve"><value>Enregistrer</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Annuler</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} sur {1} sélectionnés — {2} déjà dans le jeu, {3} seront ajoutés</value></data>
+  <data name="GUIModSearch" xml:space="preserve"><value>Rechercher des mods…</value></data>
+  <data name="GUIClearModSearch" xml:space="preserve"><value>Effacer la recherche</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Sélectionner ou désélectionner tous les mods</value></data>
   <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Suggérer l’ordre</value></data>
-  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Ordonner les mods pour que chacun soit chargé après ceux dont il dépend et signaler les fichiers remplacés par deux mods</value></data>
+  <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Ordonner les mods pour que chacun soit chargé après ceux dont il dépend</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ordre de chargement</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Les mods ont été réordonnés afin que chacun soit chargé après ceux dont il dépend.</value></data>
-  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Rien à modifier : chaque mod est chargé après ses dépendances et aucun ne remplace le même fichier qu’un autre.</value></data>
+  <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Rien à modifier : chaque mod est chargé après ses dépendances.</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Vérifier les problèmes</value></data>
+  <data name="GUIConflictReportTitle" xml:space="preserve"><value>Vérification des problèmes</value></data>
+  <data name="GUIShowDetails" xml:space="preserve"><value>Afficher les détails</value></data>
+  <data name="GUIClose" xml:space="preserve"><value>Fermer</value></data>
+  <data name="GUIConflictDetailsHint" xml:space="preserve"><value>Plus d’informations sont disponibles dans « Suggérer et vérifier ».</value></data>
+  <data name="GUICopyReport" xml:space="preserve"><value>Copier le rapport</value></data>
   <data name="GUIModsFolderChanged" xml:space="preserve"><value>De nouveaux mods ont été trouvés dans le dossier des mods.</value></data>
   <data name="GUIOpenNexusPage" xml:space="preserve"><value>Ouvrir la page Nexus du mod</value></data>
   <data name="GUIOpenModFolder" xml:space="preserve"><value>Ouvrir le dossier du mod</value></data>

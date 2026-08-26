@@ -10,6 +10,7 @@ using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.Views;
 using Garethp.ModsOfMistriaInstallerLib;
+using Garethp.ModsOfMistriaInstallerLib.Generator;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
@@ -32,6 +33,7 @@ public partial class ModlistPageViewModel : PageViewBase
     private ProfileManager? _profileManager;
     private int _localizationRefreshVersion;
     private int _conflictRefreshVersion;
+    private int _bulkSelectionChangeDepth;
 
     // True when in-GUI state differs from what is saved in the current profile
     private bool _isDirty;
@@ -67,7 +69,13 @@ public partial class ModlistPageViewModel : PageViewBase
         {
             if (e.PropertyName == nameof(Settings.LaunchGameDirectly))
                 OnPropertyChanged(nameof(LaunchGameDirectly));
-            Task.Run(UpdateModlist);
+
+            // A language or preference change must not rediscover every mod.
+            // Rebuilding the list opens archives and can make the window look
+            // unresponsive, while only a different game/mods folder actually
+            // changes the list's source data.
+            if (e.PropertyName is nameof(Settings.MistriaLocation) or nameof(Settings.ModsLocation))
+                Task.Run(UpdateModlist);
         };
         Task.Run(UpdateModlist);
     }
@@ -103,7 +111,12 @@ public partial class ModlistPageViewModel : PageViewBase
         var modelRefreshStopwatch = Stopwatch.StartNew();
         foreach (var model in Mods)
             model.RefreshLocalizedText();
+        RefreshFilteredMods();
         PerformanceDiagnostics.Log($"Language refresh: mod row notifications={modelRefreshStopwatch.ElapsedMilliseconds} ms, mods={Mods.Count}");
+
+        // Conflict and compatibility strings are localized too, but their
+        // source scans remain off the UI thread.
+        RefreshSelectedModConflicts();
 
         var uiRefreshMilliseconds = stopwatch.ElapsedMilliseconds;
         if (modsNeedingValidation.Count == 0)
@@ -275,6 +288,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
             Mods.Clear();
             foreach (var m in newModels) Mods.Add(m);
+            RefreshFilteredMods();
         }
         finally
         {
@@ -306,6 +320,7 @@ public partial class ModlistPageViewModel : PageViewBase
         Mods.RemoveAt(sourceIndex);
         Mods.Insert(destinationIndex, draggedMod);
         RefreshPositions();
+        RefreshFilteredMods();
         _isDirty = true;
     }
 
@@ -396,10 +411,14 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         get
         {
-            if (Mods.Count == 0) return false;
-            var selected = Mods.Count(mod => mod.Enabled);
+            // Invalid mods cannot be enabled (ModModel.Enabled deliberately
+            // returns false for them), so they must not prevent the header
+            // checkbox from reaching its checked state for every selectable mod.
+            var selectable = Mods.Where(mod => !mod.InError).ToList();
+            if (selectable.Count == 0) return false;
+            var selected = selectable.Count(mod => mod.Enabled);
             if (selected == 0) return false;
-            return selected == Mods.Count ? true : null;
+            return selected == selectable.Count ? true : null;
         }
     }
 
@@ -611,6 +630,8 @@ public partial class ModlistPageViewModel : PageViewBase
                 Mods.Add(model);
             }
 
+            RefreshFilteredMods();
+
             RefreshProfileList();
             _isDirty = false;
             _updateService = null;
@@ -637,6 +658,10 @@ public partial class ModlistPageViewModel : PageViewBase
         model.PropertyChanged += async (sender, e) =>
         {
             if (e.PropertyName != nameof(ModModel.Enabled) || _suppressDirty) return;
+            // Select/clear-all changes a whole collection synchronously. Defer
+            // the expensive archive and conflict work until the final checkbox
+            // has changed, otherwise 40 mods cause 40 whole-list scans.
+            if (_bulkSelectionChangeDepth > 0) return;
             _isDirty = true;
             RefreshSelectionSummary();
             RefreshArchiveStatus();
@@ -716,13 +741,19 @@ public partial class ModlistPageViewModel : PageViewBase
         _ = Task.Run(() =>
         {
             var detected = new Dictionary<ModModel, IReadOnlyList<string>>();
+            var cosmeticIssues = new Dictionary<ModModel, IReadOnlyList<string>>();
             foreach (var model in models)
             {
-                try { detected[model] = LegacyGameCompatibilityDetector.Find(model.Mod); }
+                try
+                {
+                    detected[model] = LegacyGameCompatibilityDetector.Find(model.Mod);
+                    cosmeticIssues[model] = LegacyCosmeticCompatibilityDetector.Analyze(model.Mod).Issues;
+                }
                 catch (Exception exception)
                 {
                     Logger.Log($"Modlist compatibility check skipped for {model.Mod.GetId()}: {exception.Message}");
                     detected[model] = [];
+                    cosmeticIssues[model] = [];
                 }
             }
 
@@ -731,25 +762,27 @@ public partial class ModlistPageViewModel : PageViewBase
                 if (refreshVersion != Volatile.Read(ref _conflictRefreshVersion)) return;
                 foreach (var model in models)
                 {
+                    var warnings = new List<string>();
                     if (detected.TryGetValue(model, out var findings) && findings.Count > 0)
                     {
                         // Legacy signatures are advisory. They must be visible
                         // before installation but must never disable a mod.
-                        model.SetCompatibilityWarnings([string.Join("\r\n", new[]
+                        warnings.Add(string.Join("\r\n", new[]
                         {
                             Texts.GUIModLegacyGamePatch,
                             $"  • {string.Join("\r\n  • ", findings)}"
-                        })]);
+                        }));
                     }
                     else if (model.Mod.GetAllFiles(".gml").Count > 0 &&
                              model.Mod.GetRequiredHooks().Count == 0)
                     {
-                        model.SetCompatibilityWarnings([Texts.GUIModLegacyGml]);
+                        warnings.Add(Texts.GUIModLegacyGml);
                     }
-                    else
-                    {
-                        model.SetCompatibilityWarnings([]);
-                    }
+
+                    if (cosmeticIssues.TryGetValue(model, out var issues))
+                        warnings.AddRange(issues);
+
+                    model.SetCompatibilityWarnings(warnings);
                 }
             });
         });
@@ -781,7 +814,7 @@ public partial class ModlistPageViewModel : PageViewBase
             }
 
             foreach (var conflict in fileConflicts)
-                Logger.Log($"Selection file conflict: {conflict.Kind}; {conflict.Path}; mods={string.Join(", ", conflict.ModIds)}");
+                PerformanceDiagnostics.Log($"Selection file conflict: {conflict.Kind}; {conflict.Path}; mods={string.Join(", ", conflict.ModIds)}");
 
             Dispatcher.UIThread.Post(() =>
             {
@@ -842,6 +875,85 @@ public partial class ModlistPageViewModel : PageViewBase
             })
             .ToList();
         return $"• {conflict.Key}\r\n  {string.Join("\r\n  ", owners)}";
+    }
+
+    private List<LoadOrderNote> BuildDetailedSelectionNotes(IReadOnlyList<IMod> selected)
+    {
+        var notes = new List<LoadOrderNote>();
+
+        try
+        {
+            foreach (var conflict in ModConflictDetector.Find(selected))
+            {
+                notes.Add(new LoadOrderNote(
+                    LoadOrderNoteKind.HookConflict,
+                    string.Format(Texts.GUIModConflicts, $"• {conflict.Description}")));
+            }
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Detailed hook-conflict check skipped: {exception.Message}");
+        }
+
+        try
+        {
+            var hotkeys = HotkeyConflictDetector.Find(selected)
+                .Select(conflict => FormatHotkeyConflict(conflict, selected))
+                .ToList();
+            if (hotkeys.Count > 0)
+            {
+                notes.Add(new LoadOrderNote(
+                    LoadOrderNoteKind.HotkeyConflict,
+                    string.Format(
+                        Texts.GUIModHotkeyConflicts,
+                        string.Join("\r\n", hotkeys))));
+            }
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Detailed hotkey-conflict check skipped: {exception.Message}");
+        }
+
+        foreach (var mod in selected)
+        {
+            try
+            {
+                var findings = LegacyGameCompatibilityDetector.Find(mod);
+                var warning = findings.Count > 0
+                    ? string.Join("\r\n", new[]
+                    {
+                        Texts.GUIModLegacyGamePatch,
+                        $"  • {string.Join("\r\n  • ", findings)}"
+                    })
+                    : mod.GetAllFiles(".gml").Count > 0 && mod.GetRequiredHooks().Count == 0
+                        ? Texts.GUIModLegacyGml
+                        : null;
+
+                if (warning is not null)
+                {
+                    notes.Add(new LoadOrderNote(
+                        LoadOrderNoteKind.CompatibilityWarning,
+                        $"{mod.GetName()} v{mod.GetVersion()}\r\n{warning}"));
+                }
+
+                var cosmetic = LegacyCosmeticCompatibilityDetector.Analyze(mod);
+                if (cosmetic.UsesLegacyFormat)
+                {
+                    var detail = cosmetic.Issues.Count == 0
+                        ? "Uses legacy momi/outfit cosmetic definitions. AIM installs this format in compatibility mode; no files were changed."
+                        : string.Join("\r\n", cosmetic.Issues);
+                    notes.Add(new LoadOrderNote(
+                        LoadOrderNoteKind.CompatibilityWarning,
+                        $"{mod.GetName()} v{mod.GetVersion()}\r\n{detail}"));
+                }
+            }
+            catch (Exception exception)
+            {
+                Logger.Log($"Detailed compatibility check skipped for {mod.GetId()}: {exception.Message}");
+            }
+        }
+
+        return notes;
     }
 
     private sealed record ModlistSnapshot(
@@ -946,6 +1058,7 @@ public partial class ModlistPageViewModel : PageViewBase
     [NotifyCanExecuteChangedFor(nameof(UnInstallModsCommand))]
     [NotifyCanExecuteChangedFor(nameof(LaunchGameCommand))]
     [NotifyPropertyChangedFor(nameof(CanReorderMods))]
+    [NotifyPropertyChangedFor(nameof(CanDragReorderMods))]
     [NotifyPropertyChangedFor(nameof(CanChangeModSelection))]
     [NotifyCanExecuteChangedFor(nameof(ToggleAllModsCommand))]
     [NotifyCanExecuteChangedFor(nameof(SuggestLoadOrderCommand))]
@@ -961,6 +1074,10 @@ public partial class ModlistPageViewModel : PageViewBase
     // drag operation alter it while an archive operation is using that state.
     public bool CanReorderMods => !IsInstalling;
 
+    // Reordering only the visible subset would make the resulting full order
+    // unclear, so drag and drop is paused while a search filter is active.
+    public bool CanDragReorderMods => !IsInstalling && !HasModSearch;
+
     // Keep checkbox changes out of an in-progress archive operation as well.
     public bool CanChangeModSelection => !IsInstalling;
 
@@ -971,6 +1088,39 @@ public partial class ModlistPageViewModel : PageViewBase
     [ObservableProperty] private bool _gameReady;
 
     public ObservableCollection<ModModel> Mods { get; } = [];
+
+    /// <summary>
+    /// The search never alters profile state or load order. It supplies only
+    /// the visible projection, so typing does not reopen archives or rerun
+    /// compatibility scans.
+    /// </summary>
+    public IReadOnlyList<ModModel> FilteredMods => string.IsNullOrWhiteSpace(ModSearchQuery)
+        ? Mods.ToList()
+        : Mods.Where(MatchesModSearch).ToList();
+
+    public bool HasModSearch => !string.IsNullOrWhiteSpace(ModSearchQuery);
+
+    [ObservableProperty] private string _modSearchQuery = "";
+
+    partial void OnModSearchQueryChanged(string value)
+    {
+        OnPropertyChanged(nameof(FilteredMods));
+        OnPropertyChanged(nameof(HasModSearch));
+        OnPropertyChanged(nameof(CanDragReorderMods));
+    }
+
+    private bool MatchesModSearch(ModModel model)
+    {
+        var query = ModSearchQuery.Trim();
+        return model.Mod.GetDisplayName(Localization.LanguageCode).Contains(query, StringComparison.OrdinalIgnoreCase)
+               || model.Mod.GetName().Contains(query, StringComparison.OrdinalIgnoreCase)
+               || model.Mod.GetAuthor().Contains(query, StringComparison.OrdinalIgnoreCase)
+               || model.Mod.GetDisplayDescription(Localization.LanguageCode).Contains(query, StringComparison.OrdinalIgnoreCase)
+               || model.Mod.GetDisplayDescription(null).Contains(query, StringComparison.OrdinalIgnoreCase)
+               || model.Mod.GetVersion().Contains(query, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void RefreshFilteredMods() => OnPropertyChanged(nameof(FilteredMods));
 
     // ── Commands ──────────────────────────────────────────────────────────────────
 
@@ -1027,6 +1177,9 @@ public partial class ModlistPageViewModel : PageViewBase
     private void DismissException() => Exception = "";
 
     [RelayCommand]
+    private void ClearModSearch() => ModSearchQuery = "";
+
+    [RelayCommand]
     private void ReloadModlist()
     {
         Exception = "";
@@ -1043,18 +1196,38 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (Mods.Count == 0) return;
 
-        var select = Mods.Any(mod => !mod.Enabled);
-        foreach (var mod in Mods) mod.Enabled = select;
+        var select = Mods.Where(mod => !mod.InError).Any(mod => !mod.Enabled);
+        SetAllModSelection(select);
+    }
+
+    /// <summary>
+    /// Applies a bulk checkbox change as one logical selection update. The
+    /// individual rows still notify their bindings immediately, but costly
+    /// derived state (archive status and selected-mod scans) is recomputed once.
+    /// </summary>
+    private void SetAllModSelection(bool enabled)
+    {
+        _bulkSelectionChangeDepth++;
+        try
+        {
+            foreach (var mod in Mods.Where(mod => !mod.InError))
+                mod.Enabled = enabled;
+        }
+        finally
+        {
+            _bulkSelectionChangeDepth--;
+        }
 
         _isDirty = true;
         RefreshSelectionSummary();
         RefreshArchiveStatus();
+        RefreshSelectedModConflicts();
         InstallModsCommand.NotifyCanExecuteChanged();
+        UnInstallModsCommand.NotifyCanExecuteChanged();
     }
 
     /// <summary>
-    /// Reorders the list so every mod loads after the mods it requires, and reports the file
-    /// collisions that the user has to settle themselves.
+    /// Reorders the list so every mod loads after the mods it requires.
     /// </summary>
     [RelayCommand(CanExecute = nameof(CanReorderMods))]
     private async Task SuggestLoadOrder()
@@ -1067,6 +1240,9 @@ public partial class ModlistPageViewModel : PageViewBase
             var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
 
             var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
+            var orderNotes = plan.Notes
+                .Where(note => note.Kind == LoadOrderNoteKind.DependencyMove)
+                .ToList();
 
             if (plan.ChangesAnything)
             {
@@ -1088,17 +1264,51 @@ public partial class ModlistPageViewModel : PageViewBase
                 _isDirty = true;
             }
 
-            var body = plan.Notes.Count == 0
-                ? (plan.ChangesAnything ? Texts.GUILoadOrderChanged : Texts.GUILoadOrderAlreadyGood)
-                : string.Join("\r\n\r\n", plan.Notes.Select(note => $"• {note.Message}"));
+            var summary = plan.ChangesAnything ? Texts.GUILoadOrderChanged : Texts.GUILoadOrderAlreadyGood;
 
-            await MessageBoxManager.GetMessageBoxStandard(
-                Texts.GUILoadOrderTitle, body, ButtonEnum.Ok).ShowAsync();
+            if (App.TopLevel is Window owner)
+                await LoadOrderResultWindow.ShowAsync(owner, summary, orderNotes, compact: true);
+            else
+                await MessageBoxManager.GetMessageBoxStandard(
+                    Texts.GUILoadOrderTitle,
+                    summary,
+                    ButtonEnum.Ok).ShowAsync();
         }
         catch (Exception exception)
         {
             Logger.Log($"Suggest load order failed: {exception}");
             Exception = $"{Texts.GUILoadOrderTitle}: {exception.Message}";
+        }
+    }
+
+    [RelayCommand]
+    private async Task ReportConflicts()
+    {
+        if (Mods.Count == 0) return;
+
+        try
+        {
+            var current = Mods.Select(model => model.Mod).ToList();
+            var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
+            var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
+            var notes = plan.Notes
+                .Where(note => note.Kind != LoadOrderNoteKind.DependencyMove)
+                .Concat(await Task.Run(() => BuildDetailedSelectionNotes(enabled)))
+                .ToList();
+            var summary = notes.Count == 0 ? Texts.GUILoadOrderAlreadyGood : string.Empty;
+
+            if (App.TopLevel is Window owner)
+                await LoadOrderResultWindow.ShowAsync(owner, summary, notes, Texts.GUIConflictReportTitle, true);
+            else
+                await MessageBoxManager.GetMessageBoxStandard(
+                    Texts.GUIConflictReportTitle,
+                    summary.Length > 0 ? summary : string.Join("\r\n\r\n", notes.Select(note => $"• {note.Message}")),
+                    ButtonEnum.Ok).ShowAsync();
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Conflict report failed: {exception}");
+            Exception = $"{Texts.GUIConflictReportTitle}: {exception.Message}";
         }
     }
 
@@ -1358,21 +1568,13 @@ public partial class ModlistPageViewModel : PageViewBase
     [RelayCommand]
     private void EnableAllMods()
     {
-        foreach (var m in Mods) m.Enabled = true;
-        _isDirty = true;
-        RefreshSelectionSummary();
-        RefreshArchiveStatus();
-        InstallModsCommand.NotifyCanExecuteChanged();
+        SetAllModSelection(true);
     }
 
     [RelayCommand]
     private void DisableAllMods()
     {
-        foreach (var m in Mods) m.Enabled = false;
-        _isDirty = true;
-        RefreshSelectionSummary();
-        RefreshArchiveStatus();
-        InstallModsCommand.NotifyCanExecuteChanged();
+        SetAllModSelection(false);
     }
 
     [RelayCommand(CanExecute = nameof(CanRemove))]

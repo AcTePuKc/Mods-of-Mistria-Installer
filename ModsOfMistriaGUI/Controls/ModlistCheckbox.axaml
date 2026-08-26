@@ -19,6 +19,28 @@
                     </ToolTip.Tip>
                     <TextBlock Text="{Binding Full}" />
                 </CheckBox>
+                <Image Height="16" Margin="5 0 0 0"
+                       IsVisible="{Binding InWarning}">
+                    <ToolTip.Tip>
+                        <TextBlock Text="{Binding WarningTooltip}"
+                                   TextWrapping="Wrap"
+                                   MaxWidth="720" />
+                    </ToolTip.Tip>
+                    <Image.Source>
+                        <i:IconImage Value="fa-exclamation-triangle"
+                                     Brush="Orange" />
+                    </Image.Source>
+                </Image>
+                <Image Height="16" Margin="5 0 0 0"
+                       IsVisible="{Binding WasInstalled}">
+                    <ToolTip.Tip>
+                        <TextBlock Text="{Binding InstallStatusTooltip}" />
+                    </ToolTip.Tip>
+                    <Image.Source>
+                        <i:IconImage Value="fa-circle-check"
+                                     Brush="Green" />
+                    </Image.Source>
+                </Image>
         </WrapPanel>
 
         <Expander IsVisible="{Binding ShowStatusRow}"
@@ -65,7 +87,7 @@
                     <Image Height="16" Margin="5 0 0 0"
                            IsVisible="{Binding InWarning}">
                         <ToolTip.Tip>
-                            <TextBlock Text="{Binding Warnings}"
+                            <TextBlock Text="{Binding WarningTooltip}"
                                        TextWrapping="Wrap"
                                        MaxWidth="720" />
                         </ToolTip.Tip>
@@ -124,13 +146,13 @@
             </Expander.Header>
 
             <StackPanel>
-                <SelectableTextBlock TextWrapping="Wrap" IsVisible="{Binding HasInstallOutcome}"
+                <SelectableTextBlock TextWrapping="Wrap" IsVisible="{Binding ShowInstallDetail}"
                                      Text="{Binding InstallDetail}"
                                      Foreground="{DynamicResource ModStatusForegroundBrush}" />
                 <SelectableTextBlock TextWrapping="Wrap" IsVisible="{Binding ShowErrorIcon}"
                                      Text="{Binding Errors}"
                                      Foreground="{DynamicResource ModStatusForegroundBrush}" />
-                <SelectableTextBlock IsVisible="{Binding InWarning}" Text="{Binding Warnings}"
+                <SelectableTextBlock IsVisible="{Binding InWarning}" Text="{Binding WarningTooltip}"
                                      TextWrapping="Wrap"
                                      Foreground="{DynamicResource ModStatusForegroundBrush}" />
             </StackPanel>

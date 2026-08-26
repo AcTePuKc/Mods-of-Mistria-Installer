@@ -112,43 +112,88 @@
 * [x] Finish the remaining user-facing documentation and release notes only
       after the above behavior is verified.
 
-## 0.1.8 or later — larger features
+## 0.1.8 — focused conflict reporting
 
-* [ ] Design a real per-mod translation-pack contract: target mod identity,
-      target version range, language, priority, fallback and safe ownership
-      rules. Do not implement it as an undocumented `l10n.meta.toml` trick.
-* [ ] Evaluate additional MMAPI hooks and seams individually with a working
-      mod example before adding them to the default catalog.
-* [ ] Revisit the remaining automatic-update and mod-source improvements after
-      the 0.1.7 Nexus/NXM behavior is stable.
-* [x] Reduce the existing nullable-reference warnings across the installer,
-      ImageInstaller, OutfitInstaller, furniture generation and mod-loading
-      paths. Verified with a clean Release build and runtime smoke test.
-* [x] Add explicit validation and user-facing handling for missing or invalid
-      TOML tables, atlas metadata and required file paths, especially for
-      malformed or partially supported mods.
-* [x] Resolve nullable initialization warnings for `FilePath`, `LogAdded`,
-      `_fileModifier`, `SpriteToml.Id` and related model members.
-* [x] Align the `FolderMod.ReadFile` nullable contract with `IMod`.
-* [x] Review nullable returns and comparisons in `Utils/Toml.cs`.
-* [x] Review nullable paths in `CompactFurnitureGenerator`,
-      `FurnitureDefinition`, `FurnitureInstaller` and `LocationInstaller`.
-* [x] Replace the intentional legacy `OutfitFile` alias auto-properties with
-      explicit compatibility setters and remove the corresponding compiler
-      warnings.
-* [x] Remove framework-provided `Microsoft.Win32.Registry` and
-      `System.IO.Compression.ZipFile` package references after a clean restore,
-      build and test run.
+* [x] Keep the normal mod-list view compact: show conflict indicators and a
+      short summary instead of rendering every conflicting path inline.
+* [x] Keep the default `Suggest Order` path fast and free of detailed TOML
+      analysis.
+* [x] Keep load-order suggestion separate from the detailed conflict report.
+      `Suggest order` handles ordering; `Report conflicts` lists exact shared
+      paths and other selected-mod warnings on demand.
+* [x] Reuse the existing self-worker/background-operation infrastructure for
+      the detailed read-only analysis without adding a user-visible executable.
+* [ ] Cache detailed conflict results until the selected mods or their source
+      files change.
+* [x] Add a copyable conflict report for mod authors and bug reports.
+* [x] Add and verify only the new strings required by this feature in every
+      supported interface language.
+* [x] Test folders, ZIP/RAR archives, large mod lists, hard replacements,
+      mergeable metadata and shared localization files.
+* [x] Add local mod-list search without reopening archives, rechecking Nexus,
+      or changing the profile's selected set or load order.
+* [x] Pause drag/drop only while search filtering is active, so a visible
+      subset cannot accidentally reorder hidden mods.
+* [x] Batch Select all / Deselect all to prevent per-row archive and conflict
+      work from freezing the UI on large mod lists.
+* [x] Validate legacy `momi/outfit` cosmetics against the same generator slot,
+      UI-sprite and frame-size rules used during installation.
+* [x] Exclude the shared legacy cosmetic category icon from file-conflict
+      detection: AIM registers each cosmetic's player assets and store entry
+      independently, so the icon is not a load-order conflict.
 
-## Future/Unknown
+### Compatibility-warning clarification
+
+* Generic GML warnings and concrete shared-file conflicts are separate checks.
+  A cosmetic mod can be marked for legacy GML without appearing in the exact
+  shared-file list; the list only contains destinations detected as written by
+  multiple selected mods.
+* Keep the warning non-blocking until a narrow, reproducible game-breaking
+  signature is confirmed.
+
+### Runtime cosmetic interoperability matrix (pending isolation)
+
+The 2026-08-26 archive inspection confirms that the legacy `momi/outfit`
+cosmetic mods are all written into `player_assets.toml` and their separate
+`fiddle/stores.toml` category entries are appended. The shared
+`spr_ui_store_category_icon_moddedcosmetic` sprite is therefore a common
+category icon, not evidence that only one cosmetic mod was installed.
+
+The following in-game observations are mapped to their source mods, but still
+need a reproducible compatibility rule before AIM marks anything as
+incompatible:
+
+* Hair entries appear in the character UI. Curly Mini Buns and Dread Buns
+  render correctly; the other tested modded hairs are selectable but do not
+  render correctly on the player.
+* Tested hair accessories, glasses, and face accessories do not render.
+* Tested facial-hair mods render correctly.
+* Tested Reina summer sleeveless/short-sleeve tops, Celine long-sleeve tops,
+  Summer Outfit's misc top, Reina pants, and Celine/Shortest Skirt/Summer
+  skirts do not render.
+* The current installed archive contains valid `player_asset_parts.json`
+  entries for Curly Mini Buns, Even Longer Fringe, More Accessories, More
+  Glasses, Shugar's Scarf, Celine/Reina clothes, Shortest Skirt, and Summer
+  Outfit. Their failure is therefore not caused by a missing generated
+  registration or a malformed image-strip width.
+* The current install state does **not** include Adriana Hair, so it cannot
+  explain the present result. Keep that test separate from the current set.
+* Anthro Player Mod directly replaces `spr_player_base_base_head.png`; More
+  Skin Colors directly replaces `spr_player_base_lut.png`. These are the only
+  installed mods found to replace the player base and are the leading suspects
+  for cross-layer rendering behaviour.
+
+First follow-up: compare the generated atlas entries and player-layer data
+against a known working cosmetic before deciding whether AIM needs a narrow
+compatibility warning or an installer fix. Do not treat the shared category
+icon as a conflict.
+
+## Later / deferred
 * [ ] Allow all "localised" text in easy JSON structures to be multi-lingual
 * [ ] Investigate optional per-mod localization selection. This should only be
       added if a real mod exposes language-specific resources; AIM must not
       guess or replace a mod's own UI language files.
 * [ ] Add Validators for Simple Conversations
-* [x] Store selected/deselected mods in the Mods folder
-* [x] Allow load order modifying
-* [x] Allow mods to declare dependencies on other mods
 * [ ] Automatic updating
 * [ ] `player_tools.json` installer
 * [ ] `farms.json` installer
@@ -157,11 +202,8 @@
 * [ ] Sounds installer
 * [ ] Improve translations for validations (the prefixes are not pulled from localisations)
 * [ ] Add translations for exceptions
-* [ ] Catch all exceptions in the GUI
-* [ ] Add a error_log file for the GUI
 * [ ] Render mod names as coloured inline text inside warnings and errors
 * [ ] Add a JSON browser
 * [ ] Scramble JSON automatically on install
 * [ ] Cutscene generator
-* [ ] Automatically refresh mods when a change has been made
 * [ ] In the GUI, skip mods that fail `CanInstall` instead of disabling install
