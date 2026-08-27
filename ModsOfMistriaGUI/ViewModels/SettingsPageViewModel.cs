@@ -31,7 +31,9 @@ public partial class SettingsPageViewModel : PageViewBase
     public bool IsGeneralSelected => _selectedSectionId == "general";
     public bool IsNexusSelected => _selectedSectionId == "nexus";
     public NexusDownloadsViewModel Nexus => _nexus;
-    public string ApiKeyStatus => string.Format(Texts.GUISettingsApiKeyStatus, Nexus.HasApiKey);
+    public string NexusAccountStatus => Nexus.IsNexusAccountConnected
+        ? "Nexus account connected."
+        : "Nexus account connection is awaiting OAuth registration.";
 
     public SettingsPageViewModel(Settings settings, NexusDownloadsViewModel nexus, Action back)
     {
@@ -44,12 +46,12 @@ public partial class SettingsPageViewModel : PageViewBase
             OnPropertyChanged(nameof(SelectedSection));
             OnPropertyChanged(nameof(IsGeneralSelected));
             OnPropertyChanged(nameof(IsNexusSelected));
-            OnPropertyChanged(nameof(ApiKeyStatus));
+            OnPropertyChanged(nameof(NexusAccountStatus));
         };
         _nexus.PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName == nameof(NexusDownloadsViewModel.HasApiKey))
-                OnPropertyChanged(nameof(ApiKeyStatus));
+            if (e.PropertyName == nameof(NexusDownloadsViewModel.IsNexusAccountConnected))
+                OnPropertyChanged(nameof(NexusAccountStatus));
         };
     }
 
@@ -57,7 +59,7 @@ public partial class SettingsPageViewModel : PageViewBase
     private void Back() => _back();
 
     [RelayCommand]
-    private async Task SetNexusApiKey() => await _nexus.SetApiKeyAsync();
+    private async Task ManageNexusAccount() => await _nexus.ManageNexusAccountAsync();
 
     [RelayCommand]
     private async Task SelectModsLocation()

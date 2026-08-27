@@ -34,6 +34,8 @@ public partial class ModlistPageViewModel : PageViewBase
     private int _localizationRefreshVersion;
     private int _conflictRefreshVersion;
     private int _bulkSelectionChangeDepth;
+    private LoadOrderResultWindow? _issueReportWindow;
+    private IReadOnlyList<ModModel> _filteredMods = [];
 
     // True when in-GUI state differs from what is saved in the current profile
     private bool _isDirty;
@@ -1006,7 +1008,7 @@ public partial class ModlistPageViewModel : PageViewBase
     public async Task CheckForModUpdatesNowAsync()
     {
 #if AIM_NEXUS_DISTRIBUTION
-        // The Nexus build uses the user's personal API key for both NMD downloads and explicit
+        // Nexus downloads and explicit
         // update checks. No fake/test badges are produced here.
         await CheckManyForUpdates(Mods.ToList());
 #else
@@ -1094,9 +1096,7 @@ public partial class ModlistPageViewModel : PageViewBase
     /// the visible projection, so typing does not reopen archives or rerun
     /// compatibility scans.
     /// </summary>
-    public IReadOnlyList<ModModel> FilteredMods => string.IsNullOrWhiteSpace(ModSearchQuery)
-        ? Mods.ToList()
-        : Mods.Where(MatchesModSearch).ToList();
+    public IReadOnlyList<ModModel> FilteredMods => _filteredMods;
 
     public bool HasModSearch => !string.IsNullOrWhiteSpace(ModSearchQuery);
 
@@ -1104,7 +1104,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
     partial void OnModSearchQueryChanged(string value)
     {
-        OnPropertyChanged(nameof(FilteredMods));
+        RefreshFilteredMods();
         OnPropertyChanged(nameof(HasModSearch));
         OnPropertyChanged(nameof(CanDragReorderMods));
     }
@@ -1120,7 +1120,25 @@ public partial class ModlistPageViewModel : PageViewBase
                || model.Mod.GetVersion().Contains(query, StringComparison.OrdinalIgnoreCase);
     }
 
-    private void RefreshFilteredMods() => OnPropertyChanged(nameof(FilteredMods));
+    private void RefreshFilteredMods()
+    {
+        // Keep the same projection when its contents have not changed so
+        // filtering does not recreate visible mod rows unnecessarily.
+        IReadOnlyList<ModModel> filtered = string.IsNullOrWhiteSpace(ModSearchQuery)
+            ? Mods
+            : Mods.Where(MatchesModSearch).ToList();
+
+        // Mods is observable, so the repeater already receives collection
+        // changes when the unfiltered projection points at it.
+        if (ReferenceEquals(_filteredMods, filtered))
+            return;
+
+        if (_filteredMods.Count == filtered.Count && _filteredMods.SequenceEqual(filtered))
+            return;
+
+        _filteredMods = filtered;
+        OnPropertyChanged(nameof(FilteredMods));
+    }
 
     // ── Commands ──────────────────────────────────────────────────────────────────
 
@@ -1286,23 +1304,28 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (Mods.Count == 0) return;
 
+        if (_issueReportWindow?.IsVisible == true)
+        {
+            _issueReportWindow.Activate();
+            return;
+        }
+
         try
         {
-            var current = Mods.Select(model => model.Mod).ToList();
-            var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
-            var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
-            var notes = plan.Notes
-                .Where(note => note.Kind != LoadOrderNoteKind.DependencyMove)
-                .Concat(await Task.Run(() => BuildDetailedSelectionNotes(enabled)))
-                .ToList();
-            var summary = notes.Count == 0 ? Texts.GUILoadOrderAlreadyGood : string.Empty;
+            var report = await BuildIssueReportAsync();
 
-            if (App.TopLevel is Window owner)
-                await LoadOrderResultWindow.ShowAsync(owner, summary, notes, Texts.GUIConflictReportTitle, true);
+            if (App.TopLevel is Window)
+            {
+                _issueReportWindow = LoadOrderResultWindow.Show(
+                    report,
+                    Texts.GUIConflictReportTitle,
+                    BuildIssueReportAsync);
+                _issueReportWindow.Closed += (_, _) => _issueReportWindow = null;
+            }
             else
                 await MessageBoxManager.GetMessageBoxStandard(
                     Texts.GUIConflictReportTitle,
-                    summary.Length > 0 ? summary : string.Join("\r\n\r\n", notes.Select(note => $"• {note.Message}")),
+                    report.Summary.Length > 0 ? report.Summary : string.Join("\r\n\r\n", report.Notes.Select(note => $"• {note.Message}")),
                     ButtonEnum.Ok).ShowAsync();
         }
         catch (Exception exception)
@@ -1310,6 +1333,19 @@ public partial class ModlistPageViewModel : PageViewBase
             Logger.Log($"Conflict report failed: {exception}");
             Exception = $"{Texts.GUIConflictReportTitle}: {exception.Message}";
         }
+    }
+
+    private async Task<LoadOrderResultWindow.ReportContent> BuildIssueReportAsync()
+    {
+        var current = Mods.Select(model => model.Mod).ToList();
+        var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
+        var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
+        var notes = plan.Notes
+            .Where(note => note.Kind != LoadOrderNoteKind.DependencyMove)
+            .Concat(await Task.Run(() => BuildDetailedSelectionNotes(enabled)))
+            .ToList();
+        var summary = notes.Count == 0 ? Texts.GUILoadOrderAlreadyGood : string.Empty;
+        return new LoadOrderResultWindow.ReportContent(summary, notes);
     }
 
     // ── Nexus: per-mod actions ────────────────────────────────────────────────────
@@ -1396,7 +1432,7 @@ public partial class ModlistPageViewModel : PageViewBase
     private async Task CheckModForUpdate(ModModel? model)
     {
         if (model is null || UpdateService is null) return;
-        if (Nexus is not null && !await Nexus.EnsureApiKeyAsync()) return;
+        if (Nexus is not null && !await Nexus.EnsureNexusAccountAsync()) return;
 
         model.IsCheckingUpdate = true;
         try
@@ -1499,7 +1535,7 @@ public partial class ModlistPageViewModel : PageViewBase
     private async Task CheckManyForUpdates(List<ModModel> models)
     {
         if (models.Count == 0 || UpdateService is null) return;
-        if (Nexus is not null && !await Nexus.EnsureApiKeyAsync()) return;
+        if (Nexus is not null && !await Nexus.EnsureNexusAccountAsync()) return;
 
         var checkable = models.Where(model => !model.IsFrozen).ToList();
         foreach (var model in checkable) model.IsCheckingUpdate = true;

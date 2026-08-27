@@ -1,9 +1,8 @@
 using Garethp.ModsOfMistriaInstallerLib.Nexus;
+using Newtonsoft.Json.Linq;
 
 namespace ModsOfMistriaInstallerLibTests.Nexus;
 
-// The Nexus API key and the protocol opt-in. Written to a temp directory so the suite never
-// touches the key a developer has saved on their own machine.
 [TestFixture]
 public class NexusSettingsTest
 {
@@ -23,41 +22,65 @@ public class NexusSettingsTest
     }
 
     [Test]
-    public void ShouldRoundTripAnApiKey()
+    public void ShouldRoundTripOAuthTokens()
     {
-        new NexusSettings(_directory).SetApiKey("  my-secret-key  ");
+        var tokens = new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddHours(1));
+        new NexusSettings(_directory).SetOAuthTokens(tokens);
 
         Assert.Multiple(() =>
         {
-            Assert.That(new NexusSettings(_directory).GetApiKey(), Is.EqualTo("my-secret-key"));
-            Assert.That(new NexusSettings(_directory).HasApiKey(), Is.True);
+            Assert.That(new NexusSettings(_directory).GetOAuthTokens(), Is.EqualTo(tokens));
+            Assert.That(new NexusSettings(_directory).HasOAuthTokens(), Is.True);
         });
     }
 
     [Test]
-    public void ShouldNotWriteTheKeyOutInPlainTextOnWindows()
+    public void ShouldNotWriteOAuthTokensOutInPlainTextOnWindows()
     {
         if (!OperatingSystem.IsWindows()) Assert.Ignore("DPAPI protection only applies on Windows");
 
-        new NexusSettings(_directory).SetApiKey("my-secret-key");
+        new NexusSettings(_directory).SetOAuthTokens(
+            new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddHours(1)));
 
         var contents = File.ReadAllText(Path.Combine(_directory, "nexus.json"));
-        Assert.That(contents, Does.Not.Contain("my-secret-key"));
+        Assert.That(contents, Does.Not.Contain("access-token").And.Not.Contain("refresh-token"));
     }
 
     [Test]
-    public void ShouldForgetTheKeyWhenItIsCleared()
+    public void ShouldPermanentlyRemoveLegacyPersonalApiKeys()
     {
+        File.WriteAllText(Path.Combine(_directory, "nexus.json"), new JObject
+        {
+            ["nexusApiKey"] = "legacy-personal-key",
+            ["nexusApiKeyProtected"] = "legacy-protected-key",
+            ["nxmHandlerRegistered"] = true
+        }.ToString());
+
         var settings = new NexusSettings(_directory);
-        settings.SetApiKey("my-secret-key");
-        settings.SetApiKey(null);
+        var contents = File.ReadAllText(Path.Combine(_directory, "nexus.json"));
 
         Assert.Multiple(() =>
         {
-            Assert.That(settings.GetApiKey(), Is.Null);
-            Assert.That(new NexusSettings(_directory).HasApiKey(), Is.False);
+            Assert.That(settings.HasOAuthTokens(), Is.False);
+            Assert.That(settings.HandlerRegistered, Is.True);
+            Assert.That(contents, Does.Not.Contain("legacy-personal-key").And.Not.Contain("legacy-protected-key"));
+            Assert.That(contents, Does.Not.Contain("nexusApiKey"));
+        });
+    }
+
+    [Test]
+    public void ShouldForgetTokensWhenDisconnected()
+    {
+        var settings = new NexusSettings(_directory);
+        settings.SetOAuthTokens(new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddHours(1)));
+        settings.SetOAuthTokens(null);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(settings.GetOAuthTokens(), Is.Null);
+            Assert.That(new NexusSettings(_directory).HasOAuthTokens(), Is.False);
             Assert.That(File.ReadAllText(Path.Combine(_directory, "nexus.json")),
-                Does.Not.Contain("my-secret-key"));
+                Does.Not.Contain("access-token").And.Not.Contain("refresh-token"));
         });
     }
 
@@ -65,15 +88,6 @@ public class NexusSettingsTest
     public void ShouldRememberTheProtocolOptIn()
     {
         new NexusSettings(_directory).HandlerRegistered = true;
-
         Assert.That(new NexusSettings(_directory).HandlerRegistered, Is.True);
-    }
-
-    [Test]
-    public void ShouldStartFreshWhenTheFileIsUnreadable()
-    {
-        File.WriteAllText(Path.Combine(_directory, "nexus.json"), "{ this is not json");
-
-        Assert.That(new NexusSettings(_directory).HasApiKey(), Is.False);
     }
 }

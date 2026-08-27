@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -578,7 +578,6 @@ Download-Seite(n) im Browser öffnen?</value></data>
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMD-Links</value></data>
   <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>NMD mit AIM öffnen</value></data>
   <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIM für NMD stoppen</value></data>
-  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus-API-Schlüssel…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Aus einem kopierten nxm://-Link installieren</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Download von Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Abgeschlossene löschen</value></data>
@@ -586,31 +585,22 @@ Download-Seite(n) im Browser öffnen?</value></data>
   <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus-Download</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Dieser Download ist für ein anderes Spiel ({0}) bestimmt, daher kann AIM ihn nicht installieren.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Richte zuerst deine Fields-of-Mistria- und Mod-Ordner ein.</value></data>
-  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Mod Manager Download“-Links</value></data>
-  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM verarbeitet „Mod Manager Download“-Links.</value></data>
-  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>„Mod Manager Download“-Links werden noch nicht von AIM verarbeitet.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Vortex“-Links</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM verarbeitet „Vortex“-Links.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>„Vortex“-Links werden noch nicht von AIM verarbeitet.</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Derzeit verarbeitet ein anderes Programm diese Links ({0}).</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Die Verarbeitung dieser Links wird nur unter Windows und Linux unterstützt.</value></data>
-  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM öffnet jetzt „Mod Manager Download“-Links von der Nexus-Website.
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM öffnet jetzt „Vortex“-Links von der Nexus-Website.
 
 Beim ersten Klick bittet dein Browser möglicherweise um Erlaubnis.</value></data>
-  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM öffnet „Mod Manager Download“-Links von der Nexus-Website nicht mehr.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM öffnet „Vortex“-Links von der Nexus-Website nicht mehr.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM konnte nicht für diese Links registriert werden: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM konnte die Verarbeitung dieser Links nicht beenden: {0}</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>Derzeit verarbeitet ein anderes Programm diese Links ({0}).
 
 An AIM übergeben?</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Aus einem Link installieren</value></data>
-  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Die Zwischenablage enthält keinen nxm://-Link. Klicke auf der Modseite mit der rechten Maustaste auf „Mod Manager Download“ und kopiere zuerst die Linkadresse.</value></data>
-  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus-API-Schlüssel</value></data>
-  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM benötigt deinen persönlichen Nexus-Mods-API-Schlüssel, um Mods für dich herunterzuladen. Öffne deine Nexus-Kontoeinstellungen, scrolle zu „API Key“, erstelle einen persönlichen Schlüssel und füge ihn unten ein. Der Schlüssel wird nur auf diesem Computer gespeichert.</value></data>
-  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Nexus-Kontoeinstellungen öffnen</value></data>
-  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Persönlichen API-Schlüssel hier einfügen</value></data>
-  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Ein Schlüssel ist bereits gespeichert. Gib einen neuen ein, um ihn zu ersetzen.</value></data>
-  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Füge zuerst deinen API-Schlüssel ein.</value></data>
-  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Schlüssel wird bei Nexus überprüft…</value></data>
-  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Angemeldet als {0}.</value></data>
-  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Gespeicherten Schlüssel entfernen</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Die Zwischenablage enthält keinen nxm://-Link. Klicke auf der Modseite mit der rechten Maustaste auf „Vortex“ und kopiere zuerst die Linkadresse.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Speichern</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Abbrechen</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} von {1} ausgewählt — {2} bereits im Spiel, {3} werden hinzugefügt</value></data>
@@ -652,9 +642,9 @@ An AIM übergeben?</value></data>
   <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM kann den Nexus-Mod „{0}“ nicht bestimmen. Mit AIM geladene Mods werden automatisch verfolgt; bei anderen muss der Manifest eine Nexus-Seite enthalten.</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>Mod aktualisieren</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>„{0}“ von {1} auf {2} aktualisieren?&#xD;&#xA;&#xD;&#xA;Die aktuelle Version wird als wiederherstellbare Sicherung aufbewahrt.</value></data>
-  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Die Dateiseite des Mods öffnen, damit du die Schaltfläche „Mod Manager Download“ verwenden kannst?</value></data>
-  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Soll AIM „Mod Manager Download“-Links von der Nexus-Website verarbeiten?&#xD;&#xA;&#xD;&#xA;Ein Klick auf diese Schaltfläche lädt den Mod direkt in deinen Mods-Ordner. Du kannst dies später über das Zahnradmenü ändern.</value></data>
-  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>„Mod Manager Download“-Links werden derzeit von {0} verarbeitet.&#xD;&#xA;&#xD;&#xA;An AIM übergeben? Ein Klick auf diese Schaltfläche lädt den Mod direkt in deinen Mods-Ordner. Du kannst dies später über das Zahnradmenü ändern.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Die Dateiseite des Mods öffnen, damit du die Schaltfläche „Vortex“ verwenden kannst?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Soll AIM „Vortex“-Links von der Nexus-Website verarbeiten?&#xD;&#xA;&#xD;&#xA;Ein Klick auf diese Schaltfläche lädt den Mod direkt in deinen Mods-Ordner. Du kannst dies später über das Zahnradmenü ändern.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>„Vortex“-Links werden derzeit von {0} verarbeitet.&#xD;&#xA;&#xD;&#xA;An AIM übergeben? Ein Klick auf diese Schaltfläche lädt den Mod direkt in deinen Mods-Ordner. Du kannst dies später über das Zahnradmenü ändern.</value></data>
   <data name="GUISettingsMenu" xml:space="preserve"><value>Einstellungen…</value></data>
   <data name="GUISettingsBack" xml:space="preserve"><value>← Zurück</value></data>
   <data name="GUISettingsGeneral" xml:space="preserve"><value>Allgemein</value></data>
@@ -665,8 +655,7 @@ An AIM übergeben?</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Der Mod-Ordner kann jederzeit geändert werden; AIM lädt die Liste neu, wenn du zur Mod-Liste zurückkehrst.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
   <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM verwendet deinen persönlichen Nexus-API-Schlüssel für Downloads und Update-Prüfungen. Er wird lokal gespeichert und nie in Mods oder Releases aufgenommen.</value></data>
-  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>API-Schlüsselstatus: {0}</value></data>
-  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Nexus-API-Schlüssel festlegen oder ändern…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Derselbe Schlüssel wird im Nexus-Downloadmenü verwendet.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Mod-Ordner auswählen</value></data>
+  <data name="GUIRefreshReport" xml:space="preserve"><value>Bericht aktualisieren</value></data>
 </root>

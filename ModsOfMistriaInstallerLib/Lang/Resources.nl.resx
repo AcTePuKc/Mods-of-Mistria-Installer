@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -575,7 +575,6 @@ Downloadpagina's openen in de browser?</value></data>
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMD-links</value></data>
   <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>NMD met AIM gebruiken</value></data>
   <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIM voor NMD stoppen</value></data>
-  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API-sleutel…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Installeren vanuit een gekopieerde nxm://-link</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Downloaden van Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Voltooide downloads wissen</value></data>
@@ -583,31 +582,22 @@ Downloadpagina's openen in de browser?</value></data>
   <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus-download</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Deze download is voor een andere game ({0}), dus AIM kan deze niet installeren.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Stel eerst de mappen voor Fields of Mistria en mods in.</value></data>
-  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Mod Manager Download“-links</value></data>
-  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM verwerkt „Mod Manager Download“-links.</value></data>
-  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>„Mod Manager Download“-links worden nog niet door AIM verwerkt.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Vortex“-links</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM verwerkt „Vortex“-links.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>„Vortex“-links worden nog niet door AIM verwerkt.</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Een ander programma verwerkt deze links momenteel ({0}).</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Het verwerken van deze links wordt alleen ondersteund op Windows en Linux.</value></data>
-  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM opent voortaan „Mod Manager Download“-links van de Nexus-website.
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM opent voortaan „Vortex“-links van de Nexus-website.
 
 Je browser kan de eerste keer dat je klikt om toestemming vragen.</value></data>
-  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM opent geen „Mod Manager Download“-links van de Nexus-website meer.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM opent geen „Vortex“-links van de Nexus-website meer.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM kon niet voor deze links worden geregistreerd: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM kon het verwerken van deze links niet stoppen: {0}</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>Een ander programma verwerkt deze links momenteel ({0}).
 
 De links aan AIM overdragen?</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Installeren vanuit een link</value></data>
-  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Het klembord bevat geen nxm://-link. Klik op de modpagina met de rechtermuisknop op „Mod Manager Download“ en kopieer eerst het linkadres.</value></data>
-  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus API-sleutel</value></data>
-  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM heeft je persoonlijke Nexus Mods API-sleutel nodig om mods voor je te downloaden. Open de instellingen van je Nexus-account, ga naar „API Key“, genereer een persoonlijke sleutel en plak deze hieronder. De sleutel wordt alleen op deze computer opgeslagen.</value></data>
-  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Nexus-accountinstellingen openen</value></data>
-  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Plak hier je persoonlijke API-sleutel</value></data>
-  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Er is al een sleutel opgeslagen. Voer een nieuwe in om deze te vervangen.</value></data>
-  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Plak eerst je API-sleutel.</value></data>
-  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>De sleutel wordt gecontroleerd bij Nexus…</value></data>
-  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Aangemeld als {0}.</value></data>
-  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Opgeslagen sleutel verwijderen</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Het klembord bevat geen nxm://-link. Klik op de modpagina met de rechtermuisknop op „Vortex“ en kopieer eerst het linkadres.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Opslaan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Annuleren</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} van {1} geselecteerd — {2} al in het spel, {3} worden toegevoegd</value></data>
@@ -649,9 +639,9 @@ De links aan AIM overdragen?</value></data>
   <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM kan niet bepalen welke Nexus-mod „{0}“ is. Mods die via AIM zijn gedownload worden automatisch gevolgd; andere hebben een Nexuspagina in hun manifest nodig.</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>Mod bijwerken</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>„{0}“ bijwerken van {1} naar {2}?&#xD;&#xA;&#xD;&#xA;De huidige versie wordt bewaard als back-up die je kunt herstellen.</value></data>
-  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;De bestandspagina van de mod openen zodat je de knop „Mod Manager Download“ kunt gebruiken?</value></data>
-  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>AIM de „Mod Manager Download“-links van de Nexuswebsite laten beheren?&#xD;&#xA;&#xD;&#xA;Met die knop wordt de mod rechtstreeks naar je modsmap gedownload. Je kunt dit later wijzigen via het tandwielmenu.</value></data>
-  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>De „Mod Manager Download“-links worden momenteel verwerkt door {0}.&#xD;&#xA;&#xD;&#xA;Aan AIM overdragen? Met die knop wordt de mod rechtstreeks naar je modsmap gedownload. Je kunt dit later wijzigen via het tandwielmenu.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;De bestandspagina van de mod openen zodat je de knop „Vortex“ kunt gebruiken?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>AIM de „Vortex“-links van de Nexuswebsite laten beheren?&#xD;&#xA;&#xD;&#xA;Met die knop wordt de mod rechtstreeks naar je modsmap gedownload. Je kunt dit later wijzigen via het tandwielmenu.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>De „Vortex“-links worden momenteel verwerkt door {0}.&#xD;&#xA;&#xD;&#xA;Aan AIM overdragen? Met die knop wordt de mod rechtstreeks naar je modsmap gedownload. Je kunt dit later wijzigen via het tandwielmenu.</value></data>
   <data name="GUISettingsMenu" xml:space="preserve"><value>Instellingen…</value></data>
   <data name="GUISettingsBack" xml:space="preserve"><value>← Terug</value></data>
   <data name="GUISettingsGeneral" xml:space="preserve"><value>Algemeen</value></data>
@@ -662,8 +652,7 @@ De links aan AIM overdragen?</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>De modmap kan altijd worden gewijzigd; AIM laadt de lijst opnieuw wanneer je terugkeert naar de modlijst.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
   <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM gebruikt je persoonlijke Nexus-API-sleutel voor downloads en updatecontroles. De sleutel wordt lokaal opgeslagen en nooit in mods of releases opgenomen.</value></data>
-  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>API-sleutelstatus: {0}</value></data>
-  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Nexus-API-sleutel instellen of wijzigen…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Dezelfde sleutel wordt gebruikt in het Nexus-downloadmenu.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modmap kiezen</value></data>
+  <data name="GUIRefreshReport" xml:space="preserve"><value>Rapport vernieuwen</value></data>
 </root>

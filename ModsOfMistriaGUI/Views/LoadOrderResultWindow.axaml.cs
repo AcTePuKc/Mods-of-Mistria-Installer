@@ -9,7 +9,10 @@ namespace Garethp.ModsOfMistriaGUI.Views;
 
 public partial class LoadOrderResultWindow : Window
 {
-    private readonly string _report;
+    public sealed record ReportContent(string Summary, IReadOnlyList<LoadOrderNote> Notes);
+
+    private string _report = string.Empty;
+    private readonly Func<Task<ReportContent>>? _refreshReportAsync;
 
     // Required by Avalonia's compiled XAML loader; normal callers use ShowAsync below.
     public LoadOrderResultWindow() : this(string.Empty, [])
@@ -21,15 +24,16 @@ public partial class LoadOrderResultWindow : Window
         IReadOnlyList<LoadOrderNote> notes,
         string? title = null,
         bool showCopyButton = false,
-        bool compact = false)
+        bool compact = false,
+        Func<Task<ReportContent>>? refreshReportAsync = null)
     {
         InitializeComponent();
 
         Title = title ?? LocalizationService.Instance["GUILoadOrderTitle"];
-        _report = BuildReport(summary, notes);
-        SummaryText.Text = summary;
-        SummaryText.IsVisible = !string.IsNullOrWhiteSpace(summary);
+        _refreshReportAsync = refreshReportAsync;
+        ApplyReport(new ReportContent(summary, notes));
         CopyButton.IsVisible = showCopyButton;
+        RefreshButton.IsVisible = refreshReportAsync is not null;
         CloseButton.IsVisible = !compact;
         if (compact)
         {
@@ -40,6 +44,7 @@ public partial class LoadOrderResultWindow : Window
             MinHeight = 0;
             MaxHeight = 420;
         }
+        RefreshButton.Content = LocalizationService.Instance["GUIRefreshReport"];
         CopyButton.Content = LocalizationService.Instance["GUICopyReport"];
         CloseButton.Content = LocalizationService.Instance["GUIClose"];
         CopyButton.Click += async (_, _) =>
@@ -48,10 +53,8 @@ public partial class LoadOrderResultWindow : Window
             if (clipboard is not null)
                 await clipboard.SetTextAsync(_report);
         };
+        RefreshButton.Click += async (_, _) => await RefreshReportAsync();
         CloseButton.Click += (_, _) => Close();
-
-        foreach (var note in notes)
-            NotesPanel.Children.Add(CreateNoteControl(note));
     }
 
     public static Task ShowAsync(
@@ -63,6 +66,59 @@ public partial class LoadOrderResultWindow : Window
         bool compact = false)
     {
         return new LoadOrderResultWindow(summary, notes, title, showCopyButton, compact).ShowDialog(owner);
+    }
+
+    /// <summary>
+    /// Opens a modeless issue report. The caller supplies a deliberate refresh
+    /// action because scanning a large mod set should never run for every edit.
+    /// </summary>
+    public static LoadOrderResultWindow Show(
+        ReportContent report,
+        string title,
+        Func<Task<ReportContent>> refreshReportAsync)
+    {
+        var window = new LoadOrderResultWindow(
+            report.Summary,
+            report.Notes,
+            title,
+            showCopyButton: true,
+            refreshReportAsync: refreshReportAsync);
+        // A modeless issue report must be an independent top-level window.
+        // Showing it with AIM as its owner keeps it permanently above AIM on
+        // Windows, which defeats the purpose of keeping the main mod list usable.
+        window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        window.Show();
+        return window;
+    }
+
+    private void ApplyReport(ReportContent report)
+    {
+        _report = BuildReport(report.Summary, report.Notes);
+        SummaryText.Text = report.Summary;
+        SummaryText.IsVisible = !string.IsNullOrWhiteSpace(report.Summary);
+        NotesPanel.Children.Clear();
+        foreach (var note in report.Notes)
+            NotesPanel.Children.Add(CreateNoteControl(note));
+    }
+
+    private async Task RefreshReportAsync()
+    {
+        if (_refreshReportAsync is null) return;
+
+        RefreshButton.IsEnabled = false;
+        try
+        {
+            ApplyReport(await _refreshReportAsync());
+        }
+        catch (Exception exception)
+        {
+            SummaryText.Text = exception.Message;
+            SummaryText.IsVisible = true;
+        }
+        finally
+        {
+            RefreshButton.IsEnabled = true;
+        }
     }
 
     private static Control CreateNoteControl(LoadOrderNote note)

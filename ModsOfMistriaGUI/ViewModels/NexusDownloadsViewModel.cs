@@ -15,13 +15,14 @@ using MsBox.Avalonia.Enums;
 namespace Garethp.ModsOfMistriaGUI.ViewModels;
 
 /// <summary>
-/// Everything behind the "Mod Manager Download" button on the Nexus website: the API key, the
+/// Everything behind the "Vortex" button on the Nexus website: the OAuth account session, the
 /// protocol registration that makes the button reach AIM at all, and the downloads themselves.
 /// </summary>
 public partial class NexusDownloadsViewModel : ViewModelBase
 {
     private readonly Settings _settings;
     private readonly NexusSettings _nexusSettings;
+    private readonly NexusOAuthService _oauth;
     private readonly NxmDownloadService _service;
     private bool _handlerIsActive;
 
@@ -38,7 +39,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     {
         _settings = settings;
         _nexusSettings = nexusSettings ?? new NexusSettings();
-        _service = new NxmDownloadService(_nexusSettings);
+        _oauth = new NexusOAuthService(_nexusSettings, NexusOAuthRegistration.Pending);
+        _service = new NxmDownloadService(_oauth.GetAccessTokenAsync);
 
         Localization.LanguageChanged += (_, _) => RefreshHandlerStatus();
         RefreshHandlerStatus();
@@ -95,20 +97,21 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     }
 
     /// <summary>An update service bound to one mods folder. The caller owns the lifetime.</summary>
-    public NexusUpdateService CreateUpdateService(string modsLocation) => new(_nexusSettings, modsLocation);
+    public NexusUpdateService CreateUpdateService(string modsLocation) => new(_oauth.GetAccessTokenAsync, modsLocation);
 
     /// <summary>
-    /// Makes sure there is an API key, asking for one if not. Returns false when the user closed
-    /// the dialog without saving a working key.
+    /// Makes sure an OAuth account session exists. The public client registration is deliberately
+    /// pending until Nexus approves AIM, so this never falls back to a personal API key.
     /// </summary>
-    public async Task<bool> EnsureApiKeyAsync()
+    public async Task<bool> EnsureNexusAccountAsync()
     {
-        if (_nexusSettings.HasApiKey()) return true;
-        if (App.TopLevel is not Window owner) return false;
+        if (_oauth.HasSession && await _oauth.GetAccessTokenAsync() is not null) return true;
 
-        var saved = await NexusApiKeyWindow.ShowAsync(owner, _nexusSettings);
-        OnPropertyChanged(nameof(HasApiKey));
-        return saved;
+        await ShowMessage(Localization["GUINexusDownloadFailedTitle"],
+            _oauth.IsRegistered
+                ? "Connect your Nexus account to continue."
+                : "Nexus account connection is awaiting Nexus OAuth registration.");
+        return false;
     }
 
     /// <summary>
@@ -118,7 +121,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     public async Task<bool> RunUpdateAsync(
         NexusUpdateService service, IMod mod, NexusUpdateStatus status, string modsLocation)
     {
-        if (!await EnsureApiKeyAsync()) return false;
+        if (!await EnsureNexusAccountAsync()) return false;
 
         var download = new NexusDownloadModel(mod.GetName());
         Downloads.Add(download);
@@ -194,7 +197,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     [ObservableProperty] private bool _handlerNeedsAttention;
 
-    public bool HasApiKey => _nexusSettings.HasApiKey();
+    public bool IsNexusAccountConnected => _oauth.HasSession;
 
     // ── Incoming links ───────────────────────────────────────────────────────────
 
@@ -233,12 +236,14 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             return false;
         }
 
-        if (!await EnsureApiKeyAsync()) return false;
+        if (!await EnsureNexusAccountAsync()) return false;
 
         NexusFileInfo fileInfo;
         try
         {
-            var client = new NexusApiClient(_nexusSettings.GetApiKey()!);
+            var accessToken = await _oauth.GetAccessTokenAsync();
+            if (string.IsNullOrEmpty(accessToken)) return false;
+            var client = new NexusApiClient(accessToken);
             fileInfo = await client.GetFileInfoAsync(link);
         }
         catch (NexusApiException e)
@@ -289,15 +294,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             return;
         }
 
-        if (!_nexusSettings.HasApiKey())
-        {
-            var owner = App.TopLevel as Window;
-            if (owner is null) return;
-
-            var saved = await NexusApiKeyWindow.ShowAsync(owner, _nexusSettings);
-            OnPropertyChanged(nameof(HasApiKey));
-            if (!saved) return;
-        }
+        if (!await EnsureNexusAccountAsync()) return;
 
         if (!_settings.ValidModsLocation())
         {
@@ -354,16 +351,13 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     // ── Commands ─────────────────────────────────────────────────────────────────
 
-    public async Task SetApiKeyAsync()
+    public async Task ManageNexusAccountAsync()
     {
-        if (App.TopLevel is not Window owner) return;
-
-        await NexusApiKeyWindow.ShowAsync(owner, _nexusSettings);
-        OnPropertyChanged(nameof(HasApiKey));
+        await EnsureNexusAccountAsync();
     }
 
     [RelayCommand]
-    private Task SetApiKey() => SetApiKeyAsync();
+    private Task ManageNexusAccount() => ManageNexusAccountAsync();
 
     /// <summary>
     /// Claims (or gives up) the nxm:// protocol. Registering is what makes the website's

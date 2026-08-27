@@ -250,7 +250,6 @@
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMDリンク</value></data>
   <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>NMDにAIMを使用</value></data>
   <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>AIMによるNMDを停止</value></data>
-  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus APIキー…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>コピーしたnxm://リンクからインストール</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Nexusからダウンロード中</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>完了した項目を消去</value></data>
@@ -258,31 +257,22 @@
   <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexusダウンロード</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>このダウンロードは別のゲーム用（{0}）のため、AIMではインストールできません。</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>先にFields of MistriaフォルダーとMODフォルダーを設定してください。</value></data>
-  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Mod Manager Download」リンク</value></data>
-  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIMが「Mod Manager Download」リンクを処理しています。</value></data>
-  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>「Mod Manager Download」リンクはまだAIMで処理されていません。</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Vortex」リンク</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIMが「Vortex」リンクを処理しています。</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>「Vortex」リンクはまだAIMで処理されていません。</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>現在、別のプログラムがこれらのリンクを処理しています（{0}）。</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>これらのリンクの処理はWindowsとLinuxでのみ対応しています。</value></data>
-  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>これからAIMがNexusサイトの「Mod Manager Download」リンクを開きます。
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>これからAIMがNexusサイトの「Vortex」リンクを開きます。
 
 初めてクリックするとき、ブラウザーで許可を求められる場合があります。</value></data>
-  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIMはNexusサイトの「Mod Manager Download」リンクを開かなくなります。</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIMはNexusサイトの「Vortex」リンクを開かなくなります。</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>これらのリンクにAIMを登録できませんでした：{0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIMによるこれらのリンクの処理を停止できませんでした：{0}</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>現在、別のプログラムがこれらのリンクを処理しています（{0}）。
 
 AIMに引き継ぎますか？</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>リンクからインストール</value></data>
-  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>クリップボードにnxm://リンクがありません。MODページで「Mod Manager Download」を右クリックし、先にリンクアドレスをコピーしてください。</value></data>
-  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus APIキー</value></data>
-  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>MODをダウンロードするには、個人用のNexus Mods APIキーが必要です。Nexusアカウント設定を開き、「API Key」までスクロールして個人用キーを生成し、下に貼り付けてください。キーはこのコンピューターにのみ保存されます。</value></data>
-  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Nexusアカウント設定を開く</value></data>
-  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>個人用APIキーをここに貼り付け</value></data>
-  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>キーはすでに保存されています。置き換えるには新しいキーを入力してください。</value></data>
-  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>先にAPIキーを貼り付けてください。</value></data>
-  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Nexusでキーを確認中…</value></data>
-  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>{0}としてサインインしました。</value></data>
-  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>保存したキーを削除</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>クリップボードにnxm://リンクがありません。MODページで「Vortex」を右クリックし、先にリンクアドレスをコピーしてください。</value></data>
   <data name="GUISave" xml:space="preserve"><value>保存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>キャンセル</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} 個中 {1} 個を選択 — {2} 個はゲーム内にあり、{3} 個を追加します</value></data>
@@ -324,9 +314,9 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIMは「{0}」がどのNexus Modか判断できません。AIMでダウンロードしたModは自動的に追跡されますが、それ以外はmanifestにNexusページが必要です。</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>Modを更新</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>「{0}」を{1}から{2}に更新しますか？&#xD;&#xA;&#xD;&#xA;現在のバージョンは復元可能なバックアップとして保存されます。</value></data>
-  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Modのファイルページを開いて「Mod Manager Download」ボタンを使用しますか？</value></data>
-  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Nexusサイトの「Mod Manager Download」リンクをAIMで処理しますか？&#xD;&#xA;&#xD;&#xA;Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
-  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexusの「Mod Manager Download」リンクは現在{0}が処理しています。&#xD;&#xA;&#xD;&#xA;AIMに引き継ぎますか？Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Modのファイルページを開いて「Vortex」ボタンを使用しますか？</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Nexusサイトの「Vortex」リンクをAIMで処理しますか？&#xD;&#xA;&#xD;&#xA;Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexusの「Vortex」リンクは現在{0}が処理しています。&#xD;&#xA;&#xD;&#xA;AIMに引き継ぎますか？Modページでこのボタンを押すと、ModがModフォルダーへ直接ダウンロードされます。後で歯車メニューから変更できます。</value></data>
   <data name="GUISettingsMenu" xml:space="preserve"><value>設定…</value></data>
   <data name="GUISettingsBack" xml:space="preserve"><value>← 戻る</value></data>
   <data name="GUISettingsGeneral" xml:space="preserve"><value>全般</value></data>
@@ -337,8 +327,7 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Modフォルダーはいつでも変更できます。Mod一覧に戻るとAIMが一覧を再読み込みします。</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
   <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIMはダウンロードと更新チェックに個人のNexus APIキーを使用します。キーはこのPCにのみ保存され、Modやリリースには含まれません。</value></data>
-  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>APIキーの状態: {0}</value></data>
-  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Nexus APIキーを設定または変更…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>同じキーをNexusダウンロードメニューで使用します。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modフォルダーを選択</value></data>
+  <data name="GUIRefreshReport" xml:space="preserve"><value>レポートを更新</value></data>
 </root>

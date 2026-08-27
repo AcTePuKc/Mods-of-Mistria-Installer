@@ -149,7 +149,6 @@ public sealed class LocalizedTexts : ObservableObject
     // Nexus "Mod Manager Download" support
     public string GUINexusMenu => T("GUINexusMenu");
     public string GUINexusHandlerMenuItem => T("GUINexusHandlerMenuItem");
-    public string GUINexusApiKeyMenuItem => T("GUINexusApiKeyMenuItem");
     public string GUINexusPasteLinkMenuItem => T("GUINexusPasteLinkMenuItem");
     public string GUINexusDownloadsHeader => T("GUINexusDownloadsHeader");
     public string GUINexusClearFinished => T("GUINexusClearFinished");
@@ -165,8 +164,6 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUISettingsModsFolderNote => T("GUISettingsModsFolderNote");
     public string GUISettingsNexus => T("GUISettingsNexus");
     public string GUISettingsNexusDescription => T("GUISettingsNexusDescription");
-    public string GUISettingsApiKeyStatus => T("GUISettingsApiKeyStatus");
-    public string GUISettingsApiKeyButton => T("GUISettingsApiKeyButton");
     public string GUISettingsNexusNote => T("GUISettingsNexusNote");
     public string GUISettingsSelectModsFolderTitle => T("GUISettingsSelectModsFolderTitle");
 }
