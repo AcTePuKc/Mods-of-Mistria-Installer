@@ -201,6 +201,28 @@ public class NexusOAuthPkceTest
     }
 
     [Test]
+    public void ShouldPreserveCallerCancellationWhileRefreshingAnExpiredSession()
+    {
+        var settings = new NexusSettings(_settingsDirectory);
+        settings.SetOAuthTokens(new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddMinutes(-1)));
+        var service = new NexusOAuthService(settings, Registration, new HttpClient(new CancellingTokenResponseHandler()));
+        using var cancellation = new CancellationTokenSource(TimeSpan.FromMilliseconds(100));
+
+        Assert.That(async () => await service.GetAccessTokenAsync(cancellation.Token),
+            Throws.InstanceOf<OperationCanceledException>());
+    }
+
+    [Test]
+    public async Task ShouldReturnNoTokenWhenRefreshFailsWithoutCancellation()
+    {
+        var settings = new NexusSettings(_settingsDirectory);
+        settings.SetOAuthTokens(new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddMinutes(-1)));
+        var service = new NexusOAuthService(settings, Registration, new HttpClient(new FailedTokenResponseHandler()));
+
+        Assert.That(await service.GetAccessTokenAsync(), Is.Null);
+    }
+
+    [Test]
     public void ShouldRejectANonLoopbackCallbackAddress()
     {
         Assert.Throws<ArgumentException>(() => new NexusOAuthLoopbackListener(
@@ -244,5 +266,20 @@ public class NexusOAuthPkceTest
                 Content = new StringContent("{\"access_token\":\"access-token\",\"refresh_token\":\"refresh-token\",\"expires_in\":3600}", Encoding.UTF8, "application/json")
             };
         }
+    }
+
+    private sealed class CancellingTokenResponseHandler : HttpMessageHandler
+    {
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            await Task.Delay(Timeout.InfiniteTimeSpan, cancellationToken);
+            throw new InvalidOperationException("Unreachable after cancellation.");
+        }
+    }
+
+    private sealed class FailedTokenResponseHandler : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>
+            Task.FromResult(new HttpResponseMessage(HttpStatusCode.InternalServerError));
     }
 }

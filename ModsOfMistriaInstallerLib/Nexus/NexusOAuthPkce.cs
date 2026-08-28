@@ -104,6 +104,10 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
         {
             return (await RefreshAsync(tokens, ct)).AccessToken;
         }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+            throw;
+        }
         catch (Exception e)
         {
             Logger.Log($"Could not refresh the Nexus OAuth session: {e.Message}");

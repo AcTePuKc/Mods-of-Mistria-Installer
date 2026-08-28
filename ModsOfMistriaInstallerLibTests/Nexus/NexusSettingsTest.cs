@@ -85,6 +85,21 @@ public class NexusSettingsTest
     }
 
     [Test]
+    public void ShouldKeepTheExistingOAuthSessionWhenTheSettingsFileCannotBeReplaced()
+    {
+        var settings = new NexusSettings(_directory);
+        var existingTokens = new NexusOAuthTokens("existing-access-token", "existing-refresh-token", DateTimeOffset.UtcNow.AddHours(1));
+        settings.SetOAuthTokens(existingTokens);
+        File.Move(Path.Combine(_directory, "nexus.json"), Path.Combine(_directory, "nexus-backup.json"));
+        Directory.CreateDirectory(Path.Combine(_directory, "nexus.json"));
+
+        Assert.Throws<IOException>(() => settings.SetOAuthTokens(
+            new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddHours(1))));
+
+        Assert.That(settings.GetOAuthTokens(), Is.EqualTo(existingTokens));
+    }
+
+    [Test]
     public void ShouldRememberTheProtocolOptIn()
     {
         new NexusSettings(_directory).HandlerRegistered = true;
