@@ -25,7 +25,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private GameRestartMonitor? _restartMonitor;
 
     /// <summary>
-    /// Nexus "Mod Manager Download" support. It lives here rather than on the mod list page so
+    /// Nexus Vortex download-link support. It lives here rather than on the mod list page so
     /// that a link clicked while the setup page is showing is still handled.
     /// </summary>
     public NexusDownloadsViewModel Nexus { get; }

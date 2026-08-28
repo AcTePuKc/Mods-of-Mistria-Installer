@@ -326,8 +326,8 @@
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Выбрать…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Папку модов можно изменить в любое время; AIM перезагрузит список после возвращения к списку модов.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM использует ваш личный API-ключ Nexus для загрузки модов и проверки обновлений. Ключ хранится локально и никогда не добавляется в моды или версии.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Тот же ключ используется в меню загрузок Nexus.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM использует OAuth PKCE для доступа к учётной записи Nexus. Загрузки и проверки обновлений Nexus недоступны, пока Nexus не предоставит публичный client_id AIM.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Вход через OAuth будет доступен в меню загрузок Nexus после одобрения Nexus публичного client_id AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Выбрать папку модов</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Обновить отчёт</value></data>
 </root>

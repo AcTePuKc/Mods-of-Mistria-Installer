@@ -651,8 +651,8 @@ De links aan AIM overdragen?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Kiezen…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>De modmap kan altijd worden gewijzigd; AIM laadt de lijst opnieuw wanneer je terugkeert naar de modlijst.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM gebruikt je persoonlijke Nexus-API-sleutel voor downloads en updatecontroles. De sleutel wordt lokaal opgeslagen en nooit in mods of releases opgenomen.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Dezelfde sleutel wordt gebruikt in het Nexus-downloadmenu.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM gebruikt OAuth PKCE voor toegang tot een Nexus-account. Nexus-downloads en updatecontroles zijn niet beschikbaar totdat Nexus de openbare client_id van AIM verstrekt.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>OAuth-aanmelding is beschikbaar in het Nexus-downloadmenu nadat Nexus de openbare client_id van AIM heeft goedgekeurd.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modmap kiezen</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Rapport vernieuwen</value></data>
 </root>

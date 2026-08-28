@@ -1,4 +1,4 @@
-# AIM — Alternative Installer for Mistria 0.1.7
+# AIM — Alternative Installer for Mistria 0.1.8
 
 This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
 
@@ -6,7 +6,7 @@ AIM is a fork of MOMI. It was renamed to avoid confusion between the two applica
 
 AIM is not intended to replace MOMI. It exists to provide capabilities that are currently needed by this fork while remaining compatible with the upstream project. If MOMI later adopts at least the capabilities that motivated this fork and fully meets the project's needs, AIM may be retired in favour of the upstream project.
 
-The current AIM application version is `0.1.7`.
+The current AIM development line is `0.1.8`.
 
 ## Preview
 
@@ -24,24 +24,24 @@ Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1
 - The UI remembers profiles and load order, behaves better on high-DPI displays, and includes a guarded **Play** button.
 - Update checks, release uploads and the GitHub link belong to this fork rather than the upstream repository.
 
-## Nexus integration and mod list tools (added by this branch)
+## Nexus integration and mod list tools
 
-Everything above describes AIM as it already is. This section is the part added here, kept separate
-so it is obvious what is new and what is not. Nothing in AIM's existing install, rebuild or profile
-behaviour changes.
+Nexus account features are implemented with OAuth PKCE. They remain unavailable in the current
+build until Nexus Mods registers AIM and provides its public OAuth `client_id`; AIM does not accept
+or fall back to personal Nexus API keys.
 
 | What | Where it lives in the UI |
 | --- | --- |
-| Nexus **Mod Manager Download** (`nxm://`) links download and unpack straight into the mods folder | Gear menu → **Nexus downloads** |
-| Check one mod, the selected mods, or every mod for updates on its Nexus page | Right-click a mod, or gear menu → **Nexus downloads** |
-| Update a mod from Nexus, keeping the previous version as a backup you can restore | Right-click a mod |
+| Nexus **Vortex download button** (`nxm://`) links download and unpack straight into the mods folder once OAuth registration is available | Gear menu → **Nexus downloads** |
+| Check one mod, the selected mods, or every mod for updates once OAuth registration is available | Right-click a mod, or gear menu → **Nexus downloads** |
+| Update a mod from Nexus, keeping the previous version as a backup you can restore once OAuth registration is available | Right-click a mod |
 | Freeze a mod so update checks leave it on the version it is on | Right-click a mod |
 | Open a mod's Nexus page or its folder | Right-click a mod |
 | Select or clear every mod at once, with a summary of what the selection means | Checkbox above the mod list |
 | **Suggest order** — order mods so each loads after what it requires, and report what it cannot decide | Button above the mod list |
 | Mods copied into the mods folder appear without reopening AIM | Automatic |
 
-Full details are in [Downloading mods from Nexus](#downloading-mods-from-nexus-mod-manager-download)
+Full details are in [Downloading mods from Nexus](#downloading-mods-from-nexus-vortex-download-button)
 and [Mod list tools](#mod-list-tools) below.
 
 ### What it does not change
@@ -114,22 +114,28 @@ This project is intended for Fields of Mistria 1.0.4 and later 1.0.x patches. In
 
 AIM preserves a pristine backup and writes a staged archive before replacing the live `assets.zip`. Do not delete the backup while AIM is managing the installation. Keep a separate game backup before testing unfamiliar mods.
 
-## Downloading mods from Nexus ("Mod Manager Download")
+### Interrupted recovery
 
-AIM can register itself as the handler for `nxm://` links, which is what the **Mod Manager Download**
-button on a Nexus Mods page uses. Once it is set up, clicking that button downloads the mod and
-unpacks it straight into your mods folder, the way Vortex does for other games.
+If publishing `assets.zip` succeeds but publishing AIM's installation state fails, AIM retains
+`assets.momi.pending-state.json` beside the archive. Do not delete it: restarting or running AIM
+again should complete recovery. If recovery fails, preserve the diagnostic log and use it when
+reporting the problem.
+
+## Downloading mods from Nexus (Vortex download button)
+
+AIM uses OAuth PKCE for Nexus account access. The browser authorization flow, localhost callback,
+state validation, authorization-code exchange, and token refresh are implemented, but the feature
+cannot be used until Nexus Mods supplies AIM's public OAuth `client_id`. Until then, Nexus account
+sign-in, the **Vortex download button**, downloads, and update checks are unavailable.
+
+These Nexus operations are GUI-only. AIM CLI does not register `nxm://`, sign in to Nexus, download
+mods, or check for mod updates.
 
 ### Setting it up
 
-1. Open the gear menu → **Nexus downloads** → **Nexus API key...**
-2. Click **Open Nexus account settings**, scroll to **API Key**, generate a personal key and paste it
-   into AIM. The key is checked immediately, and is stored on this computer only (encrypted with
-   Windows DPAPI; on Linux in a file only your user can read).
-3. Back in the gear menu, choose **Handle "Mod Manager Download" links**. The line underneath the menu
-   item shows whether AIM currently owns those links.
-4. Click **Mod Manager Download** on any Fields of Mistria mod page. Your browser will ask once
-   whether to open the link with AIM.
+After Nexus registers the public client, open the gear menu → **Nexus downloads**, sign in through
+the browser, and choose **Handle Vortex download links**. The line under that option shows whether
+AIM currently owns `nxm://` links. The browser may ask once for permission to open AIM.
 
 ### What happens on a download
 
@@ -143,16 +149,15 @@ unpacks it straight into your mods folder, the way Vortex does for other games.
 
 ### Notes and limits
 
-- A Nexus API key is required. Free accounts can only download through the website's **Mod Manager
-  Download** button, because the download token lives in the link itself; an `nxm://` link typed by
-  hand will be refused by Nexus for a non-premium account.
+- OAuth account access is intentionally unavailable until Nexus provides AIM's public `client_id`.
+  No personal API key is requested, stored, or accepted by AIM.
 - Registration is per-user and never needs administrator rights: `HKCU\Software\Classes\nxm` on
   Windows, a `~/.local/share/applications/aim-nxm-handler.desktop` entry plus `mimeapps.list` on
   Linux and the Steam Deck.
 - If another mod manager already owns `nxm://`, AIM says so and asks before taking over. Turning the
   option off again only removes AIM's own registration.
 - A browser installed as a Flatpak or Snap may not be able to launch a handler outside its sandbox.
-  In that case, right-click **Mod Manager Download**, copy the link address, and use gear menu →
+  In that case, right-click the **Vortex download button**, copy the link address, and use gear menu →
   **Nexus downloads** → **Install from a copied nxm:// link**.
 - You can also associate a manually installed mod with Nexus by right-clicking the mod's name or
   row and choosing **Associate with Nexus...**. A normal Nexus page URL enables version checks;
@@ -160,6 +165,10 @@ unpacks it straight into your mods folder, the way Vortex does for other games.
   AIM records the association without downloading it again. If you choose **Yes** when AIM asks
   whether to replace an existing file, it might download that file again.
 - Nexus collections are not supported; download the mods in them individually.
+- Downloaded archives are limited to 20,000 entries, 512 MiB per extracted entry, and 2 GiB total
+  extracted data. Extraction can be cancelled. A Nexus archive containing several mods is applied
+  as one bundle: if one mod fails, AIM restores earlier replacements. If a restore also fails, AIM
+  reports the retained backup paths for manual recovery.
 
 ### Keeping mods up to date
 
@@ -173,9 +182,8 @@ identified.
   selected mods for updates** / **Check all mods for updates**.
 - A mod with an update shows the green badge. Right-click → **Update from Nexus** downloads and
   replaces it.
-- Checking works on any Nexus account. Downloading an update directly does not: Nexus only issues a
-  download link to a non-premium account when the request carries the token from a website button
-  click, so free accounts are offered the mod's files page instead.
+- Once OAuth registration is available, free-account download links still need the token supplied by
+  the website's **Vortex download button**. A copied link without that token can be refused by Nexus.
 - Update sweeps run a few mods at a time and stop early if Nexus reports a rate limit, keeping the
   results already gathered.
 
@@ -255,13 +263,16 @@ After a Fields of Mistria update, start AIM and reinstall the enabled mods. When
 
 Nexus downloads and updates:
 
+- OAuth PKCE is implemented, but Nexus downloads and update checks remain unavailable until Nexus
+  provides AIM's public OAuth `client_id`. AIM does not use personal Nexus API keys.
 - **Known issue for older local installations:** mods installed manually or by an older AIM build
   before AIM 0.1.5 may not have a Nexus file identity recorded. To update one from AIM, right-click
   its name or row, choose **Associate with Nexus...**, and provide its Nexus page URL or an exact
   `nxm://` link.
-- AIM currently uses each user's personal Nexus API key for Nexus downloads and update checks.
-  OAuth support for AIM is not available yet and depends on Nexus application approval.
-- If clicking **Mod Manager Download** does nothing, check gear menu → **Nexus downloads**: the line under **Handle "Mod Manager Download" links** says who currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler, in which case copy the link address and use **Install from a copied nxm:// link**.
+- If clicking the **Vortex download button** does nothing after OAuth registration becomes available,
+  check gear menu → **Nexus downloads**: the line under **Handle Vortex download links** says who
+  currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler,
+  in which case copy the link address and use **Install from a copied nxm:// link**.
 - If an update check says AIM cannot tell which Nexus mod something is, that mod was not downloaded through AIM and its manifest has no Nexus link. Downloading it once through AIM records the connection.
 - If an update refuses to download and offers the mod's page instead, the account is not premium. Nexus only issues download links to free accounts through the website button; the page it opens is the supported route.
 - Previous versions live in `.aim-backups` inside the mods folder. If a rollback is not offered, no backup exists yet — they start being kept the first time a mod is updated through AIM.

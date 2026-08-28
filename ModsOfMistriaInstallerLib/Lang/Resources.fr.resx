@@ -654,8 +654,8 @@ Les confier à AIM ?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Choisir…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Le dossier des mods peut être changé à tout moment ; AIM rechargera la liste lorsque vous reviendrez à la liste des mods.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM utilise votre clé API Nexus personnelle pour les téléchargements et la recherche de mises à jour. Elle est stockée localement et n’est jamais incluse dans les mods ou les versions.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>La même clé est utilisée dans le menu des téléchargements Nexus.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM utilise OAuth PKCE pour l'accès au compte Nexus. Les téléchargements et vérifications de mises à jour Nexus ne sont pas disponibles tant que Nexus n'a pas fourni la client_id publique d'AIM.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>La connexion OAuth sera disponible dans le menu des téléchargements Nexus après l'approbation par Nexus de la client_id publique d'AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Choisir le dossier des mods</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Actualiser le rapport</value></data>
 </root>

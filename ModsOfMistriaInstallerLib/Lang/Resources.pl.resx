@@ -326,8 +326,8 @@ Przekazać je do AIM?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Wybierz…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Folder modów można zmienić w dowolnym momencie; AIM ponownie wczyta listę po powrocie do listy modów.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM używa osobistego klucza API Nexus do pobierania modów i sprawdzania aktualizacji. Klucz jest przechowywany lokalnie i nigdy nie trafia do modów ani wydań.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Ten sam klucz jest używany w menu pobierania Nexus.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM używa OAuth PKCE do dostępu do konta Nexus. Pobieranie z Nexus i sprawdzanie aktualizacji są niedostępne, dopóki Nexus nie udostępni publicznego client_id AIM.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Logowanie OAuth będzie dostępne w menu pobierania Nexus po zatwierdzeniu przez Nexus publicznego client_id AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Wybierz folder modów</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Odśwież raport</value></data>
 </root>

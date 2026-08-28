@@ -20,6 +20,7 @@ namespace Garethp.ModsOfMistriaGUI.ViewModels;
 /// </summary>
 public partial class NexusDownloadsViewModel : ViewModelBase
 {
+    private static readonly TimeSpan OAuthSignInTimeout = TimeSpan.FromMinutes(5);
     private readonly Settings _settings;
     private readonly NexusSettings _nexusSettings;
     private readonly NexusOAuthService _oauth;
@@ -36,10 +37,15 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     public event EventHandler? ModsChanged;
 
     public NexusDownloadsViewModel(Settings settings, NexusSettings? nexusSettings = null)
+        : this(settings, nexusSettings ?? new NexusSettings(), null)
+    {
+    }
+
+    internal NexusDownloadsViewModel(Settings settings, NexusSettings nexusSettings, NexusOAuthService? oauth)
     {
         _settings = settings;
-        _nexusSettings = nexusSettings ?? new NexusSettings();
-        _oauth = new NexusOAuthService(_nexusSettings, NexusOAuthRegistration.Pending);
+        _nexusSettings = nexusSettings;
+        _oauth = oauth ?? new NexusOAuthService(_nexusSettings, NexusOAuthRegistration.Pending);
         _service = new NxmDownloadService(_oauth.GetAccessTokenAsync);
 
         Localization.LanguageChanged += (_, _) => RefreshHandlerStatus();
@@ -59,7 +65,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Asks once whether AIM should take over "Mod Manager Download" links, the way Vortex and
+    /// Asks once whether AIM should take over Vortex download links, the way Vortex and
     /// Stardrop do on first run. Declining is remembered: a mod manager that asks every launch is
     /// a mod manager people stop reading dialogs from.
     /// </summary>
@@ -103,15 +109,41 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     /// Makes sure an OAuth account session exists. The public client registration is deliberately
     /// pending until Nexus approves AIM, so this never falls back to a personal API key.
     /// </summary>
-    public async Task<bool> EnsureNexusAccountAsync()
+    public Task<bool> EnsureNexusAccountAsync() =>
+        EnsureNexusAccountAsync(OpenAuthorizationPageAsync, ShowMessage, OAuthSignInTimeout);
+
+    internal async Task<bool> EnsureNexusAccountAsync(
+        Func<Uri, Task> openAuthorizationPage,
+        Func<string, string, Task> showMessage,
+        TimeSpan signInTimeout)
     {
         if (_oauth.HasSession && await _oauth.GetAccessTokenAsync() is not null) return true;
 
-        await ShowMessage(Localization["GUINexusDownloadFailedTitle"],
-            _oauth.IsRegistered
-                ? "Connect your Nexus account to continue."
-                : "Nexus account connection is awaiting Nexus OAuth registration.");
-        return false;
+        if (!_oauth.IsRegistered)
+        {
+            await showMessage(Localization["GUINexusDownloadFailedTitle"],
+                "Nexus account connection is awaiting Nexus OAuth registration.");
+            return false;
+        }
+
+        try
+        {
+            using var signInCancellation = new CancellationTokenSource(signInTimeout);
+            await _oauth.SignInAsync(openAuthorizationPage, signInCancellation.Token);
+            OnPropertyChanged(nameof(IsNexusAccountConnected));
+            return true;
+        }
+        catch (OperationCanceledException)
+        {
+            await showMessage(Localization["GUINexusDownloadFailedTitle"],
+                "Nexus sign-in timed out. Please try again and complete it in your browser.");
+            return false;
+        }
+        catch (Exception e)
+        {
+            await showMessage(Localization["GUINexusDownloadFailedTitle"], e.Message);
+            return false;
+        }
     }
 
     /// <summary>
@@ -187,6 +219,17 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         {
             Logger.Log($"Could not open {url}: {e.Message}");
         }
+    }
+
+    private static Task OpenAuthorizationPageAsync(Uri authorizationUri)
+    {
+        // The authorization endpoint is built by NexusOAuthPkce, but retain the same external
+        // URL boundary used by every other browser launch in the UI.
+        if (!ExternalUrl.IsAllowed(authorizationUri.AbsoluteUri))
+            throw new NexusApiException("AIM refused an unsafe Nexus authorization URL.");
+
+        Process.Start(new ProcessStartInfo { FileName = authorizationUri.AbsoluteUri, UseShellExecute = true });
+        return Task.CompletedTask;
     }
 
     public ObservableCollection<NexusDownloadModel> Downloads { get; } = [];
@@ -361,7 +404,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     /// <summary>
     /// Claims (or gives up) the nxm:// protocol. Registering is what makes the website's
-    /// "Mod Manager Download" button hand its link to AIM.
+    /// Vortex download button hand its link to AIM.
     /// </summary>
     [RelayCommand]
     private async Task ToggleHandler()

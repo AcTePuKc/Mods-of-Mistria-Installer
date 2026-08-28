@@ -7,6 +7,15 @@ public class ModArchiveException(string message, Exception? inner = null) : Exce
 
 public record InstalledModFolder(string Name, string Path, bool ReplacedExisting);
 
+/// <summary>Hard limits for one downloaded mod archive before it is allowed to write to disk.</summary>
+public sealed record ModArchiveExtractionLimits(
+    int MaxEntries = 20_000,
+    long MaxEntryBytes = 512L * 1024 * 1024,
+    long MaxTotalBytes = 2L * 1024 * 1024 * 1024)
+{
+    public static ModArchiveExtractionLimits Default { get; } = new();
+}
+
 public enum ArchiveConflictBehaviour
 {
     /// <summary>Stop and report which folders already exist, so the caller can ask the user.</summary>
@@ -50,14 +59,49 @@ public static class ModArchiveInstaller
         string fallbackName,
         ArchiveConflictBehaviour conflictBehaviour = ArchiveConflictBehaviour.Fail,
         ModBackupStore? backups = null,
-        string? previousVersion = null)
+        string? previousVersion = null,
+        CancellationToken cancellationToken = default,
+        ModArchiveExtractionLimits? limits = null)
+        => InstallCore(archivePath, modsLocation, fallbackName, conflictBehaviour, backups, previousVersion,
+            cancellationToken, limits, null);
+
+    /// <summary>
+    /// Test-only entry point for exercising recovery failures that cannot be created portably by
+    /// locking a directory (Unix permits deleting an open directory while Windows does not).
+    /// </summary>
+    internal static List<InstalledModFolder> InstallForTesting(
+        string archivePath,
+        string modsLocation,
+        string fallbackName,
+        ArchiveConflictBehaviour conflictBehaviour,
+        ModBackupStore? backups,
+        string? previousVersion,
+        CancellationToken cancellationToken,
+        ModArchiveExtractionLimits? limits,
+        Func<string, string?, Exception?>? forceRestoreFailure)
+        => InstallCore(archivePath, modsLocation, fallbackName, conflictBehaviour, backups, previousVersion,
+            cancellationToken, limits, forceRestoreFailure);
+
+    private static List<InstalledModFolder> InstallCore(
+        string archivePath,
+        string modsLocation,
+        string fallbackName,
+        ArchiveConflictBehaviour conflictBehaviour,
+        ModBackupStore? backups,
+        string? previousVersion,
+        CancellationToken cancellationToken,
+        ModArchiveExtractionLimits? limits,
+        Func<string, string?, Exception?>? forceRestoreFailure)
     {
         if (!File.Exists(archivePath)) throw new ModArchiveException("The downloaded file is missing.");
         if (!Directory.Exists(modsLocation)) throw new ModArchiveException("The mods folder could not be found.");
 
         using var archive = OpenArchive(archivePath);
 
+        cancellationToken.ThrowIfCancellationRequested();
+        var extractionLimits = limits ?? ModArchiveExtractionLimits.Default;
         var entries = archive.Entries.Where(entry => !entry.IsDirectory && entry.Key is not null).ToList();
+        ValidateLimits(entries, extractionLimits, cancellationToken);
 
         var manifestRoots = entries
             .Where(entry => ManifestNames.Contains(FileName(entry.Key!), StringComparer.OrdinalIgnoreCase))
@@ -88,34 +132,58 @@ public static class ModArchiveInstaller
                 throw new ModArchiveConflictException(existing.Select(plan => Path.GetFileName(plan.Target)).ToList());
         }
 
-        var installed = new List<InstalledModFolder>();
+        var installed = new List<ExtractedRoot>();
+        var budget = new ExtractionBudget(extractionLimits.MaxTotalBytes);
 
         foreach (var (root, target) in plans)
         {
             try
             {
-                installed.Add(ExtractRoot(entries, root, target, backups, previousVersion));
+                cancellationToken.ThrowIfCancellationRequested();
+                installed.Add(ExtractRoot(entries, root, target, backups, previousVersion,
+                    extractionLimits, budget, cancellationToken, forceRestoreFailure));
             }
-            catch
+            catch (Exception installError)
             {
                 // A bundle installs as a unit. Leaving one of three mods behind after a failure
                 // would give the user a mod list that does not match anything they downloaded.
-                foreach (var earlier in installed) TryRemove(earlier.Path);
+                var rollbackFailures = installed.AsEnumerable().Reverse()
+                    .Select(earlier => Restore(earlier.Target, earlier.BackupPath, forceRestoreFailure))
+                    .Where(failure => failure is not null)
+                    .Select(failure => failure!)
+                    .ToList();
+
+                if (rollbackFailures.Count > 0)
+                {
+                    var details = string.Join(Environment.NewLine, rollbackFailures.Select(failure =>
+                        $"• {Path.GetFileName(failure.Target)}: {failure.Error.Message}{DescribeBackup(failure.BackupPath)}"));
+                    throw new ModArchiveException(
+                        $"Could not complete the downloaded mod bundle. The original install error was: {installError.Message}" +
+                        $"{Environment.NewLine}A previous mod copy could not be restored. Its backup was kept for manual recovery:{Environment.NewLine}{details}",
+                        installError);
+                }
                 throw;
             }
         }
 
-        return installed;
+        foreach (var result in installed.Where(result => result.DeleteBackupAfterBundle))
+            TryRemove(result.BackupPath!);
+
+        return installed.Select(result => result.Installed).ToList();
     }
 
     // ── Extraction ───────────────────────────────────────────────────────────────
 
-    private static InstalledModFolder ExtractRoot(
+    private static ExtractedRoot ExtractRoot(
         List<IArchiveEntry> entries,
         string root,
         string target,
         ModBackupStore? backups = null,
-        string? previousVersion = null)
+        string? previousVersion = null,
+        ModArchiveExtractionLimits? limits = null,
+        ExtractionBudget? budget = null,
+        CancellationToken cancellationToken = default,
+        Func<string, string?, Exception?>? forceRestoreFailure = null)
     {
         var replaced = Directory.Exists(target);
 
@@ -158,19 +226,106 @@ public static class ModArchiveInstaller
 
                 using var input = entry.OpenEntryStream();
                 using var output = File.Create(destination);
-                input.CopyTo(output);
+                CopyEntry(input, output, entry.Key!, limits ?? ModArchiveExtractionLimits.Default,
+                    budget ?? new ExtractionBudget((limits ?? ModArchiveExtractionLimits.Default).MaxTotalBytes), cancellationToken);
             }
 
-            // A kept backup is the whole point of the store; only the throwaway copy is removed.
-            if (backup is not null && !backupIsKept) Directory.Delete(backup, true);
-            return new InstalledModFolder(Path.GetFileName(target), target, replaced);
+            // A throwaway backup cannot be removed yet: another root in the same Nexus bundle may
+            // fail afterwards, in which case this already extracted root must be restored too.
+            return new ExtractedRoot(
+                new InstalledModFolder(Path.GetFileName(target), target, replaced),
+                target,
+                backup,
+                backup is not null && !backupIsKept);
         }
         catch (Exception e)
         {
-            TryRestore(target, backup);
+            var rollbackFailure = Restore(target, backup, forceRestoreFailure);
+            if (rollbackFailure is not null)
+                throw new ModArchiveException(
+                    $"Could not unpack the mod: {e.Message} The previous copy could not be restored; " +
+                    $"its backup was kept for manual recovery{DescribeBackup(rollbackFailure.BackupPath)}.", e);
             throw new ModArchiveException($"Could not unpack the mod: {e.Message}", e);
         }
     }
+
+    private static void ValidateLimits(
+        IEnumerable<IArchiveEntry> entries,
+        ModArchiveExtractionLimits limits,
+        CancellationToken cancellationToken)
+    {
+        if (limits.MaxEntries <= 0 || limits.MaxEntryBytes <= 0 || limits.MaxTotalBytes <= 0)
+            throw new ArgumentOutOfRangeException(nameof(limits), "Archive extraction limits must be positive.");
+
+        long declaredTotal = 0;
+        var count = 0;
+        foreach (var entry in entries)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (++count > limits.MaxEntries)
+                throw new ModArchiveException("The downloaded archive contains too many files.");
+            if (entry.Size < 0 || entry.Size > limits.MaxEntryBytes)
+                throw new ModArchiveException("The downloaded archive contains a file that is too large.");
+            if (declaredTotal > limits.MaxTotalBytes - entry.Size)
+                throw new ModArchiveException("The downloaded archive exceeds the supported extracted size.");
+            declaredTotal += entry.Size;
+        }
+    }
+
+    private static void CopyEntry(
+        Stream input,
+        Stream output,
+        string entryName,
+        ModArchiveExtractionLimits limits,
+        ExtractionBudget budget,
+        CancellationToken cancellationToken)
+    {
+        var buffer = new byte[80 * 1024];
+        long entryBytes = 0;
+        while (true)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var read = input.Read(buffer, 0, buffer.Length);
+            if (read == 0) break;
+
+            if (entryBytes > limits.MaxEntryBytes - read)
+                throw new ModArchiveException($"Archive entry '{entryName}' exceeds the supported extracted size.");
+            budget.Consume(read);
+            output.Write(buffer, 0, read);
+            entryBytes += read;
+        }
+    }
+
+    internal static void CopyEntryForTesting(
+        Stream input,
+        Stream output,
+        ModArchiveExtractionLimits limits,
+        CancellationToken cancellationToken) =>
+        CopyEntry(input, output, "test-entry", limits,
+            new ExtractionBudget(limits.MaxTotalBytes), cancellationToken);
+
+    private static RollbackFailure? Restore(
+        string target,
+        string? backup,
+        Func<string, string?, Exception?>? forceRestoreFailure)
+    {
+        try
+        {
+            var forced = forceRestoreFailure?.Invoke(target, backup);
+            if (forced is not null) throw forced;
+            if (Directory.Exists(target)) Directory.Delete(target, true);
+            if (backup is not null && Directory.Exists(backup)) Directory.Move(backup, target);
+            return null;
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not restore the previous version of {Path.GetFileName(target)}: {e.Message}");
+            return new RollbackFailure(target, backup, e);
+        }
+    }
+
+    private static string DescribeBackup(string? backup) =>
+        string.IsNullOrWhiteSpace(backup) ? " (no backup folder was available)" : $" ({backup})";
 
     private static void TryRemove(string path)
     {
@@ -180,20 +335,7 @@ public static class ModArchiveInstaller
         }
         catch (Exception e)
         {
-            Logger.Log($"Could not roll back {Path.GetFileName(path)}: {e.Message}");
-        }
-    }
-
-    private static void TryRestore(string target, string? backup)
-    {
-        try
-        {
-            if (Directory.Exists(target)) Directory.Delete(target, true);
-            if (backup is not null && Directory.Exists(backup)) Directory.Move(backup, target);
-        }
-        catch (Exception e)
-        {
-            Logger.Log($"Could not restore the previous version of {Path.GetFileName(target)}: {e.Message}");
+            Logger.Log($"Could not remove completed update backup {Path.GetFileName(path)}: {e.Message}");
         }
     }
 
@@ -272,6 +414,26 @@ public static class ModArchiveInstaller
     }
 
     private static string FileName(string key) => Normalise(key).Split('/').Last();
+
+    private sealed record ExtractedRoot(
+        InstalledModFolder Installed,
+        string Target,
+        string? BackupPath,
+        bool DeleteBackupAfterBundle);
+
+    private sealed record RollbackFailure(string Target, string? BackupPath, Exception Error);
+
+    private sealed class ExtractionBudget(long maximum)
+    {
+        private long _remaining = maximum;
+
+        public void Consume(int count)
+        {
+            if (count < 0 || _remaining < count)
+                throw new ModArchiveException("The downloaded archive exceeds the supported extracted size.");
+            _remaining -= count;
+        }
+    }
 }
 
 /// <summary>Thrown when installing would overwrite folders that are already in the mods folder.</summary>

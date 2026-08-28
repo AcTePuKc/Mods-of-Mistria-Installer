@@ -5,11 +5,11 @@
 A **seam** is a small edit to one engine script that makes one or more hooks fire. It puts a dispatch at a precise, verified point in the game's own GML: an event calls `mmapi_emit(...)`, a filter threads a value through `mmapi_apply_filters(...)`, a guard checks `mmapi_check_guards(...)`, and an override asks `mmapi_run_override(...)` before the engine answers for itself.
 
 > [!IMPORTANT]
-> **A mod package never carries its own seams.** Mods register handlers for the hooks MOMI already ships. Seams are authored in MOMI's catalog by framework contributors, then verified against the pristine game before release. If you only want to write a mod, use the [Catalog](CATALOG.md) and [Hooks](HOOKS.md). The contributor reference begins at [Authoring A Hook And Seam](#authoring-a-hook-and-seam).
+> **A mod package never carries its own seams.** Mods register handlers for the hooks AIM already ships. Seams are authored in AIM's catalog by framework contributors, then verified against the pristine game before release. If you only want to write a mod, use the [Catalog](CATALOG.md) and [Hooks](HOOKS.md). The contributor reference begins at [Authoring A Hook And Seam](#authoring-a-hook-and-seam).
 
 ## The Seam Catalog
 
-The catalog is `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`, embedded into MOMI at build time. It uses schema version 2 and carries four record types:
+The catalog is `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`, embedded into AIM at build time. It uses schema version 2 and carries four record types:
 
 | Record | What it declares |
 | ------ | ---------------- |
@@ -24,13 +24,13 @@ The shipped catalog currently declares **106 hooks**, fed by **115 seams**, **3 
 
 Some hooks use `provider = "runtime"`. The framework emits those itself, with no engine edit behind them. `combat.damage_injected`, `game.day_changed`, and `game.room_changed` are the current runtime-provided hooks. The derived ones are polls over live state (`room()`, `total_days()`): they lag the change they report, and the first poll of a session only records the baseline, so no event fires for the state a session starts in. Treat them as edge triggers: react to the change, but read the live state at any later decision point rather than caching their ctx (see the warning on [game.room_changed](hooks/game.room_changed.md)). For the day boundary specifically, the in-engine [game.new_day](hooks/game.new_day.md) fires from `new_day()` itself, before the end-of-day autosave and never on a load. The derived `game.day_changed` lags both.
 
-At install time MOMI also renders the hook declarations into `mmapi_hook_catalog.gml`. That generated file supplies the runtime name, kind, alias, and override-contention tables used by registration checks and introspection. See [The Installed Catalog](HOOKS.md#the-installed-catalog).
+At install time AIM also renders the hook declarations into `mmapi_hook_catalog.gml`. That generated file supplies the runtime name, kind, alias, and override-contention tables used by registration checks and introspection. See [The Installed Catalog](HOOKS.md#the-installed-catalog).
 
-## How MOMI Applies The Catalog
+## How AIM Applies The Catalog
 
-MOMI stages the GML layer in memory against the pristine archive before it starts the rebuild. The layer is staged only when at least one selected mod contains a `gml/` tree.
+AIM stages the GML layer in memory against the pristine archive before it starts the rebuild. The layer is staged only when at least one selected mod contains a `gml/` tree.
 
-1. MOMI loads and validates the catalog, then orders seams and engine fixes by catalog order plus `depends_on` edges.
+1. AIM loads and validates the catalog, then orders seams and engine fixes by catalog order plus `depends_on` edges.
 2. It adds the framework sources, applies every seam and engine fix to pristine engine files, performs the tree-wide call rewrites, and renders `mmapi_hook_catalog.gml`.
 3. It adds each mod's GML, checks export and install-namespace collisions, verifies `requires_hooks`, and runs the warning-tier lints.
 4. It runs the compile gate when a checker backend is available. A release normally carries one; an `Auto` development build logs and skips this pass when none resolves.
@@ -51,7 +51,7 @@ For development or CI, `--fail-on-skip` turns that outcome into a hard stop befo
 
 ## Authoring A Hook And Seam
 
-This section is for contributors changing MOMI itself. You need the current pristine GML tree or its `assets.zip`, enough engine context to identify the real control-flow point, and a concrete mod that needs the capability.
+This section is for contributors changing AIM itself. You need the current pristine GML tree or its `assets.zip`, enough engine context to identify the real control-flow point, and a concrete mod that needs the capability.
 
 ### 1. Prove A New Hook Is Needed
 
@@ -75,7 +75,7 @@ Choose the kind from what handlers are allowed to do:
 | Veto an action | `guard` | `mmapi_check_guards(name, ctx)` |
 | Replace an answer | `override` | `mmapi_run_override(name, ctx)` |
 
-The hook's name and contract outlive any one engine layout. Name the capability in dotted lowercase (`domain.moment_or_value`), not the function MOMI happens to patch today. Keep `ctx` as small and stable as the use case permits, state exactly when dispatch occurs, and spell out what every return value means.
+The hook's name and contract outlive any one engine layout. Name the capability in dotted lowercase (`domain.moment_or_value`), not the function AIM happens to patch today. Keep `ctx` as small and stable as the use case permits, state exactly when dispatch occurs, and spell out what every return value means.
 
 Events are about return-value semantics, not timing: an event may fire before, during, or after an engine action. Filters should carry the value the engine will actually use. Guards belong before irreversible work. Overrides need a clear definition of what a non-`undefined` answer consumes.
 
@@ -155,7 +155,7 @@ context_after = '''
 '''
 ```
 
-MOMI concatenates `context_before + context_after` into the pristine anchor and inserts the generated payload between them. At least one half must be nonempty. The concatenated text must occur exactly once in the file at the moment this entry applies. Matching is exact apart from CRLF normalization, so indentation and comments are part of the contract.
+AIM concatenates `context_before + context_after` into the pristine anchor and inserts the generated payload between them. At least one half must be nonempty. The concatenated text must occur exactly once in the file at the moment this entry applies. Matching is exact apart from CRLF normalization, so indentation and comments are part of the contract.
 
 Use context when the nearby text is already a small, distinctive anchor or when the payload belongs inside a closure that has no useful name.
 
@@ -188,7 +188,7 @@ hook   = "items.dig_artifact"
 ctx    = "self"
 ```
 
-MOMI renames the original definition to `__mmapi_orig_<fn>`, leaves its body untouched, and appends a new function under the original name. The wrapper calls the original with the same parameters and defaults, filters the return, and returns the result. The renderer handles ordinary declaration, `static name = function(...)`, and assignment forms after they pass real-tree verification. Avoid constructor, inherited-constructor, and `self.name = function(...)` forms: the generated wrapper does not preserve those shapes.
+AIM renames the original definition to `__mmapi_orig_<fn>`, leaves its body untouched, and appends a new function under the original name. The wrapper calls the original with the same parameters and defaults, filters the return, and returns the result. The renderer handles ordinary declaration, `static name = function(...)`, and assignment forms after they pass real-tree verification. Avoid constructor, inherited-constructor, and `self.name = function(...)` forms: the generated wrapper does not preserve those shapes.
 
 The function must be defined exactly once and must not call itself by name. A self-call would route back through the new wrapper after the rename and double-filter or recurse, so the stager rejects it. A wrap is always a filter; events, guards, and overrides need an in-body target or text seam.
 
@@ -263,7 +263,7 @@ provides = ["object.interact"]
 
 The loader cross-checks literal calls to the four dispatchers in `replace`: each named hook must be declared, the dispatcher must agree with its kind, and a seam must list the dispatched hook in `provides`. A bare `mmapi_apply_filters(...)` statement is rejected unless the hook is declared `in_place`, because otherwise it silently discards a replacement.
 
-The replacement is otherwise verbatim. MOMI does not add a catch, marker comment, or omitted original code around a text seam. Preserve every pristine statement that must survive, and write any site-level isolation the engine location requires directly in `replace`.
+The replacement is otherwise verbatim. AIM does not add a catch, marker comment, or omitted original code around a text seam. Preserve every pristine statement that must survive, and write any site-level isolation the engine location requires directly in `replace`.
 
 Text matching is deliberately strict. Anchor against the smallest snippet that is unique and semantically meaningful, but include enough surrounding control flow that a game update changing the premise makes the seam fail rather than land in the wrong place.
 
@@ -281,7 +281,7 @@ A marker collision with an earlier edit can also mean the entries are in the wro
 
 ## Order And Dependencies
 
-MOMI collects every `[[seam]]` before every `[[engine_fix]]`, even if the TOML records are interleaved. Within those groups, entries keep catalog order unless `depends_on` requires another order. The stable topological sort leaves unrelated entries in that collected order; unknown dependency ids fail catalog loading, and cycles are rejected.
+AIM collects every `[[seam]]` before every `[[engine_fix]]`, even if the TOML records are interleaved. Within those groups, entries keep catalog order unless `depends_on` requires another order. The stable topological sort leaves unrelated entries in that collected order; unknown dependency ids fail catalog loading, and cycles are rejected.
 
 Use a dependency when one edit:
 

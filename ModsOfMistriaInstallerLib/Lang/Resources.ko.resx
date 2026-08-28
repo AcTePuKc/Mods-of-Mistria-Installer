@@ -326,8 +326,8 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>선택…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>모드 폴더는 언제든지 변경할 수 있으며 모드 목록으로 돌아오면 AIM이 목록을 다시 불러옵니다.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM은 다운로드와 업데이트 확인에 개인 Nexus API 키를 사용합니다. 키는 이 컴퓨터에만 저장되며 모드나 릴리스에 포함되지 않습니다.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>같은 키가 Nexus 다운로드 메뉴에서도 사용됩니다.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM은 Nexus 계정 접근에 OAuth PKCE를 사용합니다. Nexus가 AIM의 공개 client_id를 제공할 때까지 Nexus 다운로드와 업데이트 확인은 사용할 수 없습니다.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus가 AIM의 공개 client_id를 승인하면 Nexus 다운로드 메뉴에서 OAuth 로그인을 사용할 수 있습니다.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>모드 폴더 선택</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>보고서 새로 고침</value></data>
 </root>

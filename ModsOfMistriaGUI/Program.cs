@@ -19,7 +19,7 @@ public static class Program
             return;
         }
 
-        // The browser starts a fresh process for every clicked "Mod Manager Download" link. If a
+        // The browser starts a fresh process for every clicked Vortex download link. If a
         // window is already open it should take the download, so the link is handed over and this
         // process exits without ever building a UI.
         var nxmLink = args.FirstOrDefault(NxmLink.IsNxmUri);

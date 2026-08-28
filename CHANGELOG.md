@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Replaced the application-side personal Nexus API-key path with the completed OAuth PKCE flow.
+  It remains disabled until Nexus provides AIM's public OAuth `client_id`; no personal Nexus key or
+  OAuth client secret is included in the application.
+- Added recoverable `assets.zip` state publication. If the archive is replaced but state publication
+  fails, AIM retains a pending-state journal and completes recovery on the next AIM operation.
+- Hardened downloaded Nexus archive extraction with entry and size limits, active cancellation, and
+  all-or-nothing rollback for multi-mod bundles. If rollback cannot fully restore a mod, AIM reports
+  the retained backup path for manual recovery.
+
 ## 0.1.8 — Unreleased
 
 - Added immediate local mod-list search by localized or original name, author, description, and

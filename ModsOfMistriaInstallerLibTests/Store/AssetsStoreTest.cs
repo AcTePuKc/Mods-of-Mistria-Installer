@@ -427,6 +427,62 @@ public class AssetsStoreTest
     }
 
     [Test]
+    public void ShouldRecoverTheStateWhenItFailsAfterPublishingAssets()
+    {
+        WriteVanillaLive();
+        var store = new FailingStatePublishStore(_fom);
+        store.EnsureBackup();
+        var modifier = store.BeginRebuild();
+        modifier.Write("manifest.toml", "");
+        store.FailNextStatePublish = true;
+
+        var error = Assert.Throws<IOException>(() => store.Commit([new("example.mod", "1.2.3")]));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(error!.Message, Does.Contain("assets.zip was replaced"));
+            Assert.That(File.Exists(store.PendingStatePath), Is.True);
+            Assert.That(ReadEntries(LivePath), Contains.Key("manifest.toml"));
+        });
+
+        var recovered = new AssetsStore(_fom);
+        recovered.EnsureBackup();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(recovered.PendingStatePath), Is.False);
+            Assert.That(recovered.GetRecordedInstallState()!.Mods,
+                Is.EquivalentTo(new[] { new InstalledModState("example.mod", "1.2.3") }));
+        });
+    }
+
+    [Test]
+    public void ShouldRecoverPendingStateBeforeANewRebuildInTheSameProcess()
+    {
+        WriteVanillaLive();
+        var store = new FailingStatePublishStore(_fom);
+        store.EnsureBackup();
+        var first = store.BeginRebuild();
+        first.Write("manifest.toml", "");
+        store.FailNextStatePublish = true;
+        Assert.Throws<IOException>(() => store.Commit([new("first.mod", "1.0.0")]));
+        Assert.That(File.Exists(store.PendingStatePath), Is.True);
+
+        var second = store.BeginRebuild();
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(store.PendingStatePath), Is.False);
+            Assert.That(store.GetRecordedInstallState()!.Mods,
+                Is.EquivalentTo(new[] { new InstalledModState("first.mod", "1.0.0") }));
+        });
+
+        second.Write("assets/bad.toml", "not = [valid");
+        Assert.Throws<InvalidDataException>(() => store.Commit([new("second.mod", "2.0.0")]));
+        Assert.That(store.GetRecordedInstallState()!.Mods,
+            Is.EquivalentTo(new[] { new InstalledModState("first.mod", "1.0.0") }));
+    }
+
+    [Test]
     public void ShouldRefuseAnUnknownUnmarkedArchiveAfterAKnownInstall()
     {
         WriteVanillaLive();
@@ -581,6 +637,22 @@ public class AssetsStoreTest
 
         var exception = Assert.Throws<InvalidOperationException>(() => new AssetsStore(_fom).EnsureBackup());
         Assert.That(exception!.Message, Does.Contain("does not match"));
+    }
+
+    private sealed class FailingStatePublishStore(string fomLocation) : AssetsStore(fomLocation)
+    {
+        public bool FailNextStatePublish { get; set; }
+
+        protected override void PublishState(string source, string destination)
+        {
+            if (FailNextStatePublish)
+            {
+                FailNextStatePublish = false;
+                throw new IOException("Simulated state-file lock.");
+            }
+
+            base.PublishState(source, destination);
+        }
     }
 
 }

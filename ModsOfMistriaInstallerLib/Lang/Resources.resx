@@ -731,8 +731,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Choose…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>The mods folder can be changed at any time; AIM will reload it when you return to the mod list.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM uses your personal Nexus API key for downloads and update checks. It is stored locally and never included in mods or releases.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>The same key is used in the Nexus downloads menu.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM uses OAuth PKCE for Nexus account access. Nexus downloads and update checks are unavailable until Nexus provides AIM's public client_id.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>OAuth sign-in will be available in the Nexus downloads menu after Nexus approves AIM's public client_id.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Select mods folder</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Refresh report</value></data>
 </root>

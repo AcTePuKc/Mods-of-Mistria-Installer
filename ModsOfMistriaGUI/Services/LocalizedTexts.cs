@@ -146,7 +146,7 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIConflictDetailsHint => T("GUIConflictDetailsHint");
     public string GUICopyReport => T("GUICopyReport");
 
-    // Nexus "Mod Manager Download" support
+    // Nexus Vortex download-link support
     public string GUINexusMenu => T("GUINexusMenu");
     public string GUINexusHandlerMenuItem => T("GUINexusHandlerMenuItem");
     public string GUINexusPasteLinkMenuItem => T("GUINexusPasteLinkMenuItem");
