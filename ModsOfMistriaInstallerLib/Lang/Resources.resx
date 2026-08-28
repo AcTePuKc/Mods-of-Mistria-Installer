@@ -735,4 +735,7 @@ Open download page(s) in browser?</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>OAuth sign-in will be available in the Nexus downloads menu after Nexus approves AIM's public client_id.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Select mods folder</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Refresh report</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>The assets archive was replaced, but AIM could not save its install state. Restart AIM to recover the completed transaction.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM's pending install-state recovery file is invalid: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM restored assets.zip but could not restore its install state. Close any program using the state file and retry.</value></data>
 </root>

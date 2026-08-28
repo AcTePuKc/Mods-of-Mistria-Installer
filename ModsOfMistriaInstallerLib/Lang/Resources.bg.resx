@@ -330,4 +330,7 @@
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Вписването с OAuth ще е налично в менюто „Nexus изтегляния“, след като Nexus одобри публичния client_id на AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Избери папка с модове</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Обнови отчета</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архивът с ресурсите беше заменен, но AIM не успя да запише състоянието на инсталацията. Рестартирайте AIM, за да възстанови завършената операция.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Файлът на AIM за възстановяване на чакащото състояние на инсталацията е невалиден: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM възстанови assets.zip, но не успя да възстанови състоянието на инсталацията. Затворете програма, която използва файла със състоянието, и опитайте отново.</value></data>
 </root>

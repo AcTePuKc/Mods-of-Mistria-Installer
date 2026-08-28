@@ -206,7 +206,7 @@ public class AssetsStore(string fomLocation)
             SafeDelete(StatePath + ".tmp");
             if (livePublished)
                 throw new IOException(
-                    "assets.zip was replaced but AIM could not save its install state. Restart AIM to recover the completed transaction.",
+                    Resources.CoreStoreStatePublicationFailed,
                     exception);
             throw new IOException(string.Format(Resources.CoreStoreFlushFailed, LivePath), exception);
         }
@@ -553,7 +553,9 @@ public class AssetsStore(string fomLocation)
         }
         catch (Exception exception) when (exception is JsonException or FormatException or TomlException or IOException)
         {
-            throw new InvalidOperationException($"MOMI pending state recovery file is invalid: {PendingStatePath}", exception);
+            throw new InvalidOperationException(
+                string.Format(Resources.CoreStorePendingStateRecoveryInvalid, PendingStatePath),
+                exception);
         }
 
         if (!File.Exists(LivePath) || Sha256File(LivePath) != pending.GeneratedLiveSha256)
@@ -576,7 +578,7 @@ public class AssetsStore(string fomLocation)
         {
             SafeDelete(recoveryTemp);
             throw new IOException(
-                "AIM recovered assets.zip but could not restore its install state. Close any program using the state file and retry.",
+                Resources.CoreStoreStateRecoveryFailed,
                 exception);
         }
     }

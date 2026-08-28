@@ -658,4 +658,7 @@ Les confier à AIM ?</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>La connexion OAuth sera disponible dans le menu des téléchargements Nexus après l'approbation par Nexus de la client_id publique d'AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Choisir le dossier des mods</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Actualiser le rapport</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>L'archive de ressources a été remplacée, mais AIM n'a pas pu enregistrer l'état de l'installation. Redémarrez AIM pour récupérer la transaction terminée.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Le fichier de récupération de l'état d'installation en attente d'AIM n'est pas valide : {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM a restauré assets.zip, mais n'a pas pu restaurer l'état de l'installation. Fermez tout programme utilisant le fichier d'état et réessayez.</value></data>
 </root>

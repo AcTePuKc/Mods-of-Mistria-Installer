@@ -330,4 +330,7 @@
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus 批准 AIM 的公开 client_id 后，可在 Nexus 下载菜单中使用 OAuth 登录。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>选择模组文件夹</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>刷新报告</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>资源存档已被替换，但 AIM 无法保存安装状态。请重新启动 AIM 以恢复已完成的事务。</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM 的待处理安装状态恢复文件无效：{0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM 已恢复 assets.zip，但无法恢复安装状态。请关闭正在使用状态文件的程序后重试。</value></data>
 </root>

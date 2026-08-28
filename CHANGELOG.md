@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.9 — Unreleased
 
 - Replaced the application-side personal Nexus API-key path with the completed OAuth PKCE flow.
   It remains disabled until Nexus provides AIM's public OAuth `client_id`; no personal Nexus key or
@@ -11,7 +11,7 @@
   all-or-nothing rollback for multi-mod bundles. If rollback cannot fully restore a mod, AIM reports
   the retained backup path for manual recovery.
 
-## 0.1.8 — Unreleased
+## 0.1.8
 
 - Added immediate local mod-list search by localized or original name, author, description, and
   version. Filtering never rescans archives or contacts Nexus; it preserves the selected mods and

@@ -1,6 +1,7 @@
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.Store;
 using Tomlyn;
 
@@ -440,7 +441,7 @@ public class AssetsStoreTest
 
         Assert.Multiple(() =>
         {
-            Assert.That(error!.Message, Does.Contain("assets.zip was replaced"));
+            Assert.That(error!.Message, Is.EqualTo(Resources.CoreStoreStatePublicationFailed));
             Assert.That(File.Exists(store.PendingStatePath), Is.True);
             Assert.That(ReadEntries(LivePath), Contains.Key("manifest.toml"));
         });

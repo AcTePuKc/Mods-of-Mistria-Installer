@@ -330,4 +330,7 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus가 AIM의 공개 client_id를 승인하면 Nexus 다운로드 메뉴에서 OAuth 로그인을 사용할 수 있습니다.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>모드 폴더 선택</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>보고서 새로 고침</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>에셋 아카이브는 교체되었지만 AIM이 설치 상태를 저장하지 못했습니다. 완료된 트랜잭션을 복구하려면 AIM을 다시 시작하세요.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM의 보류 중인 설치 상태 복구 파일이 올바르지 않습니다: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM이 assets.zip을 복원했지만 설치 상태를 복원하지 못했습니다. 상태 파일을 사용하는 프로그램을 닫고 다시 시도하세요.</value></data>
 </root>

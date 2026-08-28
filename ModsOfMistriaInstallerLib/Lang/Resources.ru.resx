@@ -330,4 +330,7 @@
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Вход через OAuth будет доступен в меню загрузок Nexus после одобрения Nexus публичного client_id AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Выбрать папку модов</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Обновить отчёт</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архив ресурсов был заменён, но AIM не смог сохранить состояние установки. Перезапустите AIM, чтобы восстановить завершённую операцию.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Файл восстановления ожидающего состояния установки AIM недействителен: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM восстановил assets.zip, но не смог восстановить состояние установки. Закройте программу, использующую файл состояния, и повторите попытку.</value></data>
 </root>

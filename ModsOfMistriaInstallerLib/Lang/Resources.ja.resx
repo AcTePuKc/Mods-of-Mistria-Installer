@@ -330,4 +330,7 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus が AIM の公開 client_id を承認すると、Nexus ダウンロードメニューで OAuth サインインを利用できます。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modフォルダーを選択</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>レポートを更新</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>アセットアーカイブは置き換えられましたが、AIM はインストール状態を保存できませんでした。AIM を再起動して、完了したトランザクションを復旧してください。</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM の保留中のインストール状態復旧ファイルが無効です: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM は assets.zip を復元しましたが、インストール状態を復元できませんでした。状態ファイルを使用しているプログラムを閉じて、もう一度試してください。</value></data>
 </root>
