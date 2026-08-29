@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.8 — Unreleased
+## 0.1.8 — 2026-08-26
 
 - Added immediate local mod-list search by localized or original name, author, description, and
   version. Filtering never rescans archives or contacts Nexus; it preserves the selected mods and
@@ -58,7 +58,7 @@
 
 ## 0.1.5 — 2026-08-24
 
-- Added support for the Nexus Mods **Mod Manager Download** button. AIM can register itself as the
+- Added support for the Nexus Mods **Vortex** button. AIM can register itself as the
   `nxm://` protocol handler on Windows and Linux, and a clicked link is handed to the window that is
   already open instead of starting a second one.
 - Added Nexus download and update management: downloads show progress, can be cancelled, and are

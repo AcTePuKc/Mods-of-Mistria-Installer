@@ -250,7 +250,6 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Tautan NMD</value></data>
   <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Gunakan AIM untuk NMD</value></data>
   <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Hentikan AIM untuk NMD</value></data>
-  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Kunci API Nexus…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Instal dari tautan nxm:// yang disalin</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Mengunduh dari Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Hapus yang selesai</value></data>
@@ -258,31 +257,22 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Unduhan Nexus</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Unduhan ini ditujukan untuk game lain ({0}), jadi AIM tidak dapat menginstalnya.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Atur folder Fields of Mistria dan folder mod terlebih dahulu.</value></data>
-  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Tautan “Mod Manager Download”</value></data>
-  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM mengelola tautan “Mod Manager Download”.</value></data>
-  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>Tautan “Mod Manager Download” belum dikelola oleh AIM.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Tautan “Vortex”</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM mengelola tautan “Vortex”.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>Tautan “Vortex” belum dikelola oleh AIM.</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Program lain saat ini mengelola tautan ini ({0}).</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Pengelolaan tautan ini hanya didukung di Windows dan Linux.</value></data>
-  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Sekarang AIM akan membuka tautan “Mod Manager Download” dari situs Nexus.
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Sekarang AIM akan membuka tautan “Vortex” dari situs Nexus.
 
 Browser mungkin meminta izin saat pertama kali kamu mengekliknya.</value></data>
-  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM tidak akan lagi membuka tautan “Mod Manager Download” dari situs Nexus.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM tidak akan lagi membuka tautan “Vortex” dari situs Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM tidak dapat didaftarkan untuk tautan ini: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM tidak dapat berhenti mengelola tautan ini: {0}</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>Program lain saat ini mengelola tautan ini ({0}).
 
 Alihkan ke AIM?</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Instal dari tautan</value></data>
-  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Clipboard tidak berisi tautan nxm://. Di halaman mod, klik kanan “Mod Manager Download”, lalu salin alamat tautannya terlebih dahulu.</value></data>
-  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Kunci API Nexus</value></data>
-  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM memerlukan kunci API pribadi Nexus Mods untuk mengunduh mod untukmu. Buka pengaturan akun Nexus, gulir ke “API Key”, buat kunci pribadi, lalu tempelkan di bawah. Kunci hanya disimpan di komputer ini.</value></data>
-  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Buka pengaturan akun Nexus</value></data>
-  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Tempel kunci API pribadi di sini</value></data>
-  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Kunci sudah disimpan. Masukkan kunci baru untuk menggantinya.</value></data>
-  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Tempel kunci API terlebih dahulu.</value></data>
-  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Memeriksa kunci dengan Nexus…</value></data>
-  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Masuk sebagai {0}.</value></data>
-  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Hapus kunci yang disimpan</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Clipboard tidak berisi tautan nxm://. Di halaman mod, klik kanan “Vortex”, lalu salin alamat tautannya terlebih dahulu.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Simpan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Batal</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih — {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
@@ -324,9 +314,9 @@ Alihkan ke AIM?</value></data>
   <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM tidak dapat menentukan mod Nexus mana yang dimaksud “{0}”. Mod yang diunduh melalui AIM dilacak otomatis; mod lainnya memerlukan halaman Nexus di manifest.</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>Perbarui mod</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Perbarui “{0}” dari {1} ke {2}?&#xD;&#xA;&#xD;&#xA;Versi saat ini disimpan sebagai cadangan yang dapat dipulihkan.</value></data>
-  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Buka halaman file mod agar kamu dapat menggunakan tombol “Mod Manager Download”?</value></data>
-  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Izinkan AIM menangani tautan “Mod Manager Download” dari situs Nexus?&#xD;&#xA;&#xD;&#xA;Menekan tombol itu di halaman mod akan mengunduh mod langsung ke folder mod. Kamu dapat mengubahnya nanti dari menu roda gigi.</value></data>
-  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Tautan “Mod Manager Download” saat ini ditangani oleh {0}.&#xD;&#xA;&#xD;&#xA;Alihkan ke AIM? Menekan tombol itu di halaman mod akan mengunduh mod langsung ke folder mod. Kamu dapat mengubahnya nanti dari menu roda gigi.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Buka halaman file mod agar kamu dapat menggunakan tombol “Vortex”?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Izinkan AIM menangani tautan “Vortex” dari situs Nexus?&#xD;&#xA;&#xD;&#xA;Menekan tombol itu di halaman mod akan mengunduh mod langsung ke folder mod. Kamu dapat mengubahnya nanti dari menu roda gigi.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Tautan “Vortex” saat ini ditangani oleh {0}.&#xD;&#xA;&#xD;&#xA;Alihkan ke AIM? Menekan tombol itu di halaman mod akan mengunduh mod langsung ke folder mod. Kamu dapat mengubahnya nanti dari menu roda gigi.</value></data>
   <data name="GUISettingsMenu" xml:space="preserve"><value>Pengaturan…</value></data>
   <data name="GUISettingsBack" xml:space="preserve"><value>← Kembali</value></data>
   <data name="GUISettingsGeneral" xml:space="preserve"><value>Umum</value></data>
@@ -337,8 +327,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Folder mod dapat diubah kapan saja; AIM akan memuat ulang daftar saat kamu kembali ke daftar mod.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
   <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM menggunakan kunci API Nexus pribadimu untuk unduhan dan pemeriksaan pembaruan. Kunci disimpan secara lokal dan tidak pernah disertakan dalam mod atau rilis.</value></data>
-  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>Status kunci API: {0}</value></data>
-  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Atur atau ubah kunci API Nexus…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Kunci yang sama digunakan di menu unduhan Nexus.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Pilih folder mod</value></data>
+  <data name="GUIRefreshReport" xml:space="preserve"><value>Segarkan laporan</value></data>
 </root>

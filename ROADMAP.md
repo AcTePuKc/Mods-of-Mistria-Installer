@@ -142,6 +142,34 @@
       detection: AIM registers each cosmetic's player assets and store entry
       independently, so the icon is not a load-order conflict.
 
+## 0.1.9 — post-0.1.8 UI fixes
+
+* [x] Replace the automatic description tooltip with a small, pointer-driven
+      description popup. This prevents the repeated tooltip open/close loop
+      seen after focusing the Search field, while retaining the description on
+      hover.
+* [x] Make the detailed Issues window non-modal so users can keep it open
+      while changing the mod selection or load order in AIM.
+* [ ] Replace the personal Nexus API-key flow with a public OAuth 2.0
+      Authorization Code + PKCE flow. The client ID remains an empty
+      registration placeholder until Nexus Mods has reviewed the source and
+      registered AIM; no client secret is used or shipped.
+* [ ] Open browser authorization through a fixed loopback callback, validate
+      `state`, exchange the code with its matching PKCE verifier, and use
+      refresh tokens only through the documented public-client flow.
+* [ ] Replace the API-key dialog and Settings actions with a single Nexus
+      account connection surface. It must offer connect, connected status,
+      disconnect and a clear explanation when AIM has not yet been registered.
+* [ ] Migrate or remove legacy personal-key data from `nexus.json`; never send
+      it to Nexus, write it to logs, or include it in a build. Keep the
+      existing `nxm://` handler opt-in unrelated to account connection.
+* [ ] Add focused OAuth request, callback-state, token-expiry, refresh and
+      disconnect tests. Verify every supported UI language and scan the final
+      source/package for API keys, access tokens, refresh tokens and client
+      secrets.
+* [ ] Send Nexus Mods the review branch, public source link and final callback
+      URI; add the client ID only after their registration response.
+
 ### Compatibility-warning clarification
 
 * Generic GML warnings and concrete shared-file conflicts are separate checks.

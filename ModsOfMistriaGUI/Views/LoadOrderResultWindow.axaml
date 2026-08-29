@@ -13,6 +13,7 @@
       <StackPanel x:Name="NotesPanel" Spacing="10" HorizontalAlignment="Stretch" />
     </ScrollViewer>
     <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button x:Name="RefreshButton" IsDefault="False" />
       <Button x:Name="CopyButton" IsDefault="False" />
       <Button x:Name="CloseButton" IsDefault="True" />
     </StackPanel>

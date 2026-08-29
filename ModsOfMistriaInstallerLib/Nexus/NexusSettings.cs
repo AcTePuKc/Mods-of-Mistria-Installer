@@ -7,22 +7,26 @@ namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
 /// <summary>
 /// The small amount of state AIM has to keep between runs for Nexus downloads: the user's
-/// personal API key, and whether they have asked AIM to be the nxm:// handler.
+/// OAuth session, and whether they have asked AIM to be the nxm:// handler.
 ///
 /// It lives outside the mods folder (unlike profiles) because it is per-user, not per-install,
-/// and because a mods folder is something people zip up and share - an API key must not ride
+/// and because a mods folder is something people zip up and share - an OAuth session must not ride
 /// along with it.
 ///
-/// On Windows the key is encrypted with DPAPI, so a copied settings file is useless on another
+/// On Windows the session is encrypted with DPAPI, so a copied settings file is useless on another
 /// machine or account. Elsewhere it is stored plainly in a file with owner-only permissions,
 /// which is the same posture as other mod managers on Linux.
 /// </summary>
 public class NexusSettings
 {
-    private const string ApiKeyField = "nexusApiKey";
-    private const string ProtectedApiKeyField = "nexusApiKeyProtected";
+    private const string LegacyApiKeyField = "nexusApiKey";
+    private const string LegacyProtectedApiKeyField = "nexusApiKeyProtected";
+    private const string ProtectedOAuthTokensField = "nexusOAuthTokensProtected";
+    private const string OAuthTokensField = "nexusOAuthTokens";
     private const string HandlerRegisteredField = "nxmHandlerRegistered";
     private const string HandlerPromptField = "nxmHandlerPromptAnswered";
+    private const string HandlerAlwaysClaimField = "nxmHandlerAlwaysClaim";
+    private const string HandlerPromptedForField = "nxmHandlerPromptedFor";
 
     private readonly string _path;
     private JObject _data;
@@ -34,9 +38,10 @@ public class NexusSettings
 
         // Kept apart from the AIM settings.json that holds launch and language preferences:
         // that file is written on every preference change and is a reasonable thing to copy
-        // between machines, which a credential is not.
+        // between machines, which an OAuth session is not.
         _path = Path.Combine(directory, "nexus.json");
         _data = Load();
+        RemoveLegacyApiKeyData();
     }
 
     public static string GetDefaultConfigDirectory()
@@ -55,40 +60,43 @@ public class NexusSettings
         return Path.Combine(appData, "AIM");
     }
 
-    // ── API key ──────────────────────────────────────────────────────────────────
+    // ── OAuth session ────────────────────────────────────────────────────────────
 
-    public string? GetApiKey()
+    public NexusOAuthTokens? GetOAuthTokens()
     {
-        var protectedKey = _data.Value<string>(ProtectedApiKeyField);
-        if (!string.IsNullOrEmpty(protectedKey))
-        {
-            var unprotected = TryUnprotect(protectedKey);
-            if (unprotected is not null) return unprotected;
+        var protectedValue = _data.Value<string>(ProtectedOAuthTokensField);
+        var serialized = !string.IsNullOrEmpty(protectedValue)
+            ? TryUnprotect(protectedValue)
+            : _data.Value<string>(OAuthTokensField);
 
-            // Written by a different Windows account, or the file was carried over from
-            // another machine. Treat it as absent so the user is asked for a key again.
-            Logger.Log("Could not decrypt the stored Nexus API key; it will have to be entered again.");
+        if (string.IsNullOrWhiteSpace(serialized)) return null;
+
+        try
+        {
+            return JObject.Parse(serialized).ToObject<NexusOAuthTokens>();
+        }
+        catch
+        {
+            Logger.Log("Could not read the stored Nexus OAuth session; signing in again will be required.");
             return null;
         }
-
-        var plain = _data.Value<string>(ApiKeyField);
-        return string.IsNullOrWhiteSpace(plain) ? null : plain;
     }
 
-    public bool HasApiKey() => !string.IsNullOrEmpty(GetApiKey());
+    public bool HasOAuthTokens() => GetOAuthTokens() is not null;
 
-    public void SetApiKey(string? apiKey)
+    /// <summary>Stores an OAuth token response. Personal API keys are never accepted here.</summary>
+    public void SetOAuthTokens(NexusOAuthTokens? tokens)
     {
-        _data.Remove(ApiKeyField);
-        _data.Remove(ProtectedApiKeyField);
+        _data.Remove(ProtectedOAuthTokensField);
+        _data.Remove(OAuthTokensField);
 
-        if (!string.IsNullOrWhiteSpace(apiKey))
+        if (tokens is not null)
         {
-            var trimmed = apiKey.Trim();
-            var protectedKey = TryProtect(trimmed);
+            var serialized = JObject.FromObject(tokens).ToString(Newtonsoft.Json.Formatting.None);
+            var protectedValue = TryProtect(serialized);
 
-            if (protectedKey is not null) _data[ProtectedApiKeyField] = protectedKey;
-            else _data[ApiKeyField] = trimmed;
+            if (protectedValue is not null) _data[ProtectedOAuthTokensField] = protectedValue;
+            else _data[OAuthTokensField] = serialized;
         }
 
         Save();
@@ -125,6 +133,27 @@ public class NexusSettings
         }
     }
 
+    public bool HandlerAlwaysClaim
+    {
+        get => _data.Value<bool?>(HandlerAlwaysClaimField) ?? false;
+        set
+        {
+            _data[HandlerAlwaysClaimField] = value;
+            Save();
+        }
+    }
+
+    public string? HandlerPromptedFor
+    {
+        get => _data.Value<string>(HandlerPromptedForField);
+        set
+        {
+            if (value is null) _data.Remove(HandlerPromptedForField);
+            else _data[HandlerPromptedForField] = value;
+            Save();
+        }
+    }
+
     // ── Storage ──────────────────────────────────────────────────────────────────
 
     private JObject Load()
@@ -139,6 +168,16 @@ public class NexusSettings
         }
 
         return new JObject();
+    }
+
+    private void RemoveLegacyApiKeyData()
+    {
+        // The API-key feature is intentionally retired. Remove both forms immediately so an
+        // upgraded AIM cannot accidentally use or retain a credential the user entered before
+        // the OAuth migration.
+        var removed = _data.Remove(LegacyApiKeyField);
+        removed |= _data.Remove(LegacyProtectedApiKeyField);
+        if (removed) Save();
     }
 
     private void Save()

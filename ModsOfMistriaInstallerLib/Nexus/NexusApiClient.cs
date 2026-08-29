@@ -32,11 +32,11 @@ public class NexusApiException(string message, HttpStatusCode? statusCode = null
 
 /// <summary>
 /// A thin client for the parts of the Nexus Mods v1 REST API that a mod manager needs:
-/// validating the user's personal API key, looking up file metadata, and turning an
+/// validating the user's OAuth access token, looking up file metadata, and turning an
 /// nxm:// link into a real CDN download URL.
 ///
-/// Authentication is the user's personal API key from
-/// https://www.nexusmods.com/users/myaccount?tab=api - sent in the <c>apikey</c> header.
+/// Authentication is a user-authorized OAuth bearer token obtained through Authorization Code +
+/// PKCE. AIM never accepts or sends a personal Nexus API key.
 /// Non-premium accounts additionally need the <c>key</c>/<c>expires</c> pair carried by the
 /// nxm link; without it the API refuses to mint a download URL (that restriction is what
 /// makes the website's "Mod Manager Download" button the only entry point for free users).
@@ -45,17 +45,17 @@ public class NexusApiClient
 {
     private const string BaseUrl = "https://api.nexusmods.com/v1";
 
-    private readonly string _apiKey;
+    private readonly string _accessToken;
     private readonly HttpClient _http;
 
     public NexusRateLimit? LastRateLimit { get; private set; }
 
-    public NexusApiClient(string apiKey, HttpClient? http = null)
+    public NexusApiClient(string accessToken, HttpClient? http = null)
     {
-        if (string.IsNullOrWhiteSpace(apiKey))
-            throw new ArgumentException("An API key is required", nameof(apiKey));
+        if (string.IsNullOrWhiteSpace(accessToken))
+            throw new ArgumentException("An OAuth access token is required", nameof(accessToken));
 
-        _apiKey = apiKey.Trim();
+        _accessToken = accessToken.Trim();
         _http = http ?? DefaultClient();
     }
 
@@ -73,8 +73,8 @@ public class NexusApiClient
 
     // ── Endpoints ────────────────────────────────────────────────────────────────
 
-    /// <summary>Confirms the API key works and tells us who it belongs to.</summary>
-    public async Task<NexusUser> ValidateKeyAsync(CancellationToken ct = default)
+    /// <summary>Confirms the OAuth token works and tells us who it belongs to.</summary>
+    public async Task<NexusUser> ValidateAccessTokenAsync(CancellationToken ct = default)
     {
         var json = await GetJsonAsync($"{BaseUrl}/users/validate.json", ct);
 
@@ -199,7 +199,7 @@ public class NexusApiClient
     private async Task<JToken> GetTokenAsync(string url, CancellationToken ct)
     {
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
-        request.Headers.Add("apikey", _apiKey);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
         request.Headers.Add("Application-Name", "AIM - Mods of Mistria Installer");
         request.Headers.Add("Application-Version", Version);
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -257,7 +257,7 @@ public class NexusApiClient
         return status switch
         {
             HttpStatusCode.Unauthorized =>
-                "Nexus rejected the API key. Check that it was copied in full from your account settings.",
+                "Nexus rejected the account session. Connect your Nexus account again.",
             HttpStatusCode.Forbidden =>
                 message ?? "Nexus refused the request. The download link may have expired - try clicking it again.",
             HttpStatusCode.NotFound =>

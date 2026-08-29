@@ -41,8 +41,8 @@
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
                         <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
                         <Separator />
-                        <MenuItem Header="{Binding Texts.GUINexusApiKeyMenuItem}"
-                                  Command="{Binding Nexus.SetApiKeyCommand}" />
+                        <MenuItem Header="Nexus account..."
+                                  Command="{Binding Nexus.ManageNexusAccountCommand}" />
                         <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"
                                   Command="{Binding Nexus.PasteLinkCommand}" />
                         <Separator />

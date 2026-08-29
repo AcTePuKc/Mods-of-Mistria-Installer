@@ -250,7 +250,6 @@ Otworzyć strony pobierania w przeglądarce?</value></data>
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>Linki NMD</value></data>
   <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>Używaj AIM dla NMD</value></data>
   <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>Przestań używać AIM dla NMD</value></data>
-  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Klucz API Nexus…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>Zainstaluj ze skopiowanego linku nxm://</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Pobieranie z Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Wyczyść zakończone</value></data>
@@ -258,31 +257,22 @@ Otworzyć strony pobierania w przeglądarce?</value></data>
   <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Pobieranie z Nexus</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>To pobieranie jest przeznaczone dla innej gry ({0}), więc AIM nie może go zainstalować.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Najpierw skonfiguruj foldery Fields of Mistria i modów.</value></data>
-  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Linki „Mod Manager Download”</value></data>
-  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM obsługuje linki „Mod Manager Download”.</value></data>
-  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>Linki „Mod Manager Download” nie są jeszcze obsługiwane przez AIM.</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Linki „Vortex”</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM obsługuje linki „Vortex”.</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>Linki „Vortex” nie są jeszcze obsługiwane przez AIM.</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Inny program obsługuje obecnie te linki ({0}).</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Obsługa tych linków jest dostępna tylko w systemach Windows i Linux.</value></data>
-  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Od teraz AIM będzie otwierać linki „Mod Manager Download” ze strony Nexus.
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Od teraz AIM będzie otwierać linki „Vortex” ze strony Nexus.
 
 Przy pierwszym kliknięciu przeglądarka może poprosić o zgodę.</value></data>
-  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM nie będzie już otwierać linków „Mod Manager Download” ze strony Nexus.</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM nie będzie już otwierać linków „Vortex” ze strony Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Nie udało się zarejestrować AIM dla tych linków: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Nie udało się zatrzymać obsługi tych linków w AIM: {0}</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>Inny program obsługuje obecnie te linki ({0}).
 
 Przekazać je do AIM?</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Instalacja z linku</value></data>
-  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Schowek nie zawiera linku nxm://. Na stronie moda kliknij prawym przyciskiem „Mod Manager Download” i najpierw skopiuj adres linku.</value></data>
-  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Klucz API Nexus</value></data>
-  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM potrzebuje osobistego klucza API Nexus Mods, aby pobierać mody w Twoim imieniu. Otwórz ustawienia konta Nexus, przewiń do sekcji „API Key”, wygeneruj osobisty klucz i wklej go poniżej. Klucz jest przechowywany tylko na tym komputerze.</value></data>
-  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>Otwórz ustawienia konta Nexus</value></data>
-  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>Wklej tutaj osobisty klucz API</value></data>
-  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>Klucz jest już zapisany. Wprowadź nowy, aby go zastąpić.</value></data>
-  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>Najpierw wklej klucz API.</value></data>
-  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>Sprawdzanie klucza w Nexus…</value></data>
-  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>Zalogowano jako {0}.</value></data>
-  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>Usuń zapisany klucz</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Schowek nie zawiera linku nxm://. Na stronie moda kliknij prawym przyciskiem „Vortex” i najpierw skopiuj adres linku.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Zapisz</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Anuluj</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>Wybrano {0} z {1} — {2} jest już w grze, {3} zostanie dodanych</value></data>
@@ -324,9 +314,9 @@ Przekazać je do AIM?</value></data>
   <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM nie może ustalić, który mod z Nexusa to „{0}”. Mody pobrane przez AIM są śledzone automatycznie; pozostałe wymagają strony Nexusa w manifeście.</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>Aktualizuj mod</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Zaktualizować „{0}” z {1} do {2}?&#xD;&#xA;&#xD;&#xA;Obecna wersja zostanie zachowana jako kopia zapasowa.</value></data>
-  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Otworzyć stronę plików moda, aby użyć przycisku „Mod Manager Download”?</value></data>
-  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Pozwolić AIM obsługiwać linki „Mod Manager Download” ze strony Nexusa?&#xD;&#xA;&#xD;&#xA;Kliknięcie tego przycisku na stronie moda pobierze go bezpośrednio do folderu modów. Możesz później zmienić to w menu koła zębatego.</value></data>
-  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Linki „Mod Manager Download” są obecnie obsługiwane przez {0}.&#xD;&#xA;&#xD;&#xA;Przekazać je do AIM? Kliknięcie tego przycisku na stronie moda pobierze go bezpośrednio do folderu modów. Możesz później zmienić to w menu koła zębatego.</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Otworzyć stronę plików moda, aby użyć przycisku „Vortex”?</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>Pozwolić AIM obsługiwać linki „Vortex” ze strony Nexusa?&#xD;&#xA;&#xD;&#xA;Kliknięcie tego przycisku na stronie moda pobierze go bezpośrednio do folderu modów. Możesz później zmienić to w menu koła zębatego.</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Linki „Vortex” są obecnie obsługiwane przez {0}.&#xD;&#xA;&#xD;&#xA;Przekazać je do AIM? Kliknięcie tego przycisku na stronie moda pobierze go bezpośrednio do folderu modów. Możesz później zmienić to w menu koła zębatego.</value></data>
   <data name="GUISettingsMenu" xml:space="preserve"><value>Ustawienia…</value></data>
   <data name="GUISettingsBack" xml:space="preserve"><value>← Wstecz</value></data>
   <data name="GUISettingsGeneral" xml:space="preserve"><value>Ogólne</value></data>
@@ -337,8 +327,7 @@ Przekazać je do AIM?</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Folder modów można zmienić w dowolnym momencie; AIM ponownie wczyta listę po powrocie do listy modów.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
   <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM używa osobistego klucza API Nexus do pobierania modów i sprawdzania aktualizacji. Klucz jest przechowywany lokalnie i nigdy nie trafia do modów ani wydań.</value></data>
-  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>Stan klucza API: {0}</value></data>
-  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Ustaw lub zmień klucz API Nexus…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Ten sam klucz jest używany w menu pobierania Nexus.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Wybierz folder modów</value></data>
+  <data name="GUIRefreshReport" xml:space="preserve"><value>Odśwież raport</value></data>
 </root>

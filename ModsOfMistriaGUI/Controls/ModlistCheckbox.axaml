@@ -14,11 +14,17 @@
         <WrapPanel IsVisible="{Binding ShowPlainRow}">
                 <CheckBox IsEnabled="{Binding !InError}"
                           IsChecked="{Binding Enabled}">
-                    <ToolTip.Tip>
-                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxWidth="520" />
-                    </ToolTip.Tip>
                     <TextBlock Text="{Binding Full}" />
                 </CheckBox>
+                <Image Width="16" Height="16" Margin="5 0 0 0"
+                       IsVisible="{Binding HasDescription}"
+                       PointerEntered="OnDescriptionInfoPointerEntered"
+                       PointerExited="OnDescriptionInfoPointerExited">
+                    <Image.Source>
+                        <i:IconImage Value="fa-solid fa-circle-info"
+                                     Brush="Gray" />
+                    </Image.Source>
+                </Image>
                 <Image Height="16" Margin="5 0 0 0"
                        IsVisible="{Binding InWarning}">
                     <ToolTip.Tip>
@@ -78,11 +84,17 @@
                 <WrapPanel>
                     <CheckBox IsEnabled="{Binding !InError}"
                               IsChecked="{Binding Enabled}">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxWidth="520" />
-                        </ToolTip.Tip>
                         <TextBlock Text="{Binding Full}" />
                     </CheckBox>
+                    <Image Width="16" Height="16" Margin="5 0 0 0"
+                           IsVisible="{Binding HasDescription}"
+                           PointerEntered="OnDescriptionInfoPointerEntered"
+                           PointerExited="OnDescriptionInfoPointerExited">
+                        <Image.Source>
+                            <i:IconImage Value="fa-solid fa-circle-info"
+                                         Brush="Gray" />
+                        </Image.Source>
+                    </Image>
 
                     <Image Height="16" Margin="5 0 0 0"
                            IsVisible="{Binding InWarning}">

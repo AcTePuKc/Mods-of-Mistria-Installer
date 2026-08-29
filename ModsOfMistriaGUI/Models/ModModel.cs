@@ -27,6 +27,8 @@ public partial class ModModel : ObservableObject
     private IReadOnlyList<IMod> _duplicateCopies = [];
     private IReadOnlyList<string> _conflictWarnings = [];
     private IReadOnlyList<string> _compatibilityWarnings = [];
+    private string _full = string.Empty;
+    private string _description = string.Empty;
     
     private bool _enabledBacking;
 
@@ -105,11 +107,15 @@ public partial class ModModel : ObservableObject
     {
         Mod = mod;
         _enabledBacking = mod.IsInstalled();
+        _full = BuildFull();
+        _description = mod.GetDisplayDescription(Localization.LanguageCode);
     }
 
     public ModModel()
     {
         Mod = new FolderMod();
+        _full = BuildFull();
+        _description = Mod.GetDisplayDescription(Localization.LanguageCode);
     }
 
     public bool Enabled
@@ -336,8 +342,20 @@ public partial class ModModel : ObservableObject
         // language changed. Avoid notifying every status binding here; with
         // a large mod list those redundant notifications force Avalonia to
         // measure and arrange every row repeatedly.
-        OnPropertyChanged(nameof(Full));
-        OnPropertyChanged(nameof(Description));
+        var full = BuildFull();
+        if (!string.Equals(_full, full, StringComparison.Ordinal))
+        {
+            _full = full;
+            OnPropertyChanged(nameof(Full));
+        }
+
+        var description = Mod.GetDisplayDescription(Localization.LanguageCode);
+        if (!string.Equals(_description, description, StringComparison.Ordinal))
+        {
+            _description = description;
+            OnPropertyChanged(nameof(Description));
+            OnPropertyChanged(nameof(HasDescription));
+        }
         if (UpdateAvailable)
             OnPropertyChanged(nameof(UpdateTooltip));
 
@@ -357,10 +375,14 @@ public partial class ModModel : ObservableObject
         ModInstaller.ValidateMods(new List<IMod> { Mod });
     }
 
-    public string Full => string.Format(Resources.GUIModByAuthorWithVersion,
+    private string BuildFull() => string.Format(Resources.GUIModByAuthorWithVersion,
         Mod.GetDisplayName(Localization.LanguageCode), Mod.GetAuthor(), Mod.GetVersion());
 
-    public string Description => Mod.GetDisplayDescription(Localization.LanguageCode);
+    public string Full => _full;
+
+    public string Description => _description;
+
+    public bool HasDescription => !string.IsNullOrWhiteSpace(_description);
 
     public string UpdateTooltip =>
         LatestVersion is null

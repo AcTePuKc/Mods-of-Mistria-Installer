@@ -17,7 +17,7 @@ public enum NexusUpdateState
     /// <summary>AIM has no way to tell which Nexus mod this is.</summary>
     NotFromNexus,
 
-    /// <summary>Nexus could not be asked - no key, no network, rate limited.</summary>
+    /// <summary>Nexus could not be asked - no account session, no network, rate limited.</summary>
     Unavailable
 }
 
@@ -45,13 +45,16 @@ public class NexusUpdateService
 {
     private const int MaxParallelChecks = 4;
 
-    private readonly NexusSettings _settings;
+    private readonly Func<CancellationToken, Task<string?>> _accessTokenProvider;
     private readonly NexusInstallIndex _index;
     private readonly HttpClient _api;
 
-    public NexusUpdateService(NexusSettings settings, string modsLocation, HttpClient? apiClient = null)
+    public NexusUpdateService(
+        Func<CancellationToken, Task<string?>> accessTokenProvider,
+        string modsLocation,
+        HttpClient? apiClient = null)
     {
-        _settings = settings;
+        _accessTokenProvider = accessTokenProvider;
         _index = new NexusInstallIndex(modsLocation);
         _api = apiClient ?? new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
     }
@@ -88,14 +91,14 @@ public class NexusUpdateService
         if (record.Frozen || _index.IsFrozen(mod.GetSourcePath()))
             return new NexusUpdateStatus(NexusUpdateState.Frozen, record);
 
-        var apiKey = _settings.GetApiKey();
-        if (string.IsNullOrEmpty(apiKey))
+        var accessToken = await _accessTokenProvider(ct);
+        if (string.IsNullOrEmpty(accessToken))
             return new NexusUpdateStatus(NexusUpdateState.Unavailable, record,
-                Message: "No Nexus API key has been set up yet.");
+                Message: "No Nexus account is connected yet.");
 
         try
         {
-            var client = new NexusApiClient(apiKey, _api);
+            var client = new NexusApiClient(accessToken, _api);
             var latest = await client.GetLatestMainFileAsync(record.Game, record.ModId, ct);
 
             if (latest is null)
@@ -215,7 +218,7 @@ public class NexusUpdateService
 
         var link = new NxmLink(status.Record.Game, status.Record.ModId, status.LatestFileId.Value, null, null, null);
 
-        var service = new NxmDownloadService(_settings, apiClient: _api);
+        var service = new NxmDownloadService(_accessTokenProvider, apiClient: _api);
 
         // Replacing without asking is the point here: the user chose to update this specific mod,
         // and the previous copy is kept as a backup rather than destroyed.

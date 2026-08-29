@@ -250,7 +250,6 @@
   <data name="GUINexusHandlerMenuItem" xml:space="preserve"><value>NMD 連結</value></data>
   <data name="GUINexusHandlerEnableMenuItem" xml:space="preserve"><value>使用 AIM 處理 NMD</value></data>
   <data name="GUINexusHandlerDisableMenuItem" xml:space="preserve"><value>停止使用 AIM 處理 NMD</value></data>
-  <data name="GUINexusApiKeyMenuItem" xml:space="preserve"><value>Nexus API 金鑰…</value></data>
   <data name="GUINexusPasteLinkMenuItem" xml:space="preserve"><value>從複製的 nxm:// 連結安裝</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>正在從 Nexus 下載</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>清除已完成項目</value></data>
@@ -258,31 +257,22 @@
   <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus 下載</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>此下載屬於其他遊戲（{0}），因此 AIM 無法安裝。</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>請先設定 Fields of Mistria 資料夾和模組資料夾。</value></data>
-  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Mod Manager Download」連結</value></data>
-  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM 正在處理「Mod Manager Download」連結。</value></data>
-  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>「Mod Manager Download」連結尚未由 AIM 處理。</value></data>
+  <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Vortex」連結</value></data>
+  <data name="GUINexusHandlerActive" xml:space="preserve"><value>AIM 正在處理「Vortex」連結。</value></data>
+  <data name="GUINexusHandlerInactive" xml:space="preserve"><value>「Vortex」連結尚未由 AIM 處理。</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>目前有其他程式正在處理這些連結（{0}）。</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>僅 Windows 和 Linux 支援處理這些連結。</value></data>
-  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>現在 AIM 將開啟 Nexus 網站上的「Mod Manager Download」連結。
+  <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>現在 AIM 將開啟 Nexus 網站上的「Vortex」連結。
 
 第一次點選時，瀏覽器可能會要求權限。</value></data>
-  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM 將不再開啟 Nexus 網站上的「Mod Manager Download」連結。</value></data>
+  <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM 將不再開啟 Nexus 網站上的「Vortex」連結。</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>無法為這些連結註冊 AIM：{0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>無法停止 AIM 處理這些連結：{0}</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>目前有其他程式正在處理這些連結（{0}）。
 
 要交給 AIM 處理嗎？</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>從連結安裝</value></data>
-  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>剪貼簿中沒有 nxm:// 連結。請在模組頁面上以滑鼠右鍵點選「Mod Manager Download」，然後先複製連結位址。</value></data>
-  <data name="GUINexusApiKeyTitle" xml:space="preserve"><value>Nexus API 金鑰</value></data>
-  <data name="GUINexusApiKeyExplanation" xml:space="preserve"><value>AIM 需要你的個人 Nexus Mods API 金鑰來為你下載模組。開啟 Nexus 帳戶設定，捲動至「API Key」，產生個人金鑰後貼到下方。金鑰只會儲存在此電腦上。</value></data>
-  <data name="GUINexusOpenAccountPage" xml:space="preserve"><value>開啟 Nexus 帳戶設定</value></data>
-  <data name="GUINexusApiKeyWatermark" xml:space="preserve"><value>在此貼上個人 API 金鑰</value></data>
-  <data name="GUINexusApiKeyAlreadySet" xml:space="preserve"><value>金鑰已儲存。輸入新的金鑰即可取代它。</value></data>
-  <data name="GUINexusApiKeyMissing" xml:space="preserve"><value>請先貼上 API 金鑰。</value></data>
-  <data name="GUINexusApiKeyChecking" xml:space="preserve"><value>正在透過 Nexus 檢查金鑰…</value></data>
-  <data name="GUINexusApiKeyAccepted" xml:space="preserve"><value>已登入為 {0}。</value></data>
-  <data name="GUINexusRemoveApiKey" xml:space="preserve"><value>移除已儲存的金鑰</value></data>
+  <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>剪貼簿中沒有 nxm:// 連結。請在模組頁面上以滑鼠右鍵點選「Vortex」，然後先複製連結位址。</value></data>
   <data name="GUISave" xml:space="preserve"><value>儲存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>取消</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 — {2} 個已在遊戲中，{3} 個將被加入</value></data>
@@ -324,9 +314,9 @@
   <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM 無法確定「{0}」是哪個 Nexus 模組。透過 AIM 下載的模組會自動追蹤；其他模組需要在 manifest 中提供 Nexus 頁面。</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>更新模組</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>要將「{0}」從 {1} 更新到 {2} 嗎？&#xD;&#xA;&#xD;&#xA;目前版本會保留為可還原的備份。</value></data>
-  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;要開啟模組檔案頁面以使用「Mod Manager Download」按鈕嗎？</value></data>
-  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>允許 AIM 處理 Nexus 網站上的「Mod Manager Download」連結嗎？&#xD;&#xA;&#xD;&#xA;在模組頁面按下此按鈕會將模組直接下載到模組資料夾。你可以稍後在齒輪選單中變更。</value></data>
-  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexus 網站上的「Mod Manager Download」連結目前由 {0} 處理。&#xD;&#xA;&#xD;&#xA;要交給 AIM 處理嗎？在模組頁面按下此按鈕會將模組直接下載到模組資料夾。你可以稍後在齒輪選單中變更。</value></data>
+  <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;要開啟模組檔案頁面以使用「Vortex」按鈕嗎？</value></data>
+  <data name="GUINexusHandlerOffer" xml:space="preserve"><value>允許 AIM 處理 Nexus 網站上的「Vortex」連結嗎？&#xD;&#xA;&#xD;&#xA;在模組頁面按下此按鈕會將模組直接下載到模組資料夾。你可以稍後在齒輪選單中變更。</value></data>
+  <data name="GUINexusHandlerOfferTakeOver" xml:space="preserve"><value>Nexus 網站上的「Vortex」連結目前由 {0} 處理。&#xD;&#xA;&#xD;&#xA;要交給 AIM 處理嗎？在模組頁面按下此按鈕會將模組直接下載到模組資料夾。你可以稍後在齒輪選單中變更。</value></data>
   <data name="GUISettingsMenu" xml:space="preserve"><value>設定…</value></data>
   <data name="GUISettingsBack" xml:space="preserve"><value>← 返回</value></data>
   <data name="GUISettingsGeneral" xml:space="preserve"><value>一般</value></data>
@@ -337,8 +327,7 @@
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>模組資料夾可隨時變更；返回模組清單時，AIM 會重新載入清單。</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
   <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM 使用你的個人 Nexus API 金鑰進行下載和更新檢查。金鑰只儲存在本機，不會包含在模組或發行套件中。</value></data>
-  <data name="GUISettingsApiKeyStatus" xml:space="preserve"><value>API 金鑰狀態：{0}</value></data>
-  <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>設定或變更 Nexus API 金鑰…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus 下載選單也使用相同的金鑰。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>選擇模組資料夾</value></data>
+  <data name="GUIRefreshReport" xml:space="preserve"><value>重新整理報告</value></data>
 </root>

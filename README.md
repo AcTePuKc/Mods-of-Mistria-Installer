@@ -1,235 +1,119 @@
-# AIM — Alternative Installer for Mistria 0.1.7
+# AIM — Alternative Installer for Mistria
 
-This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
+AIM is an independently maintained, open-source mod installer for **Fields of Mistria 1.0.x**. It is a fork of [Mods of Mistria Installer (MOMI)](https://github.com/Garethp/Mods-of-Mistria-Installer), kept under a separate name to make it clear which application and release line a player is using.
 
-AIM is a fork of MOMI. It was renamed to avoid confusion between the two applications while preserving the upstream history, attribution, and technical compatibility. AIM is not affiliated with or endorsed by the original MOMI project.
-
-AIM is not intended to replace MOMI. It exists to provide capabilities that are currently needed by this fork while remaining compatible with the upstream project. If MOMI later adopts at least the capabilities that motivated this fork and fully meets the project's needs, AIM may be retired in favour of the upstream project.
-
-The current AIM application version is `0.1.7`.
+AIM retains upstream attribution and MMAPI compatibility. It is not affiliated with or endorsed by the MOMI project.
 
 ## Preview
 
 ![AIM preview](aim-preview.gif)
 
-<sub>Visual preview of AIM: language switching, mod installation and removal, load-order management, mod selection, and installation status messages.</sub>
+<sub>Language switching, profiles, mod selection, installation status, and load-order management.</sub>
 
-## Fork-specific improvements
+## Highlights
 
-Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1.0.x support and safer everyday use:
-
-- Rebuilds are staged from a verified pristine archive and validated before the live `assets.zip` is replaced.
-- Failed installations keep the previous working archive and provide a mod-specific diagnostic log where possible.
-- TOML validation, custom font installation and manual-load animation content are supported for current 1.0.x mods.
-- The UI remembers profiles and load order, behaves better on high-DPI displays, and includes a guarded **Play** button.
-- Update checks, release uploads and the GitHub link belong to this fork rather than the upstream repository.
-
-## Nexus integration and mod list tools (added by this branch)
-
-Everything above describes AIM as it already is. This section is the part added here, kept separate
-so it is obvious what is new and what is not. Nothing in AIM's existing install, rebuild or profile
-behaviour changes.
-
-| What | Where it lives in the UI |
+| Everyday mod management | AIM additions |
 | --- | --- |
-| Nexus **Mod Manager Download** (`nxm://`) links download and unpack straight into the mods folder | Gear menu → **Nexus downloads** |
-| Check one mod, the selected mods, or every mod for updates on its Nexus page | Right-click a mod, or gear menu → **Nexus downloads** |
-| Update a mod from Nexus, keeping the previous version as a backup you can restore | Right-click a mod |
-| Freeze a mod so update checks leave it on the version it is on | Right-click a mod |
-| Open a mod's Nexus page or its folder | Right-click a mod |
-| Select or clear every mod at once, with a summary of what the selection means | Checkbox above the mod list |
-| **Suggest order** — order mods so each loads after what it requires, and report what it cannot decide | Button above the mod list |
-| Mods copied into the mods folder appear without reopening AIM | Automatic |
+| Profiles with saved selections and load order | Read ZIP, RAR, and 7z mods directly without manually extracting them |
+| Automatic detection of the game and nearby `mods` / `Mods` / `MODS` folders | Nexus **Vortex** (`nxm://`) link support and update checks |
+| Safe install and uninstall from a verified pristine archive, with rollback protection | Download-update backups, restore, version freezing, and Nexus association for manually installed mods |
+| Drag/drop ordering, automatic scrolling, and local mod-list search | On-demand **Check issues** report with exact shared paths, requirements, shortcuts, hooks, and compatibility findings |
+| Optional direct or Steam game launch | Localized interface and optional localized manifest names/descriptions |
 
-Full details are in [Downloading mods from Nexus](#downloading-mods-from-nexus-mod-manager-download)
-and [Mod list tools](#mod-list-tools) below.
+Compatibility warnings are advisory unless AIM cannot safely combine the selected mods. They are shown compactly in the list and in full through **Check issues**.
 
-### What it does not change
+## Install AIM
 
-- Installing still rebuilds `assets.zip` from the pristine backup using the mods that are ticked, so
-  a ticked mod means "in the game" and nothing is unticked for you. Downloading a mod does not install
-  it; it appears in the list and waits for **Install** like any other mod.
-- ZIP and RAR mods are still read in place. A downloaded archive is unpacked because AIM knows it is
-  a fresh download, but an archive you drop in yourself is left exactly as it is.
-- No existing file format, profile or command-line flag changes. The new state lives in two new
-  files: `aim_nexus.json` in the mods folder, and `nexus.json` in `%LOCALAPPDATA%\AIM`.
-
-## What this fork supports
-
-- Fields of Mistria 1.0.x mod installations.
-- Mod folders, ZIP archives, and RAR archives containing either `manifest.toml` or `manifest.json`.
-- ZIP and RAR mods are read directly by AIM; extracting them first is optional. AIM can locate the mod manifest inside a supported wrapper folder, but it does not search through unlimited nested folders.
-- TOML, JSON, image, outfit, furniture, item, object, store, shadow, font and manual-load mod content supported by the current AIM installer modules.
-- GML mods using the MMAPI format documented in [`docs/MMAPI`](docs/MMAPI); MMAPI compatibility is retained from the upstream project.
-- Profiles and persisted mod load order.
-- Rebuilding `assets.zip` from a verified pristine backup, so disabled or removed mods are removed on the next successful rebuild.
-- Staged installation diagnostics, archive validation and recovery when an installation fails.
-- A Play button that is available when the game can be launched, including before any mod is installed.
-- Play uses Steam by default. Enable **Launch game directly** from the gear menu to launch the detected `FieldsOfMistria.exe` instead; the preference is saved between launches and falls back to Steam if direct launching is unavailable.
-- At startup, AIM performs an experimental advisory scan of discovered mods for known legacy GML, hook and loading-screen signatures. It does not block those mods automatically; the warning icon and its hover text explain the detected risk.
-- Before installation, AIM also checks selected mods for shared destination files and detectable keyboard-shortcut conflicts. These checks are warnings unless the selected mods cannot safely be combined.
-
-This project is intended for Fields of Mistria 1.0.4 and later 1.0.x patches. Individual mods may still require a specific AIM version or game patch; check the mod author's compatibility notes.
-
-## Installation
-
-1. Download the latest release from the [releases page](https://github.com/AcTePuKc/Mods-of-Mistria-Installer/releases).
-2. Open AIM and choose a mods folder. AIM automatically checks for `mods`, `Mods`, `MODS`, or `MODs` next to the detected game installation and next to the AIM executable. It also checks the supported per-user Linux/Steam Deck locations. You can select or create another folder manually.
-3. Put each mod directly in the selected folder. The manifest may be in the mod folder or in one supported wrapper level:
+1. Download the appropriate ZIP from the [latest GitHub release](https://github.com/AcTePuKc/Mods-of-Mistria-Installer/releases/latest).
+2. Extract it anywhere and start the executable for your system:
 
    ```text
-   mods/
-   ├─ MyMod/
-   │  └─ manifest.toml                 ✅ supported
-   ├─ MyMod/
-   │  └─ Wrapper/
-   │     └─ manifest.toml              ✅ supported
-   └── MyMod/
-       └─ Wrapper/
-          └─ AnotherFolder/
-             └─ manifest.toml           ❌ too deeply nested
+   Windows: AIM.exe
+   Linux / SteamOS: AIM-linux
+   macOS: AIM-osx
    ```
 
-   ZIP and RAR archives can be added directly. The same rule applies inside the archive:
-
-   ```text
-   MyMod.zip
-   ├─ manifest.toml                     ✅ supported
-   ├─ Wrapper/
-   │  └─ manifest.toml                  ✅ supported
-   └── Wrapper/
-       └─ AnotherFolder/
-          └─ manifest.toml               ❌ too deeply nested
-   ```
-
-   If the manifest is buried deeper than this, move the mod files up one or more folders before starting AIM.
-4. Select the mods you want and click **Install**. You can add new mods at any time; you do not need to uninstall the other installed mods first.
-5. Start the game with **Play**.
+3. Let AIM find the game and mods folder, or select either folder from **Settings**.
+4. Select the mods you want active and choose **Install**.
 
 > [!IMPORTANT]
-> Keep only one copy of each mod in the active folder. When updating a mod, remove its old copy first and leave only the new version. Do not keep the same mod both as a folder and as a ZIP/RAR archive.
+> Extract the ZIP first. Do not run AIM from inside the archive.
 
-> [!WARNING]
-> Close AIM before moving, replacing, or deleting mod files. An open mod archive may be locked while AIM is running.
+AIM supports Windows x64, Linux/SteamOS x64, and macOS x64. It targets Fields of Mistria 1.0.4 and later 1.0.x patches; individual mods can still need a particular game patch or installer version.
 
-AIM preserves a pristine backup and writes a staged archive before replacing the live `assets.zip`. Do not delete the backup while AIM is managing the installation. Keep a separate game backup before testing unfamiliar mods.
+## Add mods
 
-## Downloading mods from Nexus ("Mod Manager Download")
+Put a mod folder or ZIP/RAR/7z archive directly in the selected mods folder. AIM reads supported archives in place; extracting them is optional.
 
-AIM can register itself as the handler for `nxm://` links, which is what the **Mod Manager Download**
-button on a Nexus Mods page uses. Once it is set up, clicking that button downloads the mod and
-unpacks it straight into your mods folder, the way Vortex does for other games.
+The manifest may be at the mod root or inside one wrapper folder:
 
-### Setting it up
+```text
+mods/
+├─ MyMod/
+│  └─ manifest.toml                 supported
+├─ MyMod/
+│  └─ Wrapper/
+│     └─ manifest.toml              supported
+└─ MyMod/
+   └─ Wrapper/
+      └─ AnotherFolder/
+         └─ manifest.toml           too deeply nested
+```
 
-1. Open the gear menu → **Nexus downloads** → **Nexus API key...**
-2. Click **Open Nexus account settings**, scroll to **API Key**, generate a personal key and paste it
-   into AIM. The key is checked immediately, and is stored on this computer only (encrypted with
-   Windows DPAPI; on Linux in a file only your user can read).
-3. Back in the gear menu, choose **Handle "Mod Manager Download" links**. The line underneath the menu
-   item shows whether AIM currently owns those links.
-4. Click **Mod Manager Download** on any Fields of Mistria mod page. Your browser will ask once
-   whether to open the link with AIM.
+The same one-wrapper limit applies inside an archive. A mod can provide either `manifest.toml` or `manifest.json`.
 
-### What happens on a download
+Keep one copy of each mod in the selected folder. Do not keep the same release both extracted and archived.
 
-- The link is handed to the AIM window you already have open. A second window is never opened.
-- The mod is downloaded from Nexus and unpacked into your mods folder, anchored on the mod's
-  `manifest.toml`, so an archive with an extra wrapper folder still lands in the right place.
-- Downloading a mod you already have asks before replacing it, and the previous copy is kept until
-  the new one is written successfully.
-- Downloading does not install mods into the game. The new mod appears in the list, and you still
-  choose when to press **Install**.
+### Mod list tools
 
-### Notes and limits
+- **Select all / Deselect all** selects or clears the complete list in one operation.
+- **Search** filters already discovered mods by localized or original name, author, description, or version. It never scans archives or changes the saved order. Drag/drop is paused while filtering so hidden rows cannot move accidentally.
+- **Suggest order** makes only safe dependency-order changes: a mod is moved below the mods it requires.
+- **Check issues** opens a copyable report of exact shared files, missing requirements, dependency loops, hook and shortcut clashes, and compatibility warnings. It does not install or reorder anything.
+- **Drag/drop** moves a mod using its grip. Holding it near the top or bottom of the list scrolls a long list automatically.
+- **Automatic refresh** notices folders and archives copied into the selected mods folder while AIM is open.
 
-- A Nexus API key is required. Free accounts can only download through the website's **Mod Manager
-  Download** button, because the download token lives in the link itself; an `nxm://` link typed by
-  hand will be refused by Nexus for a non-premium account.
-- Registration is per-user and never needs administrator rights: `HKCU\Software\Classes\nxm` on
-  Windows, a `~/.local/share/applications/aim-nxm-handler.desktop` entry plus `mimeapps.list` on
-  Linux and the Steam Deck.
-- If another mod manager already owns `nxm://`, AIM says so and asks before taking over. Turning the
-  option off again only removes AIM's own registration.
-- A browser installed as a Flatpak or Snap may not be able to launch a handler outside its sandbox.
-  In that case, right-click **Mod Manager Download**, copy the link address, and use gear menu →
-  **Nexus downloads** → **Install from a copied nxm:// link**.
-- You can also associate a manually installed mod with Nexus by right-clicking the mod's name or
-  row and choosing **Associate with Nexus...**. A normal Nexus page URL enables version checks;
-  a copied `nxm://` link identifies the exact Nexus file. If the same version is already present,
-  AIM records the association without downloading it again. If you choose **Yes** when AIM asks
-  whether to replace an existing file, it might download that file again.
-- Nexus collections are not supported; download the mods in them individually.
+Installing rebuilds `assets.zip` from AIM's verified pristine backup using the selected mods. A selected mod means it will be in the game after the next successful install. If installation fails, AIM preserves the live archive and writes a diagnostic log.
 
-### Keeping mods up to date
+## Nexus downloads and updates
 
-AIM remembers which Nexus mod and file each download came from, in `aim_nexus.json` beside the
-profiles. Mods installed by hand are recognised too, as long as their manifest points at a Nexus page.
-You can also right-click the mod's name or row and choose **Associate with Nexus...**. Use a normal
-Nexus page URL for version checks, or a copied `nxm://` link when the exact Nexus file must be
-identified.
+AIM can handle the Nexus **Vortex** (`nxm://`) link and download a mod into the selected mods folder.
 
-- Right-click a mod → **Check for an update**, or use gear menu → **Nexus downloads** → **Check
-  selected mods for updates** / **Check all mods for updates**.
-- A mod with an update shows the green badge. Right-click → **Update from Nexus** downloads and
-  replaces it.
-- Checking works on any Nexus account. Downloading an update directly does not: Nexus only issues a
-  download link to a non-premium account when the request carries the token from a website button
-  click, so free accounts are offered the mod's files page instead.
-- Update sweeps run a few mods at a time and stop early if Nexus reports a rate limit, keeping the
-  results already gathered.
+1. Open the gear menu → **Nexus downloads** → **Nexus API key...**.
+2. Open your [Nexus API key settings](https://www.nexusmods.com/settings/api-keys), create a personal key, and paste it into AIM.
+3. In the same menu, choose **Handle "Vortex" links**. AIM shows whether it currently owns the link type.
+4. On a Fields of Mistria Nexus page, click **Vortex**. Your browser may ask permission to open AIM the first time.
 
-### Freezing a mod
+Downloads are unpacked into the selected mods folder, but are not installed into the game until you select them and choose **Install**. When a downloaded mod replaces a prior copy, AIM keeps the prior version in `.aim-backups`; you can restore it from the mod's right-click menu.
 
-Right-click a mod → **Freeze at this version** to hold it where it is. Frozen mods show a 🔒, are
-skipped by update checks, and stay frozen if the mod is reinstalled. Mods AIM never downloaded can be
-frozen too, which is how to protect a mod you have edited yourself.
+Right-click a mod to:
 
-### Backups and rolling back
+- associate a manually installed mod with its Nexus page;
+- check or install an update;
+- open its Nexus page or folder;
+- freeze it at the current version; or
+- restore the most recent backed-up version.
 
-Updating a mod moves the copy it replaces into `.aim-backups` inside the mods folder, keeping the
-three most recent. Right-click → **Restore the previous version** puts the newest backup back, and
-keeps the copy it replaces, so a rollback can itself be undone. The backup folder starts with a dot
-so the installer's own scan of the mods folder ignores it.
+Free Nexus accounts receive a download token only when they click the website's **Vortex** button. If AIM cannot download an update directly, it opens the correct Nexus files page instead.
 
-## Mod list tools
+> [!NOTE]
+> AIM currently uses a personal Nexus API key stored on the local computer. Public OAuth registration for AIM is awaiting Nexus approval.
 
-- **Select all.** The checkbox above the list selects everything, or clears the selection when
-  everything is selected. Beside it, a summary reads for example "4 of 5 selected — 3 already in the
-  game, 1 will be added", because a tick means the mod will be in the game after the next install,
-  not that it is queued to be added.
-- **Suggest order.** Moves each mod below the mods it requires, using the smallest changes that
-  satisfy those requirements, so mods you deliberately ordered stay where you put them. Load order
-  is saved with the profile as before.
-- **Check issues.** Opens an on-demand, copyable report with exact shared destination files,
-  missing requirements, dependency loops, hook and keyboard-shortcut clashes, and compatibility
-  warnings. It does not change the order or install anything.
-- **Drag/drop load order.** Drag a mod by its grip to reorder it. When holding it near the top or
-  bottom edge of the list, AIM scrolls automatically so long lists do not require repeated drags.
-- **Search.** The search field filters the already discovered list by localized or original mod
-  name, author, description, and version. It does not rescan archives or contact Nexus. Filtering
-  does not change the saved selection or order; drag/drop is paused until the search is cleared.
-- **Automatic refresh.** The mods folder is watched while AIM is open, so a mod folder or archive
-  copied in appears in the list a couple of seconds later.
+> [!NOTE]
+> Mods installed manually or before AIM 0.1.5 may not have an exact Nexus file identity. Use **Associate with Nexus...** before checking them for updates.
 
 ## Optional localized mod metadata
 
-AIM supports optional language-specific manifest fields for the mod name and description. The normal `name` and `description` fields remain the fallback, so existing mods do not need to change. The supported suffixes are:
+Mod authors can optionally localize their manifest name and description. Standard `name` and `description` are always the fallback, so existing mods remain compatible.
 
-`en`, `bg`, `pl`, `de`, `fr`, `nl`, `pt-br`, `ru`, `id`, `zh-hans`, `zh-hant`, `ko`, `ja`, `es`, and `uk`.
-
-For example, in a TOML manifest:
+Supported suffixes: `en`, `bg`, `pl`, `de`, `fr`, `nl`, `pt-br`, `ru`, `id`, `zh-hans`, `zh-hant`, `ko`, `ja`, `es`, and `uk`.
 
 ```toml
-name = "Bulgarian Localization"
+name = "Example Mod"
 name_bg = "Българска локализация"
-description = "Adds Bulgarian Language to the game."
-description_bg = "Добавя български език в играта."
+description = "Adds a small example feature."
+description_bg = "Добавя малка примерна функция."
 ```
-
-The same optional fields can be used in a JSON manifest. The suffix can be
-different for each field; for example, this uses a Japanese name and a
-French description:
 
 ```json
 {
@@ -240,71 +124,42 @@ French description:
 }
 ```
 
-When the AIM interface is set to a supported language, it uses that language's suffix, such as `name_bg`/`description_bg` or `name_pl`/`description_pl`. If a language-specific field is missing, AIM uses the standard `name` and `description` fields instead. These optional fields are ignored by MOMI and do not change the normal manifest format.
+When AIM uses a supported interface language, it prefers the matching suffix such as `name_bg` or `description_fr`, then falls back to the normal field. MOMI ignores these optional fields.
 
-## Updating the game
+## Updating the game and troubleshooting
 
-After a Fields of Mistria update, start AIM and reinstall the enabled mods. When the new `assets.zip` is a valid vanilla archive and the game executable also changed, AIM automatically adopts it as the new pristine source; no manual `assets.bak.zip` creation is required. AIM keeps the previous backup with a timestamped name until the update is accepted. If the archive is damaged or the update cannot be verified, AIM preserves the existing backup and asks you to verify the game files through Steam. Mods made for an older game or installer version may still need to be updated by their authors.
+After a Fields of Mistria update, start AIM and reinstall the selected mods. If the new `assets.zip` is a valid vanilla archive and the game executable changed, AIM adopts it as the new pristine source and retains the previous backup with a timestamp. If the update cannot be validated, verify the game files through Steam before trying again.
 
-## Troubleshooting
+- If the game is not detected, select its folder in **Settings**. `Maybe.toml` should be beside the game executable.
+- If no mods appear, confirm the selected mods folder and manifest placement.
+- If the game was modified outside AIM or the pristine backup is missing, verify game files through Steam before installing again.
+- Close AIM before moving, replacing, or deleting an archive it may be reading.
 
-- If the game location is not detected, place AIM next to `Maybe.toml` or select the game directory in Settings.
-- If no mods appear, check that AIM is looking at the intended mods folder, that the manifest is at the mod root, and that the mod supports Fields of Mistria 1.0.x. The folder may be next to the game, next to AIM, or selected manually.
-- If installation fails, AIM keeps the previous live archive, shows the failing mod when available, and writes a diagnostic log under the AIM local data directory.
-- If the game was modified outside AIM or the pristine backup is missing, restore/verify the game files through Steam before trying again.
-
-Nexus downloads and updates:
-
-- **Known issue for older local installations:** mods installed manually or by an older AIM build
-  before AIM 0.1.5 may not have a Nexus file identity recorded. To update one from AIM, right-click
-  its name or row, choose **Associate with Nexus...**, and provide its Nexus page URL or an exact
-  `nxm://` link.
-- AIM currently uses each user's personal Nexus API key for Nexus downloads and update checks.
-  OAuth support for AIM is not available yet and depends on Nexus application approval.
-- If clicking **Mod Manager Download** does nothing, check gear menu → **Nexus downloads**: the line under **Handle "Mod Manager Download" links** says who currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler, in which case copy the link address and use **Install from a copied nxm:// link**.
-- If an update check says AIM cannot tell which Nexus mod something is, that mod was not downloaded through AIM and its manifest has no Nexus link. Downloading it once through AIM records the connection.
-- If an update refuses to download and offers the mod's page instead, the account is not premium. Nexus only issues download links to free accounts through the website button; the page it opens is the supported route.
-- Previous versions live in `.aim-backups` inside the mods folder. If a rollback is not offered, no backup exists yet — they start being kept the first time a mod is updated through AIM.
-
-For bugs and fork-specific support, use the [fork issue tracker](https://github.com/AcTePuKc/Mods-of-Mistria-Installer/issues). The upstream project and its documentation remain available at [Garethp/Mods-of-Mistria-Installer](https://github.com/Garethp/Mods-of-Mistria-Installer).
+For bugs and support, use the [AIM issue tracker](https://github.com/AcTePuKc/Mods-of-Mistria-Installer/issues).
 
 ## Contributors
 
-See [Contributors.md](Contributors.md) for the people who have contributed to
-AIM and the areas they worked on.
+See [Contributors.md](Contributors.md) for contributors and the areas they worked on.
 
 ## Development
 
-Build the solution with .NET 10:
+Build and test with .NET 10:
 
 ```powershell
 dotnet build ModsOfMistriaInstaller.sln --configuration Release
 dotnet test ModsOfMistriaInstaller.sln --configuration Release
 ```
 
-The build depends on SixLabors.ImageSharp 4.x, which refuses to compile without a Six Labors license
-key. Community licenses are free for open-source and non-commercial projects and can be requested at
-[licensing.sixlabors.com](https://licensing.sixlabors.com); they are valid for one year, so an
-expired key produces the same build error as a missing one.
-
-**Never commit `sixlabors.lic` or a license key.** Keys are personal to the license holder, and
-`**/sixlabors.lic` is git-ignored for that reason. Supply yours in one of two ways:
+The build requires a SixLabors.ImageSharp 4.x license. Community licenses are available for qualifying open-source and non-commercial projects from [Six Labors](https://licensing.sixlabors.com). Never commit `sixlabors.lic` or its key.
 
 ```powershell
-# A file the build finds on its own
+# File-based local license
 Copy-Item path\to\sixlabors.lic ModsOfMistriaInstallerLib\sixlabors.lic
 
-# Or the key itself, for one session - use the whole file, not just the Key field
+# Or one-session environment variable; provide the complete license file contents
 $env:SixLaborsLicenseKey = Get-Content -Raw path\to\sixlabors.lic
 ```
 
-CI writes the file from the `SIXLABORS_LICENSE` repository secret. GitHub does not expose secrets to
-workflows triggered by a pull request from a fork, so that CI run stops at the license step and the
-maintainer has to build the branch themselves.
-
-`build-windows-exe.ps1` publishes the single-file Windows executable the same way the release
-workflow does, and checks for the key before it starts.
-
-The release workflow builds the GUI and CLI for the supported desktop targets and uploads artifacts only to releases in this fork. Nexus publishing is manual and is not triggered by a normal GitHub release.
+CI uses the `SIXLABORS_LICENSE` repository secret. The `build-windows-exe.ps1` script publishes the same single-file Windows executable used for releases. Nexus publishing remains a separately enabled, manual workflow.
 
 The repository does not include game archives or copyrighted game localization data.

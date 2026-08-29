@@ -31,10 +31,13 @@ public record NxmDownloadResult(
 ///
 /// The sequence mirrors what Vortex does: resolve the file through the Nexus API, download it from
 /// the CDN URL that comes back, then unpack it into the mods folder. Everything the user might have
-/// to answer - a missing API key, a mod that is already installed - is asked through a callback so
+/// to answer - an unavailable Nexus account session, a mod that is already installed - is asked through a callback so
 /// that this class stays free of UI.
 /// </summary>
-public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClient = null, HttpClient? apiClient = null)
+public class NxmDownloadService(
+    Func<CancellationToken, Task<string?>> accessTokenProvider,
+    HttpClient? downloadClient = null,
+    HttpClient? apiClient = null)
 {
     // Mod archives are large and CDN throughput varies wildly, so the download client has no
     // per-request timeout and relies on cancellation instead. The API client keeps a short one:
@@ -64,9 +67,9 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
 
         try
         {
-            var apiKey = settings.GetApiKey();
-            if (string.IsNullOrEmpty(apiKey))
-                return Failure(fileName, "No Nexus API key has been set up yet.", progress);
+            var accessToken = await accessTokenProvider(ct);
+            if (string.IsNullOrEmpty(accessToken))
+                return Failure(fileName, "No Nexus account is connected yet.", progress);
 
             if (!link.IsForMistria())
                 return Failure(fileName,
@@ -81,7 +84,7 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
 
             progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Resolving, "Asking Nexus about the file..."));
 
-            var client = new NexusApiClient(apiKey, _api);
+            var client = new NexusApiClient(accessToken, _api);
             var fileInfo = await client.GetFileInfoAsync(link, ct);
             fileName = fileInfo.FileName;
 
