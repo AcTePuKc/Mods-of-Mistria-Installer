@@ -326,8 +326,11 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>選択…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Modフォルダーはいつでも変更できます。Mod一覧に戻るとAIMが一覧を再読み込みします。</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIMはダウンロードと更新チェックに個人のNexus APIキーを使用します。キーはこのPCにのみ保存され、Modやリリースには含まれません。</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>同じキーをNexusダウンロードメニューで使用します。</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM は Nexus アカウントへのアクセスに OAuth PKCE を使用します。Nexus が AIM の公開 client_id を提供するまで、Nexus のダウンロードと更新チェックは利用できません。</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus が AIM の公開 client_id を承認すると、Nexus ダウンロードメニューで OAuth サインインを利用できます。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modフォルダーを選択</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>レポートを更新</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>アセットアーカイブは置き換えられましたが、AIM はインストール状態を保存できませんでした。AIM を再起動して、完了したトランザクションを復旧してください。</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM の保留中のインストール状態復旧ファイルが無効です: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM は assets.zip を復元しましたが、インストール状態を復元できませんでした。状態ファイルを使用しているプログラムを閉じて、もう一度試してください。</value></data>
 </root>

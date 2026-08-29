@@ -904,6 +904,15 @@ namespace Garethp.ModsOfMistriaInstallerLib.Lang {
                 return ResourceManager.GetString("CoreStoreNothingToUninstall", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to AIM's pending install-state recovery file is invalid: {0}.
+        /// </summary>
+        public static string CoreStorePendingStateRecoveryInvalid {
+            get {
+                return ResourceManager.GetString("CoreStorePendingStateRecoveryInvalid", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Could not rebuild {0}. Is Fields of Mistria running? Close it and try again; the previous install is untouched..
@@ -920,6 +929,24 @@ namespace Garethp.ModsOfMistriaInstallerLib.Lang {
         public static string CoreStoreRestoreFailed {
             get {
                 return ResourceManager.GetString("CoreStoreRestoreFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The assets archive was replaced, but AIM could not save its install state. Restart AIM to recover the completed transaction..
+        /// </summary>
+        public static string CoreStoreStatePublicationFailed {
+            get {
+                return ResourceManager.GetString("CoreStoreStatePublicationFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to AIM restored assets.zip but could not restore its install state. Close any program using the state file and retry..
+        /// </summary>
+        public static string CoreStoreStateRecoveryFailed {
+            get {
+                return ResourceManager.GetString("CoreStoreStateRecoveryFailed", resourceCulture);
             }
         }
         

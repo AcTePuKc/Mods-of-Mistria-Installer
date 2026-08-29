@@ -34,7 +34,7 @@
                               ToggleType="CheckBox"
                               IsChecked="{Binding LaunchGameDirectly, Mode=TwoWay}" />
                     <Separator />
-                    <!-- Nexus "Mod Manager Download" support -->
+                    <!-- Nexus Vortex download-link support -->
                     <MenuItem Header="{Binding Texts.GUINexusMenu}"
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Nexus.HandlerActionText}"

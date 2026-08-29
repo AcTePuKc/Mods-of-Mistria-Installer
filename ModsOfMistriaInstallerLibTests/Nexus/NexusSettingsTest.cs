@@ -85,29 +85,24 @@ public class NexusSettingsTest
     }
 
     [Test]
+    public void ShouldKeepTheExistingOAuthSessionWhenTheSettingsFileCannotBeReplaced()
+    {
+        var settings = new NexusSettings(_directory);
+        var existingTokens = new NexusOAuthTokens("existing-access-token", "existing-refresh-token", DateTimeOffset.UtcNow.AddHours(1));
+        settings.SetOAuthTokens(existingTokens);
+        File.Move(Path.Combine(_directory, "nexus.json"), Path.Combine(_directory, "nexus-backup.json"));
+        Directory.CreateDirectory(Path.Combine(_directory, "nexus.json"));
+
+        Assert.Throws<IOException>(() => settings.SetOAuthTokens(
+            new NexusOAuthTokens("access-token", "refresh-token", DateTimeOffset.UtcNow.AddHours(1))));
+
+        Assert.That(settings.GetOAuthTokens(), Is.EqualTo(existingTokens));
+    }
+
+    [Test]
     public void ShouldRememberTheProtocolOptIn()
     {
         new NexusSettings(_directory).HandlerRegistered = true;
         Assert.That(new NexusSettings(_directory).HandlerRegistered, Is.True);
-    }
-
-    [Test]
-    public void ShouldRememberTheStandingProtocolClaim()
-    {
-        new NexusSettings(_directory).HandlerAlwaysClaim = true;
-        Assert.That(new NexusSettings(_directory).HandlerAlwaysClaim, Is.True);
-    }
-
-    [Test]
-    public void ShouldRememberWhichHandlerWasPromptedAbout()
-    {
-        new NexusSettings(_directory).HandlerPromptedFor = "Vortex";
-        Assert.That(new NexusSettings(_directory).HandlerPromptedFor, Is.EqualTo("Vortex"));
-    }
-
-    [Test]
-    public void ShouldTreatMissingPromptedHandlerAsNoPreviousClaimant()
-    {
-        Assert.That(new NexusSettings(_directory).HandlerPromptedFor, Is.Null);
     }
 }

@@ -115,7 +115,7 @@ if (-not $executable) {
 if ($executable) {
     $size = [math]::Round((Get-Item $executable).Length / 1MB)
     Write-Host "Done: $((Resolve-Path $executable).Path) (${size} MB)" -ForegroundColor Green
-    Write-Host 'Run it once, then use the gear menu -> Nexus downloads to set your API key and register Nexus Vortex links.'
+    Write-Host 'Run it once. Nexus OAuth is awaiting AIM''s public client_id, so Nexus account features are unavailable in this build.'
 } else {
     Write-Warning "Publish finished but no executable was found in $OutputDirectory. Check the output above."
 }

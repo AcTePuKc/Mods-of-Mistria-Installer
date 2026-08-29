@@ -654,8 +654,11 @@ An AIM übergeben?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Auswählen…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Der Mod-Ordner kann jederzeit geändert werden; AIM lädt die Liste neu, wenn du zur Mod-Liste zurückkehrst.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM verwendet deinen persönlichen Nexus-API-Schlüssel für Downloads und Update-Prüfungen. Er wird lokal gespeichert und nie in Mods oder Releases aufgenommen.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Derselbe Schlüssel wird im Nexus-Downloadmenü verwendet.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM verwendet OAuth PKCE für den Zugriff auf Nexus-Konten. Nexus-Downloads und Update-Prüfungen sind nicht verfügbar, bis Nexus die öffentliche client_id von AIM bereitstellt.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Die OAuth-Anmeldung wird im Nexus-Downloadmenü verfügbar sein, nachdem Nexus die öffentliche client_id von AIM genehmigt hat.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Mod-Ordner auswählen</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Bericht aktualisieren</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Das Ressourcenarchiv wurde ersetzt, aber AIM konnte den Installationsstatus nicht speichern. Starte AIM neu, um die abgeschlossene Transaktion wiederherzustellen.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Die ausstehende Wiederherstellungsdatei des AIM-Installationsstatus ist ungültig: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM hat assets.zip wiederhergestellt, konnte den Installationsstatus jedoch nicht wiederherstellen. Schließe ein Programm, das die Statusdatei verwendet, und versuche es erneut.</value></data>
 </root>

@@ -16,9 +16,9 @@ Log a line from your handler to prove it ran, and raise the level to see more. A
 
 ## The Mod Was Skipped At Install
 
-MOMI installs a mod whole or skips it whole, and prints the reason. Common causes:
+AIM installs a mod whole or skips it whole, and prints the reason. Common causes:
 
-- **A required hook is missing.** A hook in `requires_hooks` the catalog does not declare. Update MOMI, or correct the name. See [The Manifest](MANIFEST.md#requires_hooks).
+- **A required hook is missing.** A hook in `requires_hooks` the catalog does not declare. Update AIM, or correct the name. See [The Manifest](MANIFEST.md#requires_hooks).
 - **The GML does not compile.** A syntax error anywhere in the mod's `gml/` tree. The message names the file and the parse error.
 - **An install-namespace clash.** Two mods derive the same `scripts/<id>/` directory. Change one mod's `author` or `name`; there is no separate manifest id.
 - **A duplicate top-level function.** The mod exports a name already owned by the engine, MMAPI, an earlier mod, or another file in the same mod. Prefix the function and update its calls.
@@ -32,7 +32,7 @@ A skipped mod installs none of its content. See [Install The Mod](QUICK_START.md
 The mod installed, the moment happens, and nothing fires. In order of likelihood:
 
 - **Wrong directive for the kind.** A filter registered with `mmapi_on` never dispatches. The log carries a one-time warning naming the right directive. Check the hook's kind with `mmapi_hook_kind(name)` or the [Catalog](CATALOG.md).
-- **Unknown hook name.** A typo, or a hook this catalog does not declare. It warns once. No MOMI seam dispatches it, though a deliberately custom hook still works when another mod calls the matching dispatcher. `mmapi_hook_exists(name)` confirms only catalog hooks.
+- **Unknown hook name.** A typo, or a hook this catalog does not declare. It warns once. No AIM seam dispatches it, though a deliberately custom hook still works when another mod calls the matching dispatcher. `mmapi_hook_exists(name)` confirms only catalog hooks.
 - **The registration never ran.** A latch flag was left set, or `register_callbacks` was never called. Log at the registration site to confirm execution reached it.
 
 See [Registration Checks](HOOKS.md#registration-checks).
@@ -62,7 +62,7 @@ The CLI can run manifest validation, seam staging, skip checks, lints, and the c
 dotnet run --project ModsOfMistriaCommandLine -- --lint "C:\path\to\mod-folder" "C:\path\to\pristine-assets.zip" --strict-lints --compile-check require
 ```
 
-The pristine zip is optional when MOMI can locate the installed game's backup. `--strict-lints` is optional. `--compile-check on` uses a checker when one resolves, `off` disables the pass, and `require` fails when no checker is available.
+The pristine zip is optional when AIM CLI can locate the installed game's backup. `--strict-lints` is optional. `--compile-check on` uses a checker when one resolves, `off` disables the pass, and `require` fails when no checker is available.
 
 | Exit | Meaning |
 | ---- | ------- |
@@ -72,7 +72,7 @@ The pristine zip is optional when MOMI can locate the installed game's backup. `
 
 ## It Worked, Then A Game Update Broke It
 
-A game update rewrites engine scripts, so a seam may no longer anchor. On a normal install, a seam-staging failure skips every selected mod that carries GML and proceeds with the content-only rebuild; it does not retain the previous GML layer. `--fail-on-skip` turns that fallback into a hard stop. The fix is a MOMI update carrying a re-checked catalog, not a change to your mod. Catalog contributors can inspect the batch with `--seam-check`; see [Game Updates](SEAMS.md#game-updates) and [Reading Seam-Check Failures](SEAMS.md#reading-seam-check-failures).
+A game update rewrites engine scripts, so a seam may no longer anchor. On a normal install, a seam-staging failure skips every selected mod that carries GML and proceeds with the content-only rebuild; it does not retain the previous GML layer. `--fail-on-skip` turns that fallback into a hard stop. The fix is an AIM update carrying a re-checked catalog, not a change to your mod. Catalog contributors can inspect the batch with `--seam-check`; see [Game Updates](SEAMS.md#game-updates) and [Reading Seam-Check Failures](SEAMS.md#reading-seam-check-failures).
 
 ## Still Stuck
 

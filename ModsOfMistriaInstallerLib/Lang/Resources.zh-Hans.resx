@@ -326,8 +326,11 @@
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>选择…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>模组文件夹可随时更改；返回模组列表时，AIM 会重新加载列表。</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM 使用你的个人 Nexus API 密钥进行下载和更新检查。密钥仅保存在本机，不会包含在模组或发布包中。</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus 下载菜单也使用同一个密钥。</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM 使用 OAuth PKCE 访问 Nexus 帐户。在 Nexus 提供 AIM 的公开 client_id 之前，Nexus 下载和更新检查不可用。</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus 批准 AIM 的公开 client_id 后，可在 Nexus 下载菜单中使用 OAuth 登录。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>选择模组文件夹</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>刷新报告</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>资源存档已被替换，但 AIM 无法保存安装状态。请重新启动 AIM 以恢复已完成的事务。</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM 的待处理安装状态恢复文件无效：{0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM 已恢复 assets.zip，但无法恢复安装状态。请关闭正在使用状态文件的程序后重试。</value></data>
 </root>

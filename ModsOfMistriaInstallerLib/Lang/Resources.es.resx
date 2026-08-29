@@ -326,8 +326,11 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Elegir…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>La carpeta de mods se puede cambiar en cualquier momento; AIM volverá a cargar la lista al regresar a ella.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM usa tu clave personal de API de Nexus para descargas y comprobaciones de actualizaciones. Se guarda localmente y nunca se incluye en mods ni versiones.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>La misma clave se usa en el menú de descargas de Nexus.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM usa OAuth PKCE para acceder a la cuenta de Nexus. Las descargas y comprobaciones de actualizaciones de Nexus no están disponibles hasta que Nexus proporcione la client_id pública de AIM.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>El inicio de sesión con OAuth estará disponible en el menú de descargas de Nexus cuando Nexus apruebe la client_id pública de AIM.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Seleccionar carpeta de mods</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Actualizar informe</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>El archivo de recursos se reemplazó, pero AIM no pudo guardar el estado de instalación. Reinicia AIM para recuperar la transacción completada.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>El archivo de recuperación del estado de instalación pendiente de AIM no es válido: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM restauró assets.zip, pero no pudo restaurar el estado de instalación. Cierra cualquier programa que use el archivo de estado e inténtalo de nuevo.</value></data>
 </root>

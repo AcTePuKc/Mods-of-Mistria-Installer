@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.Utils;
 using Tomlyn;
@@ -31,12 +32,14 @@ public class AssetsStore(string fomLocation)
     public string BackupPath { get; } = Path.Combine(fomLocation, "assets.bak.zip");
     public string TemporaryPath { get; } = Path.Combine(fomLocation, "assets.momi.tmp.zip");
     public string StatePath { get; } = Path.Combine(fomLocation, "assets.momi.state.toml");
+    public string PendingStatePath { get; } = Path.Combine(fomLocation, "assets.momi.pending-state.json");
     private string? GameExecutablePath => GameExecutableLocator.Find(fomLocation);
 
     private enum LiveState { Absent, Unmarked, Marked, Unreadable }
 
     public void EnsureBackup()
     {
+        RecoverPendingStateCommit();
         var backupHash = EnsureReadableBackup();
         var state = ReadState();
         var liveState = ReadLiveState();
@@ -97,6 +100,10 @@ public class AssetsStore(string fomLocation)
 
     public IFileModifier BeginRebuild()
     {
+        // A failed state publication can leave a fully replaced assets.zip plus its durable
+        // journal in this very store instance. Recover it before doing anything that could
+        // overwrite the journal for the next transaction.
+        RecoverPendingStateCommit();
         EnsureReadableBackup();
         Abort();
 
@@ -130,6 +137,7 @@ public class AssetsStore(string fomLocation)
             throw new InvalidOperationException("Commit without BeginRebuild");
 
         var commitStopwatch = Stopwatch.StartNew();
+        var livePublished = false;
         try
         {
             StoreDiagnosticSnapshot("before archive close");
@@ -172,6 +180,7 @@ public class AssetsStore(string fomLocation)
             var stateTemp = StatePath + ".tmp";
             SafeDelete(stateTemp);
             WriteExclusiveReplacement(stateTemp, stateText);
+            WritePendingStateCommit(generatedHash, stateText);
             StoreDiagnostic($"Commit: state prepared at {commitStopwatch.ElapsedMilliseconds} ms");
             StoreDiagnosticSnapshot("after state prepared");
 
@@ -179,12 +188,14 @@ public class AssetsStore(string fomLocation)
             StoreDiagnosticSnapshot("before live archive replacement");
             AtomicReplace(_temporaryPath, LivePath);
             liveReplaceStopwatch.Stop();
+            livePublished = true;
             _temporaryPath = null;
             StoreDiagnostic($"Commit: live archive replacement={liveReplaceStopwatch.ElapsedMilliseconds} ms");
             StoreDiagnosticSnapshot("after live archive replacement");
 
             var stateReplaceStopwatch = Stopwatch.StartNew();
-            AtomicReplace(stateTemp, StatePath);
+            PublishState(stateTemp, StatePath);
+            SafeDelete(PendingStatePath);
             stateReplaceStopwatch.Stop();
             commitStopwatch.Stop();
             StoreDiagnostic($"Commit: state replacement={stateReplaceStopwatch.ElapsedMilliseconds} ms, total={commitStopwatch.ElapsedMilliseconds} ms");
@@ -193,6 +204,10 @@ public class AssetsStore(string fomLocation)
         {
             CleanupTemporary();
             SafeDelete(StatePath + ".tmp");
+            if (livePublished)
+                throw new IOException(
+                    Resources.CoreStoreStatePublicationFailed,
+                    exception);
             throw new IOException(string.Format(Resources.CoreStoreFlushFailed, LivePath), exception);
         }
         catch
@@ -214,6 +229,7 @@ public class AssetsStore(string fomLocation)
 
     public bool Uninstall()
     {
+        RecoverPendingStateCommit();
         var backupHash = EnsureReadableBackup();
         var state = ReadState();
         var liveState = ReadLiveState();
@@ -289,6 +305,7 @@ public class AssetsStore(string fomLocation)
     {
         try
         {
+            RecoverPendingStateCommit();
             var state = ReadState();
             if (state is not null)
             {
@@ -321,6 +338,7 @@ public class AssetsStore(string fomLocation)
     /// </summary>
     public RecordedInstallState? GetRecordedInstallState()
     {
+        RecoverPendingStateCommit();
         var state = ReadState();
         if (state is null) return null;
 
@@ -504,7 +522,65 @@ public class AssetsStore(string fomLocation)
         var stateText = SerializeState(pristineHash, pristineHash, []);
         Toml.ParseToml(stateText);
         WriteExclusiveReplacement(stateTemp, stateText);
-        AtomicReplace(stateTemp, StatePath);
+        PublishState(stateTemp, StatePath);
+    }
+
+    /// <summary>
+    /// Virtual only to let the focused store test simulate a state-file failure after the archive
+    /// has been published. Production always uses the same atomic replacement primitive.
+    /// </summary>
+    protected virtual void PublishState(string source, string destination) => AtomicReplace(source, destination);
+
+    private void WritePendingStateCommit(string generatedHash, string stateText)
+    {
+        SafeDelete(PendingStatePath);
+        var pending = JsonSerializer.Serialize(new PendingStateCommit(generatedHash, stateText));
+        WriteExclusiveReplacement(PendingStatePath, pending);
+    }
+
+    private void RecoverPendingStateCommit()
+    {
+        if (!File.Exists(PendingStatePath)) return;
+
+        PendingStateCommit pending;
+        try
+        {
+            pending = JsonSerializer.Deserialize<PendingStateCommit>(File.ReadAllText(PendingStatePath))
+                      ?? throw new FormatException("Pending state recovery data was empty.");
+            if (string.IsNullOrWhiteSpace(pending.GeneratedLiveSha256) || string.IsNullOrWhiteSpace(pending.StateText))
+                throw new FormatException("Pending state recovery data was incomplete.");
+            Toml.ParseToml(pending.StateText);
+        }
+        catch (Exception exception) when (exception is JsonException or FormatException or TomlException or IOException)
+        {
+            throw new InvalidOperationException(
+                string.Format(Resources.CoreStorePendingStateRecoveryInvalid, PendingStatePath),
+                exception);
+        }
+
+        if (!File.Exists(LivePath) || Sha256File(LivePath) != pending.GeneratedLiveSha256)
+        {
+            // The process did not get as far as publishing the new archive. The previous state is
+            // still authoritative, so this abandoned intent can be removed safely.
+            SafeDelete(PendingStatePath);
+            return;
+        }
+
+        var recoveryTemp = StatePath + ".recovery.tmp";
+        SafeDelete(recoveryTemp);
+        try
+        {
+            WriteExclusiveReplacement(recoveryTemp, pending.StateText);
+            PublishState(recoveryTemp, StatePath);
+            SafeDelete(PendingStatePath);
+        }
+        catch (IOException exception)
+        {
+            SafeDelete(recoveryTemp);
+            throw new IOException(
+                Resources.CoreStoreStateRecoveryFailed,
+                exception);
+        }
     }
 
     private static void WriteExclusiveReplacement(string path, string text) =>
@@ -654,4 +730,6 @@ public class AssetsStore(string fomLocation)
         DateTimeOffset? InstalledAtUtc,
         string? GameExecutableSha256,
         IReadOnlyList<InstalledModState> Mods);
+
+    private sealed record PendingStateCommit(string GeneratedLiveSha256, string StateText);
 }

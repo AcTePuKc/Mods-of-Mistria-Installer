@@ -87,19 +87,23 @@ public class NexusSettings
     /// <summary>Stores an OAuth token response. Personal API keys are never accepted here.</summary>
     public void SetOAuthTokens(NexusOAuthTokens? tokens)
     {
-        _data.Remove(ProtectedOAuthTokensField);
-        _data.Remove(OAuthTokensField);
+        // Keep the active session unchanged until its replacement is safely on disk. A sign-in
+        // must not be reported as successful only to vanish at the next launch.
+        var updated = (JObject)_data.DeepClone();
+        updated.Remove(ProtectedOAuthTokensField);
+        updated.Remove(OAuthTokensField);
 
         if (tokens is not null)
         {
             var serialized = JObject.FromObject(tokens).ToString(Newtonsoft.Json.Formatting.None);
             var protectedValue = TryProtect(serialized);
 
-            if (protectedValue is not null) _data[ProtectedOAuthTokensField] = protectedValue;
-            else _data[OAuthTokensField] = serialized;
+            if (protectedValue is not null) updated[ProtectedOAuthTokensField] = protectedValue;
+            else updated[OAuthTokensField] = serialized;
         }
 
-        Save();
+        SaveOAuthTokens(updated);
+        _data = updated;
     }
 
     // ── Handler registration ─────────────────────────────────────────────────────
@@ -136,11 +140,7 @@ public class NexusSettings
     public bool HandlerAlwaysClaim
     {
         get => _data.Value<bool?>(HandlerAlwaysClaimField) ?? false;
-        set
-        {
-            _data[HandlerAlwaysClaimField] = value;
-            Save();
-        }
+        set { _data[HandlerAlwaysClaimField] = value; Save(); }
     }
 
     public string? HandlerPromptedFor
@@ -190,6 +190,33 @@ public class NexusSettings
         catch (Exception e)
         {
             Logger.Log($"Could not save the Nexus settings: {e.Message}");
+        }
+    }
+
+    private void SaveOAuthTokens(JObject data)
+    {
+        var temporaryPath = _path + $".oauth-{Guid.NewGuid():N}.tmp";
+        try
+        {
+            File.WriteAllText(temporaryPath, data.ToString());
+            RestrictPermissions(temporaryPath);
+            File.Move(temporaryPath, _path, overwrite: true);
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not save the Nexus OAuth session: {e.Message}");
+            throw new IOException("Could not save the Nexus account session. Check disk access and try again.", e);
+        }
+        finally
+        {
+            try
+            {
+                if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"Could not remove the temporary Nexus OAuth settings file: {e.Message}");
+            }
         }
     }
 

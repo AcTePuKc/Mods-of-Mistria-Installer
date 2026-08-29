@@ -651,8 +651,11 @@ De links aan AIM overdragen?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Kiezen…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>De modmap kan altijd worden gewijzigd; AIM laadt de lijst opnieuw wanneer je terugkeert naar de modlijst.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM gebruikt je persoonlijke Nexus-API-sleutel voor downloads en updatecontroles. De sleutel wordt lokaal opgeslagen en nooit in mods of releases opgenomen.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Dezelfde sleutel wordt gebruikt in het Nexus-downloadmenu.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM gebruikt OAuth PKCE voor toegang tot een Nexus-account. Nexus-downloads en updatecontroles zijn niet beschikbaar totdat Nexus de openbare client_id van AIM verstrekt.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>OAuth-aanmelding is beschikbaar in het Nexus-downloadmenu nadat Nexus de openbare client_id van AIM heeft goedgekeurd.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Modmap kiezen</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Rapport vernieuwen</value></data>
+  <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Het assetsarchief is vervangen, maar AIM kon de installatiestatus niet opslaan. Start AIM opnieuw om de voltooide transactie te herstellen.</value></data>
+  <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Het herstelbestand voor de wachtende installatiestatus van AIM is ongeldig: {0}</value></data>
+  <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM heeft assets.zip hersteld, maar kon de installatiestatus niet herstellen. Sluit een programma dat het statusbestand gebruikt en probeer het opnieuw.</value></data>
 </root>

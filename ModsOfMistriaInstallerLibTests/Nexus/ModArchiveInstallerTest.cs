@@ -164,6 +164,124 @@ public class ModArchiveInstallerTest
     }
 
     [Test]
+    public void ShouldRestoreEveryEarlierReplacementWhenABundleFails()
+    {
+        var first = Path.Combine(_modsFolder, "First Mod");
+        var second = Path.Combine(_modsFolder, "Second Mod");
+        Directory.CreateDirectory(first);
+        Directory.CreateDirectory(second);
+        File.WriteAllText(Path.Combine(first, "old.txt"), "first old");
+        File.WriteAllText(Path.Combine(second, "old.txt"), "second old");
+
+        var archive = CreateArchive("bundle-update.zip",
+            ("First Mod/manifest.toml", Manifest),
+            ("First Mod/new.txt", "first new"),
+            ("Second Mod/manifest.toml", Manifest),
+            ("Second Mod/../../unsafe.txt", "never write"));
+
+        Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.Install(
+            archive, _modsFolder, "bundle-update.zip", ArchiveConflictBehaviour.Replace,
+            new ModBackupStore(_modsFolder), "1.0.0"));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.ReadAllText(Path.Combine(first, "old.txt")), Is.EqualTo("first old"));
+            Assert.That(File.Exists(Path.Combine(first, "new.txt")), Is.False);
+            Assert.That(File.ReadAllText(Path.Combine(second, "old.txt")), Is.EqualTo("second old"));
+            Assert.That(File.Exists(Path.Combine(_workspace, "unsafe.txt")), Is.False);
+        });
+    }
+
+    [Test]
+    public void ShouldReportAndPreserveBackupsWhenBundleRollbackFails()
+    {
+        var first = Path.Combine(_modsFolder, "First Mod");
+        var second = Path.Combine(_modsFolder, "Second Mod");
+        Directory.CreateDirectory(first);
+        Directory.CreateDirectory(second);
+        File.WriteAllText(Path.Combine(first, "old.txt"), "first old");
+        File.WriteAllText(Path.Combine(second, "old.txt"), "second old");
+
+        var archive = CreateArchive("bundle-update.zip",
+            ("First Mod/manifest.toml", Manifest),
+            ("First Mod/new.txt", "first new"),
+            ("Second Mod/manifest.toml", Manifest),
+            ("Second Mod/../../unsafe.txt", "never write"));
+
+        var error = Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.InstallForTesting(
+            archive, _modsFolder, "bundle-update.zip", ArchiveConflictBehaviour.Replace,
+            new ModBackupStore(_modsFolder), "1.0.0", CancellationToken.None, null,
+            (target, _) => target == first ? new IOException("Simulated locked extracted folder.") : null));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(error!.Message, Does.Contain("original install error"));
+            Assert.That(error.Message, Does.Contain("First Mod"));
+            Assert.That(error.Message, Does.Contain("Simulated locked extracted folder"));
+            Assert.That(error.InnerException, Is.Not.Null);
+            Assert.That(File.Exists(Path.Combine(first, "new.txt")), Is.True,
+                "the failed rollback must leave its current copy in place rather than disguising the failure");
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, ModBackupStore.DirectoryName, "First Mod")), Is.True,
+                "the prior copy must remain available for manual recovery");
+        });
+    }
+
+    [Test]
+    public void ShouldRejectAnArchiveThatExceedsItsExtractionLimitBeforeWriting()
+    {
+        var archive = CreateArchive("large.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/large.txt", new string('x', 32)));
+
+        var error = Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.Install(
+            archive, _modsFolder, "large.zip", limits: new ModArchiveExtractionLimits(MaxEntryBytes: 16)));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(error!.Message, Does.Contain("too large"));
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.False);
+        });
+    }
+
+    [Test]
+    public void ShouldHonorCancellationDuringArchiveExtraction()
+    {
+        using var cancellation = new CancellationTokenSource();
+        using var input = new CancellingReadStream(new MemoryStream(new byte[160 * 1024]), cancellation);
+        using var output = new MemoryStream();
+
+        Assert.Throws<OperationCanceledException>(() => ModArchiveInstaller.CopyEntryForTesting(
+            input, output, ModArchiveExtractionLimits.Default, cancellation.Token));
+        Assert.That(output.Length, Is.GreaterThan(0), "the token must be observed after extraction has begun");
+    }
+
+    private sealed class CancellingReadStream(Stream inner, CancellationTokenSource cancellation) : Stream
+    {
+        private bool _cancelled;
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            var read = inner.Read(buffer, offset, count);
+            if (read > 0 && !_cancelled)
+            {
+                _cancelled = true;
+                cancellation.Cancel();
+            }
+            return read;
+        }
+
+        public override bool CanRead => inner.CanRead;
+        public override bool CanSeek => inner.CanSeek;
+        public override bool CanWrite => false;
+        public override long Length => inner.Length;
+        public override long Position { get => inner.Position; set => inner.Position = value; }
+        public override void Flush() => inner.Flush();
+        public override long Seek(long offset, SeekOrigin origin) => inner.Seek(offset, origin);
+        public override void SetLength(long value) => throw new NotSupportedException();
+        public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException();
+    }
+
+    [Test]
     public void ShouldRejectAnArchiveWithoutAManifest()
     {
         var archive = CreateArchive("not-a-mod.zip", ("readme.txt", "hello"));

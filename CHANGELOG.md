@@ -1,6 +1,17 @@
 # Changelog
 
-## 0.1.8 — 2026-08-26
+## 0.1.9 — Unreleased
+
+- Replaced the application-side personal Nexus API-key path with the completed OAuth PKCE flow.
+  It remains disabled until Nexus provides AIM's public OAuth `client_id`; no personal Nexus key or
+  OAuth client secret is included in the application.
+- Added recoverable `assets.zip` state publication. If the archive is replaced but state publication
+  fails, AIM retains a pending-state journal and completes recovery on the next AIM operation.
+- Hardened downloaded Nexus archive extraction with entry and size limits, active cancellation, and
+  all-or-nothing rollback for multi-mod bundles. If rollback cannot fully restore a mod, AIM reports
+  the retained backup path for manual recovery.
+
+## 0.1.8
 
 - Added immediate local mod-list search by localized or original name, author, description, and
   version. Filtering never rescans archives or contacts Nexus; it preserves the selected mods and
@@ -58,7 +69,7 @@
 
 ## 0.1.5 — 2026-08-24
 
-- Added support for the Nexus Mods **Vortex** button. AIM can register itself as the
+- Added support for the Nexus Mods **Mod Manager Download** button. AIM can register itself as the
   `nxm://` protocol handler on Windows and Linux, and a clicked link is handed to the window that is
   already open instead of starting a second one.
 - Added Nexus download and update management: downloads show progress, can be cancelled, and are

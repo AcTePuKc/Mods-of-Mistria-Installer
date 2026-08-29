@@ -27,7 +27,7 @@ public record NxmDownloadResult(
     bool Cancelled = false);
 
 /// <summary>
-/// Turns a clicked "Mod Manager Download" link into an installed mod folder.
+/// Turns a clicked Nexus Vortex download link into an installed mod folder.
 ///
 /// The sequence mirrors what Vortex does: resolve the file through the Nexus API, download it from
 /// the CDN URL that comes back, then unpack it into the mods folder. Everything the user might have
@@ -77,7 +77,7 @@ public class NxmDownloadService(
 
             if (link.IsExpired)
                 return Failure(fileName,
-                    "That download link has expired. Click \"Mod Manager Download\" on the mod page again.", progress);
+                    "That download link has expired. Click the \"Vortex download\" button on the mod page again.", progress);
 
             if (!Directory.Exists(modsLocation))
                 return Failure(fileName, "The mods folder could not be found.", progress);
@@ -248,7 +248,7 @@ public class NxmDownloadService(
         {
             var installed = await Task.Run(
                 () => ModArchiveInstaller.Install(archivePath, modsLocation, fileName,
-                    ArchiveConflictBehaviour.Fail, backups, previousVersion), ct);
+                    ArchiveConflictBehaviour.Fail, backups, previousVersion, ct), ct);
             return (installed, false);
         }
         catch (ModArchiveConflictException conflict)
@@ -260,7 +260,7 @@ public class NxmDownloadService(
 
             var installed = await Task.Run(() => ModArchiveInstaller.Install(
                 archivePath, modsLocation, fileName, ArchiveConflictBehaviour.Replace,
-                backups, previousVersion), ct);
+                backups, previousVersion, ct), ct);
             return (installed, false);
         }
     }
