@@ -11,7 +11,7 @@
 ## 0.15.3 AI fork release
 * [x] Keep the four focused MMAPI additions with explicit event/lifecycle contracts.
 * [x] Add focused MMAPI hooks for fishing selection, museum donation attempts, pet rewards and crop harvest lifecycle.
-* [x] Update the shipped MMAPI catalog to 103 hooks and 112 seams.
+* [x] Update the shipped MMAPI catalog to 118 hooks and 127 seams.
 * [x] Validate the new catalog entries with focused and full test coverage.
 
 ## 0.15.2 AI fork release

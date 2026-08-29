@@ -5,8 +5,9 @@
 
         ./build-windows-exe.ps1
 
-    The result is Release/ModsOfMistriaInstaller.exe - a self-contained executable that needs no
-    installed .NET runtime. Requires the .NET 10 SDK: https://dotnet.microsoft.com/download
+    The result is Release/AIM.exe plus the README and license notices - a self-contained
+    executable that needs no installed .NET runtime. Requires the .NET 10 SDK:
+    https://dotnet.microsoft.com/download
 
     ImageSharp 4.x refuses to build without a Six Labors license key, so this script checks for one
     before starting rather than letting the build fail three steps later. Supply it either as
@@ -91,6 +92,14 @@ dotnet publish ModsOfMistriaGUI/ModsOfMistriaGUI.csproj `
     -p:PublishSingleFile=true `
     --output $OutputDirectory
 if ($LASTEXITCODE -ne 0) { throw "Publish failed (exit code $LASTEXITCODE)." }
+
+# Keep the notices beside the single-file executable. The published binary embeds the MMAPI
+# framework, so distributing the project and MMAPI license texts with the executable preserves
+# the notices for users who download only the release artifact.
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'README.md') -Destination (Join-Path $OutputDirectory 'README.md') -Force
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'LICENCE.txt') -Destination (Join-Path $OutputDirectory 'LICENCE.txt') -Force
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'ModsOfMistriaInstallerLib/Seam/Payload/mmapi/LICENSE') -Destination (Join-Path $OutputDirectory 'MMAPI-LICENSE.txt') -Force
+Write-Host "Copied README and license notices to $OutputDirectory." -ForegroundColor DarkGray
 
 # The GUI project renames its assembly per runtime identifier (AIM, AIM-win-x86, AIM-linux,
 # AIM-osx), so the produced file is whichever executable publish has just written.
