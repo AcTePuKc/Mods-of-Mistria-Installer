@@ -50,7 +50,13 @@ public class ImageInstaller(
                 continue;
             }
             if (metaToml.Asset.FrameCount is null or <= 0) metaToml.Asset.FrameCount = 1; // frame_len omitted = single frame
-            metaToml.Asset.Atlas = Atlas.CanonicalType(metaToml.Asset.Atlas);
+            var canonicalAtlas = Atlas.CanonicalType(metaToml.Asset.Atlas);
+            if (string.IsNullOrEmpty(canonicalAtlas))
+            {
+                reportStatus($"Skipping {animationGroup.BaseName}: unsupported atlas type.", "");
+                continue;
+            }
+            metaToml.Asset.Atlas = canonicalAtlas;
 
             if (metaToml.Meta is not null)
             {
