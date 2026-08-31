@@ -1,6 +1,7 @@
 using Tomlyn;
 using Tomlyn.Model;
 using Tomlyn.Parsing;
+using System.Text;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Utils;
 
@@ -8,6 +9,95 @@ public static class Toml
 {
     public static TomlTable ParseToml(string content) =>
         TomlSerializer.Deserialize<TomlTable>(content) ?? new TomlTable();
+
+    // Tomlyn emits a header for a table that exists only to contain nested
+    // tables, for example:
+    //
+    //   [production]
+    //   [production.male]
+    //
+    // That is valid TOML, but the game's asset loader treats the implicit
+    // parent differently from an explicit empty table.  Game TOML written by
+    // the installer must therefore omit those serializer-only parent headers.
+    // A parent that has its own values is retained.
+    public static string SerializeGameToml(TomlTable table)
+    {
+        var serialized = TomlSerializer.Serialize(table);
+        var lines = serialized.Replace("\r\n", "\n").Split('\n').ToList();
+        var remove = new HashSet<int>();
+
+        for (var i = 0; i < lines.Count; i++)
+        {
+            var section = TableHeader(lines[i]);
+            if (section is null) continue;
+
+            var hasDirectValue = false;
+            for (var j = i + 1; j < lines.Count; j++)
+            {
+                var candidate = lines[j].Trim();
+                if (candidate.Length == 0 || candidate.StartsWith('#')) continue;
+
+                var nextSection = TableHeader(lines[j]);
+                if (nextSection is not null)
+                {
+                    if (nextSection.StartsWith(section + '.', StringComparison.Ordinal))
+                        break;
+
+                    break;
+                }
+
+                if (candidate.StartsWith("[[", StringComparison.Ordinal)) break;
+                hasDirectValue = true;
+                break;
+            }
+
+            if (!hasDirectValue && HasNestedSection(lines, i, section))
+                remove.Add(i);
+        }
+
+        var builder = new StringBuilder(serialized.Length);
+        for (var i = 0; i < lines.Count; i++)
+        {
+            if (remove.Contains(i)) continue;
+            builder.Append(lines[i]);
+            if (i < lines.Count - 1) builder.Append('\n');
+        }
+
+        return builder.ToString();
+    }
+
+    private static string? TableHeader(string line)
+    {
+        var trimmed = line.Trim();
+        if (trimmed.StartsWith("[[", StringComparison.Ordinal) ||
+            !trimmed.StartsWith("[", StringComparison.Ordinal) ||
+            !trimmed.EndsWith("]", StringComparison.Ordinal))
+            return null;
+
+        return trimmed[1..^1].Trim();
+    }
+
+    private static bool HasNestedSection(IReadOnlyList<string> lines, int headerIndex, string section)
+    {
+        for (var i = headerIndex + 1; i < lines.Count; i++)
+        {
+            var candidate = TableHeader(lines[i]) ?? TableArrayHeader(lines[i]);
+            if (candidate is null) continue;
+            return candidate.StartsWith(section + '.', StringComparison.Ordinal);
+        }
+
+        return false;
+    }
+
+    private static string? TableArrayHeader(string line)
+    {
+        var trimmed = line.Trim();
+        if (!trimmed.StartsWith("[[", StringComparison.Ordinal) ||
+            !trimmed.EndsWith("]]", StringComparison.Ordinal))
+            return null;
+
+        return trimmed[2..^2].Trim();
+    }
 
     // Builds the document model from the event parser instead of
     // TomlSerializer: the serializer replaces a table array when its [[name]]

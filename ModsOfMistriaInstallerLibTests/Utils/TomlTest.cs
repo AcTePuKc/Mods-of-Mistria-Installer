@@ -1,4 +1,5 @@
 using Garethp.ModsOfMistriaInstallerLib.Utils;
+using Tomlyn;
 using Tomlyn.Model;
 
 namespace ModsOfMistriaInstallerLibTests.Utils;
@@ -113,5 +114,40 @@ public class TomlTest
     public void ShouldReturnAnEmptyTableForAnEmptyDocument()
     {
         Assert.That(Toml.ParseDocument(""), Is.Empty);
+    }
+
+    [Test]
+    public void ShouldOmitSerializerOnlyParentTablesForGameToml()
+    {
+        var table = TomlSerializer.Deserialize<TomlTable>("""
+            [production.male]
+            days_to_produce = 3
+
+            [production.female]
+            days_to_produce = 3
+            """)!;
+
+        var serialized = Toml.SerializeGameToml(table);
+
+        Assert.That(serialized, Does.Not.Contain("[production]\n"));
+        Assert.That(serialized, Does.Contain("[production.male]"));
+        Assert.That(serialized, Does.Contain("[production.female]"));
+    }
+
+    [Test]
+    public void ShouldKeepParentTablesThatHaveOwnValues()
+    {
+        var table = TomlSerializer.Deserialize<TomlTable>("""
+            [production]
+            enabled = true
+
+            [production.male]
+            days_to_produce = 3
+            """)!;
+
+        var serialized = Toml.SerializeGameToml(table);
+
+        Assert.That(serialized, Does.Contain("[production]\n"));
+        Assert.That(serialized, Does.Contain("enabled = true"));
     }
 }
