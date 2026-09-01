@@ -2,8 +2,8 @@
 # that wire the named-hook API into the game. Each [[hook]] declares one named
 # hook once: its kind, its contract, and (provider = "runtime") whether the
 # framework itself emits it with no seam behind it. Each [[seam]] is an engine
-# edit whose injected dispatch calls one of mmapi_emit, mmapi_apply_filters,
-# mmapi_check_guards, or mmapi_run_override. The guard convention is uniform:
+# edit whose injected dispatch calls one of the MMAPI dispatchers. The guard
+# convention is uniform:
 # a guard handler returns false to veto, and with zero handlers every seam is
 # byte-equivalent to pristine behavior.
 #
@@ -36,8 +36,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 121
-seams = 130
+hooks = 122
+seams = 132
 engine_fixes = 3
 call_rewrites = 1
 
@@ -167,6 +167,11 @@ doc  = "Fires in create_furniture_renderer(node) as a furniture node's floor spr
 name = "dialogue.line"
 kind = "filter"
 doc  = "Fires in ConversationDriver.deliver_line(), before the textbox shows the line. The filtered value is the localized line text. ctx is { driver, line, conversation_name, npc_id, is_info_line }. Return the replacement string, or undefined to keep the current value."
+
+[[hook]]
+name = "dialogue.prompt_lock"
+kind = "filter"
+doc  = "Fires while each dialogue prompt option is prepared for display, after the vanilla lock decision is known and before the option becomes interactive. The filtered value is the effective boolean lock state, seeded from vanilla. ctx is { driver, line, conversation_name, npc_id, prompt_index, prompt_key, vanilla_locked, is_pink }. prompt_index is the original zero-based T2 selection index and prompt_key is the raw localization key; conversation/NPC fields are best-effort and may be undefined for non-NPC or incomplete contexts. Return true to add a lock; undefined, false, or any other value leaves the current state unchanged. This hook is monotonic: a handler cannot clear a vanilla lock or a lock requested by another handler, and handler failures are isolated. The engine applies the grey sprite, stay_locked marker, tab state, and soft lock. It does not hide, add, rewrite, or semantically veto options."
 
 [[hook]]
 name = "dialogue.npc_blip"
@@ -1484,6 +1489,85 @@ replace = '''
     }'''
 marker  = "mmapi_dialogue_run_local_filters"
 provides = ["dialogue.line"]
+
+[[seam]]
+id      = "dialogue_prompt_metadata"
+file    = "gml/scripts/UI/Anchor/Menus/TextboxMenu.gml"
+anchor  = '''
+                            var key = translation_order.option_keys[i];
+                            box.text_label'''
+replace = '''
+                            var key = translation_order.option_keys[i];
+                            box.mmapi_prompt_index = i;
+                            box.mmapi_prompt_key = key; // mmapi_dialogue_prompt_metadata
+                            box.text_label'''
+marker  = "mmapi_dialogue_prompt_metadata"
+provides = ["dialogue.prompt_lock"]
+
+[[seam]]
+id      = "dialogue_prompt_lock"
+file    = "gml/scripts/UI/Anchor/Menus/TextboxMenu.gml"
+anchor  = '''
+            if self.blackboard.get("pink") == true {
+                self.set_sprites_from_key("spr_ui_dialogue_box_pink");
+                self.tab.enable();
+
+                if !ARI.disable_break_ups && (ARI.spouse() != undefined || ARI.fiance() != undefined) {
+                    self.set_sprites_from_key("spr_ui_dialogue_box_grey");
+                    self.blackboard.insert("stay_locked", true);
+                    self.tab.set_key_sprite_target(self.tab);
+                    self.tab.lock();
+                }
+            } else {
+                self.tab.unlock();
+                self.tab.disable();
+                self.tab.set_key_sprite_target(self);
+            }
+
+            self.locked_sprite = self.enabled_sprite;'''
+replace = '''
+            var __mmapi_prompt_vanilla_locked = false;
+            if self.blackboard.get("pink") == true {
+                self.set_sprites_from_key("spr_ui_dialogue_box_pink");
+                self.tab.enable();
+
+                if !ARI.disable_break_ups && (ARI.spouse() != undefined || ARI.fiance() != undefined) {
+                    self.set_sprites_from_key("spr_ui_dialogue_box_grey");
+                    self.blackboard.insert("stay_locked", true);
+                    self.tab.set_key_sprite_target(self.tab);
+                    self.tab.lock();
+                    __mmapi_prompt_vanilla_locked = true;
+                }
+            } else {
+                self.tab.unlock();
+                self.tab.disable();
+                self.tab.set_key_sprite_target(self);
+            }
+
+            var __mmapi_prompt_locked = __mmapi_prompt_vanilla_locked;
+            try {
+                __mmapi_prompt_locked = mmapi_apply_monotonic_filters("dialogue.prompt_lock", __mmapi_prompt_locked, {
+                    driver: self.driver,
+                    line: self.driver == undefined ? undefined : self.driver.current_line,
+                    conversation_name: self.driver == undefined ? undefined : self.driver.conversation_name,
+                    npc_id: self.driver == undefined ? undefined : self.driver.npc_owner,
+                    prompt_index: self.mmapi_prompt_index,
+                    prompt_key: self.mmapi_prompt_key,
+                    vanilla_locked: __mmapi_prompt_vanilla_locked,
+                    is_pink: self.blackboard.get("pink") == true,
+                });
+            } catch (__mmapi_dialogue_prompt_lock) {}
+            if __mmapi_prompt_locked == true && __mmapi_prompt_vanilla_locked == false {
+                self.set_sprites_from_key("spr_ui_dialogue_box_grey");
+                self.blackboard.insert("stay_locked", true);
+                self.tab.enable();
+                self.tab.set_key_sprite_target(self.tab);
+                self.tab.lock();
+            }
+
+            self.locked_sprite = self.enabled_sprite;'''
+marker  = "mmapi_dialogue_prompt_lock"
+provides = ["dialogue.prompt_lock"]
 
 [[seam]]
 id      = "dialogue_speaker"

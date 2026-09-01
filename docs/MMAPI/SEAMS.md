@@ -2,7 +2,7 @@
 
 [← MMAPI](MMAPI.md)
 
-A **seam** is a small edit to one engine script that makes one or more hooks fire. It puts a dispatch at a precise, verified point in the game's own GML: an event calls `mmapi_emit(...)`, a filter threads a value through `mmapi_apply_filters(...)`, a guard checks `mmapi_check_guards(...)`, and an override asks `mmapi_run_override(...)` before the engine answers for itself.
+A **seam** is a small edit to one engine script that makes one or more hooks fire. It puts a dispatch at a precise, verified point in the game's own GML: an event calls `mmapi_emit(...)`, a filter threads a value through `mmapi_apply_filters(...)`, an additive filter uses `mmapi_apply_monotonic_filters(...)`, a guard checks `mmapi_check_guards(...)`, and an override asks `mmapi_run_override(...)` before the engine answers for itself.
 
 > [!IMPORTANT]
 > **A mod package never carries its own seams.** Mods register handlers for the hooks MOMI already ships. Seams are authored in MOMI's catalog by framework contributors, then verified against the pristine game before release. If you only want to write a mod, use the [Catalog](CATALOG.md) and [Hooks](HOOKS.md). The contributor reference begins at [Authoring A Hook And Seam](#authoring-a-hook-and-seam).
@@ -20,7 +20,7 @@ The catalog is `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`, embedded int
 
 The catalog opens with a `[counts]` integrity table declaring those totals; the loader refuses a catalog whose parsed stanzas disagree, so a truncated or mis-merged file fails at load. The shipped-catalog test also holds the count sentences on this page, the [Catalog](CATALOG.md), and [Hooks](HOOKS.md) to the same numbers.
 
-The shipped catalog currently declares **121 hooks**, fed by **130 seams**, **3 engine fixes**, and **1 call rewrite**. The [Catalog](CATALOG.md) gives each one its own page.
+The shipped catalog currently declares **122 hooks**, fed by **132 seams**, **3 engine fixes**, and **1 call rewrite**. The [Catalog](CATALOG.md) gives each one its own page.
 
 Some hooks use `provider = "runtime"`. The framework emits those itself, with no engine edit behind them. `combat.damage_injected`, `game.day_changed`, and `game.room_changed` are the current runtime-provided hooks. The derived ones are polls over live state (`room()`, `total_days()`): they lag the change they report, and the first poll of a session only records the baseline, so no event fires for the state a session starts in. Treat them as edge triggers: react to the change, but read the live state at any later decision point rather than caching their ctx (see the warning on [game.room_changed](hooks/game.room_changed.md)). For the day boundary specifically, the in-engine [game.new_day](hooks/game.new_day.md) fires from `new_day()` itself, before the end-of-day autosave and never on a load. The derived `game.day_changed` lags both.
 
@@ -261,7 +261,7 @@ provides = ["object.interact"]
 | `provides` | yes | Nonempty hook-name array. Every literal dispatcher in `replace` must be listed. The array may also name a hook this entry helps provide without dispatching it itself. |
 | `depends_on` | no | Entry ids that must apply before this one. |
 
-The loader cross-checks literal calls to the four dispatchers in `replace`: each named hook must be declared, the dispatcher must agree with its kind, and a seam must list the dispatched hook in `provides`. A bare `mmapi_apply_filters(...)` statement is rejected unless the hook is declared `in_place`, because otherwise it silently discards a replacement.
+The loader cross-checks literal calls to the MMAPI dispatchers in `replace`: each named hook must be declared, the dispatcher must agree with its kind, and a seam must list the dispatched hook in `provides`. A bare `mmapi_apply_filters(...)` statement is rejected unless the hook is declared `in_place`, because otherwise it silently discards a replacement. The additive `mmapi_apply_monotonic_filters(...)` dispatcher is a Boolean true-only chain and is reserved for hooks whose contract explicitly says that later handlers cannot clear an earlier affirmative result.
 
 The replacement is otherwise verbatim. MOMI does not add a catch, marker comment, or omitted original code around a text seam. Preserve every pristine statement that must survive, and write any site-level isolation the engine location requires directly in `replace`.
 

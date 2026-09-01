@@ -2,7 +2,7 @@
 
 [← MMAPI](MMAPI.md)
 
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **121 hooks**, fed by **130 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **122 hooks**, fed by **132 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -143,6 +143,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [dialogue.play_guard](hooks/dialogue.play_guard.md) | guard | Block a conversation before it starts. |
 | [dialogue.path](hooks/dialogue.path.md) | filter | Change which conversation plays before it starts. |
 | [dialogue.line](hooks/dialogue.line.md) | filter | Reword any dialogue line before the textbox shows it. |
+| [dialogue.prompt_lock](hooks/dialogue.prompt_lock.md) | filter | Add an additive soft-lock to a dialogue prompt option. |
 | [dialogue.speaker](hooks/dialogue.speaker.md) | filter | Swap the speaker a textbox shows. |
 | [dialogue.npc_blip](hooks/dialogue.npc_blip.md) | filter | Swap the blip sound an NPC speaks with. |
 | [audio.play_guard](hooks/audio.play_guard.md) | guard | Block any sound effect before it plays. |
@@ -293,6 +294,8 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [dialogue_play_guard](seams/dialogue_play_guard.md) | Puts a veto check at the head of `play_conversation()`. |
 | [dialogue_path](seams/dialogue_path.md) | Rebuilds `play_conversation()`'s four arguments through the `dialogue.path` filter. |
 | [dialogue_line](seams/dialogue_line.md) | Filters each localized dialogue line before the textbox shows it. |
+| [dialogue_prompt_metadata](seams/dialogue_prompt_metadata.md) | Carries each prompt's original index and raw key into its prompt box. |
+| [dialogue_prompt_lock](seams/dialogue_prompt_lock.md) | Applies the monotonic prompt-lock decision before the prompt becomes interactive. |
 | [dialogue_speaker](seams/dialogue_speaker.md) | Filters the just-built textbox speaker before it is assigned. |
 | [dialogue_speaker_ctx_arg](seams/dialogue_speaker_ctx_arg.md) | Threads the ConversationDriver into the initial Speaker action so `dialogue.speaker`'s ctx is filled from line one. |
 | [dialogue_npc_blip](seams/dialogue_npc_blip.md) | Filters an NPC speaker's blip sound right after the default lookup. |

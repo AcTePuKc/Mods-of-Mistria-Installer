@@ -11,7 +11,7 @@ Most shipped hooks are dispatched from engine seams. A few are emitted directly 
 > [!NOTE]
 > A mod uses the game hooks MOMI already ships. It never packages its own seams. Mods can also publish custom hooks as cross-mod extension points, covered in [Publishing Custom Hooks](#publishing-custom-hooks).
 
-The shipped catalog currently declares **121 hooks**, fed by **130 seams**, **3 engine fixes**, and **1 call rewrite**. The [Catalog](CATALOG.md) gives each one its own page.
+The shipped catalog currently declares **122 hooks**, fed by **132 seams**, **3 engine fixes**, and **1 call rewrite**. The [Catalog](CATALOG.md) gives each one its own page.
 
 ## Using A Shipped Hook
 
@@ -269,6 +269,7 @@ The dispatchers are ordinary GML functions, so a mod may publish its own extensi
 | -------- | ------------------ | ------------------ |
 | `mmapi_emit(name, ctx)` | event | Returns `undefined`. |
 | `mmapi_apply_filters(name, value, ctx)` | filter | Returns the original value. |
+| `mmapi_apply_monotonic_filters(name, value, ctx)` | monotonic filter | Returns the Boolean input unless a handler returns Boolean `true`; once true, later handlers cannot clear it. |
 | `mmapi_check_guards(name, ctx)` | guard | Returns `true` to allow. |
 | `mmapi_run_override(name, ctx)` | override | Returns `undefined` so the publisher can fall back. |
 

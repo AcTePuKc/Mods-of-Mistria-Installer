@@ -242,7 +242,7 @@ Use the `before` / `after` registration options. They name mods, not functions, 
 
 ### Publishing Hooks For Your Mod
 
-Call the dispatchers (`mmapi_emit`, `mmapi_apply_filters`, `mmapi_check_guards`, `mmapi_run_override`) with your own hook names to give other mods extension points. See [Hooks](HOOKS.md#defining-your-own-hooks).
+Call the dispatchers (`mmapi_emit`, `mmapi_apply_filters`, `mmapi_apply_monotonic_filters`, `mmapi_check_guards`, `mmapi_run_override`) with your own hook names to give other mods extension points. The monotonic dispatcher is reserved for Boolean additive decisions such as `dialogue.prompt_lock`; it accepts only Boolean `true` as an affirmative request and never lets a later handler clear an existing true value. See [Hooks](HOOKS.md#defining-your-own-hooks).
 
 ## Calling the Engine Directly
 
