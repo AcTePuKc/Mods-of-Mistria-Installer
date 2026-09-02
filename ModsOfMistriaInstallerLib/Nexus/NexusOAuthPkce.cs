@@ -7,8 +7,8 @@ namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
 /// <summary>
 /// Public registration data for AIM's Nexus OAuth client. A client ID identifies the application;
-/// it is deliberately not a secret. Until Nexus Mods registers AIM, <see cref="Pending"/> keeps
-/// the authorization path unavailable without providing any credential fallback.
+/// it is deliberately not a secret. <see cref="Production"/> is the public registration supplied
+/// by Nexus Mods; <see cref="Pending"/> remains available for tests and source-review scenarios.
 /// </summary>
 public sealed record NexusOAuthRegistration(string ClientId, Uri RedirectUri)
 {
@@ -23,6 +23,13 @@ public sealed record NexusOAuthRegistration(string ClientId, Uri RedirectUri)
     /// approve and register the application.
     /// </summary>
     public static NexusOAuthRegistration Pending { get; } = new("", LoopbackRedirectUri);
+
+    /// <summary>
+    /// AIM's public Nexus OAuth registration. Native desktop applications use PKCE and must not
+    /// rely on a client secret embedded in the distributed executable.
+    /// </summary>
+    public static NexusOAuthRegistration Production { get; } =
+        new("alternative_installer_for_mistria", LoopbackRedirectUri);
 
     public bool IsRegistered => !string.IsNullOrWhiteSpace(ClientId);
 }

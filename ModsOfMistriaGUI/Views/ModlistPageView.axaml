@@ -41,7 +41,7 @@
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
                         <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
                         <Separator />
-                        <MenuItem Header="Nexus account..."
+                        <MenuItem Header="{Binding Nexus.NexusAccountActionText}"
                                   Command="{Binding Nexus.ManageNexusAccountCommand}" />
                         <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"
                                   Command="{Binding Nexus.PasteLinkCommand}" />
@@ -322,8 +322,22 @@
                                                    IsVisible="{Binding IsFrozen}"
                                                    VerticalAlignment="Center"
                                                    ToolTip.Tip="{Binding Texts.GUIModFrozenTooltip}" />
-                                        <!-- Update available badge -->
-                                        <Button IsVisible="{Binding UpdateAvailable}"
+                                        <!-- Nexus update badge: use AIM's update flow so the user does
+                                             not have to reopen the Nexus page and click Vortex. -->
+                                        <Button IsVisible="{Binding HasNexusUpdate}"
+                                                IsEnabled="{Binding CanUpdateFromNexus}"
+                                                Command="{Binding Commands.UpdateFromNexus}"
+                                                CommandParameter="{Binding}"
+                                                Padding="5 1"
+                                                Background="#2e7d32"
+                                                Foreground="White"
+                                                CornerRadius="4"
+                                                VerticalAlignment="Center"
+                                                Content="{Binding Texts.GUIUpdateMod}"
+                                                ToolTip.Tip="{Binding UpdateTooltip}" />
+                                        <!-- Generic update badge for mods whose update source is not
+                                             Nexus. These continue to open their declared URL. -->
+                                        <Button IsVisible="{Binding HasGenericUpdate}"
                                                 Command="{Binding OpenUpdateUrlCommand}"
                                                 Padding="5 1"
                                                 Background="#2e7d32"

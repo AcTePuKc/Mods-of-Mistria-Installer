@@ -326,8 +326,8 @@
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>選擇…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>模組資料夾可隨時變更；返回模組清單時，AIM 會重新載入清單。</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM 使用 OAuth PKCE 存取 Nexus 帳戶。在 Nexus 提供 AIM 的公開 client_id 前，Nexus 下載與更新檢查無法使用。</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Nexus 核准 AIM 的公開 client_id 後，可在 Nexus 下載選單中使用 OAuth 登入。</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM 使用 OAuth PKCE 存取 Nexus 帳戶。登入後即可使用 Nexus 下載與更新檢查。</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>請在 Nexus 下載選單中使用 OAuth 登入，以使用 Nexus 帳戶功能。</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>選擇模組資料夾</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>重新整理報告</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>資源封存已被取代，但 AIM 無法儲存安裝狀態。請重新啟動 AIM 以復原已完成的交易。</value></data>

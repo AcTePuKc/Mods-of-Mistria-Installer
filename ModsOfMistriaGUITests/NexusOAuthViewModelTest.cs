@@ -62,6 +62,31 @@ public sealed class NexusOAuthViewModelTest
         });
     }
 
+    [Test]
+    public void ShouldExposeTheCorrectNexusAccountActionAndStatus()
+    {
+        var nexusSettings = new NexusSettings(_settingsDirectory);
+        var registration = new NexusOAuthRegistration("aim-test-client-id", NewLoopbackRedirectUri());
+        var oauth = new NexusOAuthService(nexusSettings, registration);
+        var viewModel = new NexusDownloadsViewModel(new Settings(), nexusSettings, oauth);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.NexusAccountActionText, Is.EqualTo("Sign in to Nexus"));
+            Assert.That(viewModel.NexusAccountStatusText,
+                Is.EqualTo("Nexus account not connected. Sign in to use Nexus features."));
+        });
+
+        nexusSettings.SetOAuthTokens(new NexusOAuthTokens(
+            "access-token", "refresh-token", DateTimeOffset.UtcNow.AddHours(1)));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.NexusAccountActionText, Is.EqualTo("Sign out of Nexus"));
+            Assert.That(viewModel.NexusAccountStatusText, Is.EqualTo("Nexus account connected."));
+        });
+    }
+
     private static Uri NewLoopbackRedirectUri()
     {
         using var listener = new TcpListener(IPAddress.Loopback, 0);

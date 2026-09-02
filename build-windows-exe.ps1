@@ -124,7 +124,7 @@ if (-not $executable) {
 if ($executable) {
     $size = [math]::Round((Get-Item $executable).Length / 1MB)
     Write-Host "Done: $((Resolve-Path $executable).Path) (${size} MB)" -ForegroundColor Green
-    Write-Host 'Run it once. Nexus OAuth is awaiting AIM''s public client_id, so Nexus account features are unavailable in this build.'
+    Write-Host 'Run it once. Nexus OAuth uses AIM''s public PKCE client registration; sign in from Gear menu -> Nexus downloads.'
 } else {
     Write-Warning "Publish finished but no executable was found in $OutputDirectory. Check the output above."
 }

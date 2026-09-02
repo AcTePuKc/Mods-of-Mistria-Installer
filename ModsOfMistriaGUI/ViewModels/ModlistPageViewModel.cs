@@ -1576,8 +1576,9 @@ public partial class ModlistPageViewModel : PageViewBase
         if (!status.HasUpdate) return;
 
         // The badge is shared with the manifest-based check that runs at startup, so a Nexus result
-        // only ever adds to it. Clearing it here would hide a GitHub release the other check found,
-        // and the badge needs somewhere to go: without a download url it opens nothing.
+        // only ever adds to it. Clearing it here would hide a GitHub release the other check found.
+        // When UpdateFileId is present, the row routes the badge through UpdateFromNexus rather than
+        // opening the stored page URL, so the user gets AIM's confirmation/download/backup flow.
         model.UpdateAvailable = true;
         model.LatestVersion = status.LatestVersion ?? model.LatestVersion;
         model.UpdateDownloadUrl ??= status.Record is not null && status.LatestFileId is > 0

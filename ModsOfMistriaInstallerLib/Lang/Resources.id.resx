@@ -326,8 +326,8 @@ Alihkan ke AIM?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Pilih…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Folder mod dapat diubah kapan saja; AIM akan memuat ulang daftar saat kamu kembali ke daftar mod.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM menggunakan OAuth PKCE untuk akses akun Nexus. Unduhan dan pemeriksaan pembaruan Nexus tidak tersedia hingga Nexus menyediakan client_id publik AIM.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Masuk dengan OAuth akan tersedia di menu unduhan Nexus setelah Nexus menyetujui client_id publik AIM.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM menggunakan OAuth PKCE untuk akses akun Nexus. Unduhan dan pemeriksaan pembaruan Nexus tersedia setelah Anda masuk.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Masuk dengan OAuth dari menu unduhan Nexus untuk menggunakan fitur akun Nexus.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Pilih folder mod</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Segarkan laporan</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Arsip aset telah diganti, tetapi AIM tidak dapat menyimpan status pemasangan. Mulai ulang AIM untuk memulihkan transaksi yang selesai.</value></data>

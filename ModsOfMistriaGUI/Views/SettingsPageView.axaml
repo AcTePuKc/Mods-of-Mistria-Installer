@@ -32,7 +32,7 @@
                             <TextBlock Text="{Binding Texts.GUISettingsNexus}" FontSize="22" FontWeight="Bold" />
                             <TextBlock Text="{Binding Texts.GUISettingsNexusDescription}" TextWrapping="Wrap" />
                             <TextBlock Text="{Binding NexusAccountStatus}" />
-                            <Button Content="Nexus account..."
+                            <Button Content="{Binding Nexus.NexusAccountActionText}"
                                     Command="{Binding ManageNexusAccountCommand}"
                                     HorizontalAlignment="Left" />
                             <TextBlock Text="{Binding Texts.GUISettingsNexusNote}" TextWrapping="Wrap" Foreground="Gray" />

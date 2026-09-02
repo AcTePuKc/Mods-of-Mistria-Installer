@@ -10,8 +10,8 @@
         <TextBox x:Name="LinkBox" AcceptsReturn="False" KeyDown="OnLinkKeyDown" />
         <TextBlock x:Name="StatusText" TextWrapping="Wrap" Foreground="Gray" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
-            <Button x:Name="CancelButton" Click="OnCancel" />
             <Button x:Name="SaveButton" Click="OnSave" IsDefault="True" />
+            <Button x:Name="CancelButton" Click="OnCancel" />
         </StackPanel>
     </StackPanel>
 </Window>

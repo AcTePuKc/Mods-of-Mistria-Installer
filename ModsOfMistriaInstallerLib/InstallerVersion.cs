@@ -7,5 +7,5 @@ namespace Garethp.ModsOfMistriaInstallerLib;
 /// </summary>
 public static class InstallerVersion
 {
-    public static readonly Version ModCompatibilityVersion = new(0, 15, 7);
+    public static readonly Version ModCompatibilityVersion = new(0, 15, 10);
 }

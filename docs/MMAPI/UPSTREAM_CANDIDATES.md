@@ -42,7 +42,7 @@ It may later move to one of these categories:
 | `date.cutscene` | `date_cutscene` / `date_cutscene_chain_args` | Candidate — not supported | Confirm cutscene arguments and whether chain handling is required. |
 | `date.cooldown` | `date_cooldown` | Candidate — not supported | Find a real date/cooldown use case and test repeated calls. |
 | `ui.preset_popup_layout` | `ui_preset_popup_layout` | Candidate — not supported | Verify layout timing and interaction with existing UI hooks. |
-| `ui.backplate_sprite` | `ui_backplate_sprite_mines` / `ui_backplate_sprite_spell_card` | Candidate — not supported | Confirm whether the generic hook can safely replace the older specific paths. |
+| `ui.backplate_sprite` | `ui_sprite_mines_backplate` / `ui_sprite_spell_card_backplate` | Candidate — not supported | The current catalog already exposes the narrower `ui.sprite` hook; confirm whether the upstream name adds anything before considering an alias. |
 
 ## Process
 

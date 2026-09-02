@@ -326,8 +326,8 @@
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Избери…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Папката може да се сменя по всяко време; AIM ще презареди списъка при връщане.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM използва OAuth PKCE за достъп до Nexus акаунт. Nexus изтеглянията и проверките за обновления не са налични, докато Nexus не предостави публичния client_id на AIM.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Вписването с OAuth ще е налично в менюто „Nexus изтегляния“, след като Nexus одобри публичния client_id на AIM.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM използва OAuth PKCE за достъп до Nexus акаунт. Nexus изтеглянията и проверките за обновления са налични след вписване.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Впишете се с OAuth от менюто „Nexus изтегляния“, за да използвате функциите на Nexus акаунта.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Избери папка с модове</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Обнови отчета</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архивът с ресурсите беше заменен, но AIM не успя да запише състоянието на инсталацията. Рестартирайте AIM, за да възстанови завършената операция.</value></data>

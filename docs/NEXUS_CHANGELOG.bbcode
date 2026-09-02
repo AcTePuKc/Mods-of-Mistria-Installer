@@ -8,6 +8,8 @@ Fixed Select all / Deselect all for large mod lists so it no longer repeats expe
 
 Added read-only validation for legacy cosmetic definitions and stopped reporting their shared category icon as a false file conflict.
 
-Implemented OAuth PKCE for Nexus account access. It is intentionally unavailable until Nexus provides AIM's public OAuth client_id; no personal Nexus API key or OAuth client secret is included in AIM.
+Implemented OAuth PKCE for Nexus account access using AIM's public Nexus client registration. No personal Nexus API key or OAuth client secret is included in AIM.
+
+Update checks now surface newer associated Nexus files directly in the mod list. Direct downloads for free accounts may still require the Nexus website's Vortex button, so AIM opens the latest file page when Nexus requires its short-lived website token.
 
 Added recoverable assets.zip state publication and bounded, cancellable Nexus archive extraction. Multi-mod Nexus bundles roll back as a unit; retained backup paths are reported if manual recovery is needed.

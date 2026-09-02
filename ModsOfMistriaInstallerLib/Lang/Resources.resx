@@ -670,7 +670,7 @@ Open download page(s) in browser?</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Could not stop AIM from handling these links: {0}</value></data>
   <data name="GUINexusAssociate" xml:space="preserve"><value>Associate with Nexus...</value></data>
   <data name="GUINexusAssociateTitle" xml:space="preserve"><value>Associate mod with Nexus</value></data>
-  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>Paste the Nexus mod page URL or an nxm:// download link. AIM will remember the association and use it for update checks.</value></data>
+  <data name="GUINexusAssociateExplanation" xml:space="preserve"><value>Paste a Nexus mod page URL to associate it for update checks, or paste a full nxm:// download link to download that file now.</value></data>
   <data name="GUINexusAssociateWatermark" xml:space="preserve"><value>https://www.nexusmods.com/fieldsofmistria/mods/...</value></data>
   <data name="GUINexusAssociateMissing" xml:space="preserve"><value>Paste a Nexus page URL or nxm:// link first.</value></data>
   <data name="GUINexusAssociateInvalid" xml:space="preserve"><value>That is not a valid Fields of Mistria Nexus page or nxm:// link. {0}</value></data>
@@ -678,6 +678,11 @@ Open download page(s) in browser?</value></data>
   <data name="GUINexusHandlerTakeOver" xml:space="preserve"><value>These links are currently handled by another program ({0}).&#xD;&#xA;&#xD;&#xA;Hand them to AIM instead?</value></data>
   <data name="GUINexusPasteLinkTitle" xml:space="preserve"><value>Install from a link</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>The clipboard does not contain an nxm:// link. Right-click "Vortex" on the mod page and copy the link address first.</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Sign in to Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Sign out of Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus account connected.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus account not connected. Sign in to use Nexus features.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus account disconnected.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Save</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Cancel</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} of {1} selected — {2} already in the game, {3} will be added</value></data>
@@ -731,8 +736,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Choose…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>The mods folder can be changed at any time; AIM will reload it when you return to the mod list.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM uses OAuth PKCE for Nexus account access. Nexus downloads and update checks are unavailable until Nexus provides AIM's public client_id.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>OAuth sign-in will be available in the Nexus downloads menu after Nexus approves AIM's public client_id.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM uses OAuth PKCE for Nexus account access. Nexus downloads and update checks are available after you sign in.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Use the button above to sign in or sign out of your Nexus account.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Select mods folder</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Refresh report</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>The assets archive was replaced, but AIM could not save its install state. Restart AIM to recover the completed transaction.</value></data>

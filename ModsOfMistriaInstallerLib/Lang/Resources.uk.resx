@@ -318,8 +318,8 @@
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Вибрати…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Папку модів можна змінити будь-коли; AIM перезавантажить список після повернення до списку модів.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM використовує OAuth PKCE для доступу до облікового запису Nexus. Завантаження та перевірки оновлень Nexus недоступні, доки Nexus не надасть публічний client_id AIM.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Вхід через OAuth буде доступний у меню завантажень Nexus після схвалення Nexus публічного client_id AIM.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM використовує OAuth PKCE для доступу до облікового запису Nexus. Завантаження та перевірки оновлень Nexus доступні після входу.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Увійдіть через OAuth у меню завантажень Nexus, щоб використовувати функції облікового запису Nexus.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Вибрати папку модів</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Оновити звіт</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архів ресурсів було замінено, але AIM не зміг зберегти стан встановлення. Перезапустіть AIM, щоб відновити завершену операцію.</value></data>

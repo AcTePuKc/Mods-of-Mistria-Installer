@@ -3,13 +3,17 @@
 ## 0.1.9 — Unreleased
 
 - Replaced the application-side personal Nexus API-key path with the completed OAuth PKCE flow.
-  It remains disabled until Nexus provides AIM's public OAuth `client_id`; no personal Nexus key or
-  OAuth client secret is included in the application.
+  AIM now uses Nexus's public client registration `alternative_installer_for_mistria`; no personal
+  Nexus key or OAuth client secret is included in the application.
 - Added recoverable `assets.zip` state publication. If the archive is replaced but state publication
   fails, AIM retains a pending-state journal and completes recovery on the next AIM operation.
 - Hardened downloaded Nexus archive extraction with entry and size limits, active cancellation, and
   all-or-nothing rollback for multi-mod bundles. If rollback cannot fully restore a mod, AIM reports
   the retained backup path for manual recovery.
+- Updated AIM's supported MOMI manifest compatibility version to 0.15.10 so mods declaring the
+  latest upstream manifest version are accepted; older compatible mods remain supported.
+- Fixed the Nexus update badge so it starts AIM's update flow instead of opening the Nexus file page
+  and requiring a second manual click on the Vortex button.
 
 ## 0.1.8
 

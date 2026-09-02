@@ -654,8 +654,8 @@ Passá-los para o AIM?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Escolher…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>A pasta de mods pode ser alterada a qualquer momento; o AIM recarregará a lista quando você voltar à lista de mods.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>O AIM usa OAuth PKCE para acessar a conta Nexus. Downloads e verificações de atualizações do Nexus não estão disponíveis até que o Nexus forneça o client_id público do AIM.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>O login OAuth estará disponível no menu de downloads do Nexus depois que o Nexus aprovar o client_id público do AIM.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>O AIM usa OAuth PKCE para acessar a conta Nexus. Downloads e verificações de atualizações do Nexus ficam disponíveis após o login.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Entre com OAuth no menu de downloads do Nexus para usar os recursos da conta Nexus.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Escolher pasta de mods</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Atualizar relatório</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>O arquivo de recursos foi substituído, mas o AIM não conseguiu salvar o estado da instalação. Reinicie o AIM para recuperar a transação concluída.</value></data>

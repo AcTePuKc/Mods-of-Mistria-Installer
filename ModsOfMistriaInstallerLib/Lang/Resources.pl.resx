@@ -326,8 +326,8 @@ Przekazać je do AIM?</value></data>
   <data name="GUISettingsChooseModsFolder" xml:space="preserve"><value>Wybierz…</value></data>
   <data name="GUISettingsModsFolderNote" xml:space="preserve"><value>Folder modów można zmienić w dowolnym momencie; AIM ponownie wczyta listę po powrocie do listy modów.</value></data>
   <data name="GUISettingsNexus" xml:space="preserve"><value>Nexus</value></data>
-  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM używa OAuth PKCE do dostępu do konta Nexus. Pobieranie z Nexus i sprawdzanie aktualizacji są niedostępne, dopóki Nexus nie udostępni publicznego client_id AIM.</value></data>
-  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Logowanie OAuth będzie dostępne w menu pobierania Nexus po zatwierdzeniu przez Nexus publicznego client_id AIM.</value></data>
+  <data name="GUISettingsNexusDescription" xml:space="preserve"><value>AIM używa OAuth PKCE do dostępu do konta Nexus. Pobieranie z Nexus i sprawdzanie aktualizacji są dostępne po zalogowaniu.</value></data>
+  <data name="GUISettingsNexusNote" xml:space="preserve"><value>Zaloguj się przez OAuth w menu pobierania Nexus, aby korzystać z funkcji konta Nexus.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Wybierz folder modów</value></data>
   <data name="GUIRefreshReport" xml:space="preserve"><value>Odśwież raport</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Archiwum zasobów zostało zastąpione, ale AIM nie mógł zapisać stanu instalacji. Uruchom ponownie AIM, aby odzyskać ukończoną transakcję.</value></data>

@@ -31,9 +31,7 @@ public partial class SettingsPageViewModel : PageViewBase
     public bool IsGeneralSelected => _selectedSectionId == "general";
     public bool IsNexusSelected => _selectedSectionId == "nexus";
     public NexusDownloadsViewModel Nexus => _nexus;
-    public string NexusAccountStatus => Nexus.IsNexusAccountConnected
-        ? "Nexus account connected."
-        : "Nexus account connection is awaiting OAuth registration.";
+    public string NexusAccountStatus => Nexus.NexusAccountStatusText;
 
     public SettingsPageViewModel(Settings settings, NexusDownloadsViewModel nexus, Action back)
     {
@@ -50,7 +48,8 @@ public partial class SettingsPageViewModel : PageViewBase
         };
         _nexus.PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName == nameof(NexusDownloadsViewModel.IsNexusAccountConnected))
+            if (e.PropertyName is nameof(NexusDownloadsViewModel.IsNexusAccountConnected)
+                or nameof(NexusDownloadsViewModel.NexusAccountStatusText))
                 OnPropertyChanged(nameof(NexusAccountStatus));
         };
     }

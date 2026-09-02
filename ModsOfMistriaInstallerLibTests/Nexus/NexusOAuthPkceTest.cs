@@ -35,6 +35,19 @@ public class NexusOAuthPkceTest
     }
 
     [Test]
+    public void ShouldExposeTheNexusSuppliedProductionRegistration()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(NexusOAuthRegistration.Production.ClientId,
+                Is.EqualTo("alternative_installer_for_mistria"));
+            Assert.That(NexusOAuthRegistration.Production.RedirectUri,
+                Is.EqualTo(NexusOAuthRegistration.LoopbackRedirectUri));
+            Assert.That(NexusOAuthRegistration.Production.IsRegistered, Is.True);
+        });
+    }
+
+    [Test]
     public void ShouldBuildAS256AuthorizationCodeRequestForAPublicClient()
     {
         var request = NexusOAuthPkce.CreateAuthorizationRequest(Registration);
@@ -97,6 +110,7 @@ public class NexusOAuthPkceTest
             Assert.That(handler.LastForm["code"], Is.EqualTo("one-time-code"));
             Assert.That(handler.LastForm["redirect_uri"], Is.EqualTo(registration.RedirectUri.AbsoluteUri));
             Assert.That(handler.LastForm["code_verifier"], Is.Not.Empty);
+            Assert.That(handler.LastForm.ContainsKey("client_secret"), Is.False);
         });
     }
 

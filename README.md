@@ -16,7 +16,7 @@ The current AIM development line is `0.1.9`.
 
 ## Fork-specific improvements
 
-Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1.0.x support and safer everyday use:
+Compared with the upstream 0.15.10 line, this fork focuses on Fields of Mistria 1.0.x support and safer everyday use:
 
 - Rebuilds are staged from a verified pristine archive and validated before the live `assets.zip` is replaced.
 - Failed installations keep the previous working archive and provide a mod-specific diagnostic log where possible.
@@ -26,15 +26,14 @@ Compared with the upstream 0.15.1 line, this fork focuses on Fields of Mistria 1
 
 ## Nexus integration and mod list tools
 
-Nexus account features are implemented with OAuth PKCE. They remain unavailable in the current
-build until Nexus Mods registers AIM and provides its public OAuth `client_id`; AIM does not accept
-or fall back to personal Nexus API keys.
+Nexus account features are implemented with OAuth PKCE. Nexus has registered AIM as a public OAuth
+client; AIM does not accept or fall back to personal Nexus API keys.
 
 | What | Where it lives in the UI |
 | --- | --- |
-| Nexus **Vortex download button** (`nxm://`) links download and unpack straight into the mods folder once OAuth registration is available | Gear menu → **Nexus downloads** |
-| Check one mod, the selected mods, or every mod for updates once OAuth registration is available | Right-click a mod, or gear menu → **Nexus downloads** |
-| Update a mod from Nexus, keeping the previous version as a backup you can restore once OAuth registration is available | Right-click a mod |
+| Nexus **Vortex download button** (`nxm://`) links download and unpack straight into the mods folder after OAuth sign-in | Gear menu → **Nexus downloads** |
+| Check one mod, the selected mods, or every mod for updates after OAuth sign-in | Right-click a mod, or gear menu → **Nexus downloads** |
+| Update a mod from Nexus, keeping the previous version as a backup you can restore after OAuth sign-in | Right-click a mod |
 | Freeze a mod so update checks leave it on the version it is on | Right-click a mod |
 | Open a mod's Nexus page or its folder | Right-click a mod |
 | Select or clear every mod at once, with a summary of what the selection means | Checkbox above the mod list |
@@ -124,18 +123,17 @@ reporting the problem.
 ## Downloading mods from Nexus (Vortex download button)
 
 AIM uses OAuth PKCE for Nexus account access. The browser authorization flow, localhost callback,
-state validation, authorization-code exchange, and token refresh are implemented, but the feature
-cannot be used until Nexus Mods supplies AIM's public OAuth `client_id`. Until then, Nexus account
-sign-in, the **Vortex download button**, downloads, and update checks are unavailable.
+state validation, authorization-code exchange, and token refresh are implemented. Nexus account
+sign-in, the **Vortex download button**, downloads, and update checks are available after sign-in.
 
 These Nexus operations are GUI-only. AIM CLI does not register `nxm://`, sign in to Nexus, download
 mods, or check for mod updates.
 
 ### Setting it up
 
-After Nexus registers the public client, open the gear menu → **Nexus downloads**, sign in through
-the browser, and choose **Handle Vortex download links**. The line under that option shows whether
-AIM currently owns `nxm://` links. The browser may ask once for permission to open AIM.
+Open the gear menu → **Nexus downloads**, sign in through the browser, and choose **Handle Vortex
+download links**. The line under that option shows whether AIM currently owns `nxm://` links. The
+browser may ask once for permission to open AIM.
 
 ### What happens on a download
 
@@ -149,8 +147,8 @@ AIM currently owns `nxm://` links. The browser may ask once for permission to op
 
 ### Notes and limits
 
-- OAuth account access is intentionally unavailable until Nexus provides AIM's public `client_id`.
-  No personal API key is requested, stored, or accepted by AIM.
+- OAuth account access uses AIM's public Nexus client registration. No personal API key is
+  requested, stored, or accepted by AIM.
 - Registration is per-user and never needs administrator rights: `HKCU\Software\Classes\nxm` on
   Windows, a `~/.local/share/applications/aim-nxm-handler.desktop` entry plus `mimeapps.list` on
   Linux and the Steam Deck.
@@ -180,10 +178,11 @@ identified.
 
 - Right-click a mod → **Check for an update**, or use gear menu → **Nexus downloads** → **Check
   selected mods for updates** / **Check all mods for updates**.
-- A mod with an update shows the green badge. Right-click → **Update from Nexus** downloads and
-  replaces it.
-- Once OAuth registration is available, free-account download links still need the token supplied by
-  the website's **Vortex download button**. A copied link without that token can be refused by Nexus.
+- A mod with an update shows the green badge. Click it, or right-click → **Update from Nexus**, to
+  download and replace the mod through AIM.
+- Free-account direct downloads may still need the short-lived token supplied by the website's
+  **Vortex download button**. If Nexus refuses a page-based update download, AIM opens the latest
+  file page so you can start it through Vortex instead.
 - Update sweeps run a few mods at a time and stop early if Nexus reports a rate limit, keeping the
   results already gathered.
 
@@ -263,13 +262,13 @@ After a Fields of Mistria update, start AIM and reinstall the enabled mods. When
 
 Nexus downloads and updates:
 
-- OAuth PKCE is implemented, but Nexus downloads and update checks remain unavailable until Nexus
-  provides AIM's public OAuth `client_id`. AIM does not use personal Nexus API keys.
+- OAuth PKCE is implemented for Nexus downloads and update checks. AIM does not use personal Nexus
+  API keys.
 - **Known issue for older local installations:** mods installed manually or by an older AIM build
   before AIM 0.1.5 may not have a Nexus file identity recorded. To update one from AIM, right-click
   its name or row, choose **Associate with Nexus...**, and provide its Nexus page URL or an exact
   `nxm://` link.
-- If clicking the **Vortex download button** does nothing after OAuth registration becomes available,
+- If clicking the **Vortex download button** does nothing after signing in,
   check gear menu → **Nexus downloads**: the line under **Handle Vortex download links** says who
   currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler,
   in which case copy the link address and use **Install from a copied nxm:// link**.

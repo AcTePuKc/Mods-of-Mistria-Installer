@@ -41,6 +41,8 @@ public partial class ModModel : ObservableObject
 
     // Set by UpdateChecker after startup — true when a newer release is available
     [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
+    [NotifyPropertyChangedFor(nameof(HasNexusUpdate))]
+    [NotifyPropertyChangedFor(nameof(HasGenericUpdate))]
     [ObservableProperty] private bool _updateAvailable;
     [ObservableProperty] private string? _latestVersion;
     [ObservableProperty] private string? _updateDownloadUrl;
@@ -53,6 +55,8 @@ public partial class ModModel : ObservableObject
 
     /// <summary>The file id an update would install. Null when the update cannot be fetched.</summary>
     [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
+    [NotifyPropertyChangedFor(nameof(HasNexusUpdate))]
+    [NotifyPropertyChangedFor(nameof(HasGenericUpdate))]
     [ObservableProperty] private int? _updateFileId;
 
     [ObservableProperty] private bool _contextActionsLocked;
@@ -73,6 +77,11 @@ public partial class ModModel : ObservableObject
     public bool CanOpenNexusPage => IsFromNexus && !ContextActionsLocked;
     public bool CanAssociateWithNexus => !IsFromNexus && !ContextActionsLocked;
     public bool CanCheckForUpdate => !ContextActionsLocked;
+
+    // Nexus update results use AIM's download flow. Other update sources retain the old behavior
+    // of opening their declared URL.
+    public bool HasNexusUpdate => UpdateAvailable && UpdateFileId is not null;
+    public bool HasGenericUpdate => UpdateAvailable && UpdateFileId is null;
 
     public bool CanUpdateFromNexus => UpdateAvailable && UpdateFileId is not null && !ContextActionsLocked;
     public bool CanToggleFreeze => !ContextActionsLocked;

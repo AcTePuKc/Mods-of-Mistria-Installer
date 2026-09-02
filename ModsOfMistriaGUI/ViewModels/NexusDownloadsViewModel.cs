@@ -33,6 +33,17 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             ? Localization["GUINexusHandlerDisableMenuItem"]
             : Localization["GUINexusHandlerEnableMenuItem"];
 
+    /// <summary>Shows the account action that is valid for the current OAuth session.</summary>
+    public string NexusAccountActionText =>
+        IsNexusAccountConnected
+            ? Localization["GUINexusAccountSignOut"]
+            : Localization["GUINexusAccountSignIn"];
+
+    public string NexusAccountStatusText =>
+        IsNexusAccountConnected
+            ? Localization["GUINexusAccountConnected"]
+            : Localization["GUINexusAccountNotConnected"];
+
     /// <summary>Raised after a download installs, so the mod list can pick the new folder up.</summary>
     public event EventHandler? ModsChanged;
 
@@ -45,10 +56,15 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     {
         _settings = settings;
         _nexusSettings = nexusSettings;
-        _oauth = oauth ?? new NexusOAuthService(_nexusSettings, NexusOAuthRegistration.Pending);
+        _oauth = oauth ?? new NexusOAuthService(_nexusSettings, NexusOAuthRegistration.Production);
         _service = new NxmDownloadService(_oauth.GetAccessTokenAsync);
 
         Localization.LanguageChanged += (_, _) => RefreshHandlerStatus();
+        Localization.LanguageChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(NexusAccountActionText));
+            OnPropertyChanged(nameof(NexusAccountStatusText));
+        };
         RefreshHandlerStatus();
     }
 
@@ -108,8 +124,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     public NexusUpdateService CreateUpdateService(string modsLocation) => new(_oauth.GetAccessTokenAsync, modsLocation);
 
     /// <summary>
-    /// Makes sure an OAuth account session exists. The public client registration is deliberately
-    /// pending until Nexus approves AIM, so this never falls back to a personal API key.
+    /// Makes sure an OAuth account session exists. AIM uses the public Nexus registration with
+    /// Authorization Code + PKCE and never falls back to a personal API key.
     /// </summary>
     public Task<bool> EnsureNexusAccountAsync() =>
         EnsureNexusAccountAsync(OpenAuthorizationPageAsync, ShowMessage, OAuthSignInTimeout);
@@ -124,7 +140,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         if (!_oauth.IsRegistered)
         {
             await showMessage(Localization["GUINexusDownloadFailedTitle"],
-                "Nexus account connection is awaiting Nexus OAuth registration.");
+                "AIM's Nexus OAuth registration is unavailable in this build.");
             return false;
         }
 
@@ -133,6 +149,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             using var signInCancellation = new CancellationTokenSource(signInTimeout);
             await _oauth.SignInAsync(openAuthorizationPage, signInCancellation.Token);
             OnPropertyChanged(nameof(IsNexusAccountConnected));
+            OnPropertyChanged(nameof(NexusAccountActionText));
+            OnPropertyChanged(nameof(NexusAccountStatusText));
             return true;
         }
         catch (OperationCanceledException)
@@ -398,6 +416,17 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     public async Task ManageNexusAccountAsync()
     {
+        if (_oauth.HasSession)
+        {
+            _oauth.Disconnect();
+            OnPropertyChanged(nameof(IsNexusAccountConnected));
+            OnPropertyChanged(nameof(NexusAccountActionText));
+            OnPropertyChanged(nameof(NexusAccountStatusText));
+            await ShowMessage(Localization["GUINexusDownloadFailedTitle"],
+                Localization["GUINexusAccountDisconnected"]);
+            return;
+        }
+
         await EnsureNexusAccountAsync();
     }
 

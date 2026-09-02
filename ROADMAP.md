@@ -10,7 +10,7 @@ recorded in the changelog and git history.
 
 - [x] Replace the personal Nexus API-key path with public OAuth 2.0 Authorization Code + PKCE.
 - [x] Use a fixed loopback callback, validate OAuth `state`, and support token refresh/disconnect.
-- [x] Keep OAuth account features disabled until Nexus provides AIM's public `client_id`.
+- [x] Enable OAuth account features with Nexus's registered public `client_id`.
 - [x] Preserve the opt-in `nxm://` handler takeover separately from Nexus account connection.
 - [x] Replace the description tooltip with a pointer-driven description popup.
 - [x] Make the detailed Issues window non-modal.
@@ -23,14 +23,14 @@ recorded in the changelog and git history.
 
 ### Remaining before release
 
-- [ ] Receive Nexus' public OAuth `client_id` and enable the registered client.
-- [ ] Run the final OAuth connected-account test after Nexus registration.
+- [x] Receive Nexus' public OAuth `client_id` and enable the registered client.
+- [x] Run the OAuth connected-account test after Nexus registration.
 - [ ] Review the final release archive and Nexus description once more before publishing.
 - [ ] Push the completed 0.1.9 branch and create the release package.
 
-The NXM handler can remain useful while OAuth is unavailable. The expected
-"Nexus account features are not available yet" message should remain clear and
-non-fatal until registration is complete.
+The NXM handler remains opt-in and independent from account sign-in. Free Nexus
+accounts may still need to start direct update downloads from the website's
+Vortex button when Nexus requires its short-lived website token.
 
 ## Compatibility follow-up
 

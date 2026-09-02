@@ -52,6 +52,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [object.node_sprite](hooks/object.node_sprite.md) | filter | Swap the sprite of any world node before it draws. |
 | [store.item_added](hooks/store.item_added.md) | event | Know when an item lands in the shopping basket. |
 | [museum.donate_item](hooks/museum.donate_item.md) | event | Know when an item is donated to the museum. |
+| [museum.donation_attempted](hooks/museum.donation_attempted.md) | event | Know when a museum donation is attempted, before the museum records it. |
 
 ### Player, Actors, And Progression
 
@@ -81,6 +82,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [player.status_effect_cancel](hooks/player.status_effect_cancel.md) | event | Know when the game cancels a status effect. |
 | [player.status_effect_expired](hooks/player.status_effect_expired.md) | event | Know the moment a status effect runs out. |
 | [fishing.should_reel](hooks/fishing.should_reel.md) | filter | Change whether the player reels from the fishing Wait state this frame. |
+| [fishing.fish_selected](hooks/fishing.fish_selected.md) | event | Know when the fishing system accepts a fish candidate. |
 | [gossip.selections](hooks/gossip.selections.md) | filter | Change which NPCs the day's gossip offers. |
 | [npc.heart_points](hooks/npc.heart_points.md) | filter | Adjust the heart points a villager gains. |
 | [npc.gift_received](hooks/npc.gift_received.md) | event | Know when the player gives an NPC a gift. |
@@ -88,6 +90,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [date.begin](hooks/date.begin.md) | guard | Cancel an accepted date after its acceptance conversation, before the cutscene. |
 | [animal.heart_points](hooks/animal.heart_points.md) | filter | Adjust the heart points a barn animal gains. |
 | [animal.pet](hooks/animal.pet.md) | event | Know when the player pets or puts down an animal. |
+| [pet.reward_generated](hooks/pet.reward_generated.md) | event | Know when a scheduled pet job generates a concrete reward item. |
 | [combat.damage](hooks/combat.damage.md) | filter | Change any hit before it resolves. |
 | [combat.damage_resolved](hooks/combat.damage_resolved.md) | event | Know the moment a hit lands or is blocked. |
 | [combat.damage_injected](hooks/combat.damage_injected.md) | event | Know when a mod injects a hit through the damage pipeline. |
@@ -115,6 +118,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [items.trashed](hooks/items.trashed.md) | event | Know the moment the player trashes an item. |
 | [items.dig_artifact](hooks/items.dig_artifact.md) | filter | Swap the artifact an archaeology dig spot yields. |
 | [items.treasure_distribution](hooks/items.treasure_distribution.md) | filter | Change what the dungeon treasure roll drops. |
+| [crop.harvest_destroy](hooks/crop.harvest_destroy.md) | filter | Change whether a harvested crop node is destroyed. |
 | [items.infusion_generate](hooks/items.infusion_generate.md) | guard | Stop a recipe from rolling infusions. |
 | [items.infusion_chance](hooks/items.infusion_chance.md) | filter | Change the odds that a crafted item rolls an infusion. |
 | [item.display_description](hooks/item.display_description.md) | filter | Reword the description an item's tooltip renders. |
@@ -189,6 +193,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [node_renderer_set_sprite](seams/node_renderer_set_sprite.md) | Filters the sprite every world node renderer is about to wear. |
 | [store_item_added](seams/store_item_added.md) | Announces every shelf tap that puts an item in the shopping basket. |
 | [museum_donate_item](seams/museum_donate_item.md) | Emits the moment an item is donated to the museum. |
+| [museum_donation_attempted](seams/museum_donation_attempted.md) | Emits an event at the beginning of a museum donation attempt. |
 
 ### Player, Actors, And Progression
 
@@ -217,6 +222,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [player_status_effect_cancel](seams/player_status_effect_cancel.md) | Emits at the head of `StatusEffectManager.cancel()`, before any lookup. |
 | [player_status_effect_expired](seams/player_status_effect_expired.md) | Emits inside `update()`'s expiry branch, right after the effect is removed. |
 | [fishing_should_reel](seams/fishing_should_reel.md) | Filters the Wait state's reel decision before the complete vanilla reel block. |
+| [fishing_fish_selected](seams/fishing_fish_selected.md) | Emits an event after the fishing hub accepts a fish candidate. |
 | [gossip_selections](seams/gossip_selections.md) | Wraps the gossip picker so the day's NPC selection passes through a filter. |
 | [npc_heart_points](seams/npc_heart_points.md) | Reroutes every villager heart-point delta through a filter before it applies. |
 | [npc_receive_gift](seams/npc_receive_gift.md) | Announces every gift the moment an NPC receives it. |
@@ -225,6 +231,8 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [animal_heart_points](seams/animal_heart_points.md) | Reroutes every barn-animal heart-point delta through a filter before it applies. |
 | [animal_on_pet](seams/animal_on_pet.md) | Announces the moment the player pets a barn animal. |
 | [animal_put_down](seams/animal_put_down.md) | Announces the moment a held animal is set back down. |
+| [pet_reward_generated_forageable](seams/pet_reward_generated_forageable.md) | Emits a forageable item after a scheduled pet job appends it to the reward queue. |
+| [pet_reward_generated_item](seams/pet_reward_generated_item.md) | Emits each fixed reward item after a scheduled pet job appends it to the reward queue. |
 | [combat_damage_pre](seams/combat_damage_pre.md) | Threads every enqueued hit through a damage filter before it resolves. |
 | [combat_damage_resolved](seams/combat_damage_resolved.md) | Announces the outcome of every hit the receiver's resolution switch lands or blocks. |
 | [combat_tarball_grid](seams/combat_tarball_grid.md) | Hands every active swing's tarball to mods before the grid pick/chop/destroy blocks read it. |
@@ -262,6 +270,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [crafting_max_crafts](seams/crafting_max_crafts.md) | Puts an override in front of the craft-count ceiling before the engine computes it. |
 | [crafting_pay_component_costs](seams/crafting_pay_component_costs.md) | Puts a veto check in front of a recipe's material payment. |
 | [crafting_component_count](seams/crafting_component_count.md) | Filters every crafting cost read by wrapping the component-count resolver. |
+| [crop_harvest_destroy](seams/crop_harvest_destroy.md) | Filters the crop node destruction decision after a harvest. |
 
 ### UI, Text, And Presentation
 
