@@ -94,12 +94,6 @@ jobs:
         run: dotnet test
       - name: Publish ${{ matrix.project }} ${{ matrix.arch }}
         run: dotnet publish ${{ matrix.project }} -c ${{ matrix.configuration }} -r ${{ matrix.arch }} -o Release
-      - name: Include release notices
-        shell: bash
-        run: |
-          cp README.md Release/README.md
-          cp LICENCE.txt Release/LICENCE.txt
-          cp ModsOfMistriaInstallerLib/Seam/Payload/mmapi/LICENSE Release/MMAPI-LICENSE.txt
       - name: Upload binaries to this repository release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
