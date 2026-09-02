@@ -13,8 +13,9 @@ on:
 # repository variable NEXUS_UPLOAD_ENABLED must be set to the string "true".
 # Windows, Linux/SteamOS and macOS portable packages upload to their existing
 # Nexus files through the corresponding NEXUS_FILE_ID_* secrets. Each upload
-# archives the previous version of that platform file and updates the mod's
-# displayed version to the release version.
+# archives the previous version of that platform file, updates the mod's
+# displayed version, and adds the checked-in Nexus changelog to the new file
+# version.
 
 jobs:
   # This workflow is its own run, so it cannot reach compile.yml's artifacts:
@@ -107,6 +108,15 @@ jobs:
         run: |
           VERSION=$(dotnet msbuild -nologo -verbosity:quiet -getProperty:AssemblyVersion ModsOfMistriaGUI)
           echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Load Nexus changelog
+        shell: bash
+        run: |
+          {
+            echo 'NEXUS_CHANGELOG<<AIM_NEXUS_CHANGELOG'
+            cat docs/NEXUS_CHANGELOG.bbcode
+            echo 'AIM_NEXUS_CHANGELOG'
+          } >> "$GITHUB_ENV"
         
       - name: Compile Windows package
         run: dotnet publish ModsOfMistriaGUI -c Release -r win-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:IncludeAllContentForSelfExtract=true -o Release/windows
@@ -142,6 +152,8 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Windows"
           description: "Self-contained AIM package for Windows."
+          mod_id: 825
+          changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
 
@@ -155,6 +167,8 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Linux and SteamOS"
           description: "Self-contained AIM package for Linux and SteamOS."
+          mod_id: 825
+          changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
 
@@ -168,5 +182,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM macOS"
           description: "Self-contained AIM package for macOS."
+          mod_id: 825
+          changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true

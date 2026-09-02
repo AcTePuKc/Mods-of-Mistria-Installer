@@ -1,15 +1,12 @@
-Added immediate mod-list search by name, author, description, or version.
-
-Separated safe load-order suggestions from [b]Check issues[/b], an on-demand report with exact shared files and compatibility details.
-
-Made warnings and successful-install status more compact, with details available on hover and in the issue report.
-
-Fixed Select all / Deselect all for large mod lists so it no longer repeats expensive checks per mod.
-
-Added read-only validation for legacy cosmetic definitions and stopped reporting their shared category icon as a false file conflict.
-
-Implemented OAuth PKCE for Nexus account access using AIM's public Nexus client registration. No personal Nexus API key or OAuth client secret is included in AIM.
-
-Update checks now surface newer associated Nexus files directly in the mod list. Direct downloads for free accounts may still require the Nexus website's Vortex button, so AIM opens the latest file page when Nexus requires its short-lived website token.
-
-Added recoverable assets.zip state publication and bounded, cancellable Nexus archive extraction. Multi-mod Nexus bundles roll back as a unit; retained backup paths are reported if manual recovery is needed.
+Implemented OAuth 2.0 Authorization Code + PKCE using AIM's registered public Nexus client. AIM does not include or request a personal Nexus API key or OAuth client secret.
+Added account connect, disconnect, token refresh, secure loopback callback validation, and opt-in nxm:// handler takeover.
+Nexus links can be forwarded to an already-running AIM instance instead of opening a second AIM process.
+Nexus update badges now start AIM's update flow directly.
+Free Nexus accounts may need to use the website's Mod Manager Download or Vortex button because it supplies the short-lived download token required by Nexus.
+Added recoverable assets.zip state publication, bounded archive extraction, cancellation, and all-or-nothing rollback for multi-mod Nexus bundles.
+Fixed nested TOML tables and inline-array merging for current content mods and improved null-safe asset metadata handling.
+Updated MOMI manifest compatibility to 0.15.10 while retaining support for older compatible mods.
+Reconciled the stable MMAPI catalog for the current 1.0.4 assets with 129 hooks and 141 seams.
+Added current cosmetic compatibility for legs_top, corrected back_gear mappings, and refreshed cosmetic frame-count handling.
+Included MMAPI attribution and license notices in the release artifacts.
+Verified old-GML, MMAPI/GML, content-mod, and NXM workflows with the release test suite.
