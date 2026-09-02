@@ -132,6 +132,30 @@ jobs:
             cat docs/NEXUS_CHANGELOG.txt
             echo 'AIM_NEXUS_CHANGELOG'
           } >> "$GITHUB_ENV"
+
+      - name: Resolve Nexus API mod ID
+        shell: bash
+        env:
+          NEXUS_API_KEY: ${{ secrets.NEXUS_API_KEY }}
+          NEXUS_MOD_PAGE_ID: "949"
+        run: |
+          if [ -z "$NEXUS_API_KEY" ]; then
+            echo "::error::NEXUS_API_KEY secret is required to resolve the AIM Nexus mod ID."
+            exit 1
+          fi
+
+          NEXUS_MOD_ID=$(curl --fail --silent --show-error --retry 3 \
+            -H "apikey: $NEXUS_API_KEY" \
+            -H "accept: application/json" \
+            "https://api.nexusmods.com/v3/games/fieldsofmistria/mods/$NEXUS_MOD_PAGE_ID" \
+            | jq -r '.id // empty')
+
+          if ! [[ "$NEXUS_MOD_ID" =~ ^[0-9]+$ ]]; then
+            echo "::error::Nexus API did not return a numeric mod ID for AIM page $NEXUS_MOD_PAGE_ID."
+            exit 1
+          fi
+
+          echo "NEXUS_MOD_ID=$NEXUS_MOD_ID" >> "$GITHUB_ENV"
         
       - name: Compile Windows package
         run: dotnet publish ModsOfMistriaGUI -c Release -r win-x64 -p:AimDistribution=Nexus -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:IncludeAllContentForSelfExtract=true -o Release/windows
@@ -167,7 +191,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Windows"
           description: "Self-contained AIM package for Windows."
-          mod_id: 949
+          mod_id: ${{ env.NEXUS_MOD_ID }}
           changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
@@ -182,7 +206,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Linux and SteamOS"
           description: "Self-contained AIM package for Linux and SteamOS."
-          mod_id: 949
+          mod_id: ${{ env.NEXUS_MOD_ID }}
           changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
@@ -197,7 +221,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM macOS"
           description: "Self-contained AIM package for macOS."
-          mod_id: 949
+          mod_id: ${{ env.NEXUS_MOD_ID }}
           changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
