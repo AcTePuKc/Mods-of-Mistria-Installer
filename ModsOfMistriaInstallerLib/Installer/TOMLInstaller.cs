@@ -124,13 +124,13 @@ public class TOMLInstaller(
     {
         if (!modifier.Exists(destPath))
         {
-            modifier.Write(destPath, TomlSerializer.Serialize(sourceToml));
+            modifier.Write(destPath, Toml.SerializeGameToml(sourceToml));
         } 
 
         var destToml = TomlSerializer.Deserialize<TomlTable>(modifier.Read(destPath))!;
         MOMIOperations.MergeTomlTables(destToml, sourceToml);
         
-        modifier.Write(destPath, TomlSerializer.Serialize(destToml));
+        modifier.Write(destPath, Toml.SerializeGameToml(destToml));
     }
 
     private static TomlTable EnsureTable(TomlTable parent, string key)

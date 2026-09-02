@@ -42,7 +42,11 @@ public static class MOMIOperations
                         var copy = CloneTable(sourceTable);
                         copy.Remove("MOMIidentify");
                         copy.Remove("MOMIaction");
-                        MergeTomlTables(destTable, copy, mergeArrays);
+                        // A table-level merge applies to every plain array
+                        // below that table. This is what lets a mod append to
+                        // inline arrays such as common.small_roll without
+                        // replacing the existing entries.
+                        MergeTomlTables(destTable, copy, mergeArrays: true);
                     }
                     continue;
                 }
@@ -158,10 +162,33 @@ public static class MOMIOperations
         return clone;
     }
 
-    private static object CloneValue(object? value) =>
-        value is TomlTable t
-            ? CloneTable(t)
-            : value ?? throw new InvalidOperationException("TOML values cannot be null.");
+    private static object CloneValue(object? value)
+    {
+        return value switch
+        {
+            TomlTable table => CloneTable(table),
+            TomlTableArray tables => CloneTableArray(tables),
+            TomlArray array => CloneArray(array),
+            null => throw new InvalidOperationException("TOML values cannot be null."),
+            _ => value
+        };
+    }
+
+    private static TomlTableArray CloneTableArray(TomlTableArray source)
+    {
+        var clone = new TomlTableArray();
+        foreach (var table in source)
+            clone.Add(CloneTable(table));
+        return clone;
+    }
+
+    private static TomlArray CloneArray(TomlArray source)
+    {
+        var clone = new TomlArray();
+        foreach (var item in source)
+            clone.Add(CloneValue(item));
+        return clone;
+    }
 
     // JSON
 
