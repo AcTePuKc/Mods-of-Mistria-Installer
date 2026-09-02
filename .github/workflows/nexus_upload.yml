@@ -152,7 +152,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Windows"
           description: "Self-contained AIM package for Windows."
-          mod_id: 825
+          mod_id: 78
           changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
@@ -167,7 +167,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM Linux and SteamOS"
           description: "Self-contained AIM package for Linux and SteamOS."
-          mod_id: 825
+          mod_id: 78
           changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
@@ -182,7 +182,7 @@ jobs:
           version: ${{ env.APP_VERSION }}
           display_name: "AIM macOS"
           description: "Self-contained AIM package for macOS."
-          mod_id: 825
+          mod_id: 78
           changelog: ${{ env.NEXUS_CHANGELOG }}
           archive_existing_version: true
           update_mod_version: true
