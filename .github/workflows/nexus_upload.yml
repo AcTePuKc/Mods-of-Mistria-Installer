@@ -109,29 +109,12 @@ jobs:
           VERSION=$(dotnet msbuild -nologo -verbosity:quiet -getProperty:AssemblyVersion ModsOfMistriaGUI)
           echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Load release changelog
+      - name: Load Nexus changelog
         shell: bash
         run: |
-          awk '
-            /^## 0\.1\.9([[:space:]]|$)/ { in_release=1; next }
-            /^## / { in_release=0 }
-            !in_release { next }
-            /^### / { next }
-            /^- / {
-              if (line != "") print line
-              line = substr($0, 3)
-              next
-            }
-            /^[[:space:]]+/ {
-              line = line " " $0
-              next
-            }
-            NF { line = line " " $0 }
-            END { if (line != "") print line }
-          ' CHANGELOG.md > /tmp/aim-release-changelog.txt
           {
             echo 'NEXUS_CHANGELOG<<AIM_NEXUS_CHANGELOG'
-            cat /tmp/aim-release-changelog.txt
+            cat docs/NEXUS_CHANGELOG.txt
             echo 'AIM_NEXUS_CHANGELOG'
           } >> "$GITHUB_ENV"
         
