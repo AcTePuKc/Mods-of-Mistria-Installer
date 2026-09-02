@@ -146,9 +146,11 @@ jobs:
 
           NEXUS_MOD_ID=$(curl --fail --silent --show-error --retry 3 \
             -H "apikey: $NEXUS_API_KEY" \
+            -H "Content-Type: application/json" \
+            -H "User-Agent: Nexus-Mods/upload-action" \
             -H "accept: application/json" \
             "https://api.nexusmods.com/v3/games/fieldsofmistria/mods/$NEXUS_MOD_PAGE_ID" \
-            | jq -r '.id // empty')
+            | jq -r '.data.id // empty')
 
           if ! [[ "$NEXUS_MOD_ID" =~ ^[0-9]+$ ]]; then
             echo "::error::Nexus API did not return a numeric mod ID for AIM page $NEXUS_MOD_PAGE_ID."
