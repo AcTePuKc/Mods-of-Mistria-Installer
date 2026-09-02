@@ -1,19 +1,54 @@
 # Changelog
 
-## 0.1.9 — Unreleased
+## 0.1.9 — 2026-09-02
 
-- Replaced the application-side personal Nexus API-key path with the completed OAuth PKCE flow.
-  AIM now uses Nexus's public client registration `alternative_installer_for_mistria`; no personal
-  Nexus key or OAuth client secret is included in the application.
+### Nexus integration
+
+- Replaced the application-side personal Nexus API-key path with OAuth 2.0 Authorization Code +
+  PKCE. AIM uses Nexus's registered public client `alternative_installer_for_mistria`; no personal
+  Nexus API key or OAuth client secret is included in the application.
+- Added account connect, disconnect, token refresh, loopback callback validation, and OAuth state
+  validation.
+- Kept `nxm://` handler takeover opt-in and separate from account sign-in. AIM can ask before
+  taking links from Vortex or another mod manager and forwards links to an already-running AIM
+  instance.
+- Fixed Nexus update badges so they start AIM's update flow instead of opening a file page and
+  requiring a second manual click on the Vortex button.
+- Added localized guidance for free Nexus accounts when Nexus refuses a direct API download:
+  those accounts must use the website's **Mod Manager Download** / **Vortex** button, which supplies
+  the short-lived download token.
+
+### Installation safety and compatibility
+
 - Added recoverable `assets.zip` state publication. If the archive is replaced but state publication
   fails, AIM retains a pending-state journal and completes recovery on the next AIM operation.
 - Hardened downloaded Nexus archive extraction with entry and size limits, active cancellation, and
   all-or-nothing rollback for multi-mod bundles. If rollback cannot fully restore a mod, AIM reports
   the retained backup path for manual recovery.
-- Updated AIM's supported MOMI manifest compatibility version to 0.15.10 so mods declaring the
-  latest upstream manifest version are accepted; older compatible mods remain supported.
-- Fixed the Nexus update badge so it starts AIM's update flow instead of opening the Nexus file page
-  and requiring a second manual click on the Vortex button.
+- Fixed nested TOML tables and inline-array merging used by current content mods, including the
+  previously failing `common.small_roll` shape.
+- Added safer null handling for image metadata and generated asset information without weakening
+  invalid-mod diagnostics.
+- Updated support for the current MOMI manifest compatibility version 0.15.10; older compatible
+  mods remain supported.
+
+### Fields of Mistria 1.0.x and MMAPI
+
+- Reconciled the MMAPI catalog with the stable upstream catalog for the current 1.0.4 assets:
+  129 hooks, 141 seams, 3 engine fixes, and 1 call rewrite.
+- Added stable animal production, breeding, adoption-variant, date cooldown/cutscene, preset-layout,
+  crafting-refresh, and backplate-sprite compatibility points.
+- Added fully wired `npc.created`, `pet.created`, and `animal.created` entity-creation events.
+- Added current cosmetic compatibility for `legs_top`, corrected `back_gear` mappings, and
+  refreshed cosmetic frame-count handling.
+- Preserved MMAPI attribution and license notices in the release artifacts. Wheedle's bundled
+  vanilla files remain outside AIM's supported compatibility scope.
+
+### Testing
+
+- Verified old-GML, MMAPI/GML, content-mod, and NXM workflows against the current 1.0.4 assets.
+- Full release checks pass: 492 library tests, 7 GUI tests, seam/catalog validation, and Windows
+  self-contained publish.
 
 ## 0.1.8
 
