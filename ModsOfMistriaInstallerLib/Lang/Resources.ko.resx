@@ -254,7 +254,8 @@
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Nexus에서 다운로드 중</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>완료된 항목 지우기</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus 모드 {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus 다운로드</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus 다운로드</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus에서 다운로드 링크를 생성하지 못했습니다. 무료 계정은 웹사이트의 “Mod Manager Download” 버튼을 통해서만 다운로드할 수 있으며, 직접 연 링크에는 다운로드 토큰이 없습니다.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>이 다운로드는 다른 게임({0})용이므로 AIM에서 설치할 수 없습니다.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>먼저 Fields of Mistria 폴더와 모드 폴더를 설정하세요.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>“Vortex” 링크</value></data>

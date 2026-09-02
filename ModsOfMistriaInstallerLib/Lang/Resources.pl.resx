@@ -254,7 +254,8 @@ Otworzyć strony pobierania w przeglądarce?</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Pobieranie z Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Wyczyść zakończone</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Mod Nexus {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Pobieranie z Nexus</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Pobieranie z Nexus</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus odmówił wygenerowania linku pobierania. Darmowe konta mogą pobierać pliki tylko za pomocą przycisku „Mod Manager Download” na stronie; ręcznie otwarty link nie zawiera tokenu pobierania.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>To pobieranie jest przeznaczone dla innej gry ({0}), więc AIM nie może go zainstalować.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Najpierw skonfiguruj foldery Fields of Mistria i modów.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Linki „Vortex”</value></data>

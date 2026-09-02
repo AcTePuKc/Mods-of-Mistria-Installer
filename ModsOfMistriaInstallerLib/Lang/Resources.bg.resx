@@ -254,7 +254,8 @@
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Изтегляне от Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Изчистване на завършените</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus мод {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus изтегляне</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus изтегляне</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus отказа да генерира връзка за изтегляне. Безплатните акаунти могат да изтеглят само чрез бутона „Mod Manager Download“ в сайта — ръчно отворена връзка няма токен за изтегляне.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова AIM не може да го инсталира.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Настройте папките за Fields of Mistria и модовете, преди да изтегляте модове.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Връзки „Vortex“</value></data>

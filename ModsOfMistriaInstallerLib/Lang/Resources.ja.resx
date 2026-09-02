@@ -254,7 +254,8 @@
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Nexusからダウンロード中</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>完了した項目を消去</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus MOD {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexusダウンロード</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexusダウンロード</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus はダウンロードリンクの生成を拒否しました。無料アカウントでは、ウェブサイトの「Mod Manager Download」ボタンからのみダウンロードできます。手動で開いたリンクにはダウンロードトークンがありません。</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>このダウンロードは別のゲーム用（{0}）のため、AIMではインストールできません。</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>先にFields of MistriaフォルダーとMODフォルダーを設定してください。</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>「Vortex」リンク</value></data>

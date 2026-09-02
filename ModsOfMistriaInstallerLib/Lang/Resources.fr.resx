@@ -582,7 +582,8 @@ Ouvrir les pages de téléchargement dans le navigateur ?</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Téléchargement depuis Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Effacer les téléchargements terminés</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Mod Nexus {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Téléchargement Nexus</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Téléchargement Nexus</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus a refusé de générer un lien de téléchargement. Les comptes gratuits ne peuvent télécharger qu’avec le bouton « Mod Manager Download » du site web ; un lien ouvert manuellement ne contient pas de jeton de téléchargement.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Ce téléchargement est destiné à un autre jeu ({0}) ; AIM ne peut donc pas l’installer.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Configurez d’abord les dossiers de Fields of Mistria et des mods.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Liens « Vortex »</value></data>

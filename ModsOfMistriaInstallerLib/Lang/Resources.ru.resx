@@ -254,7 +254,8 @@
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Загрузка из Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Очистить завершённые</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Мод Nexus {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Загрузка из Nexus</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Загрузка из Nexus</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus не смог сгенерировать ссылку для скачивания. Бесплатные аккаунты могут скачивать только через кнопку «Mod Manager Download» на сайте — ссылка, открытая вручную, не содержит токена скачивания.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Эта загрузка предназначена для другой игры ({0}), поэтому AIM не может её установить.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Сначала настройте папки Fields of Mistria и модов.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Ссылки «Vortex»</value></data>

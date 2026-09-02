@@ -254,7 +254,8 @@
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>正在从 Nexus 下载</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>清除已完成项</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus 模组 {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus 下载</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus 下载</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus 拒绝生成下载链接。免费账户只能通过网站上的“Mod Manager Download”按钮下载；手动打开的链接没有下载令牌。</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>此下载属于其他游戏（{0}），因此 AIM 无法安装它。</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>请先设置 Fields of Mistria 文件夹和模组文件夹。</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>“Vortex”链接</value></data>

@@ -254,7 +254,8 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Mengunduh dari Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Hapus yang selesai</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Mod Nexus {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Unduhan Nexus</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Unduhan Nexus</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus menolak membuat tautan unduhan. Akun gratis hanya dapat mengunduh melalui tombol “Mod Manager Download” di situs web; tautan yang dibuka secara manual tidak memiliki token unduhan.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Unduhan ini ditujukan untuk game lain ({0}), jadi AIM tidak dapat menginstalnya.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Atur folder Fields of Mistria dan folder mod terlebih dahulu.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Tautan “Vortex”</value></data>

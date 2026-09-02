@@ -654,7 +654,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Downloading from Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Clear finished</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus mod {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus download</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus download</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus refused to generate a download link. Free accounts can only download through the "Mod Manager Download" button on the website — a link opened by hand has no download token.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>That download is for another game ({0}), so AIM cannot install it.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Set up your Fields of Mistria and mods folders before downloading mods.</value></data>
   <data name="GUINexusAlreadyInstalledTitle" xml:space="preserve"><value>Already installed</value></data>

@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Newtonsoft.Json.Linq;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -169,6 +170,9 @@ public class NexusApiClient
         catch (NexusApiException e) when (e.StatusCode == HttpStatusCode.Forbidden && !link.HasDownloadToken)
         {
             throw new NexusApiException(
+                Resources.ResourceManager.GetString(
+                    "GUINexusFreeAccountDownloadNeedsVortex",
+                    Resources.Culture) ??
                 "Nexus refused to generate a download link. Free accounts can only download through the " +
                 "\"Mod Manager Download\" button on the website - a link opened by hand has no download token.",
                 e.StatusCode, e);

@@ -579,7 +579,8 @@ Downloadpagina's openen in de browser?</value></data>
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Downloaden van Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Voltooide downloads wissen</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus-mod {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus-download</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus-download</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus weigerde een downloadlink te maken. Gratis accounts kunnen alleen downloaden via de knop „Mod Manager Download“ op de website; een handmatig geopende link bevat geen downloadtoken.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Deze download is voor een andere game ({0}), dus AIM kan deze niet installeren.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Stel eerst de mappen voor Fields of Mistria en mods in.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Vortex“-links</value></data>

@@ -254,7 +254,8 @@
   <data name="GUINexusDownloadsHeader" xml:space="preserve"><value>Descargando desde Nexus</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Borrar finalizadas</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Mod de Nexus {0}</value></data>
-  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Descarga de Nexus</value></data>
+ <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Descarga de Nexus</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus rechazó generar un enlace de descarga. Las cuentas gratuitas solo pueden descargar mediante el botón «Mod Manager Download» del sitio web; un enlace abierto manualmente no contiene un token de descarga.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Esta descarga es para otro juego ({0}), por lo que AIM no puede instalarla.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Configura primero las carpetas de Fields of Mistria y de mods.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Enlaces «Vortex»</value></data>
