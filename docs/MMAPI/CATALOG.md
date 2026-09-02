@@ -2,7 +2,7 @@
 
 [← MMAPI](MMAPI.md)
 
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **121 hooks**, fed by **130 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **129 hooks**, fed by **141 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -89,10 +89,17 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [npc.created](hooks/npc.created.md) | event | Customize each villager instance as it spawns, fully initialized. |
 | [date.run](hooks/date.run.md) | override | Take over a date the moment the player commits to it. |
 | [date.begin](hooks/date.begin.md) | guard | Cancel an accepted date after its acceptance conversation, before the cutscene. |
+| [date.cooldown](hooks/date.cooldown.md) | filter | Adjust the per-NPC cooldown between listed dates. |
+| [date.cutscene](hooks/date.cutscene.md) | filter | Swap the cutscene selected for a date. |
 | [animal.heart_points](hooks/animal.heart_points.md) | filter | Adjust the heart points a barn animal gains. |
 | [animal.created](hooks/animal.created.md) | event | Customize each barn/coop animal instance as it spawns. |
 | [pet.created](hooks/pet.created.md) | event | Customize the farm pet instance as it spawns. |
 | [animal.pet](hooks/animal.pet.md) | event | Know when the player pets or puts down an animal. |
+| [animal.production_gate](hooks/animal.production_gate.md) | filter | Change whether a barn/coop animal advances production that day. |
+| [animal.product_ready](hooks/animal.product_ready.md) | filter | Change whether an animal's production counter is ready to drop products. |
+| [animal.product_drops](hooks/animal.product_drops.md) | filter | Adjust the normal and golden product lists before they land. |
+| [animal.breeding_result](hooks/animal.breeding_result.md) | filter | Adjust a rolled offspring before it enters incubation. |
+| [animal.adoption_variant_unlocked](hooks/animal.adoption_variant_unlocked.md) | filter | Change whether an adoption variant is available in the menu. |
 | [pet.reward_generated](hooks/pet.reward_generated.md) | event | Know when a scheduled pet job generates a concrete reward item. |
 | [combat.damage](hooks/combat.damage.md) | filter | Change any hit before it resolves. |
 | [combat.damage_resolved](hooks/combat.damage_resolved.md) | event | Know the moment a hit lands or is blocked. |
@@ -143,7 +150,8 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [ui.item_node](hooks/ui.item_node.md) | filter | Adjust UI item slots as they are populated. |
 | [ui.button_sprites](hooks/ui.button_sprites.md) | filter | Swap the sprite set a UI button is built from. |
 | [ui.spawn_tutorial_guard](hooks/ui.spawn_tutorial_guard.md) | guard | Block a tutorial popup before it spawns. |
-| [ui.sprite](hooks/ui.sprite.md) | filter | Swap the backplate sprites behind the mines menu and spell cards. |
+| [ui.backplate_sprite](hooks/ui.backplate_sprite.md) | filter | Swap the backplate sprites behind the mines menu and spell cards. |
+| [ui.preset_popup_layout](hooks/ui.preset_popup_layout.md) | filter | Adjust the customization preset popup grid layout. |
 | [dialogue.play_guard](hooks/dialogue.play_guard.md) | guard | Block a conversation before it starts. |
 | [dialogue.path](hooks/dialogue.path.md) | filter | Change which conversation plays before it starts. |
 | [dialogue.line](hooks/dialogue.line.md) | filter | Reword any dialogue line before the textbox shows it. |
@@ -232,9 +240,18 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [npc_created](seams/npc_created.md) | Emits at the end of `spawn_npc()`, after NPC initialization completes. |
 | [date_run](seams/date_run.md) | Puts a claim-scoped override in front of every player-initiated date. |
 | [date_begin](seams/date_begin.md) | Guards start_date_cutscene inside run_date, after the acceptance conversation. |
+| [date_cooldown](seams/date_cooldown.md) | Filters the per-NPC date cooldown inside ari_eligible_for_date(). |
+| [date_cutscene](seams/date_cutscene.md) | Filters the selected date cutscene before it starts. |
+| [date_cutscene_chain_args](seams/date_cutscene_chain_args.md) | Carries the filtered date cutscene through the completion chain. |
 | [animal_heart_points](seams/animal_heart_points.md) | Reroutes every barn-animal heart-point delta through a filter before it applies. |
 | [animal_created](seams/animal_created.md) | Emits at the end of `spawn_animal()`, after the instance is linked to its data. |
 | [pet_created](seams/pet_created.md) | Captures the created pet instance and emits after `spawn_pet()`. |
+| [animal_production_gate](seams/animal_production_gate.md) | Filters the daily production gate for each stable animal. |
+| [animal_product_ready](seams/animal_product_ready.md) | Filters the production-days readiness comparison. |
+| [animal_product_drops](seams/animal_product_drops.md) | Filters the normal and golden product lists before stats and grid insertion. |
+| [animal_breeding_result](seams/animal_breeding_result.md) | Filters the ordinary breeding roll before incubation. |
+| [animal_breeding_result_gemini](seams/animal_breeding_result_gemini.md) | Filters the extra GeminiSeason breeding roll before incubation. |
+| [adoption_variant_unlocked](seams/adoption_variant_unlocked.md) | Filters the adoption menu's variant unlock decision. |
 | [animal_on_pet](seams/animal_on_pet.md) | Announces the moment the player pets a barn animal. |
 | [animal_put_down](seams/animal_put_down.md) | Announces the moment a held animal is set back down. |
 | [pet_reward_generated_forageable](seams/pet_reward_generated_forageable.md) | Emits a forageable item after a scheduled pet job appends it to the reward queue. |
@@ -297,8 +314,10 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [ui_item_node_crafting_menu](seams/ui_item_node_crafting_menu.md) | Hands each crafting-grid icon node to mods as the menu builds. |
 | [ui_button_sprites](seams/ui_button_sprites.md) | Puts a filter on each built button sprite set before it enters the cache. |
 | [ui_spawn_tutorial_guard](seams/ui_spawn_tutorial_guard.md) | Puts a veto check at the head of `spawn_tutorial()`. |
-| [ui_sprite_mines_backplate](seams/ui_sprite_mines_backplate.md) | Routes the mines menu backplate sprite through a filter on dungeon room start. |
-| [ui_sprite_spell_card_backplate](seams/ui_sprite_spell_card_backplate.md) | Routes each spell card's backplate sprite through a filter. |
+| [ui_backplate_sprite_mines](seams/ui_backplate_sprite_mines.md) | Routes the mines menu backplate sprite through a filter on dungeon room start. |
+| [ui_backplate_sprite_spell_card](seams/ui_backplate_sprite_spell_card.md) | Routes each spell card's backplate sprite through a filter. |
+| [ui_preset_popup_layout](seams/ui_preset_popup_layout.md) | Filters the customization preset popup grid layout. |
+| [ui_crafting_refreshed](seams/ui_crafting_refreshed.md) | Emits when the crafting menu rebuilds its right page. |
 | [dialogue_play_guard](seams/dialogue_play_guard.md) | Puts a veto check at the head of `play_conversation()`. |
 | [dialogue_path](seams/dialogue_path.md) | Rebuilds `play_conversation()`'s four arguments through the `dialogue.path` filter. |
 | [dialogue_line](seams/dialogue_line.md) | Filters each localized dialogue line before the textbox shows it. |
