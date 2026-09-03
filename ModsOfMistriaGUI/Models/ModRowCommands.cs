@@ -16,4 +16,9 @@ public sealed record ModRowCommands(
     IRelayCommand<ModModel> UpdateFromNexus,
     IRelayCommand<ModModel> ToggleFreeze,
     IRelayCommand<ModModel> RestorePreviousVersion,
-    IRelayCommand<ModModel> OpenModFolder);
+    IRelayCommand<ModModel> OpenModFolder,
+    IRelayCommand<ModModel> EditManifest,
+    IRelayCommand<ModModel> EditConfig,
+    IRelayCommand<ModModel> RemoveMod,
+    IRelayCommand<ModModel> ShowChangelog,
+    IRelayCommand<ModModel> LoadChangelogPreview);

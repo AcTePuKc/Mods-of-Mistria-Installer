@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -106,7 +106,6 @@
   <data name="CoreManifestHasNoAuthor" xml:space="preserve"><value>매니페스트에 제작자가 없습니다.</value></data>
   <data name="CoreManifestHasNoName" xml:space="preserve"><value>매니페스트에 이름이 없습니다.</value></data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve"><value>매니페스트에 버전이 없습니다.</value></data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>이 모드에는 더 최신 버전의 AIM이 필요합니다.</value></data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve"><value>Fields of Mistria 위치가 존재하지 않습니다.</value></data>
   <data name="CoreModDirectoryDoesNotExist" xml:space="preserve"><value>모드 폴더가 존재하지 않습니다.</value></data>
   <data name="CoreGeneratingInformationForMod" xml:space="preserve"><value>모드 정보 생성 중: {0}</value></data>

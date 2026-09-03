@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.Generator;
@@ -39,7 +40,10 @@ public partial class ModModel : ObservableObject
 
     // Set by UpdateChecker after startup — true when a newer release is available
     [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
+    [NotifyPropertyChangedFor(nameof(UpdateTooltip))]
     [ObservableProperty] private bool _updateAvailable;
+
+    [NotifyPropertyChangedFor(nameof(UpdateTooltip))]
     [ObservableProperty] private string? _latestVersion;
     [ObservableProperty] private string? _updateDownloadUrl;
 
@@ -51,20 +55,128 @@ public partial class ModModel : ObservableObject
 
     /// <summary>The file id an update would install. Null when the update cannot be fetched.</summary>
     [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
+    [NotifyPropertyChangedFor(nameof(UpdateTooltip))]
     [ObservableProperty] private int? _updateFileId;
 
     [ObservableProperty] private bool _contextActionsLocked;
+
+    // ── Release notes ────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// True when AIM knows which Nexus mod this is, so its release notes can be asked for. The
+    /// icon is hidden entirely otherwise: an icon that can only ever say "nothing here" is worse
+    /// than no icon.
+    /// </summary>
+    [NotifyPropertyChangedFor(nameof(CanShowChangelog))]
+    [ObservableProperty] private bool _hasChangelogSource;
+
+    public bool CanShowChangelog => HasChangelogSource && !ContextActionsLocked;
+
+    /// <summary>
+    /// What the hover tooltip says: the newest version's notes once they have been fetched, and an
+    /// invitation to fetch them before that.
+    ///
+    /// Notes are not loaded for every mod up front - that would be one Nexus call per mod on every
+    /// launch - so the first hover starts the fetch and this fills in underneath the open tooltip.
+    /// </summary>
+    [ObservableProperty] private string _changelogPreview = "";
+
+    /// <summary>Stops a hover storm from queuing the same fetch a dozen times.</summary>
+    public bool ChangelogRequested { get; set; }
 
     /// <summary>The user asked for this mod to be left on the version it is on.</summary>
     [ObservableProperty] private bool _isFrozen;
 
     [ObservableProperty] private bool _isCheckingUpdate;
 
+    /// <summary>
+    /// The last update check could not reach an answer for this mod - no Nexus association, a
+    /// network failure, or a mod page that no longer exists.
+    ///
+    /// Worth keeping rather than only counting, because "AIM could not tell" is a different state
+    /// from "up to date" and the user may want to look at exactly those mods.
+    /// </summary>
+    [ObservableProperty] private bool _updateCheckFailed;
+
     /// <summary>A previous version is in the backup store and can be restored.</summary>
     [ObservableProperty] private bool _hasBackup;
 
+    /// <summary>
+    /// Every archived copy of this mod, newest first, for the row's version dropdown.
+    ///
+    /// The right-click menu restores the newest and only the newest, which is the common case but
+    /// not the one that matters: a user rolling back is usually looking for the version from
+    /// *before* the one that broke.
+    /// </summary>
+    public ObservableCollection<ModBackupChoice> AvailableBackups { get; } = [];
+
+    public bool CanChooseVersion => AvailableBackups.Count > 0 && !ContextActionsLocked;
+
+    public void SetBackups(IEnumerable<ModBackupChoice> choices)
+    {
+        AvailableBackups.Clear();
+        foreach (var choice in choices) AvailableBackups.Add(choice);
+
+        HasBackup = AvailableBackups.Count > 0;
+        OnPropertyChanged(nameof(CanChooseVersion));
+    }
+
+    // ── Edits AIM itself made ────────────────────────────────────────────────────
+
+    /// <summary>
+    /// AIM has changed a file inside this mod - currently only by setting aside a file that
+    /// collided with another mod.
+    ///
+    /// This is on the row rather than buried in a log because the risk of AIM editing somebody
+    /// else's mod is not that the edit goes wrong at the time; it is that it is silently forgotten.
+    /// A user reporting a bug to the author weeks later has to be able to see, without going
+    /// looking, that the files on disk are no longer the ones that were downloaded.
+    /// </summary>
+    [ObservableProperty] private bool _wasEditedByAim;
+
+    /// <summary>What AIM changed, one line per edit, for the marker's tooltip.</summary>
+    [ObservableProperty] private string _aimEditSummary = "";
+
+    public string EditedTooltip =>
+        string.IsNullOrWhiteSpace(AimEditSummary)
+            ? Texts.GUIModEditedTooltip
+            : $"{Texts.GUIModEditedTooltip}\n\n{AimEditSummary}\n\n{Texts.GUIModEditedUndoHint}";
+
+    partial void OnAimEditSummaryChanged(string value) => OnPropertyChanged(nameof(EditedTooltip));
+
+    // ── Editing the mod's own files ──────────────────────────────────────────────
+
+    /// <summary>
+    /// The mod is a folder on disk with a manifest AIM can hand to a text editor. False for
+    /// archive-backed mods: there is no file to open, and editing an extracted copy would be
+    /// thrown away by the next install.
+    /// </summary>
+    [ObservableProperty] private bool _hasEditableManifest;
+
+    /// <summary>The mod ships a config file AIM recognised. Many mods have none.</summary>
+    [ObservableProperty] private bool _hasEditableConfig;
+
+    public bool CanEditManifest => HasEditableManifest && !ContextActionsLocked;
+    public bool CanEditConfig => HasEditableConfig && !ContextActionsLocked;
+    public bool CanRemoveMod => !ContextActionsLocked;
+
+    partial void OnHasEditableManifestChanged(bool value)
+        => OnPropertyChanged(nameof(CanEditManifest));
+
+    partial void OnHasEditableConfigChanged(bool value)
+        => OnPropertyChanged(nameof(CanEditConfig));
+
     /// <summary>The right-click actions, supplied by the page view model.</summary>
     public ModRowCommands? Commands { get; set; }
+
+    /// <summary>
+    /// When the mod's folder or archive last changed on disk, which is the closest thing to "when
+    /// was this updated" that works for every mod - including ones AIM did not install.
+    ///
+    /// Read once when the list loads rather than on each sort: it is a filesystem call per mod, and
+    /// re-sorting the view should not touch the disk at all.
+    /// </summary>
+    public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.MinValue;
 
     public bool IsFromNexus => !string.IsNullOrEmpty(NexusPageUrl);
 
@@ -90,6 +202,12 @@ public partial class ModModel : ObservableObject
         OnPropertyChanged(nameof(CanToggleFreeze));
         OnPropertyChanged(nameof(CanRestorePreviousVersion));
         OnPropertyChanged(nameof(CanOpenModFolder));
+        OnPropertyChanged(nameof(CanEditManifest));
+        OnPropertyChanged(nameof(CanEditConfig));
+        OnPropertyChanged(nameof(CanRemoveMod));
+        OnPropertyChanged(nameof(UpdateTooltip));
+        OnPropertyChanged(nameof(CanChooseVersion));
+        OnPropertyChanged(nameof(CanShowChangelog));
     }
 
     partial void OnNexusPageUrlChanged(string? value)
@@ -121,6 +239,7 @@ public partial class ModModel : ObservableObject
             _enabledBacking = value;
             Mod.SetInstalled(value);
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsPendingInstall));
             OnPropertyChanged(nameof(HasDuplicateWarning));
             OnPropertyChanged(nameof(InWarning));
             OnPropertyChanged(nameof(Warnings));
@@ -272,6 +391,20 @@ public partial class ModModel : ObservableObject
         OnPropertyChanged(nameof(ShowStatusRow));
     }
 
+    /// <summary>
+    /// Whether this exact version of the mod is in the rebuilt game archive right now.
+    ///
+    /// Deliberately separate from <see cref="_installState"/>, which records what happened to the
+    /// mod during *this session*. The two used to be read as one, so a mod installed a moment ago
+    /// was still counted as "will be added" - the selection summary only told the truth after AIM
+    /// was closed and reopened, because that reset the session state.
+    /// </summary>
+    [NotifyPropertyChangedFor(nameof(IsPendingInstall))]
+    [ObservableProperty] private bool _isInGameArchive;
+
+    /// <summary>Ticked, but not yet in the game archive.</summary>
+    public bool IsPendingInstall => Enabled && !IsInGameArchive;
+
     public void SetAlreadyInstalled(bool value)
     {
         if (value && _installState == ModInstallState.None)
@@ -299,6 +432,9 @@ public partial class ModModel : ObservableObject
     // errors); the expander re-reads them when told
     public void RefreshValidation()
     {
+        // A revalidation follows a reread of the manifest, so the version on the row may have moved
+        // with it - after an update, a rollback, or the user editing the manifest by hand.
+        RefreshVersion();
         OnPropertyChanged(nameof(InWarning));
         OnPropertyChanged(nameof(HasDuplicateWarning));
         OnPropertyChanged(nameof(HasConflictWarning));
@@ -336,7 +472,7 @@ public partial class ModModel : ObservableObject
         // language changed. Avoid notifying every status binding here; with
         // a large mod list those redundant notifications force Avalonia to
         // measure and arrange every row repeatedly.
-        OnPropertyChanged(nameof(Full));
+        RefreshVersion();
         OnPropertyChanged(nameof(Description));
         if (UpdateAvailable)
             OnPropertyChanged(nameof(UpdateTooltip));
@@ -360,22 +496,78 @@ public partial class ModModel : ObservableObject
     public string Full => string.Format(Resources.GUIModByAuthorWithVersion,
         Mod.GetDisplayName(Localization.LanguageCode), Mod.GetAuthor(), Mod.GetVersion());
 
+    /// <summary>Name and author. The version is shown separately so it can be spaced away from it.</summary>
+    public string Title => string.Format(Texts.GUIModByAuthor,
+        Mod.GetDisplayName(Localization.LanguageCode), Mod.GetAuthor());
+
+    /// <summary>
+    /// The version out of the mod's own manifest - what is actually on disk, which is not always
+    /// what the mod's Nexus page calls the same release.
+    ///
+    /// Authors often prefix their own "v", so one is only added when it is missing; "vv3.0" reads
+    /// like a typo in AIM rather than the mod's own numbering.
+    /// </summary>
+    public string InstalledVersion
+    {
+        get
+        {
+            var version = Mod.GetVersion();
+            if (string.IsNullOrWhiteSpace(version)) return "";
+
+            return version.StartsWith('v') || version.StartsWith('V')
+                ? version
+                : $"v{version}";
+        }
+    }
+
+    /// <summary>
+    /// Re-reads what the manifest says. Called after anything that can rewrite a mod in place - an
+    /// update, a rollback, or the user editing the manifest from the row's own menu.
+    /// </summary>
+    public void RefreshVersion()
+    {
+        OnPropertyChanged(nameof(Full));
+        OnPropertyChanged(nameof(Title));
+        OnPropertyChanged(nameof(InstalledVersion));
+    }
+
     public string Description => Mod.GetDisplayDescription(Localization.LanguageCode);
 
-    public string UpdateTooltip =>
-        LatestVersion is null
-            ? Texts.GUIUpdateMod
-            : $"{Texts.GUIUpdateMod}: v{LatestVersion}";
-
-    [RelayCommand]
-    private void OpenUpdateUrl()
+    public string UpdateTooltip
     {
-        var url = UpdateDownloadUrl ?? Mod.GetDownloadUrl();
-        if (!ExternalUrl.IsAllowed(url)) return;
-        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        get
         {
-            FileName        = url,
-            UseShellExecute = true
-        });
+            var version = LatestVersion is null ? "" : $": v{LatestVersion}";
+
+            // Say which of the two things the badge will actually do. They are very different -
+            // one replaces the mod, the other opens a browser - and the button looks identical.
+            return CanUpdateFromNexus
+                ? $"{Texts.GUIUpdateMod}{version}\n{Texts.GUIUpdateBadgeInstalls}"
+                : $"{Texts.GUIUpdateMod}{version}\n{Texts.GUIUpdateBadgeOpensPage}";
+        }
+    }
+
+    /// <summary>
+    /// What the update badge does.
+    ///
+    /// It used to always open the mod's web page, which made the one obvious button in the row the
+    /// only path that could not install anything - the automatic download lived in the right-click
+    /// menu, where nobody looked. When AIM knows which Nexus file the update is, the badge now runs
+    /// that update. Opening the page stays the fallback for a mod AIM only has a URL for, such as a
+    /// GitHub release found by the manifest check.
+    /// </summary>
+    [RelayCommand]
+    private void ApplyUpdate()
+    {
+        if (CanUpdateFromNexus && Commands is not null)
+        {
+            Commands.UpdateFromNexus.Execute(this);
+            return;
+        }
+
+        // Via ExternalUrl rather than ShellExecute directly: this is a synchronous command, and a
+        // machine with no https handler registered throws a Win32Exception that would take the app
+        // down rather than merely failing to open a page.
+        ExternalUrl.Open(UpdateDownloadUrl ?? Mod.GetDownloadUrl());
     }
 }

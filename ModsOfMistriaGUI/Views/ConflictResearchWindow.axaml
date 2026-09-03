@@ -1,0 +1,99 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.ConflictResearchWindow"
+        Width="760"
+        Height="620"
+        MinWidth="560"
+        MinHeight="320"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="18" RowDefinitions="Auto,Auto,*,Auto,Auto">
+
+    <SelectableTextBlock x:Name="IssueText" TextWrapping="Wrap" FontWeight="SemiBold" />
+
+    <TextBlock x:Name="StatusText" Grid.Row="1" TextWrapping="Wrap" Margin="0 8 0 0" Opacity="0.75" />
+
+    <!-- MinHeight so the scrolling area cannot be squeezed out of existence. The rows above and
+         below it size to their content, and on a short window a long issue description plus the
+         verdict row would otherwise take everything and leave the findings with no height at all. -->
+    <ScrollViewer Grid.Row="2" Margin="0 12 0 0" MinHeight="140" VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="14">
+
+        <!-- AIM's own answer, first, because it is the only part of this window that does not
+             require the user to go and read something. It is computed from the files rather than
+             from what anybody wrote about them, so it is available with no API key and no network. -->
+        <Border x:Name="DiagnosisSection"
+                IsVisible="False"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="14"
+                BorderBrush="#4c8bf5">
+          <StackPanel Spacing="8">
+            <TextBlock x:Name="DiagnosisHeader" FontWeight="SemiBold" />
+            <SelectableTextBlock x:Name="DiagnosisHeadline" TextWrapping="Wrap" FontSize="15" />
+            <StackPanel x:Name="DiagnosisReasons" Spacing="4" />
+            <TextBlock x:Name="DiagnosisCertainty" TextWrapping="Wrap" Opacity="0.75" FontStyle="Italic" />
+            <Expander x:Name="DiagnosisFilesExpander" Header="Files" IsExpanded="False">
+              <StackPanel x:Name="DiagnosisFiles" Spacing="6" Margin="0 6 0 0" />
+            </Expander>
+          </StackPanel>
+        </Border>
+
+        <!-- Things AIM can actually do, each one approved individually. -->
+        <StackPanel x:Name="FixesSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="FixesHeader" FontWeight="SemiBold" />
+          <TextBlock x:Name="FixesHint" TextWrapping="Wrap" Opacity="0.75" />
+          <StackPanel x:Name="FixesPanel" Spacing="8" />
+        </StackPanel>
+
+        <StackPanel x:Name="PatchesSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="PatchesHeader" FontWeight="SemiBold" />
+          <StackPanel x:Name="PatchesPanel" Spacing="6" />
+        </StackPanel>
+
+        <!-- What the pages say, split by which way it points. A sentence clearing the pairing and
+             one condemning it are opposite answers to the user's question and no longer share a
+             list. -->
+        <StackPanel x:Name="AgainstSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="AgainstHeader" FontWeight="SemiBold" Foreground="#2e7d32" />
+          <StackPanel x:Name="AgainstPanel" Spacing="10" />
+        </StackPanel>
+
+        <StackPanel x:Name="ForSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="ForHeader" FontWeight="SemiBold" Foreground="#c62828" />
+          <StackPanel x:Name="ForPanel" Spacing="10" />
+        </StackPanel>
+
+        <StackPanel x:Name="FindingsSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="FindingsHeader" FontWeight="SemiBold" />
+          <StackPanel x:Name="FindingsPanel" Spacing="10" />
+        </StackPanel>
+
+        <StackPanel x:Name="LinksSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="LinksHeader" FontWeight="SemiBold" />
+          <TextBlock x:Name="LinksHint" TextWrapping="Wrap" Opacity="0.75" />
+          <StackPanel x:Name="LinksPanel" Spacing="6" />
+        </StackPanel>
+      </StackPanel>
+    </ScrollViewer>
+
+    <StackPanel Grid.Row="3" Spacing="8" Margin="0 14 0 0">
+      <TextBlock x:Name="VerdictHeader" FontWeight="SemiBold" />
+      <TextBlock x:Name="VerdictHint" TextWrapping="Wrap" Opacity="0.75" />
+      <StackPanel x:Name="PatchLinkRow" Spacing="6" IsVisible="False">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <TextBlock x:Name="PatchLinkLabel" VerticalAlignment="Center" />
+          <TextBox x:Name="PatchLinkBox" Width="420" />
+        </StackPanel>
+        <TextBlock x:Name="PatchLinkError" TextWrapping="Wrap" IsVisible="False" />
+      </StackPanel>
+    </StackPanel>
+
+    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0 12 0 0">
+      <Button x:Name="NotAnIssueButton" />
+      <Button x:Name="PatchButton" />
+      <Button x:Name="IncompatibleButton" />
+      <Button x:Name="CancelButton" IsDefault="True" IsCancel="True" />
+    </StackPanel>
+  </Grid>
+</Window>

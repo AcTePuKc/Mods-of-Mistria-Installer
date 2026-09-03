@@ -7,12 +7,13 @@
         MinHeight="360"
         WindowStartupLocation="CenterOwner"
         CanResize="True">
-  <Grid Margin="18" RowDefinitions="Auto,* ,Auto">
+  <Grid Margin="18" RowDefinitions="Auto,*,Auto,Auto">
     <SelectableTextBlock x:Name="SummaryText" TextWrapping="Wrap" />
     <ScrollViewer Grid.Row="1" MaxHeight="560" VerticalScrollBarVisibility="Auto">
       <StackPanel x:Name="NotesPanel" Spacing="10" HorizontalAlignment="Stretch" />
     </ScrollViewer>
-    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+    <CheckBox x:Name="ShowDismissedToggle" Grid.Row="2" Margin="0 10 0 0" IsVisible="False" />
+    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0 10 0 0">
       <Button x:Name="CopyButton" IsDefault="False" />
       <Button x:Name="CloseButton" IsDefault="True" />
     </StackPanel>

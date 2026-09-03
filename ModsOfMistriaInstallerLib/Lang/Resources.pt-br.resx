@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -152,9 +152,6 @@
   </data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve">
     <value>O manifesto deve conter uma versão.</value>
-  </data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve">
-    <value>Esse mod requer uma versão mais nova do instalador.</value>
   </data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve">
     <value>A localização doThe Fields of Mistria não existe.</value>

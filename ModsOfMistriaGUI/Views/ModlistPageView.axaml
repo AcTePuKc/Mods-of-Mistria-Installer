@@ -27,6 +27,43 @@
                     <MenuItem Header="{Binding Texts.GUISaveLogFile}" Command="{Binding SaveLogFileCommand}" />
                     <MenuItem Header="{Binding Texts.GUIEnableAllMods}" Command="{Binding EnableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUIDisableAllMods}" Command="{Binding DisableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
+                    <!-- Beside the other bulk selection actions rather than out in the button row:
+                         it operates on the ticked mods, like they do, and it is destructive enough
+                         that it should not sit under the cursor's usual path. -->
+                    <MenuItem Header="{Binding Texts.GUIRemoveSelected}"
+                              ToolTip.Tip="{Binding Texts.GUIRemoveSelectedTooltip}"
+                              Command="{Binding RemoveSelectedModsCommand}"
+                              IsEnabled="{Binding !IsInstalling}" />
+                    <Separator />
+                    <!-- Mods downloaded by hand. A free Nexus account cannot use "Mod Manager
+                         Download" at all, so for a lot of users this is how every mod arrives. -->
+                    <MenuItem Header="{Binding Texts.GUIDropFolderMenu}"
+                              ToolTip.Tip="{Binding Texts.GUIDropFolderExplain}"
+                              IsEnabled="{Binding !IsInstalling}">
+                        <MenuItem Header="{Binding Texts.GUIDropFolderLink}"
+                                  Command="{Binding LinkDropFolderCommand}" />
+                        <MenuItem Header="{Binding Texts.GUIDropFolderScanNow}"
+                                  IsEnabled="{Binding HasDropFolders}"
+                                  Command="{Binding ImportDropFoldersNowCommand}" />
+                        <Separator />
+                        <MenuItem Header="{Binding Texts.GUIDropFolderNone}"
+                                  IsEnabled="False"
+                                  IsVisible="{Binding !HasDropFolders}" />
+                        <!-- Each watched folder is its own item, and clicking it stops watching -
+                             there is nothing else a linked folder can be asked to do. The command
+                             comes from the item, because a menu item's DataContext is the item. -->
+                        <MenuItem Header="{Binding Texts.GUIDropFolderTitle}"
+                                  ItemsSource="{Binding DropFolders}"
+                                  IsVisible="{Binding HasDropFolders}">
+                            <MenuItem.ItemContainerTheme>
+                                <ControlTheme TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                    <Setter Property="Header" Value="{Binding Path}" />
+                                    <Setter Property="Command" Value="{Binding Unlink}" />
+                                    <Setter Property="CommandParameter" Value="{Binding Path}" />
+                                </ControlTheme>
+                            </MenuItem.ItemContainerTheme>
+                        </MenuItem>
+                    </MenuItem>
                     <Separator />
                     <MenuItem Header="{Binding Texts.GUISettingsMenu}" Click="SettingsMenuClick" IsEnabled="{Binding !IsInstalling}" />
                     <Separator />
@@ -192,9 +229,33 @@
                             ToolTip.Tip="{Binding Texts.GUIClearModSearch}"
                             Command="{Binding ClearModSearchCommand}" />
                 </Grid>
+
+                <!-- View options. None of these touches the load order: they change which rows are
+                     shown and in what order they are shown, nothing else. Dragging is paused while
+                     any of them is on, because reordering a filtered or re-sorted list would have
+                     no obvious meaning for the real order underneath. -->
+                <StackPanel Orientation="Horizontal" Spacing="14" Margin="0 8 0 0">
+                    <CheckBox IsChecked="{Binding SortAlphabetically}"
+                              IsEnabled="{Binding !IsInstalling}"
+                              Content="{Binding Texts.GUISortAlphabetically}"
+                              ToolTip.Tip="{Binding Texts.GUISortAlphabeticallyTooltip}" />
+                    <CheckBox IsChecked="{Binding SortByRecentlyUpdated}"
+                              IsEnabled="{Binding !IsInstalling}"
+                              Content="{Binding Texts.GUISortRecentlyUpdated}"
+                              ToolTip.Tip="{Binding Texts.GUISortRecentlyUpdatedTooltip}" />
+                    <CheckBox IsChecked="{Binding ShowOnlyUpdatable}"
+                              IsEnabled="{Binding !IsInstalling}"
+                              Content="{Binding Texts.GUIShowOnlyUpdatable}"
+                              ToolTip.Tip="{Binding Texts.GUIShowOnlyUpdatableTooltip}" />
+                    <TextBlock VerticalAlignment="Center"
+                               Foreground="Gray"
+                               TextWrapping="Wrap"
+                               IsVisible="{Binding IsListReordered}"
+                               Text="{Binding Texts.GUIListReorderedNote}" />
+                </StackPanel>
                 <!-- List header: select everything at once, see what the selection means, and ask
                      for a load order that satisfies the mods' declared requirements. -->
-                <Grid ColumnDefinitions="Auto,*,Auto,Auto" Margin="0 12 0 2">
+                <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0 12 0 2">
                     <CheckBox Grid.Column="0"
                               Margin="0 0 4 0"
                               IsThreeState="True"
@@ -220,6 +281,63 @@
                             Content="{Binding Texts.GUIReportConflicts}"
                             ToolTip.Tip="{Binding Texts.GUIReportConflicts}"
                             Command="{Binding ReportConflictsCommand}" />
+
+                    <!-- Keybinds and update checking were reachable only from the gear menu, which
+                         is where settings live rather than where work happens. Both are things a
+                         user does while looking at the list, so they belong beside it. -->
+                    <Button Grid.Column="4"
+                            Margin="8 0 0 0"
+                            Padding="8 2"
+                            Content="{Binding Texts.GUIKeybindsButton}"
+                            ToolTip.Tip="{Binding Texts.GUIKeybindsButtonTooltip}"
+                            Command="{Binding ShowKeybindsCommand}" />
+
+                    <!-- Anything AIM cannot do to a mod - editing a file by hand, dropping one in,
+                         checking what actually landed - starts with opening this folder, and until
+                         now that meant right-clicking some other mod to get there. -->
+                    <Button Grid.Column="5"
+                            Margin="8 0 0 0"
+                            Padding="8 2"
+                            Content="{Binding Texts.GUIOpenModsFolderButton}"
+                            ToolTip.Tip="{Binding Texts.GUIOpenModsFolderButtonTooltip}"
+                            Command="{Binding OpenModsFolderCommand}" />
+
+                    <SplitButton Grid.Column="6"
+                                 Margin="8 0 0 0"
+                                 Padding="8 2"
+                                 Content="{Binding Texts.GUICheckUpdatesButton}"
+                                 ToolTip.Tip="{Binding Texts.GUICheckUpdatesButtonTooltip}"
+                                 IsEnabled="{Binding !IsInstalling}"
+                                 Command="{Binding CheckSelectedModsForUpdatesCommand}">
+                        <SplitButton.Flyout>
+                            <MenuFlyout>
+                                <MenuItem Header="{Binding Texts.GUICheckSelectedForUpdates}"
+                                          Command="{Binding CheckSelectedModsForUpdatesCommand}" />
+                                <MenuItem Header="{Binding Texts.GUICheckAllForUpdates}"
+                                          Command="{Binding CheckAllModsForUpdatesCommand}" />
+                                <Separator />
+                                <MenuItem Header="{Binding Texts.GUIUpdateAllNow}"
+                                          ToolTip.Tip="{Binding Texts.GUIUpdateAllNowTooltip}"
+                                          IsEnabled="{Binding HasPendingUpdates}"
+                                          Command="{Binding UpdateAllPendingCommand}" />
+                            </MenuFlyout>
+                        </SplitButton.Flyout>
+                    </SplitButton>
+
+                    <!-- 150 mods is a long way to drag a scrollbar. These jump the list; they do
+                         not select or reorder anything. -->
+                    <Button Grid.Column="7"
+                            Margin="8 0 0 0"
+                            Padding="8 2"
+                            Content="↑"
+                            Click="ScrollModsToTopClick"
+                            ToolTip.Tip="{Binding Texts.GUIScrollToTop}" />
+                    <Button Grid.Column="8"
+                            Margin="4 0 0 0"
+                            Padding="8 2"
+                            Content="↓"
+                            Click="ScrollModsToBottomClick"
+                            ToolTip.Tip="{Binding Texts.GUIScrollToBottom}" />
                 </Grid>
             </StackPanel>
 
@@ -274,6 +392,22 @@
                                                       IsEnabled="{Binding CanOpenModFolder}"
                                                       Command="{Binding Commands.OpenModFolder}"
                                                       CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIEditManifest}"
+                                                      ToolTip.Tip="{Binding Texts.GUIEditManifestTooltip}"
+                                                      IsEnabled="{Binding CanEditManifest}"
+                                                      Command="{Binding Commands.EditManifest}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIEditConfig}"
+                                                      ToolTip.Tip="{Binding Texts.GUIEditConfigTooltip}"
+                                                      IsEnabled="{Binding CanEditConfig}"
+                                                      Command="{Binding Commands.EditConfig}"
+                                                      CommandParameter="{Binding}" />
+                                            <Separator />
+                                            <MenuItem Header="{Binding Texts.GUIRemoveMod}"
+                                                      ToolTip.Tip="{Binding Texts.GUIRemoveModTooltip}"
+                                                      IsEnabled="{Binding CanRemoveMod}"
+                                                      Command="{Binding Commands.RemoveMod}"
+                                                      CommandParameter="{Binding}" />
                                         </MenuFlyout>
                                     </Grid.ContextFlyout>
                                     <Grid.Styles>
@@ -322,9 +456,59 @@
                                                    IsVisible="{Binding IsFrozen}"
                                                    VerticalAlignment="Center"
                                                    ToolTip.Tip="{Binding Texts.GUIModFrozenTooltip}" />
-                                        <!-- Update available badge -->
+                                        <!-- AIM has changed a file inside this mod. Deliberately
+                                             loud: the whole point is that nobody discovers it by
+                                             accident weeks later. The tooltip lists every edit and
+                                             says where the untouched copy is. -->
+                                        <Border IsVisible="{Binding WasEditedByAim}"
+                                                Background="#b26a00"
+                                                CornerRadius="4"
+                                                Padding="5 1"
+                                                VerticalAlignment="Center"
+                                                ToolTip.Tip="{Binding EditedTooltip}">
+                                            <TextBlock Text="{Binding Texts.GUIModEditedBadge}"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Center" />
+                                        </Border>
+                                        <!-- Roll back to any archived copy, not only the newest.
+                                             Hidden until there is something to roll back to. -->
+                                        <Button IsVisible="{Binding CanChooseVersion}"
+                                                Padding="5 1"
+                                                VerticalAlignment="Center"
+                                                Content="{Binding Texts.GUIVersionsBadge}"
+                                                ToolTip.Tip="{Binding Texts.GUIVersionsTooltip}">
+                                            <Button.Flyout>
+                                                <!-- Plain buttons rather than a MenuFlyout with an
+                                                     ItemContainerTheme: the theme form needs a
+                                                     StaticResource lookup for the MenuItem type,
+                                                     and this needs nothing beyond what is here. -->
+                                                <Flyout>
+                                                    <StackPanel MaxWidth="360" Spacing="4">
+                                                        <TextBlock Text="{Binding Texts.GUIVersionsHeader}"
+                                                                   TextWrapping="Wrap"
+                                                                   Opacity="0.75" />
+                                                        <ItemsControl ItemsSource="{Binding AvailableBackups}">
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Button Content="{Binding Label}"
+                                                                            Command="{Binding Restore}"
+                                                                            CommandParameter="{Binding}"
+                                                                            Margin="0 1"
+                                                                            HorizontalAlignment="Stretch"
+                                                                            HorizontalContentAlignment="Left" />
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </StackPanel>
+                                                </Flyout>
+                                            </Button.Flyout>
+                                        </Button>
+
+                                        <!-- Update available badge. Installs the update when AIM
+                                             knows which Nexus file it is; opens the mod's page when
+                                             all it has is a URL. -->
                                         <Button IsVisible="{Binding UpdateAvailable}"
-                                                Command="{Binding OpenUpdateUrlCommand}"
+                                                Command="{Binding ApplyUpdateCommand}"
                                                 Padding="5 1"
                                                 Background="#2e7d32"
                                                 Foreground="White"

@@ -20,6 +20,16 @@ public record NexusFileInfo(int FileId, string FileName, string Name, string? Ve
 
 public record NexusRateLimit(int? HourlyRemaining, int? DailyRemaining);
 
+/// <summary>The text of a mod's Nexus page, as far as the public API exposes it.</summary>
+public record NexusModOverview(string Name, string Summary, string Description, string Version);
+
+/// <summary>One version's release notes, as the mod's author wrote them.</summary>
+public record ModChangelogEntry(string Version, List<string> Lines)
+{
+    /// <summary>The notes as one block, for a tooltip that cannot hold a list.</summary>
+    public string Text => string.Join("\n", Lines.Select(line => $"• {line}"));
+}
+
 /// <summary>
 /// Raised for any Nexus API failure that the user can act on. <see cref="StatusCode"/> is
 /// null for transport-level problems.
@@ -28,6 +38,15 @@ public class NexusApiException(string message, HttpStatusCode? statusCode = null
     : Exception(message, inner)
 {
     public HttpStatusCode? StatusCode { get; } = statusCode;
+
+    /// <summary>
+    /// True only when the remedy really is the website's "Mod Manager Download" button.
+    ///
+    /// Every other failure - a dead CDN mirror, a corrupt archive, a folder AIM could not write -
+    /// used to be reported with the same "open the mod page" prompt, which sent people off to
+    /// download by hand for problems that had nothing to do with their account.
+    /// </summary>
+    public bool RequiresWebsiteDownload { get; init; }
 }
 
 /// <summary>
@@ -101,17 +120,73 @@ public class NexusApiClient
     }
 
     /// <summary>
+    /// A mod's release notes, newest version first.
+    ///
+    /// Nexus returns an object keyed by version, whose ordering is not defined, so the versions are
+    /// sorted here with the same comparison used for update checks rather than trusted as they
+    /// arrive. A mod whose author never wrote release notes returns an empty list, which is a
+    /// normal answer and not an error.
+    /// </summary>
+    public async Task<List<ModChangelogEntry>> GetChangelogsAsync(
+        string game, int modId, CancellationToken ct = default)
+    {
+        JObject json;
+        try
+        {
+            json = await GetJsonAsync($"{BaseUrl}/games/{game}/mods/{modId}/changelogs.json", ct);
+        }
+        catch (NexusApiException exception)
+        {
+            // A mod with no changelog at all answers 404. That is "nothing to show", not a failure
+            // worth surfacing to the user.
+            if (exception.StatusCode == HttpStatusCode.NotFound) return [];
+            throw;
+        }
+
+        var entries = new List<ModChangelogEntry>();
+
+        foreach (var property in json.Properties())
+        {
+            var lines = (property.Value as JArray ?? [])
+                .Select(line => line.ToString().Trim())
+                .Where(line => line.Length > 0)
+                .ToList();
+
+            if (lines.Count > 0) entries.Add(new ModChangelogEntry(property.Name, lines));
+        }
+
+        // Newest first, by the same version rules update checks use - so "1.10" sorts above "1.9".
+        entries.Sort((left, right) =>
+            NexusUpdateService.CompareVersionsNewestFirst(left.Version, right.Version));
+
+        return entries;
+    }
+
+    /// <summary>
+    /// Every file on a mod's page, in every category.
+    ///
+    /// The caller needs the whole list, not just the main files: a mod folder may have come from an
+    /// optional or miscellaneous file, and comparing that against the main file would report an
+    /// update for ever.
+    /// </summary>
+    public async Task<List<NexusFileInfo>> GetFilesAsync(string game, int modId, CancellationToken ct = default)
+    {
+        var json = await GetJsonAsync($"{BaseUrl}/games/{game}/mods/{modId}/files.json", ct);
+
+        return (json["files"] as JArray ?? [])
+            .OfType<JObject>()
+            .Select(ReadFile)
+            .ToList();
+    }
+
+    /// <summary>
     /// The file a visitor to the mod page would download: the author's primary file if they marked
     /// one, otherwise the newest file in the MAIN category. Update and optional files are ignored -
     /// they are patches and extras, not the mod itself.
     /// </summary>
     public async Task<NexusFileInfo?> GetLatestMainFileAsync(string game, int modId, CancellationToken ct = default)
     {
-        var json = await GetJsonAsync($"{BaseUrl}/games/{game}/mods/{modId}/files.json", ct);
-
-        var files = (json["files"] as JArray ?? [])
-            .OfType<JObject>()
-            .Select(ReadFile)
+        var files = (await GetFilesAsync(game, modId, ct))
             .Where(file => file.Category.Equals("MAIN", StringComparison.OrdinalIgnoreCase))
             .ToList();
 
@@ -135,6 +210,34 @@ public class NexusApiClient
                 ? DateTimeOffset.FromUnixTimeSeconds(stamp)
                 : DateTimeOffset.MinValue
         };
+
+    /// <summary>
+    /// The prose on a mod's page: its one-line summary and its full description.
+    ///
+    /// This is what the conflict researcher reads, because it is the only part of a mod page the
+    /// public API exposes. Authors put "incompatible with X", "requires the patch below" and
+    /// "works fine alongside Y" here more often than anywhere else, so it answers a useful share of
+    /// compatibility questions on its own. Bug reports and comments are web pages only - the API has
+    /// no endpoint for either - so those stay a link the user opens.
+    /// </summary>
+    public async Task<NexusModOverview?> GetModOverviewAsync(string game, int modId, CancellationToken ct = default)
+    {
+        try
+        {
+            var json = await GetJsonAsync($"{BaseUrl}/games/{game}/mods/{modId}.json", ct);
+            return new NexusModOverview(
+                json.Value<string>("name") ?? "",
+                json.Value<string>("summary") ?? "",
+                json.Value<string>("description") ?? "",
+                json.Value<string>("version") ?? "");
+        }
+        catch (NexusApiException exception)
+        {
+            // The researcher degrades to "we could not read the page, here is a link to it".
+            Logger.Log($"Could not read the Nexus page for {game}/{modId}: {exception.Message}");
+            return null;
+        }
+    }
 
     public async Task<string?> GetModNameAsync(NxmLink link, CancellationToken ct = default)
     {
@@ -168,10 +271,17 @@ public class NexusApiClient
         }
         catch (NexusApiException e) when (e.StatusCode == HttpStatusCode.Forbidden && !link.HasDownloadToken)
         {
+            // Nexus issues direct download links only to Premium accounts, so this is the usual
+            // answer for a free one. It is not the only one - an expired or revoked API key gives
+            // the same status - so Nexus's own words are kept rather than replaced with a guess.
             throw new NexusApiException(
-                "Nexus refused to generate a download link. Free accounts can only download through the " +
-                "\"Mod Manager Download\" button on the website - a link opened by hand has no download token.",
-                e.StatusCode, e);
+                "Nexus would not issue a download link for this file. Direct downloads need a Premium " +
+                "account; on a free account, use the \"Mod Manager Download\" button on the mod's page. " +
+                $"If you do have Premium, check your API key is still valid.\r\n\r\nNexus said: {e.Message}",
+                e.StatusCode, e)
+            {
+                RequiresWebsiteDownload = true
+            };
         }
 
         var urls = json

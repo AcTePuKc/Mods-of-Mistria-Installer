@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -106,7 +106,6 @@
   <data name="CoreManifestHasNoAuthor" xml:space="preserve"><value>資訊檔中沒有作者。</value></data>
   <data name="CoreManifestHasNoName" xml:space="preserve"><value>資訊檔中沒有名稱。</value></data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve"><value>資訊檔中沒有版本。</value></data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>此模組需要較新的 AIM 版本。</value></data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve"><value>Fields of Mistria 的位置不存在。</value></data>
   <data name="CoreModDirectoryDoesNotExist" xml:space="preserve"><value>模組資料夾不存在。</value></data>
   <data name="CoreGeneratingInformationForMod" xml:space="preserve"><value>正在產生模組資訊：{0}</value></data>

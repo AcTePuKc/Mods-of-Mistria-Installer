@@ -157,7 +157,7 @@
     <value>The manifest must contain a version.</value>
   </data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve">
-    <value>This mod requires a newer version of the installer.</value>
+    <value>This mod asks for installer {0}, and AIM implements {1}. It will probably still work — try it, and if something is wrong, check the mod's page for a version note.</value>
   </data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve">
     <value>The Fields of Mistria location does not exist.</value>
@@ -277,7 +277,7 @@
     <value>During install, AIM will attempt to remove an entry from the computer's Registry. As part of this, you'll be asked to grant admin access to the "Registry Console Tool".</value>
   </data>
   <data name="CoreErrorReadingVersionForMod" xml:space="preserve">
-    <value>An error occured when reading the version for the mod: (0)</value>
+    <value>An error occurred when reading the version for the mod: {0}</value>
   </data>
   <data name="CoreErrorStoreItemHasNoStore" xml:space="preserve">
     <value>Item has not been assigned to a store.</value>
@@ -336,6 +336,7 @@
   <data name="GUIModByAuthorWithVersion" xml:space="preserve">
     <value>{0} by {1} - Version {2}</value>
   </data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} by {1}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve">
     <value>Could not find Fields of Mistria location. Try placing this in the same folder as Fields of Mistria.</value>
   </data>
@@ -746,4 +747,182 @@ Open download page(s) in browser?</value></data>
   <data name="GUISettingsApiKeyButton" xml:space="preserve"><value>Set or change Nexus API key…</value></data>
   <data name="GUISettingsNexusNote" xml:space="preserve"><value>The same key is used in the Nexus downloads menu.</value></data>
   <data name="GUISettingsSelectModsFolderTitle" xml:space="preserve"><value>Select mods folder</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Edit the mod's manifest</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Opens manifest.json (or manifest.toml) in your usual text editor. Only available for mods that are folders — a mod still in a .zip or .rar has no file to edit.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Edit the mod's config</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Opens the mod's config file in your usual text editor. Greyed out when the mod has no config file AIM can find.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Could not open {0}: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Remove mod…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Takes the mod out of your mods folder. AIM asks first, and sends the files to the Recycle Bin rather than erasing them.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Remove mod</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Move "{0}" v{1} to the Recycle Bin?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;It is taken out of your mods folder. You can put it back from the Recycle Bin if you change your mind. Files it has already installed into the game stay until you next install or uninstall.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Delete "{0}" v{1} permanently?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;This system has no recycle bin AIM can use, so the mod's files are erased. This cannot be undone.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>"{0}" could not be removed: {1}&#xD;&#xA;&#xD;&#xA;It may be open in another program, or the game may still be running.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Remove selected…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Removes every ticked mod at once, via the Recycle Bin, after showing you the list.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>No mods are ticked, so there is nothing to remove.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Move {0} mod(s) to the Recycle Bin?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;They are taken out of your mods folder and can be put back from the Recycle Bin. Files they have already installed into the game stay until you next install or uninstall.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Delete {0} mod(s) permanently?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;This system has no recycle bin AIM can use, so their files are erased. This cannot be undone.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>…and {0} more.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Removed {0} of {1} mod(s).</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>These could not be removed: {0}&#xD;&#xA;&#xD;&#xA;They may be open in another program, or the game may still be running.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows would not move it to the Recycle Bin</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>"{0}" is no longer in your mods folder. The list has been refreshed.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Mark this as something you have checked and are happy with. AIM keeps it out of the way until one of the mods involved changes version, then asks again.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Show issues I have marked as fine ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Marked as fine</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[marked as fine]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Files they both write</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>wins now</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Make this one win</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Moves this mod below the others it shares files with, so its versions of those files are the ones installed. The load order in the list behind changes immediately.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>"{0}" now loads last of the mods sharing these files, so its copies win.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Find a fix…</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Reads what these mods' Nexus pages say about each other, and opens their bug reports, comments and a web search so you can settle whether this actually matters.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Rebind…</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Moves this mod onto a key nothing else is using, by editing its own binding in {0}. The mod is backed up first, and the change reaches the game on your next install.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Rebind a shortcut</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Move "{0}" from {1} to {2}?&#xD;&#xA;&#xD;&#xA;AIM edits the mod's own binding and keeps a backup you can restore from the right-click menu. The change reaches the game the next time you install.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>"{0}" now uses {1}, updated in {2} file(s).&#xD;&#xA;&#xD;&#xA;Install again for the change to reach the game.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>"{0}" could not be rebound: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>"{0}" now uses {1} instead of {2}. Install again for the change to reach the game.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Solved — "{0}" moved to {1}, so nothing shares this shortcut any more. Install again for the change to reach the game.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>This mod is still a .zip or .rar. Extract it into the mods folder first, and AIM can edit its binding.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>This mod does not declare the key as a named binding, so AIM cannot change it safely. Check the mod's own in-game settings or its config file.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Every function key is already used by a selected mod, so there is nowhere free to move this one.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM could not read this mod's files.</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Find a fix</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Reading what these mods' pages say…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Set a Nexus API key in Settings and AIM can read these mods' pages for you. Without one, the links below are still the fastest way to check.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Nothing on these mods' descriptions, bug reports or comments mentions the others, or patches, or compatibility. That is not an answer either way — AIM only reads the first page of each, so the links below are still worth a look.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} thing(s) on these mods' pages look relevant.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM could not read the mod pages: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>What the mod pages say</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Check these yourself</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM reads the first page of these itself, but it only sees what a signed-out visitor sees and never the whole thread. These open the real pages.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Open this mod's page</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Open the patch</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>What did you find?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Recording this keeps the answer with the issue, so you do not have to work it out again next time.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Link to the patch (optional):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Not a real conflict</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>They share files but it does not matter in practice. Marks the issue as fine and hides it until either mod updates.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>A patch exists</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Someone has published a compatibility patch. Click once to add its link, then again to record it. Marks the issue as fine.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>They are incompatible</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Records the finding but leaves the issue showing, because you still need to turn one of them off.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Still deciding</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Record the patch</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>That does not look like an https link. Paste the patch's web address, or leave the box empty.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Sort A–Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Sorts the list by name so you can find a mod quickly. This is a view only — your load order is untouched, and turning it off shows the real order again. Dragging is paused while it is on.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Sort by recently updated</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Newest first, by when each mod's folder last changed on disk — so anything you have just installed or updated comes to the top. A view only: your load order is untouched, and dragging is paused while it is on.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Only mods needing attention</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Shows only mods with an update waiting, and mods the last check could not reach — no Nexus association, a network problem, or a page that no longer exists.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Viewing only — load order unchanged, dragging paused</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Jump to the top of the list</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Jump to the bottom of the list</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) is also used by {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Release notes</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Release notes — hover to load, click to read the full history.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>What's new in {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Click to read every version.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>This mod's author has not posted any release notes.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM could not read this mod's release notes. It needs a Nexus API key, and the mod has to be one AIM knows the Nexus page for.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} version(s) with notes, newest first.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versions</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Edited by AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>That patch has no main file AIM can install on its own. Its files are open in your browser — pick the one you want and use "Mod Manager Download".</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>The patch download was cancelled.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM has changed a file inside this mod to resolve a conflict. The files on disk are no longer exactly the ones the author published.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>The mod as it was before the change is in its Versions dropdown. Restore it there, or right-click the mod and choose "Undo AIM's edits".</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Undo AIM's edits</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIM's reading of the files</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM read every file these mods share.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM could not read every file, so treat this as a reading rather than a fact.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>What AIM can do about it</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Nothing here happens until you choose it, and every one of these can be undone.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Patches that already exist</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Approve and apply</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Done: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>That did not work: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Evidence this is not a problem</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Evidence this is a problem</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Other things the mod descriptions say</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>This changes files inside a mod you did not write. AIM copies the whole mod into its Versions dropdown first and marks the row as edited. Continue?</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Earlier copies of this mod AIM kept when it updated. Pick one to roll back to it.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Roll back to:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Click to download and install it. Your current version is kept as a backup.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Click to open the download page — AIM does not know which Nexus file this is. Right-click the mod and use "Associate with Nexus…" to let it install these automatically.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus reports your account ({0}) as Premium, so this refusal is not about your account tier — most often it means the API key has been revoked or regenerated. Set it again from the gear menu.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus reports your account ({0}) as a free account. Direct downloads are a Premium feature, so the website button is the way in.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>No Nexus API key is set, so AIM cannot download anything directly.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM could not check your Nexus account: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Keybinds</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Every key and controller button your mods have bound, in one list — with clashes in red and editing in place.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Mod keybinds</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>What your mods are bound to right now. Mods keep these in the game's own config folder rather than in the mods folder, so a mod update does not lose them — but a mod can still reset its own settings, and AIM will offer to put your choice back when it does.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} bindings, {1} of them clashing.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Only show clashes</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM could not read your mods' keybinds: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Reading what your mods are bound to…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>None of your selected mods have a keybind AIM can see. Mods that build their bindings at runtime do not expose them until the game has run.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Nothing is clashing.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM could not find the game's config folder, so it is showing the defaults your mods ship with. Run the game once and these become your real bindings.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria is running. Editing is off, because the game rewrites every mod's settings when it exits and would overwrite anything changed here. Close the game and press Refresh.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>also used by {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>The same input is bound in:</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>the mod's default</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>This mod has not written its settings yet, so this is the default compiled into it. Run the game once, or change it in the mod's own settings, and AIM can edit it here.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(not bound)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>the game will not accept this</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>"{0}" is not a name the game recognises, so this mod is falling back to its default. Set it to something from the list to fix that.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM could not write to {0}. It may be open in another program, or the game may have started.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Choose a key or button</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Key or controller button</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Press a key to capture it</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Press a key now… (Escape to stop)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>This will be saved as: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Controller buttons are chosen from the list — AIM cannot read a controller. The list holds every name the game accepts; ALT, the lock keys and the numpad are not among them, and a mod set to one of those silently falls back to its default.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Save</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Unbind</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Empties the setting. Most mods treat that as "off"; a few fall back to their default instead.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (the mod's default — not configured yet)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Keybinds were changed</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} keybind(s) you chose have been changed by the mods themselves — usually after an update reset their settings.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Put your choices back? Settings the update removed altogether are not restored.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…and {0} more.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Restored {0} keybind(s). Start the game for them to take effect.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Check updates</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Checks the selected mods against their Nexus pages. Use the arrow for all mods, or to install everything that has an update.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Checked {0} mod(s): {1} have an update, {2} could not be checked.&#xD;&#xA;&#xD;&#xA;Download and install those updates now? Each mod's current version is kept as a backup you can restore.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Update everything that has an update</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Downloads and installs every pending update in turn, keeping each mod's current version as a restorable backup.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Update mods</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Nothing has a pending update. Check for updates first.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Update {0} mod(s)?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Each mod's current version is kept as a backup you can restore from its right-click menu.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Updating {0} of {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Updated {0} of {1} mod(s).</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>These could not be downloaded directly and need their Nexus page: {0}&#xD;&#xA;&#xD;&#xA;Nexus only issues direct download links to Premium accounts. For a free account, open the mod's page and use its "Mod Manager Download" button — AIM picks that up if it is registered to handle those links.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Nothing to report. AIM found no shared files, shortcut clashes, missing requirements or compatibility warnings among the mods you have selected.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>You marked this as not a real conflict.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>You found a patch for this.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>You found these to be incompatible — turn one of them off.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Solved by rebinding: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Watched download folders</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mods you download by hand into a watched folder are moved into your mods folder and appear in the list on their own.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Watch a folder…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Choose a folder to watch for downloaded mods</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Check watched folders now</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>No folders are being watched</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Stop watching this folder</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Watched folders</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Nothing new to bring in. AIM only moves archives and folders that contain a manifest, so anything else in there is left alone.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Brought in {0} mod(s) from a watched folder.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Moved into your mods folder:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>The mods folder could not be found, so there is nothing to open.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Could not open the mods folder: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods folder</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Open the Fields of Mistria mods folder in your file manager</value></data>
 </root>

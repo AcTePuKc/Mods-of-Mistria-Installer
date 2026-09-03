@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -106,7 +106,6 @@
   <data name="CoreManifestHasNoAuthor" xml:space="preserve"><value>В манифесте должен быть указан автор (author).</value></data>
   <data name="CoreManifestHasNoName" xml:space="preserve"><value>В манифесте должно быть указано название (name).</value></data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve"><value>В манифесте должна быть указана версия (version).</value></data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Для этого мода требуется более новая версия установщика.</value></data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve"><value>Путь к игре Fields of Mistria не существует.</value></data>
   <data name="CoreModDirectoryDoesNotExist" xml:space="preserve"><value>Путь к папке мода не существует.</value></data>
   <data name="CoreGeneratingInformationForMod" xml:space="preserve"><value>Генерация информации для {0}</value></data>

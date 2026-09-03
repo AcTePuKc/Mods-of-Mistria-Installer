@@ -24,7 +24,15 @@ public record NxmDownloadResult(
     string FileName,
     List<InstalledModFolder> Installed,
     string? Error = null,
-    bool Cancelled = false);
+    bool Cancelled = false)
+{
+    /// <summary>
+    /// True only when the fix is to use the mod page's "Mod Manager Download" button - Nexus
+    /// declining to issue a direct link. Any other failure has a different remedy and should not be
+    /// answered by sending the user off to download by hand.
+    /// </summary>
+    public bool RequiresWebsiteDownload { get; init; }
+}
 
 /// <summary>
 /// Turns a clicked "Mod Manager Download" link into an installed mod folder.
@@ -57,7 +65,8 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
         IProgress<NxmDownloadProgress>? progress = null,
         Func<List<string>, Task<bool>>? confirmOverwrite = null,
         CancellationToken ct = default,
-        string? previousVersion = null)
+        string? previousVersion = null,
+        string? replacePath = null)
     {
         var fileName = $"{link.ModId}-{link.FileId}";
         string? temporaryFile = null;
@@ -96,7 +105,7 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
 
             var (installed, abandoned) = await InstallAsync(
                 temporaryFile, modsLocation, fileName, confirmOverwrite, ct,
-                new ModBackupStore(modsLocation), previousVersion);
+                new ModBackupStore(modsLocation), previousVersion, replacePath);
             if (abandoned)
             {
                 progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Cancelled, "Install cancelled"));
@@ -105,7 +114,7 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
 
             // Remember where each folder came from, so it can be checked for updates, opened on its
             // page, or frozen later on.
-            RecordProvenance(modsLocation, link, fileInfo, installed);
+            RecordProvenance(modsLocation, link, fileInfo, installed, replacePath);
 
             var summary = installed.Count == 1
                 ? $"Installed {installed[0].Name}"
@@ -123,7 +132,8 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
         }
         catch (Exception e) when (e is NexusApiException or ModArchiveException)
         {
-            return Failure(fileName, e.Message, progress);
+            return Failure(fileName, e.Message, progress,
+                (e as NexusApiException)?.RequiresWebsiteDownload ?? false);
         }
         catch (Exception e)
         {
@@ -208,17 +218,28 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
     }
 
     private static void RecordProvenance(
-        string modsLocation, NxmLink link, NexusFileInfo fileInfo, List<InstalledModFolder> installed)
+        string modsLocation, NxmLink link, NexusFileInfo fileInfo, List<InstalledModFolder> installed,
+        string? replacePath = null)
     {
         if (installed.Count == 0) return;
 
         try
         {
             var index = new NexusInstallIndex(modsLocation);
+            var frozen = replacePath is not null && index.IsFrozen(replacePath);
+
             foreach (var folder in installed)
                 index.Record(folder.Path, new NexusInstallRecord(
                     link.Game, link.ModId, fileInfo.FileId, fileInfo.FileName,
-                    fileInfo.Version, DateTimeOffset.UtcNow));
+                    fileInfo.Version, DateTimeOffset.UtcNow, frozen));
+
+            // A mod installed as Foo.zip becomes a Foo folder, which is a different index key. The
+            // old entry would otherwise keep claiming a mod that is no longer on disk, and would be
+            // adopted by whatever later takes that name.
+            if (replacePath is not null &&
+                installed.All(folder => !NexusInstallIndex.KeyFor(folder.Path)
+                    .Equals(NexusInstallIndex.KeyFor(replacePath), StringComparison.Ordinal)))
+                index.Forget(replacePath);
         }
         catch (Exception e)
         {
@@ -239,13 +260,14 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
         Func<List<string>, Task<bool>>? confirmOverwrite,
         CancellationToken ct,
         ModBackupStore? backups = null,
-        string? previousVersion = null)
+        string? previousVersion = null,
+        string? replacePath = null)
     {
         try
         {
             var installed = await Task.Run(
                 () => ModArchiveInstaller.Install(archivePath, modsLocation, fileName,
-                    ArchiveConflictBehaviour.Fail, backups, previousVersion), ct);
+                    ArchiveConflictBehaviour.Fail, backups, previousVersion, replacePath), ct);
             return (installed, false);
         }
         catch (ModArchiveConflictException conflict)
@@ -257,17 +279,24 @@ public class NxmDownloadService(NexusSettings settings, HttpClient? downloadClie
 
             var installed = await Task.Run(() => ModArchiveInstaller.Install(
                 archivePath, modsLocation, fileName, ArchiveConflictBehaviour.Replace,
-                backups, previousVersion), ct);
+                backups, previousVersion, replacePath), ct);
             return (installed, false);
         }
     }
 
     // ── Helpers ──────────────────────────────────────────────────────────────────
 
-    private static NxmDownloadResult Failure(string fileName, string error, IProgress<NxmDownloadProgress>? progress)
+    private static NxmDownloadResult Failure(
+        string fileName,
+        string error,
+        IProgress<NxmDownloadProgress>? progress,
+        bool requiresWebsiteDownload = false)
     {
         progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Failed, error));
-        return new NxmDownloadResult(false, fileName, [], error);
+        return new NxmDownloadResult(false, fileName, [], error)
+        {
+            RequiresWebsiteDownload = requiresWebsiteDownload
+        };
     }
 
     private static string SafeFileName(string name) =>
