@@ -11,6 +11,18 @@ public enum FixKind
     /// <summary>Install a mod that exists to make these two work together.</summary>
     InstallPatch,
 
+    /// <summary>
+    /// The fix is already in the mod list and in a position to work. Nothing to install; the issue
+    /// can be closed, with a note saying which mod is handling it.
+    /// </summary>
+    AlreadyFixed,
+
+    /// <summary>
+    /// The fix is already in the mod list but is switched off, or loads before the mods it patches.
+    /// Turning it on and moving it last is the whole of the work.
+    /// </summary>
+    UseExistingFix,
+
     /// <summary>Take one mod's copy of a contested file out of play, keeping the rest of the mod.</summary>
     SetAsideFile,
 
@@ -44,16 +56,27 @@ public sealed record FixPlan(
     public string? TargetModId { get; init; }
 
     public IReadOnlyList<string> TargetFiles { get; init; } = [];
+
+    /// <summary>
+    /// For <see cref="FixKind.AlreadyFixed"/> and <see cref="FixKind.UseExistingFix"/>: the mod the
+    /// user already has that this plan is about.
+    /// </summary>
+    public InstalledFix? ExistingFix { get; init; }
 }
 
 /// <summary>
 /// Turns a diagnosis and whatever the research turned up into the short list of things that would
 /// actually resolve the issue.
 ///
-/// The order is the order a person would try them: if nothing is wrong, say so and stop; if
-/// somebody has already written the patch, use theirs rather than improvising; if it comes down to
-/// which mod wins, that is a preference and the user picks; and only when none of those apply is
-/// editing somebody else's mod on the table at all.
+/// The order is the order a person would try them: if the fix is already sitting in the mod list,
+/// say so before proposing a download; if nothing is wrong, say so and stop; if somebody has
+/// already written the patch, use theirs rather than improvising; if it comes down to which mod
+/// wins, that is a preference and the user picks; and only when none of those apply is editing
+/// somebody else's mod on the table at all.
+///
+/// That first step is why <see cref="InstalledFixScanner"/> runs at all. Offering to install a
+/// patch the user installed last month is not merely redundant - it invites them to reinstall a
+/// working setup to fix a problem the thing they already have was quietly preventing.
 ///
 /// That last option is offered narrowly and never chosen automatically. Setting a file aside keeps
 /// the rest of the mod working and is undone by restoring the snapshot AIM takes first, but it
@@ -62,21 +85,77 @@ public sealed record FixPlan(
 /// </summary>
 public static class FixPlanner
 {
+    /// <param name="installed">
+    /// Mods the user already has that bear on this conflict, from
+    /// <see cref="InstalledFixScanner.Scan"/>. Empty when nothing was scanned, which is what the
+    /// planner did before it knew to look.
+    /// </param>
     public static IReadOnlyList<FixPlan> Plan(
         ConflictDiagnosis diagnosis,
         IReadOnlyList<PatchCandidate> patches,
-        IReadOnlyList<(string ModId, string Name)> mods)
+        IReadOnlyList<(string ModId, string Name)> mods,
+        IReadOnlyList<InstalledFix>? installed = null)
     {
         var plans = new List<FixPlan>();
+        installed ??= [];
 
-        if (diagnosis.Verdict == DiagnosisVerdict.Harmless && diagnosis.Certain)
+        // Only mods that claim to fix the pairing get to close the issue. A third mod that merely
+        // writes the same files is worth reporting, but it has not promised anything.
+        var fixes = installed
+            .Where(fix => fix.Evidence != FixEvidence.WritesTheSameFiles)
+            .ToList();
+
+        var working = fixes.FirstOrDefault(fix => fix.Effective);
+
+        if (working is not null)
+            plans.Add(new FixPlan(
+                FixKind.AlreadyFixed,
+                $"You already have {working.Name}",
+                $"{working.Why} It is switched on and loads after both mods, so it is already " +
+                "doing whatever it does about this. The issue closes with a note saying so, and " +
+                "comes back if that mod is removed or one of these is updated.")
+            {
+                ExistingFix = working
+            });
+
+        foreach (var fix in fixes.Where(fix => !fix.Effective))
+        {
+            var wrong = (fix.Enabled, fix.LoadsLast) switch
+            {
+                (false, false) => "it is switched off, and it sits above the mods it is meant to " +
+                                  "patch, where they would overwrite it anyway",
+                (false, true) => "it is switched off, so nothing it contains reaches the game",
+                _ => "it loads before the mods it is meant to patch, so their files overwrite " +
+                     "its own and it has no effect"
+            };
+
+            plans.Add(new FixPlan(
+                FixKind.UseExistingFix,
+                $"Turn on and reposition {fix.Name}",
+                $"{fix.Why} But {wrong}. AIM will switch it on if needed and move it below both " +
+                "mods, which is the only place a patch does anything. Nothing is downloaded and " +
+                "nothing is edited.")
+            {
+                ExistingFix = fix,
+                TargetModId = fix.ModId
+            });
+        }
+
+        // Not both: "mark this as not an issue" and "you already have the patch" are the same
+        // button with different reasons, and the second reason is the better one.
+        if (working is null && diagnosis.Verdict == DiagnosisVerdict.Harmless && diagnosis.Certain)
             plans.Add(new FixPlan(
                 FixKind.CloseAsHarmless,
                 "Mark this as not an issue",
                 "AIM checked every file these mods share and nothing either of them contributes " +
                 "is lost. The issue stops being reported unless one of the mods is updated."));
 
-        foreach (var patch in patches.Take(3))
+        // Whatever the user already has, in any form, is not offered as a download.
+        var redundant = InstalledFixScanner.AlreadyHave(installed, patches)
+            .Select(patch => (patch.ModId, patch.FileId))
+            .ToHashSet();
+
+        foreach (var patch in patches.Where(patch => !redundant.Contains((patch.ModId, patch.FileId))).Take(3))
             plans.Add(new FixPlan(
                 FixKind.InstallPatch,
                 $"Install {patch.Title}",

@@ -792,12 +792,12 @@ Open download page(s) in browser?</value></data>
   <data name="GUIResearchTitle" xml:space="preserve"><value>Find a fix</value></data>
   <data name="GUIResearchWorking" xml:space="preserve"><value>Reading what these mods' pages say…</value></data>
   <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Connect your Nexus account from the gear menu and AIM can read these mods' pages for you. Until then, the links below are still the fastest way to check.</value></data>
-  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Nothing on these mods' descriptions, bug reports or comments mentions the others, or patches, or compatibility. That is not an answer either way — AIM only reads the first page of each, so the links below are still worth a look.</value></data>
-  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} thing(s) on these mods' pages look relevant.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Nothing on these mods' descriptions, readmes, changelogs, bug reports or comments answers the question. AIM searched the whole comment thread for the other mod's name and read the recent bug reports, so this is a real "nobody has said", not a "nobody has looked" — but it is not the same as "no problem", and the links below still go to the pages themselves.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} thing(s) on these mods' pages bear on this pairing.</value></data>
   <data name="GUIResearchFailed" xml:space="preserve"><value>AIM could not read the mod pages: {0}</value></data>
   <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>What the mod pages say</value></data>
   <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Check these yourself</value></data>
-  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM reads the first page of these itself, but it only sees what a signed-out visitor sees and never the whole thread. These open the real pages.</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM reads these itself — the comments by searching the whole thread, the bug tracker a few pages deep — but only ever as a signed-out visitor. These open the real pages.</value></data>
   <data name="GUIResearchOpenPage" xml:space="preserve"><value>Open this mod's page</value></data>
   <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Open the patch</value></data>
   <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>What did you find?</value></data>
@@ -839,15 +839,30 @@ Open download page(s) in browser?</value></data>
   <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIM's reading of the files</value></data>
   <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM read every file these mods share.</value></data>
   <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM could not read every file, so treat this as a reading rather than a fact.</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Part of this window could not be built: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>The mods in this conflict</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Open a page to judge the mod for yourself, or take one out of the mod list if you have decided against it.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Open page</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM does not know where this mod came from, so it has no page to open.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Remove</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Takes this mod out of the mods folder. AIM asks first, and the files go to the Recycle Bin.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} was removed, so the conflict no longer exists.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>What you already have</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mods already in your list that bear on this pairing. AIM checked these before offering anything to download.</value></data>
   <data name="GUIResearchFixesHeader" xml:space="preserve"><value>What AIM can do about it</value></data>
   <data name="GUIResearchFixesHint" xml:space="preserve"><value>Nothing here happens until you choose it, and every one of these can be undone.</value></data>
   <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Patches that already exist</value></data>
   <data name="GUIResearchApply" xml:space="preserve"><value>Approve and apply</value></data>
   <data name="GUIResearchApplied" xml:space="preserve"><value>Done: {0}</value></data>
   <data name="GUIResearchApplyFailed" xml:space="preserve"><value>That did not work: {0}</value></data>
-  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Evidence this is not a problem</value></data>
-  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Evidence this is a problem</value></data>
-  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Other things the mod descriptions say</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Says it is fine</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Says it is a problem</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Works, with a condition</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Mentions the subject without answering it</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>FINE</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLEM</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>CONDITION</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>CONTEXT</value></data>
   <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>This changes files inside a mod you did not write. AIM copies the whole mod into its Versions dropdown first and marks the row as edited. Continue?</value></data>
   <data name="GUIVersionsTooltip" xml:space="preserve"><value>Earlier copies of this mod AIM kept when it updated. Pick one to roll back to it.</value></data>
   <data name="GUIVersionsHeader" xml:space="preserve"><value>Roll back to:</value></data>

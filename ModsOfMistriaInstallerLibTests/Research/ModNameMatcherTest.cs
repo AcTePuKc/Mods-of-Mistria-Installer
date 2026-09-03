@@ -62,6 +62,41 @@ public class ModNameMatcherTest
         });
     }
 
+    // The false claim this rule exists for. "Find a fix" told the user that Effe's Witchy Decor
+    // "names Patchless Haunted Attic Set (Replacer)" in a sentence that is about a room in the
+    // game: two of the title's four words are ordinary Fields of Mistria vocabulary, and the two
+    // that actually identify the mod - "patchless" and "replacer" - appear nowhere in it.
+    [Test]
+    public void ShouldNotClaimAMentionFromASharedSubjectMatter()
+    {
+        const string patchless = "Patchless Haunted Attic Set (Replacer)";
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(ModNameMatcher.Mentions(
+                    "Also includes a darker recolour of the Haunted Attic - Dark wallpaper and flooring.",
+                    patchless),
+                Is.False, "two trailing words of a title are the subject, not the mod");
+
+            Assert.That(ModNameMatcher.Mentions("does the patchless haunted attic set work with this?", patchless),
+                Is.True, "the words that identify it still find it");
+        });
+    }
+
+    // A title's leading possessive is a signature, not a quarter of the name. Counting it as one
+    // made "Witchy Decor" look like weak evidence for a five-word title it plainly identifies.
+    [Test]
+    public void ShouldTreatTheAuthorsNameAsASignature()
+    {
+        const string effe = "Effe's Witchy Decor - Water Features Compatible";
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(ModNameMatcher.Mentions("does this work with Effe's Witchy Decor?", effe), Is.True);
+            Assert.That(ModNameMatcher.Mentions("the water in this game is lovely", effe), Is.False);
+        });
+    }
+
     [Test]
     public void ShouldReportWhichOfSeveralModsWasNamed()
     {

@@ -9,7 +9,7 @@
         CanResize="True">
   <Grid Margin="18" RowDefinitions="Auto,*,Auto,Auto">
     <SelectableTextBlock x:Name="SummaryText" TextWrapping="Wrap" />
-    <ScrollViewer Grid.Row="1" MaxHeight="560" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer x:Name="NotesScroller" Grid.Row="1" MaxHeight="560" VerticalScrollBarVisibility="Auto">
       <StackPanel x:Name="NotesPanel" Spacing="10" HorizontalAlignment="Stretch" />
     </ScrollViewer>
     <CheckBox x:Name="ShowDismissedToggle" Grid.Row="2" Margin="0 10 0 0" IsVisible="False" />

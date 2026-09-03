@@ -17,6 +17,15 @@ public record NexusFileInfo(int FileId, string FileName, string Name, string? Ve
     public string Category { get; init; } = "";
 
     public bool IsPrimary { get; init; }
+
+    /// <summary>
+    /// The blurb the author wrote under the file on the Files tab, as HTML.
+    ///
+    /// The one place that says what a file actually is. A file called "Voidstril V1.0" tells the
+    /// user nothing about why it is being offered to them; the author's own line under it usually
+    /// says outright that it is a recolour, a standalone variant or a patch for something.
+    /// </summary>
+    public string Description { get; init; } = "";
 }
 
 public record NexusRateLimit(int? HourlyRemaining, int? DailyRemaining);
@@ -206,6 +215,7 @@ public class NexusApiClient
             entry.Value<long?>("size_in_bytes") ?? (entry.Value<long?>("size_kb") ?? 0) * 1024)
         {
             Category = entry.Value<string>("category_name") ?? "",
+            Description = entry.Value<string>("description") ?? "",
             IsPrimary = entry.Value<bool?>("is_primary") ?? false,
             UploadedAt = entry.Value<long?>("uploaded_timestamp") is { } stamp
                 ? DateTimeOffset.FromUnixTimeSeconds(stamp)

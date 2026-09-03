@@ -129,10 +129,19 @@ public static class ConflictResearch
     private const int MaxBugsOpened = 6;
 
     /// <summary>Quotes kept from one mod's description, before the user is better off just reading it.</summary>
-    private const int MaxDescriptionQuotes = 6;
+    private const int MaxDescriptionQuotes = 4;
 
     /// <summary>Posts kept per tab, per mod.</summary>
-    private const int MaxDiscussionQuotes = 6;
+    private const int MaxDiscussionQuotes = 4;
+
+    /// <summary>
+    /// How many pages of *search results* to take per term.
+    ///
+    /// The thread search returns matches twenty at a time like any other page, so a term as common
+    /// as a popular mod's name used to be truncated at twenty and the rest silently dropped. Three
+    /// pages is sixty comments about one pairing, which is more than anyone will read.
+    /// </summary>
+    private const int SearchResultPages = 3;
 
     /// <summary>
     /// Reads what each mod's page says, works out what it means, and looks for an existing fix.
@@ -300,7 +309,7 @@ public static class ConflictResearch
                     mod.ModId!.Value,
                     $"{mod.Name} — {file.Name}",
                     $"{page}?tab=files",
-                    $"An optional file on {mod.Name}'s own page, filed under {file.Category}.",
+                    WhyThisFile(mod, file, others),
                     PatchConfidence.OptionalFile) { FileId = file.FileId })
                 .ToList();
         }
@@ -309,6 +318,74 @@ public static class ConflictResearch
             Logger.Log($"Conflict research skipped the file list of {mod.Name}: {exception.Message}");
             return [];
         }
+    }
+
+    /// <summary>
+    /// Why AIM is putting this file in front of the user.
+    ///
+    /// "An optional file on X's own page, filed under ARCHIVED" was true and useless: it described
+    /// where the file sits and never said what it is or what it has to do with the conflict, so a
+    /// recolour and a compatibility patch read identically. Three things fix that, in the order the
+    /// user needs them - what made AIM look at it, what the author says it is, and what its
+    /// category means for whether it is safe to apply today.
+    /// </summary>
+    private static string WhyThisFile(ResearchSubject mod, NexusFileInfo file, IReadOnlyList<string> others)
+    {
+        var named = others.FirstOrDefault(other => ModNameMatcher.Mentions(file.Name, other));
+
+        // The two reasons this file was picked are worth telling apart. A file naming the other mod
+        // is a near-certain patch; a file merely carrying the word "fix" or "compat" may be a fix
+        // for something else entirely, and saying so is what stops the user trusting it blindly.
+        var why = named is not null
+            ? $"An optional file on {mod.Name}'s own page whose name mentions {named}, the other " +
+              "mod in this conflict - which is how authors label a download meant to be installed " +
+              "alongside it."
+            : $"An optional file on {mod.Name}'s own page whose name reads like a patch or a " +
+              "compatibility file. AIM has not confirmed that it is for this pairing specifically, " +
+              "so read the description before applying it.";
+
+        if (Blurb(file.Description) is { } blurb)
+            why += $" The author's own note on it: \"{blurb}\"";
+
+        return $"{why} {CategoryNote(file.Category)}";
+    }
+
+    /// <summary>What Nexus's category tells the user about applying the file.</summary>
+    private static string CategoryNote(string category) => category.ToUpperInvariant() switch
+    {
+        "OPTIONAL" => "Nexus files it under Optional: an extra download rather than part of the mod itself.",
+        "UPDATE" => "Nexus files it under Update: meant to go on top of the main file you already have.",
+        "MISCELLANEOUS" => "Nexus files it under Miscellaneous, the catch-all authors use for extras and patches alike.",
+
+        // Worth a warning rather than a label. An archived file is one the author has retired, and
+        // it commonly targets a version of the mod nobody is running any more.
+        "ARCHIVED" or "OLD_VERSION" =>
+            "Nexus files it under Archived, meaning the author has retired it - it may be built " +
+            "for an older version of the mod, so check its version against the one you have.",
+
+        "" => "",
+        _ => $"Nexus files it under {category}."
+    };
+
+    /// <summary>
+    /// The author's file note, cut down to something that fits under a heading: tags stripped,
+    /// whitespace collapsed, and trimmed at a word to about a line and a half of prose.
+    /// </summary>
+    private static string? Blurb(string html)
+    {
+        if (string.IsNullOrWhiteSpace(html)) return null;
+
+        var text = Regex.Replace(html, "<[^>]+>", " ");
+        text = WebUtility.HtmlDecode(text);
+        text = Regex.Replace(text, @"\s+", " ").Trim();
+
+        if (text.Length == 0) return null;
+        if (text.Length <= 220) return text;
+
+        var cut = text[..220];
+        var space = cut.LastIndexOf(' ');
+
+        return (space > 120 ? cut[..space] : cut).TrimEnd(',', '.', ';', ':') + "...";
     }
 
     private static readonly Regex PatchTitle = new(
@@ -379,7 +456,8 @@ public static class ConflictResearch
                 await Task.Delay(250, ct);
 
                 posts.AddRange(await NexusPageReader.SearchCommentsAsync(
-                    http, GameId, mod.ModId!.Value, threadId.Value, term, session, ct));
+                    http, GameId, mod.ModId!.Value, threadId.Value, term, session, ct,
+                    SearchResultPages));
             }
 
         return Keep(posts, mod, otherNames, source, TabLabel("posts"), findings);
@@ -454,7 +532,10 @@ public static class ConflictResearch
 
             if (!worthOpening || bug.Replies == 0)
             {
-                if (named is not null || titleSignal is not null)
+                // A bug report is allowed to count on the name alone, unlike a description: a
+                // report filed against this mod whose title names the other one *is* somebody
+                // saying the two of them went wrong together, whatever words they used.
+                if (named is not null || CompatibilityLanguage.BearsOnThePairing(titleSignal, false))
                     findings.Add(BugFinding(mod, bug, bug.Title, named, titleSignal, ruling, source));
                 continue;
             }
@@ -471,7 +552,7 @@ public static class ConflictResearch
                     ? CompatibilityLanguage.Classify(post.Text)
                     : CompatibilityLanguage.ClassifyDiscussion(post.Text);
 
-                if (signal is null && mentioned is null) continue;
+                if (mentioned is null && !CompatibilityLanguage.BearsOnThePairing(signal, false)) continue;
 
                 findings.Add(BugFinding(mod, bug, post.Text, mentioned, signal, ruling, source, post.Author));
             }
@@ -555,12 +636,12 @@ public static class ConflictResearch
                 ? CompatibilityLanguage.Classify(post.Text)
                 : CompatibilityLanguage.ClassifyDiscussion(post.Text);
 
-            if (signal is null) continue;
+            if (!CompatibilityLanguage.BearsOnThePairing(signal, named is not null)) continue;
 
             var who = string.IsNullOrWhiteSpace(post.Author) ? mod.Name : $"{mod.Name} — {post.Author}";
 
             into.Add(new ResearchFinding(who, post.Text,
-                named is not null ? $"names \"{named}\" and {signal.Reason}" : signal.Reason, source)
+                named is not null ? $"names \"{named}\" and {signal!.Reason}" : signal!.Reason, source)
             {
                 Polarity = signal.Polarity,
                 Where = where,
@@ -688,22 +769,21 @@ public static class ConflictResearch
                 ? CompatibilityLanguage.ClassifyDiscussion(sentence)
                 : CompatibilityLanguage.Classify(sentence);
 
-            if (signal is null && named is null) continue;
+            // A sentence with no verdict is not a finding, however sure we are that it is about the
+            // other mod. A description mentioning another mod in passing - "also includes a darker
+            // recolour of the haunted attic" - says nothing about whether the two can be installed
+            // together, and putting it in the window as evidence invites the user to read a claim
+            // into it that nobody made.
+            if (!CompatibilityLanguage.BearsOnThePairing(signal, named is not null)) continue;
             if (!seen.Add(sentence)) continue;
 
-            var reason = (named, signal) switch
-            {
-                (not null, not null) => $"names \"{named}\" and {signal!.Reason}",
-                (not null, null) => $"names \"{named}\"",
-                (null, not null) => signal!.Reason,
-                _ => ""
-            };
+            var reason = named is not null
+                ? $"names \"{named}\" and {signal!.Reason}"
+                : signal!.Reason;
 
             yield return new ResearchFinding(mod.Name, Trim(sentence), reason, sourceUrl)
             {
-                // A sentence that names the other mod but states no verdict is context, not a
-                // clearance - the author mentioning a mod is not the author blessing it.
-                Polarity = signal?.Polarity ?? Polarity.Context,
+                Polarity = signal!.Polarity,
                 Where = where,
                 NamesTheOtherMod = named is not null
             };
@@ -729,8 +809,13 @@ public static class ConflictResearch
     private static string Trim(string text, int limit) =>
         text.Length <= limit ? text : text[..limit] + "…";
 
+    /// <summary>
+    /// A quote, not an excerpt. Three hundred characters of somebody's comment is a paragraph to
+    /// read before the user learns whether it mattered, and the sentence that mattered is at the
+    /// front of it far more often than not.
+    /// </summary>
     private static string Trim(string sentence) =>
-        sentence.Length <= 300 ? sentence : sentence[..300] + "…";
+        sentence.Length <= 180 ? sentence : sentence[..180] + "…";
 
     // ── Where to look next ───────────────────────────────────────────────────────
 

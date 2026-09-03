@@ -66,9 +66,52 @@ public class CompatibilityLanguageTest
         TestName = "every mod requires MOMI, so saying so is not a finding")]
     [TestCase("This mod is a dependency of nothing in particular.",
         TestName = "a bare dependency mention is not a finding")]
+    // Verbatim from https://www.nexusmods.com/fieldsofmistria/mods/41, and it was reported at the
+    // top of "evidence this is not a problem" - because "play … with" matched the rule for "works
+    // with X". It is advice about Steam updates and mentions no other mod at all.
+    [TestCase("When you update your game, Steam automatically uninstalls all your mods - you must reinstall them to play with them!",
+        TestName = "advice about reinstalling after a Steam update is not a compatibility clearance")]
+    [TestCase("It works with them, I think.",
+        TestName = "\"works with them\" identifies nothing, so it clears nothing")]
     public void ShouldNotReportTextThatIsNotAboutCompatibility(string sentence)
     {
         Assert.That(CompatibilityLanguage.Classify(sentence), Is.Null);
+    }
+
+    // The other half of the relevance fix. Half this vocabulary is written by mod authors about
+    // their own files every day, and those sentences are only worth showing when the sentence is
+    // about the pairing in front of the user - which is a decision only the caller can make, so the
+    // rule carries the requirement out rather than settling it.
+    [TestCase("This Mod Replaces: Bakery Dessert Case, Basic Chair, Explorer Lamp.", true,
+        TestName = "a replacer listing its own contents needs the other mod named")]
+    [TestCase("Load this one last.", true, TestName = "generic load order advice needs the other mod named")]
+    [TestCase("Works fine with The Perfect Gift.", true, TestName = "\"works with\" needs an X to work with")]
+    [TestCase("Anyone know about compatibility?", true, TestName = "a bare mention needs the other mod named")]
+    [TestCase("This mod is incompatible with The Perfect Gift.", false,
+        TestName = "a stated incompatibility stands on its own")]
+    [TestCase("No known compatibilities / incompatibilities at this time.", false,
+        TestName = "an all-clear stands on its own")]
+    [TestCase("It is a standalone mod", false, TestName = "standalone stands on its own")]
+    [TestCase("Use the compatibility patch below.", false,
+        TestName = "a named compatibility patch stands on its own")]
+    public void ShouldSayWhichSentencesOnlyMeanSomethingAboutAParticularPairing(
+        string sentence, bool needsPairing)
+    {
+        var signal = CompatibilityLanguage.Classify(sentence);
+
+        Assert.That(signal, Is.Not.Null);
+        Assert.That(signal!.NeedsPairing, Is.EqualTo(needsPairing));
+        Assert.That(CompatibilityLanguage.BearsOnThePairing(signal, namesTheOtherMod: false),
+            Is.EqualTo(!needsPairing));
+        Assert.That(CompatibilityLanguage.BearsOnThePairing(signal, namesTheOtherMod: true), Is.True,
+            "naming the other mod always makes a classified sentence worth showing");
+    }
+
+    [Test]
+    public void ShouldNeverBearOnThePairingWithoutASignal()
+    {
+        Assert.That(CompatibilityLanguage.BearsOnThePairing(null, namesTheOtherMod: true), Is.False,
+            "a sentence that merely names the other mod states nothing, so it is not evidence");
     }
 
     // The counterpart: a patch mention only counts when something makes it a patch between mods.

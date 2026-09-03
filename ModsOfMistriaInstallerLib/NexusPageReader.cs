@@ -258,15 +258,42 @@ public static class NexusPageReader
     /// answers a signed-out request identically. That was worth checking rather than assuming,
     /// because it is the difference between this working for everybody and working for nobody.
     /// </summary>
-    public static Task<List<NexusPagePost>> SearchCommentsAsync(
+    /// <param name="maxPages">
+    /// How many pages of matches to take. The search answers in pages like everything else, so a
+    /// term that matches thirty comments returns twenty of them and a pager - and reading only page
+    /// one quietly threw the rest away. The walk still stops as soon as a page comes back short or
+    /// repeats what the last one said, so a term with three matches costs one request.
+    /// </param>
+    public static async Task<List<NexusPagePost>> SearchCommentsAsync(
         HttpClient http,
         int gameId,
         int modId,
         int threadId,
         string phrase,
         Research.NexusSession session,
-        CancellationToken ct = default) =>
-        ReadCommentPageAsync(http, gameId, modId, threadId, 1, session, ct, phrase);
+        CancellationToken ct = default,
+        int maxPages = 1)
+    {
+        var all = new List<NexusPagePost>();
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        for (var page = 1; page <= Math.Max(1, maxPages); page++)
+        {
+            if (page > 1) await Task.Delay(250, ct);
+
+            var posts = await ReadCommentPageAsync(
+                http, gameId, modId, threadId, page, session, ct, phrase);
+
+            var fresh = posts.Where(post => seen.Add(post.Text)).ToList();
+            all.AddRange(fresh);
+
+            // A short page is the last page, and a page of nothing new is a widget that ignored the
+            // page number. Either way there is nothing further to ask for.
+            if (fresh.Count == 0 || posts.Count < CommentPageSize) break;
+        }
+
+        return all;
+    }
 
     /// <summary>
     /// The readme behind a mod's Docs tab, as plain text.

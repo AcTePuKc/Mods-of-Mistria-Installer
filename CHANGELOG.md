@@ -1,5 +1,67 @@
 # Changelog
 
+## Unreleased
+
+### "Find a fix" checks what you already have
+
+- AIM now looks through your own mod list before offering to download anything. It used to research
+  a conflict as though the list contained only the two mods in it, so it would find the
+  compatibility patch on Nexus, present it as the fix, and offer to install it — to someone who had
+  installed it months earlier and whose setup was working because of it.
+- Four things count as already having the fix, and each says which it is: the exact Nexus file the
+  research was about to offer; a mod whose name matches the patch, for one installed by hand; a mod
+  that requires or is named after every mod in the conflict, which is what a compatibility patch is;
+  and a third mod that ships its own copy of the files being argued over. Only the first three can
+  close the issue — a mod that writes the same files has promised nothing.
+- A patch that is installed but switched off, or that loads before the mods it patches, is reported
+  as what it is: present and doing nothing. One button switches it on and moves it below both mods.
+- A patch you already have is no longer listed under "patches that already exist", where it read as
+  a contradiction of the section above it saying you have it.
+
+### "Find a fix" per-mod actions
+
+- Each mod in the conflict now has its page and a Remove button beside its name. Deciding you did
+  not want one of them after all is a legitimate answer to a conflict, and it used to mean closing
+  the window and finding the row again.
+
+### Long lists
+
+- Jump-to-top and jump-to-bottom buttons on the issue report, the research window, and the file list
+  inside an expanded conflict. Seventy-four shared files between two cosmetics mods left the buttons
+  that act on the issue somewhere below a scrollbar thumb a few pixels tall.
+
+### "Find a fix" relevance
+
+- Stopped reporting sentences that do not bear on the pairing being examined. Half the vocabulary
+  the researcher matches on — "replaces", "load after", "a patch", "compatible" — is written by mod
+  authors every day about their own files, so those sentences are now kept only when the sentence
+  also names one of the other mods in the conflict. A stated incompatibility, an all-clear, or a
+  named compatibility patch still stands on its own.
+- Fixed "works with" matching "you must reinstall them to play with them", which put a note about
+  Steam updates at the top of "evidence this is not a problem". A mod does not "play with" another
+  mod, and "works with them" identifies nothing, so a pronoun after the preposition no longer counts.
+- Fixed false claims that one mod's description names another. A title's trailing words are its
+  subject matter, and two conflicting mods share that by definition — "Patchless Haunted Attic Set
+  (Replacer)" was reported as named by a sentence about the haunted attic. A mention now has to
+  include the head of the title: the author's name, or its first distinctive word.
+- Dropped findings that name another mod but state nothing about it. A mention is not a verdict.
+- Stopped counting a leading possessive as part of a title, so "Witchy Decor" still identifies
+  "Effe's Witchy Decor - Water Features Compatible".
+
+### "Find a fix" presentation
+
+- Rebuilt the evidence list: a coloured badge per finding, quotes capped at a quote's length rather
+  than a paragraph's, and the source line doubling as the link instead of a full-width button under
+  every entry.
+- Split "works, but only if you do something" into its own amber section, and collapsed everything
+  that merely mentions the subject into a shut expander. Every heading carries its own count.
+
+### Nexus reading
+
+- Comment searches now page through their matches. The thread search answers twenty at a time, so a
+  mod name with more matches than that was silently truncated at the first page.
+- Corrected the window's own text, which still claimed AIM reads only the first page of each tab.
+
 ## 0.1.9 — 2026-09-02
 
 ### Nexus integration

@@ -19,7 +19,20 @@ public enum Polarity
 }
 
 /// <summary>One reason a sentence was kept, and what it means.</summary>
-public sealed record CompatibilitySignal(Polarity Polarity, string Reason);
+public sealed record CompatibilitySignal(Polarity Polarity, string Reason)
+{
+    /// <summary>
+    /// True when the sentence only means anything if it is about *this* pairing.
+    ///
+    /// Half the vocabulary here is used by mod authors constantly for reasons that have nothing to
+    /// do with the two mods in front of the user. "This mod replaces the bakery dessert case" is a
+    /// mod describing itself; "you must reinstall them to play with them" is advice about Steam
+    /// updates. Both used to be reported as evidence, and both are noise unless the sentence also
+    /// names the other mod in the conflict - which is a judgement <see cref="ModNameMatcher"/>
+    /// makes, not a regex, so the flag is carried out to the caller rather than settled here.
+    /// </summary>
+    public bool NeedsPairing { get; init; }
+}
 
 /// <summary>
 /// Decides whether a sentence from a mod page bears on a conflict, and which way it points.
@@ -48,7 +61,7 @@ public static class CompatibilityLanguage
     /// <summary>
     /// The rules, in the order they are tried. The first that matches decides the sentence.
     /// </summary>
-    private static readonly (Regex Pattern, Polarity Polarity, string Reason)[] Rules =
+    private static readonly (Regex Pattern, Polarity Polarity, string Reason, bool NeedsPairing)[] Rules =
     [
         // ── Negated claims, first, so the negation wins over the word it negates ──────────
 
@@ -65,35 +78,35 @@ public static class CompatibilityLanguage
             @"\b(?:in)?compatibilit(?:y|ies)\b(?!\s*(?:patch|fix|mod|version|update))|" +
             @"\bno\s+(?:known\s+|reported\s+|current\s+)?(?:conflicts?|issues?|problems?)\b",
             Options),
-            Polarity.Clearance, "reports no known incompatibilities"),
+            Polarity.Clearance, "reports no known incompatibilities", false),
 
         // "This is not a standalone mod" is the opposite claim and has to be settled first, or the
         // rule below reads it as its own reverse. A lookbehind will not do it: the negation and the
         // word are separated by an article, and often by more.
         (new Regex(@"\b(?:not|isn'?t|aren'?t|never)\b(?:\s+\w+){0,2}\s+stand[\s-]?alone\b", Options),
-            Polarity.Caution, "says the mod is not standalone"),
+            Polarity.Caution, "says the mod is not standalone", false),
 
         // "It is a standalone mod" - the author saying it touches nothing else.
         (new Regex(@"\bstand[\s-]?alone\b", Options),
-            Polarity.Clearance, "describes the mod as standalone"),
+            Polarity.Clearance, "describes the mod as standalone", false),
 
         // ── Blockers ─────────────────────────────────────────────────────────────────────
 
         (new Regex(
             @"\b(?:not|isn'?t|aren'?t|won'?t\s+be|will\s+not\s+be|never)\s+" +
             @"(?:fully\s+|currently\s+|entirely\s+)?compatib\w*", Options),
-            Polarity.Blocker, "says something is not compatible"),
+            Polarity.Blocker, "says something is not compatible", false),
 
         (new Regex(@"\bincompatib\w*", Options),
-            Polarity.Blocker, "says something is incompatible"),
+            Polarity.Blocker, "says something is incompatible", false),
 
         (new Regex(
             @"\b(?:do\s+not|don'?t|do\s+n'?t|never)\s+(?:use|install|run|combine)\b" +
             @"(?:\s+\w+){0,3}?\s+\b(?:with|alongside|together)\b", Options),
-            Polarity.Blocker, "warns against using them together"),
+            Polarity.Blocker, "warns against using them together", false),
 
         (new Regex(@"\b(?:conflicts?\s+with|clashes?\s+with|breaks?\s+(?:with|when\s+used\s+with))\b", Options),
-            Polarity.Blocker, "names a conflict"),
+            Polarity.Blocker, "names a conflict", false),
 
         // ── Conditional - it works, but only if you do something ─────────────────────────
 
@@ -110,23 +123,35 @@ public static class CompatibilityLanguage
         // it is called a compatibility patch, it is a patch for or to something, or it is being
         // referred to as a specific object ("the patch below", "a patch exists"). A version number
         // sitting in front of it does none of those.
+        // Named as a compatibility patch outright. That phrase is only ever written about two mods
+        // living together, so it stands on its own.
+        (new Regex(@"\bcompatibilit\w*\s+patch(?:es)?\b", Options),
+            Polarity.Caution, "mentions a compatibility patch", false),
+
+        // The looser forms - "a patch", "the patch below", "patched version". Real often enough to
+        // keep, but a mod author writes them about their own files at least as often, so they only
+        // count when the sentence is about the pairing.
         (new Regex(
-            @"\bcompatibilit\w*\s+patch(?:es)?\b" +
-            @"|\bpatch(?:es)?\b\s+(?:for|to|that|which)\b" +
+            @"\bpatch(?:es)?\b\s+(?:for|to|that|which)\b" +
             @"|\b(?:a|the|this|my|his|her|their|no)\s+patch(?:es)?\b" +
             @"|\bpatched\s+version\b", Options),
-            Polarity.Caution, "mentions a compatibility patch"),
+            Polarity.Caution, "mentions a patch", true),
 
         // "Load this after Foo" and "load it below the other mod" are the same instruction as
         // "load order", and are how people actually write it - so a couple of words are allowed
         // between the verb and the direction.
         (new Regex(@"\bload\s+(?:\w+\s+){0,2}(?:order|after|before|last|first|below|above)\b", Options),
-            Polarity.Caution, "mentions load order"),
+            Polarity.Caution, "mentions load order", true),
 
         // What a mod replaces is the single most useful thing a description can say about a file
         // conflict - it is the author listing, by name, the things this mod will take over.
+        //
+        // But only when the list is about the other mod. Nearly every replacer's description opens
+        // with "This Mod Replaces:" and then thirty furniture names, and reporting that back as a
+        // finding tells the user something they knew before they opened the window: it is what the
+        // conflict report already said, at ten times the length.
         (new Regex(@"\b(?:overwrit\w*|overrid\w*|replac(?:e|es|ed|ing|ement|ements)\b|replacer)\b", Options),
-            Polarity.Caution, "mentions overwriting files"),
+            Polarity.Caution, "mentions overwriting files", true),
 
         // "Requires" used to be kept, and it was pure noise: near enough every mod page says it
         // requires MOMI, which tells the user nothing about the two mods they are looking at. A
@@ -136,19 +161,35 @@ public static class CompatibilityLanguage
 
         // ── Positive statements that are not a blanket all-clear ─────────────────────────
 
+        // "Fully compatible" is a blanket statement about the mod, so it needs no pairing.
+        (new Regex(@"\b(?:fully|completely|totally|100%)\s+compatib\w*", Options),
+            Polarity.Clearance, "states that it is fully compatible", false),
+
+        // "Works with X" is a clearance only when there is an X.
+        //
+        // Two things went wrong with the old version of this rule, and one of them put a sentence
+        // about *Steam* at the top of the evidence-against list: "you must reinstall them to play
+        // with them" matched "play … with", and was reported as the author saying the two mods work
+        // together. So "play" is gone - nobody says a mod "plays with" another one - and a pronoun
+        // after the preposition is refused, because "works with them" identifies nothing. What is
+        // left still has to name the other mod to count.
         (new Regex(
-            @"\b(?:fully|completely|totally|100%)\s+compatib\w*|" +
-            @"\b(?:works?|plays?|runs?)\s+(?:fine\s+|well\s+|perfectly\s+|nicely\s+)?" +
-            @"(?:with|alongside|together)\b", Options),
-            Polarity.Clearance, "states that they work together"),
+            @"\b(?:works?|working|runs?|installs?)\s+" +
+            @"(?:just\s+|really\s+)?(?:fine|well|perfectly|nicely|great|happily)?\s*" +
+            @"(?:with|alongside|together\s+with)\s+" +
+            @"(?!\b(?:them|it|this|that|these|those|you|me|us|him|her|any|each|other)\b)", Options),
+            Polarity.Clearance, "states that they work together", true),
+
+        (new Regex(@"\bworks?\s+together\b", Options),
+            Polarity.Clearance, "states that they work together", true),
 
         // ── Anything else that discusses the subject at all ──────────────────────────────
 
         (new Regex(@"\bcompatib\w*", Options),
-            Polarity.Context, "mentions compatibility"),
+            Polarity.Context, "mentions compatibility", true),
 
         (new Regex(@"\bconflict\w*", Options),
-            Polarity.Context, "mentions a conflict")
+            Polarity.Context, "mentions a conflict", true)
     ];
 
     /// <summary>
@@ -158,9 +199,9 @@ public static class CompatibilityLanguage
     {
         if (string.IsNullOrWhiteSpace(sentence)) return null;
 
-        foreach (var (pattern, polarity, reason) in Rules)
+        foreach (var (pattern, polarity, reason, needsPairing) in Rules)
             if (pattern.IsMatch(sentence))
-                return new CompatibilitySignal(polarity, reason);
+                return new CompatibilitySignal(polarity, reason) { NeedsPairing = needsPairing };
 
         return null;
     }
@@ -178,4 +219,15 @@ public static class CompatibilityLanguage
         var signal = Classify(post);
         return signal?.Polarity is Polarity.Context ? null : signal;
     }
+
+    /// <summary>
+    /// Whether a classified sentence is worth putting in front of the user for *this* conflict.
+    ///
+    /// The last gate before a finding is shown, and the one that turned the window from a list of
+    /// everything the pages say into a list of things that bear on the question. A sentence with no
+    /// verdict is not evidence; a sentence whose verdict only means something in context is not
+    /// evidence unless the context is there.
+    /// </summary>
+    public static bool BearsOnThePairing(CompatibilitySignal? signal, bool namesTheOtherMod) =>
+        signal is not null && (namesTheOtherMod || !signal.NeedsPairing);
 }

@@ -35,6 +35,13 @@ public static class ModNameMatcher
     private static readonly Regex Possessive = new(@"(?:'s|s')$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     /// <summary>
+    /// A title that opens with somebody's name in the possessive - "Sushi's Witchy Weapons",
+    /// "Effe's Witchy Decor". Both apostrophes are accepted because Nexus titles carry either.
+    /// </summary>
+    private static readonly Regex AuthorPrefix = new(
+        @"^\s*(\p{L}[\p{L}\p{Nd}]+)['’]s\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>
     /// The words from a mod's name that are worth searching for. Empty when the title is made
     /// entirely of filler, in which case no mention can be claimed at all.
     /// </summary>
@@ -54,15 +61,16 @@ public static class ModNameMatcher
     /// <paramref name="name"/>.
     ///
     /// One distinctive word is enough only when the title has just one to give - a mod called
-    /// "Chromatic" is genuinely identified by the word "chromatic". Past that, two thirds of the
-    /// distinctive words must be present, which lets "witchy weapons" find "Sushi's Witchy Weapons
-    /// and Tools" while keeping a stray "weapons" from doing it.
+    /// "Chromatic" is genuinely identified by the word "chromatic". Past that it takes half the
+    /// title's distinctive words, never fewer than two, *and* one of them has to be the head of the
+    /// title - which lets "witchy weapons" find "Sushi's Witchy Weapons and Tools" while keeping
+    /// both a stray "weapons" and a coincidence of trailing words from doing it.
     /// </summary>
     public static bool Mentions(string text, string name)
     {
         if (string.IsNullOrWhiteSpace(text)) return false;
 
-        var words = DistinctiveWords(name);
+        var (author, words) = Parse(name);
         if (words.Count == 0) return false;
 
         // Punctuation and underscores are flattened on both sides, so a folder name like
@@ -70,6 +78,8 @@ public static class ModNameMatcher
         var haystack = " " + Separators.Replace(text, " ") + " ";
 
         var present = words.Count(word => AppearsAsWord(haystack, word));
+        var authorNamed = author is not null && AppearsAsWord(haystack, author);
+        if (authorNamed) present++;
 
         // Half the distinctive words, and never fewer than two.
         //
@@ -85,7 +95,64 @@ public static class ModNameMatcher
             _ => Math.Max(2, (int)Math.Ceiling(words.Count / 2.0))
         };
 
-        return present >= needed;
+        if (present < needed) return false;
+
+        // And the match has to include the head of the title: the author's name, or the first word
+        // that is not filler.
+        //
+        // This is what stops a title made of ordinary game vocabulary from matching any sentence
+        // that happens to use two of its words. "Patchless Haunted Attic Set (Replacer)" was
+        // reported as named by "Also includes a darker recolour of the Haunted Attic" - two of four
+        // words, so it cleared the count - when the sentence is about a room in the game and the
+        // words that identify the *mod*, "patchless" and "replacer", are nowhere in it. A title's
+        // leading words are the ones its author chose to be distinctive; the trailing ones describe
+        // what it contains, and shared subject matter is exactly what two conflicting mods have.
+        return words.Count <= 2 || authorNamed || AppearsAsWord(haystack, words[0]);
+    }
+
+    /// <summary>
+    /// Splits a title into the author's name, where it is written as a possessive, and the words
+    /// that describe the mod.
+    ///
+    /// "Sushi's Witchy Weapons and Tools" is three words of mod plus a signature, and counting the
+    /// signature as a quarter of the title makes "Witchy Weapons" look like weaker evidence than it
+    /// is. Kept separately so it can still confirm a match without being required for one.
+    /// </summary>
+    private static (string? Author, List<string> Words) Parse(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name)) return (null, []);
+
+        // Read off the name itself rather than off its words: the apostrophe is a separator, so by
+        // the time a title has been split into words the possessive that identifies the author has
+        // already been thrown away and "Sushi" looks like any other word in the title.
+        var signature = AuthorPrefix.Match(name);
+
+        var raw = Separators.Split(name).Where(word => word.Length > 0).ToList();
+
+        string? author = null;
+        if (signature.Success)
+        {
+            var candidate = signature.Groups[1].Value;
+            if (candidate.Length >= 3 && !Filler.Contains(candidate))
+            {
+                author = candidate;
+
+                // The name and the lone "s" the split left behind.
+                raw = raw.Skip(raw.Count > 1 && raw[1].Equals("s", StringComparison.OrdinalIgnoreCase) ? 2 : 1)
+                    .ToList();
+            }
+        }
+
+        var words = raw
+            .Select(word => Possessive.Replace(word, ""))
+            .Where(word => word.Length >= 3 && !Filler.Contains(word))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        // A title that is nothing but a signature - "Effe's" - is still identified by it.
+        if (words.Count == 0 && author is not null) return (null, [author]);
+
+        return (author, words);
     }
 
     /// <summary>

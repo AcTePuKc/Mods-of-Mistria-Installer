@@ -54,6 +54,8 @@ public partial class LoadOrderResultWindow : Window
         // the display, which puts the title bar out of reach. See DialogBounds.
         Opened += (_, _) => this.FitToScreen();
 
+        ScrollEnds.Attach(NotesScroller);
+
         Title = title ?? LocalizationService.Instance["GUILoadOrderTitle"];
         _refreshReportAsync = refreshReportAsync;
         _summary = summary;
@@ -290,13 +292,16 @@ public partial class LoadOrderResultWindow : Window
                 TextWrapping = TextWrapping.Wrap,
                 TextDecorations = decorations
             },
-            Content = new ScrollViewer
+            // Wrapped rather than used directly: an expanded conflict can be seventy-four file
+            // paths deep, and the buttons that act on it are above them. Without a way back this
+            // is the one place in AIM where reading the detail costs you the controls.
+            Content = ScrollEnds.Wrap(new ScrollViewer
             {
                 MaxHeight = 320,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                 Content = body
-            },
+            }),
             IsExpanded = false
         };
     }

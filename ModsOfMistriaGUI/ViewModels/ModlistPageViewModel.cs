@@ -2270,15 +2270,108 @@ public partial class ModlistPageViewModel : PageViewBase
             note.Details,
             winnerId => MakeModWinById(note, winnerId),
             OfferPatchDownload,
-            BackupStore is null ? null : (modId, paths, reason) => SetAsideModFiles(modId, paths, reason));
+            BackupStore is null ? null : (modId, paths, reason) => SetAsideModFiles(modId, paths, reason))
+        {
+            Installed = SnapshotForResearch(),
+            Enable = EnableModById,
+            RemoveMod = RemoveModById
+        };
     }
 
+    /// <summary>
+    /// Removes a mod by id on the research window's behalf, reporting whether it actually went.
+    ///
+    /// It goes through <see cref="RemoveMod(ModModel?)"/> rather than reimplementing removal, so
+    /// the confirmation, the recycle bin and the Nexus index cleanup are the same ones the mod
+    /// row's own menu uses. The answer is read off the disk rather than off the list, because the
+    /// list is rebuilt by the removal and a row that has been replaced looks the same as one that
+    /// has been deleted.
+    /// </summary>
+    private async Task<bool> RemoveModById(string modId)
+    {
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null) return false;
+
+        var source = row.Mod.GetSourcePath();
+        await RemoveMod(row);
+
+        return !string.IsNullOrEmpty(source) && !Directory.Exists(source) && !File.Exists(source);
+    }
+
+    /// <summary>
+    /// The whole mod list as the research window needs to see it: in load order, with whatever AIM
+    /// knows about which Nexus mod and file each one came from.
+    ///
+    /// The window uses this to check whether the user already has the patch it is about to offer.
+    /// Nexus provenance is looked up per row rather than assumed: a mod installed by hand has none,
+    /// and is still perfectly capable of being the patch - it just has to be recognised by name.
+    /// </summary>
+    private IReadOnlyList<InstalledModView> SnapshotForResearch()
+    {
+        var index = UpdateService?.Index;
+
+        return Mods
+            .Select((row, position) =>
+            {
+                var record = index?.Get(row.Mod.GetSourcePath());
+
+                return new InstalledModView(row.Mod, position, row.Enabled)
+                {
+                    NexusModId = record?.ModId,
+                    NexusFileId = record?.FileId,
+                    PageUrl = row.NexusPageUrl ?? record?.PageUrl
+                };
+            })
+            .ToList();
+    }
+
+    /// <summary>
+    /// Moves a mod below every mod in the conflict.
+    ///
+    /// The id is usually one of the conflict's own participants, and that path is kept because it
+    /// reuses the participant's source path and so picks the right row when two copies of a mod
+    /// share an id. But a compatibility patch the user already has is not a participant - it is a
+    /// third mod that has to end up below both - so an id that names no participant falls through
+    /// to the mod list itself.
+    /// </summary>
     private bool MakeModWinById(LoadOrderNote note, string modId)
     {
         var participant = note.Participants.FirstOrDefault(entry =>
             string.Equals(entry.ModId, modId, StringComparison.OrdinalIgnoreCase));
 
-        return participant is not null && MakeModWin(note, participant);
+        if (participant is not null) return MakeModWin(note, participant);
+
+        var mover = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        var others = note.Participants.Select(RowFor).OfType<ModModel>().ToList();
+        if (mover is null || others.Count == 0) return false;
+
+        var lowest = others.OrderByDescending(Mods.IndexOf).First();
+        if (Mods.IndexOf(mover) > Mods.IndexOf(lowest)) return true;
+
+        MoveMod(mover, lowest, insertBeforeTarget: false);
+        RefreshPositions();
+        RefreshSelectedModConflicts();
+        return true;
+    }
+
+    /// <summary>
+    /// Switches a mod on by id, for the research window: a patch the user installed and then
+    /// disabled is, to the game, a patch they do not have.
+    /// </summary>
+    private bool EnableModById(string modId)
+    {
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null || row.InError) return false;
+
+        row.Enabled = true;
+        RefreshSelectedModConflicts();
+        return true;
     }
 
     /// <summary>
