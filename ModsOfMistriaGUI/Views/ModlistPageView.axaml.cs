@@ -281,4 +281,14 @@ public partial class ModlistPageView : UserControl
                 : null;
         }
     }
+
+    // ── Jumping the list ─────────────────────────────────────────────────────────
+
+    // Scrolling is a property of this view, not of the mod list, so it stays in the code-behind
+    // rather than becoming a command the view model has to know about.
+    private void ScrollModsToTopClick(object? sender, RoutedEventArgs e) =>
+        ModListScrollViewer.ScrollToHome();
+
+    private void ScrollModsToBottomClick(object? sender, RoutedEventArgs e) =>
+        ModListScrollViewer.ScrollToEnd();
 }

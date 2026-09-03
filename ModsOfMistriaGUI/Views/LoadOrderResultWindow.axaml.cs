@@ -2,8 +2,11 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Threading;
+using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaInstallerLib;
+using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 
 namespace Garethp.ModsOfMistriaGUI.Views;
 
@@ -11,8 +14,24 @@ public partial class LoadOrderResultWindow : Window
 {
     public sealed record ReportContent(string Summary, IReadOnlyList<LoadOrderNote> Notes);
 
-    private string _report = string.Empty;
     private readonly Func<Task<ReportContent>>? _refreshReportAsync;
+
+    // Not readonly: a refresh replaces the report the window is showing rather than opening a
+    // second one, so the summary and the notes are whatever the last scan produced.
+    private string _summary;
+    private List<LoadOrderNote> _notes;
+
+    /// <summary>Null for the load-order window, which reports actions rather than open questions.</summary>
+    private readonly DismissedIssueStore? _dismissedIssues;
+
+    /// <summary>Null when the window is only describing an issue, not offering to fix it.</summary>
+    private readonly ConflictReportActions? _actions;
+
+    private bool _showDismissed;
+
+    // Rebuilt alongside the visible list so that what "Copy report" produces matches what the
+    // window shows, dismissals included.
+    private string _report = string.Empty;
 
     // Required by Avalonia's compiled XAML loader; normal callers use ShowAsync below.
     public LoadOrderResultWindow() : this(string.Empty, [])
@@ -25,13 +44,22 @@ public partial class LoadOrderResultWindow : Window
         string? title = null,
         bool showCopyButton = false,
         bool compact = false,
-        Func<Task<ReportContent>>? refreshReportAsync = null)
+        Func<Task<ReportContent>>? refreshReportAsync = null,
+        DismissedIssueStore? dismissedIssues = null,
+        ConflictReportActions? actions = null)
     {
         InitializeComponent();
 
+        // A dialog taller than the screen's working area is centred with its top edge off
+        // the display, which puts the title bar out of reach. See DialogBounds.
+        Opened += (_, _) => this.FitToScreen();
+
         Title = title ?? LocalizationService.Instance["GUILoadOrderTitle"];
         _refreshReportAsync = refreshReportAsync;
-        ApplyReport(new ReportContent(summary, notes));
+        _summary = summary;
+        _notes = notes.ToList();
+        _dismissedIssues = dismissedIssues;
+        _actions = actions;
         CopyButton.IsVisible = showCopyButton;
         RefreshButton.IsVisible = refreshReportAsync is not null;
         CloseButton.IsVisible = !compact;
@@ -55,6 +83,16 @@ public partial class LoadOrderResultWindow : Window
         };
         RefreshButton.Click += async (_, _) => await RefreshReportAsync();
         CloseButton.Click += (_, _) => Close();
+
+        ShowDismissedToggle.IsCheckedChanged += (_, _) =>
+        {
+            var wanted = ShowDismissedToggle.IsChecked == true;
+            if (wanted == _showDismissed) return;
+            _showDismissed = wanted;
+            Rebuild();
+        };
+
+        Rebuild();
     }
 
     public static Task ShowAsync(
@@ -63,9 +101,14 @@ public partial class LoadOrderResultWindow : Window
         IReadOnlyList<LoadOrderNote> notes,
         string? title = null,
         bool showCopyButton = false,
-        bool compact = false)
+        bool compact = false,
+        DismissedIssueStore? dismissedIssues = null,
+        ConflictReportActions? actions = null)
     {
-        return new LoadOrderResultWindow(summary, notes, title, showCopyButton, compact).ShowDialog(owner);
+        return new LoadOrderResultWindow(
+                summary, notes, title, showCopyButton, compact,
+                dismissedIssues: dismissedIssues, actions: actions)
+            .ShowDialog(owner);
     }
 
     /// <summary>
@@ -75,14 +118,18 @@ public partial class LoadOrderResultWindow : Window
     public static LoadOrderResultWindow Show(
         ReportContent report,
         string title,
-        Func<Task<ReportContent>> refreshReportAsync)
+        Func<Task<ReportContent>> refreshReportAsync,
+        DismissedIssueStore? dismissedIssues = null,
+        ConflictReportActions? actions = null)
     {
         var window = new LoadOrderResultWindow(
             report.Summary,
             report.Notes,
             title,
             showCopyButton: true,
-            refreshReportAsync: refreshReportAsync);
+            refreshReportAsync: refreshReportAsync,
+            dismissedIssues: dismissedIssues,
+            actions: actions);
         // A modeless issue report must be an independent top-level window.
         // Showing it with AIM as its owner keeps it permanently above AIM on
         // Windows, which defeats the purpose of keeping the main mod list usable.
@@ -93,12 +140,9 @@ public partial class LoadOrderResultWindow : Window
 
     private void ApplyReport(ReportContent report)
     {
-        _report = BuildReport(report.Summary, report.Notes);
-        SummaryText.Text = report.Summary;
-        SummaryText.IsVisible = !string.IsNullOrWhiteSpace(report.Summary);
-        NotesPanel.Children.Clear();
-        foreach (var note in report.Notes)
-            NotesPanel.Children.Add(CreateNoteControl(note));
+        _summary = report.Summary;
+        _notes = report.Notes.ToList();
+        Rebuild();
     }
 
     private async Task RefreshReportAsync()
@@ -121,11 +165,173 @@ public partial class LoadOrderResultWindow : Window
         }
     }
 
-    private static Control CreateNoteControl(LoadOrderNote note)
+    private static LocalizedTexts Texts => LocalizedTexts.Instance;
+
+    // ── Rendering ────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Redraws the whole list.
+    ///
+    /// Acting on an issue moves it between two sections, changes its wording, or removes a mod from
+    /// it, so the cheapest correct thing is to rebuild rather than to patch controls in place. A
+    /// conflict report is a few dozen rows at worst.
+    /// </summary>
+    private void Rebuild()
     {
-        if (note.Kind == LoadOrderNoteKind.FileConflict && note.Details.Count > 0)
+        NotesPanel.Children.Clear();
+        _report = BuildReport(_summary, _notes, _dismissedIssues);
+        SummaryText.Text = _summary;
+        SummaryText.IsVisible = !string.IsNullOrWhiteSpace(_summary);
+
+        if (_dismissedIssues is null)
         {
-            var paths = new StackPanel { Spacing = 4 };
+            foreach (var note in _notes)
+                NotesPanel.Children.Add(CreateNoteControl(note));
+            ShowDismissedToggle.IsVisible = false;
+            return;
+        }
+
+        var live = new List<LoadOrderNote>();
+        var dismissed = new List<LoadOrderNote>();
+        foreach (var note in _notes)
+            (_dismissedIssues.IsDismissed(note.StableKey) ? dismissed : live).Add(note);
+
+        foreach (var note in live)
+            NotesPanel.Children.Add(CreateDismissableRow(note, isDismissed: false));
+
+        ShowDismissedToggle.IsVisible = dismissed.Count > 0;
+        ShowDismissedToggle.Content = string.Format(Texts.GUIIssueShowDismissed, dismissed.Count);
+
+        if (dismissed.Count == 0 || !_showDismissed) return;
+
+        NotesPanel.Children.Add(new TextBlock
+        {
+            Text = Texts.GUIIssueDismissedHeader,
+            FontWeight = FontWeight.SemiBold,
+            Opacity = 0.7,
+            Margin = new Avalonia.Thickness(0, 12, 0, 0)
+        });
+
+        foreach (var note in dismissed)
+            NotesPanel.Children.Add(CreateDismissableRow(note, isDismissed: true));
+    }
+
+    /// <summary>
+    /// One issue with the checkbox that says "I have looked at this and it is fine".
+    ///
+    /// A dismissed issue is dimmed and struck through rather than deleted: the user needs to be
+    /// able to find it again and change their mind, and a silently vanishing warning is exactly the
+    /// behaviour that makes people distrust the report.
+    /// </summary>
+    private Control CreateDismissableRow(LoadOrderNote note, bool isDismissed)
+    {
+        var checkbox = new CheckBox
+        {
+            IsChecked = isDismissed,
+            VerticalAlignment = VerticalAlignment.Top,
+            Margin = new Avalonia.Thickness(0, 2, 8, 0),
+            MinWidth = 0
+        };
+        ToolTip.SetTip(checkbox, Texts.GUIIssueDismissTooltip);
+
+        checkbox.IsCheckedChanged += (_, _) =>
+        {
+            var wanted = checkbox.IsChecked == true;
+            if (wanted == isDismissed) return;
+
+            _dismissedIssues?.SetDismissed(note.StableKey, wanted, note.Message);
+
+            // Newly dismissed issues would otherwise disappear with no trace of where they went.
+            if (wanted) _showDismissed = true;
+            ShowDismissedToggle.IsChecked = _showDismissed;
+
+            // Rebuilding tears down the very checkbox whose event is still being dispatched, so
+            // let this event finish first.
+            Dispatcher.UIThread.Post(Rebuild);
+        };
+
+        var content = CreateNoteControl(note, isDismissed);
+        Grid.SetColumn(content, 1);
+
+        var row = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitions("Auto,*"),
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            Opacity = isDismissed ? 0.55 : 1.0
+        };
+        row.Children.Add(checkbox);
+        row.Children.Add(content);
+        return row;
+    }
+
+    private Control CreateNoteControl(LoadOrderNote note, bool struckThrough = false)
+    {
+        var decorations = struckThrough ? TextDecorations.Strikethrough : null;
+        var (header, detail) = SplitMessage(note.Message);
+
+        var body = BuildBody(note, detail);
+        if (body is null)
+        {
+            return new SelectableTextBlock
+            {
+                Text = $"• {note.Message}",
+                TextWrapping = TextWrapping.Wrap,
+                TextDecorations = decorations
+            };
+        }
+
+        return new Expander
+        {
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            Header = new SelectableTextBlock
+            {
+                Text = header,
+                TextWrapping = TextWrapping.Wrap,
+                TextDecorations = decorations
+            },
+            Content = new ScrollViewer
+            {
+                MaxHeight = 320,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                Content = body
+            },
+            IsExpanded = false
+        };
+    }
+
+    /// <summary>
+    /// What sits inside an issue's expander: the rest of its message, the mods involved with the
+    /// buttons that act on each, the files at stake, and the way out to the research window.
+    /// Returns null when there is nothing worth expanding.
+    /// </summary>
+    private Control? BuildBody(LoadOrderNote note, string detail)
+    {
+        var panel = new StackPanel { Spacing = 8 };
+
+        if (!string.IsNullOrWhiteSpace(detail))
+        {
+            panel.Children.Add(new SelectableTextBlock
+            {
+                Text = detail,
+                TextWrapping = TextWrapping.Wrap
+            });
+        }
+
+        foreach (var participant in note.Participants)
+            panel.Children.Add(CreateParticipantRow(note, participant));
+
+        if (note.Details.Count > 0)
+        {
+            var paths = new StackPanel { Spacing = 4, Margin = new Avalonia.Thickness(0, 4, 0, 0) };
+            paths.Children.Add(new TextBlock
+            {
+                Text = Texts.GUIConflictSharedFilesHeader,
+                FontWeight = FontWeight.SemiBold,
+                Opacity = 0.75
+            });
+
             foreach (var path in note.Details)
             {
                 paths.Children.Add(new SelectableTextBlock
@@ -136,61 +342,255 @@ public partial class LoadOrderResultWindow : Window
                 });
             }
 
-            return new Expander
-            {
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                Header = new SelectableTextBlock
-                {
-                    Text = note.Message,
-                    TextWrapping = TextWrapping.Wrap
-                },
-                Content = new ScrollViewer
-                {
-                    MaxHeight = 220,
-                    HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
-                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                    Content = paths
-                },
-                IsExpanded = false
-            };
+            panel.Children.Add(paths);
         }
 
-        // Compatibility, hook, and shortcut notes can contain many lines. Give
-        // each its own collapsed card instead of turning the report into one
-        // unscannable block of text.
-        var (header, detail) = SplitMessage(note.Message);
-        if (!string.IsNullOrWhiteSpace(detail))
-        {
-            return new Expander
-            {
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                Header = new SelectableTextBlock
-                {
-                    Text = header,
-                    TextWrapping = TextWrapping.Wrap
-                },
-                Content = new ScrollViewer
-                {
-                    MaxHeight = 220,
-                    HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
-                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                    Content = new SelectableTextBlock
-                    {
-                        Text = detail,
-                        TextWrapping = TextWrapping.Wrap
-                    }
-                },
-                IsExpanded = false
-            };
-        }
+        var research = CreateResearchRow(note);
+        if (research is not null) panel.Children.Add(research);
 
-        return new SelectableTextBlock
+        return panel.Children.Count == 0 ? null : panel;
+    }
+
+    // ── One mod inside an issue ──────────────────────────────────────────────────
+
+    /// <summary>
+    /// A mod's name, with everything else about it a hover away.
+    ///
+    /// The path used to be printed inline. With three mods installed under long Steam paths that
+    /// turned a one-line shortcut warning into six wrapped lines of directory names, and the only
+    /// thing the user needed - which mods - was the hardest part to find.
+    /// </summary>
+    private Control CreateParticipantRow(LoadOrderNote note, IssueParticipant participant)
+    {
+        var isCurrentWinner = note.Kind == LoadOrderNoteKind.FileConflict &&
+                              ReferenceEquals(participant, note.Participants[^1]);
+
+        var name = new TextBlock
         {
-            Text = $"• {note.Message}",
+            Text = participant.Display,
+            VerticalAlignment = VerticalAlignment.Center,
             TextWrapping = TextWrapping.Wrap
         };
+
+        var tip = participant.Detail.Length > 0
+            ? $"{participant.SourcePath}\n{participant.Detail}"
+            : participant.SourcePath;
+        ToolTip.SetTip(name, tip);
+
+        var row = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Spacing = 8,
+            Children = { name }
+        };
+
+        if (isCurrentWinner)
+        {
+            row.Children.Add(new Border
+            {
+                Background = Brushes.Gray,
+                CornerRadius = new Avalonia.CornerRadius(3),
+                Padding = new Avalonia.Thickness(6, 1, 6, 1),
+                VerticalAlignment = VerticalAlignment.Center,
+                Child = new TextBlock { Text = Texts.GUIConflictCurrentWinner, Foreground = Brushes.White }
+            });
+        }
+
+        var action = note.Kind switch
+        {
+            LoadOrderNoteKind.FileConflict when !isCurrentWinner => CreateWinnerButton(note, participant),
+            LoadOrderNoteKind.HotkeyConflict => CreateRebindButton(note, participant),
+            _ => null
+        };
+        if (action is not null) row.Children.Add(action);
+
+        return row;
+    }
+
+    private Control? CreateWinnerButton(LoadOrderNote note, IssueParticipant participant)
+    {
+        if (_actions is null) return null;
+
+        var button = new Button { Content = Texts.GUIConflictMakeThisWin };
+        ToolTip.SetTip(button, Texts.GUIConflictMakeThisWinTooltip);
+
+        button.Click += (_, _) =>
+        {
+            if (!_actions.MakeModWin(note, participant)) return;
+
+            // The note's own wording named the old winner, so it has to be rewritten rather than
+            // left to contradict the list underneath it. The issue key is built from mod ids and
+            // versions, neither of which reordering changes, so any dismissal survives this.
+            var reordered = note.Participants.Where(other => !ReferenceEquals(other, participant))
+                .Append(participant)
+                .ToList();
+
+            Replace(note, note with
+            {
+                Message = string.Format(Texts.GUIConflictWinnerNow, participant.Display),
+                Participants = reordered
+            });
+        };
+
+        return button;
+    }
+
+    private Control? CreateRebindButton(LoadOrderNote note, IssueParticipant participant)
+    {
+        if (_actions is null) return null;
+
+        var capability = _actions.InspectRebind(note, participant);
+        var button = new Button
+        {
+            Content = Texts.GUIHotkeyRebindButton,
+            IsEnabled = capability.CanRebind
+        };
+        ToolTip.SetTip(button, capability.CanRebind
+            ? string.Format(Texts.GUIHotkeyRebindTooltip, string.Join(", ", capability.Bindings))
+            : DescribeBlocker(capability.Blocker));
+
+        button.Click += async (_, _) =>
+        {
+            var newKey = await _actions.RebindHotkey(note, participant);
+            if (newKey is null) return;
+
+            var remaining = note.Participants.Where(other => !ReferenceEquals(other, participant)).ToList();
+
+            // One mod cannot clash with itself, so moving the second-to-last mod off the key ends
+            // the issue. Mark it resolved rather than leaving a warning about a conflict the user
+            // has just fixed - that was the whole point of the button.
+            if (remaining.Count < 2)
+            {
+                var solved = note with
+                {
+                    Message = string.Format(Texts.GUIHotkeyReboundResolved, participant.Display, newKey),
+                    Participants = remaining
+                };
+                _dismissedIssues?.SetDismissed(
+                    note.StableKey, true, solved.Message,
+                    new IssueVerdict(DismissedIssueStore.VerdictRebound, null, $"{participant.Display} → {newKey}"));
+                _showDismissed = true;
+                ShowDismissedToggle.IsChecked = true;
+                Replace(note, solved);
+                return;
+            }
+
+            Replace(note, note with
+            {
+                Message = string.Format(Texts.GUIHotkeyRebound, participant.Display, newKey, note.HotkeyKey ?? ""),
+                Participants = remaining
+            });
+        };
+
+        return button;
+    }
+
+    private static string DescribeBlocker(RebindBlocker blocker) => blocker switch
+    {
+        RebindBlocker.NotAFolder => Texts.GUIHotkeyBlockedArchive,
+        RebindBlocker.NotADeclaredBinding => Texts.GUIHotkeyBlockedNotDeclared,
+        RebindBlocker.NoFreeKeys => Texts.GUIHotkeyBlockedNoFreeKeys,
+        RebindBlocker.NotWritable => Texts.GUIHotkeyBlockedUnreadable,
+        _ => ""
+    };
+
+    // ── Research ─────────────────────────────────────────────────────────────────
+
+    private Control? CreateResearchRow(LoadOrderNote note)
+    {
+        // Only issues about two or more mods have a "do they actually get along" question to
+        // answer. A single mod's compatibility warning is about the mod itself.
+        if (_actions is null || note.Participants.Count < 2) return null;
+        if (note.Kind is not (LoadOrderNoteKind.FileConflict or LoadOrderNoteKind.HookConflict
+            or LoadOrderNoteKind.HotkeyConflict)) return null;
+
+        var button = new Button
+        {
+            Content = Texts.GUIConflictFindAFix,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            Margin = new Avalonia.Thickness(0, 6, 0, 0)
+        };
+        ToolTip.SetTip(button, Texts.GUIConflictFindAFixTooltip);
+
+        button.Click += async (_, _) =>
+        {
+            var verdict = await _actions.Research(this, note);
+            if (verdict is null) return;
+
+            var resolved = verdict.Kind is DismissedIssueStore.VerdictNotAnIssue
+                or DismissedIssueStore.VerdictPatchExists;
+
+            if (resolved)
+            {
+                _dismissedIssues?.SetDismissed(note.StableKey, true, note.Message, verdict);
+                _showDismissed = true;
+                ShowDismissedToggle.IsChecked = true;
+            }
+            else
+            {
+                // "They really are incompatible" is an answer, not a resolution: the user still has
+                // to disable one of them, so the issue stays visible with the finding attached.
+                _dismissedIssues?.SetVerdict(note.StableKey, verdict);
+            }
+
+            Rebuild();
+        };
+
+        var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, Children = { button } };
+
+        var recorded = _dismissedIssues?.Verdict(note.StableKey);
+        if (recorded is not null)
+        {
+            var label = new TextBlock
+            {
+                Text = DescribeVerdict(recorded),
+                VerticalAlignment = VerticalAlignment.Center,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Avalonia.Thickness(0, 6, 0, 0)
+            };
+            row.Children.Add(label);
+
+            if (ExternalUrl.IsAllowed(recorded.Link))
+            {
+                var open = new Button
+                {
+                    Content = Texts.GUIResearchOpenPatch,
+                    Margin = new Avalonia.Thickness(0, 6, 0, 0)
+                };
+                ToolTip.SetTip(open, recorded.Link);
+                open.Click += (_, _) => ExternalUrl.Open(recorded.Link);
+                row.Children.Add(open);
+            }
+        }
+
+        return row;
+    }
+
+    private static string DescribeVerdict(IssueVerdict verdict) => verdict.Kind switch
+    {
+        DismissedIssueStore.VerdictNotAnIssue => Texts.GUIVerdictNotAnIssue,
+        DismissedIssueStore.VerdictPatchExists => Texts.GUIVerdictPatchExists,
+        DismissedIssueStore.VerdictIncompatible => Texts.GUIVerdictIncompatible,
+        DismissedIssueStore.VerdictRebound => string.Format(Texts.GUIVerdictRebound, verdict.Note ?? ""),
+        _ => ""
+    };
+
+    // ── Plumbing ─────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Swaps one note for an updated copy of itself.
+    ///
+    /// Matched by identity rather than by <c>IndexOf</c>: <see cref="LoadOrderNote"/> is a record,
+    /// so equality is structural, and two notes of the same kind carrying the same message would be
+    /// indistinguishable to it - which would silently rewrite the wrong row.
+    /// </summary>
+    private void Replace(LoadOrderNote original, LoadOrderNote updated)
+    {
+        var index = _notes.FindIndex(note => ReferenceEquals(note, original));
+        if (index < 0) return;
+
+        _notes[index] = updated;
+        Dispatcher.UIThread.Post(Rebuild);
     }
 
     private static (string Header, string Detail) SplitMessage(string message)
@@ -205,14 +605,29 @@ public partial class LoadOrderResultWindow : Window
         return (message[..newLine], message[detailStart..]);
     }
 
-    private static string BuildReport(string summary, IReadOnlyList<LoadOrderNote> notes)
+    /// <summary>
+    /// The plain-text version behind "Copy report".
+    ///
+    /// Dismissed findings stay in it - a report pasted into a bug thread should not quietly omit
+    /// things - but they are labelled, so the reader can see which ones the user had already
+    /// judged and which are still open.
+    /// </summary>
+    private static string BuildReport(
+        string summary,
+        IReadOnlyList<LoadOrderNote> notes,
+        DismissedIssueStore? dismissedIssues)
     {
         var lines = new List<string>();
         if (!string.IsNullOrWhiteSpace(summary)) lines.Add(summary);
 
+        var marker = LocalizationService.Instance["GUIIssueDismissedMarker"];
+
         foreach (var note in notes)
         {
-            lines.Add(note.Message);
+            var isDismissed = dismissedIssues?.IsDismissed(note.StableKey) == true;
+            lines.Add(isDismissed ? $"{marker} {note.Message}" : note.Message);
+            lines.AddRange(note.Participants.Select(participant =>
+                $"  - {participant.Display} [{participant.SourcePath}]"));
             lines.AddRange(note.Details.Select(path => $"  • {path}"));
         }
 

@@ -1,12 +1,79 @@
+using System.Security.Cryptography;
+using System.Text;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 namespace Garethp.ModsOfMistriaInstallerLib;
+
+/// <summary>
+/// One mod's part in an issue.
+///
+/// The report used to say all of this in prose, which meant a three-way shortcut clash rendered as
+/// three wrapped lines of absolute paths and became unreadable. Keeping the pieces apart lets the
+/// window show the name and hide the path behind a tooltip, and lets a button act on one specific
+/// mod - reorder it, or rebind its shortcut - rather than on the issue as an undifferentiated blob.
+/// </summary>
+public sealed class IssueParticipant(string modId, string name, string version, string sourcePath)
+{
+    public string ModId { get; } = modId;
+    public string Name { get; } = name;
+    public string Version { get; } = version;
+    public string SourcePath { get; } = sourcePath;
+
+    /// <summary>What this mod contributes to the issue, e.g. the file it defines a shortcut in.</summary>
+    public string Detail { get; init; } = "";
+
+    public string Display => Version.Length > 0 ? $"{Name} v{Version}" : Name;
+}
 
 /// <summary>One thing the planner did, or one thing it wants the user to decide.</summary>
 public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message)
 {
     /// <summary>Exact destination paths involved in this note, when available.</summary>
     public IReadOnlyList<string> Details { get; init; } = [];
+
+    /// <summary>
+    /// The mods this issue is about, in the order they currently load - so for a file conflict the
+    /// last one is the one that wins today. Empty for notes that are not about a set of mods.
+    /// </summary>
+    public IReadOnlyList<IssueParticipant> Participants { get; init; } = [];
+
+    /// <summary>The shortcut in dispute, for <see cref="LoadOrderNoteKind.HotkeyConflict"/>.</summary>
+    public string? HotkeyKey { get; init; }
+
+    /// <summary>
+    /// A language-independent identity for the underlying issue, built from the mod IDs and
+    /// versions that produced it. Whoever creates the note supplies this; see
+    /// <see cref="StableKey"/> for what happens when they do not.
+    /// </summary>
+    public string? IssueKey { get; init; }
+
+    /// <summary>
+    /// The identity <see cref="DismissedIssueStore"/> files a dismissal under.
+    ///
+    /// Deliberately version-sensitive: an update to either mod produces a different key, so an
+    /// issue the user waved through comes back for a fresh look rather than staying silenced by a
+    /// judgement made about different code.
+    ///
+    /// The fallback hashes the message, which works but is tied to the display language - so
+    /// generators set <see cref="IssueKey"/> wherever the underlying identity is available.
+    /// </summary>
+    public string StableKey =>
+        IssueKey is { Length: > 0 } key
+            ? $"{Kind}|{key}"
+            : $"{Kind}|text:{Fingerprint(Message + "\u001f" + string.Join("\u001f", Details))}";
+
+    private static string Fingerprint(string value) =>
+        Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)))[..16].ToLowerInvariant();
+
+    /// <summary>
+    /// Builds the mods half of an issue key: IDs paired with versions, ordered so that the same set
+    /// of mods always yields the same string.
+    /// </summary>
+    public static string DescribeMods(IEnumerable<IMod> mods) =>
+        string.Join(",", mods
+            .Select(mod => $"{mod.GetId()}@{mod.GetVersion()}")
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase));
 }
 
 public enum LoadOrderNoteKind
@@ -54,12 +121,25 @@ public static class LoadOrderPlanner
     /// The mods to check for file conflicts - normally the enabled ones, since a disabled mod
     /// cannot collide with anything. Defaults to <paramref name="mods"/>.
     /// </param>
-    public static LoadOrderPlan Plan(IReadOnlyList<IMod> mods, IReadOnlyList<IMod>? conflictScope = null)
+    /// <param name="rankConflictsBySuggestedOrder">
+    /// Which order decides who currently wins a shared file.
+    ///
+    /// True suits "Suggest order", where the user is about to accept the reordering and wants to
+    /// know what it implies. False suits the conflict report, which does not apply the suggestion:
+    /// naming a winner from an order the user has not agreed to would label the wrong mod, and the
+    /// report's "make this one win" button would then have nothing to do.
+    /// </param>
+    public static LoadOrderPlan Plan(
+        IReadOnlyList<IMod> mods,
+        IReadOnlyList<IMod>? conflictScope = null,
+        bool rankConflictsBySuggestedOrder = true)
     {
         var notes = new List<LoadOrderNote>();
         var order = SortByRequirements(mods, notes);
 
-        notes.AddRange(DescribeFileConflicts(conflictScope ?? mods, order));
+        notes.AddRange(DescribeFileConflicts(
+            conflictScope ?? mods,
+            rankConflictsBySuggestedOrder ? order : mods.ToList()));
 
         // IDs identify a mod package, not necessarily one row in the UI. A folder and a ZIP
         // copy may legitimately expose the same ID, so compare the actual instances here.
@@ -98,7 +178,10 @@ public static class LoadOrderPlanner
                 if (!byId.ContainsKey(requiredId))
                 {
                     notes.Add(new LoadOrderNote(LoadOrderNoteKind.MissingRequirement,
-                        $"\"{mod.GetName()}\" requires \"{requirement.Name}\" by {requirement.Author}, which is not installed."));
+                        $"\"{mod.GetName()}\" requires \"{requirement.Name}\" by {requirement.Author}, which is not installed.")
+                    {
+                        IssueKey = $"{mod.GetId()}@{mod.GetVersion()}->{requiredId}"
+                    });
                     continue;
                 }
 
@@ -117,7 +200,10 @@ public static class LoadOrderPlanner
                 string.Join(", ", cyclic
                     .Select(id => byId[id].GetName())
                     .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
-                    .Select(name => $"\"{name}\""))));
+                    .Select(name => $"\"{name}\"")))
+            {
+                IssueKey = LoadOrderNote.DescribeMods(cyclic.Select(id => byId[id]))
+            });
         }
 
         var order = mods.ToList();
@@ -245,16 +331,26 @@ public static class LoadOrderPlanner
     /// </summary>
     private static List<LoadOrderNote> DescribeFileConflicts(IReadOnlyList<IMod> scope, List<IMod> order)
     {
-        // A folder and an archive copy can have the same manifest ID. Keep one stable position
-        // and name for conflict reporting; the detector already returns distinct owners/files.
-        var position = order
-            .Select((mod, index) => (mod.GetId(), index))
-            .GroupBy(pair => pair.Item1, StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.Last().index, StringComparer.OrdinalIgnoreCase);
+        // A folder and an archive copy can have the same manifest ID. Pick one copy per ID - the
+        // last, because that is the one that would win - and take the position, name, version and
+        // path from that same copy. Mixing them would let the report rank one copy and then point
+        // its "make this one win" button at the other.
+        var chosen = order
+            .Select((mod, index) => (Mod: mod, Index: index))
+            .GroupBy(pair => pair.Mod.GetId(), StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.Last(), StringComparer.OrdinalIgnoreCase);
 
-        var names = order
-            .GroupBy(mod => mod.GetId(), StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.First().GetName(), StringComparer.OrdinalIgnoreCase);
+        var position = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Index, StringComparer.OrdinalIgnoreCase);
+        var names = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Mod.GetName(), StringComparer.OrdinalIgnoreCase);
+
+        // Versions go into the issue key so that dismissing "these two both touch the same sprite"
+        // does not also silence the next version of either mod.
+        var versions = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Mod.GetVersion(), StringComparer.OrdinalIgnoreCase);
+        var sources = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Mod.GetSourcePath(), StringComparer.OrdinalIgnoreCase);
 
         IReadOnlyList<ModFileConflict> conflicts;
         try
@@ -293,6 +389,14 @@ public static class LoadOrderPlanner
                         .Select(item => item.Conflict.Path)
                         .Distinct(StringComparer.OrdinalIgnoreCase)
                         .Order(StringComparer.OrdinalIgnoreCase)
+                        .ToList(),
+                    IssueKey = string.Join(",", ids
+                        .Select(id => $"{id}@{versions[id]}")
+                        .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase)),
+                    // In load order, so the last entry is the one that wins as things stand. The
+                    // report relies on that to label the current winner without recomputing.
+                    Participants = ids
+                        .Select(id => new IssueParticipant(id, names[id], versions[id], sources[id]))
                         .ToList()
                 };
             })

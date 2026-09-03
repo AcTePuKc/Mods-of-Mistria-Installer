@@ -53,6 +53,16 @@ public static class ModArchiveInstaller
     /// so the user can roll the update back.
     /// </param>
     /// <param name="previousVersion">Labels the backup with the version it holds.</param>
+    /// <param name="replacePath">
+    /// The mod already on disk that this download is an update to - its folder, or the .zip it was
+    /// installed as. When given, and the archive holds a single mod, it is unpacked over that exact
+    /// path instead of into a folder named after the download.
+    ///
+    /// Without this an update never replaces anything. Nexus file names carry the file id, the
+    /// version and an upload stamp ("March Expanded 669 2.0.12 2026-08-21T00-48Z UeRMzf4uu.zip"),
+    /// and a mod whose archive has no folder of its own is named after that file - so every release
+    /// lands in a brand new folder and the old copy stays in the mod list beside it.
+    /// </param>
     public static List<InstalledModFolder> Install(
         string archivePath,
         string modsLocation,
@@ -61,9 +71,10 @@ public static class ModArchiveInstaller
         ModBackupStore? backups = null,
         string? previousVersion = null,
         CancellationToken cancellationToken = default,
-        ModArchiveExtractionLimits? limits = null)
+        ModArchiveExtractionLimits? limits = null,
+        string? replacePath = null)
         => InstallCore(archivePath, modsLocation, fallbackName, conflictBehaviour, backups, previousVersion,
-            cancellationToken, limits, null);
+            cancellationToken, limits, replacePath, null);
 
     /// <summary>
     /// Test-only entry point for exercising recovery failures that cannot be created portably by
@@ -78,9 +89,10 @@ public static class ModArchiveInstaller
         string? previousVersion,
         CancellationToken cancellationToken,
         ModArchiveExtractionLimits? limits,
-        Func<string, string?, Exception?>? forceRestoreFailure)
+        Func<string, string?, Exception?>? forceRestoreFailure,
+        string? replacePath = null)
         => InstallCore(archivePath, modsLocation, fallbackName, conflictBehaviour, backups, previousVersion,
-            cancellationToken, limits, forceRestoreFailure);
+            cancellationToken, limits, replacePath, forceRestoreFailure);
 
     private static List<InstalledModFolder> InstallCore(
         string archivePath,
@@ -91,6 +103,7 @@ public static class ModArchiveInstaller
         string? previousVersion,
         CancellationToken cancellationToken,
         ModArchiveExtractionLimits? limits,
+        string? replacePath,
         Func<string, string?, Exception?>? forceRestoreFailure)
     {
         if (!File.Exists(archivePath)) throw new ModArchiveException("The downloaded file is missing.");
@@ -121,19 +134,36 @@ public static class ModArchiveInstaller
             .Where(root => !manifestRoots.Any(other => other.Length < root.Length && root.StartsWith(other, StringComparison.OrdinalIgnoreCase)))
             .ToList();
 
+        // Only a single-mod archive can be aimed at a known folder. A bundle has several mods in it
+        // and no way to say which of them is the one being replaced, so it falls back to naming.
+        var replaceTarget = roots.Count == 1 ? ResolveReplaceTarget(replacePath, modsLocation) : null;
+
         var plans = roots
-            .Select(root => (Root: root, Target: Path.Combine(modsLocation, TargetFolderName(root, fallbackName))))
+            .Select(root => (
+                Root: root,
+                Target: replaceTarget ?? Path.Combine(modsLocation, TargetFolderName(root, fallbackName))))
             .ToList();
 
         if (conflictBehaviour == ArchiveConflictBehaviour.Fail)
         {
-            var existing = plans.Where(plan => Directory.Exists(plan.Target)).ToList();
+            // A folder we were told to replace is not a conflict: the caller already knows it is
+            // there and has asked for it to be overwritten.
+            var existing = plans
+                .Where(plan => Directory.Exists(plan.Target) && plan.Target != replaceTarget)
+                .ToList();
             if (existing.Count > 0)
                 throw new ModArchiveConflictException(existing.Select(plan => Path.GetFileName(plan.Target)).ToList());
         }
 
         var installed = new List<ExtractedRoot>();
         var budget = new ExtractionBudget(extractionLimits.MaxTotalBytes);
+
+        // A mod that was installed as a .zip is being replaced by an unpacked folder, so the old
+        // archive has to go or the mod list shows both. It is archived rather than deleted, and
+        // before extraction rather than after, so a failed unpack restores cleanly.
+        var supersededArchive = SupersededArchive(replacePath, replaceTarget);
+        if (supersededArchive is not null)
+            ArchiveSupersededFile(supersededArchive, backups, previousVersion);
 
         foreach (var (root, target) in plans)
         {
@@ -170,6 +200,78 @@ public static class ModArchiveInstaller
             TryRemove(result.BackupPath!);
 
         return installed.Select(result => result.Installed).ToList();
+    }
+
+    // ── Replacing an existing install ────────────────────────────────────────────
+
+    /// <summary>
+    /// Where an update should be unpacked, given the copy already on disk.
+    ///
+    /// A mod installed as <c>Foo.zip</c> is replaced by a <c>Foo</c> folder: the installer reads
+    /// both, and unpacking over a file is not a thing. The path is required to sit inside the mods
+    /// folder - a stale or hand-edited index must not be able to aim an extraction anywhere else.
+    /// </summary>
+    private static string? ResolveReplaceTarget(string? replacePath, string modsLocation)
+    {
+        if (string.IsNullOrWhiteSpace(replacePath)) return null;
+
+        string full, root;
+        try
+        {
+            full = Path.GetFullPath(replacePath.TrimEnd('/', '\\'));
+            root = Path.GetFullPath(modsLocation) + Path.DirectorySeparatorChar;
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Ignoring an unusable replace path ({replacePath}): {e.Message}");
+            return null;
+        }
+
+        if (!full.StartsWith(root, StringComparison.OrdinalIgnoreCase)) return null;
+
+        // Only directly inside the mods folder. A nested path would be a sub-folder of some other
+        // mod, and replacing that is never what an update means.
+        if (Path.GetDirectoryName(full) is not { } parent ||
+            !string.Equals(parent + Path.DirectorySeparatorChar, root, StringComparison.OrdinalIgnoreCase))
+            return null;
+
+        if (Directory.Exists(full)) return full;
+
+        if (File.Exists(full) && LooksLikeArchive(full))
+        {
+            var unpacked = Path.Combine(Path.GetDirectoryName(full)!, Path.GetFileNameWithoutExtension(full));
+            return Sanitise(Path.GetFileName(unpacked)).Length == 0 ? null : unpacked;
+        }
+
+        return null;
+    }
+
+    /// <summary>The .zip an update is superseding, when the previous install was one.</summary>
+    private static string? SupersededArchive(string? replacePath, string? replaceTarget)
+    {
+        if (replaceTarget is null || string.IsNullOrWhiteSpace(replacePath)) return null;
+
+        var full = Path.GetFullPath(replacePath.TrimEnd('/', '\\'));
+        return File.Exists(full) && LooksLikeArchive(full) ? full : null;
+    }
+
+    private static void ArchiveSupersededFile(string path, ModBackupStore? backups, string? previousVersion)
+    {
+        try
+        {
+            if (backups?.Archive(path, previousVersion) is not null) return;
+
+            // No store, or the store could not take it. Keeping it aside beside the mods folder is
+            // still better than deleting a mod the user has, and better than leaving a duplicate in
+            // the list - the installer ignores the .aim-old suffix.
+            var parked = path + ".aim-old";
+            if (File.Exists(parked)) File.Delete(parked);
+            File.Move(path, parked);
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not put aside the old archive {Path.GetFileName(path)}: {e.Message}");
+        }
     }
 
     // ── Extraction ───────────────────────────────────────────────────────────────

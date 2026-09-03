@@ -166,4 +166,212 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUISettingsNexusDescription => T("GUISettingsNexusDescription");
     public string GUISettingsNexusNote => T("GUISettingsNexusNote");
     public string GUISettingsSelectModsFolderTitle => T("GUISettingsSelectModsFolderTitle");
+
+    // Row context menu: editing a mod's own files, and removing it
+    public string GUIEditManifest => T("GUIEditManifest");
+    public string GUIEditManifestTooltip => T("GUIEditManifestTooltip");
+    public string GUIEditConfig => T("GUIEditConfig");
+    public string GUIEditConfigTooltip => T("GUIEditConfigTooltip");
+    public string GUIEditFileFailed => T("GUIEditFileFailed");
+    public string GUIRemoveMod => T("GUIRemoveMod");
+    public string GUIRemoveModTooltip => T("GUIRemoveModTooltip");
+    public string GUIRemoveModTitle => T("GUIRemoveModTitle");
+    public string GUIRemoveModConfirm => T("GUIRemoveModConfirm");
+    public string GUIRemoveModConfirmPermanent => T("GUIRemoveModConfirmPermanent");
+    public string GUIRemoveModFailed => T("GUIRemoveModFailed");
+    public string GUIRemoveModRefused => T("GUIRemoveModRefused");
+    public string GUIRemoveSelected => T("GUIRemoveSelected");
+    public string GUIRemoveSelectedTooltip => T("GUIRemoveSelectedTooltip");
+    public string GUIRemoveSelectedNone => T("GUIRemoveSelectedNone");
+    public string GUIRemoveSelectedConfirm => T("GUIRemoveSelectedConfirm");
+    public string GUIRemoveSelectedConfirmPermanent => T("GUIRemoveSelectedConfirmPermanent");
+    public string GUIRemoveSelectedMore => T("GUIRemoveSelectedMore");
+    public string GUIRemoveSelectedDone => T("GUIRemoveSelectedDone");
+    public string GUIRemoveSelectedFailed => T("GUIRemoveSelectedFailed");
+    public string GUIRemoveModMissing => T("GUIRemoveModMissing");
+
+    // Conflict report: marking an issue as one the user has checked and accepted
+    public string GUIIssueDismissTooltip => T("GUIIssueDismissTooltip");
+    public string GUIIssueShowDismissed => T("GUIIssueShowDismissed");
+    public string GUIIssueDismissedHeader => T("GUIIssueDismissedHeader");
+    public string GUIIssueDismissedMarker => T("GUIIssueDismissedMarker");
+
+    // Conflict report: deciding which mod wins a shared-file conflict
+    public string GUIConflictSharedFilesHeader => T("GUIConflictSharedFilesHeader");
+    public string GUIConflictCurrentWinner => T("GUIConflictCurrentWinner");
+    public string GUIConflictMakeThisWin => T("GUIConflictMakeThisWin");
+    public string GUIConflictMakeThisWinTooltip => T("GUIConflictMakeThisWinTooltip");
+    public string GUIConflictWinnerNow => T("GUIConflictWinnerNow");
+
+    // Conflict report: rebinding a contested keyboard shortcut
+    public string GUIHotkeyRebindButton => T("GUIHotkeyRebindButton");
+    public string GUIHotkeyRebindTooltip => T("GUIHotkeyRebindTooltip");
+    public string GUIHotkeyRebindTitle => T("GUIHotkeyRebindTitle");
+    public string GUIHotkeyRebindConfirm => T("GUIHotkeyRebindConfirm");
+    public string GUIHotkeyRebindDone => T("GUIHotkeyRebindDone");
+    public string GUIHotkeyRebindFailed => T("GUIHotkeyRebindFailed");
+    public string GUIHotkeyRebound => T("GUIHotkeyRebound");
+    public string GUIHotkeyReboundResolved => T("GUIHotkeyReboundResolved");
+    public string GUIHotkeyBlockedArchive => T("GUIHotkeyBlockedArchive");
+    public string GUIHotkeyBlockedNotDeclared => T("GUIHotkeyBlockedNotDeclared");
+    public string GUIHotkeyBlockedNoFreeKeys => T("GUIHotkeyBlockedNoFreeKeys");
+    public string GUIHotkeyBlockedUnreadable => T("GUIHotkeyBlockedUnreadable");
+
+    // Conflict report: researching whether a conflict actually matters
+    public string GUIConflictFindAFix => T("GUIConflictFindAFix");
+    public string GUIConflictFindAFixTooltip => T("GUIConflictFindAFixTooltip");
+    public string GUIResearchTitle => T("GUIResearchTitle");
+    public string GUIResearchWorking => T("GUIResearchWorking");
+    public string GUIResearchNoApiKey => T("GUIResearchNoApiKey");
+    public string GUIResearchNothingFound => T("GUIResearchNothingFound");
+    public string GUIResearchFoundCount => T("GUIResearchFoundCount");
+    public string GUIResearchFailed => T("GUIResearchFailed");
+    public string GUIResearchFindingsHeader => T("GUIResearchFindingsHeader");
+    public string GUIResearchLinksHeader => T("GUIResearchLinksHeader");
+    public string GUIResearchLinksHint => T("GUIResearchLinksHint");
+    public string GUIResearchOpenPage => T("GUIResearchOpenPage");
+    public string GUIResearchOpenPatch => T("GUIResearchOpenPatch");
+    public string GUIResearchVerdictHeader => T("GUIResearchVerdictHeader");
+    public string GUIResearchVerdictHint => T("GUIResearchVerdictHint");
+    public string GUIResearchPatchLinkLabel => T("GUIResearchPatchLinkLabel");
+    public string GUIResearchNotAnIssue => T("GUIResearchNotAnIssue");
+    public string GUIResearchNotAnIssueTooltip => T("GUIResearchNotAnIssueTooltip");
+    public string GUIResearchPatchExists => T("GUIResearchPatchExists");
+    public string GUIResearchPatchExistsTooltip => T("GUIResearchPatchExistsTooltip");
+    public string GUIResearchIncompatible => T("GUIResearchIncompatible");
+    public string GUIResearchIncompatibleTooltip => T("GUIResearchIncompatibleTooltip");
+    public string GUIResearchUndecided => T("GUIResearchUndecided");
+    public string GUIResearchPatchConfirm => T("GUIResearchPatchConfirm");
+    public string GUIResearchPatchLinkInvalid => T("GUIResearchPatchLinkInvalid");
+    public string GUIConflictReportNothing => T("GUIConflictReportNothing");
+
+    public string GUIRowBindingClash => T("GUIRowBindingClash");
+    public string GUIModByAuthor => T("GUIModByAuthor");
+
+    // Viewing the list: sorting, filtering and jumping. None of these touches the load order.
+    public string GUISortAlphabetically => T("GUISortAlphabetically");
+    public string GUISortAlphabeticallyTooltip => T("GUISortAlphabeticallyTooltip");
+    public string GUISortRecentlyUpdated => T("GUISortRecentlyUpdated");
+    public string GUISortRecentlyUpdatedTooltip => T("GUISortRecentlyUpdatedTooltip");
+    public string GUIShowOnlyUpdatable => T("GUIShowOnlyUpdatable");
+    public string GUIShowOnlyUpdatableTooltip => T("GUIShowOnlyUpdatableTooltip");
+    public string GUIListReorderedNote => T("GUIListReorderedNote");
+    public string GUIScrollToTop => T("GUIScrollToTop");
+    public string GUIScrollToBottom => T("GUIScrollToBottom");
+
+    // A mod's release notes
+    public string GUIChangelogTitle => T("GUIChangelogTitle");
+    public string GUIChangelogLoading => T("GUIChangelogLoading");
+    public string GUIChangelogPreview => T("GUIChangelogPreview");
+    public string GUIChangelogNone => T("GUIChangelogNone");
+    public string GUIChangelogUnavailable => T("GUIChangelogUnavailable");
+    public string GUIChangelogVersionCount => T("GUIChangelogVersionCount");
+    public string GUIChangelogVersionHeading => T("GUIChangelogVersionHeading");
+
+    // Rolling back to an archived copy
+    public string GUIVersionsBadge => T("GUIVersionsBadge");
+
+    // Edits AIM made inside a mod, and the research window's diagnosis and fixes.
+    public string GUIModEditedBadge => T("GUIModEditedBadge");
+    public string GUIModEditedTooltip => T("GUIModEditedTooltip");
+    public string GUIModEditedUndoHint => T("GUIModEditedUndoHint");
+    public string GUIModUndoAimEdits => T("GUIModUndoAimEdits");
+    public string GUIResearchDiagnosisHeader => T("GUIResearchDiagnosisHeader");
+    public string GUIResearchDiagnosisCertain => T("GUIResearchDiagnosisCertain");
+    public string GUIResearchDiagnosisUncertain => T("GUIResearchDiagnosisUncertain");
+    public string GUIResearchFixesHeader => T("GUIResearchFixesHeader");
+    public string GUIResearchFixesHint => T("GUIResearchFixesHint");
+    public string GUIResearchPatchesHeader => T("GUIResearchPatchesHeader");
+    public string GUIResearchApply => T("GUIResearchApply");
+    public string GUIResearchApplied => T("GUIResearchApplied");
+    public string GUIResearchApplyFailed => T("GUIResearchApplyFailed");
+    public string GUIResearchEvidenceAgainst => T("GUIResearchEvidenceAgainst");
+    public string GUIResearchEvidenceFor => T("GUIResearchEvidenceFor");
+    public string GUIResearchEvidenceOther => T("GUIResearchEvidenceOther");
+    public string GUIResearchSetAsideWarning => T("GUIResearchSetAsideWarning");
+    public string GUIVersionsTooltip => T("GUIVersionsTooltip");
+    public string GUIVersionsHeader => T("GUIVersionsHeader");
+
+    // The update badge, and explaining a refused download honestly
+    public string GUIUpdateBadgeInstalls => T("GUIUpdateBadgeInstalls");
+    public string GUIUpdateBadgeOpensPage => T("GUIUpdateBadgeOpensPage");
+    public string GUINexusAccountPremium => T("GUINexusAccountPremium");
+    public string GUINexusAccountFree => T("GUINexusAccountFree");
+    public string GUINexusAccountNoKey => T("GUINexusAccountNoKey");
+    public string GUINexusAccountUnknown => T("GUINexusAccountUnknown");
+
+    // Keybind manager
+    public string GUIKeybindsButton => T("GUIKeybindsButton");
+    public string GUIKeybindsButtonTooltip => T("GUIKeybindsButtonTooltip");
+    public string GUIKeybindsTitle => T("GUIKeybindsTitle");
+    public string GUIKeybindsIntro => T("GUIKeybindsIntro");
+    public string GUIKeybindsSummary => T("GUIKeybindsSummary");
+    public string GUIKeybindsOnlyOverlaps => T("GUIKeybindsOnlyOverlaps");
+    public string GUIKeybindsRefresh => T("GUIKeybindsRefresh");
+    public string GUIKeybindsScanning => T("GUIKeybindsScanning");
+    public string GUIKeybindsScanFailed => T("GUIKeybindsScanFailed");
+    public string GUIKeybindsNone => T("GUIKeybindsNone");
+    public string GUIKeybindsNoOverlaps => T("GUIKeybindsNoOverlaps");
+    public string GUIKeybindsNoConfigDirectory => T("GUIKeybindsNoConfigDirectory");
+    public string GUIKeybindsGameRunning => T("GUIKeybindsGameRunning");
+    public string GUIKeybindsAlsoUsedBy => T("GUIKeybindsAlsoUsedBy");
+    public string GUIKeybindsClashHeader => T("GUIKeybindsClashHeader");
+    public string GUIKeybindsDefault => T("GUIKeybindsDefault");
+    public string GUIKeybindsDefaultTooltip => T("GUIKeybindsDefaultTooltip");
+    public string GUIKeybindsUnbound => T("GUIKeybindsUnbound");
+    public string GUIKeybindsUnrecognised => T("GUIKeybindsUnrecognised");
+    public string GUIKeybindsUnrecognisedTooltip => T("GUIKeybindsUnrecognisedTooltip");
+    public string GUIKeybindsWriteFailed => T("GUIKeybindsWriteFailed");
+
+    // Choosing one binding
+    public string GUIBindingEditorTitle => T("GUIBindingEditorTitle");
+    public string GUIBindingEditorTrigger => T("GUIBindingEditorTrigger");
+    public string GUIBindingEditorCapture => T("GUIBindingEditorCapture");
+    public string GUIBindingEditorCapturing => T("GUIBindingEditorCapturing");
+    public string GUIBindingEditorPreview => T("GUIBindingEditorPreview");
+    public string GUIBindingEditorNote => T("GUIBindingEditorNote");
+    public string GUIBindingEditorSave => T("GUIBindingEditorSave");
+    public string GUIBindingEditorClear => T("GUIBindingEditorClear");
+    public string GUIBindingEditorClearTooltip => T("GUIBindingEditorClearTooltip");
+
+    // Keeping the user's bindings across a mod's own settings reset
+    public string GUIBindingIsDefault => T("GUIBindingIsDefault");
+    public string GUIBindingRestoreTitle => T("GUIBindingRestoreTitle");
+    public string GUIBindingRestorePrompt => T("GUIBindingRestorePrompt");
+    public string GUIBindingRestoreMore => T("GUIBindingRestoreMore");
+    public string GUIBindingRestoreDone => T("GUIBindingRestoreDone");
+
+    // Update checking from the mod list header
+    public string GUICheckUpdatesButton => T("GUICheckUpdatesButton");
+    public string GUICheckUpdatesButtonTooltip => T("GUICheckUpdatesButtonTooltip");
+    public string GUICheckForUpdatesResultWithOffer => T("GUICheckForUpdatesResultWithOffer");
+    public string GUIUpdateAllNow => T("GUIUpdateAllNow");
+    public string GUIUpdateAllNowTooltip => T("GUIUpdateAllNowTooltip");
+    public string GUIUpdateAllTitle => T("GUIUpdateAllTitle");
+    public string GUIUpdateAllNothing => T("GUIUpdateAllNothing");
+    public string GUIUpdateAllConfirm => T("GUIUpdateAllConfirm");
+    public string GUIUpdateAllProgress => T("GUIUpdateAllProgress");
+    public string GUIUpdateAllDone => T("GUIUpdateAllDone");
+    public string GUIUpdateAllFailed => T("GUIUpdateAllFailed");
+    // Folders watched for mods downloaded by hand
+    public string GUIDropFolderMenu => T("GUIDropFolderMenu");
+    public string GUIDropFolderExplain => T("GUIDropFolderExplain");
+    public string GUIDropFolderLink => T("GUIDropFolderLink");
+    public string GUIDropFolderPickTitle => T("GUIDropFolderPickTitle");
+    public string GUIDropFolderScanNow => T("GUIDropFolderScanNow");
+    public string GUIDropFolderNone => T("GUIDropFolderNone");
+    public string GUIDropFolderUnlinkTooltip => T("GUIDropFolderUnlinkTooltip");
+    public string GUIDropFolderTitle => T("GUIDropFolderTitle");
+    public string GUIDropFolderNothingFound => T("GUIDropFolderNothingFound");
+    public string GUIDropFolderImported => T("GUIDropFolderImported");
+    public string GUIDropFolderImportedDetail => T("GUIDropFolderImportedDetail");
+    public string GUIDropFolderNoModsFolder => T("GUIDropFolderNoModsFolder");
+    public string GUIDropFolderCannotOpen => T("GUIDropFolderCannotOpen");
+    public string GUIOpenModsFolderButton => T("GUIOpenModsFolderButton");
+    public string GUIOpenModsFolderButtonTooltip => T("GUIOpenModsFolderButtonTooltip");
+
+    public string GUIVerdictNotAnIssue => T("GUIVerdictNotAnIssue");
+    public string GUIVerdictPatchExists => T("GUIVerdictPatchExists");
+    public string GUIVerdictIncompatible => T("GUIVerdictIncompatible");
+    public string GUIVerdictRebound => T("GUIVerdictRebound");
 }
