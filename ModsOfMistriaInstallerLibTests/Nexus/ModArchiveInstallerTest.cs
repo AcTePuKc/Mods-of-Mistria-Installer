@@ -216,6 +216,69 @@ public class ModArchiveInstallerTest
     }
 
     [Test]
+    public void ShouldKeepAndRestoreAnArchiveBackupWhenUpdatingToAFolder()
+    {
+        var originalSource = CreateArchive("original.zip",
+            ("manifest.toml", Manifest),
+            ("old.txt", "old"));
+        var original = Path.Combine(_modsFolder, "Some Mod.zip");
+        File.Move(originalSource, original);
+
+        var update = CreateArchive("update.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/new.txt", "new"));
+        var store = new ModBackupStore(_modsFolder);
+
+        var installed = ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            store, "1.0.0", replacePath: original);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(installed, Has.Count.EqualTo(1));
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.True);
+            Assert.That(File.Exists(original), Is.False);
+            Assert.That(store.List("Some Mod"), Has.Exactly(1).Items);
+        });
+
+        store.Restore(store.List("Some Mod").Single(), Path.Combine(_modsFolder, "Some Mod"));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(original), Is.True,
+                "restoring an archive backup must recreate the original archive shape");
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.False);
+            Assert.That(store.List("Some Mod"), Has.Exactly(1).Items,
+                "the replaced folder should itself remain undoable");
+        });
+    }
+
+    [Test]
+    public void ShouldRestoreAFallbackArchiveWhenAnUpdateFails()
+    {
+        var originalSource = CreateArchive("original.zip", ("manifest.toml", Manifest));
+        var original = Path.Combine(_modsFolder, "Some Mod.zip");
+        File.Move(originalSource, original);
+
+        var update = CreateArchive("update.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/../../escaped.txt", "never write"));
+
+        Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            replacePath: original));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(original), Is.True,
+                "fallback parking must restore the archive after a failed update");
+            Assert.That(File.Exists(original + ".aim-old"), Is.False,
+                "the temporary parked name must not remain after rollback");
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.False);
+        });
+    }
+
+    [Test]
     public void ShouldRestoreEveryEarlierReplacementWhenABundleFails()
     {
         var first = Path.Combine(_modsFolder, "First Mod");
