@@ -7,7 +7,9 @@ param(
     [string] $PristineZip,
 
     [Parameter(Mandatory = $true)]
-    [string[]] $ModPath
+    [string[]] $ModPath,
+
+    [string] $ExpectedFailureModPath
 )
 
 $resolvedCli = (Resolve-Path -LiteralPath $CliPath -ErrorAction Stop).Path
@@ -61,6 +63,23 @@ foreach ($path in $ModPath) {
             param($output)
             if ($output -notmatch 'RESULT:\s+OK') {
                 throw 'lint did not report RESULT: OK'
+            }
+        }
+}
+
+if ($ExpectedFailureModPath) {
+    $resolvedBadMod = (Resolve-Path -LiteralPath $ExpectedFailureModPath -ErrorAction Stop).Path
+
+    Invoke-Cli -Name "compile-gate rejection $(Split-Path -Leaf $resolvedBadMod)" `
+        -Arguments @('--lint', $resolvedBadMod, $resolvedZip, '--compile-check', 'require') `
+        -ExpectedExitCode 1 `
+        -Validate {
+            param($output)
+            if ($output -notmatch 'RESULT:\s+FAIL') {
+                throw 'invalid GML did not produce RESULT: FAIL'
+            }
+            if ($output -notmatch 'Compile Error:') {
+                throw 'invalid GML did not report a compiler-gate failure'
             }
         }
 }

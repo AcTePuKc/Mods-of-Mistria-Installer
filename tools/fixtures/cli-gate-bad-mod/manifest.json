@@ -1,0 +1,11 @@
+{
+  "name": "AIM CLI Compile Gate Fixture",
+  "author": "AIM Tests",
+  "version": "0.0.1",
+  "description": "Intentionally invalid GML used by the CLI compile-gate smoke test.",
+  "manifestVersion": 1,
+  "minInstallerVersion": "0.15.10",
+  "entrypoints": [
+    "gml/bad.gml"
+  ]
+}
