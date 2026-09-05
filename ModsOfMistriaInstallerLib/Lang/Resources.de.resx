@@ -153,9 +153,6 @@
   <data name="CoreManifestHasNoVersion" xml:space="preserve">
     <value>Die manifest Datei muss eine Version beinhalten.</value>
   </data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve">
-    <value>Diese Mod benötigt eine neuere Version von AIM.</value>
-  </data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve">
     <value>Der Ort von Fields of Mistria existiert nicht.</value>
   </data>

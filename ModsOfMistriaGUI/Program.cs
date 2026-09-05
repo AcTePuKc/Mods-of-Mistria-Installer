@@ -27,8 +27,55 @@ public static class Program
 
         App.StartupNxmLink = nxmLink;
 
+        // AIM's log lives in memory, which is exactly the wrong place when the process dies: the
+        // one crash the user wants to report is the one that leaves nothing behind. These two hooks
+        // write it out on the way down.
+        InstallCrashLog();
+
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
+    }
+
+    private static void InstallCrashLog()
+    {
+        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
+            WriteCrashLog(e.ExceptionObject as Exception, "unhandled");
+
+        // A faulted Task nobody awaited does not stop the process, but it is usually the first sign
+        // of the bug that later does, so it is worth the same record.
+        TaskScheduler.UnobservedTaskException += (_, e) =>
+        {
+            WriteCrashLog(e.Exception, "unobserved-task");
+            e.SetObserved();
+        };
+    }
+
+    private static void WriteCrashLog(Exception? exception, string kind)
+    {
+        try
+        {
+            var folder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AIM", "crashes");
+            Directory.CreateDirectory(folder);
+
+            var path = Path.Combine(
+                folder, $"aim-crash-{DateTime.Now:yyyyMMdd-HHmmss}-{kind}.log");
+
+            var lines = new List<string>
+            {
+                $"AIM crash ({kind}) at {DateTimeOffset.Now:O}",
+                exception?.ToString() ?? "No exception object was supplied.",
+                "",
+                "── Session log ──"
+            };
+            lines.AddRange(Garethp.ModsOfMistriaInstallerLib.Logger.GetLogs());
+
+            File.WriteAllText(path, string.Join(Environment.NewLine, lines));
+        }
+        catch
+        {
+            // Writing the crash log must never be what crashes.
+        }
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.

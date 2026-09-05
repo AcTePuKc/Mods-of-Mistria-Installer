@@ -38,9 +38,14 @@ public class ModBackupStore
     /// </summary>
     public ModBackup? Archive(string modFolderPath, string? version, int keep = DefaultKeep)
     {
-        if (!Directory.Exists(modFolderPath)) return null;
+        var isFile = File.Exists(modFolderPath);
+        if (!isFile && !Directory.Exists(modFolderPath)) return null;
 
-        var modName = Path.GetFileName(modFolderPath.TrimEnd('/', '\\'));
+        // A mod installed as Foo.zip is the same mod as one installed as a Foo folder, so both are
+        // filed under the same name - otherwise updating a zipped mod into a folder would lose the
+        // rollback path back to the archive it replaced.
+        var leaf = Path.GetFileName(modFolderPath.TrimEnd('/', '\\'));
+        var modName = isFile ? Path.GetFileNameWithoutExtension(leaf) : leaf;
         var createdAt = DateTimeOffset.UtcNow;
         var destination = Path.Combine(FolderFor(modName), StampFor(createdAt, version));
 
@@ -49,16 +54,88 @@ public class ModBackupStore
             Directory.CreateDirectory(FolderFor(modName));
             if (Directory.Exists(destination)) Directory.Delete(destination, true);
 
-            Directory.Move(modFolderPath, destination);
+            if (isFile)
+            {
+                // The archive is kept inside a stamped folder like any other backup, so listing and
+                // pruning need no special case; only Restore has to notice it is a file.
+                Directory.CreateDirectory(destination);
+                File.Move(modFolderPath, Path.Combine(destination, leaf));
+            }
+            else
+            {
+                Directory.Move(modFolderPath, destination);
+            }
         }
         catch (Exception e)
         {
             Logger.Log($"Could not back up {modName} before updating it: {e.Message}");
+
+            // The stamped folder was created before the move that failed. Left behind it shows in
+            // the backup list as a restore point holding nothing.
+            try { if (Directory.Exists(destination)) Directory.Delete(destination, true); } catch { }
+
             return null;
         }
 
         Prune(modName, keep);
         return new ModBackup(destination, modName, version, createdAt);
+    }
+
+    /// <summary>
+    /// Copies the current state of a mod into the backup store, leaving the mod where it is.
+    ///
+    /// <see cref="Archive"/> moves, because an update is about to overwrite the folder and the old
+    /// copy has nowhere else to be. An edit is different: AIM is about to change a file *inside* a
+    /// mod that stays installed, so the restore point has to be a copy. It is filed exactly like
+    /// every other backup and shows up in the same version dropdown, which is the point - "undo
+    /// what AIM changed" should not be a different gesture from "go back a version".
+    /// </summary>
+    /// <param name="label">
+    /// What the restore point is, shown in the dropdown in place of a version number - for example
+    /// "2.1.0 before AIM's fix".
+    /// </param>
+    /// <returns>The restore point, or null when the copy could not be made.</returns>
+    public ModBackup? Snapshot(string modFolderPath, string? label, int keep = DefaultKeep)
+    {
+        var isFile = File.Exists(modFolderPath);
+        if (!isFile && !Directory.Exists(modFolderPath)) return null;
+
+        var leaf = Path.GetFileName(modFolderPath.TrimEnd('/', '\\'));
+        var modName = isFile ? Path.GetFileNameWithoutExtension(leaf) : leaf;
+        var createdAt = DateTimeOffset.UtcNow;
+        var destination = Path.Combine(FolderFor(modName), StampFor(createdAt, label));
+
+        try
+        {
+            Directory.CreateDirectory(FolderFor(modName));
+            if (Directory.Exists(destination)) Directory.Delete(destination, true);
+            Directory.CreateDirectory(destination);
+
+            if (isFile) File.Copy(modFolderPath, Path.Combine(destination, leaf));
+            else CopyInto(modFolderPath, destination);
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not snapshot {modName} before editing it: {e.Message}");
+
+            // A half-copied restore point is worse than none: restoring it would silently install a
+            // truncated mod. Remove it rather than leave it in the dropdown.
+            try { if (Directory.Exists(destination)) Directory.Delete(destination, true); } catch { }
+
+            return null;
+        }
+
+        Prune(modName, keep);
+        return new ModBackup(destination, modName, label, createdAt);
+    }
+
+    private static void CopyInto(string source, string destination)
+    {
+        foreach (var folder in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
+            Directory.CreateDirectory(Path.Combine(destination, Path.GetRelativePath(source, folder)));
+
+        foreach (var file in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
+            File.Copy(file, Path.Combine(destination, Path.GetRelativePath(source, file)), true);
     }
 
     /// <summary>
@@ -106,8 +183,26 @@ public class ModBackupStore
 
         try
         {
-            if (Directory.Exists(modFolderPath)) Archive(modFolderPath, "replaced");
-            Directory.Move(staging, modFolderPath);
+            if (Directory.Exists(modFolderPath) || File.Exists(modFolderPath))
+                Archive(modFolderPath, "replaced");
+
+            // A backup holding a single archive is a mod that was installed as a .zip. It goes back
+            // beside the other mods under its own file name rather than as a folder, because that
+            // is the shape the installer scanned it as.
+            var archived = SingleArchiveIn(staging);
+            if (archived is not null)
+            {
+                var beside = Path.GetDirectoryName(Path.GetFullPath(modFolderPath.TrimEnd('/', '\\')))!;
+                var destination = Path.Combine(beside, Path.GetFileName(archived));
+
+                if (File.Exists(destination)) File.Delete(destination);
+                File.Move(archived, destination);
+                Directory.Delete(staging, true);
+            }
+            else
+            {
+                Directory.Move(staging, modFolderPath);
+            }
         }
         catch
         {
@@ -119,6 +214,18 @@ public class ModBackupStore
     }
 
     // ── Layout ───────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// The archive inside a backup that holds one, or null for an ordinary folder backup.
+    /// </summary>
+    private static string? SingleArchiveIn(string backupFolder)
+    {
+        if (!Directory.Exists(backupFolder)) return null;
+        if (Directory.GetDirectories(backupFolder).Length > 0) return null;
+
+        var files = Directory.GetFiles(backupFolder);
+        return files.Length == 1 && ModArchiveInstaller.LooksLikeArchive(files[0]) ? files[0] : null;
+    }
 
     private string FolderFor(string modName) => Path.Combine(_root, Sanitise(modName));
 

@@ -90,6 +90,85 @@ public class NexusInstallIndexTest
         });
     }
 
+    // A freeze the user set and a freeze AIM set mean opposite things about updates: the first says
+    // "stop offering", the second says "this is patched, tell me when there is a version that might
+    // make the patch unnecessary". The reason is how the two are told apart, so it has to survive
+    // everything a freeze survives.
+    [Test]
+    public void ShouldRememberWhyAimFrozeAMod()
+    {
+        var folder = Path.Combine(_modsFolder, "Patched Mod");
+        var index = new NexusInstallIndex(_modsFolder);
+
+        index.SetFrozen(folder, true, "AIM's own fix: remove the reference to images/missing.png");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(index.FreezeReason(folder), Does.Contain("images/missing.png"));
+            Assert.That(new NexusInstallIndex(_modsFolder).FreezeReason(folder),
+                Does.Contain("images/missing.png"), "it has to survive a restart");
+        });
+    }
+
+    [Test]
+    public void ShouldKeepTheFreezeReasonWhenTheModIsReinstalled()
+    {
+        var folder = Path.Combine(_modsFolder, "Patched Mod");
+        var index = new NexusInstallIndex(_modsFolder);
+
+        index.Record(folder, Record(fileId: 1));
+        index.SetFrozen(folder, true, "AIM's own fix");
+        index.Record(folder, Record(fileId: 2));
+
+        Assert.That(index.FreezeReason(folder), Is.EqualTo("AIM's own fix"),
+            "losing the reason would leave AIM holding a mod back with no idea what for");
+    }
+
+    [Test]
+    public void ShouldReportNoReasonForAFreezeTheUserSet()
+    {
+        var folder = Path.Combine(_modsFolder, "User Frozen Mod");
+        var index = new NexusInstallIndex(_modsFolder);
+
+        index.SetFrozen(folder, true);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(index.IsFrozen(folder), Is.True);
+            Assert.That(index.FreezeReason(folder), Is.Null, "the user's decision, not AIM's");
+        });
+    }
+
+    [Test]
+    public void ShouldDropTheReasonWhenTheModIsUnfrozen()
+    {
+        var folder = Path.Combine(_modsFolder, "Patched Mod");
+        var index = new NexusInstallIndex(_modsFolder);
+
+        index.SetFrozen(folder, true, "AIM's own fix");
+        index.SetFrozen(folder, false);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(index.IsFrozen(folder), Is.False);
+            Assert.That(index.FreezeReason(folder), Is.Null,
+                "the reason describes a freeze, and there is no longer one to describe");
+        });
+    }
+
+    [Test]
+    public void ShouldTreatAHandFreezeAsTakingTheDecisionBackFromAim()
+    {
+        var folder = Path.Combine(_modsFolder, "Patched Mod");
+        var index = new NexusInstallIndex(_modsFolder);
+
+        index.SetFrozen(folder, true, "AIM's own fix");
+        index.SetFrozen(folder, true);
+
+        Assert.That(index.FreezeReason(folder), Is.Null,
+            "a user who freezes it by hand has said to stop offering the update");
+    }
+
     [Test]
     public void ShouldForgetAMod()
     {

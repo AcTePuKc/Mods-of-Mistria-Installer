@@ -27,6 +27,27 @@ public partial class Settings : ObservableObject
     // release remains visible instead of being hidden permanently.
     [ObservableProperty] private string? _dismissedUpdateVersion;
 
+    /// <summary>
+    /// Folders AIM watches for mods downloaded by hand - normally the browser's downloads folder.
+    ///
+    /// A plain list rather than an observable property: it is edited through
+    /// <see cref="SetDropFolders"/>, which is also where it is normalised and written out, so
+    /// there is one place that can put a duplicate or a blank into it.
+    /// </summary>
+    public List<string> DropFolders { get; private set; } = [];
+
+    public void SetDropFolders(IEnumerable<string> folders)
+    {
+        DropFolders = folders
+            .Where(folder => !string.IsNullOrWhiteSpace(folder))
+            .Select(folder => folder.Trim())
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        OnPropertyChanged(nameof(DropFolders));
+        SavePreferences();
+    }
+
     private static string PreferencesPath => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "AIM",
@@ -53,7 +74,7 @@ public partial class Settings : ObservableObject
             var directory = Path.GetDirectoryName(PreferencesPath);
             if (!string.IsNullOrEmpty(directory)) Directory.CreateDirectory(directory);
             File.WriteAllText(PreferencesPath, JsonSerializer.Serialize(
-                new LaunchPreferences(LaunchGameDirectly, UiLanguage, DismissedUpdateVersion)));
+                new LaunchPreferences(LaunchGameDirectly, UiLanguage, DismissedUpdateVersion, DropFolders)));
         }
         catch
         {
@@ -73,6 +94,7 @@ public partial class Settings : ObservableObject
                 LaunchGameDirectly = preferences.LaunchGameDirectly;
                 UiLanguage = string.IsNullOrWhiteSpace(preferences.UiLanguage) ? "system" : preferences.UiLanguage;
                 DismissedUpdateVersion = preferences.DismissedUpdateVersion;
+                DropFolders = preferences.DropFolders ?? [];
             }
         }
         catch
@@ -96,7 +118,8 @@ public partial class Settings : ObservableObject
     private sealed record LaunchPreferences(
         bool LaunchGameDirectly,
         string UiLanguage = "system",
-        string? DismissedUpdateVersion = null);
+        string? DismissedUpdateVersion = null,
+        List<string>? DropFolders = null);
 
     public bool ValidMistriaLocation() => !string.IsNullOrEmpty(MistriaLocation) &&
                                           Directory.Exists(MistriaLocation) &&

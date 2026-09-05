@@ -11,9 +11,20 @@ namespace Garethp.ModsOfMistriaGUI.Models;
 /// </summary>
 public sealed record ModRowCommands(
     IRelayCommand<ModModel> OpenNexusPage,
+    IRelayCommand<ModModel> TrackOnNexus,
     IRelayCommand<ModModel> AssociateWithNexus,
     IRelayCommand<ModModel> CheckForUpdate,
     IRelayCommand<ModModel> UpdateFromNexus,
     IRelayCommand<ModModel> ToggleFreeze,
+
+    // Both act on the real load order, not on the filtered view, so "top" means the top of the
+    // order rather than the top of whatever the current filter happens to show.
+    IRelayCommand<ModModel> MoveToTop,
+    IRelayCommand<ModModel> MoveToBottom,
     IRelayCommand<ModModel> RestorePreviousVersion,
-    IRelayCommand<ModModel> OpenModFolder);
+    IRelayCommand<ModModel> OpenModFolder,
+    IRelayCommand<ModModel> EditManifest,
+    IRelayCommand<ModModel> EditConfig,
+    IRelayCommand<ModModel> RemoveMod,
+    IRelayCommand<ModModel> ShowChangelog,
+    IRelayCommand<ModModel> LoadChangelogPreview);

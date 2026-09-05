@@ -9,7 +9,7 @@ using Tomlyn.Model;
 
 namespace Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
-public class ZipMod() : IMod
+public class ZipMod() : IMod, IDisposable
 {
     private string _name = "";
 
@@ -215,9 +215,14 @@ public class ZipMod() : IMod
             }
 
             // TODO: Remove the workaround for 1.0.0 after the 12th of July
+            // A warning rather than an error, deliberately. An error forces the mod off - AIM will
+            // not let it be ticked at all - on the strength of a prediction that it might not work.
+            // Most mods asking for a slightly newer installer run perfectly well, so the user is
+            // told which two versions disagree and left to decide.
             if (requiredVersion.CompareTo(currentVersion) > 0 && requiredVersion.CompareTo(new Version("1.0")) < 0)
             {
-                _validation.Errors.Add(new ValidationMessage(this, Path.Combine(GetLocation(), "manifest.json"), Resources.CoreModRequiresNewerInstaller));
+                _validation.Warnings.Add(new ValidationMessage(this, Path.Combine(GetLocation(), "manifest.json"),
+                    string.Format(Resources.CoreModRequiresNewerInstaller, GetMinimumInstallerVersion(), currentVersion)));
             }
         }
         catch (Exception)
@@ -299,4 +304,25 @@ public class ZipMod() : IMod
 
     public string? GetUpdateUrl()   => _updateUrl;
     public string? GetDownloadUrl() => _downloadUrl;
+
+    /// <summary>
+    /// Closes the handle this mod holds on its .zip.
+    ///
+    /// A ZipMod keeps its archive open for the life of the mod list, which is what makes reading a
+    /// zipped mod cheap - but it also means Windows will not let anything move or delete that .zip
+    /// while AIM is running. Updating a zipped mod therefore left the old archive sitting in the
+    /// mods folder next to the freshly unpacked new version, and the list showed the mod twice.
+    ///
+    /// Callers about to move, recycle or overwrite the archive close it first. The reader methods
+    /// all treat a closed archive as an empty one rather than throwing, so a stale ZipMod left in a
+    /// list until the next reload degrades quietly instead of taking the process down.
+    /// </summary>
+    public void Dispose()
+    {
+        var archive = _zipFile;
+        _zipFile = null;
+
+        try { archive?.Dispose(); }
+        catch (Exception e) { Logger.Log($"Could not close {_sourcePath}: {e.Message}"); }
+    }
 }
