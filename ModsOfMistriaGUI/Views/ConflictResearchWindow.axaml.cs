@@ -87,6 +87,17 @@ public partial class ConflictResearchWindow : Window
         ToolTip.SetTip(PatchButton, texts.GUIResearchPatchExistsTooltip);
         ToolTip.SetTip(IncompatibleButton, texts.GUIResearchIncompatibleTooltip);
 
+        // Above the button, always.
+        //
+        // These four sit on the bottom edge of the window, which is usually near the bottom edge of
+        // the screen. A tooltip placed below its button there has nowhere to go, so it is flipped
+        // back over the button it belongs to - and then the click that was meant for the button
+        // lands on the tooltip and only dismisses it. That is what "I have to click it twice" is:
+        // the first press is spent closing a popup the user never asked for. Placed above, the
+        // popup has room and never covers what it is describing.
+        foreach (var button in new[] { NotAnIssueButton, PatchButton, IncompatibleButton, CancelButton })
+            ToolTip.SetPlacement(button, Avalonia.Controls.PlacementMode.Top);
+
         NotAnIssueButton.Click += (_, _) => Finish(new IssueVerdict(DismissedIssueStore.VerdictNotAnIssue));
         IncompatibleButton.Click += (_, _) => Finish(new IssueVerdict(DismissedIssueStore.VerdictIncompatible));
         CancelButton.Click += (_, _) => Finish(null);
@@ -868,6 +879,8 @@ public partial class ConflictResearchWindow : Window
             }
         };
 
+        var texts = LocalizedTexts.Instance;
+
         var quote = new SelectableTextBlock
         {
             Text = $"“{finding.Quote}”",
@@ -875,28 +888,88 @@ public partial class ConflictResearchWindow : Window
             FontSize = 13
         };
 
+        // Hovering the quote is the cheapest possible way to read the rest of it, and it costs the
+        // card no height at all. It is set on the quote itself rather than on the whole finding so
+        // that hovering the badge or the source line does not cover them with a wall of text.
+        if (finding.IsShortened)
+            ToolTip.SetTip(quote, new TextBlock
+            {
+                Text = finding.FullQuote,
+                TextWrapping = TextWrapping.Wrap,
+                MaxWidth = 520
+            });
+
         // The whole source line opens the page. A link is what this is, so it looks like one rather
         // than like a button that happens to be under every finding.
         var where = string.IsNullOrEmpty(finding.Where) ? "" : $" · {finding.Where}";
 
-        var source = new Button
+        var source = Link($"{finding.Reason}{where}  ↗");
+        source.Click += (_, _) => ExternalUrl.Open(finding.SourceUrl);
+        ToolTip.SetTip(source, $"{texts.GUIResearchOpenPage}\n{finding.SourceUrl}");
+
+        // Wrapping rather than a row: the source line is a sentence, and on a narrow window it plus
+        // two actions is wider than the card. Spacing comes from each link's own margin, which
+        // every Avalonia 11 has, rather than from the panel's.
+        var actions = new WrapPanel { Children = { source } };
+
+        // A tooltip is for a glance. Somebody weighing a condition wants the sentence in front of
+        // them while they read the rest of the window, and wants to be able to select it - which a
+        // tooltip does not allow - so the quote also expands in place.
+        if (finding.IsShortened)
         {
-            Content = new TextBlock
+            var expanded = false;
+            var more = Link(texts.GUIResearchQuoteMore);
+
+            more.Click += (_, _) =>
             {
-                Text = $"{finding.Reason}{where}  ↗",
-                TextWrapping = TextWrapping.Wrap,
-                FontSize = 11,
-                Opacity = 0.7
-            },
-            Background = Brushes.Transparent,
-            BorderThickness = new Avalonia.Thickness(0),
-            Padding = new Avalonia.Thickness(0),
-            HorizontalAlignment = HorizontalAlignment.Left,
-            Cursor = new Cursor(StandardCursorType.Hand)
+                expanded = !expanded;
+                quote.Text = $"“{(expanded ? finding.FullQuote : finding.Quote)}”";
+                ((TextBlock)more.Content!).Text =
+                    expanded ? texts.GUIResearchQuoteLess : texts.GUIResearchQuoteMore;
+            };
+
+            actions.Children.Add(more);
+        }
+
+        // The answer to "where on this page did that come from?". AIM knows the exact wording; the
+        // user was left to find it by eye in a description that can run to several screens, or in a
+        // comment thread nine pages long. Handing over the phrase and opening the tab turns that
+        // into Ctrl+F and a paste.
+        var hint = new TextBlock
+        {
+            Text = texts.GUIResearchFindCopied,
+            TextWrapping = TextWrapping.Wrap,
+            FontSize = 11,
+            Opacity = 0.7,
+            IsVisible = false
         };
 
-        source.Click += (_, _) => ExternalUrl.Open(finding.SourceUrl);
-        ToolTip.SetTip(source, $"{LocalizedTexts.Instance.GUIResearchOpenPage}\n{finding.SourceUrl}");
+        if (finding.SearchPhrase.Length > 0)
+        {
+            var find = Link(texts.GUIResearchFindOnPage);
+            ToolTip.SetTip(find, string.Format(texts.GUIResearchFindOnPageTooltip, finding.SearchPhrase));
+
+            find.Click += async (_, _) =>
+            {
+                // An async void by the event's signature: nothing may escape it.
+                try
+                {
+                    var clipboard = TopLevel.GetTopLevel(find)?.Clipboard;
+                    if (clipboard is not null) await clipboard.SetTextAsync(finding.SearchPhrase);
+
+                    // Opened after the copy, so the phrase is already on the clipboard by the time
+                    // the browser has the page up and the user reaches for Ctrl+F.
+                    ExternalUrl.Open(finding.SourceUrl);
+                    hint.IsVisible = true;
+                }
+                catch (Exception exception)
+                {
+                    Logger.Log($"Could not copy the search phrase for a finding: {exception}");
+                }
+            };
+
+            actions.Children.Add(find);
+        }
 
         return new Border
         {
@@ -905,9 +978,33 @@ public partial class ConflictResearchWindow : Window
             BorderBrush = new SolidColorBrush(accent),
             CornerRadius = new Avalonia.CornerRadius(0, 4, 4, 0),
             Padding = new Avalonia.Thickness(10, 6, 10, 6),
-            Child = new StackPanel { Spacing = 3, Children = { heading, quote, source } }
+            Child = new StackPanel { Spacing = 3, Children = { heading, quote, actions, hint } }
         };
     }
+
+    /// <summary>
+    /// A button that reads as a link: no chrome, no padding, and small grey text.
+    ///
+    /// Everything under a finding is a way to look at the same sentence more closely, so none of it
+    /// should compete with the quote for attention. Three real buttons under every finding is what
+    /// this window looked like before, and it was unreadable at four findings.
+    /// </summary>
+    private static Button Link(string text) => new()
+    {
+        Content = new TextBlock
+        {
+            Text = text,
+            TextWrapping = TextWrapping.Wrap,
+            FontSize = 11,
+            Opacity = 0.7
+        },
+        Background = Brushes.Transparent,
+        BorderThickness = new Avalonia.Thickness(0),
+        Padding = new Avalonia.Thickness(0),
+        Margin = new Avalonia.Thickness(0, 0, 14, 0),
+        HorizontalAlignment = HorizontalAlignment.Left,
+        Cursor = new Cursor(StandardCursorType.Hand)
+    };
 
     private static Control CreateLink(ResearchLink link)
     {

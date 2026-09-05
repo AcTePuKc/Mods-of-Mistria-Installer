@@ -223,13 +223,21 @@ public partial class KeybindManagerWindow : Window
 
     private string? NoteFor(ModBindingEntry entry, IReadOnlyList<ModBindingEntry> clashes)
     {
-        if (clashes.Count > 0)
-            return string.Format(Texts.GUIKeybindsAlsoUsedBy,
-                string.Join(", ", clashes.Select(other => other.ModName).Distinct()));
+        var notes = new List<string>();
 
-        if (entry.Binding is null && entry.Value.Length > 0) return Texts.GUIKeybindsUnrecognised;
-        if (entry.Source == BindingSource.ModDefault) return Texts.GUIKeybindsDefault;
-        return null;
+        if (clashes.Count > 0)
+            notes.Add(string.Format(Texts.GUIKeybindsAlsoUsedBy,
+                string.Join(", ", clashes.Select(other => other.ModName).Distinct())));
+        else if (entry.Binding is null && entry.Value.Length > 0)
+            notes.Add(Texts.GUIKeybindsUnrecognised);
+
+        // Said even when there is a clash to report, which is the case that used to swallow it -
+        // and the worst one to swallow it in. A user looking at two mods fighting over T, with a
+        // greyed button and no explanation, has been shown the problem and denied both the fix and
+        // the reason they cannot apply it here.
+        if (entry.Source == BindingSource.ModDefault) notes.Add(Texts.GUIKeybindsDefault);
+
+        return notes.Count == 0 ? null : string.Join("  ", notes);
     }
 
     private string DescribeRow(ModBindingEntry entry, IReadOnlyList<ModBindingEntry> clashes)

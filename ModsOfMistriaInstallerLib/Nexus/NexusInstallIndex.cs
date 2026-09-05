@@ -83,9 +83,11 @@ public class NexusInstallIndex
 
         // A re-download must not clear a freeze the user set: freezing is about the mod, not about
         // the particular copy of it that happens to be installed.
-        var frozen = record.Frozen || (Mods[key] as JObject)?.Value<bool?>("frozen") == true;
+        var existing = Mods[key] as JObject;
+        var frozen = record.Frozen || existing?.Value<bool?>("frozen") == true;
+        var reason = existing?.Value<string>("frozenReason");
 
-        Mods[key] = new JObject
+        var entry = new JObject
         {
             ["game"] = record.Game,
             ["modId"] = record.ModId,
@@ -97,6 +99,13 @@ public class NexusInstallIndex
             ["installedAt"] = record.InstalledAt.ToString("O"),
             ["frozen"] = frozen
         };
+
+        // Carried across with the freeze, for the same reason. Rewriting the entry on a re-download
+        // and losing why the mod was frozen would leave AIM holding a mod back with no idea what
+        // for, which reads to the user as AIM simply refusing to update something.
+        if (frozen && !string.IsNullOrWhiteSpace(reason)) entry["frozenReason"] = reason;
+
+        Mods[key] = entry;
 
         Save();
     }
@@ -121,7 +130,30 @@ public class NexusInstallIndex
         return key.Length > 0 && (Mods[key] as JObject)?.Value<bool?>("frozen") == true;
     }
 
-    public void SetFrozen(string sourcePath, bool frozen)
+    /// <summary>
+    /// Why this mod is frozen, when AIM was the one that froze it. Null for a freeze the user set
+    /// by hand, and for a mod that is not frozen at all.
+    ///
+    /// The distinction is the whole point. A mod the user froze is a mod they have decided not to
+    /// update, and pestering them about a new version would be ignoring them. A mod AIM froze
+    /// because it edited the files is a mod that *wants* an update - the fix is a stopgap, and the
+    /// user should be told the moment a version arrives that might make it unnecessary.
+    /// </summary>
+    public string? FreezeReason(string sourcePath)
+    {
+        var key = KeyFor(sourcePath);
+        if (key.Length == 0 || Mods[key] is not JObject entry) return null;
+        if (entry.Value<bool?>("frozen") != true) return null;
+
+        var reason = entry.Value<string>("frozenReason");
+        return string.IsNullOrWhiteSpace(reason) ? null : reason;
+    }
+
+    /// <param name="reason">
+    /// What AIM froze it for, or null when the user did it. Unfreezing always clears it: the
+    /// reason describes a freeze, and there is no longer one to describe.
+    /// </param>
+    public void SetFrozen(string sourcePath, bool frozen, string? reason = null)
     {
         var key = KeyFor(sourcePath);
         if (key.Length == 0) return;
@@ -135,6 +167,10 @@ public class NexusInstallIndex
         }
 
         entry["frozen"] = frozen;
+
+        if (!frozen || string.IsNullOrWhiteSpace(reason)) entry.Remove("frozenReason");
+        else entry["frozenReason"] = reason;
+
         Save();
     }
 

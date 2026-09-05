@@ -27,6 +27,16 @@ public partial class LoadOrderResultWindow : Window
     /// <summary>Null when the window is only describing an issue, not offering to fix it.</summary>
     private readonly ConflictReportActions? _actions;
 
+    /// <summary>
+    /// Told whenever an issue is ticked off or put back, so the mod list can re-run its sweep.
+    ///
+    /// The report is modeless: it sits beside the list rather than over it, and it used to tell the
+    /// list nothing until it was closed. So a user who worked down a screenful of issues watched the
+    /// warning triangles stay exactly where they were, on mods whose only issue they had just
+    /// settled - the icon and the report disagreeing for as long as the window stayed open.
+    /// </summary>
+    private readonly Action? _dismissalsChanged;
+
     private bool _showDismissed;
 
     // Rebuilt alongside the visible list so that what "Copy report" produces matches what the
@@ -46,7 +56,8 @@ public partial class LoadOrderResultWindow : Window
         bool compact = false,
         Func<Task<ReportContent>>? refreshReportAsync = null,
         DismissedIssueStore? dismissedIssues = null,
-        ConflictReportActions? actions = null)
+        ConflictReportActions? actions = null,
+        Action? dismissalsChanged = null)
     {
         InitializeComponent();
 
@@ -62,6 +73,7 @@ public partial class LoadOrderResultWindow : Window
         _notes = notes.ToList();
         _dismissedIssues = dismissedIssues;
         _actions = actions;
+        _dismissalsChanged = dismissalsChanged;
         CopyButton.IsVisible = showCopyButton;
         RefreshButton.IsVisible = refreshReportAsync is not null;
         CloseButton.IsVisible = !compact;
@@ -122,7 +134,8 @@ public partial class LoadOrderResultWindow : Window
         string title,
         Func<Task<ReportContent>> refreshReportAsync,
         DismissedIssueStore? dismissedIssues = null,
-        ConflictReportActions? actions = null)
+        ConflictReportActions? actions = null,
+        Action? dismissalsChanged = null)
     {
         var window = new LoadOrderResultWindow(
             report.Summary,
@@ -131,7 +144,8 @@ public partial class LoadOrderResultWindow : Window
             showCopyButton: true,
             refreshReportAsync: refreshReportAsync,
             dismissedIssues: dismissedIssues,
-            actions: actions);
+            actions: actions,
+            dismissalsChanged: dismissalsChanged);
         // A modeless issue report must be an independent top-level window.
         // Showing it with AIM as its owner keeps it permanently above AIM on
         // Windows, which defeats the purpose of keeping the main mod list usable.
@@ -168,6 +182,24 @@ public partial class LoadOrderResultWindow : Window
     }
 
     private static LocalizedTexts Texts => LocalizedTexts.Instance;
+
+    /// <summary>
+    /// Says that the answer to an issue has changed, so the mod list can catch up.
+    ///
+    /// Guarded because the listener re-scans the mod list: a failure there is not a reason to lose
+    /// the tick the user just made, and this is called from event handlers that nothing catches.
+    /// </summary>
+    private void DismissalsChanged()
+    {
+        try
+        {
+            _dismissalsChanged?.Invoke();
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Refreshing the mod list after an issue was settled failed: {exception}");
+        }
+    }
 
     // ── Rendering ────────────────────────────────────────────────────────────────
 
@@ -243,9 +275,15 @@ public partial class LoadOrderResultWindow : Window
 
             _dismissedIssues?.SetDismissed(note.StableKey, wanted, note.Message);
 
-            // Newly dismissed issues would otherwise disappear with no trace of where they went.
-            if (wanted) _showDismissed = true;
-            ShowDismissedToggle.IsChecked = _showDismissed;
+            // Immediately, not when the window closes: the row in the mod list behind this one is
+            // showing a warning triangle for the issue that was just settled.
+            DismissalsChanged();
+
+            // The dismissed section is left exactly as the user set it. Ticking a box used to force
+            // it open, which on a list with fifty already-judged issues meant one click unfolded a
+            // screenful of things the user had deliberately put away - and the row they had just
+            // dealt with was somewhere in the middle of it. The count on the toggle going up by one
+            // is trace enough of where the issue went.
 
             // Rebuilding tears down the very checkbox whose event is still being dispatched, so
             // let this event finish first.
@@ -327,6 +365,8 @@ public partial class LoadOrderResultWindow : Window
         foreach (var participant in note.Participants)
             panel.Children.Add(CreateParticipantRow(note, participant));
 
+        var research = CreateResearchRow(note);
+
         if (note.Details.Count > 0)
         {
             var paths = new StackPanel { Spacing = 4, Margin = new Avalonia.Thickness(0, 4, 0, 0) };
@@ -347,10 +387,34 @@ public partial class LoadOrderResultWindow : Window
                 });
             }
 
+            // "Find a fix" belongs beside the file list, not under it. A cosmetics conflict lists
+            // seventy-odd sprite paths, and the one control that does something about them sat at
+            // the bottom of all of it - so the user had to scroll past every file to reach the
+            // button, having already decided from the first three lines what the conflict was. The
+            // paths take the width they need and the button sits in the space to their right, which
+            // on a wide report is empty anyway.
+            if (research is not null)
+            {
+                Grid.SetColumn(research, 1);
+                research.VerticalAlignment = VerticalAlignment.Top;
+                research.HorizontalAlignment = HorizontalAlignment.Right;
+
+                var withAction = new Grid
+                {
+                    ColumnDefinitions = new ColumnDefinitions("*,Auto"),
+                    HorizontalAlignment = HorizontalAlignment.Stretch
+                };
+                withAction.Children.Add(paths);
+                withAction.Children.Add(research);
+
+                panel.Children.Add(withAction);
+                return panel;
+            }
+
             panel.Children.Add(paths);
         }
 
-        var research = CreateResearchRow(note);
+        // No file list to sit beside - a hook or hotkey clash - so it keeps its old place.
         if (research is not null) panel.Children.Add(research);
 
         return panel.Children.Count == 0 ? null : panel;
@@ -474,8 +538,10 @@ public partial class LoadOrderResultWindow : Window
                 _dismissedIssues?.SetDismissed(
                     note.StableKey, true, solved.Message,
                     new IssueVerdict(DismissedIssueStore.VerdictRebound, null, $"{participant.Display} → {newKey}"));
-                _showDismissed = true;
-                ShowDismissedToggle.IsChecked = true;
+
+                // As with the checkbox: the dismissed section stays however the user left it, and
+                // the mod list hears about it now rather than at closing time.
+                DismissalsChanged();
                 Replace(note, solved);
                 return;
             }
@@ -527,9 +593,8 @@ public partial class LoadOrderResultWindow : Window
 
             if (resolved)
             {
+                // As with the checkbox: the dismissed section stays however the user left it.
                 _dismissedIssues?.SetDismissed(note.StableKey, true, note.Message, verdict);
-                _showDismissed = true;
-                ShowDismissedToggle.IsChecked = true;
             }
             else
             {
@@ -538,6 +603,7 @@ public partial class LoadOrderResultWindow : Window
                 _dismissedIssues?.SetVerdict(note.StableKey, verdict);
             }
 
+            DismissalsChanged();
             Rebuild();
         };
 

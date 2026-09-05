@@ -2,6 +2,188 @@
 
 ## Unreleased
 
+### The issues report now covers everything a warning triangle can mean
+
+A row could show a warning triangle while "Check issues" said nothing was outstanding. Three sources
+of row warnings were never reported, so there was nothing to look at and nothing to tick off — which
+is the reading that teaches you to stop looking at triangles, and the next one is the one that
+mattered.
+
+- **File overlaps that AIM merges** — mergeable metadata and shared localisation — are now reported.
+  They were skipped because there is no winner to pick and therefore no advice to give, but the rows
+  showed them regardless. They get their own wording (these mods are combined, and only a duplicate
+  entry is decided by load order) and their own dismissal, so ticking off "I know these two both add
+  shop items" does not also silence "one of these is replacing the other's sprite" for the same pair.
+- **A mod's own validation warnings** are now reported per mod, keyed to the mod's version so an
+  author fixing it brings the note back rather than inheriting your tick.
+- **Two copies of the same mod installed** is now reported, listing both paths.
+- All three are dismissible, and a tick reaches the row: the triangle goes out. That direction
+  matters as much as the other — a report saying nothing is outstanding while the row still warns is
+  the same contradiction the other way up.
+- Hotkey clashes were already reported and already dismissible; nothing changed there.
+
+### Shortcuts
+
+- **Ctrl+F** puts the cursor in the mod search box and selects what is there, so a second search is
+  type-over rather than select-and-delete.
+- **Ctrl+A** ticks or unticks the mods currently on screen — the rows your search and filters are
+  showing, and nothing hidden behind them. That scoping is the point: "all the Crys mods" or
+  "everything with an update" is usually the set you mean, and a select-all that quietly swept in
+  two hundred off-screen mods is one nobody can risk pressing. With no filter on it is a plain
+  select-all. Also in the cog menu, so it is findable. Neither shortcut fires while you are typing
+  in a text box, where Ctrl+A still means select-all-text.
+
+### Keybinds
+
+- A binding that is still the mod's compiled-in default now says so even when it also clashes with
+  another mod. The clash note used to replace that line, which is the worst case to lose it in: two
+  mods visibly fighting over T, a greyed button, and no word of why it cannot be changed here. The
+  answer is that the mod has not written its settings file yet — run the game once, or set the key
+  in the mod's own settings, and AIM can edit it.
+
+### "Edit config" now finds the settings mods actually keep
+
+- The menu item looked for a config file inside the mod's folder. An MMAPI mod that uses
+  `mmapi_config_write` — which is how a mod with in-game settings is written now — has none there:
+  MMAPI keeps it under the game's own config directory in `mod_data/<mod id>/`, precisely so an
+  update replacing the mod folder cannot destroy your settings. So the item was greyed out for
+  exactly the mods most likely to have settings worth editing. AIM now looks in both, preferring the
+  mod's own shipped file when it has one.
+- Still greyed out in two cases, both real: a mod that has never been run since installing has not
+  written its config yet (MMAPI creates it on first load — start the game once), and a mod with no
+  settings API at all has nothing to edit, which is the author's design and not something AIM can
+  work around.
+
+### Crash check: finding the mod is now one search, not a series of coin tosses
+
+- A disable-and-check run now says what it proved. The crash coming back without the suspect is not
+  a failed check — it proves that mod is innocent, which is the more common outcome and just as
+  useful as proving one guilty. AIM records that verdict, switches the mod back on, strikes it from
+  the shortlist, and offers "Test next: <mod>" as one click. Previously every run threw its answer
+  away, so the user did the work of elimination and started over each time the window opened.
+- Verdicts are kept in `aim_crash_trials.json` beside the profiles, keyed to the crash and to the
+  mod's version, so they survive closing the window and are correctly discarded when either half
+  changes. The suspect list shows RULED OUT / LIKELY CAUSE on the cards, and the panel says how far
+  through the shortlist you are. "Start over" throws the lot away, for after you add or reorder mods.
+- A cleared mod is switched back on. Working through seven suspects used to leave seven mods off.
+- The check now shows every step as it happens — switched off, rebuilding, rebuilt, starting,
+  watching, and the result — instead of one status line overwritten four times in ninety seconds.
+  Each step also goes to the log, so "it disabled the mod and then nothing happened" comes with a
+  log that says which step was the last one reached.
+- "Set up below - press the button to switch it off, rebuild and run" told you to press a button AIM
+  was already pressing for you. It now says what is happening and that the game starts on its own.
+- A crash after the check that is a *different* crash no longer discards the hunt. The suspect is
+  cleared for the original question, the new crash is loaded, and the verdicts already collected are
+  kept.
+- Fixed: the crash check read the page's shared error banner as the verdict on its own rebuild, so
+  anything else that set that banner mid-install — the mods-folder watcher, a finishing Nexus check —
+  would make it report "the game could not be rebuilt" and stop before launching.
+- Fixed: switching a mod off from the crash window did not refresh the archive status, so the check
+  could decide no rebuild was needed and test a game that still contained the mod it had just
+  switched off.
+- Fixed: a cleared mod was switched back on in the window but not in the profile on disk. The
+  rebuild half of the check *did* save the profile — with the mod switched off — so the next time
+  the list reloaded, the tick went away again and the user had to find the mod and re-enable it by
+  hand before installing. Switching a mod on or off by id now writes the profile immediately.
+- **Fixed: the check reported the verdict backwards.** A run that proved a mod guilty — the game
+  started and did not crash with it switched off — was recorded as "ruled out". AIM decided whether
+  a run had crashed by comparing crash reports, and the check's own capture was what it compared
+  against: capturing stamps the crash file with the load order being tested, that load order is
+  different from the one in every earlier capture, so the file did not look like a duplicate and
+  was filed as a fresh crash of the same shape. A successful run therefore ended by manufacturing
+  the evidence that condemned it. Whether a run crashed is now decided by whether the game wrote
+  its crash file after AIM started the process, which is the only thing that actually distinguishes
+  this run's crash from last week's identical one, and a capture is refused outright for a crash
+  file older than the run.
+- Fixed, same cause: a captured crash was dated by when AIM copied it aside rather than by when the
+  game crashed, so an old crash re-captured today sorted above crashes that were genuinely newer.
+  `crashedAt` was being written and never read back.
+- A run that ends without answering the question — the process killed from outside, a crash log AIM
+  cannot parse — is now recorded as "tested, no answer" and offered again, instead of counting as a
+  clearance. Ruling a mod out because a graphics driver fell over is worse than not testing it.
+- A mod a run catches is left switched off and marked **Crashes the game** on its row in the mod
+  list, with the version and date in the tooltip. The verdict used to exist only inside the crash
+  window, so a user who closed it was looking at two hundred checkboxes with one unticked for a
+  reason nothing on screen recorded — and the obvious thing to do with that is tick it back on. The
+  mark is tied to the version tested, so an author's update clears it.
+- "Check selected mods for updates" now includes mods that are switched off because they were
+  caught crashing. It skipped them as not part of the current game — but that mod's next release is
+  the thing most likely to fix it, and it is the one mod the user is actually waiting on. Marking a
+  crasher never freezes it, so the automatic checks always covered it; this was the manual sweep.
+- Catching a mod now goes straight on to what to do about it: the card explains the verdict, AIM's
+  own applicable fixes are listed, and the mod's Nexus pages are read for this crash even if AIM had
+  ranked it fourth and skipped it at load time.
+- Ruled-out suspects move into their own folded "Ruled out and switched back on — N of M" section,
+  and a caught one is pinned to the top of the live list. A shortlist that mixes the settled in with
+  the live ones reads as eight accusations however greyed the settled ones are, and "what is left to
+  try" has to be counted off the screen.
+- Every suspect card now carries **Not a culprit** and **Mark as crash causer**, for what you know
+  and AIM cannot test — you have seen this crash on a machine without the mod, or the author has
+  said in the bug thread that it is theirs. The marks do everything the equivalent run-proved
+  verdict does: taken out of the queue and the picker, switched off and badged in the mod list for a
+  culprit, switched back on for a mod you vouch for, and the culprit's fixes and Nexus pages fetched.
+  They are labelled as yours throughout — MARKED NOT A CULPRIT / MARKED AS CRASH CAUSER on the card,
+  "Marked as crashing" rather than "Crashes the game" on the row — because AIM should never present
+  something you asserted as something it established. **Undo my mark** takes any of them back.
+- A ruled-out mod that is somehow still switched off — its row gone at the time, the list refusing
+  it — now carries a "Switch back on" button, rather than leaving the user to remember which of
+  eight mods AIM exonerated.
+
+### Crash check: fixes AIM can work out for itself
+
+- New "Fixes AIM can apply itself" section on a suspect. Where AIM can prove a mod's data file says
+  something false, it now shows the line, the change, and why it is justified, and applies it on one
+  click. Two rules qualify today: a path naming a file that is not in the mod — the same test AIM's
+  own validator applies — and the same key declared twice in one table, where a TOML reader silently
+  discards one half.
+- Every rule is removal-shaped. AIM comments the broken line out and signs it; it never invents a
+  value, guesses a path, or completes something the author left half-written. A plausible-looking
+  wrong value is far harder for an author to spot in a bug report than a line with AIM's name on it.
+- The fix goes through the same path as one typed in from a bug thread: the whole mod is copied into
+  the version history first, the row is tagged as edited, and the copy from before is in the Restore
+  list.
+- A mod AIM has fixed is held back from updates, so a routine update run cannot silently replace the
+  folder and take the fix with it.
+
+### Load order
+
+- "Suggest Load Order" now thinks about more than declared requirements. Requirements are still the
+  hard rule and still win any argument, but the list is first sorted into layers by what each mod
+  actually installs: mods other mods depend on, then mods that ship code, then mods that add new
+  content, then mods that change values in existing data tables, then mods that replace files
+  outright.
+- Those layers are read off AIM's own installers rather than borrowed from another game's
+  conventions. Two code mods that export the same name are resolved in favour of whichever loads
+  first — and the loser is dropped from the install entirely, sprites and all — so code goes early.
+  A merged data table settles a repeated key last-wins, and a sprite under `images/replace/` is an
+  outright overwrite that strips the previous one from the atlas, so overrides and replacements go
+  late. New content is merged or appended, so it sits in the neutral middle.
+- Each mod is classified from its own folders — `gml/`, `images/replace/`, `momi/`, `tiled/`,
+  `fiddle/` — never from its name or category. A mod AIM cannot classify goes in the middle layer,
+  where a wrong guess overrules nobody.
+- The order inside each layer is left exactly as you had it. Which of two recolours should win is a
+  preference and not a fact, and those still come back as a note with a button to promote the winner.
+- Every mod the layering moves is explained by name in the result window, so the suggestion can be
+  argued with rather than only accepted.
+
+### Mod list
+
+- "Only enabled mods" filter, beside the existing view options. The load order that matters is the
+  order of the mods actually going into the game, and on a long list that is hard to read past the
+  ones that are not.
+- "Move to top of load order" and "Move to bottom of load order" on a mod's right-click menu. The
+  two ends are where the useful answers live — a framework at the top, the recolour that must beat
+  every other recolour at the bottom — and reaching them by dragging meant holding the mouse against
+  the edge of a scrolling list. Both act on the real order, not on whatever the current filter is
+  showing, so they work while a filter is on and dragging is paused.
+
+### Updates that may supersede a fix
+
+- A mod frozen because AIM fixed it is still checked for updates — unlike one you froze yourself,
+  which stays left alone. A new version is reported as "an update may fix what you patched", with
+  what you patched and the fact that updating drops the fix, rather than being swept into "update
+  everything".
+
 ### "Find a fix" checks what you already have
 
 - AIM now looks through your own mod list before offering to download anything. It used to research

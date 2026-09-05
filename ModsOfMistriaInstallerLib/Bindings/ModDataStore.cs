@@ -94,6 +94,40 @@ public sealed class ModDataStore
         return files;
     }
 
+    /// <summary>
+    /// The settings file to hand a text editor for one mod, or null when it has never written one.
+    ///
+    /// Preference order is the file named after the mod, then the shortest name - which picks
+    /// <c>config.json</c> over <c>config.backup.json</c>, and the mod's main settings over the
+    /// <c>bindings.json</c> or <c>options.json</c> some mods keep beside it.
+    /// </summary>
+    public string? FindConfigFile(string modId)
+    {
+        if (!Exists || string.IsNullOrWhiteSpace(modId)) return null;
+
+        var folder = Path.Combine(_root, modId);
+        if (!Directory.Exists(folder)) return null;
+
+        try
+        {
+            var files = Directory.EnumerateFiles(folder, "*.json").ToList();
+            if (files.Count == 0) return null;
+
+            var named = files.FirstOrDefault(path =>
+                string.Equals(Path.GetFileNameWithoutExtension(path), modId, StringComparison.OrdinalIgnoreCase));
+
+            return named ?? files
+                .OrderBy(path => Path.GetFileName(path).Length)
+                .ThenBy(Path.GetFileName, StringComparer.OrdinalIgnoreCase)
+                .First();
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not look for {modId}'s settings in {folder}: {exception.Message}");
+            return null;
+        }
+    }
+
     private static JObject? TryRead(string path)
     {
         try

@@ -23,6 +23,26 @@ public static class ScrollEnds
     private const double Slack = 4;
 
     /// <summary>
+    /// How far in from the right edge the buttons sit, in pixels: clear of the scrollbar they would
+    /// otherwise cover.
+    /// </summary>
+    private const double OuterInset = 20;
+
+    /// <summary>
+    /// The same, for an area nested inside another scrollable one.
+    ///
+    /// A scroll area inside a scroll area draws two of everything at the same corner: the inner
+    /// jump button landed directly beside the outer one and the two scrollbars ran flush against
+    /// each other, so it read as one control with four arrows on it and hitting the intended one
+    /// was guesswork. The inner buttons move left by the width of the outer scrollbar and its
+    /// button, which puts each pair clearly with its own area.
+    /// </summary>
+    private const double NestedInset = 56;
+
+    /// <summary>The gap left between an inner scrollbar and the outer one running beside it.</summary>
+    private const double NestedGutter = 12;
+
+    /// <summary>
     /// Adds the buttons beside a viewer that already sits in a <see cref="Panel"/> - which is the
     /// case for every scroll area declared in XAML here. The viewer's layout position is copied so
     /// the buttons land in the same grid cell and overlay it.
@@ -36,7 +56,7 @@ public static class ScrollEnds
     {
         if (viewer.Parent is not Panel host) return;
 
-        var (top, bottom) = Buttons(viewer);
+        var (top, bottom) = Buttons(viewer, OuterInset);
 
         foreach (var button in new[] { top, bottom })
         {
@@ -53,9 +73,20 @@ public static class ScrollEnds
     /// Wraps a viewer that is not in a panel yet - one being built in code and about to be handed
     /// to something as its content - and returns what to use in its place.
     /// </summary>
+    /// <remarks>
+    /// Every current caller wraps an area that is itself inside the window's scroller, so the
+    /// buttons and the scrollbar are inset far enough to sit clear of the outer pair.
+    /// </remarks>
     public static Control Wrap(ScrollViewer viewer)
     {
-        var (top, bottom) = Buttons(viewer);
+        var (top, bottom) = Buttons(viewer, NestedInset);
+
+        // The viewer's own scrollbar moves left with them, so the two are not drawn touching.
+        viewer.Margin = new Thickness(
+            viewer.Margin.Left,
+            viewer.Margin.Top,
+            viewer.Margin.Right + NestedGutter,
+            viewer.Margin.Bottom);
 
         return new Grid
         {
@@ -64,12 +95,12 @@ public static class ScrollEnds
         };
     }
 
-    private static (Button Top, Button Bottom) Buttons(ScrollViewer viewer)
+    private static (Button Top, Button Bottom) Buttons(ScrollViewer viewer, double inset)
     {
         var texts = LocalizedTexts.Instance;
 
-        var top = Corner("▲", texts.GUIScrollToTop, VerticalAlignment.Top);
-        var bottom = Corner("▼", texts.GUIScrollToBottom, VerticalAlignment.Bottom);
+        var top = Corner("▲", texts.GUIScrollToTop, VerticalAlignment.Top, inset);
+        var bottom = Corner("▼", texts.GUIScrollToBottom, VerticalAlignment.Bottom, inset);
 
         top.Click += (_, _) => viewer.ScrollToHome();
         bottom.Click += (_, _) => viewer.ScrollToEnd();
@@ -92,7 +123,7 @@ public static class ScrollEnds
         return (top, bottom);
     }
 
-    private static Button Corner(string glyph, string tip, VerticalAlignment where)
+    private static Button Corner(string glyph, string tip, VerticalAlignment where, double inset)
     {
         var button = new Button
         {
@@ -108,8 +139,8 @@ public static class ScrollEnds
             // grows line-up and line-down arrows at its ends, roughly sixteen pixels tall, and a
             // four pixel inset parked this button on top of the one nearest it.
             Margin = where == VerticalAlignment.Top
-                ? new Thickness(0, 22, 20, 0)
-                : new Thickness(0, 0, 20, 22),
+                ? new Thickness(0, 22, inset, 0)
+                : new Thickness(0, 0, inset, 22),
             CornerRadius = new CornerRadius(4)
         };
 

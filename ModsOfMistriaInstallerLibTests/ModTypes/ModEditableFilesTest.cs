@@ -70,7 +70,9 @@ public class ModEditableFilesTest
     {
         var mod = ModAt(Path.Combine(_root, "hats"), "manifest.json");
 
-        Assert.That(ModEditableFiles.FindConfig(mod), Is.Null);
+        // The mod-folder half specifically: the whole-answer FindConfig also consults the game's
+        // own mod_data folder, which belongs to whatever machine the test runs on.
+        Assert.That(ModEditableFiles.FindConfigInModFolder(mod), Is.Null);
     }
 
     [Test]
@@ -82,7 +84,7 @@ public class ModEditableFilesTest
         {
             Assert.That(ModEditableFiles.RootFolder(mod), Is.Null);
             Assert.That(ModEditableFiles.FindManifest(mod), Is.Null);
-            Assert.That(ModEditableFiles.FindConfig(mod), Is.Null);
+            Assert.That(ModEditableFiles.FindConfigInModFolder(mod), Is.Null);
         });
     }
 }

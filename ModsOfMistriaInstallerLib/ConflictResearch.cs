@@ -14,12 +14,58 @@ public sealed record ResearchFinding(
     string Reason,
     string SourceUrl)
 {
+    private readonly string? _fullQuote;
+
     public Polarity Polarity { get; init; } = Polarity.Context;
 
     public string Where { get; init; } = "";
 
     /// <summary>True when this quote names one of the other mods in the conflict.</summary>
     public bool NamesTheOtherMod { get; init; }
+
+    /// <summary>
+    /// The whole sentence or post, before <see cref="Quote"/> was cut down to fit a window.
+    ///
+    /// Kept because the cut is a display decision and a wrong one often enough to matter: a
+    /// condition reads "load March Expanded after…" and stops exactly where the user needed it to
+    /// go on. Losing the rest meant opening the mod page and reading it to find one sentence again.
+    /// Defaults to the quote itself, so a finding that was never shortened needs no second copy.
+    /// </summary>
+    public string FullQuote
+    {
+        get => string.IsNullOrEmpty(_fullQuote) ? Quote : _fullQuote;
+        init => _fullQuote = value;
+    }
+
+    /// <summary>True when the displayed quote is only part of what was said.</summary>
+    public bool IsShortened => FullQuote.Length > Quote.Length;
+
+    /// <summary>
+    /// A phrase short and literal enough to find this sentence again on the page it came from -
+    /// what a person would type into the browser's find bar, if they had it to hand.
+    ///
+    /// The start of the quote rather than the middle of it, because the page renders the sentence
+    /// inside markup and a browser's find will not match text that runs across a paragraph or list
+    /// boundary. A short opening run almost never does.
+    /// </summary>
+    public string SearchPhrase => Findable(FullQuote);
+
+    /// <summary>Roughly a line of the find bar. Long enough to be unique, short enough to survive markup.</summary>
+    private const int PhraseLength = 60;
+
+    public static string Findable(string quote)
+    {
+        // Bullets, quote marks and list dashes are the page's decoration, not its words, and a
+        // find bar takes them literally.
+        var text = quote.Trim().TrimStart('•', '·', '-', '–', '—', '*', '>', '"', '“', '\'', ' ').Trim();
+
+        if (text.Length <= PhraseLength) return text;
+
+        var cut = text[..PhraseLength];
+        var space = cut.LastIndexOf(' ');
+
+        return space > 20 ? cut[..space] : cut;
+    }
 }
 
 /// <summary>A page worth a human's eyes, with a one-line reason to open it.</summary>
@@ -598,7 +644,8 @@ public static class ConflictResearch
         {
             Polarity = polarity,
             Where = $"bug report \"{Trim(bug.Title, 60)}\"",
-            NamesTheOtherMod = named is not null
+            NamesTheOtherMod = named is not null,
+            FullQuote = text
         };
     }
 
@@ -640,12 +687,16 @@ public static class ConflictResearch
 
             var who = string.IsNullOrWhiteSpace(post.Author) ? mod.Name : $"{mod.Name} — {post.Author}";
 
-            into.Add(new ResearchFinding(who, post.Text,
+            // Shortened for display like every other quote - a comment runs to six hundred
+            // characters - but the whole post travels with it, so the window can show all of it
+            // without going back to Nexus.
+            into.Add(new ResearchFinding(who, Trim(post.Text),
                 named is not null ? $"names \"{named}\" and {signal!.Reason}" : signal!.Reason, source)
             {
                 Polarity = signal.Polarity,
                 Where = where,
-                NamesTheOtherMod = named is not null
+                NamesTheOtherMod = named is not null,
+                FullQuote = post.Text
             });
 
             if (++kept >= MaxDiscussionQuotes) break;
@@ -785,18 +836,36 @@ public static class ConflictResearch
             {
                 Polarity = signal!.Polarity,
                 Where = where,
-                NamesTheOtherMod = named is not null
+                NamesTheOtherMod = named is not null,
+                FullQuote = sentence
             };
 
             if (seen.Count >= MaxDescriptionQuotes) yield break;
         }
     }
 
+    /// <summary>
+    /// The BBCode tags Nexus descriptions actually use, named rather than guessed at by shape.
+    ///
+    /// The old pattern took anything in square brackets up to forty characters long, which is wrong
+    /// in both directions. A link tag carrying a full mod URL is well past forty, so
+    /// <c>[url=https://www.nexusmods.com/fieldsofmistria/mods/669]</c> survived into the quote and
+    /// was shown to the user as if the author had typed it; meanwhile prose in brackets - "[see the
+    /// FAQ]" - was silently eaten. Matching on the tag name fixes both.
+    /// </summary>
+    private const string BbCodeTags =
+        "url|b|i|u|s|size|color|colour|font|center|centre|right|left|justify|quote|spoiler|code|" +
+        "list|img|youtube|video|table|tr|td|th|heading|line|hr|indent|sup|sub";
+
+    private static readonly Regex BbCode = new(
+        $@"\[/?(?:{BbCodeTags})(?:[=\s][^\]]{{0,300}})?\]|\[\*\]",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
     /// <summary>Nexus descriptions are BBCode rendered to HTML. Neither is worth showing raw.</summary>
-    private static string PlainText(string value)
+    public static string PlainText(string value)
     {
         var withoutTags = Regex.Replace(value, "<[^>]+>", " ");
-        var withoutBbCode = Regex.Replace(withoutTags, @"\[/?[^\]]{1,40}\]", " ");
+        var withoutBbCode = BbCode.Replace(withoutTags, " ");
         return Regex.Replace(WebUtility.HtmlDecode(withoutBbCode), @"\s+", " ").Trim();
     }
 

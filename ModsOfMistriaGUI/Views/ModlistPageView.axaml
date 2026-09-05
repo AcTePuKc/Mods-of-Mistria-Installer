@@ -27,6 +27,13 @@
                     <MenuItem Header="{Binding Texts.GUISaveLogFile}" Command="{Binding SaveLogFileCommand}" />
                     <MenuItem Header="{Binding Texts.GUIEnableAllMods}" Command="{Binding EnableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
                     <MenuItem Header="{Binding Texts.GUIDisableAllMods}" Command="{Binding DisableAllModsCommand}" IsEnabled="{Binding !IsInstalling}" />
+                    <!-- Listed so the shortcut is discoverable. It is the filtered version of the
+                         two above, and with no filter on it is simply the same thing. -->
+                    <MenuItem Header="{Binding Texts.GUIToggleVisibleMods}"
+                              InputGesture="Ctrl+A"
+                              ToolTip.Tip="{Binding Texts.GUIToggleVisibleModsTooltip}"
+                              Command="{Binding ToggleVisibleModsCommand}"
+                              IsEnabled="{Binding !IsInstalling}" />
                     <!-- Beside the other bulk selection actions rather than out in the button row:
                          it operates on the ticked mods, like they do, and it is destructive enough
                          that it should not sit under the cursor's usual path. -->
@@ -218,6 +225,7 @@
                      deliberately never performs archive or Nexus work while typing. -->
                 <Grid ColumnDefinitions="*,Auto" Margin="0 10 0 0">
                     <TextBox Grid.Column="0"
+                             x:Name="ModSearchBox"
                              Text="{Binding ModSearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Watermark="{Binding Texts.GUIModSearch}"
                              IsEnabled="{Binding !IsInstalling}" />
@@ -243,10 +251,18 @@
                               IsEnabled="{Binding !IsInstalling}"
                               Content="{Binding Texts.GUISortRecentlyUpdated}"
                               ToolTip.Tip="{Binding Texts.GUISortRecentlyUpdatedTooltip}" />
+                    <CheckBox IsChecked="{Binding ShowOnlyEnabled}"
+                              IsEnabled="{Binding !IsInstalling}"
+                              Content="{Binding Texts.GUIShowOnlyEnabled}"
+                              ToolTip.Tip="{Binding Texts.GUIShowOnlyEnabledTooltip}" />
                     <CheckBox IsChecked="{Binding ShowOnlyUpdatable}"
                               IsEnabled="{Binding !IsInstalling}"
                               Content="{Binding Texts.GUIShowOnlyUpdatable}"
                               ToolTip.Tip="{Binding Texts.GUIShowOnlyUpdatableTooltip}" />
+                    <Button Padding="8 2"
+                            Content="{Binding Texts.GUISuggestLoadOrder}"
+                            ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
+                            Command="{Binding SuggestLoadOrderCommand}" />
                     <TextBlock VerticalAlignment="Center"
                                Foreground="Gray"
                                TextWrapping="Wrap"
@@ -270,11 +286,17 @@
                                TextTrimming="CharacterEllipsis"
                                Text="{Binding SelectionSummary}" />
 
+                    <!-- The issue report answers "what might break"; this answers "what did break".
+                         They sit together because a user arriving from a crash does not yet know
+                         which of the two questions they have, and the crash is the more urgent one
+                         to be able to reach without hunting through a menu. -->
                     <Button Grid.Column="2"
+                            Margin="8 0 0 0"
                             Padding="8 2"
-                            Content="{Binding Texts.GUISuggestLoadOrder}"
-                            ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
-                            Command="{Binding SuggestLoadOrderCommand}" />
+                            Content="{Binding Texts.GUICheckCrashes}"
+                            ToolTip.Tip="{Binding Texts.GUICheckCrashesTooltip}"
+                            Command="{Binding CheckCrashesCommand}" />
+
                     <Button Grid.Column="3"
                             Margin="8 0 0 0"
                             Padding="8 2"
@@ -366,6 +388,11 @@
                                                       IsEnabled="{Binding CanOpenNexusPage}"
                                                       Command="{Binding Commands.OpenNexusPage}"
                                                       CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUINexusTrack}"
+                                                      ToolTip.Tip="{Binding Texts.GUINexusTrackTooltip}"
+                                                      IsEnabled="{Binding CanTrackOnNexus}"
+                                                      Command="{Binding Commands.TrackOnNexus}"
+                                                      CommandParameter="{Binding}" />
                                             <MenuItem Header="{Binding Texts.GUINexusAssociate}"
                                                       IsEnabled="{Binding CanAssociateWithNexus}"
                                                       Command="{Binding Commands.AssociateWithNexus}"
@@ -377,6 +404,19 @@
                                             <MenuItem Header="{Binding Texts.GUIUpdateFromNexus}"
                                                       IsEnabled="{Binding CanUpdateFromNexus}"
                                                       Command="{Binding Commands.UpdateFromNexus}"
+                                                      CommandParameter="{Binding}" />
+                                            <Separator />
+                                            <!-- The two ends of the load order, without dragging a
+                                                 row past two hundred others to reach them. -->
+                                            <MenuItem Header="{Binding Texts.GUIMoveModToTop}"
+                                                      ToolTip.Tip="{Binding Texts.GUIMoveModToTopTooltip}"
+                                                      IsEnabled="{Binding CanReorderThisMod}"
+                                                      Command="{Binding Commands.MoveToTop}"
+                                                      CommandParameter="{Binding}" />
+                                            <MenuItem Header="{Binding Texts.GUIMoveModToBottom}"
+                                                      ToolTip.Tip="{Binding Texts.GUIMoveModToBottomTooltip}"
+                                                      IsEnabled="{Binding CanReorderThisMod}"
+                                                      Command="{Binding Commands.MoveToBottom}"
                                                       CommandParameter="{Binding}" />
                                             <Separator />
                                             <MenuItem Header="{Binding FreezeMenuHeader}"
@@ -467,6 +507,19 @@
                                                 VerticalAlignment="Center"
                                                 ToolTip.Tip="{Binding EditedTooltip}">
                                             <TextBlock Text="{Binding Texts.GUIModEditedBadge}"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Center" />
+                                        </Border>
+                                        <!-- A run caught this mod crashing the game. Red and loud:
+                                             the whole point is that the user, months later, does
+                                             not tick it back on wondering why it was off. -->
+                                        <Border IsVisible="{Binding IsKnownCrasher}"
+                                                Background="#b02222"
+                                                CornerRadius="4"
+                                                Padding="5 1"
+                                                VerticalAlignment="Center"
+                                                ToolTip.Tip="{Binding KnownCrasherTooltip}">
+                                            <TextBlock Text="{Binding KnownCrasherBadge}"
                                                        Foreground="White"
                                                        VerticalAlignment="Center" />
                                         </Border>

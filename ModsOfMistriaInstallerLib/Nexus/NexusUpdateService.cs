@@ -15,6 +15,17 @@ public enum NexusUpdateState
     /// <summary>The user asked AIM to leave this mod on the version it is on.</summary>
     Frozen,
 
+    /// <summary>
+    /// A newer version exists for a mod AIM froze because it had edited the files.
+    ///
+    /// Deliberately not <see cref="UpdateAvailable"/>. An update here is not a thing to apply and
+    /// forget: it replaces the mod folder, which discards AIM's fix, so it is worth taking only if
+    /// the new version fixes the problem the patch was working around. Sweeping it into "update
+    /// everything" would silently undo a repair the user watched AIM make, and the crash would come
+    /// back with nothing on screen explaining why.
+    /// </summary>
+    UpdateMayFixEdit,
+
     /// <summary>AIM has no way to tell which Nexus mod this is.</summary>
     NotFromNexus,
 
@@ -30,7 +41,15 @@ public record NexusUpdateStatus(
     string? LatestFileName = null,
     string? Message = null)
 {
+    /// <summary>
+    /// An update AIM may apply on the user's say-so as part of an ordinary update run. A mod frozen
+    /// around a fix is excluded on purpose: see <see cref="NexusUpdateState.UpdateMayFixEdit"/>.
+    /// </summary>
     public bool HasUpdate => State == NexusUpdateState.UpdateAvailable;
+
+    /// <summary>There is a newer version, whether or not it is safe to take without asking.</summary>
+    public bool AnyNewerVersion =>
+        State is NexusUpdateState.UpdateAvailable or NexusUpdateState.UpdateMayFixEdit;
 }
 
 /// <summary>
@@ -89,7 +108,13 @@ public class NexusUpdateService
         var record = Resolve(mod);
         if (record is null) return new NexusUpdateStatus(NexusUpdateState.NotFromNexus);
 
-        if (record.Frozen || _index.IsFrozen(mod.GetSourcePath()))
+        // A freeze the user set means "stop asking", and is answered here without troubling Nexus.
+        // A freeze AIM set because it patched the mod means the opposite: the patch is a stopgap,
+        // and the version that makes it unnecessary is the thing the user most wants to hear about.
+        // So that one is checked, and reported as its own state further down.
+        var patched = _index.FreezeReason(mod.GetSourcePath());
+
+        if ((record.Frozen || _index.IsFrozen(mod.GetSourcePath())) && patched is null)
             return new NexusUpdateStatus(NexusUpdateState.Frozen, record);
 
         var accessToken = await _accessTokenProvider(ct);
@@ -132,9 +157,12 @@ public class NexusUpdateService
                     "or right-click the mod and associate it with a specific file, and update " +
                     "checks become reliable.");
 
+            if (!newer) return new NexusUpdateStatus(
+                NexusUpdateState.UpToDate, record, latest.Version, latest.FileId, latest.FileName);
+
             return new NexusUpdateStatus(
-                newer ? NexusUpdateState.UpdateAvailable : NexusUpdateState.UpToDate,
-                record, latest.Version, latest.FileId, latest.FileName);
+                patched is null ? NexusUpdateState.UpdateAvailable : NexusUpdateState.UpdateMayFixEdit,
+                record, latest.Version, latest.FileId, latest.FileName, patched);
         }
         catch (OperationCanceledException)
         {
@@ -263,9 +291,17 @@ public class NexusUpdateService
             replacePath: mod.GetSourcePath());
     }
 
-    public void SetFrozen(IMod mod, bool frozen) => _index.SetFrozen(mod.GetSourcePath(), frozen);
+    /// <param name="reason">
+    /// Why AIM froze it, when AIM is the one freezing. Null - the default, and what the user's own
+    /// freeze menu passes - marks it as the user's decision, which AIM does not then argue with.
+    /// </param>
+    public void SetFrozen(IMod mod, bool frozen, string? reason = null) =>
+        _index.SetFrozen(mod.GetSourcePath(), frozen, reason);
 
     public bool IsFrozen(IMod mod) => _index.IsFrozen(mod.GetSourcePath());
+
+    /// <summary>Why AIM froze this mod, or null when it was the user or it is not frozen.</summary>
+    public string? FreezeReason(IMod mod) => _index.FreezeReason(mod.GetSourcePath());
 
     // ── Version comparison ───────────────────────────────────────────────────────
 

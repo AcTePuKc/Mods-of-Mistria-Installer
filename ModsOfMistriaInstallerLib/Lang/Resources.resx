@@ -691,12 +691,12 @@ Open download page(s) in browser?</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Search mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Clear search</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Select or clear every mod</value></data>
-  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Suggest order</value></data>
+  <data name="GUISuggestLoadOrder" xml:space="preserve"><value>Suggest Load Order</value></data>
   <data name="GUISuggestLoadOrderTooltip" xml:space="preserve"><value>Order mods so each one loads after the mods it requires</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Load order</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mods were reordered so each one loads after the mods it requires.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nothing to change: every mod already loads after the mods it requires.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Check issues</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Check Issues</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Issue check</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Show details</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Close</value></data>
@@ -816,6 +816,12 @@ Open download page(s) in browser?</value></data>
   <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Sorts the list by name so you can find a mod quickly. This is a view only — your load order is untouched, and turning it off shows the real order again. Dragging is paused while it is on.</value></data>
   <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Sort by recently updated</value></data>
   <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Newest first, by when each mod's folder last changed on disk — so anything you have just installed or updated comes to the top. A view only: your load order is untouched, and dragging is paused while it is on.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Move to top of load order</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Loads this mod first, so everything else can build on it and overrule it. Where a framework or a mod others depend on belongs. This moves it in the real load order, not just in whatever the list is currently showing.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Move to bottom of load order</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Loads this mod last, so where it shares a file with another mod, this one wins. Where a recolour or a personal override belongs. This moves it in the real load order, not just in whatever the list is currently showing.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Only enabled mods</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Hides everything that is switched off. The load order that matters is the order of the mods actually going into the game, and on a long list that order is hard to read past the ones that are not.</value></data>
   <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Only mods needing attention</value></data>
   <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Shows only mods with an update waiting, and mods the last check could not reach — no Nexus association, a network problem, or a page that no longer exists.</value></data>
   <data name="GUIListReorderedNote" xml:space="preserve"><value>Viewing only — load order unchanged, dragging paused</value></data>
@@ -830,6 +836,13 @@ Open download page(s) in browser?</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} version(s) with notes, newest first.</value></data>
   <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Version {0}</value></data>
   <data name="GUIVersionsBadge" xml:space="preserve"><value>Versions</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Crashes the game</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Marked as crashing</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>A supervised run proved this mod crashes the game: with it switched off, the game ran and the crash did not come back. AIM has left it switched off.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>You marked this mod as a crash causer yourself, in the crash checker. AIM did not test it — it has taken your word for it and switched the mod off.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Version {0}, checked {1}.
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Open Check crashes for the fixes AIM can apply and what the mod's own pages say about it. The mark is tied to this version, so an update from the author clears it.</value></data>
   <data name="GUIModEditedBadge" xml:space="preserve"><value>Edited by AIM</value></data>
   <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>That patch has no main file AIM can install on its own. Its files are open in your browser — pick the one you want and use "Mod Manager Download".</value></data>
   <data name="GUINexusPatchCancelled" xml:space="preserve"><value>The patch download was cancelled.</value></data>
@@ -863,6 +876,17 @@ Open download page(s) in browser?</value></data>
   <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLEM</value></data>
   <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>CONDITION</value></data>
   <data name="GUIResearchBadgeContext" xml:space="preserve"><value>CONTEXT</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Track on Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Adds this mod to your Nexus tracking centre, so the site tells you about updates and the author's posts. Needs your Nexus account to be connected.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Now tracking {0} on Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>You were already tracking {0} on Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Could not track {0} on Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM could not read a Nexus mod id from the page it has for this mod.</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Show the whole quote</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Show less</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Find it on the page</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Copies "{0}" and opens the page it came from. Press Ctrl+F there and paste to jump straight to it. If it was a comment it may be several pages back, so paste it into the thread's own search box instead.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Copied. Press Ctrl+F on the page that just opened and paste.</value></data>
   <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>This changes files inside a mod you did not write. AIM copies the whole mod into its Versions dropdown first and marks the row as edited. Continue?</value></data>
   <data name="GUIVersionsTooltip" xml:space="preserve"><value>Earlier copies of this mod AIM kept when it updated. Pick one to roll back to it.</value></data>
   <data name="GUIVersionsHeader" xml:space="preserve"><value>Roll back to:</value></data>
@@ -887,7 +911,9 @@ Open download page(s) in browser?</value></data>
   <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria is running. Editing is off, because the game rewrites every mod's settings when it exits and would overwrite anything changed here. Close the game and press Refresh.</value></data>
   <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>also used by {0}</value></data>
   <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>The same input is bound in:</value></data>
-  <data name="GUIKeybindsDefault" xml:space="preserve"><value>the mod's default</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Tick or untick the mods on screen</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Applies to the rows your search and filters are currently showing, and to nothing hidden by them. With no filter on, that is every mod. Mods AIM cannot install are left alone.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>the mod's default — AIM cannot change it until the mod writes its settings</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>This mod has not written its settings yet, so this is the default compiled into it. Run the game once, or change it in the mod's own settings, and AIM can edit it here.</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(not bound)</value></data>
   <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>the game will not accept this</value></data>
@@ -907,7 +933,7 @@ Open download page(s) in browser?</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} keybind(s) you chose have been changed by the mods themselves — usually after an update reset their settings.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Put your choices back? Settings the update removed altogether are not restored.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…and {0} more.</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Restored {0} keybind(s). Start the game for them to take effect.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Check updates</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Check Updates</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Checks the selected mods against their Nexus pages. Use the arrow for all mods, or to install everything that has an update.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Checked {0} mod(s): {1} have an update, {2} could not be checked.&#xD;&#xA;&#xD;&#xA;Download and install those updates now? Each mod's current version is kept as a backup you can restore.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Update everything that has an update</value></data>
@@ -936,6 +962,148 @@ Open download page(s) in browser?</value></data>
   <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Moved into your mods folder:&#xD;&#xA;{0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>The mods folder could not be found, so there is nothing to open.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Could not open the mods folder: {0}</value></data>
-  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods folder</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods Folder</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Open the Fields of Mistria mods folder in your file manager</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Check Crashes</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Reads the game's own crash log, works out which mod it points at, and offers to switch that mod off and check whether the crash goes away.</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Crash check</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Crash</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mods this points at</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Strongest first. A mod named here because the crash happened inside its own code is not a guess; one named because it writes the data the game was reading is a shortlist.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Check whether that fixes it</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Switches the chosen mod off, rebuilds the game so the change actually takes effect, starts it, and watches. Play as you normally would - AIM reports back when the game closes, or after a few minutes if it has not crashed.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Disable, rebuild and run</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Disabling a mod changes nothing the game can see until the archive is rebuilt, so AIM does all of it rather than leaving you to remember the middle step.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Change nothing - just run and watch</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Worth a look</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>The crash file, as the game wrote it</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Where it broke</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Where it broke  ({0} frames)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Copy report</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Puts the whole thing on your clipboard: the error, the backtrace, what AIM concluded, and the mods that were installed.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Looking for crashes…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>No crashes on file. The game has not crashed since you installed it, or it has never been run on this machine.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Reading the backtrace against your installed mods…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM cannot see your mod list from here, so it can show the crash but not say which mod caused it.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM could not finish reading this crash: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>This crash is older than the mods you have installed now. AIM rebuilt the game after it happened, so what crashed is not what is on disk - play once before changing anything, and treat the mods below as leads rather than verdicts.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Not signed in to Nexus, so AIM cannot read the mods' bug trackers. Everything above was worked out from your own files.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Reading the bug trackers and comments on the mods this points at…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Nothing points clearly enough at a mod to be worth reading its page.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM could not read the mod pages: {0}. What it worked out from your own files still stands.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Nothing on the mods' pages mentions this crash.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} things on the mods' pages bear on this.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>CERTAIN</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>LIKELY</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>POSSIBLE</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>LONG SHOT</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Open mod page</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Open this page</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Report this bug</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Writes the report the author needs - the error, the backtrace, your game version and what else you have installed - puts it on your clipboard, and opens the mod's bug tracker. You read it and post it; AIM does not.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>The report is on your clipboard and the bug tracker is open. Read it through, then post it.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>The report is on your clipboard. AIM does not know where this mod came from, so you will have to find the author's tracker or Discord yourself.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Copied.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Disable and check</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Switches this mod off, rebuilds the game and runs it, so you find out whether it was the cause rather than guessing.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Rebuilding the game without this mod — it starts on its own once that finishes. Progress is below.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Remove mod</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} has been removed.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versions and AIM's changes</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM has changed this mod:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Undo AIM's changes</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Puts back every file AIM set aside in this mod, leaving anything else in the folder alone. A line AIM changed is undone by restoring the version below instead.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Restore</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} has been rolled back to {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — before AIM's change</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM will switch {0} off, rebuild the game archive, and start the game.&#xD;&#xA;&#xD;&#xA;The rebuild takes a minute or so. Play as you normally would; AIM will tell you whether the crash came back.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM will start the game and watch for a crash, without changing anything.&#xD;&#xA;&#xD;&#xA;Play as you normally would; AIM will tell you what happened.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM cannot change the mod list from here.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} could not be switched off - it may already be off, or no longer in the list.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} is switched off.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Rebuilding the game archive so the change takes effect…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>The game could not be rebuilt, so nothing was tested: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Starting the game and watching. Play as you normally would.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM is already installing. Wait for that to finish first.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>There is nothing to install: no game folder, or no mods switched on.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM does not know where your mods folder is.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>That mod is no longer in the list.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Says this is a known problem</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Says this mod is fine</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Works, but only if you do something</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Other things the pages say</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Apply a fix by hand</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>If a bug thread or the mod's description says exactly what to change, put it in here. AIM copies the whole mod into your version history first, so the Restore list above will always have the version from before this.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>File, relative to the mod's folder</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Line</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>The new text for that line — leave empty to blank it out</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Apply this change</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Set this file aside</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Takes the whole file out of play and leaves the rest of the mod installed. Useful when one data file is what the game chokes on and you would rather keep the rest of the mod until the author updates it.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Name a file inside the mod first, and a line number to change.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Fix for a crash: line {0} of {1} in {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Fix for a crash: set aside {0} in {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM will copy the whole mod into your version history first, so you can put it back from the Restore list at any time. Only this one mod is touched.&#xD;&#xA;&#xD;&#xA;Go ahead?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Changing nothing — running the game as it stands.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>The archive already matches the mod list, so no rebuild was needed.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>The game archive has been rebuilt.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Starting Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Watching the run. Play as you normally would — AIM reports back when the game closes, or after {0} minutes if it has not crashed.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>The game did not start, so nothing was tested.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>The same crash came back with {0} switched off, so {0} is not the cause. AIM has ruled it out and switched it back on.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>The same crash came back with {0} switched off, so {0} is not the cause. AIM has ruled it out, but could not switch it back on — use "Switch back on" on its card, under "Already checked", before the next check.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>No crash with {0} switched off. That makes it the likely cause. Leave it off, wait for an update, or try a fix below.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>The game ran without crashing, and nothing was changed. The crash may have needed a save or an action you did not repeat — try again and do what you did last time.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>That run answered nothing, so {0} is still a suspect. AIM will offer it again.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>The game crashed, but on something else — so {0} is ruled out for the original crash. AIM has loaded the new crash; the verdicts you have already collected are kept.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} of {1} suspects have been tested for this crash.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM has nowhere to write these results, so they last only while this window is open.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Test next: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Runs the same check on the next untested suspect: switch it off, rebuild, launch and watch. The mods already ruled out stay switched on.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Every suspect has been tested and none of them was the cause on its own. Two mods together can do this — try switching off the whole shortlist at once, or report the crash with the list below.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Start over</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Throws away every verdict AIM has recorded for this crash and offers all the suspects again. Worth doing after you add, remove or reorder mods, because a verdict only means anything against the list it was tested in.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Every verdict for this crash has been cleared.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Ruled out — {0} of {1} suspects</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Show what those runs proved</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Reading {0}'s own pages for a fix…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Not a culprit</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Records that you know this mod is not behind this crash, without spending a run on it. It moves to the ruled-out list, stops being offered for testing, and is switched back on if AIM had switched it off. Labelled as your own call, not as something AIM proved, and you can undo it.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Mark as crash causer</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Records that you know this mod causes this crash. AIM switches it off, marks it in your mod list, and treats it as the culprit — the same as when a run catches one, but labelled as your own call. You can undo it.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Undo my mark</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Takes back the verdict you recorded by hand and puts this mod back in the shortlist as untested. The mod is left switched however it is now.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Marked by hand, not tested by AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>MARKED NOT A CULPRIT</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>MARKED AS CRASH CAUSER</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>You marked this as the cause. AIM has not tested it — it has switched the mod off and marked it in your mod list on your word. Anything AIM can fix by itself is below; its bug thread may already have an answer.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} is marked as a crash causer and has been switched off. Install to rebuild the game without it.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} is marked as a crash causer. It was already switched off.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} is marked as not a culprit and will not be offered for this crash again.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} is marked as not a culprit and has been switched back on. Install to put it back in the game.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Your mark on {0} has been taken back. It is in the shortlist again as untested.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM has no crash loaded to record that against.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Switch back on</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>This mod is ruled out but is still switched off. AIM normally turns a cleared mod back on by itself; it could not this time, so this does it.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} is back on. Install to put it in the game.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM could not switch {0} back on — it may no longer be in your mod list, or it may have failed to load.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>RULED OUT</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>KNOWN CRASHER</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>A run proved this: with it switched off the game did not crash. AIM has left it switched off and marked it in your mod list. Anything AIM can fix by itself is below; its bug thread may already have an answer.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>TESTED, NO ANSWER</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Fixes AIM can apply itself</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>These are repairs AIM worked out from its own checks rather than from a bug thread, so each one is a mechanical correction to something demonstrably wrong in the file — never a guess at what the author meant. The whole mod is copied into your version history first, the mod is tagged as edited, and it is held back from updates until one arrives that may fix this properly.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Apply this fix</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Applied to {0}. It is tagged as edited and held back from updates; the version from before is in the Restore list above.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Nothing here is broken in a way AIM can repair on its own.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;In {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM will copy the whole mod into your version history first, and hold the mod back from updates so this fix is not silently overwritten. Go ahead?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Held back from updates because AIM has fixed it: {0}</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>An update may fix what you patched</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} is out. You are on {2} with AIM's fix applied: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Update and drop AIM's fix</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Updating replaces the mod folder, so AIM's edit goes with it. If the new version has not fixed the problem, the crash comes back and you can re-apply the fix — the version from before is still in the Restore list.</value></data>
 </root>

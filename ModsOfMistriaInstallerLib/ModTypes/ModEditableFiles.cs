@@ -1,3 +1,5 @@
+using Garethp.ModsOfMistriaInstallerLib.Bindings;
+
 namespace Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 /// <summary>
@@ -51,7 +53,45 @@ public static class ModEditableFiles
             .FirstOrDefault(File.Exists);
     }
 
-    public static string? FindConfig(IMod? mod)
+    /// <summary>
+    /// The mod's settings file, wherever the mod actually keeps it.
+    ///
+    /// Two places, and the second is the one that matters for most modern mods. A mod that ships a
+    /// config file has it in its own folder, which is what this looked for. But an MMAPI mod that
+    /// uses <c>mmapi_config_write</c> - which is how a mod with in-game settings is written now -
+    /// has no config file in its folder at all: MMAPI keeps it under the game's own config
+    /// directory in <c>mod_data/&lt;mod id&gt;/</c>, because a settings file inside the mod folder
+    /// would be destroyed by every update. Looking only in the mod folder therefore greyed out
+    /// "Edit config" for exactly the mods most likely to have settings worth editing.
+    ///
+    /// The mod-folder copy still wins when both exist: that one is the mod's own shipped defaults,
+    /// and it is what the author's documentation talks about.
+    ///
+    /// Null does not always mean "no settings". MMAPI writes the file the first time the mod runs,
+    /// so a mod installed but not yet played has nothing on disk to edit - which is why the caller
+    /// says so rather than only greying the item out.
+    /// </summary>
+    public static string? FindConfig(IMod? mod) =>
+        FindConfigInModFolder(mod) ?? FindConfigInGameData(mod);
+
+    /// <summary>Where MMAPI keeps this mod's settings, or null if it has never written them.</summary>
+    public static string? FindConfigInGameData(IMod? mod)
+    {
+        var modId = mod?.GetId();
+        if (string.IsNullOrWhiteSpace(modId)) return null;
+
+        try
+        {
+            return ModDataStore.Locate()?.FindConfigFile(modId);
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not look for {modId}'s settings in the game's config folder: {exception.Message}");
+            return null;
+        }
+    }
+
+    public static string? FindConfigInModFolder(IMod? mod)
     {
         var root = RootFolder(mod);
         if (root is null) return null;

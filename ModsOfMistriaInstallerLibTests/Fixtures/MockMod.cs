@@ -126,7 +126,14 @@ public class MockMod : IMod
 
     public bool FileExists(string path) => _files.Values.Any(files => files.Keys.Contains(path));
 
-    public bool FolderExists(string path) => _files.Keys.Contains(path);
+    // A parent folder exists when something is inside it, which is what a real mod on disk does and
+    // what every caller assumes: FolderMod.FolderExists("momi") is true for a mod whose only momi
+    // content is momi/cosmetics/hat.toml. Matching on the exact key alone made this fake answer no,
+    // and any code that probes a top-level folder would pass its tests and fail in the wild.
+    public bool FolderExists(string path) =>
+        _files.Keys.Any(folder =>
+            folder.Equals(path, StringComparison.Ordinal) ||
+            folder.StartsWith(path + "/", StringComparison.Ordinal));
 
     private object ReadFileInternal(string path)
     {

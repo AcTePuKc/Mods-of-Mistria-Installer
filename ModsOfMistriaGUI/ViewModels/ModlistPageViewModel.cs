@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
@@ -11,6 +12,7 @@ using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.Views;
 using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.Bindings;
+using Garethp.ModsOfMistriaInstallerLib.Crash;
 using Garethp.ModsOfMistriaInstallerLib.Generator;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Lang;
@@ -329,6 +331,41 @@ public partial class ModlistPageViewModel : PageViewBase
     }
 
     /// <summary>
+    /// Sends a mod to one end of the load order.
+    ///
+    /// The two ends are where the useful answers live - a framework everything else needs goes to
+    /// the top, and the recolour that must beat every other recolour goes to the bottom - and on a
+    /// list of two hundred mods, dragging a row that far means holding the mouse against the edge
+    /// of a scrolling list for half a minute and usually missing.
+    ///
+    /// It works on the real order rather than the filtered view, so "top" means the top of the load
+    /// order and not the top of whatever happens to be on screen. That is also why it is available
+    /// while a filter is on, when dragging is not.
+    /// </summary>
+    private void MoveModToTop(ModModel? model) => MoveModToEnd(model, top: true);
+
+    private void MoveModToBottom(ModModel? model) => MoveModToEnd(model, top: false);
+
+    private void MoveModToEnd(ModModel? model, bool top)
+    {
+        // Not while an install is running: it is building the archive from this exact order.
+        if (model is null || IsInstalling || Mods.Count < 2) return;
+
+        var from = Mods.IndexOf(model);
+        var to = top ? 0 : Mods.Count - 1;
+        if (from < 0 || from == to) return;
+
+        // Remove and insert rather than Move, for the reason MoveMod gives: ItemsRepeater can hold
+        // on to a stale container after a Move notification and render the row twice.
+        Mods.RemoveAt(from);
+        Mods.Insert(to, model);
+
+        RefreshPositions();
+        RefreshFilteredMods();
+        _isDirty = true;
+    }
+
+    /// <summary>
     /// Points the folder watcher at the current mods folder. Reloading is skipped while an install
     /// is running: that writes to the game archive, and a mod list rebuilding underneath it would
     /// change the selection the install is working from.
@@ -520,10 +557,13 @@ public partial class ModlistPageViewModel : PageViewBase
 
     private ModRowCommands RowCommands => _rowCommands ??= new ModRowCommands(
         new RelayCommand<ModModel>(OpenNexusPage),
+        new AsyncRelayCommand<ModModel>(TrackOnNexus),
         new AsyncRelayCommand<ModModel>(AssociateWithNexus),
         new AsyncRelayCommand<ModModel>(CheckModForUpdate),
         new AsyncRelayCommand<ModModel>(UpdateModFromNexus),
         new RelayCommand<ModModel>(ToggleModFreeze),
+        new RelayCommand<ModModel>(MoveModToTop),
+        new RelayCommand<ModModel>(MoveModToBottom),
         new AsyncRelayCommand<ModModel>(RestorePreviousVersion),
         new RelayCommand<ModModel>(OpenModFolder),
         new RelayCommand<ModModel>(EditModManifest),
@@ -549,6 +589,12 @@ public partial class ModlistPageViewModel : PageViewBase
             var record = service?.Resolve(model.Mod);
             model.NexusPageUrl = record?.PageUrl;
             model.IsFrozen = service?.IsFrozen(model.Mod) ?? false;
+
+            // Read on every list load for the same reason the edit marker is: it has to survive a
+            // restart, which is exactly when the user has forgotten why one of their mods is being
+            // held back.
+            model.FreezeReason = service?.FreezeReason(model.Mod) ?? "";
+            model.UpdateMayFixEdit = false;
             model.UpdatedAt = LastChangedOnDisk(model.Mod.GetSourcePath());
 
             // Only mods AIM can identify on Nexus have release notes to fetch. The preview resets
@@ -876,6 +922,7 @@ public partial class ModlistPageViewModel : PageViewBase
             _backupStore = null;
             _bindingVault = null;
             _changelogStore = null;
+            _crashTrials = null;
             RefreshNexusState();
             RefreshPendingUpdates();
             RefreshSelectionSummary();
@@ -891,6 +938,12 @@ public partial class ModlistPageViewModel : PageViewBase
             else if (ModsLocation.Equals("")) InstallStatus = Resources.GUICouldNotFindMods;
             else if (Mods.Count == 0) InstallStatus = NoModsToInstallText;
             RefreshSelectedModConflicts();
+
+            // The rows are new objects, so the marks earned in the crash window have to be put back
+            // on them from the verdicts on disk. Otherwise a mod caught crashing the game loses its
+            // mark at the next reload - which happens whenever the mods folder changes, which is
+            // precisely when the user is deciding what to tick.
+            RefreshCrashMarks();
 
             // A mod that reset one of the user's keybinds did so the last time the game ran, so the
             // list load is the first moment AIM can notice and offer to put it back.
@@ -911,6 +964,11 @@ public partial class ModlistPageViewModel : PageViewBase
             RefreshSelectionSummary();
             RefreshArchiveStatus();
             RefreshSelectedModConflicts();
+
+            // The enabled-only filter is a view of exactly this property, so a row unticked while
+            // it is on has to leave the list. Only when that filter is actually on.
+            if (ShowOnlyEnabled) RefreshVisibleMods();
+
             if (_cascading) return;
             _cascading = true;
             List<ModRequirement> missing;
@@ -991,8 +1049,18 @@ public partial class ModlistPageViewModel : PageViewBase
             var settledLegacy = new HashSet<ModModel>();
             var settledCosmetic = new HashSet<ModModel>();
             var looseGml = new HashSet<ModModel>();
+            var settledInline = new Dictionary<ModModel, IReadOnlyCollection<string>>();
             foreach (var model in models)
             {
+                // Read on the same pass and against the same store as everything else here, so a
+                // tick in the report reaches the row's own warnings too.
+                try { settledInline[model] = SettledInlineWarningsFor(model.Mod, dismissed); }
+                catch (Exception exception)
+                {
+                    Logger.Log($"Could not read settled warnings for {model.Mod.GetId()}: {exception.Message}");
+                    settledInline[model] = [];
+                }
+
                 try
                 {
                     detected[model] = LegacyGameCompatibilityDetector.Find(model.Mod);
@@ -1025,6 +1093,8 @@ public partial class ModlistPageViewModel : PageViewBase
                 if (refreshVersion != Volatile.Read(ref _conflictRefreshVersion)) return;
                 foreach (var model in models)
                 {
+                    model.SetSettledInlineWarnings(settledInline.GetValueOrDefault(model) ?? []);
+
                     var warnings = new List<string>();
 
                     // Both branches below are the same issue as far as the report is concerned -
@@ -1228,6 +1298,94 @@ public partial class ModlistPageViewModel : PageViewBase
     /// It also covers what the old scan could not: controller buttons, letters and digits, and
     /// chords like SHIFT+F5.
     /// </summary>
+    /// <summary>
+    /// The row-only warnings, as report notes: the mod's own validation warnings, and duplicate
+    /// copies of one mod.
+    ///
+    /// Keyed by the mod, its version and the warning's own text, so an author fixing the thing in
+    /// the next release brings the note back rather than inheriting the tick - the same rule every
+    /// other issue key here follows.
+    ///
+    /// <see cref="SettledInlineWarningsFor"/> reads the same keys back, which is what lets a tick
+    /// in the report turn the row's triangle off.
+    /// </summary>
+    private List<LoadOrderNote> BuildInlineWarningNotes(IReadOnlyList<IMod> selected)
+    {
+        var notes = new List<LoadOrderNote>();
+
+        var copies = BuildDuplicateCopyMap(selected.ToList());
+        var reportedDuplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var mod in selected)
+        {
+            var id = mod.GetId();
+            var version = mod.GetVersion();
+
+            foreach (var message in mod.GetValidation().Warnings
+                         .Select(warning => warning.Message)
+                         .Where(message => !string.IsNullOrWhiteSpace(message))
+                         .Distinct(StringComparer.Ordinal))
+            {
+                notes.Add(new LoadOrderNote(
+                    LoadOrderNoteKind.CompatibilityWarning,
+                    $"{mod.GetName()} v{version}\r\n{message}")
+                {
+                    IssueKey = $"validation|{id}@{version}|{message}",
+                    Participants = ParticipantsFor([id], selected)
+                });
+            }
+
+            if (!copies.TryGetValue(DuplicateModDetector.NormalizeSource(mod.GetSourcePath()), out var group) ||
+                group.Count <= 1)
+                continue;
+
+            // One note per mod, not one per copy: the user is being told they have two of
+            // something, and telling them twice is the same joke.
+            if (!reportedDuplicates.Add(id)) continue;
+
+            var paths = string.Join("\r\n", group.Select(copy => $"• {copy.GetVersion()} — {copy.GetSourcePath()}"));
+
+            notes.Add(new LoadOrderNote(
+                LoadOrderNoteKind.CompatibilityWarning,
+                $"{mod.GetName()} v{version}\r\n{string.Format(Texts.GUIModDuplicateCopies, paths)}")
+            {
+                IssueKey = $"validation|{id}@{version}|{ModModel.DuplicateWarningKey}",
+                Participants = ParticipantsFor([id], selected)
+            });
+        }
+
+        return notes;
+    }
+
+    /// <summary>
+    /// Which of a row's own warnings the user has already ticked off, as the row states them.
+    ///
+    /// The mirror of <see cref="BuildInlineWarningNotes"/>: the same keys, read rather than
+    /// written. Returns the warning texts, because that is what the row has to match against.
+    /// </summary>
+    private static IReadOnlyCollection<string> SettledInlineWarningsFor(
+        IMod mod, DismissedIssueStore? dismissed)
+    {
+        if (dismissed is null) return [];
+
+        var id = mod.GetId();
+        var version = mod.GetVersion();
+
+        var settled = mod.GetValidation().Warnings
+            .Select(warning => warning.Message)
+            .Where(message => !string.IsNullOrWhiteSpace(message))
+            .Distinct(StringComparer.Ordinal)
+            .Where(message => IsSettled(dismissed, LoadOrderNoteKind.CompatibilityWarning,
+                $"validation|{id}@{version}|{message}"))
+            .ToList();
+
+        if (IsSettled(dismissed, LoadOrderNoteKind.CompatibilityWarning,
+                $"validation|{id}@{version}|{ModModel.DuplicateWarningKey}"))
+            settled.Add(ModModel.DuplicateWarningKey);
+
+        return settled;
+    }
+
     private List<LoadOrderNote> BuildBindingConflictNotes(IReadOnlyList<IMod> selected)
     {
         var entries = BindingScanner.Scan(selected, ModDataStore.Locate());
@@ -1332,11 +1490,6 @@ public partial class ModlistPageViewModel : PageViewBase
 
         return conflicts.Where(conflict =>
         {
-            // Only these two kinds become report issues at all; the merge and localisation kinds are
-            // combined rather than overwritten, so there is nothing there to settle.
-            if (conflict.Kind is not (ModFileConflictKind.HardReplacement or ModFileConflictKind.SharedDestination))
-                return true;
-
             var ids = conflict.ModIds.Where(versions.ContainsKey).ToList();
             if (ids.Count < 2) return true;
 
@@ -1345,7 +1498,16 @@ public partial class ModlistPageViewModel : PageViewBase
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase));
 
-            return !IsSettled(dismissed, LoadOrderNoteKind.FileConflict, key);
+            // The two combining kinds are reported and dismissed under their own key - see
+            // LoadOrderPlanner.DescribeFileConflicts. They are on the rows, so they have to be
+            // silenceable from the report like everything else on the rows; the suffix keeps that
+            // tick from also silencing an override between the same pair, which is a separate
+            // judgement about a different problem.
+            var combining = conflict.Kind
+                is ModFileConflictKind.MergeableMetadata
+                or ModFileConflictKind.SharedLocalization;
+
+            return !IsSettled(dismissed, LoadOrderNoteKind.FileConflict, combining ? key + "|merge" : key);
         }).ToList();
     }
 
@@ -1389,6 +1551,19 @@ public partial class ModlistPageViewModel : PageViewBase
         catch (Exception exception)
         {
             Logger.Log($"Detailed hotkey-conflict check skipped: {exception.Message}");
+        }
+
+        // The two warnings that used to exist only on the row: what the mod's own validator said
+        // about it, and having two copies of it installed. Neither was ever reported, so a mod
+        // could sit there with a lit triangle while the report said there was nothing outstanding -
+        // which is exactly the reading that teaches a user to stop looking at triangles.
+        try
+        {
+            foreach (var note in BuildInlineWarningNotes(selected)) notes.Add(note);
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Detailed inline-warning check skipped: {exception.Message}");
         }
 
         foreach (var mod in selected)
@@ -1596,7 +1771,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
     /// <summary>True when the list is not showing every mod in its real order.</summary>
     public bool IsListReordered =>
-        HasModSearch || ShowOnlyUpdatable || SortAlphabetically || SortByRecentlyUpdated;
+        HasModSearch || ShowOnlyEnabled || ShowOnlyUpdatable || SortAlphabetically || SortByRecentlyUpdated;
 
     [ObservableProperty] private string _modSearchQuery = "";
 
@@ -1610,6 +1785,17 @@ public partial class ModlistPageViewModel : PageViewBase
     /// Sorts the visible list by when each mod last changed on disk, newest first. Also view-only.
     /// </summary>
     [ObservableProperty] private bool _sortByRecentlyUpdated;
+
+    /// <summary>
+    /// Show only the mods that are switched on.
+    ///
+    /// The load order that matters is the order of the ticked mods - the rest are not in the game -
+    /// and on a list of two hundred with forty ticked, reading that order means scrolling past a
+    /// hundred and sixty rows that have nothing to do with it. Like the other filters, this changes
+    /// only what is shown; the order underneath is untouched, which is why dragging pauses while it
+    /// is on.
+    /// </summary>
+    [ObservableProperty] private bool _showOnlyEnabled;
 
     /// <summary>Show only mods with a pending update, or that the last update check could not reach.</summary>
     [ObservableProperty] private bool _showOnlyUpdatable;
@@ -1632,6 +1818,8 @@ public partial class ModlistPageViewModel : PageViewBase
         if (value) SortAlphabetically = false;
         RefreshVisibleMods();
     }
+
+    partial void OnShowOnlyEnabledChanged(bool value) => RefreshVisibleMods();
 
     partial void OnShowOnlyUpdatableChanged(bool value) => RefreshVisibleMods();
 
@@ -1669,6 +1857,7 @@ public partial class ModlistPageViewModel : PageViewBase
             IEnumerable<ModModel> visible = Mods;
 
             if (HasModSearch) visible = visible.Where(MatchesModSearch);
+            if (ShowOnlyEnabled) visible = visible.Where(model => model.Enabled);
             if (ShowOnlyUpdatable) visible = visible.Where(NeedsUpdateAttention);
 
             // Ordinal-ignore-case rather than the culture's collation: the list is a lookup aid,
@@ -1702,7 +1891,18 @@ public partial class ModlistPageViewModel : PageViewBase
     // ── Commands ──────────────────────────────────────────────────────────────────
 
     [RelayCommand(CanExecute = nameof(CanInstall))]
-    private void InstallMods()
+    private void InstallMods() => _ = RunInstallAsync();
+
+    /// <summary>
+    /// The install itself, awaitable and with an answer.
+    ///
+    /// The button does not care when the install finishes - it has the progress line and the row
+    /// icons to say so. The crash check does: "switch this mod off and see whether the crash comes
+    /// back" is only a check if the game is rebuilt before it is launched, and only an answer if a
+    /// failed rebuild is reported rather than silently followed by a run of the old archive.
+    /// </summary>
+    /// <returns>Null when the install succeeded, or the reason it did not.</returns>
+    private async Task<string?> RunInstallAsync()
     {
         var duplicate = FindSelectedDuplicateGroup();
         if (duplicate is not null)
@@ -1710,7 +1910,7 @@ public partial class ModlistPageViewModel : PageViewBase
             var message = Localized("GUIDuplicateModInstallBlocked");
             Exception = message;
             InstallStatus = message;
-            return;
+            return message;
         }
 
         // Hard replacements are advisory, not fatal: the selected load order decides
@@ -1728,7 +1928,16 @@ public partial class ModlistPageViewModel : PageViewBase
         InstallStatus = InstallInProgressText;
         IsInstalling  = true;
         StartInstallUiDiagnostics();
-        _ = BackgroundInstall();
+
+        // BackgroundInstall catches its own failures and returns the reason, so this reads the
+        // outcome of *this* install rather than the page's Exception banner.
+        //
+        // The distinction matters more than it looks. Exception is page-wide and anything may set
+        // it: the mods-folder watcher noticing the archive change, a Nexus check finishing, a
+        // validation warning from an unrelated mod. A caller that read it as "did my install work"
+        // - which the crash window's disable-and-check does - would be told the rebuild failed
+        // because something else had something to say, and would stop before launching the game.
+        return await BackgroundInstall();
     }
 
     [RelayCommand]
@@ -1778,16 +1987,42 @@ public partial class ModlistPageViewModel : PageViewBase
     }
 
     /// <summary>
+    /// Ctrl+A: tick or untick everything currently on screen, and nothing else.
+    ///
+    /// Scoped to the filter rather than to the whole list on purpose, and this is the difference
+    /// that makes it usable. With a search or a filter on, the rows the user can see are the set
+    /// they are thinking about - "all the Crys mods", "everything with an update" - and a select-all
+    /// that quietly took in the two hundred mods scrolled out of view would be a select-all nobody
+    /// could risk pressing. With no filter on, everything is visible and this is a plain select-all.
+    ///
+    /// Filling up rather than clearing when the visible set is part-ticked, for the same reason the
+    /// header checkbox does: a half-ticked box invites completing it.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanChangeModSelection))]
+    private void ToggleVisibleMods()
+    {
+        var visible = FilteredMods.Where(mod => !mod.InError).ToList();
+        if (visible.Count == 0) return;
+
+        SetModSelection(visible, visible.Any(mod => !mod.Enabled));
+    }
+
+    /// <summary>
     /// Applies a bulk checkbox change as one logical selection update. The
     /// individual rows still notify their bindings immediately, but costly
     /// derived state (archive status and selected-mod scans) is recomputed once.
     /// </summary>
-    private void SetAllModSelection(bool enabled)
+    private void SetAllModSelection(bool enabled) =>
+        SetModSelection(Mods.Where(mod => !mod.InError).ToList(), enabled);
+
+    private void SetModSelection(IReadOnlyList<ModModel> rows, bool enabled)
     {
         _bulkSelectionChangeDepth++;
         try
         {
-            foreach (var mod in Mods.Where(mod => !mod.InError))
+            // A mod AIM cannot install is left alone wherever bulk selection happens: its checkbox
+            // is disabled for a reason, and a shortcut must not be a way around that.
+            foreach (var mod in rows.Where(mod => !mod.InError))
                 mod.Enabled = enabled;
         }
         finally
@@ -1801,6 +2036,10 @@ public partial class ModlistPageViewModel : PageViewBase
         RefreshSelectedModConflicts();
         InstallModsCommand.NotifyCanExecuteChanged();
         UnInstallModsCommand.NotifyCanExecuteChanged();
+
+        // The enabled-only filter is a view of exactly this property, so rows that have just left
+        // the filter have to leave the list with it.
+        if (ShowOnlyEnabled) RefreshVisibleMods();
     }
 
     // Where the last checkbox click landed, as an index into the visible list. Ranges are measured
@@ -1885,9 +2124,16 @@ public partial class ModlistPageViewModel : PageViewBase
             var current = Mods.Select(model => model.Mod).ToList();
             var enabled = Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList();
 
-            var plan = await Task.Run(() => LoadOrderPlanner.Plan(current, enabled));
+            // groupByRole: this is the one caller that is asking for the best order AIM can
+            // propose, rather than for a reading of the order the user already has.
+            var plan = await Task.Run(() =>
+                LoadOrderPlanner.Plan(current, enabled, groupByRole: true));
+
+            // Requirement moves first: they are facts, and a user skimming the window should meet
+            // the certain things before the advisory ones.
             var orderNotes = plan.Notes
-                .Where(note => note.Kind == LoadOrderNoteKind.DependencyMove)
+                .Where(note => note.Kind is LoadOrderNoteKind.DependencyMove or LoadOrderNoteKind.RoleMove)
+                .OrderBy(note => note.Kind == LoadOrderNoteKind.RoleMove)
                 .ToList();
 
             if (plan.ChangesAnything)
@@ -1949,15 +2195,20 @@ public partial class ModlistPageViewModel : PageViewBase
                     Texts.GUIConflictReportTitle,
                     BuildIssueReportAsync,
                     await GetDismissedIssuesAsync(),
-                    ConflictActions);
+                    ConflictActions,
+
+                    // Every tick, not just the last one. The rows read the same store, so re-running
+                    // the sweep is what makes their warning triangles agree with the report - and
+                    // the report is modeless, so "when it closes" could be twenty minutes of the
+                    // list contradicting the window sitting next to it.
+                    RefreshSelectedModConflicts);
 
                 _issueReportWindow.Closed += (_, _) =>
                 {
                     _issueReportWindow = null;
 
-                    // The user has just ticked issues off, or put some back. The rows read the same
-                    // store, so re-running the sweep is what makes their warning triangles agree
-                    // with the report they were looking at a moment ago.
+                    // Once more on the way out, in case anything settled the store without going
+                    // through the report - the research window can be closed by applying a fix.
                     RefreshSelectedModConflicts();
                 };
             }
@@ -1972,6 +2223,452 @@ public partial class ModlistPageViewModel : PageViewBase
             Logger.Log($"Conflict report failed: {exception}");
             Exception = $"{Texts.GUIConflictReportTitle}: {exception.Message}";
         }
+    }
+
+    // ── Crashes ───────────────────────────────────────────────────────────────────
+
+    private CrashArchive? _crashArchive;
+    private CrashTrialStore? _crashTrials;
+    private CrashWatcher? _crashWatcher;
+
+    private CrashArchive CrashLogs => _crashArchive ??= new CrashArchive();
+
+    /// <summary>
+    /// What earlier disable-and-check runs proved, so the hunt for a bad mod survives closing the
+    /// window. Null until there is a mods folder to keep it in.
+    /// </summary>
+    private CrashTrialStore? CrashTrials
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(ModsLocation)) return null;
+            if (_crashTrials is not null) return _crashTrials;
+
+            try
+            {
+                var store = new CrashTrialStore(ModsLocation);
+
+                // A year, matching the dismissed issues. A verdict older than that is about mods
+                // and a game version that have both moved on.
+                store.PruneOlderThan(TimeSpan.FromDays(365));
+                return _crashTrials = store;
+            }
+            catch (Exception exception)
+            {
+                // Losing the record costs the user repeated runs; refusing to open the crash window
+                // costs them the diagnosis. The former is the cheaper failure.
+                Logger.Log($"Could not open the crash trial store: {exception.Message}");
+                return null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Starts watching for crashes, if it is not already.
+    ///
+    /// Armed by pressing Play and by opening the crash window, which between them cover the moments
+    /// a crash is about to happen and the moment the user has come looking for one. It is not armed
+    /// at startup: a user who never launches the game from AIM has nothing to capture, and a file
+    /// watcher on a folder that may not exist is not worth holding open for a session.
+    /// </summary>
+    private void EnsureCrashWatcher()
+    {
+        if (_crashWatcher is not null) return;
+
+        try
+        {
+            // The load order is read at capture time rather than now: the point of recording it is
+            // to know what was installed when the game broke, and that is a different list from
+            // whatever was selected when the watcher started.
+            _crashWatcher = new CrashWatcher(CrashLogs, () => (ModsForCrashReport(), LastInstalledAt()));
+            _crashWatcher.Start();
+        }
+        catch (Exception exception)
+        {
+            // Not being able to watch costs the crash archive its history, not AIM its session.
+            Logger.Log($"Could not start the crash watcher: {exception.Message}");
+            _crashWatcher = null;
+        }
+    }
+
+    /// <summary>The enabled mods in load order, as the crash archive records them.</summary>
+    private IReadOnlyList<string> ModsForCrashReport() =>
+        Mods.Where(model => model.Enabled)
+            .Select(model => $"{model.Mod.GetId()} {model.Mod.GetVersion()}".Trim())
+            .ToList();
+
+    /// <summary>
+    /// When the archive now on disk was published, which is what dates a crash against it.
+    ///
+    /// Read from the install state rather than remembered in this session: the interesting case is
+    /// a crash from before AIM was even opened, and this session knows nothing about that install.
+    /// </summary>
+    private DateTimeOffset? LastInstalledAt()
+    {
+        if (string.IsNullOrEmpty(MistriaLocation)) return null;
+
+        try
+        {
+            return new AssetsStore(MistriaLocation).GetRecordedInstallState()?.InstalledAtUtc;
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not read when the archive was installed: {exception.Message}");
+            return null;
+        }
+    }
+
+    [RelayCommand]
+    private async Task CheckCrashes()
+    {
+        if (App.TopLevel is not Window owner) return;
+
+        EnsureCrashWatcher();
+
+        try
+        {
+            var client = Nexus is null ? null : await Nexus.CreateApiClientAsync();
+            await CrashAnalysisWindow.ShowAsync(owner, BuildCrashContext(), client);
+
+            // Whatever the window proved, said on the rows. It marks the culprit itself as it
+            // happens, but a rebuild inside the check replaces the rows underneath that, so the
+            // marks are put back from the store once the window is closed.
+            RefreshCrashMarks();
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"The crash check failed: {exception}");
+            Exception = $"{Texts.GUICrashTitle}: {exception.Message}";
+        }
+    }
+
+    /// <summary>
+    /// Everything the crash window is allowed to do, and nothing else.
+    ///
+    /// Each capability is a method that already exists for some other part of AIM - the same
+    /// disable the checkbox performs, the same install the button runs, the same restore the row's
+    /// version dropdown offers. Nothing here is a second implementation that would have to be kept
+    /// in step with the first, which matters more than usual for the ones that edit a mod.
+    /// </summary>
+    private CrashContext BuildCrashContext() =>
+        new(Mods.Where(model => model.Enabled).Select(model => model.Mod).ToList(),
+            MistriaLocation,
+            LastInstalledAt())
+        {
+            Installed = SnapshotForResearch(),
+            Disable = DisableModById,
+            Enable = EnableModById,
+            IsEnabled = IsModEnabledById,
+            RefreshCrasherMark = RefreshCrashMarkFor,
+            Trials = CrashTrials,
+            Reinstall = ReinstallForCrashCheck,
+            RunAndWatch = RunAndWatchGame,
+            SetAside = BackupStore is null ? null : SetAsideModFiles,
+            ReplaceLine = BackupStore is null ? null : ReplaceLineInMod,
+            Repairs = RepairsFor,
+            ApplyRepair = BackupStore is null ? null : ApplyRepairToMod,
+            PutBack = PutBackModFiles,
+            Versions = VersionsFor,
+            RestoreVersion = RestoreVersionFor,
+            RemoveMod = RemoveModById,
+            EditHistory = modId => EditStore?.Edits(modId).Select(edit => edit.Describe()).ToList() ?? []
+        };
+
+    /// <summary>
+    /// Reapplies the known-crasher marks from the verdicts on disk.
+    ///
+    /// Always recomputed, never set from the outside. A reload builds fresh rows, and a mark that
+    /// only lived on the old ones would last until the mods folder changed - which is to say, until
+    /// the next time the user installed anything, which is exactly when they are deciding what to
+    /// tick. Recomputing is also what makes taking a mark back safe: a mod cleared for one crash may
+    /// still be the proven culprit of another, and only the store knows that.
+    ///
+    /// The verdict is matched against the version now on disk, so an update clears the mark: a mod
+    /// that has been fixed should not carry the previous version's crime, and a mark the user has
+    /// learned to disbelieve is worse than none.
+    /// </summary>
+    private void RefreshCrashMarks()
+    {
+        foreach (var row in Mods) RefreshCrashMarkFor(row);
+    }
+
+    private void RefreshCrashMarkFor(string modId)
+    {
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is not null) RefreshCrashMarkFor(row);
+    }
+
+    private void RefreshCrashMarkFor(ModModel row)
+    {
+        var trials = CrashTrials;
+        if (trials is null) return;
+
+        CrashTrial? verdict;
+
+        try
+        {
+            verdict = trials.GuiltyVerdict(row.Mod.GetId(), row.Mod.GetVersion());
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not read the crash verdict for {row.Mod.GetId()}: {exception.Message}");
+            return;
+        }
+
+        row.IsKnownCrasher = verdict is not null;
+
+        // Said as the user's own call when it was one. AIM claiming to have proved something the
+        // user simply asserted would make the badge worth less than it is on the rows where AIM did
+        // prove it.
+        row.KnownCrasherIsManual = verdict?.Manual == true;
+
+        row.KnownCrasherSummary = verdict is null
+            ? ""
+            : string.Format(
+                Texts.GUIModCrasherSummary,
+                string.IsNullOrWhiteSpace(verdict.ModVersion) ? "?" : verdict.ModVersion,
+                verdict.TestedAt.LocalDateTime.ToString("g", CultureInfo.CurrentCulture),
+                verdict.Note);
+    }
+
+    /// <summary>Whether a mod is ticked right now, asked of the list rather than of a snapshot.</summary>
+    private bool IsModEnabledById(string modId) =>
+        Mods.Any(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase) && model.Enabled);
+
+    /// <summary>The mirror of <see cref="EnableModById"/>: switches a mod off by id.</summary>
+    private bool DisableModById(string modId)
+    {
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null || !row.Enabled) return false;
+
+        row.Enabled = false;
+        RefreshSelectedModConflicts();
+
+        // The archive status is what decides whether the crash check bothers to rebuild, and this
+        // is the moment it stopped being true. Leaving it stale would let a disable-and-check skip
+        // the rebuild, launch a game that still contains the mod it just switched off, and report
+        // that disabling it changed nothing.
+        RefreshArchiveStatus();
+
+        // Written to the profile now, not at the next install. The profile on disk is what a
+        // reload reads the ticks back from, and a crash check reloads twice - once for the
+        // rebuild, once when the folder watcher notices it - so a selection that lives only in
+        // memory does not survive the run it was made for.
+        SaveCurrentProfileState();
+        return true;
+    }
+
+    /// <summary>
+    /// Rebuilds the game archive so a change to the mod list is a change the game can see.
+    ///
+    /// A rebuild that is not needed is skipped rather than run: the archive is several hundred
+    /// megabytes, and rebuilding it to test a change nobody made would cost the user a minute to
+    /// learn nothing.
+    /// </summary>
+    private async Task<string?> ReinstallForCrashCheck()
+    {
+        if (IsInstalling) return Texts.GUICrashAlreadyInstalling;
+        if (!InstallationNeedsRebuild) return null;
+        if (string.IsNullOrEmpty(MistriaLocation) || !Mods.Any(model => model.Enabled))
+            return Texts.GUICrashNothingToInstall;
+
+        return await RunInstallAsync();
+    }
+
+    /// <summary>Starts the game with AIM watching, and reports whether the crash came back.</summary>
+    private async Task<GameRunOutcome> RunAndWatchGame(TimeSpan window)
+    {
+        var archive = CrashLogs;
+
+        // Taken before the run, so a crash file left over from last week cannot be mistaken for
+        // this run's result.
+        var before = await Task.Run(archive.Latest);
+
+        return await GameRunRecorder.RunAsync(
+            MistriaLocation, ModsForCrashReport(), LastInstalledAt(), before, archive, window);
+    }
+
+    /// <summary>
+    /// Applies a one-line fix inside a mod, taking a full copy of it first.
+    ///
+    /// The change itself came from a bug thread and was typed by the user; everything AIM adds is
+    /// the bookkeeping around it. Same store, same snapshot and same row marker as the set-aside
+    /// edit, so a line change and a disabled file are undone by the same dropdown.
+    /// </summary>
+    private async Task<EditOutcome> ReplaceLineInMod(
+        string modId, string path, int line, string replacement, string reason)
+    {
+        var backups = BackupStore;
+        var store = EditStore;
+
+        if (backups is null || store is null) return EditOutcome.Refused(Texts.GUICrashNoModsFolder);
+
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null) return EditOutcome.Refused(Texts.GUICrashModGone);
+
+        var outcome = await Task.Run(() =>
+            ModFileEditor.ReplaceLine(row.Mod, path, line, replacement, reason, backups, store));
+
+        if (outcome.Applied) RefreshEditedState(row);
+
+        return outcome;
+    }
+
+    /// <summary>
+    /// The fixes AIM can justify for one mod without being told what to change.
+    ///
+    /// Reads the mod's data files, so the caller runs it off the UI thread.
+    /// </summary>
+    private IReadOnlyList<ModRepair> RepairsFor(string modId)
+    {
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null) return [];
+
+        try
+        {
+            return ModRepairPlanner.For(row.Mod);
+        }
+        catch (Exception exception)
+        {
+            // A scan that fails offers no fixes, which is the correct outcome and not a reason to
+            // take the crash window down.
+            Logger.Log($"Could not work out fixes for {row.Mod.GetName()}: {exception}");
+            return [];
+        }
+    }
+
+    /// <summary>
+    /// Applies a fix AIM worked out itself, then holds the mod back from updates.
+    ///
+    /// The edit goes through exactly the same path as a fix the user typed in from a bug thread -
+    /// same snapshot, same version-history entry, same marker on the row - because it carries
+    /// exactly the same risk and deserves exactly the same way back.
+    ///
+    /// The freeze is the part that is specific to AIM having made the change. An update replaces a
+    /// mod's folder wholesale, so the next routine update run would silently discard the fix and
+    /// the crash would come back with nothing on screen connecting the two. Freezing stops that,
+    /// and because the freeze carries a reason, the update check still looks at the mod and reports
+    /// a new version as "this may fix what you patched" rather than going quiet on it forever.
+    /// </summary>
+    private async Task<EditOutcome> ApplyRepairToMod(string modId, ModRepair repair)
+    {
+        var backups = BackupStore;
+        var store = EditStore;
+
+        if (backups is null || store is null) return EditOutcome.Refused(Texts.GUICrashNoModsFolder);
+
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null) return EditOutcome.Refused(Texts.GUICrashModGone);
+
+        var reason = $"AIM's own fix: {repair.Title}";
+
+        var outcome = await Task.Run(() =>
+            ModFileEditor.ReplaceLine(row.Mod, repair.Path, repair.Line, repair.Becomes, reason, backups, store));
+
+        if (!outcome.Applied) return outcome;
+
+        RefreshEditedState(row);
+
+        try
+        {
+            UpdateService?.SetFrozen(row.Mod, true, reason);
+            row.IsFrozen = true;
+            row.FreezeReason = reason;
+        }
+        catch (Exception exception)
+        {
+            // The fix is applied and safe either way; failing to freeze means the user may lose it
+            // to an update, which is worth a log line and not worth undoing the repair over.
+            Logger.Log($"Could not freeze {row.Mod.GetName()} after fixing it: {exception.Message}");
+        }
+
+        // The archive still contains the file as it was, so the fix is not in the game until the
+        // next install. Saying so is the difference between a fix that works and a user who tries
+        // again and reports that AIM's fix did nothing.
+        //
+        // Forced rather than derived, and set after the refresh rather than before it.
+        // RefreshArchiveStatus compares mod ids and versions against what the archive records, and
+        // an edit inside a mod changes neither - so left to itself it would conclude, correctly by
+        // its own lights and uselessly by ours, that nothing needs rebuilding.
+        RefreshArchiveStatus();
+        InstallationNeedsRebuild = true;
+        InstallModsCommand.NotifyCanExecuteChanged();
+
+        return outcome;
+    }
+
+    /// <summary>Puts back every file AIM set aside in a mod, and clears the row's marker.</summary>
+    private async Task<EditOutcome> PutBackModFiles(string modId)
+    {
+        var store = EditStore;
+        if (store is null) return EditOutcome.Refused(Texts.GUICrashNoModsFolder);
+
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (row is null) return EditOutcome.Refused(Texts.GUICrashModGone);
+
+        var outcome = await Task.Run(() => ModFileEditor.PutBack(row.Mod, store));
+
+        if (outcome.Applied) RefreshEditedState(row);
+
+        return outcome;
+    }
+
+    /// <summary>
+    /// The copies of a mod AIM can put back, newest first, with the one taken immediately before
+    /// AIM's own edit called out by name.
+    ///
+    /// "Restore the version from before you changed it" is what somebody undoing a fix means, and a
+    /// list of timestamps does not answer it - especially not on a mod that has also been updated
+    /// twice since.
+    /// </summary>
+    private IReadOnlyList<VersionChoice> VersionsFor(string modId)
+    {
+        var backups = BackupStore;
+
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        if (backups is null || row is null) return [];
+
+        var beforeEdits = (EditStore?.Edits(modId) ?? [])
+            .Select(edit => edit.BackupPath)
+            .OfType<string>()
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        return backups.List(ModBackupStore.ModNameFor(row.Mod.GetSourcePath()))
+            .Select(backup =>
+            {
+                var preEdit = beforeEdits.Contains(backup.Path);
+
+                return new VersionChoice(
+                    preEdit
+                        ? string.Format(Texts.GUICrashVersionBeforeEdit, backup.Describe())
+                        : backup.Describe(),
+                    backup,
+                    preEdit);
+            })
+            .ToList();
+    }
+
+    private async Task<bool> RestoreVersionFor(string modId, VersionChoice choice)
+    {
+        var row = Mods.FirstOrDefault(model =>
+            string.Equals(model.Mod.GetId(), modId, StringComparison.OrdinalIgnoreCase));
+
+        return row is not null && await RestoreBackup(row, choice.Backup);
     }
 
     /// <summary>
@@ -2371,6 +3068,18 @@ public partial class ModlistPageViewModel : PageViewBase
 
         row.Enabled = true;
         RefreshSelectedModConflicts();
+
+        // Same reason as DisableModById: the archive on disk no longer matches the selection, and
+        // the crash check reads exactly that to decide whether a rebuild is needed before the next
+        // run. A cleared mod switched back on must not be missing from the game it is tested in.
+        RefreshArchiveStatus();
+
+        // And the tick has to reach the profile, for the reason DisableModById gives - with the
+        // sharper edge here, because the disable half *was* saved: the install that rebuilt the
+        // archive wrote the profile with this mod switched off. Leaving the re-enable in memory
+        // means the next reload puts it back off, and the user who has just been told the mod is
+        // ruled out has to go and tick it themselves.
+        SaveCurrentProfileState();
         return true;
     }
 
@@ -2595,6 +3304,52 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (model?.NexusPageUrl is null) return;
         NexusDownloadsViewModel.OpenUrl(model.NexusPageUrl);
+    }
+
+    /// <summary>
+    /// Adds the mod to the user's tracking centre on Nexus.
+    ///
+    /// AIM's own update check already tells the user when a tracked mod moves, so this is not about
+    /// AIM knowing - it is about the site knowing. Tracking is what puts a mod on the user's Nexus
+    /// notifications and on the tracking centre they read on their phone, and doing it from here
+    /// saves opening the page, waiting for it to load, and finding the button.
+    ///
+    /// Needs a connected account, because tracking is something done *as* somebody.
+    /// </summary>
+    private async Task TrackOnNexus(ModModel? model)
+    {
+        if (model?.NexusPageUrl is null) return;
+
+        if (!NexusInstallIndex.TryReadNexusUrl(model.NexusPageUrl, out var game, out var modId))
+        {
+            InstallStatus = string.Format(Texts.GUINexusTrackFailed, model.Mod.GetName(),
+                Texts.GUINexusTrackNoModId);
+            return;
+        }
+
+        var client = Nexus is null ? null : await Nexus.CreateApiClientAsync();
+        if (client is null)
+        {
+            InstallStatus = string.Format(Texts.GUINexusTrackFailed, model.Mod.GetName(),
+                Texts.GUINexusAccountNoKey);
+            return;
+        }
+
+        try
+        {
+            var added = await client.TrackModAsync(game, modId);
+
+            // "Already tracking it" is worth saying rather than hiding behind a generic success:
+            // it answers the question the user was really asking, which is whether they are
+            // covered, and stops them wondering whether the click did anything.
+            InstallStatus = string.Format(
+                added ? Texts.GUINexusTracked : Texts.GUINexusAlreadyTracked, model.Mod.GetName());
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Tracking {model.Mod.GetName()} on Nexus failed: {exception}");
+            InstallStatus = string.Format(Texts.GUINexusTrackFailed, model.Mod.GetName(), exception.Message);
+        }
     }
 
     private async Task AssociateWithNexus(ModModel? model)
@@ -2865,8 +3620,14 @@ public partial class ModlistPageViewModel : PageViewBase
         if (model is null || UpdateService is null) return;
 
         var frozen = !model.IsFrozen;
+
+        // No reason, which is how AIM records "the user decided this". It also clears a reason AIM
+        // had recorded: a user who freezes a mod by hand has taken the decision over, and AIM
+        // should stop offering the update it was going to offer about its own patch.
         UpdateService.SetFrozen(model.Mod, frozen);
         model.IsFrozen = frozen;
+        model.FreezeReason = "";
+        model.UpdateMayFixEdit = false;
 
         // A frozen mod's pending update badge is noise: the user has said they do not want it.
         if (!frozen) return;
@@ -2953,9 +3714,14 @@ public partial class ModlistPageViewModel : PageViewBase
         await RestoreBackup(choice.Mod, choice.Backup);
     }
 
-    private async Task RestoreBackup(ModModel model, ModBackup backup)
+    /// <summary>
+    /// Rolls one mod back to an archived copy. False when nothing happened - because the user said
+    /// no, or because it failed - which the crash window needs in order not to claim a restore that
+    /// the user declined.
+    /// </summary>
+    private async Task<bool> RestoreBackup(ModModel model, ModBackup backup)
     {
-        if (BackupStore is null) return;
+        if (BackupStore is null) return false;
 
         var source = model.Mod.GetSourcePath();
         var modName = ModBackupStore.ModNameFor(source);
@@ -2966,7 +3732,7 @@ public partial class ModlistPageViewModel : PageViewBase
             string.Format(Texts.GUIRestoreVersionConfirm, model.Mod.GetName(), newest.Describe()),
             ButtonEnum.YesNo).ShowAsync();
 
-        if (confirm != ButtonResult.Yes) return;
+        if (confirm != ButtonResult.Yes) return false;
 
         try
         {
@@ -2986,11 +3752,13 @@ public partial class ModlistPageViewModel : PageViewBase
             EditStore?.Forget(model.Mod.GetId());
 
             UpdateModlist(true);
+            return true;
         }
         catch (Exception e)
         {
             await MessageBoxManager.GetMessageBoxStandard(
                 Texts.GUIRestoreVersionTitle, e.Message, ButtonEnum.Ok).ShowAsync();
+            return false;
         }
     }
 
@@ -2998,7 +3766,11 @@ public partial class ModlistPageViewModel : PageViewBase
 
     [RelayCommand]
     private Task CheckSelectedModsForUpdates() =>
-        CheckManyForUpdates(Mods.Where(model => model.Enabled).ToList());
+        // Switched-off mods are not the user's current game and are not worth a Nexus call - with
+        // one exception. A mod that is off because it was caught crashing is the mod most likely to
+        // be fixed by its next release, and skipping it would leave the user waiting for news about
+        // the one mod they are actually waiting on.
+        CheckManyForUpdates(Mods.Where(model => model.Enabled || model.IsKnownCrasher).ToList());
 
     [RelayCommand]
     private Task CheckAllModsForUpdates() => CheckManyForUpdates(Mods.ToList());
@@ -3008,7 +3780,13 @@ public partial class ModlistPageViewModel : PageViewBase
         if (models.Count == 0 || UpdateService is null) return;
         if (Nexus is not null && !await Nexus.EnsureNexusAccountAsync()) return;
 
-        var checkable = models.Where(model => !model.IsFrozen).ToList();
+        // Frozen mods are skipped, with one exception: a mod AIM froze because it had patched it.
+        // That freeze exists to protect the fix, not to end the conversation, and the user is owed
+        // the news when a version arrives that might make the fix unnecessary.
+        var checkable = models
+            .Where(model => !model.IsFrozen || UpdateService.FreezeReason(model.Mod) is not null)
+            .ToList();
+
         foreach (var model in checkable) model.IsCheckingUpdate = true;
 
         try
@@ -3035,6 +3813,11 @@ public partial class ModlistPageViewModel : PageViewBase
 
             InstallStatus = "";
             RefreshPendingUpdates();
+
+            // Said first and on its own, because it is the news the user has been waiting for and
+            // it needs a decision they have to understand: taking one of these updates gives up a
+            // fix they watched AIM make. Folding it into "7 mods have updates" would bury that.
+            await ReportUpdatesThatMayFixEditsAsync(checkable, statuses);
 
             // Finding updates and then making the user right-click each mod in turn is a chore AIM
             // can simply do for them, so the result offers the next step rather than only reporting.
@@ -3179,6 +3962,18 @@ public partial class ModlistPageViewModel : PageViewBase
         // filtered down to exactly those mods.
         model.UpdateCheckFailed = status.State == NexusUpdateState.Unavailable;
 
+        // A newer version of a mod AIM patched. It gets its own line on the row rather than the
+        // ordinary update badge, because taking it means giving up the fix - a trade only the user
+        // can make, and one "Update everything" must never make on their behalf.
+        if (status.State == NexusUpdateState.UpdateMayFixEdit)
+        {
+            model.UpdateMayFixEdit = true;
+            model.LatestVersion = status.LatestVersion ?? model.LatestVersion;
+            return;
+        }
+
+        model.UpdateMayFixEdit = false;
+
         if (!status.HasUpdate) return;
 
         // The badge is shared with the manifest-based check that runs at startup, so a Nexus result
@@ -3192,12 +3987,49 @@ public partial class ModlistPageViewModel : PageViewBase
             : status.Record?.FilesPageUrl;
     }
 
+    /// <summary>
+    /// Tells the user about new versions of the mods AIM has patched.
+    ///
+    /// A patch AIM applied is a workaround, and the point of holding the mod back from updates was
+    /// never to keep it on that version forever - it was to stop an update quietly undoing the fix
+    /// before anybody noticed. So when a new version turns up, the user hears about it, along with
+    /// what they patched and what taking the update costs.
+    ///
+    /// Nothing is applied here. Updating means unfreezing, and unfreezing means deciding the fix is
+    /// no longer wanted, which is not a decision to make inside a progress dialog.
+    /// </summary>
+    private async Task ReportUpdatesThatMayFixEditsAsync(
+        List<ModModel> examined, Dictionary<string, NexusUpdateStatus> statuses)
+    {
+        var news = examined
+            .Select(model => (Model: model,
+                Status: statuses.GetValueOrDefault(model.Mod.GetId())))
+            .Where(pair => pair.Status?.State == NexusUpdateState.UpdateMayFixEdit)
+            .ToList();
+
+        if (news.Count == 0) return;
+
+        var lines = news.Select(pair => string.Format(Texts.GUIUpdateMayFix,
+            pair.Model.Mod.GetName(),
+            pair.Status!.LatestVersion ?? "?",
+            pair.Model.Mod.GetVersion(),
+            pair.Status.Message ?? ""));
+
+        await MessageBoxManager.GetMessageBoxStandard(
+            Texts.GUIUpdateMayFixHeader,
+            string.Join("\r\n\r\n", lines) + "\r\n\r\n" + Texts.GUIUpdateMayFixTooltip,
+            ButtonEnum.Ok).ShowAsync();
+    }
+
     private async Task ReportUpdateStatusAsync(ModModel model, NexusUpdateStatus status)
     {
         var message = status.State switch
         {
             NexusUpdateState.UpdateAvailable => string.Format(Texts.GUIUpdateAvailableForMod,
                 model.Mod.GetName(), status.LatestVersion ?? "?"),
+            NexusUpdateState.UpdateMayFixEdit => string.Format(Texts.GUIUpdateMayFix,
+                model.Mod.GetName(), status.LatestVersion ?? "?", model.Mod.GetVersion(),
+                status.Message ?? ""),
             NexusUpdateState.UpToDate => string.Format(Texts.GUIModIsUpToDate, model.Mod.GetName()),
             NexusUpdateState.Frozen => string.Format(Texts.GUIModIsFrozen, model.Mod.GetName()),
             NexusUpdateState.NotFromNexus => string.Format(Texts.GUIModNotFromNexus, model.Mod.GetName()),
@@ -3288,7 +4120,12 @@ public partial class ModlistPageViewModel : PageViewBase
         }
     }
 
-    private async Task BackgroundInstall()
+    /// <summary>
+    /// Runs the install and reports its own outcome: null when it worked, the reason when it did
+    /// not. The Exception banner is still set on failure, for the user; the return value is for
+    /// callers that need to know whether to carry on.
+    /// </summary>
+    private async Task<string?> BackgroundInstall()
     {
         var totalStopwatch = Stopwatch.StartNew();
         try
@@ -3357,6 +4194,8 @@ public partial class ModlistPageViewModel : PageViewBase
                 RefreshSelectionSummary();
                 RefreshSelectedModConflicts();
             });
+
+            return null;
         }
         catch (Exception e)
         {
@@ -3388,6 +4227,8 @@ public partial class ModlistPageViewModel : PageViewBase
                 RefreshGameReady();
                 Exception     = FormatErrorMessage(Resources.GUIInstallFatalError, e, errorLogPath);
             });
+
+            return GetRootCauseMessage(e);
         }
     }
 
@@ -3478,6 +4319,11 @@ public partial class ModlistPageViewModel : PageViewBase
     [RelayCommand(CanExecute = nameof(CanLaunchGame))]
     private void LaunchGame()
     {
+        // Arm the crash watcher on the way out. This is the moment a crash is most likely to be
+        // about to happen, and the game keeps only its most recent one - so a session that crashes
+        // twice has already lost the first report by the time anyone thinks to look.
+        EnsureCrashWatcher();
+
         var executable = GameExecutableLocator.Find(MistriaLocation);
 
         if (_settings.LaunchGameDirectly && executable is not null)

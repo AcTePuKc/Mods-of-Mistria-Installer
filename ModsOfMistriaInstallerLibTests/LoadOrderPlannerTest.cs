@@ -146,6 +146,42 @@ public class LoadOrderPlannerTest
         });
     }
 
+    // Reported even though there is no winner to pick. The mod rows show these, so a report that
+    // left them out left a lit warning triangle with nothing behind it.
+    [Test]
+    public void ShouldReportOverlapsItMergesRatherThanOverrides()
+    {
+        var first = new MockMod(new Dictionary<string, object>
+        {
+            ["animations/foo.meta.toml"] = "first",
+            ["manifest.toml"] = "first"
+        }) { Id = "a.first", Name = "First" };
+
+        var second = new MockMod(new Dictionary<string, object>
+        {
+            ["animations/foo.meta.toml"] = "second",
+            ["manifest.toml"] = "second"
+        }) { Id = "a.second", Name = "Second" };
+
+        var plan = LoadOrderPlanner.Plan([first, second]);
+        var note = plan.Notes.SingleOrDefault(note => note.Kind == LoadOrderNoteKind.FileConflict);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(note, Is.Not.Null);
+
+            // Worded as combining rather than overriding: telling the user to drag one below the
+            // other would be advice that does nothing.
+            Assert.That(note!.Message, Does.Contain("combines"));
+            Assert.That(note.Message, Does.Not.Contain("overrides"));
+            Assert.That(note.Details, Is.EqualTo(new[] { "animations/foo.meta.toml" }));
+
+            // Its own dismissal, so settling it does not also settle a genuine override between
+            // the same pair.
+            Assert.That(note.IssueKey, Does.EndWith("|merge"));
+        });
+    }
+
     [Test]
     public void ShouldIgnoreConflictsBetweenModsThatAreNotSelected()
     {
@@ -193,5 +229,103 @@ public class LoadOrderPlannerTest
         };
 
         Assert.DoesNotThrow(() => LoadOrderPlanner.Plan([folderCopy, archiveCopy], [folderCopy]));
+    }
+
+    // ── Layering by what a mod installs ──────────────────────────────────────────
+    //
+    // Opt-in, and only for "Suggest order". The layers come from how AIM's own installers resolve a
+    // collision — code first-wins, merged values and replacements last-wins — so the tests are
+    // written in terms of what each mod ships rather than what it is called.
+
+    private static MockMod Ships(string id, params string[] files) =>
+        new(files.ToList()) { Id = id, Name = id };
+
+    [Test]
+    public void ShouldLeaveTheOrderAloneWhenLayeringIsNotAskedFor()
+    {
+        var recolour = Ships("author.recolour", "images/replace/axe.png");
+        var code = Ships("author.tweaks", "gml/main.gml");
+
+        // The conflict report asks for a plan so it can name who currently wins a shared file.
+        // Rearranging the list underneath that question would label the wrong mod.
+        var plan = LoadOrderPlanner.Plan([recolour, code]);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(IdsOf(plan), Is.EqualTo(new[] { "author.recolour", "author.tweaks" }));
+            Assert.That(plan.ChangesAnything, Is.False);
+        });
+    }
+
+    [Test]
+    public void ShouldLoadCodeBeforeReplacementsWhenLayeringIsAskedFor()
+    {
+        var recolour = Ships("author.recolour", "images/replace/axe.png");
+        var code = Ships("author.tweaks", "gml/main.gml");
+
+        var plan = LoadOrderPlanner.Plan([recolour, code], groupByRole: true);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(IdsOf(plan), Is.EqualTo(new[] { "author.tweaks", "author.recolour" }));
+            Assert.That(plan.ChangesAnything, Is.True);
+            Assert.That(plan.Notes.Where(note => note.Kind == LoadOrderNoteKind.RoleMove),
+                Is.Not.Empty, "a mod that moved has to say why");
+        });
+    }
+
+    [Test]
+    public void ShouldKeepTheUsersOwnOrderInsideALayer()
+    {
+        var first = Ships("author.first", "images/replace/a.png");
+        var second = Ships("author.second", "images/replace/b.png");
+        var third = Ships("author.third", "images/replace/c.png");
+
+        var plan = LoadOrderPlanner.Plan([third, first, second], groupByRole: true);
+
+        // Which of two sprite replacers should win is a preference, not a fact. The planner has
+        // nothing to say about it and must not pretend otherwise.
+        Assert.Multiple(() =>
+        {
+            Assert.That(IdsOf(plan), Is.EqualTo(new[] { "author.third", "author.first", "author.second" }));
+            Assert.That(plan.ChangesAnything, Is.False);
+            Assert.That(plan.Notes, Is.Empty);
+        });
+    }
+
+    [Test]
+    public void ShouldLetADeclaredRequirementOverruleTheLayering()
+    {
+        // The framework replaces sprites, which on its own would put it in the last layer, and the
+        // mod that requires it only ships code, which would put it in an early one.
+        var framework = new MockMod(new List<string> { "images/replace/axe.png" })
+        {
+            Id = "author.framework", Name = "Framework"
+        };
+
+        var dependent = new MockMod(new List<string> { "gml/main.gml" })
+        {
+            Id = "author.hats",
+            Name = "Hats",
+            Requirements = [new ModRequirement("Framework", "Author")]
+        };
+
+        var plan = LoadOrderPlanner.Plan([dependent, framework], groupByRole: true);
+
+        Assert.That(IdsOf(plan), Is.EqualTo(new[] { "author.framework", "author.hats" }),
+            "a declared requirement is the only hard fact here and has to win");
+    }
+
+    [Test]
+    public void ShouldPutDataOverridesAfterTheContentTheyChange()
+    {
+        var prices = Ships("author.prices", "fiddle/items/tools.toml");
+        var furniture = Ships("author.furniture", "momi/furniture/items/chairs.toml");
+
+        var plan = LoadOrderPlanner.Plan([prices, furniture], groupByRole: true);
+
+        // A merged table settles a repeated key last-wins, so a mod whose job is to change a value
+        // has to be read after whatever set it.
+        Assert.That(IdsOf(plan), Is.EqualTo(new[] { "author.furniture", "author.prices" }));
     }
 }

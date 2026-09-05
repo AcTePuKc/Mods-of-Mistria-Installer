@@ -118,6 +118,121 @@ public static class ModFileEditor
     }
 
     /// <summary>
+    /// Replaces one line of one file inside a mod.
+    ///
+    /// This exists for the fix that is written down somewhere else. A mod's bug thread says "line
+    /// 14 of stores.toml needs an icon" or "change the version check to 1.0.4", and until now the
+    /// user's options were a text editor and a prayer, with nothing recording that the mod on disk
+    /// is no longer the mod the author shipped.
+    ///
+    /// AIM does not read the fix out of the thread and it does not invent one: the replacement text
+    /// is the user's, typed in having read the post. What AIM adds is everything around it - the
+    /// snapshot taken first, the record on the mod's row, and the entry in the version dropdown
+    /// that puts it all back. The same three preconditions as <see cref="SetAside"/> apply, and for
+    /// the same reasons; an edit inside a .zip would be discarded by the next install, and an edit
+    /// with no way back is not worth making.
+    /// </summary>
+    /// <param name="path">Mod-relative, as the diagnosis names it.</param>
+    /// <param name="line">1-based, as every error message and bug report counts them.</param>
+    /// <param name="replacement">
+    /// The new text for that line. An empty string is allowed and means "blank this line out",
+    /// which is a real fix for a stray declaration; the line is kept rather than removed so that
+    /// every line number below it still means what the bug report said it meant.
+    /// </param>
+    public static EditOutcome ReplaceLine(
+        IMod mod,
+        string path,
+        int line,
+        string replacement,
+        string reason,
+        ModBackupStore backups,
+        AppliedEditStore record)
+    {
+        var folder = mod.GetBasePath();
+
+        if (string.IsNullOrWhiteSpace(folder) || !Directory.Exists(folder))
+            return EditOutcome.Refused(
+                $"{mod.GetName()} is not installed as a folder, so AIM cannot edit it. " +
+                "Mods packed as .zip or .rar have to be extracted first - any change inside the " +
+                "archive would be thrown away by the next install.");
+
+        var target = Path.Combine(folder, path.Replace('/', Path.DirectorySeparatorChar));
+
+        if (!File.Exists(target))
+            return EditOutcome.Refused($"{path} is not in {mod.GetName()}'s folder.");
+
+        string[] lines;
+        string newline;
+
+        try
+        {
+            var text = File.ReadAllText(target);
+
+            // Preserved rather than normalised. Rewriting a mod's whole file with different line
+            // endings turns a one-line fix into a diff the author cannot read, and makes the next
+            // update's merge look like a conflict on every line.
+            newline = text.Contains("\r\n", StringComparison.Ordinal) ? "\r\n" : "\n";
+            lines = text.Replace("\r\n", "\n").Split('\n');
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not read {path} in {mod.GetName()}: {exception}");
+            return EditOutcome.Refused($"AIM could not read {path}: {exception.Message}");
+        }
+
+        if (line < 1 || line > lines.Length)
+            return EditOutcome.Refused(
+                $"{path} has {lines.Length} lines, so there is no line {line} to change. " +
+                "The file may have been updated since that fix was written.");
+
+        var was = lines[line - 1];
+
+        if (string.Equals(was, replacement, StringComparison.Ordinal))
+            return EditOutcome.Refused($"Line {line} of {path} already says exactly that.");
+
+        // The restore point comes first and is not optional. Everything below this line is
+        // reversible only because this succeeded.
+        var backup = backups.Snapshot(folder, $"{mod.GetVersion()} before AIM's fix".Trim());
+
+        if (backup is null)
+            return EditOutcome.Refused(
+                "AIM could not copy the mod into your version history, so it has not changed " +
+                "anything. An edit with no way back is not worth making.");
+
+        try
+        {
+            lines[line - 1] = replacement;
+            File.WriteAllText(target, string.Join(newline, lines));
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not edit {path} in {mod.GetName()}: {exception}");
+            return EditOutcome.Refused(
+                $"AIM could not change {path}: {exception.Message}. The mod is as it was, and the " +
+                "copy it took beforehand is in the row's version dropdown.");
+        }
+
+        record.Record(new AppliedEdit(
+            mod.GetId(),
+            reason,
+            [path],
+            backup.Path,
+            DateTimeOffset.UtcNow));
+
+        return new EditOutcome(true,
+            $"Line {line} of {path} in {mod.GetName()} was changed from \"{Short(was)}\" to " +
+            $"\"{Short(replacement)}\". The mod's row is marked as edited, and the version before " +
+            "this is in its dropdown.",
+            backup);
+    }
+
+    private static string Short(string text)
+    {
+        var trimmed = text.Trim();
+        return trimmed.Length <= 60 ? trimmed : trimmed[..57] + "…";
+    }
+
+    /// <summary>
     /// Puts back every file AIM set aside in a mod, without touching anything else.
     ///
     /// Restoring the whole snapshot from the version dropdown also works and is the bigger hammer;

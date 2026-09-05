@@ -93,6 +93,24 @@ public partial class ModModel : ObservableObject
     /// <summary>The user asked for this mod to be left on the version it is on.</summary>
     [ObservableProperty] private bool _isFrozen;
 
+    /// <summary>
+    /// Why AIM froze this mod, when AIM was the one that froze it. Empty for a freeze the user set.
+    ///
+    /// Kept apart from <see cref="IsFrozen"/> because the two mean opposite things about updates.
+    /// The user's freeze says "stop offering"; AIM's says "this is patched, so an update is a
+    /// decision rather than a habit".
+    /// </summary>
+    [ObservableProperty] private string _freezeReason = "";
+
+    /// <summary>
+    /// A newer version exists for a mod AIM patched, so the update may make the patch unnecessary.
+    ///
+    /// Not the ordinary update badge: updating replaces the mod folder and takes AIM's edit with
+    /// it, so this is offered as a choice with that consequence spelled out rather than swept into
+    /// "update everything".
+    /// </summary>
+    [ObservableProperty] private bool _updateMayFixEdit;
+
     [ObservableProperty] private bool _isCheckingUpdate;
 
     /// <summary>
@@ -150,6 +168,59 @@ public partial class ModModel : ObservableObject
 
     partial void OnAimEditSummaryChanged(string value) => OnPropertyChanged(nameof(EditedTooltip));
 
+    // ── Caught crashing the game ─────────────────────────────────────────────────
+
+    /// <summary>
+    /// A supervised run proved this exact version of this mod crashes the game: it was switched
+    /// off, the game was rebuilt and played, and the crash did not come back.
+    ///
+    /// It belongs on the row for the same reason the edited marker does. The verdict is earned in
+    /// the crash window, over four minutes of watching a game, and then the user closes that window
+    /// and is back at a list of two hundred checkboxes with nothing to say which one they just
+    /// caught. Weeks later the obvious thing to do with a mod that is switched off for no visible
+    /// reason is to switch it back on.
+    ///
+    /// It is tied to the version that was tested, so an update clears the mark - see
+    /// <see cref="CrashTrialStore.GuiltyVerdict"/>.
+    /// </summary>
+    [ObservableProperty] private bool _isKnownCrasher;
+
+    /// <summary>When it was caught and what the run said, for the marker's tooltip.</summary>
+    [ObservableProperty] private string _knownCrasherSummary = "";
+
+    /// <summary>
+    /// The user marked this themselves rather than a run catching it.
+    ///
+    /// Worth distinguishing on the row and not only in the crash window. The badge is a claim about
+    /// the mod, and "AIM watched this crash the game" and "I decided this crashes the game" are
+    /// claims of very different strength - the user is entitled to know which one they are looking
+    /// at before they act on it, particularly months later when they no longer remember marking it.
+    /// </summary>
+    [ObservableProperty] private bool _knownCrasherIsManual;
+
+    public string KnownCrasherBadge =>
+        KnownCrasherIsManual ? Texts.GUIModCrasherBadgeManual : Texts.GUIModCrasherBadge;
+
+    public string KnownCrasherTooltip
+    {
+        get
+        {
+            var opening = KnownCrasherIsManual ? Texts.GUIModCrasherTooltipManual : Texts.GUIModCrasherTooltip;
+
+            return string.IsNullOrWhiteSpace(KnownCrasherSummary)
+                ? opening
+                : $"{opening}\n\n{KnownCrasherSummary}\n\n{Texts.GUIModCrasherHint}";
+        }
+    }
+
+    partial void OnKnownCrasherSummaryChanged(string value) => OnPropertyChanged(nameof(KnownCrasherTooltip));
+
+    partial void OnKnownCrasherIsManualChanged(bool value)
+    {
+        OnPropertyChanged(nameof(KnownCrasherBadge));
+        OnPropertyChanged(nameof(KnownCrasherTooltip));
+    }
+
     // ── Editing the mod's own files ──────────────────────────────────────────────
 
     /// <summary>
@@ -187,6 +258,12 @@ public partial class ModModel : ObservableObject
     public bool IsFromNexus => !string.IsNullOrEmpty(NexusPageUrl);
 
     public bool CanOpenNexusPage => IsFromNexus && !ContextActionsLocked;
+
+    /// <summary>
+    /// Tracking needs a page to track. A mod AIM has no Nexus provenance for has nothing to send,
+    /// which is what "Associate with Nexus…" is for.
+    /// </summary>
+    public bool CanTrackOnNexus => IsFromNexus && !ContextActionsLocked;
     public bool CanAssociateWithNexus => !IsFromNexus && !ContextActionsLocked;
     public bool CanCheckForUpdate => !ContextActionsLocked;
 
@@ -197,6 +274,16 @@ public partial class ModModel : ObservableObject
 
     public bool CanUpdateFromNexus => UpdateAvailable && UpdateFileId is not null && !ContextActionsLocked;
     public bool CanToggleFreeze => !ContextActionsLocked;
+
+    /// <summary>
+    /// Whether this row may be sent to either end of the load order.
+    ///
+    /// Deliberately not tied to the drag rule. Dragging is paused while a filter or an A-Z sort is
+    /// on, because dropping a row between two others in a re-sorted list has no obvious meaning for
+    /// the order underneath - but "put this at the top" means the same thing whatever the list is
+    /// currently showing, so it stays available.
+    /// </summary>
+    public bool CanReorderThisMod => !ContextActionsLocked;
     public bool CanRestorePreviousVersion => HasBackup && !ContextActionsLocked;
     public bool CanOpenModFolder => !ContextActionsLocked;
 
@@ -207,10 +294,12 @@ public partial class ModModel : ObservableObject
     partial void OnContextActionsLockedChanged(bool value)
     {
         OnPropertyChanged(nameof(CanOpenNexusPage));
+        OnPropertyChanged(nameof(CanTrackOnNexus));
         OnPropertyChanged(nameof(CanAssociateWithNexus));
         OnPropertyChanged(nameof(CanCheckForUpdate));
         OnPropertyChanged(nameof(CanUpdateFromNexus));
         OnPropertyChanged(nameof(CanToggleFreeze));
+        OnPropertyChanged(nameof(CanReorderThisMod));
         OnPropertyChanged(nameof(CanRestorePreviousVersion));
         OnPropertyChanged(nameof(CanOpenModFolder));
         OnPropertyChanged(nameof(CanEditManifest));
@@ -224,6 +313,7 @@ public partial class ModModel : ObservableObject
     partial void OnNexusPageUrlChanged(string? value)
     {
         OnPropertyChanged(nameof(CanOpenNexusPage));
+        OnPropertyChanged(nameof(CanTrackOnNexus));
         OnPropertyChanged(nameof(CanAssociateWithNexus));
     }
 
@@ -264,14 +354,50 @@ public partial class ModModel : ObservableObject
         }
     }
 
-    public bool HasDuplicateWarning => Enabled && _duplicateCopies.Count > 1;
+    /// <summary>
+    /// Row warnings the user has ticked off in the issues report, by the text of the warning.
+    ///
+    /// The two warnings that live only on the row - the mod's own validation warnings, and having
+    /// two copies of it installed - had no way to be settled, because they were never reported. Now
+    /// that they are, a tick there has to reach here: a report that says nothing is outstanding
+    /// while the row still shows a triangle is the contradiction this whole pass exists to remove,
+    /// and it is no better in that direction than the other.
+    ///
+    /// Matched on message text rather than on an id because that is what the row has. The note in
+    /// the report is built from the same string, so the two cannot drift apart without the drift
+    /// being visible in one place.
+    /// </summary>
+    private HashSet<string> _settledInlineWarnings = new(StringComparer.Ordinal);
+
+    /// <summary>The stand-in text for "two copies of this mod", which has no message of its own.</summary>
+    public const string DuplicateWarningKey = "aim:duplicate-copies";
+
+    public void SetSettledInlineWarnings(IReadOnlyCollection<string> settled)
+    {
+        _settledInlineWarnings = new HashSet<string>(settled, StringComparer.Ordinal);
+        OnPropertyChanged(nameof(HasDuplicateWarning));
+        OnPropertyChanged(nameof(HasInlineWarning));
+        OnPropertyChanged(nameof(InWarning));
+        OnPropertyChanged(nameof(Warnings));
+        OnPropertyChanged(nameof(WarningTooltip));
+    }
+
+    /// <summary>The mod's own validation warnings, minus any the user has settled.</summary>
+    public IReadOnlyList<string> OutstandingValidationWarnings =>
+        Mod.GetValidation().Warnings
+            .Select(warning => warning.Message)
+            .Where(message => !string.IsNullOrWhiteSpace(message) && !_settledInlineWarnings.Contains(message))
+            .ToList();
+
+    public bool HasDuplicateWarning =>
+        Enabled && _duplicateCopies.Count > 1 && !_settledInlineWarnings.Contains(DuplicateWarningKey);
     // Compatibility warnings describe the mod itself and must remain visible
     // before selection. Ordinary conflict warnings describe the current
     // selection and are shown only for enabled mods.
     public bool HasConflictWarning =>
         (Enabled && _conflictWarnings.Count > 0) || _compatibilityWarnings.Count > 0;
     public bool HasInlineWarning =>
-        Mod.GetValidation().Warnings.Any(w => !string.IsNullOrWhiteSpace(w.Message))
+        OutstandingValidationWarnings.Count > 0
         || HasDuplicateWarning
         || _compatibilityWarnings.Count > 0;
     public bool InWarning => HasInlineWarning || HasConflictWarning;
@@ -282,7 +408,7 @@ public partial class ModModel : ObservableObject
     {
         get
         {
-            var warnings = Mod.GetValidation().Warnings.Select(w => w.Message).ToList();
+            var warnings = OutstandingValidationWarnings.ToList();
             if (HasDuplicateWarning)
             {
                 var copies = string.Join("\r\n", _duplicateCopies

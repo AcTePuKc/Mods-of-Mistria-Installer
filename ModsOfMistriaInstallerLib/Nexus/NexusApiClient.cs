@@ -310,7 +310,70 @@ public class NexusApiClient
         return urls;
     }
 
+    // ── Tracking ─────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Adds a mod to the user's tracking centre on Nexus, which is how they get told about updates
+    /// by the site itself rather than only by AIM.
+    /// </summary>
+    /// <remarks>
+    /// Nexus answers 201 the first time and 200 when the mod was already tracked, and both are the
+    /// outcome the user asked for, so neither is reported as a failure. Everything else raises, so
+    /// the caller can say what went wrong rather than claim a success it did not get.
+    /// </remarks>
+    /// <returns>True when Nexus had not been tracking it until now.</returns>
+    public async Task<bool> TrackModAsync(string game, int modId, CancellationToken ct = default)
+    {
+        using var content = new FormUrlEncodedContent(
+            [new KeyValuePair<string, string>("mod_id", modId.ToString())]);
+
+        var status = await SendAsync(
+            HttpMethod.Post,
+            $"{BaseUrl}/user/tracked_mods.json?domain_name={Uri.EscapeDataString(game)}",
+            content, ct);
+
+        return status == HttpStatusCode.Created;
+    }
+
     // ── Plumbing ─────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// A request that changes something rather than reading it, where the status code is the answer
+    /// and the body is only useful when it failed.
+    /// </summary>
+    private async Task<HttpStatusCode> SendAsync(
+        HttpMethod method, string url, HttpContent? content, CancellationToken ct)
+    {
+        using var request = new HttpRequestMessage(method, url) { Content = content };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
+        request.Headers.Add("Application-Name", "AIM - Mods of Mistria Installer");
+        request.Headers.Add("Application-Version", Version);
+        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        HttpResponseMessage response;
+        try
+        {
+            response = await _http.SendAsync(request, ct);
+        }
+        catch (TaskCanceledException) when (!ct.IsCancellationRequested)
+        {
+            throw new NexusApiException("The Nexus API did not respond in time.");
+        }
+        catch (HttpRequestException e)
+        {
+            throw new NexusApiException($"Could not reach the Nexus API: {e.Message}", null, e);
+        }
+
+        using (response)
+        {
+            RecordRateLimit(response);
+
+            if (response.IsSuccessStatusCode) return response.StatusCode;
+
+            var body = await response.Content.ReadAsStringAsync(ct);
+            throw new NexusApiException(DescribeFailure(response.StatusCode, body), response.StatusCode);
+        }
+    }
 
     private async Task<JObject> GetJsonAsync(string url, CancellationToken ct)
     {
