@@ -62,3 +62,4 @@ if ($failures.Count -gt 0) {
 }
 
 Write-Host "CLI smoke tests passed."
+exit 0
