@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -106,7 +106,6 @@ Buka halaman unduhan di browser?</value></data>
   <data name="CoreManifestHasNoAuthor" xml:space="preserve"><value>Manifest harus berisi pembuat.</value></data>
   <data name="CoreManifestHasNoName" xml:space="preserve"><value>Manifest harus berisi nama.</value></data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve"><value>Manifest harus berisi versi.</value></data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Mod ini memerlukan versi installer yang lebih baru.</value></data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve"><value>Lokasi Fields of Mistria tidak ada.</value></data>
   <data name="CoreModDirectoryDoesNotExist" xml:space="preserve"><value>Lokasi mod tidak ada.</value></data>
   <data name="CoreGeneratingInformationForMod" xml:space="preserve"><value>Membuat informasi untuk {0}</value></data>

@@ -1,18 +1,95 @@
+using System.Security.Cryptography;
+using System.Text;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 namespace Garethp.ModsOfMistriaInstallerLib;
+
+/// <summary>
+/// One mod's part in an issue.
+///
+/// The report used to say all of this in prose, which meant a three-way shortcut clash rendered as
+/// three wrapped lines of absolute paths and became unreadable. Keeping the pieces apart lets the
+/// window show the name and hide the path behind a tooltip, and lets a button act on one specific
+/// mod - reorder it, or rebind its shortcut - rather than on the issue as an undifferentiated blob.
+/// </summary>
+public sealed class IssueParticipant(string modId, string name, string version, string sourcePath)
+{
+    public string ModId { get; } = modId;
+    public string Name { get; } = name;
+    public string Version { get; } = version;
+    public string SourcePath { get; } = sourcePath;
+
+    /// <summary>What this mod contributes to the issue, e.g. the file it defines a shortcut in.</summary>
+    public string Detail { get; init; } = "";
+
+    public string Display => Version.Length > 0 ? $"{Name} v{Version}" : Name;
+}
 
 /// <summary>One thing the planner did, or one thing it wants the user to decide.</summary>
 public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message)
 {
     /// <summary>Exact destination paths involved in this note, when available.</summary>
     public IReadOnlyList<string> Details { get; init; } = [];
+
+    /// <summary>
+    /// The mods this issue is about, in the order they currently load - so for a file conflict the
+    /// last one is the one that wins today. Empty for notes that are not about a set of mods.
+    /// </summary>
+    public IReadOnlyList<IssueParticipant> Participants { get; init; } = [];
+
+    /// <summary>The shortcut in dispute, for <see cref="LoadOrderNoteKind.HotkeyConflict"/>.</summary>
+    public string? HotkeyKey { get; init; }
+
+    /// <summary>
+    /// A language-independent identity for the underlying issue, built from the mod IDs and
+    /// versions that produced it. Whoever creates the note supplies this; see
+    /// <see cref="StableKey"/> for what happens when they do not.
+    /// </summary>
+    public string? IssueKey { get; init; }
+
+    /// <summary>
+    /// The identity <see cref="DismissedIssueStore"/> files a dismissal under.
+    ///
+    /// Deliberately version-sensitive: an update to either mod produces a different key, so an
+    /// issue the user waved through comes back for a fresh look rather than staying silenced by a
+    /// judgement made about different code.
+    ///
+    /// The fallback hashes the message, which works but is tied to the display language - so
+    /// generators set <see cref="IssueKey"/> wherever the underlying identity is available.
+    /// </summary>
+    public string StableKey =>
+        IssueKey is { Length: > 0 } key
+            ? $"{Kind}|{key}"
+            : $"{Kind}|text:{Fingerprint(Message + "\u001f" + string.Join("\u001f", Details))}";
+
+    private static string Fingerprint(string value) =>
+        Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)))[..16].ToLowerInvariant();
+
+    /// <summary>
+    /// Builds the mods half of an issue key: IDs paired with versions, ordered so that the same set
+    /// of mods always yields the same string.
+    /// </summary>
+    public static string DescribeMods(IEnumerable<IMod> mods) =>
+        string.Join(",", mods
+            .Select(mod => $"{mod.GetId()}@{mod.GetVersion()}")
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase));
 }
 
 public enum LoadOrderNoteKind
 {
     /// <summary>A mod was moved so that it loads before something that requires it.</summary>
     DependencyMove,
+
+    /// <summary>
+    /// A mod was moved into the layer its contents call for - code early, replacements late.
+    ///
+    /// Kept apart from <see cref="DependencyMove"/> because the two carry different weight. A
+    /// dependency move is a fact: the order was wrong and now it is right. A role move is a
+    /// judgement about what usually works, and the user is entitled to disagree with it and drag
+    /// the mod back.
+    /// </summary>
+    RoleMove,
 
     /// <summary>Two or more mods write the same file. The later one wins; the user may disagree.</summary>
     FileConflict,
@@ -41,11 +118,26 @@ public sealed record LoadOrderPlan(List<IMod> Order, List<LoadOrderNote> Notes)
 /// <summary>
 /// Suggests a load order.
 ///
-/// Two rules, and only two, because they are the two that have a correct answer:
-/// a mod loads after everything it declares a requirement on, and everything else keeps the order
-/// the user already chose. The planner does not reorder mods that merely touch the same files -
-/// when two cosmetic mods both replace a sprite, which one should win is a preference, not a fact.
-/// Those pairs come back as notes instead, so the user can drag the winner below the loser.
+/// Three rules now, in decreasing strength.
+///
+/// The first is a fact: a mod loads after everything it declares a requirement on. It is applied
+/// last so that it wins any argument with the other two.
+///
+/// The second is a claim about how AIM's own installers behave, which is checkable rather than a
+/// matter of taste. Different kinds of contribution are resolved differently - code collisions are
+/// settled first-wins and cost the loser its entire install, merged tables settle a repeated key
+/// last-wins, and a sprite under <c>images/replace/</c> is an outright overwrite - so "code early,
+/// new content in the middle, overrides and replacements late" is not a convention borrowed from
+/// another game's community. It is what the installers in this repository do. See
+/// <see cref="ModRoleClassifier"/>, which reads each mod's folders to decide which case it is in.
+/// Layering is opt-in (<c>groupByRole</c>): the conflict report asks for a plan in order to name
+/// who currently wins a shared file, and rearranging the list underneath that question would label
+/// the wrong mod.
+///
+/// The third rule is what the planner still refuses to do: it does not order mods *within* a layer.
+/// When two cosmetic mods both replace the same sprite, which one should win is a preference and
+/// not a fact, so both stay in the order the user chose and the pair comes back as a note with a
+/// button to promote the winner.
 /// </summary>
 public static class LoadOrderPlanner
 {
@@ -54,17 +146,124 @@ public static class LoadOrderPlanner
     /// The mods to check for file conflicts - normally the enabled ones, since a disabled mod
     /// cannot collide with anything. Defaults to <paramref name="mods"/>.
     /// </param>
-    public static LoadOrderPlan Plan(IReadOnlyList<IMod> mods, IReadOnlyList<IMod>? conflictScope = null)
+    /// <param name="rankConflictsBySuggestedOrder">
+    /// Which order decides who currently wins a shared file.
+    ///
+    /// True suits "Suggest order", where the user is about to accept the reordering and wants to
+    /// know what it implies. False suits the conflict report, which does not apply the suggestion:
+    /// naming a winner from an order the user has not agreed to would label the wrong mod, and the
+    /// report's "make this one win" button would then have nothing to do.
+    /// </param>
+    /// <param name="groupByRole">
+    /// Whether to sort the mods into layers by what they install before satisfying requirements.
+    ///
+    /// On for "Suggest order", which is a request for the best order AIM can propose. Off for the
+    /// conflict report, which only wants a plan so it can say who currently wins a shared file -
+    /// and would name the wrong mod if the list moved underneath the question.
+    /// </param>
+    public static LoadOrderPlan Plan(
+        IReadOnlyList<IMod> mods,
+        IReadOnlyList<IMod>? conflictScope = null,
+        bool rankConflictsBySuggestedOrder = true,
+        bool groupByRole = false)
     {
         var notes = new List<LoadOrderNote>();
-        var order = SortByRequirements(mods, notes);
 
-        notes.AddRange(DescribeFileConflicts(conflictScope ?? mods, order));
+        // Layers first, requirements second. Doing it this way round means a declared requirement -
+        // the only hard fact in here - can always overrule the layering, rather than the layering
+        // being free to undo a dependency fix afterwards.
+        var layered = groupByRole ? SortByRole(mods, notes) : mods;
+        var order = SortByRequirements(layered, notes);
+
+        notes.AddRange(DescribeFileConflicts(
+            conflictScope ?? mods,
+            rankConflictsBySuggestedOrder ? order : mods.ToList()));
 
         // IDs identify a mod package, not necessarily one row in the UI. A folder and a ZIP
         // copy may legitimately expose the same ID, so compare the actual instances here.
         var changed = !order.SequenceEqual(mods);
         return new LoadOrderPlan(order, notes) { ChangesAnything = changed };
+    }
+
+    // ── Layering by what a mod installs ──────────────────────────────────────────
+
+    /// <summary>
+    /// Sorts the list into the layers described on <see cref="ModRole"/>, keeping the user's own
+    /// order inside each one.
+    ///
+    /// Stable, and that is the point. A topological or alphabetical rearrangement would also be a
+    /// valid order, but the user has usually spent real effort on the sequence of their forty
+    /// cosmetic mods, and an order they cannot recognise is one they will not trust. Every mod that
+    /// does move gets a note saying which layer it went to and why, so the suggestion can be argued
+    /// with rather than merely accepted.
+    ///
+    /// A mod that is already in the right layer does not move at all, so a list that was already
+    /// sensible comes back unchanged and the window says so.
+    /// </summary>
+    private static IReadOnlyList<IMod> SortByRole(IReadOnlyList<IMod> mods, List<LoadOrderNote> notes)
+    {
+        if (mods.Count < 2) return mods;
+
+        Dictionary<string, ModRole> roles;
+
+        try
+        {
+            roles = ModRoleClassifier.Classify(mods);
+        }
+        catch (Exception exception)
+        {
+            // Classification reads the disk. Failing it costs the layering, not the plan: the
+            // requirement pass alone is exactly what the planner used to do.
+            Logger.Log($"Load order layering skipped: {exception.Message}");
+            return mods;
+        }
+
+        ModRole RoleFor(IMod mod) =>
+            roles.TryGetValue(mod.GetId(), out var role) ? role : ModRole.Content;
+
+        var order = mods
+            .Select((mod, index) => (Mod: mod, Index: index))
+            .OrderBy(entry => (int)RoleFor(entry.Mod))
+
+            // The tiebreak is the position the user already had them in, which is what makes this a
+            // layering of their list rather than a replacement of it.
+            .ThenBy(entry => entry.Index)
+            .Select(entry => entry.Mod)
+            .ToList();
+
+        AddRoleMoveNotes(mods, order, RoleFor, notes);
+        return order;
+    }
+
+    /// <summary>
+    /// Explains each mod the layering actually moved.
+    ///
+    /// Only the ones that moved, and only one note each. "Everything is now grouped by type" tells
+    /// the user nothing they can check; "this mod went up because it ships code, and a code
+    /// collision drops the mod that loads second" tells them something they can disagree with.
+    /// </summary>
+    private static void AddRoleMoveNotes(
+        IReadOnlyList<IMod> before, IReadOnlyList<IMod> after, Func<IMod, ModRole> roleFor,
+        List<LoadOrderNote> notes)
+    {
+        var was = new Dictionary<IMod, int>();
+        for (var index = 0; index < before.Count; index++) was[before[index]] = index;
+
+        for (var index = 0; index < after.Count; index++)
+        {
+            var mod = after[index];
+            if (!was.TryGetValue(mod, out var previous) || previous == index) continue;
+
+            var role = roleFor(mod);
+            var direction = index < previous ? "earlier" : "later";
+
+            notes.Add(new LoadOrderNote(LoadOrderNoteKind.RoleMove,
+                $"\"{mod.GetName()}\" now loads {direction}, with the rest of its kind, because " +
+                $"{ModRoleClassifier.Explain(role)}.")
+            {
+                IssueKey = $"{mod.GetId()}@{mod.GetVersion()}|{role}"
+            });
+        }
     }
 
     // ── Dependency ordering ──────────────────────────────────────────────────────
@@ -98,7 +297,10 @@ public static class LoadOrderPlanner
                 if (!byId.ContainsKey(requiredId))
                 {
                     notes.Add(new LoadOrderNote(LoadOrderNoteKind.MissingRequirement,
-                        $"\"{mod.GetName()}\" requires \"{requirement.Name}\" by {requirement.Author}, which is not installed."));
+                        $"\"{mod.GetName()}\" requires \"{requirement.Name}\" by {requirement.Author}, which is not installed.")
+                    {
+                        IssueKey = $"{mod.GetId()}@{mod.GetVersion()}->{requiredId}"
+                    });
                     continue;
                 }
 
@@ -117,7 +319,10 @@ public static class LoadOrderPlanner
                 string.Join(", ", cyclic
                     .Select(id => byId[id].GetName())
                     .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
-                    .Select(name => $"\"{name}\""))));
+                    .Select(name => $"\"{name}\"")))
+            {
+                IssueKey = LoadOrderNote.DescribeMods(cyclic.Select(id => byId[id]))
+            });
         }
 
         var order = mods.ToList();
@@ -245,16 +450,26 @@ public static class LoadOrderPlanner
     /// </summary>
     private static List<LoadOrderNote> DescribeFileConflicts(IReadOnlyList<IMod> scope, List<IMod> order)
     {
-        // A folder and an archive copy can have the same manifest ID. Keep one stable position
-        // and name for conflict reporting; the detector already returns distinct owners/files.
-        var position = order
-            .Select((mod, index) => (mod.GetId(), index))
-            .GroupBy(pair => pair.Item1, StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.Last().index, StringComparer.OrdinalIgnoreCase);
+        // A folder and an archive copy can have the same manifest ID. Pick one copy per ID - the
+        // last, because that is the one that would win - and take the position, name, version and
+        // path from that same copy. Mixing them would let the report rank one copy and then point
+        // its "make this one win" button at the other.
+        var chosen = order
+            .Select((mod, index) => (Mod: mod, Index: index))
+            .GroupBy(pair => pair.Mod.GetId(), StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.Last(), StringComparer.OrdinalIgnoreCase);
 
-        var names = order
-            .GroupBy(mod => mod.GetId(), StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.First().GetName(), StringComparer.OrdinalIgnoreCase);
+        var position = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Index, StringComparer.OrdinalIgnoreCase);
+        var names = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Mod.GetName(), StringComparer.OrdinalIgnoreCase);
+
+        // Versions go into the issue key so that dismissing "these two both touch the same sprite"
+        // does not also silence the next version of either mod.
+        var versions = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Mod.GetVersion(), StringComparer.OrdinalIgnoreCase);
+        var sources = chosen.ToDictionary(
+            entry => entry.Key, entry => entry.Value.Mod.GetSourcePath(), StringComparer.OrdinalIgnoreCase);
 
         IReadOnlyList<ModFileConflict> conflicts;
         try
@@ -267,8 +482,32 @@ public static class LoadOrderPlanner
             return [];
         }
 
-        return conflicts
-            .Where(conflict => conflict.Kind is ModFileConflictKind.HardReplacement or ModFileConflictKind.SharedDestination)
+        // Every kind of overlap, not only the ones load order settles.
+        //
+        // The two combining kinds - mergeable metadata, shared localisation - used to be left out
+        // because there is no winner to choose and therefore no advice to give. But the mod rows
+        // show them, so leaving them out of the report meant a lit warning triangle on a mod and a
+        // report that said there was nothing to look at. That contradiction costs more than a note
+        // saying "these two share a file and AIM combines them" ever could: it teaches the user
+        // that the triangle means nothing, and the next triangle is the one that mattered.
+        //
+        // They are grouped and worded separately from the overriding kinds because the answer is
+        // different - nothing to do, rather than drag one below the other - and dismissed
+        // separately, so ticking off "I know these two both add shop items" does not also silence
+        // "one of these is replacing the other's sprite".
+        var overrides = Describe(
+            conflicts.Where(conflict =>
+                conflict.Kind is ModFileConflictKind.HardReplacement or ModFileConflictKind.SharedDestination),
+            combining: false);
+
+        var merges = Describe(
+            conflicts.Where(conflict =>
+                conflict.Kind is ModFileConflictKind.MergeableMetadata or ModFileConflictKind.SharedLocalization),
+            combining: true);
+
+        return overrides.Concat(merges).ToList();
+
+        List<LoadOrderNote> Describe(IEnumerable<ModFileConflict> subset, bool combining) => subset
             .Select(conflict => new
             {
                 Conflict = conflict,
@@ -284,15 +523,33 @@ public static class LoadOrderPlanner
                 var winner = names[ids[^1]];
                 var others = string.Join(", ", ids[..^1].Select(id => $"\"{names[id]}\""));
                 var files = group.Count();
+                var plural = files == 1 ? "" : "s";
 
                 return new LoadOrderNote(LoadOrderNoteKind.FileConflict,
-                    $"\"{winner}\" overrides {others} ({files} shared file{(files == 1 ? "" : "s")}). " +
-                    "Drag whichever should win to the bottom of that pair.")
+                    combining
+                        ? $"{string.Join(", ", ids.Select(id => $"\"{names[id]}\""))} write to the same " +
+                          $"{files} file{plural}. AIM combines these rather than picking a winner, so " +
+                          "they work together - but if both define the same entry, the mod lower in " +
+                          "the load order wins that entry."
+                        : $"\"{winner}\" overrides {others} ({files} shared file{plural}). " +
+                          "Drag whichever should win to the bottom of that pair.")
                 {
                     Details = group
                         .Select(item => item.Conflict.Path)
                         .Distinct(StringComparer.OrdinalIgnoreCase)
                         .Order(StringComparer.OrdinalIgnoreCase)
+                        .ToList(),
+                    // The overriding note keeps the key it has always had, so dismissals made
+                    // before combining overlaps were reported still hold. The combining note is a
+                    // different judgement about the same pair and carries its own suffix.
+                    IssueKey = string.Join(",", ids
+                                   .Select(id => $"{id}@{versions[id]}")
+                                   .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase))
+                               + (combining ? "|merge" : ""),
+                    // In load order, so the last entry is the one that wins as things stand. The
+                    // report relies on that to label the current winner without recomputing.
+                    Participants = ids
+                        .Select(id => new IssueParticipant(id, names[id], versions[id], sources[id]))
                         .ToList()
                 };
             })

@@ -36,6 +36,21 @@ client; AIM does not accept or fall back to personal Nexus API keys.
 | Update a mod from Nexus, keeping the previous version as a backup you can restore after OAuth sign-in | Right-click a mod |
 | Freeze a mod so update checks leave it on the version it is on | Right-click a mod |
 | Open a mod's Nexus page or its folder | Right-click a mod |
+| Edit a mod's manifest or config file in your usual text editor | Right-click a mod |
+| Remove a mod from the mods folder, via the Recycle Bin | Right-click a mod → **Remove mod…** |
+| Mark a reported conflict as one you have checked and are happy with | **Check issues** → tick the box beside it |
+| Remove every ticked mod at once | Gear menu → **Remove selected…** |
+| Sort the list A–Z, or show only mods needing attention, without changing load order | Checkboxes above the mod list |
+| Jump to the top or bottom of a long mod list | **↑** / **↓** buttons above the mod list |
+| See and edit every keybind and controller button your mods use, with clashes in red | **Keybinds** button above the mod list |
+| Keep the keybinds you chose when a mod resets its own settings | Automatic — AIM asks before restoring |
+| Check for updates, and install everything that has one | **Check updates** button above the mod list |
+| Install one mod's update in place, keeping the old version | Green **Update** badge on the mod's row |
+| Roll a mod back to any earlier copy AIM kept, not just the newest | **Versions** dropdown on the mod's row |
+| Read what changed in a mod, this version or any earlier one | Document icon after the mod's version |
+| Decide which mod wins a shared file, from inside the conflict report | **Check issues** → expand a finding → **Make this one win** |
+| Look up whether a conflict is known, patched, or harmless | **Check issues** → expand a finding → **Find a fix…** |
+| Move a mod off a clashing keyboard shortcut | **Check issues** → expand a shortcut clash → **Rebind…** |
 | Select or clear every mod at once, with a summary of what the selection means | Checkbox above the mod list |
 | **Suggest order** — order mods so each loads after what it requires, and report what it cannot decide | Button above the mod list |
 | Mods copied into the mods folder appear without reopening AIM | Automatic |
@@ -50,8 +65,9 @@ and [Mod list tools](#mod-list-tools) below.
   it; it appears in the list and waits for **Install** like any other mod.
 - ZIP and RAR mods are still read in place. A downloaded archive is unpacked because AIM knows it is
   a fresh download, but an archive you drop in yourself is left exactly as it is.
-- No existing file format, profile or command-line flag changes. The new state lives in two new
-  files: `aim_nexus.json` in the mods folder, and `nexus.json` in `%LOCALAPPDATA%\AIM`.
+- No existing file format, profile or command-line flag changes. The new state lives in three new
+  files: `aim_nexus.json` and `aim_dismissed_issues.json` in the mods folder, and `nexus.json` in
+  `%LOCALAPPDATA%\AIM`.
 
 ## What this fork supports
 
@@ -211,11 +227,98 @@ so the installer's own scan of the mods folder ignores it.
 - **Check issues.** Opens an on-demand, copyable report with exact shared destination files,
   missing requirements, dependency loops, hook and keyboard-shortcut clashes, and compatibility
   warnings. It does not change the order or install anything.
+- **Deciding who wins a shared file.** Expand a shared-file finding and each mod involved gets a
+  **Make this one win** button. Clicking it moves that mod below the others in the load order, so
+  its copies of those files are the ones installed. The list behind changes straight away.
+- **Finding out whether a conflict matters.** **Find a fix…** reads each mod's Nexus description
+  through the API, and its bug reports and comments by reading the public pages — there is no API
+  for those two. It quotes anything that names one of the other mods or uses compatibility wording,
+  then gives you one-click links to each mod's bug reports, comments and optional files, plus a web
+  search naming both mods. Whatever you work out gets recorded on the issue: not a real conflict, a
+  patch exists (paste its link), or genuinely incompatible.
+
+  The page reading is best-effort and says so: AIM sees only the first page of each tab as a
+  signed-out visitor would, and if Nexus changes its layout the result is no quotes rather than
+  wrong ones. The links are always shown, so nothing depends on the scrape working.
+- **Rebinding a clashing shortcut.** Shortcut clashes list the mod names, with the install path on
+  hover. **Rebind…** moves one mod onto a key nothing else is using by editing its own binding —
+  AIM backs the mod up first, and you can undo it from right-click → **Restore the previous
+  version**. Once nothing shares the key the finding marks itself solved. Install again for the
+  change to reach the game. The button is greyed out for mods still in a `.zip`/`.rar`, and for
+  mods that build their bindings at runtime rather than declaring them; hover it for the reason.
+- **Marking an issue as fine.** These checks are deliberately cautious — two mods writing the same
+  sprite is reported because it *might* matter, not because it does. Tick the box beside a finding
+  once you have looked at it and are happy with it. It moves to a dimmed, struck-through section at
+  the bottom, which the *Show issues I have marked as fine* toggle hides or reveals, so you can
+  always find it again and untick it. A dismissal is tied to the mods **and the versions** involved:
+  if either mod updates, the issue comes back so you can judge the new version on its own. These
+  judgements are stored in `aim_dismissed_issues.json` in the mods folder.
 - **Drag/drop load order.** Drag a mod by its grip to reorder it. When holding it near the top or
   bottom edge of the list, AIM scrolls automatically so long lists do not require repeated drags.
+- **Release notes.** The document icon after a mod's version opens what its author wrote about each
+  release. Hover it for the newest version's notes; click it for the full history, every version
+  under its own heading, newest first. It only appears for mods AIM knows the Nexus page for, since
+  that is where the notes come from — and only mods with a Nexus API key set can fetch them.
+
+  Notes load the first time you hover or click rather than for every mod at startup, which would be
+  one Nexus request per mod on every launch. They are then cached in `aim_changelogs.json` in the
+  mods folder, tied to the version installed, so updating a mod fetches the new release's notes and
+  everything else costs nothing. Deleting that file loses nothing but the next fetch.
+- **Selecting a range.** Click one mod's checkbox, then shift-click another, and every row between
+  them takes whatever the clicked one just became — ticking or unticking a run of mods in two
+  clicks. The range follows what is on screen, so a search or filter is respected.
+- **Sort A–Z and filter.** Three checkboxes above the list: **Sort A–Z** puts it in name order so
+  you can find a mod in a long list, **Sort by recently updated** brings whatever you just installed
+  or updated to the top, and **Only mods needing attention** narrows it to mods with an
+  update waiting plus mods the last check could not reach. The two sorts are alternatives; turning
+  one on turns the other off. All are views only — your load order is
+  untouched, each row still shows its real load-order number, and turning them off restores the true
+  order. Dragging is paused while either is on, because reordering a filtered or re-sorted list
+  would have no clear meaning for the order underneath. The **↑** and **↓** buttons jump to the top
+  and bottom of the list.
 - **Search.** The search field filters the already discovered list by localized or original mod
   name, author, description, and version. It does not rescan archives or contact Nexus. Filtering
   does not change the saved selection or order; drag/drop is paused until the search is cleared.
+- **Edit a mod's files.** Right-click a mod → **Edit the mod's manifest** or **Edit the mod's
+  config** opens that file in whatever text editor you have associated with it, falling back to
+  Notepad on Windows where `.json` and `.toml` often have no association. Both items are greyed out
+  when there is nothing to open — including for mods that are still `.zip` or `.rar`, because an
+  edit there would be discarded the next time the archive is read. After editing, use gear menu →
+  **Reload mod list** to pick up the change.
+- **Remove a mod.** Right-click a mod → **Remove mod…** takes it out of the mods folder. AIM names
+  the exact folder and asks first, then sends it to the Recycle Bin rather than erasing it. Files
+  the mod has already installed into the game stay until the next install or uninstall rebuilds
+  `assets.zip`.
+- **Keybinds.** The **Keybinds** button lists every key and controller button your mods have bound.
+  Click one to change it — press a key to capture it, or pick a `GAMEPAD_*` name from the list,
+  since AIM cannot read a controller. Clashing bindings are red, and hovering one names the other
+  mods on that input. The list holds only names the game accepts; a mod set to `ALT` or a numpad key
+  silently falls back to its default, so AIM will not write one.
+
+  Mods keep these settings in the game's own config folder (`%LOCALAPPDATA%\FieldsOfMistria\...\mod_data\`),
+  not in the mods folder — which is why a mod update does not lose them. What does lose one is the
+  mod resetting its own settings after a version bump. AIM remembers what you chose and offers to
+  put it back, listing what changed. A setting the update removed is dropped instead of restored:
+  the feature is gone, so the key would be bound to nothing.
+
+  Editing is disabled while Fields of Mistria is running, because the game rewrites every mod's
+  settings when it exits and would silently overwrite the change.
+- **Check updates.** Checks the selected mods against their Nexus pages, with a dropdown for all
+  mods or for installing every pending update in one go. Each mod's current version is kept as a
+  backup you can restore.
+- **The update badge.** The green badge on a mod's row downloads and installs the update in place
+  when AIM knows which Nexus file it is. For a mod AIM only has a URL for — a GitHub release, or a
+  Nexus mod you have not associated yet — it opens the download page instead; the tooltip says
+  which. Use right-click → **Associate with Nexus…** to turn the second case into the first.
+
+  Nexus only issues direct download links to Premium accounts. On a free account AIM opens the
+  mod's page so you can use its **Mod Manager Download** button, which AIM picks up automatically
+  when registered to handle those links (gear menu → Nexus downloads). If you have Premium and are
+  still being sent to the page, AIM now checks the account and says so — that combination almost
+  always means the API key has been revoked or regenerated.
+- **Versions.** A mod AIM has updated keeps its earlier copies, and the **Versions** dropdown on its
+  row rolls back to any one of them — not just the newest, which matters when the version you want
+  is the one before whichever update broke things.
 - **Automatic refresh.** The mods folder is watched while AIM is open, so a mod folder or archive
   copied in appears in the list a couple of seconds later.
 

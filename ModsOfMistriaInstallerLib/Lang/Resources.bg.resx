@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -126,7 +126,6 @@
   <data name="CoreManifestHasNoAuthor" xml:space="preserve"><value>Манифестът трябва да съдържа автор.</value></data>
   <data name="CoreManifestHasNoName" xml:space="preserve"><value>Манифестът трябва да съдържа име.</value></data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve"><value>Манифестът трябва да съдържа версия.</value></data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Този мод изисква по-нова версия на инсталатора.</value></data>
   <data name="CoreInstalledInReporter" xml:space="preserve"><value>{0} е инсталиран в {1}</value></data>
   <data name="CoreStoreFileHasNoData" xml:space="preserve"><value>Файлът на магазина не съдържа категории или предмети.</value></data>
   <data name="GUIWarning32BitTitle" xml:space="preserve"><value>Открита е 32-битова версия</value></data>

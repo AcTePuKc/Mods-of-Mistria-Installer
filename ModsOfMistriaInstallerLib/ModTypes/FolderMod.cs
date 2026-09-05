@@ -163,10 +163,15 @@ public class FolderMod : IMod
                 _validation.Errors.Add(new ValidationMessage(this, Path.Combine(_location, "manifest.json"), Resources.CoreManifestHasNoMinimunInstallerVersion));
             }
             
+            // A warning rather than an error, deliberately. An error forces the mod off - AIM will
+            // not let it be ticked at all - on the strength of a prediction that it might not work.
+            // Most mods asking for a slightly newer installer run perfectly well, so the user is
+            // told which two versions disagree and left to decide.
             // TODO: Remove the workaround for 1.0.0 after the 12th of July
             if (requiredVersion.CompareTo(currentVersion) > 0 && requiredVersion.CompareTo(new Version("1.0")) < 0)
             {
-                _validation.Errors.Add(new ValidationMessage(this, Path.Combine(_location, "manifest.json"), Resources.CoreModRequiresNewerInstaller));
+                _validation.Warnings.Add(new ValidationMessage(this, Path.Combine(_location, "manifest.json"),
+                    string.Format(Resources.CoreModRequiresNewerInstaller, _minimumInstallerVersion, currentVersion)));
             }
         }
         catch (Exception)
@@ -254,10 +259,24 @@ public class FolderMod : IMod
 
     public List<string> GetAllFiles(string extension)
     {
+        // A mod folder can vanish under a live IMod - the user removes the mod, or moves it out of
+        // the mods folder while AIM has it in a list. Every other reader here treats a missing
+        // folder as "no files" (see GetFilesInFolder); this one used to throw, and because callers
+        // reasonably assume a listing is safe, that turned an ordinary removal into a crash.
         var di = new DirectoryInfo(_location);
-        var files = di.GetFiles($"*{extension}", SearchOption.AllDirectories);
+        if (!di.Exists) return [];
 
-        return files.Select(file => file.FullName).ToList();
+        try
+        {
+            return di.GetFiles($"*{extension}", SearchOption.AllDirectories)
+                .Select(file => file.FullName)
+                .ToList();
+        }
+        catch (DirectoryNotFoundException)
+        {
+            // Deleted between the check above and the walk, or part-way through it.
+            return [];
+        }
     }
 
     public string ReadFile(string path)

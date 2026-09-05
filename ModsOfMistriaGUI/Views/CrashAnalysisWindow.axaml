@@ -1,0 +1,148 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.CrashAnalysisWindow"
+        Width="820"
+        Height="680"
+        MinWidth="580"
+        MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="18" RowDefinitions="Auto,Auto,Auto,*,Auto">
+
+    <!-- Which crash. There can be more than one on file, and a user chasing an intermittent
+         crash needs to be able to look at the one before last. -->
+    <!-- Spacing by margin rather than by the Grid's own ColumnSpacing, which Avalonia only grew
+         in 11.3 and this project is on 11.2.5. -->
+    <Grid ColumnDefinitions="Auto,*,Auto">
+      <TextBlock x:Name="PickerLabel" VerticalAlignment="Center" FontWeight="SemiBold" />
+      <ComboBox x:Name="CrashPicker" Grid.Column="1" Margin="8 0 0 0" HorizontalAlignment="Stretch" />
+      <Button x:Name="OpenFolderButton" Grid.Column="2" Margin="8 0 0 0" Padding="8 2" />
+    </Grid>
+
+    <!-- The crash predating the current install is the one thing that invalidates everything
+         below it, so it sits above everything below it. -->
+    <Border x:Name="StaleBanner"
+            Grid.Row="1"
+            IsVisible="False"
+            Margin="0 12 0 0"
+            Padding="12"
+            CornerRadius="6"
+            BorderThickness="1"
+            BorderBrush="#d08a2a">
+      <TextBlock x:Name="StaleText" TextWrapping="Wrap" />
+    </Border>
+
+    <TextBlock x:Name="StatusText" Grid.Row="2" TextWrapping="Wrap" Margin="0 8 0 0" Opacity="0.75" />
+
+    <ScrollViewer x:Name="BodyScroller" Grid.Row="3" Margin="0 12 0 0" MinHeight="160" VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="14">
+
+        <!-- AIM's own answer, read from the backtrace and the built archive. No network, no API
+             key, and available for a crash that happened before AIM was ever installed. -->
+        <Border x:Name="DiagnosisSection"
+                IsVisible="False"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="14"
+                BorderBrush="#4c8bf5">
+          <StackPanel Spacing="8">
+            <TextBlock x:Name="DiagnosisHeader" FontWeight="SemiBold" />
+            <SelectableTextBlock x:Name="DiagnosisHeadline" TextWrapping="Wrap" FontSize="15" />
+            <StackPanel x:Name="DiagnosisReasons" Spacing="4" />
+            <Expander x:Name="BacktraceExpander" IsExpanded="False">
+              <StackPanel x:Name="BacktracePanel" Spacing="10" Margin="0 6 0 0" />
+            </Expander>
+          </StackPanel>
+        </Border>
+
+        <!-- The mods it points at, strongest first, each with everything that can be done about
+             it in one place: read its page, rule it out, report it, edit it, undo the edit. -->
+        <StackPanel x:Name="SuspectsSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="SuspectsHeader" FontWeight="SemiBold" />
+          <TextBlock x:Name="SuspectsHint" TextWrapping="Wrap" Opacity="0.75" />
+          <StackPanel x:Name="SuspectsPanel" Spacing="10" />
+        </StackPanel>
+
+        <!-- The ones a run has answered, kept apart from the ones still to check. A shortlist that
+             mixes them reads as seven live accusations however greyed the settled ones are, and
+             the number that matters - how many are left - has to be counted off the screen. -->
+        <StackPanel x:Name="SettledSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="SettledHeader" FontWeight="SemiBold" />
+          <Expander x:Name="SettledExpander" IsExpanded="False" HorizontalAlignment="Stretch">
+            <StackPanel x:Name="SettledPanel" Spacing="10" Margin="0 6 0 0" />
+          </Expander>
+        </StackPanel>
+
+        <!-- Verifying a fix. One button, because the sequence - switch off, rebuild, launch,
+             watch - is one thought and doing it by hand is where people give up. -->
+        <Border x:Name="VerifySection"
+                IsVisible="False"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="14"
+                BorderBrush="Gray">
+          <StackPanel Spacing="8">
+            <TextBlock x:Name="VerifyHeader" FontWeight="SemiBold" />
+            <TextBlock x:Name="VerifyHint" TextWrapping="Wrap" Opacity="0.75" />
+            <WrapPanel>
+              <ComboBox x:Name="VerifyPicker" MinWidth="260" Margin="0 0 8 6" />
+              <Button x:Name="VerifyButton" Padding="10 3" Margin="0 0 8 6" />
+              <Button x:Name="VerifyNextButton" Padding="10 3" Margin="0 0 8 6" IsVisible="False" />
+              <Button x:Name="VerifyResetButton" Padding="10 3" Margin="0 0 8 6" IsVisible="False" />
+            </WrapPanel>
+
+            <!-- Progress, one line per step. A single status line that is overwritten four times
+                 in ninety seconds is a status line nobody reads: the user looks up after the
+                 rebuild and cannot tell whether the launch happened, failed, or was never
+                 attempted. Every step stays on screen instead, and goes to the log as well. -->
+            <StackPanel x:Name="VerifySteps" Spacing="2" IsVisible="False" />
+
+            <TextBlock x:Name="VerifyStatus" TextWrapping="Wrap" IsVisible="False" FontWeight="SemiBold" />
+            <TextBlock x:Name="VerifyProgressText" TextWrapping="Wrap" IsVisible="False" Opacity="0.75" FontSize="12" />
+          </StackPanel>
+        </Border>
+
+        <!-- What the mod pages say about this crash: the bug tracker first, because a crash
+             somebody has already reported is a crash with a known answer. -->
+        <StackPanel x:Name="ForSection" Spacing="6" IsVisible="False">
+          <TextBlock x:Name="ForHeader" FontWeight="SemiBold" Foreground="#e05252" />
+          <StackPanel x:Name="ForPanel" Spacing="6" />
+        </StackPanel>
+
+        <StackPanel x:Name="AgainstSection" Spacing="6" IsVisible="False">
+          <TextBlock x:Name="AgainstHeader" FontWeight="SemiBold" Foreground="#3fa34d" />
+          <StackPanel x:Name="AgainstPanel" Spacing="6" />
+        </StackPanel>
+
+        <StackPanel x:Name="CautionSection" Spacing="6" IsVisible="False">
+          <TextBlock x:Name="CautionHeader" FontWeight="SemiBold" Foreground="#d08a2a" />
+          <StackPanel x:Name="CautionPanel" Spacing="6" />
+        </StackPanel>
+
+        <Expander x:Name="FindingsSection" IsVisible="False" IsExpanded="False" HorizontalAlignment="Stretch">
+          <StackPanel x:Name="FindingsPanel" Spacing="6" Margin="0 6 0 0" />
+        </Expander>
+
+        <StackPanel x:Name="LinksSection" Spacing="8" IsVisible="False">
+          <TextBlock x:Name="LinksHeader" FontWeight="SemiBold" />
+          <StackPanel x:Name="LinksPanel" Spacing="6" />
+        </StackPanel>
+
+        <!-- The raw report, last and shut. Nobody needs it until they are pasting it somewhere. -->
+        <Expander x:Name="RawExpander" IsExpanded="False" HorizontalAlignment="Stretch">
+          <SelectableTextBlock x:Name="RawText"
+                               Margin="0 6 0 0"
+                               TextWrapping="Wrap"
+                               FontFamily="Consolas, Menlo, monospace"
+                               FontSize="12" />
+        </Expander>
+      </StackPanel>
+    </ScrollViewer>
+
+    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0 12 0 0">
+      <Button x:Name="CopyButton" />
+      <Button x:Name="RefreshButton" />
+      <Button x:Name="CloseButton" IsDefault="True" IsCancel="True" />
+    </StackPanel>
+  </Grid>
+</Window>

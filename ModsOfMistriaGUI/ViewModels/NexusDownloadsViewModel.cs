@@ -15,8 +15,19 @@ using MsBox.Avalonia.Enums;
 namespace Garethp.ModsOfMistriaGUI.ViewModels;
 
 /// <summary>
-/// Everything behind the "Vortex" button on the Nexus website: the OAuth account session, the
-/// protocol registration that makes the button reach AIM at all, and the downloads themselves.
+/// The outcome of trying to install a mod AIM found rather than one the user clicked.
+/// </summary>
+/// <param name="NeedsWebsite">
+/// Nexus would not issue a download link, so the mod page's "Mod Manager Download" button is the
+/// way in. True for free accounts, which is most of them - and the reason this is a distinct answer
+/// rather than an error is that the user can act on it in one click.
+/// </param>
+public sealed record PatchInstallResult(bool Installed, bool NeedsWebsite, string? Message);
+
+/// <summary>
+/// Everything behind the "Mod Manager Download" button on the Nexus website: the OAuth account
+/// session, the protocol registration that makes the button reach AIM at all, and the downloads
+/// themselves.
 /// </summary>
 public partial class NexusDownloadsViewModel : ViewModelBase
 {
@@ -124,6 +135,21 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     public NexusUpdateService CreateUpdateService(string modsLocation) => new(_oauth.GetAccessTokenAsync, modsLocation);
 
     /// <summary>
+    /// A client for the session AIM already holds, or null when nobody is signed in.
+    ///
+    /// Callers that merely want to read a mod page - the conflict researcher, for instance - use
+    /// this rather than <see cref="EnsureNexusAccountAsync()"/>: reading a description is a nicety,
+    /// and throwing a browser sign-in at the user for it would be out of proportion.
+    /// </summary>
+    public async Task<NexusApiClient?> CreateApiClientAsync()
+    {
+        if (!_oauth.HasSession) return null;
+
+        var token = await _oauth.GetAccessTokenAsync();
+        return string.IsNullOrEmpty(token) ? null : new NexusApiClient(token);
+    }
+
+    /// <summary>
     /// Makes sure an OAuth account session exists. AIM uses the public Nexus registration with
     /// Authorization Code + PKCE and never falls back to a personal API key.
     /// </summary>
@@ -208,11 +234,25 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             return false;
         }
 
-        // The usual reason: a free account cannot be given a download link without the token that
-        // only the website's button carries. Sending them to the page is the whole remedy.
+        // Offering the mod page is the remedy for exactly one failure: Nexus declining to issue a
+        // direct download link. Everything else - a dead mirror, a corrupt archive, a folder that
+        // could not be written - needs its own message, or the user goes off to download by hand
+        // for a problem that would have fixed itself on a retry.
+        if (!result.RequiresWebsiteDownload)
+        {
+            await ShowMessage(
+                Localization["GUINexusDownloadFailedTitle"],
+                result.Error ?? Localization["GUICheckForUpdatesFailed"]);
+            return false;
+        }
+
+        // "You need Premium" is worth checking rather than asserting: a Premium user hitting this
+        // has a different problem - usually a revoked key - and telling them to buy what they
+        // already own would send them looking in exactly the wrong place.
         var openPage = await ShowBoxAsync(
             Localization["GUINexusDownloadFailedTitle"],
-            string.Format(Localization["GUINexusUpdateNeedsPage"], result.Error ?? ""),
+            string.Format(Localization["GUINexusUpdateNeedsPage"],
+                $"{result.Error ?? ""}\r\n\r\n{await DescribeAccountAsync()}"),
             ButtonEnum.YesNo);
 
         if (openPage == ButtonResult.Yes && status.Record is not null)
@@ -224,6 +264,125 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Installs a mod AIM found on Nexus but has never downloaded - currently, a compatibility
+    /// patch the conflict researcher turned up.
+    ///
+    /// Nexus issues direct download links to Premium accounts only. That is not a reason to make
+    /// everyone go to the website: a Premium user gets the whole thing done here, and a free
+    /// account gets a specific answer - <see cref="PatchInstallResult.NeedsWebsite"/> - so the
+    /// caller can open the right page rather than reporting a failure the user cannot act on. The
+    /// distinction comes from Nexus itself refusing to mint the link, not from AIM guessing at the
+    /// account tier, so a Premium user with a revoked key is not quietly told to go and buy
+    /// Premium.
+    ///
+    /// Everything after resolving the file is the ordinary download path, so the patch lands in the
+    /// downloads list with progress, honours the same overwrite prompt, and has its provenance
+    /// recorded - which means it gets update checks afterwards like any other mod.
+    /// </summary>
+    /// <param name="fileId">
+    /// The exact file, when the caller knows it. Optional files must pass one: they sit on a mod
+    /// that is already installed, and resolving the main file would reinstall that mod instead of
+    /// the patch.
+    /// </param>
+    public async Task<PatchInstallResult> InstallModAsync(int modId, string title, int? fileId = null)
+    {
+        if (!await EnsureNexusAccountAsync())
+            return new PatchInstallResult(false, false, Localization["GUINexusAccountNotConnected"]);
+
+        if (!_settings.ValidModsLocation())
+            return new PatchInstallResult(false, false, Localization["GUINexusNoModsFolder"]);
+
+        var client = await CreateApiClientAsync();
+        if (client is null)
+            return new PatchInstallResult(false, false, Localization["GUINexusAccountNotConnected"]);
+
+        if (fileId is null)
+        {
+            try
+            {
+                var main = await client.GetLatestMainFileAsync(NxmLink.MistriaGameDomain, modId);
+                if (main is null)
+                    return new PatchInstallResult(false, true,
+                        Localization["GUINexusPatchNoMainFile"]);
+
+                fileId = main.FileId;
+            }
+            catch (NexusApiException exception)
+            {
+                return new PatchInstallResult(false, false, exception.Message);
+            }
+        }
+
+        // A link with no key or expiry is exactly the shape Nexus hands a Premium account, and is
+        // what makes the API mint a download URL without a token. On a free account the same call
+        // is refused, which is the signal this method exists to translate.
+        var link = new NxmLink(NxmLink.MistriaGameDomain, modId, fileId.Value, null, null, null);
+
+        var download = new NexusDownloadModel(title);
+        Downloads.Add(download);
+        HasDownloads = true;
+
+        var progress = new Progress<NxmDownloadProgress>(update =>
+            Dispatcher.UIThread.Post(() => download.Apply(update)));
+
+        var result = await Task.Run(() => _service.DownloadAndInstallAsync(
+            link,
+            _settings.ModsLocation,
+            progress,
+            folders => ConfirmOverwriteAsync(folders, download.Token),
+            download.Token));
+
+        download.Title = result.FileName;
+
+        if (result.Success)
+        {
+            ModsChanged?.Invoke(this, EventArgs.Empty);
+            _ = DismissWhenReadAsync(download);
+            return new PatchInstallResult(true, false, null);
+        }
+
+        _ = DismissWhenReadAsync(download);
+
+        if (result.Cancelled)
+            return new PatchInstallResult(false, false, Localization["GUINexusPatchCancelled"]);
+
+        // Nexus declining to issue a link is the one failure whose remedy really is the website's
+        // button. Every other one - a dead mirror, a corrupt archive, an unwritable folder - is
+        // reported as itself, so nobody is sent off to download by hand over a problem a retry
+        // would have fixed.
+        return result.RequiresWebsiteDownload
+            ? new PatchInstallResult(false, true, result.Error)
+            : new PatchInstallResult(false, false, result.Error ?? Localization["GUICheckForUpdatesFailed"]);
+    }
+
+    /// <summary>
+    /// What Nexus thinks of the saved API key, in one line, for a failure message to quote.
+    ///
+    /// A Premium account that is being refused a download link is not being refused for the usual
+    /// reason, and saying so out loud is the difference between a two-minute fix and an afternoon.
+    /// </summary>
+    private async Task<string> DescribeAccountAsync()
+    {
+        var client = await CreateApiClientAsync();
+        if (client is null) return Localization["GUINexusAccountNoKey"];
+
+        try
+        {
+            var user = await client.ValidateAccessTokenAsync();
+            return string.Format(
+                user.IsPremium
+                    ? Localization["GUINexusAccountPremium"]
+                    : Localization["GUINexusAccountFree"],
+                user.Name);
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not check the Nexus account: {exception.Message}");
+            return string.Format(Localization["GUINexusAccountUnknown"], exception.Message);
+        }
     }
 
     /// <summary>Opens a page in the user's browser, refusing anything that is not plain https.</summary>

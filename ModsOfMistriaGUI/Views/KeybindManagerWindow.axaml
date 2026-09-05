@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.KeybindManagerWindow"
+        Width="820"
+        Height="640"
+        MinWidth="620"
+        MinHeight="420"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="18" RowDefinitions="Auto,Auto,Auto,*,Auto">
+
+    <TextBlock x:Name="IntroText" TextWrapping="Wrap" />
+
+    <Border x:Name="LockedBanner"
+            Grid.Row="1"
+            Margin="0 10 0 0"
+            Padding="10"
+            CornerRadius="4"
+            IsVisible="False">
+      <TextBlock x:Name="LockedText" TextWrapping="Wrap" />
+    </Border>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="12" Margin="0 12 0 0">
+      <TextBlock x:Name="SummaryText" VerticalAlignment="Center" TextWrapping="Wrap" />
+      <CheckBox x:Name="OnlyOverlapsToggle" />
+    </StackPanel>
+
+    <ScrollViewer Grid.Row="3" Margin="0 10 0 0" VerticalScrollBarVisibility="Auto">
+      <StackPanel x:Name="BindingsPanel" Spacing="2" HorizontalAlignment="Stretch" />
+    </ScrollViewer>
+
+    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0 12 0 0">
+      <Button x:Name="RefreshButton" />
+      <Button x:Name="CloseButton" IsDefault="True" IsCancel="True" />
+    </StackPanel>
+  </Grid>
+</Window>

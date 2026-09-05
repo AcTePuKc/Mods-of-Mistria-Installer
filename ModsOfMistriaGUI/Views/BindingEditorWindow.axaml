@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.BindingEditorWindow"
+        Width="520"
+        SizeToContent="Height"
+        MinWidth="440"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+  <StackPanel Margin="18" Spacing="12">
+
+    <TextBlock x:Name="WhatText" TextWrapping="Wrap" FontWeight="SemiBold" />
+
+    <Button x:Name="CaptureButton" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+
+    <StackPanel Orientation="Horizontal" Spacing="14">
+      <CheckBox x:Name="ShiftToggle" Content="SHIFT" />
+      <CheckBox x:Name="ControlToggle" Content="CONTROL" />
+    </StackPanel>
+
+    <StackPanel Spacing="4">
+      <TextBlock x:Name="TriggerLabel" />
+      <ComboBox x:Name="TriggerBox" HorizontalAlignment="Stretch" MaxDropDownHeight="360" />
+    </StackPanel>
+
+    <TextBlock x:Name="PreviewText" TextWrapping="Wrap" />
+    <TextBlock x:Name="NoteText" TextWrapping="Wrap" Opacity="0.75" />
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button x:Name="ClearButton" />
+      <Button x:Name="SaveButton" />
+      <!-- Deliberately not IsCancel: Escape is how you leave capture mode, and a cancel button
+           registered on the top level would close the whole dialog instead. -->
+      <Button x:Name="CancelButton" />
+    </StackPanel>
+  </StackPanel>
+</Window>

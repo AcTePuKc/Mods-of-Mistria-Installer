@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.ChangelogWindow"
+        Width="680"
+        Height="600"
+        MinWidth="480"
+        MinHeight="320"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="18" RowDefinitions="Auto,Auto,*,Auto">
+
+    <TextBlock x:Name="ModNameText" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap" />
+    <TextBlock x:Name="StatusText" Grid.Row="1" TextWrapping="Wrap" Margin="0 6 0 0" Opacity="0.75" />
+
+    <ScrollViewer Grid.Row="2" Margin="0 12 0 0" VerticalScrollBarVisibility="Auto">
+      <StackPanel x:Name="VersionsPanel" Spacing="18" HorizontalAlignment="Stretch" />
+    </ScrollViewer>
+
+    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0 12 0 0">
+      <Button x:Name="CopyButton" />
+      <Button x:Name="CloseButton" IsDefault="True" IsCancel="True" />
+    </StackPanel>
+  </Grid>
+</Window>

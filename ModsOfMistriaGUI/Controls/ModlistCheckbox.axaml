@@ -10,12 +10,39 @@
     <Design.DataContext>
         <models:ModModel />
     </Design.DataContext>
+    <UserControl.Styles>
+        <!-- The changelog icon is a button because it is clickable, but it should read as an icon
+             sitting after the version - not as a control competing with the row. -->
+        <Style Selector="Button.changelog">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="4 0" />
+            <Setter Property="Margin" Value="2 0 0 0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="Button.changelog:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.changelog:pointerover Image">
+            <Setter Property="Opacity" Value="0.6" />
+        </Style>
+    </UserControl.Styles>
     <Grid HorizontalAlignment="Stretch">
         <WrapPanel IsVisible="{Binding ShowPlainRow}">
                 <CheckBox IsEnabled="{Binding !InError}"
-                          IsChecked="{Binding Enabled}">
-                    <TextBlock Text="{Binding Full}" />
+                          IsChecked="{Binding Enabled}"
+                          PointerPressed="ModCheckboxPressed"
+                          Click="ModCheckboxClick">
+                    <!-- Name and version as two blocks, so the version sits clear of the title
+                         instead of running into it, and can be dimmed as secondary information. -->
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="{Binding Title}" />
+                        <TextBlock Text="{Binding InstalledVersion}" Opacity="0.65" />
+                    </StackPanel>
                 </CheckBox>
+                <!-- The description lives behind an info icon rather than on the row itself, so
+                     hovering a mod to read its name does not throw a wall of text at you. -->
                 <Image Width="16" Height="16" Margin="5 0 0 0"
                        IsVisible="{Binding HasDescription}"
                        PointerEntered="OnDescriptionInfoPointerEntered"
@@ -25,6 +52,25 @@
                                      Brush="Gray" />
                     </Image.Source>
                 </Image>
+                <!-- Release notes. Outside the CheckBox so clicking it opens the history rather
+                     than toggling the mod, and hidden entirely for mods AIM cannot identify on
+                     Nexus - an icon that can only say "nothing here" is worse than no icon. -->
+                <Button Classes="changelog"
+                        IsVisible="{Binding CanShowChangelog}"
+                        Command="{Binding Commands.ShowChangelog}"
+                        CommandParameter="{Binding}"
+                        PointerEntered="ChangelogHovered">
+                    <ToolTip.Tip>
+                        <TextBlock Text="{Binding ChangelogPreview}"
+                                   TextWrapping="Wrap"
+                                   MaxWidth="560" />
+                    </ToolTip.Tip>
+                    <Image Height="14">
+                        <Image.Source>
+                            <i:IconImage Value="fa-file-lines" Brush="Gray" />
+                        </Image.Source>
+                    </Image>
+                </Button>
                 <Image Height="16" Margin="5 0 0 0"
                        IsVisible="{Binding InWarning}">
                     <ToolTip.Tip>
@@ -83,8 +129,16 @@
             <Expander.Header>
                 <WrapPanel>
                     <CheckBox IsEnabled="{Binding !InError}"
-                              IsChecked="{Binding Enabled}">
-                        <TextBlock Text="{Binding Full}" />
+                              IsChecked="{Binding Enabled}"
+                              PointerPressed="ModCheckboxPressed"
+                              Click="ModCheckboxClick">
+                        <!-- Name and version as two blocks, so the version sits clear of the title
+                             instead of running into it, and can be dimmed as secondary
+                             information. -->
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="{Binding Title}" />
+                            <TextBlock Text="{Binding InstalledVersion}" Opacity="0.65" />
+                        </StackPanel>
                     </CheckBox>
                     <Image Width="16" Height="16" Margin="5 0 0 0"
                            IsVisible="{Binding HasDescription}"
@@ -95,6 +149,25 @@
                                          Brush="Gray" />
                         </Image.Source>
                     </Image>
+
+                    <!-- Release notes; see the plain row above for why this sits outside the
+                         CheckBox rather than inside its content. -->
+                    <Button Classes="changelog"
+                            IsVisible="{Binding CanShowChangelog}"
+                            Command="{Binding Commands.ShowChangelog}"
+                            CommandParameter="{Binding}"
+                            PointerEntered="ChangelogHovered">
+                        <ToolTip.Tip>
+                            <TextBlock Text="{Binding ChangelogPreview}"
+                                       TextWrapping="Wrap"
+                                       MaxWidth="560" />
+                        </ToolTip.Tip>
+                        <Image Height="14">
+                            <Image.Source>
+                                <i:IconImage Value="fa-file-lines" Brush="Gray" />
+                            </Image.Source>
+                        </Image>
+                    </Button>
 
                     <Image Height="16" Margin="5 0 0 0"
                            IsVisible="{Binding InWarning}">

@@ -164,6 +164,58 @@ public class ModArchiveInstallerTest
     }
 
     [Test]
+    public void ShouldRestoreASupersededZipWhenAnUpdateFails()
+    {
+        var originalSource = CreateArchive("original.zip",
+            ("manifest.toml", Manifest),
+            ("old.txt", "old"));
+        var original = Path.Combine(_modsFolder, "Some Mod.zip");
+        File.Move(originalSource, original);
+
+        var update = CreateArchive("update.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/../../escaped.txt", "never write"));
+
+        Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            new ModBackupStore(_modsFolder), "1.0.0", replacePath: original));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(original), Is.True,
+                "a failed archive-to-folder update must restore the original archive path");
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.False,
+                "the partial replacement folder must be removed");
+            Assert.That(File.Exists(Path.Combine(_workspace, "escaped.txt")), Is.False);
+        });
+    }
+
+    [Test]
+    public void ShouldNotDeleteAnExistingParkedArchiveWhenUsingFallbackBackup()
+    {
+        var originalSource = CreateArchive("original.zip", ("manifest.toml", Manifest));
+        var original = Path.Combine(_modsFolder, "Some Mod.zip");
+        File.Move(originalSource, original);
+        var existingParked = original + ".aim-old";
+        File.WriteAllText(existingParked, "earlier parked archive");
+
+        var update = CreateArchive("update.zip", ("Some Mod/manifest.toml", Manifest));
+
+        ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            replacePath: original);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(existingParked), Is.True,
+                "an existing parked archive must never be overwritten");
+            Assert.That(File.Exists(original + ".aim-old-1"), Is.True,
+                "the new fallback backup should use a collision-free name");
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.True);
+        });
+    }
+
+    [Test]
     public void ShouldRestoreEveryEarlierReplacementWhenABundleFails()
     {
         var first = Path.Combine(_modsFolder, "First Mod");
