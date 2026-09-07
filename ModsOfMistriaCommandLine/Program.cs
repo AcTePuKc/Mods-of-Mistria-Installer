@@ -13,10 +13,24 @@ var currentExe = Assembly.GetEntryAssembly();
 var currentVersionString =
     currentExe!.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "0.1.0";
 
+if (args.Contains("--help") || args.Contains("-h"))
+{
+    Console.WriteLine(CliUsage());
+    Environment.Exit(0);
+}
+
 if (args.Contains("--version"))
 {
     Console.WriteLine(currentVersionString);
     Environment.Exit(0);
+}
+
+if (!ValidateArguments(args, out var argumentError))
+{
+    Console.Error.WriteLine($"Error: {argumentError}");
+    Console.Error.WriteLine();
+    Console.Error.WriteLine(CliUsage());
+    Environment.Exit(2);
 }
 
 // The CLI parses and prints; the behaviour behind each flag lives in the Lib.
@@ -50,6 +64,14 @@ if (args.Contains("--seam-check") || args.Contains("--seam-check-json"))
 if (args.Contains("--lint"))
 {
     Environment.Exit(RunLint(args, gateMode));
+}
+
+if (!args.Contains("--install") && !args.Contains("--uninstall"))
+{
+    Console.Error.WriteLine("Error: choose an action: --install or --uninstall.");
+    Console.Error.WriteLine();
+    Console.Error.WriteLine(CliUsage());
+    Environment.Exit(2);
 }
 
 Logger.LogAdded += (_, e) => Console.WriteLine(e.Message);
@@ -95,7 +117,8 @@ else
     }
 }
 
-if (Environment.GetEnvironmentVariable("EXIT_ON_COMPLETE") != "true")
+if (Environment.GetEnvironmentVariable("EXIT_ON_COMPLETE") != "true" &&
+    !Console.IsInputRedirected && !Console.IsOutputRedirected)
 {
     Console.ReadKey();
 }
@@ -109,6 +132,90 @@ static string? FlagValue(string[] args, string flag)
     if (index < 0) return null;
     return index + 1 < args.Length ? args[index + 1] : "";
 }
+
+static bool ValidateArguments(string[] args, out string error)
+{
+    var commands = new List<string>();
+    for (var i = 0; i < args.Length; i++)
+    {
+        var argument = args[i];
+        switch (argument)
+        {
+            case "--install":
+            case "--uninstall":
+                commands.Add(argument);
+                break;
+            case "--lint":
+                commands.Add(argument);
+                if (!TakeRequiredValue(args, ref i, argument, out error)) return false;
+                if (i + 1 < args.Length && !args[i + 1].StartsWith("--")) i++;
+                break;
+            case "--seam-check":
+            case "--seam-check-json":
+                commands.Add(argument);
+                if (i + 1 < args.Length && !args[i + 1].StartsWith("--")) i++;
+                break;
+            case "--compile-check":
+                if (!TakeRequiredValue(args, ref i, argument, out error)) return false;
+                if (args[i] is not ("on" or "off" or "require"))
+                {
+                    error = $"{argument} expects on, off, or require.";
+                    return false;
+                }
+                break;
+            case "--strict-lints":
+            case "--fail-on-skip":
+                break;
+            default:
+                error = $"unknown argument '{argument}'.";
+                return false;
+        }
+    }
+
+    if (commands.Count == 0)
+    {
+        error = "no action was specified.";
+        return false;
+    }
+
+    if (commands.Count > 1)
+    {
+        error = $"actions cannot be combined: {string.Join(", ", commands)}.";
+        return false;
+    }
+
+    error = string.Empty;
+    return true;
+}
+
+static bool TakeRequiredValue(string[] args, ref int index, string flag, out string error)
+{
+    if (index + 1 >= args.Length || args[index + 1].StartsWith("--"))
+    {
+        error = $"{flag} requires a value.";
+        return false;
+    }
+
+    index++;
+    error = string.Empty;
+    return true;
+}
+
+static string CliUsage() => """
+Usage:
+  AIM-cli --install [--strict-lints] [--fail-on-skip] [--compile-check on|off|require]
+  AIM-cli --uninstall
+  AIM-cli --lint <mod-folder> [pristine-assets.zip] [--strict-lints] [--compile-check on|off|require]
+  AIM-cli --seam-check [pristine-assets.zip]
+  AIM-cli --seam-check-json [pristine-assets.zip]
+  AIM-cli --version
+  AIM-cli --help
+
+Exit codes:
+  0  completed successfully
+  1  operation failed or the lint would skip the mod
+  2  invalid usage or missing input
+""";
 
 // --seam-check [zip] / --seam-check-json [zip]: the located install's backup
 // when no zip is given. Exit 0 when every anchor holds, 1 when any broke, 2

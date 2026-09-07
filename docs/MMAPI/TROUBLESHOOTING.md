@@ -56,6 +56,16 @@ A throwing handler never breaks the game or another mod. The framework skips it 
 
 ## Preflight One Mod
 
+The CLI is explicit and non-interactive. Use `--help` for the complete usage summary. An install
+must use `--install`; an empty command, unknown option, or conflicting action exits with code `2`
+without touching the game. `--uninstall` restores the verified archive instead.
+
+```powershell
+dotnet run --project ModsOfMistriaCommandLine -- --help
+dotnet run --project ModsOfMistriaCommandLine -- --install
+dotnet run --project ModsOfMistriaCommandLine -- --uninstall
+```
+
 The CLI can run manifest validation, seam staging, skip checks, lints, and the compile gate without writing the game:
 
 ```powershell
