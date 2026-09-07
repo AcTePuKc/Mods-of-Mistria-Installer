@@ -4350,8 +4350,7 @@ public partial class ModlistPageViewModel : PageViewBase
         if (assessment.Status != ForeignArchiveRecoveryStatus.Recoverable)
             return false;
 
-        var prompt = Localized("GUIForeignArchiveRecoveryMessage") +
-                     "\n\n" + assessment.Reason;
+        var prompt = Localized("GUIForeignArchiveRecoveryMessage");
         var answer = await Dispatcher.UIThread.InvokeAsync(() =>
             MessageBoxManager.GetMessageBoxStandard(
                 Localized("GUIForeignArchiveRecoveryTitle"), prompt, ButtonEnum.YesNo).ShowAsync());
