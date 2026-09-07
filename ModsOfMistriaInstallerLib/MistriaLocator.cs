@@ -192,6 +192,11 @@ public class MistriaLocator
     {
         IEnumerable<IMod> folderMods = Directory
             .GetDirectories(modsLocation)
+            // A dot folder in the mods folder is AIM's own bookkeeping - the backup store, and the
+            // staging folder a cross-volume import is assembled in. The staging one matters: it
+            // holds a manifest from the moment the copy starts, so without this a list reload
+            // landing mid-copy would pick up a mod that is still missing most of its files.
+            .Where(folder => !Path.GetFileName(folder).StartsWith('.'))
             .Where(folder => FolderMod.GetModLocation(folder) is not null)
             .Select(location =>
             {

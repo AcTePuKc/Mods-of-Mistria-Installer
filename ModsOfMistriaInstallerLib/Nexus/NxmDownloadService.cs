@@ -1,4 +1,5 @@
 using System.Net.Http;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
@@ -69,7 +70,8 @@ public class NxmDownloadService(
         Func<List<string>, Task<bool>>? confirmOverwrite = null,
         CancellationToken ct = default,
         string? previousVersion = null,
-        string? replacePath = null)
+        string? replacePath = null,
+        Func<IReadOnlyList<ModTypes.InstalledModIdentity>>? installedMods = null)
     {
         var fileName = $"{link.ModId}-{link.FileId}";
         string? temporaryFile = null;
@@ -108,7 +110,7 @@ public class NxmDownloadService(
 
             var (installed, abandoned) = await InstallAsync(
                 temporaryFile, modsLocation, fileName, confirmOverwrite, ct,
-                new ModBackupStore(modsLocation), previousVersion, replacePath);
+                new ModBackupStore(modsLocation), previousVersion, replacePath, installedMods);
             if (abandoned)
             {
                 progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Cancelled, "Install cancelled"));
@@ -264,29 +266,66 @@ public class NxmDownloadService(
         CancellationToken ct,
         ModBackupStore? backups = null,
         string? previousVersion = null,
-        string? replacePath = null)
+        string? replacePath = null,
+        Func<IReadOnlyList<InstalledModIdentity>>? installedMods = null)
     {
         try
         {
+            // What is already installed, so a mod the user already has is recognised as the same
+            // mod even though this download is named after a different Nexus release.
+            //
+            // Handed in rather than read off the disk here. The caller already has the mod list
+            // loaded, and rebuilding it would mean opening every archive in the mods folder to read
+            // one manifest each - on a two-hundred-mod folder that is minutes of work, in the
+            // middle of an install, with the progress line still saying "Unpacking" and the
+            // question this is all for not yet asked.
+            //
+            // An update aimed at a known install skips it entirely: the caller has already said
+            // which copy this replaces, so there is nothing to work out.
+            var installedNow = replacePath is null ? installedMods?.Invoke() : null;
+
             var installed = await Task.Run(
                 () => ModArchiveInstaller.Install(archivePath, modsLocation, fileName,
                     ArchiveConflictBehaviour.Fail, backups, previousVersion, ct,
-                    replacePath: replacePath), ct);
+                    replacePath: replacePath, installedMods: installedNow), ct);
             return (installed, false);
         }
         catch (ModArchiveConflictException conflict)
         {
             ct.ThrowIfCancellationRequested();
 
-            var replace = confirmOverwrite is null || await confirmOverwrite(conflict.Folders);
+            // The names the user is being asked about: the folders this would land on, plus any
+            // copy of the same mod already installed under a different name.
+            var asked = conflict.Folders
+                .Concat(conflict.AlreadyInstalled.Select(mod => Path.GetFileName(mod.SourcePath)))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            var replace = confirmOverwrite is null || await confirmOverwrite(asked);
             if (!replace) return ([], true);
+
+            // Replacing the copy that is already there rather than unpacking beside it. Without
+            // this, saying yes to "you already have this mod" would still have produced a second
+            // folder, because the download's own name does not match the installed one.
+            var target = replacePath ?? SingleDuplicate(conflict);
 
             var installed = await Task.Run(() => ModArchiveInstaller.Install(
                 archivePath, modsLocation, fileName, ArchiveConflictBehaviour.Replace,
-                backups, previousVersion, ct, replacePath: replacePath), ct);
+                backups, previousVersion, ct, replacePath: target), ct);
             return (installed, false);
         }
     }
+
+    /// <summary>
+    /// The install to unpack over, when the whole download is one mod the user already has.
+    ///
+    /// Only for a single duplicate: a bundle has several mods in it and no way to say which of the
+    /// installed copies each one replaces, so those fall back to replacing by folder name.
+    /// </summary>
+    private static string? SingleDuplicate(ModArchiveConflictException conflict) =>
+        conflict.AlreadyInstalled.Count == 1 && conflict.Folders.Count == 0
+            ? conflict.AlreadyInstalled[0].SourcePath
+            : null;
 
     // ── Helpers ──────────────────────────────────────────────────────────────────
 

@@ -174,18 +174,25 @@ public partial class KeybindManagerWindow : Window
     {
         var clashes = _overlaps.GetValueOrDefault(entry) ?? [];
 
+        // MaxWidth rather than Width: 260 keeps the buttons lined up in a column that can be
+        // scanned, but on a narrow window a hard 260 would push the button off the edge instead of
+        // letting the label take the width it actually needs.
         var setting = new TextBlock
         {
             Text = entry.FieldLabel,
             VerticalAlignment = VerticalAlignment.Center,
             TextWrapping = TextWrapping.Wrap,
-            Width = 260
+            Width = double.NaN,
+            MinWidth = 120,
+            MaxWidth = 260,
+            Margin = new Avalonia.Thickness(0, 2, 10, 2)
         };
 
         var button = new Button
         {
             Content = entry.Value.Length == 0 ? Texts.GUIKeybindsUnbound : entry.Value,
-            MinWidth = 190,
+            MinWidth = 150,
+            Margin = new Avalonia.Thickness(0, 2, 10, 2),
             HorizontalContentAlignment = HorizontalAlignment.Center,
             IsEnabled = entry.IsEditable && !_locked
         };
@@ -197,10 +204,11 @@ public partial class KeybindManagerWindow : Window
         ToolTip.SetTip(button, DescribeRow(entry, clashes));
         button.Click += async (_, _) => await EditAsync(entry);
 
-        var row = new StackPanel
+        // A WrapPanel, so a long "also used by ..." note or a narrow window moves the note under
+        // the button instead of running it off the right-hand edge. Spacing is done with margins:
+        // WrapPanel has no Spacing on Avalonia 11.2.5.
+        var row = new WrapPanel
         {
-            Orientation = Orientation.Horizontal,
-            Spacing = 10,
             Margin = new Avalonia.Thickness(10, 1, 0, 1),
             Children = { setting, button }
         };
@@ -213,6 +221,8 @@ public partial class KeybindManagerWindow : Window
                 Text = note,
                 VerticalAlignment = VerticalAlignment.Center,
                 TextWrapping = TextWrapping.Wrap,
+                MaxWidth = 420,
+                Margin = new Avalonia.Thickness(0, 2, 0, 2),
                 Opacity = 0.75,
                 Foreground = clashes.Count > 0 ? Brushes.IndianRed : null
             });

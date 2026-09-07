@@ -3,34 +3,44 @@
         x:Class="Garethp.ModsOfMistriaGUI.Views.BindingEditorWindow"
         Width="520"
         SizeToContent="Height"
-        MinWidth="440"
+        MinWidth="340"
+        MinHeight="240"
+        MaxHeight="700"
         WindowStartupLocation="CenterOwner"
-        CanResize="False">
-  <StackPanel Margin="18" Spacing="12">
+        CanResize="True">
+  <!-- Resizable, and the body scrolls. A long "what this binds" line or a big system font used to
+       push Save and Cancel below the bottom edge of a window that could not be resized to reach
+       them. The footer is pinned outside the scroller so those two are always on screen. -->
+  <Grid RowDefinitions="*,Auto" Margin="18">
 
-    <TextBlock x:Name="WhatText" TextWrapping="Wrap" FontWeight="SemiBold" />
+    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+      <StackPanel Spacing="12">
 
-    <Button x:Name="CaptureButton" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+        <TextBlock x:Name="WhatText" TextWrapping="Wrap" FontWeight="SemiBold" />
 
-    <StackPanel Orientation="Horizontal" Spacing="14">
-      <CheckBox x:Name="ShiftToggle" Content="SHIFT" />
-      <CheckBox x:Name="ControlToggle" Content="CONTROL" />
-    </StackPanel>
+        <Button x:Name="CaptureButton" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
 
-    <StackPanel Spacing="4">
-      <TextBlock x:Name="TriggerLabel" />
-      <ComboBox x:Name="TriggerBox" HorizontalAlignment="Stretch" MaxDropDownHeight="360" />
-    </StackPanel>
+        <WrapPanel>
+          <CheckBox x:Name="ShiftToggle" Content="SHIFT" Margin="0 2 14 2" />
+          <CheckBox x:Name="ControlToggle" Content="CONTROL" Margin="0 2 0 2" />
+        </WrapPanel>
 
-    <TextBlock x:Name="PreviewText" TextWrapping="Wrap" />
-    <TextBlock x:Name="NoteText" TextWrapping="Wrap" Opacity="0.75" />
+        <StackPanel Spacing="4">
+          <TextBlock x:Name="TriggerLabel" TextWrapping="Wrap" />
+          <ComboBox x:Name="TriggerBox" HorizontalAlignment="Stretch" MaxDropDownHeight="360" />
+        </StackPanel>
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
-      <Button x:Name="ClearButton" />
-      <Button x:Name="SaveButton" />
+        <TextBlock x:Name="PreviewText" TextWrapping="Wrap" />
+        <TextBlock x:Name="NoteText" TextWrapping="Wrap" Opacity="0.75" />
+      </StackPanel>
+    </ScrollViewer>
+
+    <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0 12 0 0">
+      <Button x:Name="ClearButton" Margin="0 2 8 2" />
+      <Button x:Name="SaveButton" Margin="0 2 8 2" />
       <!-- Deliberately not IsCancel: Escape is how you leave capture mode, and a cancel button
            registered on the top level would close the whole dialog instead. -->
-      <Button x:Name="CancelButton" />
-    </StackPanel>
-  </StackPanel>
+      <Button x:Name="CancelButton" Margin="0 2 0 2" />
+    </WrapPanel>
+  </Grid>
 </Window>

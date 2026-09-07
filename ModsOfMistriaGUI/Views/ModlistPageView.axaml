@@ -11,9 +11,12 @@
              d:DataContext="{x:Static models:DesignData.ModlistPageViewModel}">
     <DockPanel LastChildFill="True">
 
-        <!-- Bottom toolbar: settings, language and actions share one compact row. -->
-        <Grid DockPanel.Dock="Bottom" Height="44" Margin="0 8 0 0"
-              ColumnDefinitions="Auto,Auto,*,Auto">
+        <!-- Bottom toolbar: settings, language and actions share one compact row.
+             MinHeight rather than Height, because on a narrow window the action buttons wrap onto
+             a second line and a fixed 44 would cut that line off. These are the buttons that
+             install and launch, so they are the last thing that may go missing. -->
+        <Grid DockPanel.Dock="Bottom" MinHeight="44" Margin="0 8 0 0"
+              ColumnDefinitions="Auto,Auto,Auto,*">
             <Menu Grid.Column="0" Margin="-7 0 0 0">
                 <MenuItem>
                     <MenuItem.Header>
@@ -127,16 +130,28 @@
                        HorizontalAlignment="Right"
                        Text="{Binding InstallStatus}"
                        TextTrimming="CharacterEllipsis"
-                       Margin="12 0" />
-            <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="10">
-                <Button
+                       MaxWidth="360"
+                       Margin="12 0"
+                       Tag="{Binding InstallStatus}"
+                       PointerEntered="OnBadgePointerEntered"
+                       PointerExited="OnBadgePointerExited" />
+            <!-- A WrapPanel rather than a horizontal stack: when the window is too narrow to hold
+                 all three side by side they stack instead of being cut off at the edge. Margins
+                 rather than Spacing, which WrapPanel does not have on Avalonia 11.2.5.
+                 It takes the star column, not an Auto one: a Grid measures an Auto column with
+                 infinite width, so a WrapPanel in one reports its single-line size and never wraps.
+                 The status line above is capped instead, since it is the part that can be trimmed. -->
+            <WrapPanel Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Margin="0 2 0 2"
                         Command="{Binding LaunchGameCommand}"
                         Content="{Binding Texts.GUIPlayButtonText}" />
-                <Button Command="{Binding InstallModsCommand}"
+                <Button Margin="10 2 0 2"
+                        Command="{Binding InstallModsCommand}"
                         Content="{Binding InstallButtonText}" />
-                <Button Command="{Binding UnInstallModsCommand}"
+                <Button Margin="10 2 0 2"
+                        Command="{Binding UnInstallModsCommand}"
                         Content="{Binding Texts.GUIUninstallButtonText}" />
-            </StackPanel>
+            </WrapPanel>
         </Grid>
 
         <DockPanel LastChildFill="True">
@@ -242,124 +257,145 @@
                      shown and in what order they are shown, nothing else. Dragging is paused while
                      any of them is on, because reordering a filtered or re-sorted list would have
                      no obvious meaning for the real order underneath. -->
-                <StackPanel Orientation="Horizontal" Spacing="14" Margin="0 8 0 0">
-                    <CheckBox IsChecked="{Binding SortAlphabetically}"
+                <WrapPanel Margin="0 8 0 0">
+                    <CheckBox Margin="0 2 14 2"
+                              IsChecked="{Binding SortAlphabetically}"
                               IsEnabled="{Binding !IsInstalling}"
                               Content="{Binding Texts.GUISortAlphabetically}"
                               ToolTip.Tip="{Binding Texts.GUISortAlphabeticallyTooltip}" />
-                    <CheckBox IsChecked="{Binding SortByRecentlyUpdated}"
+                    <CheckBox Margin="0 2 14 2"
+                              IsChecked="{Binding SortByRecentlyUpdated}"
                               IsEnabled="{Binding !IsInstalling}"
                               Content="{Binding Texts.GUISortRecentlyUpdated}"
                               ToolTip.Tip="{Binding Texts.GUISortRecentlyUpdatedTooltip}" />
-                    <CheckBox IsChecked="{Binding ShowOnlyEnabled}"
+                    <CheckBox Margin="0 2 14 2"
+                              IsChecked="{Binding ShowOnlyEnabled}"
                               IsEnabled="{Binding !IsInstalling}"
                               Content="{Binding Texts.GUIShowOnlyEnabled}"
                               ToolTip.Tip="{Binding Texts.GUIShowOnlyEnabledTooltip}" />
-                    <CheckBox IsChecked="{Binding ShowOnlyUpdatable}"
+                    <CheckBox Margin="0 2 14 2"
+                              IsChecked="{Binding ShowOnlyUpdatable}"
                               IsEnabled="{Binding !IsInstalling}"
                               Content="{Binding Texts.GUIShowOnlyUpdatable}"
                               ToolTip.Tip="{Binding Texts.GUIShowOnlyUpdatableTooltip}" />
                     <Button Padding="8 2"
+                            Margin="0 2 14 2"
                             Content="{Binding Texts.GUISuggestLoadOrder}"
                             ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
                             Command="{Binding SuggestLoadOrderCommand}" />
                     <TextBlock VerticalAlignment="Center"
+                               Margin="0 2 0 2"
+                               MaxWidth="420"
                                Foreground="Gray"
                                TextWrapping="Wrap"
                                IsVisible="{Binding IsListReordered}"
                                Text="{Binding Texts.GUIListReorderedNote}" />
-                </StackPanel>
+                </WrapPanel>
                 <!-- List header: select everything at once, see what the selection means, and ask
                      for a load order that satisfies the mods' declared requirements. -->
-                <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0 12 0 2">
+                <Grid ColumnDefinitions="Auto,Auto,*" Margin="0 12 0 2">
                     <CheckBox Grid.Column="0"
                               Margin="0 0 4 0"
+                              VerticalAlignment="Center"
                               IsThreeState="True"
                               IsChecked="{Binding AllModsSelected, Mode=OneWay}"
                               IsEnabled="{Binding CanChangeModSelection}"
                               Click="ToggleAllModsClick"
                               ToolTip.Tip="{Binding Texts.GUIToggleAllMods}" />
 
+                    <!-- Capped, because the buttons beside it need the width more than the count
+                         does, and this is the one thing here that reads fine trimmed - but only
+                         because hovering it gives the sentence back in full. A line that ends in an
+                         ellipsis and has no way to be read is just a missing line. -->
                     <TextBlock Grid.Column="1"
                                VerticalAlignment="Center"
                                Foreground="Gray"
+                               MaxWidth="420"
                                TextTrimming="CharacterEllipsis"
-                               Text="{Binding SelectionSummary}" />
+                               Text="{Binding SelectionSummary}"
+                               Tag="{Binding SelectionSummary}"
+                               PointerEntered="OnBadgePointerEntered"
+                               PointerExited="OnBadgePointerExited" />
 
-                    <!-- The issue report answers "what might break"; this answers "what did break".
-                         They sit together because a user arriving from a crash does not yet know
-                         which of the two questions they have, and the crash is the more urgent one
-                         to be able to reach without hunting through a menu. -->
-                    <Button Grid.Column="2"
-                            Margin="8 0 0 0"
-                            Padding="8 2"
-                            Content="{Binding Texts.GUICheckCrashes}"
-                            ToolTip.Tip="{Binding Texts.GUICheckCrashesTooltip}"
-                            Command="{Binding CheckCrashesCommand}" />
+                    <!-- One wrapping row rather than seven fixed columns. Every one of these is a
+                         feature with no other way in - the crash check, the conflict report, the
+                         keybind manager - and in a fixed grid a window narrower than their combined
+                         width simply cut the last of them off the right-hand edge. They flow onto a
+                         second line now instead, which costs a few pixels of height and loses
+                         nothing.
 
-                    <Button Grid.Column="3"
-                            Margin="8 0 0 0"
-                            Padding="8 2"
-                            Content="{Binding Texts.GUIReportConflicts}"
-                            ToolTip.Tip="{Binding Texts.GUIReportConflicts}"
-                            Command="{Binding ReportConflictsCommand}" />
+                         In the star column rather than an Auto one: a Grid measures an Auto column
+                         with infinite width, so a WrapPanel there would report its single-line size
+                         and never wrap - which is the bug this replaced. -->
+                    <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
+                        <!-- The issue report answers "what might break"; this answers "what did
+                             break". They sit together because a user arriving from a crash does not
+                             yet know which of the two questions they have, and the crash is the
+                             more urgent one to be able to reach without hunting through a menu. -->
+                        <Button Margin="8 2 0 2"
+                                Padding="8 2"
+                                Content="{Binding Texts.GUICheckCrashes}"
+                                ToolTip.Tip="{Binding Texts.GUICheckCrashesTooltip}"
+                                Command="{Binding CheckCrashesCommand}" />
 
-                    <!-- Keybinds and update checking were reachable only from the gear menu, which
-                         is where settings live rather than where work happens. Both are things a
-                         user does while looking at the list, so they belong beside it. -->
-                    <Button Grid.Column="4"
-                            Margin="8 0 0 0"
-                            Padding="8 2"
-                            Content="{Binding Texts.GUIKeybindsButton}"
-                            ToolTip.Tip="{Binding Texts.GUIKeybindsButtonTooltip}"
-                            Command="{Binding ShowKeybindsCommand}" />
+                        <Button Margin="8 2 0 2"
+                                Padding="8 2"
+                                Content="{Binding Texts.GUIReportConflicts}"
+                                ToolTip.Tip="{Binding Texts.GUIReportConflicts}"
+                                Command="{Binding ReportConflictsCommand}" />
 
-                    <!-- Anything AIM cannot do to a mod - editing a file by hand, dropping one in,
-                         checking what actually landed - starts with opening this folder, and until
-                         now that meant right-clicking some other mod to get there. -->
-                    <Button Grid.Column="5"
-                            Margin="8 0 0 0"
-                            Padding="8 2"
-                            Content="{Binding Texts.GUIOpenModsFolderButton}"
-                            ToolTip.Tip="{Binding Texts.GUIOpenModsFolderButtonTooltip}"
-                            Command="{Binding OpenModsFolderCommand}" />
+                        <!-- Keybinds and update checking were reachable only from the gear menu,
+                             which is where settings live rather than where work happens. Both are
+                             things a user does while looking at the list, so they belong beside it. -->
+                        <Button Margin="8 2 0 2"
+                                Padding="8 2"
+                                Content="{Binding Texts.GUIKeybindsButton}"
+                                ToolTip.Tip="{Binding Texts.GUIKeybindsButtonTooltip}"
+                                Command="{Binding ShowKeybindsCommand}" />
 
-                    <SplitButton Grid.Column="6"
-                                 Margin="8 0 0 0"
-                                 Padding="8 2"
-                                 Content="{Binding Texts.GUICheckUpdatesButton}"
-                                 ToolTip.Tip="{Binding Texts.GUICheckUpdatesButtonTooltip}"
-                                 IsEnabled="{Binding !IsInstalling}"
-                                 Command="{Binding CheckSelectedModsForUpdatesCommand}">
-                        <SplitButton.Flyout>
-                            <MenuFlyout>
-                                <MenuItem Header="{Binding Texts.GUICheckSelectedForUpdates}"
-                                          Command="{Binding CheckSelectedModsForUpdatesCommand}" />
-                                <MenuItem Header="{Binding Texts.GUICheckAllForUpdates}"
-                                          Command="{Binding CheckAllModsForUpdatesCommand}" />
-                                <Separator />
-                                <MenuItem Header="{Binding Texts.GUIUpdateAllNow}"
-                                          ToolTip.Tip="{Binding Texts.GUIUpdateAllNowTooltip}"
-                                          IsEnabled="{Binding HasPendingUpdates}"
-                                          Command="{Binding UpdateAllPendingCommand}" />
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
+                        <!-- Anything AIM cannot do to a mod - editing a file by hand, dropping one
+                             in, checking what actually landed - starts with opening this folder,
+                             and until now that meant right-clicking some other mod to get there. -->
+                        <Button Margin="8 2 0 2"
+                                Padding="8 2"
+                                Content="{Binding Texts.GUIOpenModsFolderButton}"
+                                ToolTip.Tip="{Binding Texts.GUIOpenModsFolderButtonTooltip}"
+                                Command="{Binding OpenModsFolderCommand}" />
 
-                    <!-- 150 mods is a long way to drag a scrollbar. These jump the list; they do
-                         not select or reorder anything. -->
-                    <Button Grid.Column="7"
-                            Margin="8 0 0 0"
-                            Padding="8 2"
-                            Content="↑"
-                            Click="ScrollModsToTopClick"
-                            ToolTip.Tip="{Binding Texts.GUIScrollToTop}" />
-                    <Button Grid.Column="8"
-                            Margin="4 0 0 0"
-                            Padding="8 2"
-                            Content="↓"
-                            Click="ScrollModsToBottomClick"
-                            ToolTip.Tip="{Binding Texts.GUIScrollToBottom}" />
+                        <SplitButton Margin="8 2 0 2"
+                                     Padding="8 2"
+                                     Content="{Binding Texts.GUICheckUpdatesButton}"
+                                     ToolTip.Tip="{Binding Texts.GUICheckUpdatesButtonTooltip}"
+                                     IsEnabled="{Binding !IsInstalling}"
+                                     Command="{Binding CheckSelectedModsForUpdatesCommand}">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="{Binding Texts.GUICheckSelectedForUpdates}"
+                                              Command="{Binding CheckSelectedModsForUpdatesCommand}" />
+                                    <MenuItem Header="{Binding Texts.GUICheckAllForUpdates}"
+                                              Command="{Binding CheckAllModsForUpdatesCommand}" />
+                                    <Separator />
+                                    <MenuItem Header="{Binding Texts.GUIUpdateAllNow}"
+                                              ToolTip.Tip="{Binding Texts.GUIUpdateAllNowTooltip}"
+                                              IsEnabled="{Binding HasPendingUpdates}"
+                                              Command="{Binding UpdateAllPendingCommand}" />
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+
+                        <!-- 150 mods is a long way to drag a scrollbar. These jump the list; they
+                             do not select or reorder anything. -->
+                        <Button Margin="8 2 0 2"
+                                Padding="8 2"
+                                Content="↑"
+                                Click="ScrollModsToTopClick"
+                                ToolTip.Tip="{Binding Texts.GUIScrollToTop}" />
+                        <Button Margin="4 2 0 2"
+                                Padding="8 2"
+                                Content="↓"
+                                Click="ScrollModsToBottomClick"
+                                ToolTip.Tip="{Binding Texts.GUIScrollToBottom}" />
+                    </WrapPanel>
                 </Grid>
             </StackPanel>
 
@@ -486,7 +522,12 @@
                                                               IsEnabled="{Binding $parent[ItemsRepeater].DataContext.CanChangeModSelection}"
                                                               DataContext="{Binding}" />
                                     <!-- Row-trailing badges. They share column 3, so they sit in a
-                                         stack rather than on top of each other. -->
+                                         stack rather than on top of each other.
+
+                                         Their explanations are hover cards rather than tooltips -
+                                         see the HoverCard class for why a tooltip flickers on these
+                                         rows once anything in the window has keyboard focus. Tag
+                                         carries the text the card shows. -->
                                     <StackPanel Grid.Column="3"
                                                 Orientation="Horizontal"
                                                 VerticalAlignment="Center"
@@ -495,17 +536,21 @@
                                         <TextBlock Text="&#x1F512;"
                                                    IsVisible="{Binding IsFrozen}"
                                                    VerticalAlignment="Center"
-                                                   ToolTip.Tip="{Binding Texts.GUIModFrozenTooltip}" />
+                                                   Tag="{Binding Texts.GUIModFrozenTooltip}"
+                                                   PointerEntered="OnBadgePointerEntered"
+                                                   PointerExited="OnBadgePointerExited" />
                                         <!-- AIM has changed a file inside this mod. Deliberately
                                              loud: the whole point is that nobody discovers it by
-                                             accident weeks later. The tooltip lists every edit and
+                                             accident weeks later. The card lists every edit and
                                              says where the untouched copy is. -->
                                         <Border IsVisible="{Binding WasEditedByAim}"
                                                 Background="#b26a00"
                                                 CornerRadius="4"
                                                 Padding="5 1"
                                                 VerticalAlignment="Center"
-                                                ToolTip.Tip="{Binding EditedTooltip}">
+                                                Tag="{Binding EditedTooltip}"
+                                                PointerEntered="OnBadgePointerEntered"
+                                                PointerExited="OnBadgePointerExited">
                                             <TextBlock Text="{Binding Texts.GUIModEditedBadge}"
                                                        Foreground="White"
                                                        VerticalAlignment="Center" />
@@ -518,7 +563,9 @@
                                                 CornerRadius="4"
                                                 Padding="5 1"
                                                 VerticalAlignment="Center"
-                                                ToolTip.Tip="{Binding KnownCrasherTooltip}">
+                                                Tag="{Binding KnownCrasherTooltip}"
+                                                PointerEntered="OnBadgePointerEntered"
+                                                PointerExited="OnBadgePointerExited">
                                             <TextBlock Text="{Binding KnownCrasherBadge}"
                                                        Foreground="White"
                                                        VerticalAlignment="Center" />
@@ -529,7 +576,9 @@
                                                 Padding="5 1"
                                                 VerticalAlignment="Center"
                                                 Content="{Binding Texts.GUIVersionsBadge}"
-                                                ToolTip.Tip="{Binding Texts.GUIVersionsTooltip}">
+                                                Tag="{Binding Texts.GUIVersionsTooltip}"
+                                                PointerEntered="OnBadgePointerEntered"
+                                                PointerExited="OnBadgePointerExited">
                                             <Button.Flyout>
                                                 <!-- Plain buttons rather than a MenuFlyout with an
                                                      ItemContainerTheme: the theme form needs a
@@ -570,7 +619,9 @@
                                                 CornerRadius="4"
                                                 VerticalAlignment="Center"
                                                 Content="{Binding Texts.GUIUpdateMod}"
-                                                ToolTip.Tip="{Binding UpdateTooltip}" />
+                                                Tag="{Binding UpdateTooltip}"
+                                                PointerEntered="OnBadgePointerEntered"
+                                                PointerExited="OnBadgePointerExited" />
                                     </StackPanel>
                                     <!-- The active line makes the exact insertion point obvious while dragging. -->
                                     <Border x:Name="DropBeforeIndicator"

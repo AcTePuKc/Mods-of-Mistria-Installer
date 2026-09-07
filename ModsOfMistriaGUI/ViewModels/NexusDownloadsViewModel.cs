@@ -58,6 +58,17 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     /// <summary>Raised after a download installs, so the mod list can pick the new folder up.</summary>
     public event EventHandler? ModsChanged;
 
+    /// <summary>
+    /// What is currently installed, so a download of a mod the user already has can be recognised
+    /// as the same mod rather than filed beside it.
+    ///
+    /// Supplied by the mod list, which already has all of this in memory. Working it out here would
+    /// mean opening every archive in the mods folder mid-install to read one manifest each, which
+    /// on a large mod folder stalls the install for minutes before the user is asked anything.
+    /// Null - nobody has supplied one - simply means the check is skipped.
+    /// </summary>
+    public Func<IReadOnlyList<InstalledModIdentity>>? InstalledMods { get; set; }
+
     public NexusDownloadsViewModel(Settings settings, NexusSettings? nexusSettings = null)
         : this(settings, nexusSettings ?? new NexusSettings(), null)
     {
@@ -333,7 +344,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             _settings.ModsLocation,
             progress,
             folders => ConfirmOverwriteAsync(folders, download.Token),
-            download.Token));
+            download.Token,
+            installedMods: InstalledMods));
 
         download.Title = result.FileName;
 
@@ -541,7 +553,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             confirmOverwrite
                 ? folders => ConfirmOverwriteAsync(folders, download.Token)
                 : _ => Task.FromResult(true),
-            download.Token));
+            download.Token,
+            installedMods: InstalledMods));
 
         download.Title = result.FileName;
 
@@ -779,8 +792,21 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         {
             try
             {
-                completion.TrySetResult(
-                    await MessageBoxManager.GetMessageBoxStandard(title, message, buttons).ShowAsync());
+                var box = MessageBoxManager.GetMessageBoxStandard(title, message, buttons);
+
+                // Shown as a dialog of the main window rather than as a loose top-level.
+                //
+                // ShowAsync opens an unowned window, and a download is exactly when AIM is not the
+                // application the user is looking at - they started it and alt-tabbed away. The
+                // question then opens behind whatever is in front, and comes up as an empty
+                // transparent frame with a title bar and no buttons in it: nothing to read, nothing
+                // to click, and a download that sits at "Unpacking" until AIM is killed.
+                //
+                // An owner fixes both halves: the dialog is laid out and composited against a real
+                // parent, and it comes to the front with it.
+                completion.TrySetResult(App.TopLevel is Window owner
+                    ? await box.ShowWindowDialogAsync(owner)
+                    : await box.ShowWindowAsync());
             }
             catch (Exception e)
             {

@@ -175,6 +175,12 @@ public class MockMod : IMod
 
     public List<string> GetRequiredHooks() => RequiredHooks;
 
-    public string? GetUpdateUrl()   => null;
-    public string? GetDownloadUrl() => null;
+    // What a manifest's update_url / download_url would say. Null by default, which is what a mod
+    // with no Nexus page of its own looks like.
+    public string? UpdateUrl { get; init; }
+
+    public string? DownloadUrl { get; init; }
+
+    public string? GetUpdateUrl()   => UpdateUrl;
+    public string? GetDownloadUrl() => DownloadUrl;
 }

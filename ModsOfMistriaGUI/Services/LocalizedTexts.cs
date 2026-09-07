@@ -405,6 +405,8 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIDropFolderNothingFound => T("GUIDropFolderNothingFound");
     public string GUIDropFolderImported => T("GUIDropFolderImported");
     public string GUIDropFolderImportedDetail => T("GUIDropFolderImportedDetail");
+    public string GUIDropFolderAlreadyInstalled => T("GUIDropFolderAlreadyInstalled");
+    public string GUIDropFolderSkippedDetail => T("GUIDropFolderSkippedDetail");
     public string GUIDropFolderNoModsFolder => T("GUIDropFolderNoModsFolder");
     public string GUIDropFolderCannotOpen => T("GUIDropFolderCannotOpen");
     public string GUIOpenModsFolderButton => T("GUIOpenModsFolderButton");

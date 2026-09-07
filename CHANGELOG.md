@@ -2,6 +2,144 @@
 
 ## Unreleased
 
+### A failed update no longer takes the version you had with it
+
+A mod installed as a `.zip` is replaced by an unpacked folder when it updates, so the old archive is
+moved out of the way before extraction starts. If extraction then failed — a corrupt download, an
+archive with an unsafe path in it, a full disk — the archive stayed moved. The install reported
+failure, correctly, and you were left with neither the new version nor the one you had.
+
+- The old archive is put back. Whether it went into the backup store or was parked beside the mods
+  folder, a failed update returns it to its own name, and the shape is preserved: a zip goes back as
+  a zip, a folder as a folder.
+- The same now holds for a bundle: if the second mod in a download fails, the first one's previous
+  copy is restored too.
+- When the restore itself cannot be done, the error says so and names the backup that was kept, so
+  there is something to recover by hand. Reporting a clean rollback that did not happen is worse
+  than reporting the failure.
+- Kept-aside copies are numbered — `.aim-old`, `.aim-old-1` — instead of overwriting each other.
+  Each one is the only copy of a version somebody once had installed.
+
+### One mod, installed once
+
+AIM would let the same mod be installed twice. Nexus names a download after the file — id, version,
+upload stamp — so a mod re-downloaded rather than updated landed in a folder named after that
+release and sat beside the copy already there. Two copies of one mod fight over every file they
+share, the conflict report blames the mod for arguing with itself, and switching one off does not
+obviously fix it.
+
+- Installs are now checked against what is already there by manifest identity rather than by folder
+  name, which is exactly the thing that does not match. A download of a mod you already have asks
+  whether to replace the copy you have, and replacing it means replacing *that* copy rather than
+  unpacking beside it.
+- A hand-downloaded mod in a watched folder is left where it is when you already have it, and the
+  sweep says so, naming both the download and the installed copy. It is not deleted: it is yours.
+- A different mod that happens to share a folder name is still brought in under a name of its own.
+
+### Importing from a watched folder is all-or-nothing again
+
+Bringing a mod in from a downloads folder on another drive cannot be a move, so it is a copy — and
+the copy went straight to the mod's real name in the mods folder. A list reload or a watcher sweep
+landing mid-copy found a mod with most of its files missing and no error attached to it.
+
+- The copy is assembled under a hidden staging name that the mod scan skips, and is renamed into
+  place only once every file is there. There is no longer a moment where a half-written mod is
+  visible under a name AIM would install from.
+- A copy that fails leaves nothing behind, and the download it came from is untouched.
+- Staging folders left by an interrupted run are cleared away on the next sweep; one that is still
+  being written to is left alone.
+
+### An issue you have settled stays settled after an update
+
+Marking a conflict as fine, or patched, or genuinely incompatible, and then updating one of the mods
+involved, brought the whole issue back as though nothing had been decided. On a large mod list that
+is most of the report re-opening itself every time anything is updated — and a report that keeps
+asking questions you have already answered is a report that stops being read.
+
+A dismissal used to be keyed to the mods **and their versions**, on the reasoning that new code
+deserves a fresh look. But every issue AIM reports is re-detected from what is on disk each time the
+report runs, so the version was never what decided whether the problem was still there.
+
+- Issue identity no longer carries versions. A judgement about a pair of mods holds until something
+  about the issue itself changes.
+- An update that genuinely fixes the problem removes the issue rather than silencing it: the
+  conflict is no longer found, so nothing is reported and nothing is left ticked off in the dismissed
+  list either.
+- An update that introduces a *different* problem — another mod drawn in, another file contended,
+  another warning — has a different identity and is raised as the new issue it is.
+- Judgements recorded under the old version-bearing keys are carried over, so nothing you have
+  already decided comes back. Where the same issue had been judged twice, once before an update and
+  once after, the two are merged and the more recent judgement wins.
+
+### A mod can be matched to its own newer file again
+
+"That mod page has no file that is a newer version of this one" was being said about mods whose
+update was sitting right there on the page. AIM matches an installed mod to its own releases by
+stripping the version, id and upload stamp off the file name and comparing what is left — and it
+only stripped those off the *end*.
+
+- A version welded onto the name (`AlteredTown_AIO2.1.3`) or sitting in the middle of it
+  (`ChooseGiftFromChests 1.3.3 MOMI`) survived, so the name AIM compared changed with every release
+  and never matched anything. Dotted version numbers are now removed wherever they appear. Bare
+  numbers are deliberately left alone: "Portal 2 Decor" is a title, and dropping loose numbers would
+  start collapsing genuinely different mods on one page into each other.
+- The random token Nexus appends to a file name is base62, so about one in five contains no digit —
+  and recognising the token by its shape required one. A token like `NfwKtlHDd` stopped the whole
+  scan on its first step, leaving the mod id, the version and the upload stamp in the name AIM
+  compared. The token is now recognised by where it sits, immediately after the upload stamp, which
+  also means an ordinary nine-letter word in a title cannot be mistaken for one.
+
+### A check that could not identify a mod no longer records a guess
+
+A mod associated by pasting its page URL has no file id, so AIM says it cannot tell whether the page
+version is newer. It was then writing the page's *newest* file id into its records as though that
+were the version installed. The next check compared that id against itself and reported "up to
+date" — permanently, silently, on a mod that was several releases behind. Provenance is now adopted
+only when the check actually concluded the installed copy is the current one.
+
+### Questions during a download can be seen and answered
+
+"You already have this mod — replace it?" was opening as an unowned window. A download is exactly
+when AIM is not the application being looked at, so the question appeared behind everything else and
+rendered as an empty transparent frame with a title bar and no buttons in it. The download then sat
+at "Unpacking" for ever. These dialogs now belong to the main window, so they are drawn properly and
+come to the front with it.
+
+### Update checks: one answer per mod
+
+A batched update check filed its results under each mod's manifest id, and an id is not unique on
+disk — the same mod installed twice, a folder beside the `.zip` it came from, or two copies edited
+separately all present the same one. The second answer overwrote the first, so one row lost its
+update badge and another could show a status belonging to its twin. Results now come back one per
+row, in order, and a row that cannot be checked — a stopped sweep, a rate limit, an error — gets a
+result saying so rather than none at all.
+
+### Badges stop flickering
+
+Hovering a mod's warning triangle or info icon made it flash, but only once something in the window
+had keyboard focus — clicking the search box was enough. A tooltip is a separate window; opening one
+cost the main window its activation, which Avalonia reported to the row as the pointer leaving, so
+the tooltip closed, the pointer was still on the badge, and round it went. Moving the description
+behind an icon did not help because the replacement was still a popup. Badges now explain themselves
+with a card drawn inside the window, so there is no second window and no loop.
+
+### Small windows keep all their buttons
+
+At the default launch size, and worse when resized down, toolbars ran off the right-hand edge and
+took whole features with them — the crash check, the conflict report, the keybind manager. Nothing
+is hidden and nothing is dropped; rows wrap onto a second line instead.
+
+- The mod list's action row, view options and bottom toolbar all wrap.
+- The keybind manager scrolls its explanatory text with the list rather than above it, which is what
+  used to squeeze the list to nothing when there were no keybinds to show. Its rows wrap too.
+- The conflict report's patch-link box takes the width available instead of a fixed 420, and its
+  decision buttons wrap.
+- The binding editor is resizable and scrolls, so Save and Cancel cannot end up below the screen.
+- Source lines and repair diffs scroll sideways rather than being cut off. They are not reflowed:
+  a diff that no longer lines up with what will be written to disk is not a diff worth showing.
+- Minimum window sizes are lower across the board, and the main window's banner gives height back on
+  a short window instead of taking a third of it.
+
 ### The issues report now covers everything a warning triangle can mean
 
 A row could show a warning triangle while "Check issues" said nothing was outstanding. Three sources
@@ -14,8 +152,7 @@ mattered.
   showed them regardless. They get their own wording (these mods are combined, and only a duplicate
   entry is decided by load order) and their own dismissal, so ticking off "I know these two both add
   shop items" does not also silence "one of these is replacing the other's sprite" for the same pair.
-- **A mod's own validation warnings** are now reported per mod, keyed to the mod's version so an
-  author fixing it brings the note back rather than inheriting your tick.
+- **A mod's own validation warnings** are now reported per mod.
 - **Two copies of the same mod installed** is now reported, listing both paths.
 - All three are dismissible, and a tick reaches the row: the triangle goes out. That direction
   matters as much as the other — a report saying nothing is outstanding while the row still warns is

@@ -53,6 +53,14 @@ public record NexusUpdateStatus(
 }
 
 /// <summary>
+/// One row's answer from a batched update check: the mod that was asked about, and what came back.
+///
+/// The mod travels with the status rather than being looked up again by id, because an id can name
+/// more than one thing on disk and the caller needs the answer for <em>this</em> install.
+/// </summary>
+public record NexusUpdateCheck(IMod Mod, NexusUpdateStatus Status);
+
+/// <summary>
 /// Checks installed mods against their Nexus pages, and updates them when the account is allowed to.
 ///
 /// Checking works for every account: file listings are ordinary API calls. Downloading is not -
@@ -177,10 +185,17 @@ public class NexusUpdateService
     /// <summary>
     /// Completes provenance for a manually associated mod when the current Nexus file is already
     /// the installed version. This must not replace a recorded file or download anything.
+    ///
+    /// Only when the check actually concluded the installed copy is current. "AIM could not tell
+    /// which file this is" is not that conclusion, and adopting the newest file id there was the
+    /// worst possible reading of it: the mod is recorded as being on a release it is not on, the
+    /// next check compares that id against itself, and a mod that genuinely is several versions
+    /// behind reports "up to date" from then on - permanently, and silently. The badge that used to
+    /// say "could not be checked" at least said something true.
     /// </summary>
     public void RecordCurrentFileIdentity(IMod mod, NexusUpdateStatus status)
     {
-        if (status.HasUpdate || status.LatestFileId is not > 0 ||
+        if (status.State != NexusUpdateState.UpToDate || status.LatestFileId is not > 0 ||
             string.IsNullOrWhiteSpace(status.LatestFileName)) return;
 
         var record = Resolve(mod);
@@ -200,20 +215,32 @@ public class NexusUpdateService
     /// <summary>
     /// Checks several mods, a few at a time. Nexus rate-limits by the hour, so a rate-limit reply
     /// stops the whole sweep instead of burning the remaining allowance on requests that will fail.
+    ///
+    /// One result per mod asked about, in the order they were asked about, so
+    /// <c>result[i]</c> answers <c>mods[i]</c>.
+    ///
+    /// That ordering is the point, not a convenience. Results used to be filed in a dictionary
+    /// keyed on the mod's manifest id, and a manifest id is not unique on disk: the same mod
+    /// installed twice, a folder and a leftover .zip of the same release, or two folders a user
+    /// copied and edited all present the same id. The second answer overwrote the first, so one row
+    /// silently lost its update badge and another could show a status belonging to a different
+    /// install. A position cannot be shared, so nothing can be overwritten.
     /// </summary>
-    public async Task<Dictionary<string, NexusUpdateStatus>> CheckManyAsync(
+    public async Task<IReadOnlyList<NexusUpdateCheck>> CheckManyAsync(
         IReadOnlyList<IMod> mods,
         IProgress<(int Done, int Total)>? progress = null,
         CancellationToken ct = default)
     {
-        var results = new Dictionary<string, NexusUpdateStatus>(StringComparer.OrdinalIgnoreCase);
-        if (mods.Count == 0) return results;
+        if (mods.Count == 0) return [];
+
+        var results = new NexusUpdateCheck?[mods.Count];
+        var counter = new object();
 
         using var stopEverything = CancellationTokenSource.CreateLinkedTokenSource(ct);
         using var gate = new SemaphoreSlim(MaxParallelChecks);
         var done = 0;
 
-        var checks = mods.Select(async mod =>
+        var checks = mods.Select(async (mod, index) =>
         {
             try
             {
@@ -229,11 +256,7 @@ public class NexusUpdateService
                     if (status.Message?.Contains("rate limit", StringComparison.OrdinalIgnoreCase) == true)
                         await stopEverything.CancelAsync();
 
-                    lock (results)
-                    {
-                        results[mod.GetId()] = status;
-                        progress?.Report((++done, mods.Count));
-                    }
+                    results[index] = new NexusUpdateCheck(mod, status);
                 }
                 finally
                 {
@@ -242,16 +265,36 @@ public class NexusUpdateService
             }
             catch (OperationCanceledException)
             {
-                lock (results)
-                {
-                    results[mod.GetId()] = new NexusUpdateStatus(NexusUpdateState.Unavailable, Resolve(mod),
-                        Message: "The update check stopped early.");
-                }
+                results[index] = new NexusUpdateCheck(mod, new NexusUpdateStatus(
+                    NexusUpdateState.Unavailable, Resolve(mod),
+                    Message: "The update check stopped early."));
             }
+            catch (Exception e)
+            {
+                // One mod that cannot be checked is one row that says so, not a whole sweep thrown
+                // away. Letting this fault the task would take down every answer already paid for -
+                // and the caller reads the results by position, so a missing one would shift every
+                // row after it onto the wrong mod.
+                Logger.Log($"Could not check {mod.GetName()} for updates: {e.Message}");
+                results[index] = new NexusUpdateCheck(mod, new NexusUpdateStatus(
+                    NexusUpdateState.Unavailable, Message: e.Message));
+            }
+
+            // Reported for stopped and failed rows too, so a sweep that goes wrong still walks the
+            // progress line to the end instead of leaving it stuck part way.
+            lock (counter) progress?.Report((++done, mods.Count));
         });
 
         await Task.WhenAll(checks);
-        return results;
+
+        // Nothing above leaves a hole now that every failure becomes a result, and the caller lines
+        // these up against its own rows by position, so a hole would silently shift every row after
+        // it. Filling one is cheap insurance against that becoming possible again.
+        return results
+            .Select((check, index) => check ?? new NexusUpdateCheck(mods[index],
+                new NexusUpdateStatus(NexusUpdateState.Unavailable,
+                    Message: "The update check did not finish for this mod.")))
+            .ToList();
     }
 
     /// <summary>
@@ -401,7 +444,28 @@ public class NexusUpdateService
         // Words are dropped from the end while they look like metadata rather than part of a title,
         // which keeps a name that genuinely ends in a number ("Portal 2 Decor") intact.
         var words = text.Split([' ', '_', '-'], StringSplitOptions.RemoveEmptyEntries).ToList();
-        while (words.Count > 1 && IsMetadata(words[^1])) words.RemoveAt(words.Count - 1);
+        while (words.Count > 1 && (IsMetadata(words[^1]) || IsTokenAfterUploadStamp(words)))
+            words.RemoveAt(words.Count - 1);
+
+        // A version number does not only appear at the end. Authors put one in the middle of a name
+        // ("ChooseGiftFromChests 1.3.3 MOMI") and weld one onto a word ("AlteredTown_AIO2.1.3"), and
+        // both of those move with every release - so the lineage moved with every release too, and
+        // the mod could never be matched to its own newer file. AIM then reported "the file this mod
+        // came from is no longer on its page", for ever, on a mod with an update sitting right there.
+        //
+        // Only *dotted* versions, and only where a letter precedes the digits when welded on. A bare
+        // number is left alone on purpose: "Portal 2 Decor" is a title, and dropping loose numbers
+        // would start collapsing genuinely different mods on one page into one another - which is
+        // the failure this whole lineage check exists to prevent.
+        var trimmed = words
+            .Where(word => !IsDottedVersion(word))
+            .Select(StripWeldedVersion)
+            .Where(word => word.Length > 0)
+            .ToList();
+
+        // Unless that leaves nothing at all. A file called "1.3.3.zip" tells us nothing either way,
+        // and an empty lineage means "no opinion", not "matches nothing".
+        if (trimmed.Count > 0) words = trimmed;
 
         var joined = string.Join(" ", words).ToLowerInvariant();
 
@@ -409,6 +473,41 @@ public class NexusUpdateService
         // so neither survives into the comparison.
         return new string(joined.Where(char.IsLetterOrDigit).ToArray());
     }
+
+    /// <summary>
+    /// The random nine-character token Nexus appends, recognised by where it sits rather than by
+    /// its shape.
+    ///
+    /// <see cref="IsMetadata"/> identifies these on shape alone, and requires a digit to avoid
+    /// mistaking an ordinary nine-letter word for one. But the alphabet is base62, so roughly one
+    /// token in five has no digit in it - "NfwKtlHDd" is a real one - and such a token stopped the
+    /// scan dead on its first step, leaving the mod id, the version and the upload stamp welded
+    /// into the lineage. The lineage then changed with every release and the mod could never be
+    /// matched to its own newer file.
+    ///
+    /// Nexus always puts the token immediately after the upload stamp, so requiring the stamp in
+    /// front of it identifies the token without having to guess from its letters - and without
+    /// putting a nine-letter title word at risk, since no title ends "...06Z Something".
+    /// </summary>
+    private static bool IsTokenAfterUploadStamp(List<string> words) =>
+        words.Count > 1 &&
+        Regex.IsMatch(words[^1], @"^[A-Za-z0-9]{9}$") &&
+        words[^1].Any(char.IsUpper) &&
+        words[^1].Any(char.IsLower) &&
+        Regex.IsMatch(words[^2], @"^\d+[Tt]?\d*[Zz]$");
+
+    /// <summary>
+    /// A version number on its own: "1.3.3", "V1.0.10". Dotted, so a bare "2" is not one - that is
+    /// far more likely to be part of a title than a release number.
+    /// </summary>
+    private static bool IsDottedVersion(string word) => Regex.IsMatch(word, @"^[vV]?\d+(\.\d+)+$");
+
+    /// <summary>
+    /// A version welded onto the end of a word: "AIO2.1.3" is "AIO". A letter has to come before the
+    /// digits, and there has to be a dot in them, so "AIO2" and "Portal" are left exactly as they are.
+    /// </summary>
+    private static string StripWeldedVersion(string word) =>
+        Regex.Replace(word, @"(?<=\p{L})\d+(\.\d+)+$", "");
 
     /// <summary>Whether a trailing word is version/id/stamp noise rather than part of the name.</summary>
     private static bool IsMetadata(string word)

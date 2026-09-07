@@ -54,6 +54,15 @@ public partial class ModlistPageViewModel : PageViewBase
     // Notices mods copied into the folder while AIM is open.
     private ModsFolderWatcher? _modsFolderWatcher;
 
+    /// <summary>
+    /// Identity and location of every mod currently listed, rebuilt whenever the list is.
+    ///
+    /// Held as a finished, immutable list rather than read off <see cref="Mods"/> on demand: the
+    /// Nexus download path asks for it from a background thread, and walking an observable
+    /// collection the UI thread is rebuilding is a race.
+    /// </summary>
+    private volatile IReadOnlyList<InstalledModIdentity> _installedIdentities = [];
+
     // Nexus update checking, bound to the current mods folder.
     private NexusUpdateService? _updateService;
     private ModBackupStore? _backupStore;
@@ -67,7 +76,14 @@ public partial class ModlistPageViewModel : PageViewBase
         // A mod that arrives from Nexus is a new folder in the mods directory, so the list has to
         // be rebuilt before it can be selected and installed.
         if (Nexus is not null)
+        {
             Nexus.ModsChanged += (_, _) => Dispatcher.UIThread.Post(() => UpdateModlist(true));
+
+            // So a download can tell it is a mod the user already has. The list is already loaded
+            // here; making the download path work it out for itself would mean opening every
+            // archive in the mods folder in the middle of an install.
+            Nexus.InstalledMods = () => _installedIdentities;
+        }
 
         SetLanguageCommand = new RelayCommand<string?>(SetLanguage);
         Localization.LanguageChanged += OnLocalizationChanged;
@@ -450,16 +466,19 @@ public partial class ModlistPageViewModel : PageViewBase
 
         _ = Task.Run(() =>
         {
-            List<ImportedMod> imported;
+            DropFolderImport sweep;
             try
             {
-                imported = ModDropFolders.Import(folders, modsLocation);
+                sweep = ModDropFolders.Import(folders, modsLocation);
             }
             catch (Exception exception)
             {
                 Logger.Log($"Importing from the watched folders failed: {exception.Message}");
                 return;
             }
+
+            var imported = sweep.Imported;
+            var alreadyInstalled = sweep.AlreadyInstalled;
 
             Dispatcher.UIThread.Post(async () =>
             {
@@ -474,12 +493,28 @@ public partial class ModlistPageViewModel : PageViewBase
 
                 if (!announce) return;
 
+                // A download left alone because the user already has that mod is not "nothing
+                // found": saying nothing would leave them looking at a file in their downloads
+                // folder that AIM appears to have ignored. It gets its own heading too - listing it
+                // under "moved into your mods folder" would say the opposite of what happened.
+                var sections = new List<string>();
+
+                if (imported.Count > 0)
+                    sections.Add(string.Format(Texts.GUIDropFolderImportedDetail,
+                        string.Join("\r\n", imported.Select(mod => $"• {mod.Name}"))));
+
+                if (alreadyInstalled.Count > 0)
+                    sections.Add(string.Format(Texts.GUIDropFolderSkippedDetail,
+                        string.Join("\r\n", alreadyInstalled.Select(mod => string.Format(
+                            Texts.GUIDropFolderAlreadyInstalled,
+                            Path.GetFileName(mod.From.TrimEnd('/', '\\')),
+                            Path.GetFileName(mod.InstalledAs.TrimEnd('/', '\\')))))));
+
                 await MessageBoxManager.GetMessageBoxStandard(
                     Texts.GUIDropFolderTitle,
-                    imported.Count == 0
+                    sections.Count == 0
                         ? Texts.GUIDropFolderNothingFound
-                        : string.Format(Texts.GUIDropFolderImportedDetail,
-                            string.Join("\r\n", imported.Select(mod => $"• {mod.Name}"))),
+                        : string.Join("\r\n\r\n", sections),
                     ButtonEnum.Ok).ShowAsync();
             });
         });
@@ -890,6 +925,44 @@ public partial class ModlistPageViewModel : PageViewBase
         return new ModlistLoadResult(mistriaLocation, modsLocation, profileManager, orderedMods, enabledIds, enabledSources, duplicateCopies);
     }
 
+    /// <summary>
+    /// What a mod is installed *as* - the folder or archive sitting in the mods folder, which is not
+    /// always the folder its manifest is in.
+    ///
+    /// A hand-extracted download frequently nests: <c>&lt;mods&gt;/Some Mod 78-2-1/Some Mod/manifest.toml</c>.
+    /// The mod's own source path is that inner folder, and an update aimed at it is refused outright
+    /// - the installer will only replace something directly inside the mods folder - so answering
+    /// "yes, replace the copy I have" would have unpacked the new version beside the old one and
+    /// produced the duplicate the question was asked to prevent.
+    /// </summary>
+    private static string TopLevelEntryIn(string modsLocation, string sourcePath)
+    {
+        if (string.IsNullOrWhiteSpace(modsLocation) || string.IsNullOrWhiteSpace(sourcePath))
+            return sourcePath;
+
+        try
+        {
+            var root = Trim(Path.GetFullPath(modsLocation));
+            var current = Path.GetFullPath(sourcePath.TrimEnd('/', '\\'));
+
+            while (Path.GetDirectoryName(current) is { Length: > 0 } parent)
+            {
+                if (string.Equals(Trim(parent), root, StringComparison.OrdinalIgnoreCase)) return current;
+                current = parent;
+            }
+
+            // Not under the mods folder at all. Nothing sensible to map it to, so it stays as it is.
+            return sourcePath;
+        }
+        catch
+        {
+            return sourcePath;
+        }
+
+        static string Trim(string path) =>
+            path.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+    }
+
     private void ApplyModlist(ModlistLoadResult result)
     {
         {
@@ -915,6 +988,15 @@ public partial class ModlistPageViewModel : PageViewBase
             }
 
             RefreshFilteredMods();
+
+            // Taken here, off the mods that were just loaded, so the Nexus download path never has
+            // to go and read the mods folder itself to find out what is already installed.
+            _installedIdentities = Mods
+                .Select(model => new InstalledModIdentity(
+                    model.Mod.GetId(), model.Mod.GetName(),
+                    TopLevelEntryIn(result.ModsLocation, model.Mod.GetSourcePath())))
+                .Where(identity => identity.Id.Length > 0 && identity.SourcePath.Length > 0)
+                .ToList();
 
             RefreshProfileList();
             _isDirty = false;
@@ -1265,11 +1347,11 @@ public partial class ModlistPageViewModel : PageViewBase
     }
 
     /// <summary>
-    /// The mods a detector named, paired with the versions currently installed, in a fixed order.
+    /// The mods a detector named, in a fixed order, as the mods half of an issue key.
     ///
-    /// This is the half of an issue key that makes a dismissal expire: the same two mods at new
-    /// versions produce a different string, so "I checked this, it's fine" applies to the code the
-    /// user actually checked and not to whatever replaces it.
+    /// Resolved against the selection so that a detector naming a mod by a slightly different ID
+    /// still lands on the installed one. No versions - see <see cref="LoadOrderNote.StableKey"/>
+    /// for why a dismissal is not supposed to expire when a mod updates.
     /// </summary>
     private static string DescribeOwners(IEnumerable<string> modIds, IReadOnlyList<IMod> selected)
     {
@@ -1278,12 +1360,11 @@ public partial class ModlistPageViewModel : PageViewBase
             .Where(mod => ids.Any(id => id.Equals(mod.GetId(), StringComparison.OrdinalIgnoreCase)))
             .ToList();
 
-        // A detector can name a mod that is no longer in the selection. Falling back to the bare
-        // IDs keeps the key stable rather than collapsing it to an empty string that every such
-        // issue would then share.
-        return owners.Count > 0
-            ? LoadOrderNote.DescribeMods(owners)
-            : string.Join(",", ids.OrderBy(id => id, StringComparer.OrdinalIgnoreCase));
+        // A detector can name a mod that is no longer in the selection. Falling back to the IDs it
+        // gave keeps the key stable rather than collapsing it to an empty string that every such
+        // issue would then share - and both paths now produce the same shape, since identity is the
+        // mod IDs either way.
+        return LoadOrderNote.DescribeMods(owners.Count > 0 ? owners.Select(mod => mod.GetId()) : ids);
     }
 
     /// <summary>
@@ -1330,7 +1411,7 @@ public partial class ModlistPageViewModel : PageViewBase
                     LoadOrderNoteKind.CompatibilityWarning,
                     $"{mod.GetName()} v{version}\r\n{message}")
                 {
-                    IssueKey = $"validation|{id}@{version}|{message}",
+                    IssueKey = $"validation|{id}|{message}",
                     Participants = ParticipantsFor([id], selected)
                 });
             }
@@ -1349,7 +1430,7 @@ public partial class ModlistPageViewModel : PageViewBase
                 LoadOrderNoteKind.CompatibilityWarning,
                 $"{mod.GetName()} v{version}\r\n{string.Format(Texts.GUIModDuplicateCopies, paths)}")
             {
-                IssueKey = $"validation|{id}@{version}|{ModModel.DuplicateWarningKey}",
+                IssueKey = $"validation|{id}|{ModModel.DuplicateWarningKey}",
                 Participants = ParticipantsFor([id], selected)
             });
         }
@@ -1369,18 +1450,17 @@ public partial class ModlistPageViewModel : PageViewBase
         if (dismissed is null) return [];
 
         var id = mod.GetId();
-        var version = mod.GetVersion();
 
         var settled = mod.GetValidation().Warnings
             .Select(warning => warning.Message)
             .Where(message => !string.IsNullOrWhiteSpace(message))
             .Distinct(StringComparer.Ordinal)
             .Where(message => IsSettled(dismissed, LoadOrderNoteKind.CompatibilityWarning,
-                $"validation|{id}@{version}|{message}"))
+                $"validation|{id}|{message}"))
             .ToList();
 
         if (IsSettled(dismissed, LoadOrderNoteKind.CompatibilityWarning,
-                $"validation|{id}@{version}|{ModModel.DuplicateWarningKey}"))
+                $"validation|{id}|{ModModel.DuplicateWarningKey}"))
             settled.Add(ModModel.DuplicateWarningKey);
 
         return settled;
@@ -1461,21 +1541,22 @@ public partial class ModlistPageViewModel : PageViewBase
 
     /// <summary>
     /// Whether an issue has been marked solved, addressed by the same key the report uses.
-    /// <see cref="LoadOrderNote.StableKey"/> includes the mod versions, so an update to either mod
-    /// makes a new key and the warning returns for a fresh judgement.
+    /// <see cref="LoadOrderNote.StableKey"/> carries no mod versions, so an update does not resurrect
+    /// a question the user has already answered - and an update that actually fixed the problem
+    /// removes the issue by making it undetectable rather than by resetting anyone's judgement.
     /// </summary>
     private static bool IsSettled(DismissedIssueStore? dismissed, LoadOrderNoteKind kind, string issueKey) =>
         dismissed is not null && issueKey.Length > 0 && dismissed.IsDismissed($"{kind}|{issueKey}");
 
     private static bool IsSettled(
         DismissedIssueStore? dismissed, LoadOrderNoteKind kind, string prefix, IMod mod) =>
-        IsSettled(dismissed, kind, $"{prefix}|{mod.GetId()}@{mod.GetVersion()}");
+        IsSettled(dismissed, kind, $"{prefix}|{mod.GetId()}");
 
     /// <summary>
     /// Drops the shared-file conflicts whose issue the user has settled.
     ///
     /// The report does not raise one issue per file; it raises one per set of mods, however many
-    /// files they happen to share, and keys it on those mods and their versions. So the conflicts
+    /// files they happen to share, and keys it on those mods. So the conflicts
     /// are grouped the same way here before being matched against the store - matching file by file
     /// would leave a row warning about the very issue the user just ticked off.
     /// </summary>
@@ -1484,19 +1565,19 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (dismissed is null) return conflicts.ToList();
 
-        var versions = selected
-            .GroupBy(mod => mod.GetId(), StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.Last().GetVersion(), StringComparer.OrdinalIgnoreCase);
+        var installed = selected
+            .Select(mod => mod.GetId())
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         return conflicts.Where(conflict =>
         {
-            var ids = conflict.ModIds.Where(versions.ContainsKey).ToList();
+            var ids = conflict.ModIds.Where(installed.Contains).ToList();
             if (ids.Count < 2) return true;
 
-            var key = string.Join(",", ids
-                .Select(id => $"{id}@{versions[id]}")
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase));
+            // Built by the same helper the report writes with. Spelling the key out by hand here
+            // was how the two drifted apart: this side sorted on "id@version" and the writer on
+            // "id", which order two ids differently as soon as one is a prefix of the other.
+            var key = LoadOrderNote.DescribeMods(ids);
 
             // The two combining kinds are reported and dismissed under their own key - see
             // LoadOrderPlanner.DescribeFileConflicts. They are on the rows, so they have to be
@@ -1587,7 +1668,7 @@ public partial class ModlistPageViewModel : PageViewBase
                         LoadOrderNoteKind.CompatibilityWarning,
                         $"{mod.GetName()} v{mod.GetVersion()}\r\n{warning}")
                     {
-                        IssueKey = $"legacy-gml|{mod.GetId()}@{mod.GetVersion()}",
+                        IssueKey = $"legacy-gml|{mod.GetId()}",
                         Participants = ParticipantsFor([mod.GetId()], selected)
                     });
                 }
@@ -1602,7 +1683,7 @@ public partial class ModlistPageViewModel : PageViewBase
                         LoadOrderNoteKind.CompatibilityWarning,
                         $"{mod.GetName()} v{mod.GetVersion()}\r\n{detail}")
                     {
-                        IssueKey = $"legacy-cosmetic|{mod.GetId()}@{mod.GetVersion()}",
+                        IssueKey = $"legacy-cosmetic|{mod.GetId()}",
                         Participants = ParticipantsFor([mod.GetId()], selected)
                     });
                 }
@@ -3794,22 +3875,29 @@ public partial class ModlistPageViewModel : PageViewBase
             var progress = new Progress<(int Done, int Total)>(step =>
                 InstallStatus = string.Format(Texts.GUICheckingForUpdates, step.Done, step.Total));
 
+            // One answer per row, in the order the rows were handed over. Results used to come back
+            // keyed on the mod's manifest id, which two rows can share - the same mod installed
+            // twice, or a folder sitting beside a leftover .zip of it - and the second answer then
+            // overwrote the first, leaving one row with no status and the other possibly showing
+            // one that belonged to its twin.
             var statuses = await Task.Run(() =>
                 UpdateService.CheckManyAsync(checkable.Select(model => model.Mod).ToList(), progress));
 
-            foreach (var model in checkable)
-                if (statuses.TryGetValue(model.Mod.GetId(), out var status))
-                {
-                    // Same adoption the single-mod check does: a mod associated by page URL starts
-                    // with fileId=0, and while it stays that way every check answers "AIM cannot
-                    // tell" and parks the mod in the attention filter for good. Nexus has just
-                    // confirmed the installed version is current, so record which file that is.
-                    UpdateService.RecordCurrentFileIdentity(model.Mod, status);
-                    ApplyUpdateStatus(model, status);
-                }
+            for (var index = 0; index < checkable.Count; index++)
+            {
+                var model = checkable[index];
+                var status = statuses[index].Status;
+
+                // Same adoption the single-mod check does: a mod associated by page URL starts
+                // with fileId=0, and while it stays that way every check answers "AIM cannot
+                // tell" and parks the mod in the attention filter for good. Nexus has just
+                // confirmed the installed version is current, so record which file that is.
+                UpdateService.RecordCurrentFileIdentity(model.Mod, status);
+                ApplyUpdateStatus(model, status);
+            }
 
             var withUpdates = checkable.Count(model => model.CanUpdateFromNexus);
-            var unavailable = statuses.Values.Count(status => status.State == NexusUpdateState.Unavailable);
+            var unavailable = statuses.Count(check => check.Status.State == NexusUpdateState.Unavailable);
 
             InstallStatus = "";
             RefreshPendingUpdates();
@@ -3999,19 +4087,24 @@ public partial class ModlistPageViewModel : PageViewBase
     /// no longer wanted, which is not a decision to make inside a progress dialog.
     /// </summary>
     private async Task ReportUpdatesThatMayFixEditsAsync(
-        List<ModModel> examined, Dictionary<string, NexusUpdateStatus> statuses)
+        List<ModModel> examined, IReadOnlyList<NexusUpdateCheck> statuses)
     {
+        // By position, for the same reason the loop above is: two rows can share a manifest id, and
+        // looking one up by id would report the wrong mod's news or none at all. That only holds
+        // while these are the rows the statuses were asked about, so a caller that filtered one of
+        // the two gets nothing rather than everyone's news shifted by one.
+        if (examined.Count != statuses.Count) return;
+
         var news = examined
-            .Select(model => (Model: model,
-                Status: statuses.GetValueOrDefault(model.Mod.GetId())))
-            .Where(pair => pair.Status?.State == NexusUpdateState.UpdateMayFixEdit)
+            .Select((model, index) => (Model: model, Status: statuses[index].Status))
+            .Where(pair => pair.Status.State == NexusUpdateState.UpdateMayFixEdit)
             .ToList();
 
         if (news.Count == 0) return;
 
         var lines = news.Select(pair => string.Format(Texts.GUIUpdateMayFix,
             pair.Model.Mod.GetName(),
-            pair.Status!.LatestVersion ?? "?",
+            pair.Status.LatestVersion ?? "?",
             pair.Model.Mod.GetVersion(),
             pair.Status.Message ?? ""));
 

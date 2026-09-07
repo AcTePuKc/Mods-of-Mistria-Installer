@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,6 +10,16 @@
     <Design.DataContext>
         <models:ModModel />
     </Design.DataContext>
+    <!-- Every badge on a row explains itself through a hover card rather than a ToolTip. A ToolTip
+         is a separate top-level window, and opening one while something in the main window holds
+         keyboard focus - clicking the search box is all it takes - costs the main window its
+         activation, which Avalonia reports to the row as the pointer leaving. The card closes, the
+         pointer is still on the badge, it opens again, and the badge flickers for as long as you
+         look at it. The hover card lives in this window's own overlay layer, so there is no second
+         window and no loop. See the HoverCard class for the mechanism.
+
+         Tag carries the text: it is what the card binds to, so a value that arrives later - the
+         changelog preview is fetched on hover - fills the card in while it is open. -->
     <UserControl.Styles>
         <!-- The changelog icon is a button because it is clickable, but it should read as an icon
              sitting after the version - not as a control competing with the row. -->
@@ -45,8 +55,9 @@
                      hovering a mod to read its name does not throw a wall of text at you. -->
                 <Image Width="16" Height="16" Margin="5 0 0 0"
                        IsVisible="{Binding HasDescription}"
-                       PointerEntered="OnDescriptionInfoPointerEntered"
-                       PointerExited="OnDescriptionInfoPointerExited">
+                       Tag="{Binding Description}"
+                       PointerEntered="OnBadgePointerEntered"
+                       PointerExited="OnBadgePointerExited">
                     <Image.Source>
                         <i:IconImage Value="fa-solid fa-circle-info"
                                      Brush="Gray" />
@@ -59,12 +70,9 @@
                         IsVisible="{Binding CanShowChangelog}"
                         Command="{Binding Commands.ShowChangelog}"
                         CommandParameter="{Binding}"
-                        PointerEntered="ChangelogHovered">
-                    <ToolTip.Tip>
-                        <TextBlock Text="{Binding ChangelogPreview}"
-                                   TextWrapping="Wrap"
-                                   MaxWidth="560" />
-                    </ToolTip.Tip>
+                        Tag="{Binding ChangelogPreview}"
+                        PointerEntered="ChangelogHovered"
+                        PointerExited="OnBadgePointerExited">
                     <Image Height="14">
                         <Image.Source>
                             <i:IconImage Value="fa-file-lines" Brush="Gray" />
@@ -72,22 +80,20 @@
                     </Image>
                 </Button>
                 <Image Height="16" Margin="5 0 0 0"
-                       IsVisible="{Binding InWarning}">
-                    <ToolTip.Tip>
-                        <TextBlock Text="{Binding WarningTooltip}"
-                                   TextWrapping="Wrap"
-                                   MaxWidth="720" />
-                    </ToolTip.Tip>
+                       IsVisible="{Binding InWarning}"
+                       Tag="{Binding WarningTooltip}"
+                       PointerEntered="OnBadgePointerEntered"
+                       PointerExited="OnBadgePointerExited">
                     <Image.Source>
                         <i:IconImage Value="fa-exclamation-triangle"
                                      Brush="Orange" />
                     </Image.Source>
                 </Image>
                 <Image Height="16" Margin="5 0 0 0"
-                       IsVisible="{Binding WasInstalled}">
-                    <ToolTip.Tip>
-                        <TextBlock Text="{Binding InstallStatusTooltip}" />
-                    </ToolTip.Tip>
+                       IsVisible="{Binding WasInstalled}"
+                       Tag="{Binding InstallStatusTooltip}"
+                       PointerEntered="OnBadgePointerEntered"
+                       PointerExited="OnBadgePointerExited">
                     <Image.Source>
                         <i:IconImage Value="fa-circle-check"
                                      Brush="Green" />
@@ -142,8 +148,9 @@
                     </CheckBox>
                     <Image Width="16" Height="16" Margin="5 0 0 0"
                            IsVisible="{Binding HasDescription}"
-                           PointerEntered="OnDescriptionInfoPointerEntered"
-                           PointerExited="OnDescriptionInfoPointerExited">
+                           Tag="{Binding Description}"
+                           PointerEntered="OnBadgePointerEntered"
+                           PointerExited="OnBadgePointerExited">
                         <Image.Source>
                             <i:IconImage Value="fa-solid fa-circle-info"
                                          Brush="Gray" />
@@ -156,12 +163,9 @@
                             IsVisible="{Binding CanShowChangelog}"
                             Command="{Binding Commands.ShowChangelog}"
                             CommandParameter="{Binding}"
-                            PointerEntered="ChangelogHovered">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding ChangelogPreview}"
-                                       TextWrapping="Wrap"
-                                       MaxWidth="560" />
-                        </ToolTip.Tip>
+                            Tag="{Binding ChangelogPreview}"
+                            PointerEntered="ChangelogHovered"
+                            PointerExited="OnBadgePointerExited">
                         <Image Height="14">
                             <Image.Source>
                                 <i:IconImage Value="fa-file-lines" Brush="Gray" />
@@ -170,12 +174,10 @@
                     </Button>
 
                     <Image Height="16" Margin="5 0 0 0"
-                           IsVisible="{Binding InWarning}">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding WarningTooltip}"
-                                       TextWrapping="Wrap"
-                                       MaxWidth="720" />
-                        </ToolTip.Tip>
+                           IsVisible="{Binding InWarning}"
+                           Tag="{Binding WarningTooltip}"
+                           PointerEntered="OnBadgePointerEntered"
+                           PointerExited="OnBadgePointerExited">
                         <Image.Source>
                             <i:IconImage Value="fa-exclamation-triangle"
                                          Brush="Orange" />
@@ -183,12 +185,10 @@
                     </Image>
 
                     <Image Height="16" Margin="5 0 0 0"
-                           IsVisible="{Binding ShowErrorIcon}">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding Errors}"
-                                       TextWrapping="Wrap"
-                                       MaxWidth="720" />
-                        </ToolTip.Tip>
+                           IsVisible="{Binding ShowErrorIcon}"
+                           Tag="{Binding Errors}"
+                           PointerEntered="OnBadgePointerEntered"
+                           PointerExited="OnBadgePointerExited">
                         <Image.Source>
                             <i:IconImage Value="fa-exclamation-triangle"
                                          Brush="OrangeRed" />
@@ -196,10 +196,10 @@
                     </Image>
 
                     <Image Height="16" Margin="5 0 0 0"
-                           IsVisible="{Binding WasSkipped}">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding Texts.GUIModSkipped}" />
-                        </ToolTip.Tip>
+                           IsVisible="{Binding WasSkipped}"
+                           Tag="{Binding Texts.GUIModSkipped}"
+                           PointerEntered="OnBadgePointerEntered"
+                           PointerExited="OnBadgePointerExited">
                         <Image.Source>
                             <i:IconImage Value="fa-circle-xmark"
                                          Brush="Red" />
@@ -207,10 +207,10 @@
                     </Image>
 
                     <Image Height="16" Margin="5 0 0 0"
-                           IsVisible="{Binding WasFailed}">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding Texts.GUIInstallFailedForMod}" />
-                        </ToolTip.Tip>
+                           IsVisible="{Binding WasFailed}"
+                           Tag="{Binding Texts.GUIInstallFailedForMod}"
+                           PointerEntered="OnBadgePointerEntered"
+                           PointerExited="OnBadgePointerExited">
                         <Image.Source>
                             <i:IconImage Value="fa-circle-xmark"
                                          Brush="Red" />
@@ -218,10 +218,10 @@
                     </Image>
 
                     <Image Height="16" Margin="5 0 0 0"
-                           IsVisible="{Binding WasInstalled}">
-                        <ToolTip.Tip>
-                            <TextBlock Text="{Binding InstallStatusTooltip}" />
-                        </ToolTip.Tip>
+                           IsVisible="{Binding WasInstalled}"
+                           Tag="{Binding InstallStatusTooltip}"
+                           PointerEntered="OnBadgePointerEntered"
+                           PointerExited="OnBadgePointerExited">
                         <Image.Source>
                             <i:IconImage Value="fa-circle-check"
                                          Brush="Green" />

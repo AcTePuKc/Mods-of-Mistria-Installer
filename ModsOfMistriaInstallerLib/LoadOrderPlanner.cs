@@ -41,8 +41,8 @@ public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message)
     public string? HotkeyKey { get; init; }
 
     /// <summary>
-    /// A language-independent identity for the underlying issue, built from the mod IDs and
-    /// versions that produced it. Whoever creates the note supplies this; see
+    /// A language-independent identity for the underlying issue, built from the mods that produced
+    /// it and what they are contending over. Whoever creates the note supplies this; see
     /// <see cref="StableKey"/> for what happens when they do not.
     /// </summary>
     public string? IssueKey { get; init; }
@@ -50,9 +50,18 @@ public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message)
     /// <summary>
     /// The identity <see cref="DismissedIssueStore"/> files a dismissal under.
     ///
-    /// Deliberately version-sensitive: an update to either mod produces a different key, so an
-    /// issue the user waved through comes back for a fresh look rather than staying silenced by a
-    /// judgement made about different code.
+    /// Deliberately version-<em>in</em>sensitive. It used to carry the version of every mod
+    /// involved, so that updating one brought the issue back for a fresh judgement - but every
+    /// issue AIM reports is re-detected from what is on disk each time the report runs, so the
+    /// version was never what decided whether the problem was still there. All it did was re-ask a
+    /// question the user had already answered, about a conflict that had not changed. Enough of
+    /// those and the report stops being read, which is the one outcome that makes it useless.
+    ///
+    /// An update that genuinely fixes the problem needs nothing from this: the conflict is no
+    /// longer found, so no note is made, so nothing is shown - and the issue is gone rather than
+    /// merely silenced. An update that introduces a <em>different</em> problem produces a different
+    /// identity - another set of mods, another contended key, another warning message - and is
+    /// raised as the new issue it is.
     ///
     /// The fallback hashes the message, which works but is tied to the display language - so
     /// generators set <see cref="IssueKey"/> wherever the underlying identity is available.
@@ -66,14 +75,17 @@ public sealed record LoadOrderNote(LoadOrderNoteKind Kind, string Message)
         Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)))[..16].ToLowerInvariant();
 
     /// <summary>
-    /// Builds the mods half of an issue key: IDs paired with versions, ordered so that the same set
-    /// of mods always yields the same string.
+    /// Builds the mods half of an issue key: their IDs, ordered so that the same set of mods always
+    /// yields the same string, and without versions - see <see cref="StableKey"/>.
     /// </summary>
     public static string DescribeMods(IEnumerable<IMod> mods) =>
-        string.Join(",", mods
-            .Select(mod => $"{mod.GetId()}@{mod.GetVersion()}")
+        DescribeMods(mods.Select(mod => mod.GetId()));
+
+    /// <inheritdoc cref="DescribeMods(System.Collections.Generic.IEnumerable{Garethp.ModsOfMistriaInstallerLib.ModTypes.IMod})"/>
+    public static string DescribeMods(IEnumerable<string> modIds) =>
+        string.Join(",", modIds
             .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase));
+            .OrderBy(id => id, StringComparer.OrdinalIgnoreCase));
 }
 
 public enum LoadOrderNoteKind
@@ -261,7 +273,7 @@ public static class LoadOrderPlanner
                 $"\"{mod.GetName()}\" now loads {direction}, with the rest of its kind, because " +
                 $"{ModRoleClassifier.Explain(role)}.")
             {
-                IssueKey = $"{mod.GetId()}@{mod.GetVersion()}|{role}"
+                IssueKey = $"{mod.GetId()}|{role}"
             });
         }
     }
@@ -299,7 +311,7 @@ public static class LoadOrderPlanner
                     notes.Add(new LoadOrderNote(LoadOrderNoteKind.MissingRequirement,
                         $"\"{mod.GetName()}\" requires \"{requirement.Name}\" by {requirement.Author}, which is not installed.")
                     {
-                        IssueKey = $"{mod.GetId()}@{mod.GetVersion()}->{requiredId}"
+                        IssueKey = $"{mod.GetId()}->{requiredId}"
                     });
                     continue;
                 }
@@ -464,8 +476,8 @@ public static class LoadOrderPlanner
         var names = chosen.ToDictionary(
             entry => entry.Key, entry => entry.Value.Mod.GetName(), StringComparer.OrdinalIgnoreCase);
 
-        // Versions go into the issue key so that dismissing "these two both touch the same sprite"
-        // does not also silence the next version of either mod.
+        // For display only - the version is shown beside each mod's name in the report. It is
+        // deliberately not part of the issue key; see LoadOrderNote.StableKey.
         var versions = chosen.ToDictionary(
             entry => entry.Key, entry => entry.Value.Mod.GetVersion(), StringComparer.OrdinalIgnoreCase);
         var sources = chosen.ToDictionary(
@@ -539,13 +551,10 @@ public static class LoadOrderPlanner
                         .Distinct(StringComparer.OrdinalIgnoreCase)
                         .Order(StringComparer.OrdinalIgnoreCase)
                         .ToList(),
-                    // The overriding note keeps the key it has always had, so dismissals made
-                    // before combining overlaps were reported still hold. The combining note is a
-                    // different judgement about the same pair and carries its own suffix.
-                    IssueKey = string.Join(",", ids
-                                   .Select(id => $"{id}@{versions[id]}")
-                                   .OrderBy(entry => entry, StringComparer.OrdinalIgnoreCase))
-                               + (combining ? "|merge" : ""),
+                    // The mods, and whether this is the overriding or the combining note about
+                    // them - those two are different judgements about the same pair, so the
+                    // combining one carries its own suffix. No versions: see LoadOrderNote.StableKey.
+                    IssueKey = LoadOrderNote.DescribeMods(ids) + (combining ? "|merge" : ""),
                     // In load order, so the last entry is the one that wins as things stand. The
                     // report relies on that to label the current winner without recomputing.
                     Participants = ids

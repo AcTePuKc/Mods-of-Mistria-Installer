@@ -210,28 +210,33 @@ public class NexusInstallIndex
     {
         get
         {
-            if (_data["mods"] is not JObject mods)
-            {
-                mods = new JObject();
-                _data["mods"] = mods;
-            }
+            if (_data["mods"] is JObject mods) return mods;
 
-            return mods;
+            // Load has already put this there, so this branch does not run in practice - which is
+            // the point. A batched update check reads the index from several threads at once, and
+            // a getter that writes into the document would make that a data race.
+            var created = new JObject();
+            _data["mods"] = created;
+            return created;
         }
     }
 
     private JObject Load()
     {
+        JObject data;
+
         try
         {
-            if (File.Exists(_path)) return JObject.Parse(File.ReadAllText(_path));
+            data = File.Exists(_path) ? JObject.Parse(File.ReadAllText(_path)) : new JObject();
         }
         catch (Exception e)
         {
             Logger.Log($"Could not read {FileName}, starting fresh: {e.Message}");
+            data = new JObject();
         }
 
-        return new JObject();
+        if (data["mods"] is not JObject) data["mods"] = new JObject();
+        return data;
     }
 
     private void Save()

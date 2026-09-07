@@ -42,14 +42,7 @@ public class FolderMod : IMod
 
     private bool _requiredHooksValid = true;
 
-    public string Id
-    {
-        get
-        {
-            var initialId = $"{_author.ToLower()}.{_name.ToLower()}".Replace(" ", "_");
-            return Regex.Replace(initialId, "[^a-zA-Z0-9_\\.]", "");
-        }
-    }
+    public string Id => ModIdentity.For(_author, _name);
 
     public string GetAuthor() => _author;
 

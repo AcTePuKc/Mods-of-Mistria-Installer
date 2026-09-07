@@ -960,6 +960,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Nothing new to bring in. AIM only moves archives and folders that contain a manifest, so anything else in there is left alone.</value></data>
   <data name="GUIDropFolderImported" xml:space="preserve"><value>Brought in {0} mod(s) from a watched folder.</value></data>
   <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Moved into your mods folder:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} — you already have this mod installed as "{1}". Update that copy, or remove it first: two copies of one mod fight over the same files.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Left in the watched folder:&#xD;&#xA;{0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>The mods folder could not be found, so there is nothing to open.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Could not open the mods folder: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods Folder</value></data>

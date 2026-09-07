@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using SharpCompress.Archives;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -72,9 +73,10 @@ public static class ModArchiveInstaller
         string? previousVersion = null,
         CancellationToken cancellationToken = default,
         ModArchiveExtractionLimits? limits = null,
-        string? replacePath = null)
+        string? replacePath = null,
+        IReadOnlyList<InstalledModIdentity>? installedMods = null)
         => InstallCore(archivePath, modsLocation, fallbackName, conflictBehaviour, backups, previousVersion,
-            cancellationToken, limits, replacePath, null);
+            cancellationToken, limits, replacePath, null, installedMods);
 
     /// <summary>
     /// Test-only entry point for exercising recovery failures that cannot be created portably by
@@ -90,9 +92,10 @@ public static class ModArchiveInstaller
         CancellationToken cancellationToken,
         ModArchiveExtractionLimits? limits,
         Func<string, string?, Exception?>? forceRestoreFailure,
-        string? replacePath = null)
+        string? replacePath = null,
+        IReadOnlyList<InstalledModIdentity>? installedMods = null)
         => InstallCore(archivePath, modsLocation, fallbackName, conflictBehaviour, backups, previousVersion,
-            cancellationToken, limits, replacePath, forceRestoreFailure);
+            cancellationToken, limits, replacePath, forceRestoreFailure, installedMods);
 
     private static List<InstalledModFolder> InstallCore(
         string archivePath,
@@ -104,7 +107,8 @@ public static class ModArchiveInstaller
         CancellationToken cancellationToken,
         ModArchiveExtractionLimits? limits,
         string? replacePath,
-        Func<string, string?, Exception?>? forceRestoreFailure)
+        Func<string, string?, Exception?>? forceRestoreFailure,
+        IReadOnlyList<InstalledModIdentity>? installedMods = null)
     {
         if (!File.Exists(archivePath)) throw new ModArchiveException("The downloaded file is missing.");
         if (!Directory.Exists(modsLocation)) throw new ModArchiveException("The mods folder could not be found.");
@@ -150,9 +154,18 @@ public static class ModArchiveInstaller
             // there and has asked for it to be overwritten.
             var existing = plans
                 .Where(plan => Directory.Exists(plan.Target) && plan.Target != replaceTarget)
+                .Select(plan => Path.GetFileName(plan.Target))
                 .ToList();
-            if (existing.Count > 0)
-                throw new ModArchiveConflictException(existing.Select(plan => Path.GetFileName(plan.Target)).ToList());
+
+            // Matching folder names catch a re-download of the same file and nothing else. Nexus
+            // names its downloads with the file id, the version and an upload stamp, so the second
+            // install of a mod usually lands in a folder with a different name and the user ends up
+            // with the same mod twice - two copies fighting over the same files, and a conflict
+            // report blaming a mod for arguing with itself.
+            var duplicates = DuplicateInstalls(entries, plans, installedMods, replaceTarget);
+
+            if (existing.Count > 0 || duplicates.Count > 0)
+                throw new ModArchiveConflictException(existing, duplicates);
         }
 
         var installed = new List<ExtractedRoot>();
@@ -160,10 +173,12 @@ public static class ModArchiveInstaller
 
         // A mod that was installed as a .zip is being replaced by an unpacked folder, so the old
         // archive has to go or the mod list shows both. It is archived rather than deleted, and
-        // before extraction rather than after, so a failed unpack restores cleanly.
+        // before extraction rather than after, so a failed unpack restores cleanly - which means
+        // remembering where it went, because "put it back" is the whole point of moving it.
         var supersededArchive = SupersededArchive(replacePath, replaceTarget);
-        if (supersededArchive is not null)
-            ArchiveSupersededFile(supersededArchive, backups, previousVersion);
+        var parkedArchive = supersededArchive is null
+            ? null
+            : ParkSupersededFile(supersededArchive, backups, previousVersion);
 
         foreach (var (root, target) in plans)
         {
@@ -183,12 +198,18 @@ public static class ModArchiveInstaller
                     .Select(failure => failure!)
                     .ToList();
 
+                // The .zip the update was superseding was moved out of the way before any of this
+                // started. A failed update that leaves it moved has taken the user's installed mod
+                // away and given them nothing back, which is worse than the failure itself.
+                if (RestoreParkedArchive(parkedArchive, forceRestoreFailure) is { } archiveFailure)
+                    rollbackFailures.Add(archiveFailure);
+
                 if (rollbackFailures.Count > 0)
                 {
                     var details = string.Join(Environment.NewLine, rollbackFailures.Select(failure =>
                         $"• {Path.GetFileName(failure.Target)}: {failure.Error.Message}{DescribeBackup(failure.BackupPath)}"));
                     throw new ModArchiveException(
-                        $"Could not complete the downloaded mod bundle. The original install error was: {installError.Message}" +
+                        $"Could not complete the downloaded mod. The original install error was: {installError.Message}" +
                         $"{Environment.NewLine}A previous mod copy could not be restored. Its backup was kept for manual recovery:{Environment.NewLine}{details}",
                         installError);
                 }
@@ -200,6 +221,88 @@ public static class ModArchiveInstaller
             TryRemove(result.BackupPath!);
 
         return installed.Select(result => result.Installed).ToList();
+    }
+
+    // ── Already installed ────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// The mods in this archive that are already installed somewhere else in the mods folder.
+    ///
+    /// By manifest identity - author and name - rather than by folder name, because the folder name
+    /// is exactly what does not match: Nexus builds a download file name out of the file id, the
+    /// version and an upload stamp, so a mod re-downloaded rather than updated lands in a folder
+    /// named after that release and sits beside the copy already there.
+    /// </summary>
+    private static List<InstalledModIdentity> DuplicateInstalls(
+        List<IArchiveEntry> entries,
+        List<(string Root, string Target)> plans,
+        IReadOnlyList<InstalledModIdentity>? installedMods,
+        string? replaceTarget)
+    {
+        if (installedMods is null || installedMods.Count == 0) return [];
+
+        var duplicates = new List<InstalledModIdentity>();
+
+        foreach (var (root, target) in plans)
+        {
+            var identity = IdentityIn(entries, root);
+            if (identity is null) continue;
+
+            duplicates.AddRange(installedMods.Where(installed =>
+                installed.Id.Equals(identity, StringComparison.OrdinalIgnoreCase) &&
+                !SamePath(installed.SourcePath, target) &&
+                !SamePath(installed.SourcePath, replaceTarget)));
+        }
+
+        // One install, named once. A bundle whose roots share an identity would otherwise list the
+        // same copy twice, which reads as two problems and stops the caller from aiming the
+        // replacement at it.
+        return duplicates
+            .DistinctBy(mod => mod.SourcePath, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    /// <summary>The mod id declared by the manifest at <paramref name="root"/>, if it can be read.</summary>
+    private static string? IdentityIn(List<IArchiveEntry> entries, string root)
+    {
+        var manifest = entries.FirstOrDefault(entry =>
+            DirectoryOf(entry.Key!).Equals(root, StringComparison.OrdinalIgnoreCase) &&
+            ManifestNames.Contains(FileName(entry.Key!), StringComparer.OrdinalIgnoreCase));
+
+        if (manifest is null) return null;
+
+        try
+        {
+            using var stream = manifest.OpenEntryStream();
+            using var reader = new StreamReader(stream);
+
+            var read = ModIdentity.ReadManifest(FileName(manifest.Key!), reader.ReadToEnd());
+            return read is null ? null : ModIdentity.For(read);
+        }
+        catch (Exception e)
+        {
+            // Not being able to read it is not a reason to refuse the install - it only means AIM
+            // cannot tell whether this is a second copy, so it lets the install go ahead.
+            Logger.Log($"Could not read the manifest in the download: {e.Message}");
+            return null;
+        }
+    }
+
+    private static bool SamePath(string left, string? right)
+    {
+        if (string.IsNullOrWhiteSpace(right)) return false;
+
+        try
+        {
+            return string.Equals(
+                Path.GetFullPath(left.TrimEnd('/', '\\')),
+                Path.GetFullPath(right.TrimEnd('/', '\\')),
+                StringComparison.OrdinalIgnoreCase);
+        }
+        catch
+        {
+            return string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
+        }
     }
 
     // ── Replacing an existing install ────────────────────────────────────────────
@@ -255,23 +358,106 @@ public static class ModArchiveInstaller
         return File.Exists(full) && LooksLikeArchive(full) ? full : null;
     }
 
-    private static void ArchiveSupersededFile(string path, ModBackupStore? backups, string? previousVersion)
+    /// <summary>
+    /// Where the superseded .zip was put, so a failed update can put it back.
+    /// </summary>
+    /// <param name="StoreFolder">
+    /// The stamped backup folder holding it, when the backup store took it. Restoring empties that
+    /// folder, and an empty restore point in the versions dropdown is a lie, so it is removed too.
+    /// </param>
+    private sealed record ParkedArchive(string OriginalPath, string CurrentPath, string? StoreFolder);
+
+    /// <summary>
+    /// Moves the superseded .zip out of the mods folder, and says where it went.
+    ///
+    /// Returning null means the file is still where it was - either there was nothing to move or
+    /// the move failed - so there is nothing for a rollback to undo.
+    /// </summary>
+    private static ParkedArchive? ParkSupersededFile(string path, ModBackupStore? backups, string? previousVersion)
     {
+        var leaf = Path.GetFileName(path);
+
         try
         {
-            if (backups?.Archive(path, previousVersion) is not null) return;
+            if (backups?.Archive(path, previousVersion) is { } kept)
+            {
+                var inStore = Path.Combine(kept.Path, leaf);
+                return File.Exists(inStore) ? new ParkedArchive(path, inStore, kept.Path) : null;
+            }
 
             // No store, or the store could not take it. Keeping it aside beside the mods folder is
             // still better than deleting a mod the user has, and better than leaving a duplicate in
             // the list - the installer ignores the .aim-old suffix.
-            var parked = path + ".aim-old";
-            if (File.Exists(parked)) File.Delete(parked);
+            //
+            // An .aim-old already sitting there is a previous update's kept copy. Deleting it to
+            // make room would throw away the only copy of a version the user might still want.
+            var parked = FreeSidecarName(path);
             File.Move(path, parked);
+            return new ParkedArchive(path, parked, null);
         }
         catch (Exception e)
         {
-            Logger.Log($"Could not put aside the old archive {Path.GetFileName(path)}: {e.Message}");
+            Logger.Log($"Could not put aside the old archive {leaf}: {e.Message}");
+            return null;
         }
+    }
+
+    /// <summary>
+    /// Puts a superseded .zip back where it was after the update that replaced it failed.
+    /// Returns the failure when it could not be put back, so the caller can name the copy that was
+    /// kept instead of reporting a clean rollback that did not happen.
+    /// </summary>
+    private static RollbackFailure? RestoreParkedArchive(
+        ParkedArchive? parked,
+        Func<string, string?, Exception?>? forceRestoreFailure)
+    {
+        if (parked is null) return null;
+
+        try
+        {
+            var forced = forceRestoreFailure?.Invoke(parked.OriginalPath, parked.CurrentPath);
+            if (forced is not null) throw forced;
+
+            // The extraction target is the folder named after the archive, so it cannot be sitting
+            // on the archive's own path - but a rollback that has already run leaves nothing to do.
+            if (File.Exists(parked.OriginalPath)) return null;
+
+            if (!File.Exists(parked.CurrentPath))
+                throw new FileNotFoundException(
+                    $"The copy that was put aside is no longer at {parked.CurrentPath}.");
+
+            File.Move(parked.CurrentPath, parked.OriginalPath);
+
+            if (parked.StoreFolder is not null &&
+                Directory.Exists(parked.StoreFolder) &&
+                Directory.GetFileSystemEntries(parked.StoreFolder).Length == 0)
+                Directory.Delete(parked.StoreFolder);
+
+            return null;
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not put back the old archive {Path.GetFileName(parked.OriginalPath)}: {e.Message}");
+            return new RollbackFailure(parked.OriginalPath, parked.CurrentPath, e);
+        }
+    }
+
+    /// <summary>
+    /// A free <c>.aim-old</c> name beside <paramref name="path"/>. Numbered rather than overwritten:
+    /// each of these is the only copy of a version the user once had installed.
+    /// </summary>
+    private static string FreeSidecarName(string path)
+    {
+        var candidate = path + ".aim-old";
+
+        for (var attempt = 1; attempt < 1000; attempt++)
+        {
+            if (!File.Exists(candidate) && !Directory.Exists(candidate)) return candidate;
+            candidate = $"{path}.aim-old-{attempt}";
+        }
+
+        throw new ModArchiveException(
+            $"There are already too many kept copies of {Path.GetFileName(path)} beside the mods folder.");
     }
 
     // ── Extraction ───────────────────────────────────────────────────────────────
@@ -305,8 +491,10 @@ public static class ModArchiveInstaller
             }
             else
             {
-                backup = target + ".aim-old";
-                if (Directory.Exists(backup)) Directory.Delete(backup, true);
+                // Numbered rather than overwritten: an .aim-old already there was kept because an
+                // earlier update could not be filed in the store, and it is the only copy of that
+                // version left.
+                backup = FreeSidecarName(target);
                 Directory.Move(target, backup);
             }
         }
@@ -538,9 +726,35 @@ public static class ModArchiveInstaller
     }
 }
 
-/// <summary>Thrown when installing would overwrite folders that are already in the mods folder.</summary>
-public class ModArchiveConflictException(List<string> folders)
-    : ModArchiveException($"Already installed: {string.Join(", ", folders)}")
+/// <summary>
+/// Thrown when installing would overwrite folders that are already in the mods folder, or would
+/// put a second copy of a mod that is already installed under another name.
+/// </summary>
+public class ModArchiveConflictException(
+    List<string> folders,
+    List<InstalledModIdentity>? alreadyInstalled = null)
+    : ModArchiveException(Describe(folders, alreadyInstalled))
 {
+    /// <summary>Folder names in the mods folder that the download would land on top of.</summary>
     public List<string> Folders { get; } = folders;
+
+    /// <summary>
+    /// Mods in the download that are already installed elsewhere, and where those copies are.
+    /// Replacing one of these is an update; installing beside it is the duplicate this exists to
+    /// prevent, so the path is carried along for the caller to aim the install at.
+    /// </summary>
+    public List<InstalledModIdentity> AlreadyInstalled { get; } = alreadyInstalled ?? [];
+
+    private static string Describe(List<string> folders, List<InstalledModIdentity>? alreadyInstalled)
+    {
+        var parts = new List<string>();
+
+        if (folders.Count > 0) parts.Add($"Already installed: {string.Join(", ", folders)}");
+
+        if (alreadyInstalled is { Count: > 0 })
+            parts.Add("Already installed under another name: " + string.Join(", ",
+                alreadyInstalled.Select(mod => $"{mod.Name} ({Path.GetFileName(mod.SourcePath)})")));
+
+        return parts.Count == 0 ? "Already installed." : string.Join(". ", parts);
+    }
 }

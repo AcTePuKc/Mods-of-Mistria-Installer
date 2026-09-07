@@ -250,9 +250,13 @@ so the installer's own scan of the mods folder ignores it.
   sprite is reported because it *might* matter, not because it does. Tick the box beside a finding
   once you have looked at it and are happy with it. It moves to a dimmed, struck-through section at
   the bottom, which the *Show issues I have marked as fine* toggle hides or reveals, so you can
-  always find it again and untick it. A dismissal is tied to the mods **and the versions** involved:
-  if either mod updates, the issue comes back so you can judge the new version on its own. These
-  judgements are stored in `aim_dismissed_issues.json` in the mods folder.
+  always find it again and untick it. A dismissal is tied to the mods involved and to what they are
+  contending over, **not** to their versions: updating one of them does not bring the question back,
+  because every issue is re-detected from the files each time the report runs. So an update that
+  actually fixes the problem makes the issue disappear on its own, and an update that does not has
+  changed nothing you need to read twice. An update that introduces a *different* problem is raised
+  as the new issue it is. These judgements are stored in `aim_dismissed_issues.json` in the mods
+  folder.
 - **Drag/drop load order.** Drag a mod by its grip to reorder it. When holding it near the top or
   bottom edge of the list, AIM scrolls automatically so long lists do not require repeated drags.
 - **Release notes.** The document icon after a mod's version opens what its author wrote about each

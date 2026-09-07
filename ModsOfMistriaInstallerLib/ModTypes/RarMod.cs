@@ -163,11 +163,7 @@ public class RarMod() : IMod
     
     public void SetInstalled(bool installed) => _isInstalled = installed;
 
-    public string GetId()
-    {
-        var initialId = $"{GetAuthor().ToLower()}.{GetName().ToLower()}".Replace(" ", "_");
-        return Regex.Replace(initialId, "[^a-zA-Z0-9_\\.]", "");
-    }
+    public string GetId() => ModIdentity.For(GetAuthor(), GetName());
 
     public Validation Validate()
     {

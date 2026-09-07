@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,9 +22,11 @@ public sealed record IssueVerdict(string Kind, string? Link = null, string? Note
 /// a given pair is harmless should not have to re-read it every time they open the report, or the
 /// report stops being read at all.
 ///
-/// A dismissal is keyed to the mods and the versions involved (see <see cref="LoadOrderNote.StableKey"/>),
-/// so updating either mod brings the issue back for a fresh judgement - the old "I checked this"
-/// was about code that is no longer installed.
+/// A dismissal is keyed to the mods involved and what they are contending over, and deliberately
+/// not to their versions (see <see cref="LoadOrderNote.StableKey"/>). Updating one of them does not
+/// bring the issue back: every issue is re-detected from disk each time the report runs, so an
+/// update that fixed the problem makes it disappear on its own, and one that did not has changed
+/// nothing the user needs to re-read.
 ///
 /// It lives beside the profiles and the Nexus index in the mods folder rather than in per-mod
 /// folders, for the same reason those do: a mod folder is replaced wholesale by an update.
@@ -55,16 +58,19 @@ public sealed class DismissedIssueStore
 
     public int Count => _dismissed.Count;
 
-    public bool IsDismissed(string key) => key.Length > 0 && _dismissed.Contains(key);
+    public bool IsDismissed(string key) =>
+        key.Length > 0 && _dismissed.Contains(WithoutVersions(key));
 
     /// <summary>What the user concluded, when they said. Null when they never recorded a reason.</summary>
     public IssueVerdict? Verdict(string key) =>
-        key.Length > 0 && _verdicts.TryGetValue(key, out var verdict) ? verdict : null;
+        key.Length > 0 && _verdicts.TryGetValue(WithoutVersions(key), out var verdict) ? verdict : null;
 
     /// <summary>Records the user's judgement and writes it out immediately.</summary>
     public void SetDismissed(string key, bool dismissed, string? label = null, IssueVerdict? verdict = null)
     {
         if (string.IsNullOrEmpty(key)) return;
+
+        key = WithoutVersions(key);
 
         if (dismissed)
         {
@@ -90,6 +96,8 @@ public sealed class DismissedIssueStore
     public void SetVerdict(string key, IssueVerdict? verdict)
     {
         if (string.IsNullOrEmpty(key)) return;
+
+        key = WithoutVersions(key);
 
         if (verdict is null)
         {
@@ -142,6 +150,29 @@ public sealed class DismissedIssueStore
         return firstLine.Length <= 160 ? firstLine : firstLine[..160] + "…";
     }
 
+    /// <summary>
+    /// Rewrites a key written when issue identity still carried mod versions, so that judgements
+    /// made before that change still apply afterwards.
+    ///
+    /// Those keys look like <c>FileConflict|author.mod@2.0,author.other@1.7</c>, and a version can
+    /// be anything an author types - "2.0", "V1.0.10", "Beta 1.0", or nothing at all - so this
+    /// takes everything from an <c>@</c> to the next separator. It requires a non-space straight
+    /// after the <c>@</c>, so prose like "thanks @ everyone" is left alone.
+    ///
+    /// A key whose free-text half contains an <c>@word</c> loses that word too. That cannot hide a
+    /// judgement, because both sides of every comparison go through here; the only cost is that two
+    /// warnings differing solely after an <c>@</c> would share one tick, which is not a shape any
+    /// warning AIM produces takes.
+    ///
+    /// Applied on the way in <em>and</em> on every lookup, which is what makes it safe: whatever
+    /// this does to a key, both sides of a comparison have had it done to them, so a key can never
+    /// be stored under one spelling and looked up under another.
+    /// </summary>
+    internal static string WithoutVersions(string key) =>
+        key.Contains('@')
+            ? Regex.Replace(key, @"@(?:[^\s,|][^,|]*)?(?=[,|]|$)", "")
+            : key;
+
     private void Load()
     {
         try
@@ -159,19 +190,39 @@ public sealed class DismissedIssueStore
                 {
                     if (entry.Value is not JObject value) continue;
 
+                    // Keys written before issue identity dropped mod versions carry them, and would
+                    // otherwise match nothing ever again - every judgement the user had made would
+                    // come back as an unanswered question the first time they opened the report,
+                    // which is the exact complaint this change was made to fix. The file rewrites
+                    // itself in the new shape on the next save.
+                    var name = WithoutVersions(entry.Name);
+
                     // A verdict can exist without a dismissal ("these really are incompatible"), so
                     // the two are read independently rather than one implying the other. Files
                     // written before verdicts existed have no "dismissed" field and were all
                     // dismissals.
-                    _recordedAt[entry.Name] = ReadTimestamp(value, "dismissedAt");
-                    if (value.Value<bool?>("dismissed") ?? true) _dismissed.Add(entry.Name);
+                    var recordedAt = ReadTimestamp(value, "dismissedAt");
+
+                    // Two old keys can normalise onto one - the same issue judged before and after
+                    // an update. The newer judgement is the one the user meant, and it replaces the
+                    // older one whole: merging field by field would let an older "incompatible"
+                    // outlive a newer verdict-less tick, or an older tick outlive a newer decision
+                    // to reopen the issue.
+                    if (_recordedAt.TryGetValue(name, out var existing))
+                    {
+                        if (existing > recordedAt) continue;
+                        Forget(name);
+                    }
+
+                    _recordedAt[name] = recordedAt;
+                    if (value.Value<bool?>("dismissed") ?? true) _dismissed.Add(name);
 
                     var label = value.Value<string>("note");
-                    if (!string.IsNullOrWhiteSpace(label)) _labels[entry.Name] = label;
+                    if (!string.IsNullOrWhiteSpace(label)) _labels[name] = label;
 
                     var kind = value.Value<string>("verdict");
                     if (!string.IsNullOrWhiteSpace(kind))
-                        _verdicts[entry.Name] = new IssueVerdict(
+                        _verdicts[name] = new IssueVerdict(
                             kind, value.Value<string>("link"), value.Value<string>("verdictNote"));
                 }
                 catch (Exception exception)

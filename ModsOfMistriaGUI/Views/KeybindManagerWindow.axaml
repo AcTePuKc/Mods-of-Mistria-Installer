@@ -3,35 +3,47 @@
         x:Class="Garethp.ModsOfMistriaGUI.Views.KeybindManagerWindow"
         Width="820"
         Height="640"
-        MinWidth="620"
-        MinHeight="420"
+        MinWidth="420"
+        MinHeight="300"
         WindowStartupLocation="CenterOwner"
         CanResize="True">
-  <Grid Margin="18" RowDefinitions="Auto,Auto,Auto,*,Auto">
+  <!-- Two rows, not five. The intro, the locked banner and the summary line used to be fixed rows
+       above the scrolling list, so on a narrow window - and especially with no keybinds found,
+       where the explanatory text is at its longest - they took the height and the list was left
+       with none. They scroll with the list now, and the only thing pinned is the footer, because
+       Close has to stay reachable whatever the window is doing. -->
+  <Grid Margin="14" RowDefinitions="*,Auto">
 
-    <TextBlock x:Name="IntroText" TextWrapping="Wrap" />
+    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+      <StackPanel Spacing="0">
 
-    <Border x:Name="LockedBanner"
-            Grid.Row="1"
-            Margin="0 10 0 0"
-            Padding="10"
-            CornerRadius="4"
-            IsVisible="False">
-      <TextBlock x:Name="LockedText" TextWrapping="Wrap" />
-    </Border>
+        <TextBlock x:Name="IntroText" TextWrapping="Wrap" />
 
-    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="12" Margin="0 12 0 0">
-      <TextBlock x:Name="SummaryText" VerticalAlignment="Center" TextWrapping="Wrap" />
-      <CheckBox x:Name="OnlyOverlapsToggle" />
-    </StackPanel>
+        <Border x:Name="LockedBanner"
+                Margin="0 10 0 0"
+                Padding="10"
+                CornerRadius="4"
+                IsVisible="False">
+          <TextBlock x:Name="LockedText" TextWrapping="Wrap" />
+        </Border>
 
-    <ScrollViewer Grid.Row="3" Margin="0 10 0 0" VerticalScrollBarVisibility="Auto">
-      <StackPanel x:Name="BindingsPanel" Spacing="2" HorizontalAlignment="Stretch" />
+        <!-- Wraps, so the overlap toggle drops below the summary rather than off the edge. -->
+        <WrapPanel Margin="0 12 0 0">
+          <TextBlock x:Name="SummaryText"
+                     VerticalAlignment="Center"
+                     Margin="0 2 12 2"
+                     TextWrapping="Wrap"
+                     MaxWidth="520" />
+          <CheckBox x:Name="OnlyOverlapsToggle" Margin="0 2 0 2" />
+        </WrapPanel>
+
+        <StackPanel x:Name="BindingsPanel" Spacing="2" Margin="0 10 0 0" HorizontalAlignment="Stretch" />
+      </StackPanel>
     </ScrollViewer>
 
-    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0 12 0 0">
-      <Button x:Name="RefreshButton" />
-      <Button x:Name="CloseButton" IsDefault="True" IsCancel="True" />
-    </StackPanel>
+    <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0 12 0 0">
+      <Button x:Name="RefreshButton" Margin="0 2 8 2" />
+      <Button x:Name="CloseButton" Margin="0 2 0 2" IsDefault="True" IsCancel="True" />
+    </WrapPanel>
   </Grid>
 </Window>

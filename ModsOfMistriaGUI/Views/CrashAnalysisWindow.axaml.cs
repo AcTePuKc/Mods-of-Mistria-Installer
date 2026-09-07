@@ -333,13 +333,21 @@ public partial class CrashAnalysisWindow : Window
                         FontSize = 12
                     });
 
-                lines.Children.Add(new SelectableTextBlock
+                // Source lines must not be reflowed - indentation is how you read them - so the
+                // long ones scroll sideways instead. Without this the window simply cut them off
+                // at its right edge with nothing to say there was more.
+                lines.Children.Add(new ScrollViewer
                 {
-                    Text = string.Join("\n", source.Context),
-                    TextWrapping = TextWrapping.NoWrap,
-                    FontFamily = FontFamily.Parse("Consolas, Menlo, monospace"),
-                    FontSize = 11,
-                    Opacity = 0.85
+                    HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+                    VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
+                    Content = new SelectableTextBlock
+                    {
+                        Text = string.Join("\n", source.Context),
+                        TextWrapping = TextWrapping.NoWrap,
+                        FontFamily = FontFamily.Parse("Consolas, Menlo, monospace"),
+                        FontSize = 11,
+                        Opacity = 0.85
+                    }
                 });
             }
 
@@ -791,15 +799,22 @@ public partial class CrashAnalysisWindow : Window
                     Opacity = 0.85,
                     FontSize = 12
                 },
-                new SelectableTextBlock
+                new ScrollViewer
                 {
-                    Text = $"{repair.Path}:{repair.Line}\n{repair.Diff}",
-                    FontFamily = FontFamily.Parse("Consolas, Menlo, monospace"),
-                    FontSize = 11,
+                    // The diff must not be reflowed, so it scrolls sideways. A diff the window is
+                    // too narrow to show is a diff the user is being asked to approve unseen.
+                    HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+                    VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
+                    Content = new SelectableTextBlock
+                    {
+                        Text = $"{repair.Path}:{repair.Line}\n{repair.Diff}",
+                        FontFamily = FontFamily.Parse("Consolas, Menlo, monospace"),
+                        FontSize = 11,
 
-                    // The diff is the thing being approved, so it must not be reflowed into
-                    // something that no longer lines up with what will be written to disk.
-                    TextWrapping = TextWrapping.NoWrap
+                        // The diff is the thing being approved, so it must not be reflowed into
+                        // something that no longer lines up with what will be written to disk.
+                        TextWrapping = TextWrapping.NoWrap
+                    }
                 },
                 apply
             }
