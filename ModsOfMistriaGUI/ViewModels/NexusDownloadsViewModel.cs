@@ -125,6 +125,13 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         _nexusSettings.HandlerPromptedFor = claimant;
         if (answer != ButtonResult.Yes) return;
 
+        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
+        {
+            NxmProtocolHandler.OpenWindowsDefaultApps();
+            RefreshHandlerStatus();
+            return;
+        }
+
         if (NxmProtocolHandler.Register(out var error))
         {
             _nexusSettings.HandlerRegistered = true;
@@ -638,6 +645,13 @@ public partial class NexusDownloadsViewModel : ViewModelBase
                 ButtonEnum.YesNo).ShowAsync();
 
             if (confirm != ButtonResult.Yes) return;
+        }
+
+        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
+        {
+            NxmProtocolHandler.OpenWindowsDefaultApps();
+            RefreshHandlerStatus();
+            return;
         }
 
         if (NxmProtocolHandler.Register(out var error))

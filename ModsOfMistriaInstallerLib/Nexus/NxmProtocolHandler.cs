@@ -7,6 +7,9 @@ namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
 public record NxmHandlerStatus(bool IsRegistered, bool IsThisExecutable, string? CurrentHandler)
 {
+    /// <summary>Whether this AIM installation is listed as an NXM-capable application.</summary>
+    public bool IsThisApplicationRegistered { get; init; }
+
     /// <summary>Another program (Vortex, MO2, an older copy of AIM) currently owns nxm://.</summary>
     public bool IsClaimedByAnother => IsRegistered && !IsThisExecutable;
 
@@ -88,9 +91,23 @@ public static class NxmProtocolHandler
                 : OperatingSystem.IsLinux() ? GetLinuxHandler()
                 : null;
 
-            if (string.IsNullOrEmpty(current)) return new NxmHandlerStatus(false, false, null);
+            if (string.IsNullOrEmpty(current))
+            {
+                return new NxmHandlerStatus(false, false, null)
+                {
+                    IsThisApplicationRegistered = OperatingSystem.IsWindows()
+                        ? IsWindowsApplicationRegistered()
+                        : false
+                };
+            }
 
-            return new NxmHandlerStatus(true, PointsAtUs(current), current);
+            var isThisExecutable = PointsAtUs(current);
+            return new NxmHandlerStatus(true, isThisExecutable, current)
+            {
+                IsThisApplicationRegistered = OperatingSystem.IsWindows()
+                    ? IsWindowsApplicationRegistered()
+                    : isThisExecutable
+            };
         }
         catch (Exception e)
         {
@@ -210,6 +227,29 @@ public static class NxmProtocolHandler
         }
     }
 
+    /// <summary>
+    /// Opens the Windows picker where the user can choose which registered application handles
+    /// nxm:// links. Windows owns the final default-app selection; AIM must not edit UserChoice.
+    /// </summary>
+    public static bool OpenWindowsDefaultApps()
+    {
+        if (!OperatingSystem.IsWindows()) return false;
+
+        try
+        {
+            Process.Start(new ProcessStartInfo("ms-settings:defaultapps")
+            {
+                UseShellExecute = true
+            });
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Log($"Could not open Windows Default apps: {e.Message}");
+            return false;
+        }
+    }
+
     // ── Windows ──────────────────────────────────────────────────────────────────
 
     [SupportedOSPlatform("windows")]
@@ -324,6 +364,23 @@ public static class NxmProtocolHandler
 
         using var machineKey = Registry.LocalMachine.OpenSubKey($@"Software\Classes\{progId}\shell\open\command");
         return machineKey?.GetValue("") as string;
+    }
+
+    [SupportedOSPlatform("windows")]
+    private static bool IsWindowsApplicationRegistered()
+    {
+        var command = GetWindowsCommandForProgId(WindowsProgId);
+        if (string.IsNullOrWhiteSpace(command)) return false;
+
+        using var capabilities = Registry.CurrentUser.OpenSubKey(WindowsCapabilitiesPath);
+        using var associations = capabilities?.OpenSubKey("UrlAssociations");
+        if (!WindowsProgId.Equals(associations?.GetValue(Scheme) as string, StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        using var registeredApplications = Registry.CurrentUser.OpenSubKey(WindowsRegisteredApplicationsPath);
+        return WindowsCapabilitiesPath.Equals(
+            registeredApplications?.GetValue(WindowsRegisteredApplicationName) as string,
+            StringComparison.OrdinalIgnoreCase);
     }
 
     [SupportedOSPlatform("windows")]
