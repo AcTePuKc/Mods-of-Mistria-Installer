@@ -89,7 +89,6 @@
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
                         <MenuItem x:Name="NexusHandlerStatusMenuItem"
                                   Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
-                        <Separator />
                         <MenuItem Header="{Binding Nexus.NexusAccountActionText}"
                                   Command="{Binding Nexus.ManageNexusAccountCommand}" />
                         <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"
