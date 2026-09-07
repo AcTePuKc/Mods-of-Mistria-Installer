@@ -2,7 +2,7 @@
 
 [← MMAPI](MMAPI.md)
 
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **129 hooks**, fed by **141 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **130 hooks**, fed by **142 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -141,6 +141,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | Name | Kind | Description |
 | ---- | ---- | ----------- |
 | [ui.menu_opened](hooks/ui.menu_opened.md) | event | Know the moment a menu opens. |
+| [font.styles_loaded](hooks/font.styles_loaded.md) | filter | Customize the resolved text-style mapping after the engine loads font assets. |
 | [ui.menu_closed](hooks/ui.menu_closed.md) | event | Know when a menu closes. |
 | [ui.menu_refreshed](hooks/ui.menu_refreshed.md) | event | React when a menu rebuilds its content. |
 | [ui.toolbar_tick](hooks/ui.toolbar_tick.md) | event | React on every toolbar tick. |

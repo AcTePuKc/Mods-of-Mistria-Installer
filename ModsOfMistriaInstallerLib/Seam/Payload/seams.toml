@@ -36,8 +36,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 129
-seams = 141
+hooks = 130
+seams = 142
 engine_fixes = 3
 call_rewrites = 1
 
@@ -380,6 +380,11 @@ doc  = "Fires on every engine localization lookup: the localizer (local_get) is 
 name = "local.missing"
 kind = "filter"
 doc  = "Fires inside mmapi_local_get() only when the native localizer misses: local_get() returned undefined, echoed the key back, or returned the engine's \"MISSING\" sentinel (\"PLACEHOLDER\" is a hit: the key exists with pending text). The filtered value starts undefined; ctx is { key, fallback }, fallback being what the engine would have surfaced. Return the text to inject for keys the base game lacks (computed strings, or fail-soft for keys that should have shipped as data); return undefined to keep the engine fallback unchanged. Filter, not override, on purpose: many mods legitimately register here, each owning its key prefix, and later filters see earlier injections. Static keys should ship as localization data through the normal registration path; this hook is the runtime complement, and the ctx struct is only allocated on the miss path."
+
+[[hook]]
+name = "font.styles_loaded"
+kind = "filter"
+doc  = "Fires when the engine builds the TEXT_STYLES mapping in load_text_styles(), after the vanilla ui/text_styles fiddle data has been converted to runtime font assets and before the mapping is assigned to the global TEXT_STYLES variable. ctx is undefined. The filtered value is the complete styles mapping, keyed by style (standard, popup_description, textbox) and language. Return a replacement mapping, or undefined to keep the current mapping. Handlers should change only the languages/styles they own and preserve unrelated entries so multiple font mods can compose."
 
 [[hook]]
 name = "monster.death"
@@ -3480,3 +3485,14 @@ replace = '''
             try { unlocked = mmapi_apply_filters("animal.adoption_variant_unlocked", unlocked, { animal_kind: animal_kind, variant: variant, has_gold: has_gold, has_room: has_room }); } catch (__mmapi_adoption_variant_error) {} // mmapi_adoption_run_variant_unlocked_filters'''
 marker  = "mmapi_adoption_run_variant_unlocked_filters"
 provides = ["animal.adoption_variant_unlocked"]
+
+[[seam]]
+id      = "font_styles_loaded"
+file    = "gml/scripts/GameplaySystems/FiddleParsers.gml"
+target  = { fn = "load_text_styles" }
+op      = "wrap"
+hook    = "font.styles_loaded"
+ctx     = "undefined"
+blank_before = true
+catch_var = "__mmapi_font_styles_loaded"
+marker  = "mmapi_font_run_styles_loaded_filters"
