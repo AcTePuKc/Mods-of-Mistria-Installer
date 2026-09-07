@@ -5,14 +5,10 @@
              xmlns:models="using:Garethp.ModsOfMistriaGUI.Models"
              xmlns:lang="clr-namespace:Garethp.ModsOfMistriaInstallerLib.Lang;assembly=ModsOfMistriaInstallerLib"
              xmlns:controls="clr-namespace:Garethp.ModsOfMistriaGUI.Controls"
-             xmlns:conv="using:Garethp.ModsOfMistriaGUI.Converters"
              xmlns:i="https://github.com/projektanker/icons.avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Garethp.ModsOfMistriaGUI.Views.ModlistPageView"
              d:DataContext="{x:Static models:DesignData.ModlistPageViewModel}">
-    <UserControl.Resources>
-        <conv:BooleanToMenuHeightConverter x:Key="BooleanToMenuHeightConverter" />
-    </UserControl.Resources>
     <DockPanel LastChildFill="True">
 
         <!-- Bottom toolbar: settings, language and actions share one compact row.
@@ -86,16 +82,13 @@
                               IsChecked="{Binding LaunchGameDirectly, Mode=TwoWay}" />
                     <Separator />
                     <!-- Nexus Vortex download-link support -->
-                    <MenuItem Header="{Binding Texts.GUINexusMenu}"
+                    <MenuItem x:Name="NexusMenuItem"
+                              Header="{Binding Texts.GUINexusMenu}"
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Nexus.HandlerActionText}"
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
-                        <MenuItem Header="{Binding Texts.GUINexusHandlerDisableMenuItem}"
-                                  Command="{Binding Nexus.RemoveHandlerRegistrationCommand}"
-                                  IsVisible="{Binding Nexus.HandlerCanBeRemoved}"
-                                  Height="{Binding Nexus.HandlerCanBeRemoved, Converter={StaticResource BooleanToMenuHeightConverter}}"
-                                  MinHeight="0" />
-                        <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
+                        <MenuItem x:Name="NexusHandlerStatusMenuItem"
+                                  Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
                         <Separator />
                         <MenuItem Header="{Binding Nexus.NexusAccountActionText}"
                                   Command="{Binding Nexus.ManageNexusAccountCommand}" />

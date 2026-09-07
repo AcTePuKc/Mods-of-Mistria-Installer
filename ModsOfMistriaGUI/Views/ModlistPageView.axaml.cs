@@ -12,6 +12,7 @@ using Garethp.ModsOfMistriaGUI.Controls;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
+using System.ComponentModel;
 
 namespace Garethp.ModsOfMistriaGUI.Views;
 
@@ -24,6 +25,8 @@ public partial class ModlistPageView : UserControl
     private Grid? _activeDropTarget;
     private int _dragAutoScrollDirection;
     private readonly DispatcherTimer _dragAutoScrollTimer;
+    private NexusDownloadsViewModel? _observedNexus;
+    private MenuItem? _removeNexusHandlerMenuItem;
 
     public ModlistPageView()
     {
@@ -33,7 +36,12 @@ public partial class ModlistPageView : UserControl
             Interval = TimeSpan.FromMilliseconds(50)
         };
         _dragAutoScrollTimer.Tick += OnDragAutoScrollTick;
-        AttachedToVisualTree += (_, _) => UpdateLanguageCheckmark();
+        AttachedToVisualTree += (_, _) =>
+        {
+            UpdateLanguageCheckmark();
+            OnDataContextChanged(this, EventArgs.Empty);
+        };
+        DataContextChanged += OnDataContextChanged;
 
         // A hover card is placed against the badge that opened it, so a scroll would leave it
         // hanging over whatever row moved into that spot.
@@ -90,6 +98,47 @@ public partial class ModlistPageView : UserControl
                 }
 
                 break;
+        }
+    }
+
+    private void OnDataContextChanged(object? sender, EventArgs e)
+    {
+        if (_observedNexus is not null)
+            _observedNexus.PropertyChanged -= OnNexusPropertyChanged;
+
+        _observedNexus = (DataContext as ModlistPageViewModel)?.Nexus;
+        if (_observedNexus is not null)
+            _observedNexus.PropertyChanged += OnNexusPropertyChanged;
+
+        UpdateNexusRegistrationMenu();
+    }
+
+    private void OnNexusPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(NexusDownloadsViewModel.HandlerCanBeRemoved))
+            UpdateNexusRegistrationMenu();
+    }
+
+    private void UpdateNexusRegistrationMenu()
+    {
+        if (_observedNexus is null || NexusMenuItem is null || NexusHandlerStatusMenuItem is null)
+            return;
+
+        if (_observedNexus.HandlerCanBeRemoved && _removeNexusHandlerMenuItem is null)
+        {
+            _removeNexusHandlerMenuItem = new MenuItem
+            {
+                [!MenuItem.HeaderProperty] = new Avalonia.Data.Binding("Texts.GUINexusHandlerDisableMenuItem"),
+                [!MenuItem.CommandProperty] = new Avalonia.Data.Binding("Nexus.RemoveHandlerRegistrationCommand")
+            };
+            var statusIndex = NexusMenuItem.Items.IndexOf(NexusHandlerStatusMenuItem);
+            NexusMenuItem.Items.Insert(statusIndex < 0 ? NexusMenuItem.Items.Count : statusIndex,
+                _removeNexusHandlerMenuItem);
+        }
+        else if (!_observedNexus.HandlerCanBeRemoved && _removeNexusHandlerMenuItem is not null)
+        {
+            NexusMenuItem.Items.Remove(_removeNexusHandlerMenuItem);
+            _removeNexusHandlerMenuItem = null;
         }
     }
 
