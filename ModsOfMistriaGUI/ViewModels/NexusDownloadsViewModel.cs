@@ -104,6 +104,9 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         _ = OfferToHandleLinksAsync();
     }
 
+    /// <summary>Refreshes the displayed handler after another manager changed Windows' selection.</summary>
+    public void RefreshHandlerStatusFromUi() => RefreshHandlerStatus();
+
     /// <summary>
     /// Asks once whether AIM should take over Vortex download links, the way Vortex and
     /// Stardrop do on first run. Declining is remembered: a mod manager that asks every launch is

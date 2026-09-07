@@ -31,6 +31,18 @@ public partial class ModlistPageView : UserControl
     public ModlistPageView()
     {
         InitializeComponent();
+        var nexusMenu = NexusMenuItem;
+        if (nexusMenu is not null)
+            nexusMenu.PropertyChanged += (_, e) =>
+            {
+                // Another mod manager can reclaim nxm:// while AIM remains open. Refresh when
+                // the submenu is opened so the displayed owner is the current Windows owner.
+                if (e.Property.Name == "IsSubMenuOpen" && e.NewValue is true &&
+                    DataContext is ModlistPageViewModel vm)
+                {
+                    vm.Nexus?.RefreshHandlerStatusFromUi();
+                }
+            };
         _dragAutoScrollTimer = new DispatcherTimer
         {
             Interval = TimeSpan.FromMilliseconds(50)
