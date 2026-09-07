@@ -156,18 +156,6 @@
 
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top">
-                <!-- Greeting / location info -->
-                <WrapPanel>
-                    <TextBlock Margin="0 0 5 0"
-                               Text="{Binding Texts.GUIFieldsOfMistriaDetectedLocation}" />
-                    <TextBlock Text="{Binding MistriaLocation}" />
-                </WrapPanel>
-                <TextBlock Text="{Binding ModsWillBeInstalledText}" />
-                <TextBlock Text="{Binding ArchiveStatus}"
-                           TextWrapping="Wrap"
-                           Foreground="Gray"
-                           Margin="0 4 0 0" />
-
                 <!-- Profile selector -->
                 <WrapPanel Margin="0 8 0 0" VerticalAlignment="Center">
                     <TextBlock VerticalAlignment="Center" Margin="0 0 6 0" Text="{Binding Texts.GUIProfileLabel}" />
