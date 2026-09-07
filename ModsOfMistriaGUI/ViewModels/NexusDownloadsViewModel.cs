@@ -41,7 +41,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     /// <summary>Action shown in the Nexus submenu; it reflects the current handler state.</summary>
     public string HandlerActionText =>
-        _handlerIsActive
+        _handlerIsActive || _handlerCanBeRemoved
             ? Localization["GUINexusHandlerDisableMenuItem"]
             : Localization["GUINexusHandlerEnableMenuItem"];
 
@@ -146,8 +146,23 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         }
         else
         {
-            await ShowMessage(Localization["GUINexusHandlerTitle"],
-                string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            var registrationStatus = NxmProtocolHandler.GetStatus();
+            if (registrationStatus.IsThisApplicationRegistered && registrationStatus.IsClaimedByAnother)
+            {
+                var openDefaults = await ShowBoxAsync(
+                    Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerRegisteredNotDefault"],
+                        registrationStatus.HandlerName ?? registrationStatus.CurrentHandler ?? "another program"),
+                    ButtonEnum.YesNo);
+
+                if (openDefaults == ButtonResult.Yes)
+                    NxmProtocolHandler.OpenWindowsDefaultApps();
+            }
+            else
+            {
+                await ShowMessage(Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            }
         }
 
         RefreshHandlerStatus();
@@ -625,7 +640,9 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     {
         var status = NxmProtocolHandler.GetStatus();
 
-        if (status is { IsRegistered: true, IsThisExecutable: true })
+        // If AIM is registered but another manager is currently selected, this button still
+        // means "stop using AIM": remove AIM's own registration without touching the other app.
+        if (status.IsThisApplicationRegistered)
         {
             if (NxmProtocolHandler.Unregister(out var unregisterError))
             {
@@ -668,8 +685,23 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         }
         else
         {
-            await ShowMessage(Localization["GUINexusHandlerTitle"],
-                string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            var registrationStatus = NxmProtocolHandler.GetStatus();
+            if (registrationStatus.IsThisApplicationRegistered && registrationStatus.IsClaimedByAnother)
+            {
+                var openDefaults = await ShowBoxAsync(
+                    Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerRegisteredNotDefault"],
+                        registrationStatus.HandlerName ?? registrationStatus.CurrentHandler ?? "another program"),
+                    ButtonEnum.YesNo);
+
+                if (openDefaults == ButtonResult.Yes)
+                    NxmProtocolHandler.OpenWindowsDefaultApps();
+            }
+            else
+            {
+                await ShowMessage(Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            }
         }
 
         RefreshHandlerStatus();

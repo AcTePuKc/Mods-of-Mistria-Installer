@@ -193,7 +193,7 @@ public static class NxmProtocolHandler
             if (!status.IsThisExecutable)
             {
                 error = status.IsClaimedByAnother
-                    ? $"AIM is registered, but Windows is still using {status.HandlerName ?? status.CurrentHandler} for nxm:// links.\n\nChoose AIM as the nxm:// default in Windows Default apps."
+                    ? $"AIM was registered, but Windows might still be using {status.HandlerName ?? status.CurrentHandler} for nxm:// links.\n\nChoose AIM as the nxm:// default in Windows Default apps."
                     : "The nxm:// registration could not be verified after writing it.";
                 Logger.Log($"Registration was not retained: {error}");
                 return false;

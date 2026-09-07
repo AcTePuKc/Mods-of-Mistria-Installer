@@ -12,7 +12,6 @@ using Garethp.ModsOfMistriaGUI.Controls;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
-using System.ComponentModel;
 
 namespace Garethp.ModsOfMistriaGUI.Views;
 
@@ -25,8 +24,6 @@ public partial class ModlistPageView : UserControl
     private Grid? _activeDropTarget;
     private int _dragAutoScrollDirection;
     private readonly DispatcherTimer _dragAutoScrollTimer;
-    private NexusDownloadsViewModel? _observedNexus;
-    private MenuItem? _removeNexusHandlerMenuItem;
 
     public ModlistPageView()
     {
@@ -51,7 +48,6 @@ public partial class ModlistPageView : UserControl
         AttachedToVisualTree += (_, _) =>
         {
             UpdateLanguageCheckmark();
-            OnDataContextChanged(this, EventArgs.Empty);
         };
         DataContextChanged += OnDataContextChanged;
 

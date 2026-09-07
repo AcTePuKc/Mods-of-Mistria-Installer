@@ -87,8 +87,6 @@
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Nexus.HandlerActionText}"
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
-                        <MenuItem x:Name="NexusHandlerStatusMenuItem"
-                                  Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
                         <MenuItem Header="{Binding Nexus.NexusAccountActionText}"
                                   Command="{Binding Nexus.ManageNexusAccountCommand}" />
                         <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"

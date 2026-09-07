@@ -265,6 +265,11 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM вече ще отваря връзките „Vortex“ от сайта на Nexus.
 
 Браузърът може да поиска разрешение при първото натискане на такава връзка.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM беше регистриран успешно, но Windows може все още да използва {0} за nxm:// връзките.
+
+Да отворя ли Windows Default apps, за да изберете AIM като приложение за nxm://?
+
+Изберете „Да“, за да се отворят настройките, или „Не“, за да ги оставите без промяна.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM вече няма да отваря връзките „Vortex“ от сайта на Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM не можа да се регистрира за тези връзки: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM не можа да спре обработването на тези връзки: {0}</value></data>

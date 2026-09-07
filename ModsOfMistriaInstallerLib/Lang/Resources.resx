@@ -667,6 +667,7 @@ Open download page(s) in browser?</value></data>
   <data name="GUINexusHandlerOtherApp" xml:space="preserve"><value>Another program currently handles these links ({0}).</value></data>
   <data name="GUINexusHandlerUnsupported" xml:space="preserve"><value>Handling these links is only supported on Windows and Linux.</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM will now open "Vortex" links from the Nexus website.&#xD;&#xA;&#xD;&#xA;Your browser may ask for permission the first time you click one.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM was registered successfully, but Windows might still be using {0} for nxm:// links.&#xD;&#xA;&#xD;&#xA;Open Windows Default apps and choose AIM for the nxm:// protocol?&#xD;&#xA;&#xD;&#xA;Choose Yes to open Default apps, or No to leave it unchanged.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM will no longer open "Vortex" links from the Nexus website.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Could not register AIM for these links: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Could not stop AIM from handling these links: {0}</value></data>
