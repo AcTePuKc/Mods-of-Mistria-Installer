@@ -54,7 +54,13 @@ public record NxmHandlerStatus(bool IsRegistered, bool IsThisExecutable, string?
 public static class NxmProtocolHandler
 {
     private const string Scheme = "nxm";
-    private const string WindowsKeyPath = @"Software\Classes\nxm";
+    private const string WindowsProtocolKeyPath = @"Software\Classes\nxm";
+    private const string WindowsProgId = "AIM.nxm";
+    private const string WindowsCapabilitiesPath = @"Software\AIM\Capabilities";
+    private const string WindowsRegisteredApplicationsPath = @"Software\RegisteredApplications";
+    private const string WindowsRegisteredApplicationName = "AIM";
+    private const string WindowsUserChoicePath =
+        @"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\nxm\UserChoice";
     private const string LinuxDesktopFileName = "aim-nxm-handler.desktop";
 
     /// <summary>
@@ -142,6 +148,8 @@ public static class NxmProtocolHandler
     /// <summary>
     /// Claims nxm:// for this executable. Returns false with a message rather than throwing:
     /// a locked-down machine refusing the write is a situation to explain, not a crash.
+    /// The registry is read back after writing so callers never report success when another
+    /// manager has immediately restored its own association.
     /// </summary>
     public static bool Register(out string? error)
     {
@@ -161,6 +169,16 @@ public static class NxmProtocolHandler
             else
             {
                 error = "Registering nxm:// links is only supported on Windows and Linux.";
+                return false;
+            }
+
+            var status = GetStatus();
+            if (!status.IsThisExecutable)
+            {
+                error = status.IsClaimedByAnother
+                    ? $"AIM is registered, but Windows is still using {status.HandlerName ?? status.CurrentHandler} for nxm:// links.\n\nChoose AIM as the nxm:// default in Windows Default apps."
+                    : "The nxm:// registration could not be verified after writing it.";
+                Logger.Log($"Registration was not retained: {error}");
                 return false;
             }
 
@@ -197,15 +215,54 @@ public static class NxmProtocolHandler
     [SupportedOSPlatform("windows")]
     private static void RegisterWindows(string executable)
     {
-        using var key = Registry.CurrentUser.CreateSubKey(WindowsKeyPath);
-        key.SetValue("", "URL:NXM Protocol");
-        key.SetValue("URL Protocol", "");
+        var commandLine = $"\"{executable}\" \"%1\"";
+        var iconPath = $"\"{executable}\",0";
+        var foreignManagerHasNxmCapability = HasForeignNxmCapability();
 
-        using (var icon = key.CreateSubKey("DefaultIcon"))
-            icon.SetValue("", $"\"{executable}\",0");
+        // Register a dedicated ProgID as well as the bare protocol fallback. The ProgID is what
+        // Windows exposes in Default apps and what lets it distinguish AIM from Stardrop, ModDrop,
+        // or another manager that also supports nxm://.
+        using (var progId = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{WindowsProgId}"))
+        {
+            progId.SetValue("", "URL:Nexus Mods Protocol");
+            progId.SetValue("URL Protocol", "");
 
-        using var command = key.CreateSubKey(@"shell\open\command");
-        command.SetValue("", $"\"{executable}\" \"%1\"");
+            using var icon = progId.CreateSubKey("DefaultIcon");
+            icon.SetValue("", iconPath);
+
+            using var command = progId.CreateSubKey(@"shell\open\command");
+            command.SetValue("", commandLine);
+        }
+
+        // If another manager has a structured registration, do not overwrite its bare fallback.
+        // Managers such as Stardrop use that mismatch as a signal to repair their registration,
+        // which would otherwise create a registry tug-of-war. The user can choose AIM explicitly
+        // from Windows' Default apps picker using the AIM.nxm capability registered above.
+        if (!foreignManagerHasNxmCapability)
+        {
+            using var protocol = Registry.CurrentUser.CreateSubKey(WindowsProtocolKeyPath);
+            protocol.SetValue("", "URL:Nexus Mods Protocol");
+            protocol.SetValue("URL Protocol", "");
+
+            using var icon = protocol.CreateSubKey("DefaultIcon");
+            icon.SetValue("", iconPath);
+
+            using var command = protocol.CreateSubKey(@"shell\open\command");
+            command.SetValue("", commandLine);
+        }
+
+        using (var capabilities = Registry.CurrentUser.CreateSubKey(WindowsCapabilitiesPath))
+        {
+            capabilities.SetValue("ApplicationName", "AIM - Mods of Mistria Installer");
+            capabilities.SetValue("ApplicationDescription", "Handles Nexus Mods mod-manager links.");
+            capabilities.SetValue("ApplicationIcon", iconPath);
+
+            using var associations = capabilities.CreateSubKey("UrlAssociations");
+            associations.SetValue(Scheme, WindowsProgId);
+        }
+
+        using var registeredApplications = Registry.CurrentUser.CreateSubKey(WindowsRegisteredApplicationsPath);
+        registeredApplications.SetValue(WindowsRegisteredApplicationName, WindowsCapabilitiesPath);
     }
 
     [SupportedOSPlatform("windows")]
@@ -214,22 +271,80 @@ public static class NxmProtocolHandler
         // Only stand down if we are the handler - blowing away another manager's
         // registration on our way out would be rude and hard to diagnose.
         var current = GetWindowsHandler();
-        if (current is null || !PointsAtUs(current)) return;
+        var protocol = GetWindowsProtocolHandler();
+        if ((current is null || !PointsAtUs(current)) && (protocol is null || !PointsAtUs(protocol))) return;
 
-        Registry.CurrentUser.DeleteSubKeyTree(WindowsKeyPath, throwOnMissingSubKey: false);
+        if (protocol is not null && PointsAtUs(protocol))
+            Registry.CurrentUser.DeleteSubKeyTree(WindowsProtocolKeyPath, throwOnMissingSubKey: false);
+
+        Registry.CurrentUser.DeleteSubKeyTree($@"Software\Classes\{WindowsProgId}", throwOnMissingSubKey: false);
+        Registry.CurrentUser.DeleteSubKeyTree(WindowsCapabilitiesPath, throwOnMissingSubKey: false);
+
+        using var registeredApplications = Registry.CurrentUser.OpenSubKey(WindowsRegisteredApplicationsPath, writable: true);
+        registeredApplications?.DeleteValue(WindowsRegisteredApplicationName, throwOnMissingValue: false);
     }
 
     [SupportedOSPlatform("windows")]
     private static string? GetWindowsHandler()
     {
-        using var key = Registry.CurrentUser.OpenSubKey($@"{WindowsKeyPath}\shell\open\command");
+        // A UserChoice is the actual Windows selection and takes precedence over the bare
+        // protocol key. Reading only Classes\nxm is what made AIM report itself as active while
+        // Windows still launched Stardrop.
+        using (var userChoice = Registry.CurrentUser.OpenSubKey(WindowsUserChoicePath))
+        {
+            var progId = userChoice?.GetValue("ProgId") as string;
+            var chosenCommand = GetWindowsCommandForProgId(progId);
+            if (!string.IsNullOrEmpty(chosenCommand)) return chosenCommand;
+        }
+
+        return GetWindowsProtocolHandler();
+    }
+
+    [SupportedOSPlatform("windows")]
+    private static string? GetWindowsProtocolHandler()
+    {
+        using var key = Registry.CurrentUser.OpenSubKey($@"{WindowsProtocolKeyPath}\shell\open\command");
         var command = key?.GetValue("") as string;
         if (!string.IsNullOrEmpty(command)) return command;
 
         // A machine-wide registration (an installer that ran as administrator) wins over
         // ours only if HKCU is empty, so it is worth reporting.
-        using var machineKey = Registry.LocalMachine.OpenSubKey($@"{WindowsKeyPath}\shell\open\command");
+        using var machineKey = Registry.LocalMachine.OpenSubKey($@"{WindowsProtocolKeyPath}\shell\open\command");
         return machineKey?.GetValue("") as string;
+    }
+
+    [SupportedOSPlatform("windows")]
+    private static string? GetWindowsCommandForProgId(string? progId)
+    {
+        if (string.IsNullOrWhiteSpace(progId)) return null;
+
+        using var userKey = Registry.CurrentUser.OpenSubKey($@"Software\Classes\{progId}\shell\open\command");
+        var command = userKey?.GetValue("") as string;
+        if (!string.IsNullOrEmpty(command)) return command;
+
+        using var machineKey = Registry.LocalMachine.OpenSubKey($@"Software\Classes\{progId}\shell\open\command");
+        return machineKey?.GetValue("") as string;
+    }
+
+    [SupportedOSPlatform("windows")]
+    private static bool HasForeignNxmCapability()
+    {
+        using var registeredApplications = Registry.CurrentUser.OpenSubKey(WindowsRegisteredApplicationsPath);
+        if (registeredApplications is null) return false;
+
+        foreach (var applicationName in registeredApplications.GetValueNames())
+        {
+            if (applicationName.Equals(WindowsRegisteredApplicationName, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var capabilitiesPath = registeredApplications.GetValue(applicationName) as string;
+            if (string.IsNullOrWhiteSpace(capabilitiesPath)) continue;
+
+            using var associations = Registry.CurrentUser.OpenSubKey($@"{capabilitiesPath}\UrlAssociations");
+            if (!string.IsNullOrWhiteSpace(associations?.GetValue(Scheme) as string)) return true;
+        }
+
+        return false;
     }
 
     // ── Linux ────────────────────────────────────────────────────────────────────

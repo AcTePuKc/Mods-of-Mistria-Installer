@@ -91,13 +91,11 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Start-up work that touches the machine: restoring the protocol registration. Kept out of the
-    /// constructor so that constructing the view model - as the headless UI tests do - cannot
-    /// change the user's nxm:// handler.
+    /// Start-up work for the Nexus integration. Startup may offer registration, but never silently
+    /// takes the protocol away from another manager.
     /// </summary>
     public void Initialise()
     {
-        RestoreHandlerRegistration();
         RefreshHandlerStatus();
         _ = OfferToHandleLinksAsync();
     }
@@ -130,7 +128,6 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         if (NxmProtocolHandler.Register(out var error))
         {
             _nexusSettings.HandlerRegistered = true;
-            if (status.IsClaimedByAnother) _nexusSettings.HandlerAlwaysClaim = true;
             await ShowMessage(Localization["GUINexusHandlerTitle"], Localization["GUINexusHandlerRegistered"]);
         }
         else
@@ -646,7 +643,6 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         if (NxmProtocolHandler.Register(out var error))
         {
             _nexusSettings.HandlerRegistered = true;
-            if (status.IsClaimedByAnother) _nexusSettings.HandlerAlwaysClaim = true;
             await ShowMessage(Localization["GUINexusHandlerTitle"], Localization["GUINexusHandlerRegistered"]);
         }
         else
@@ -712,31 +708,6 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     }
 
     // ── Handler status ───────────────────────────────────────────────────────────
-
-    /// <summary>
-    /// Re-registers silently when the user has opted in but the registration has gone missing -
-    /// which happens whenever a portable copy of AIM is moved or replaced. Another manager
-    /// deliberately holding the protocol is left alone and reported instead.
-    /// </summary>
-    private void RestoreHandlerRegistration()
-    {
-        if (!_nexusSettings.HandlerRegistered || !NxmProtocolHandler.IsSupported()) return;
-
-        var status = NxmProtocolHandler.GetStatus();
-        if (status.IsThisExecutable) return;
-
-        // A new local/released AIM build has a different executable path. Keep the user's
-        // previous opt-in and silently move the registration to this build, but never take over
-        // Vortex, ModDrop, or another unrelated manager without asking first.
-        var isOlderAim = status.IsClaimedByAnother &&
-                         status.HandlerName?.Contains("aim", StringComparison.OrdinalIgnoreCase) == true;
-        if (status.IsClaimedByAnother && !isOlderAim && !_nexusSettings.HandlerAlwaysClaim) return;
-
-        if (!NxmProtocolHandler.Register(out var error))
-            Logger.Log($"Could not restore the nxm:// registration: {error}");
-        else
-            Logger.Log($"Updated the nxm:// registration from {status.CurrentHandler ?? "an older handler"} to {NxmProtocolHandler.GetExecutablePath()}");
-    }
 
     private void RefreshHandlerStatus()
     {
