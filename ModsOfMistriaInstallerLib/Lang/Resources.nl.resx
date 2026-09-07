@@ -588,6 +588,7 @@ Downloadpagina's openen in de browser?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM opent voortaan „Vortex“-links van de Nexus-website.
 
 Je browser kan de eerste keer dat je klikt om toestemming vragen.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM is geregistreerd, maar Windows gebruikt mogelijk nog steeds {0} voor nxm://-links.&#xD;&#xA;&#xD;&#xA;Windows-standaard-apps openen en AIM kiezen voor het nxm://-protocol?&#xD;&#xA;&#xD;&#xA;Met Ja worden de standaard-apps geopend; met Nee blijft de instelling ongewijzigd.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM opent geen „Vortex“-links van de Nexus-website meer.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM kon niet voor deze links worden geregistreerd: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM kon het verwerken van deze links niet stoppen: {0}</value></data>

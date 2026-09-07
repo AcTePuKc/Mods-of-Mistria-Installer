@@ -591,6 +591,7 @@ Abrir as páginas de download no navegador?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Agora o AIM abrirá links “Vortex” do site do Nexus.
 
 Seu navegador pode pedir permissão na primeira vez que você clicar em um deles.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>O AIM foi registrado com sucesso, mas o Windows pode ainda estar usando {0} para links nxm://.&#xD;&#xA;&#xD;&#xA;Abrir os aplicativos padrão do Windows e escolher o AIM para o protocolo nxm://?&#xD;&#xA;&#xD;&#xA;“Sim” abrirá os aplicativos padrão; “Não” deixará a configuração inalterada.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>O AIM não abrirá mais links “Vortex” do site do Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Não foi possível registrar o AIM para estes links: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Não foi possível parar o AIM de gerenciar estes links: {0}</value></data>

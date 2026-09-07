@@ -257,6 +257,7 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Тепер AIM відкриватиме посилання «Vortex» із сайту Nexus.
 
 Під час першого натискання браузер може запитати дозвіл.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM успішно зареєстровано, але Windows, можливо, досі використовує {0} для посилань nxm://.&#xD;&#xA;&#xD;&#xA;Відкрити програми за замовчуванням Windows і вибрати AIM для протоколу nxm://?&#xD;&#xA;&#xD;&#xA;«Так» відкриє програми за замовчуванням, а «Ні» залишить налаштування без змін.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM більше не відкриватиме посилання «Vortex» із сайту Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Не вдалося зареєструвати AIM для цих посилань: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Не вдалося припинити обробку цих посилань у AIM: {0}</value></data>

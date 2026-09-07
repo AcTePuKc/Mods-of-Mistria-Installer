@@ -265,6 +265,7 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>これからAIMがNexusサイトの「Vortex」リンクを開きます。
 
 初めてクリックするとき、ブラウザーで許可を求められる場合があります。</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIMの登録は成功しましたが、Windowsはnxm://リンクに引き続き{0}を使用している可能性があります。&#xD;&#xA;&#xD;&#xA;Windowsの既定のアプリを開き、nxm://プロトコルにAIMを選択しますか？&#xD;&#xA;&#xD;&#xA;「はい」で既定のアプリを開き、「いいえ」で設定を変更せずに閉じます。</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIMはNexusサイトの「Vortex」リンクを開かなくなります。</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>これらのリンクにAIMを登録できませんでした：{0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIMによるこれらのリンクの処理を停止できませんでした：{0}</value></data>

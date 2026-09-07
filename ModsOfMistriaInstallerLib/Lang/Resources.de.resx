@@ -591,6 +591,7 @@ Download-Seite(n) im Browser öffnen?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM öffnet jetzt „Vortex“-Links von der Nexus-Website.
 
 Beim ersten Klick bittet dein Browser möglicherweise um Erlaubnis.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM wurde erfolgreich registriert, aber Windows verwendet möglicherweise weiterhin {0} für nxm://-Links.&#xD;&#xA;&#xD;&#xA;Windows-Standard-Apps öffnen und AIM als Anwendung für das nxm://-Protokoll auswählen?&#xD;&#xA;&#xD;&#xA;Ja öffnet die Standard-Apps; Nein lässt die Einstellung unverändert.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM öffnet „Vortex“-Links von der Nexus-Website nicht mehr.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM konnte nicht für diese Links registriert werden: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM konnte die Verarbeitung dieser Links nicht beenden: {0}</value></data>

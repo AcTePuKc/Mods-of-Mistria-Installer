@@ -265,6 +265,7 @@ Otworzyć strony pobierania w przeglądarce?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Od teraz AIM będzie otwierać linki „Vortex” ze strony Nexus.
 
 Przy pierwszym kliknięciu przeglądarka może poprosić o zgodę.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM został pomyślnie zarejestrowany, ale system Windows może nadal używać aplikacji {0} dla linków nxm://.&#xD;&#xA;&#xD;&#xA;Otworzyć aplikacje domyślne systemu Windows i wybrać AIM dla protokołu nxm://?&#xD;&#xA;&#xD;&#xA;„Tak” otworzy aplikacje domyślne, a „Nie” pozostawi ustawienia bez zmian.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM nie będzie już otwierać linków „Vortex” ze strony Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Nie udało się zarejestrować AIM dla tych linków: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Nie udało się zatrzymać obsługi tych linków w AIM: {0}</value></data>

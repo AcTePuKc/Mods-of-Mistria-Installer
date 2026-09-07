@@ -265,6 +265,7 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>现在 AIM 将打开 Nexus 网站上的“Vortex”链接。
 
 第一次点击时，浏览器可能会请求权限。</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM 已成功注册，但 Windows 可能仍在使用 {0} 处理 nxm:// 链接。&#xD;&#xA;&#xD;&#xA;打开 Windows 默认应用，并为 nxm:// 协议选择 AIM？&#xD;&#xA;&#xD;&#xA;选择“是”打开默认应用，选择“否”保持设置不变。</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM 将不再打开 Nexus 网站上的“Vortex”链接。</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>无法为这些链接注册 AIM：{0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>无法停止 AIM 处理这些链接：{0}</value></data>

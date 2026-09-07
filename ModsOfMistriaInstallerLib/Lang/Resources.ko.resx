@@ -265,6 +265,7 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>이제 AIM이 Nexus 웹사이트의 “Vortex” 링크를 엽니다.
 
 처음 클릭할 때 브라우저에서 권한을 요청할 수 있습니다.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM이 성공적으로 등록되었지만 Windows에서 nxm:// 링크에 {0}을(를) 계속 사용하고 있을 수 있습니다.&#xD;&#xA;&#xD;&#xA;Windows 기본 앱을 열고 nxm:// 프로토콜에 AIM을 선택하시겠습니까?&#xD;&#xA;&#xD;&#xA;“예”를 선택하면 기본 앱이 열리고, “아니요”를 선택하면 설정을 변경하지 않습니다.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM이 더 이상 Nexus 웹사이트의 “Vortex” 링크를 열지 않습니다.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>이 링크에 AIM을 등록하지 못했습니다: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM의 링크 처리를 중지하지 못했습니다: {0}</value></data>

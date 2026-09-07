@@ -265,6 +265,7 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Sekarang AIM akan membuka tautan “Vortex” dari situs Nexus.
 
 Browser mungkin meminta izin saat pertama kali kamu mengekliknya.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM berhasil didaftarkan, tetapi Windows mungkin masih menggunakan {0} untuk tautan nxm://.&#xD;&#xA;&#xD;&#xA;Buka aplikasi default Windows dan pilih AIM untuk protokol nxm://?&#xD;&#xA;&#xD;&#xA;“Ya” akan membuka aplikasi default; “Tidak” akan membiarkan pengaturan apa adanya.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM tidak akan lagi membuka tautan “Vortex” dari situs Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM tidak dapat didaftarkan untuk tautan ini: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM tidak dapat berhenti mengelola tautan ini: {0}</value></data>
