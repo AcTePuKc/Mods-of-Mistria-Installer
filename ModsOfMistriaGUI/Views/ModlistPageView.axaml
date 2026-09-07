@@ -157,7 +157,7 @@
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top">
                 <!-- Profile selector -->
-                <WrapPanel Margin="0 8 0 0" VerticalAlignment="Center">
+                <WrapPanel Margin="0 0 0 0" VerticalAlignment="Center">
                     <TextBlock VerticalAlignment="Center" Margin="0 0 6 0" Text="{Binding Texts.GUIProfileLabel}" />
                     <ComboBox ItemsSource="{Binding Profiles}"
                               SelectedItem="{Binding CurrentProfile, Mode=OneWay}"
@@ -167,6 +167,25 @@
                             Command="{Binding CreateProfileCommand}">+</Button>
                     <Button Margin="4 0 0 0" ToolTip.Tip="{Binding Texts.GUIDeleteCurrentProfile}"
                             Command="{Binding DeleteCurrentProfileCommand}">-</Button>
+
+                    <!-- Search is a primary list action, so it stays beside the profile rather
+                         than in the global bottom toolbar. A bounded width leaves the profile and
+                         the list controls readable at 150% DPI; the row can still wrap on a very
+                         narrow window. -->
+                    <Grid Width="260" ColumnDefinitions="*,Auto" Margin="20 0 0 0">
+                        <TextBox Grid.Column="0"
+                                 x:Name="ModSearchBox"
+                                 Text="{Binding ModSearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Watermark="{Binding Texts.GUIModSearch}"
+                                 IsEnabled="{Binding !IsInstalling}" />
+                        <Button Grid.Column="1"
+                                Margin="6 0 0 0"
+                                Padding="8 2"
+                                Content="×"
+                                IsVisible="{Binding HasModSearch}"
+                                ToolTip.Tip="{Binding Texts.GUIClearModSearch}"
+                                Command="{Binding ClearModSearchCommand}" />
+                    </Grid>
                 </WrapPanel>
                 <!-- Nexus downloads in progress. Hidden entirely when nothing is
                      downloading so the page looks exactly as it did before. -->
@@ -228,24 +247,7 @@
                      capped: a query rarely needs the full window, and the saved width lets the
                      filters occupy the same row on normal windows while still wrapping safely on
                      narrow or scaled displays. -->
-                <WrapPanel Margin="0 10 0 0" VerticalAlignment="Center">
-                    <!-- Local filtering only: it searches already discovered metadata and
-                         deliberately never performs archive or Nexus work while typing. -->
-                    <Grid Width="280" ColumnDefinitions="*,Auto" Margin="0 2 14 2">
-                        <TextBox Grid.Column="0"
-                                 x:Name="ModSearchBox"
-                                 Text="{Binding ModSearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Watermark="{Binding Texts.GUIModSearch}"
-                                 IsEnabled="{Binding !IsInstalling}" />
-                        <Button Grid.Column="1"
-                                Margin="6 0 0 0"
-                                Padding="8 2"
-                                Content="×"
-                                IsVisible="{Binding HasModSearch}"
-                                ToolTip.Tip="{Binding Texts.GUIClearModSearch}"
-                                Command="{Binding ClearModSearchCommand}" />
-                    </Grid>
-
+                <WrapPanel Margin="0 8 0 0" VerticalAlignment="Center">
                     <!-- None of these touches the load order: they change which rows are shown and
                          in what order they are shown, nothing else. Dragging is paused while any
                          of them is on, because reordering a filtered or re-sorted list would have
