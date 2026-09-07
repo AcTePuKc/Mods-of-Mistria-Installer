@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -106,7 +106,6 @@
   <data name="CoreManifestHasNoAuthor" xml:space="preserve"><value>El manifiesto debe incluir un autor.</value></data>
   <data name="CoreManifestHasNoName" xml:space="preserve"><value>El manifiesto debe incluir un nombre.</value></data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve"><value>El manifiesto debe incluir una versión.</value></data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Este mod requiere una versión más reciente del instalador.</value></data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve"><value>La ubicación de Fields of Mistria no existe.</value></data>
   <data name="CoreModDirectoryDoesNotExist" xml:space="preserve"><value>La ubicación del mod no existe.</value></data>
   <data name="CoreGeneratingInformationForMod" xml:space="preserve"><value>Generando información para {0}</value></data>

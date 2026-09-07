@@ -8,6 +8,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using CommunityToolkit.Mvvm.Input;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
+using Garethp.ModsOfMistriaGUI.Controls;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
@@ -33,6 +34,63 @@ public partial class ModlistPageView : UserControl
         };
         _dragAutoScrollTimer.Tick += OnDragAutoScrollTick;
         AttachedToVisualTree += (_, _) => UpdateLanguageCheckmark();
+
+        // A hover card is placed against the badge that opened it, so a scroll would leave it
+        // hanging over whatever row moved into that spot.
+        ModListScrollViewer.ScrollChanged += (_, _) => HoverCard.Hide();
+        DetachedFromVisualTree += (_, _) => HoverCard.Hide();
+
+        // Tunnelling, so the page sees the key before whatever has focus inside it does. A bubbling
+        // handler would never be reached for Ctrl+F while a button had focus, which is most of the
+        // time on a page that is mostly buttons.
+        AddHandler(KeyDownEvent, OnPageKeyDown, RoutingStrategies.Tunnel);
+    }
+
+    /// <summary>
+    /// The row-trailing badges explain themselves through an in-window card rather than a ToolTip.
+    /// See <see cref="HoverCard"/> for why a tooltip flickers on these rows.
+    /// </summary>
+    private void OnBadgePointerEntered(object? sender, PointerEventArgs e) => HoverCard.Show(sender);
+
+    private void OnBadgePointerExited(object? sender, PointerEventArgs e) => HoverCard.Hide();
+
+    /// <summary>
+    /// The two shortcuts every list in every program has, which this list did not.
+    ///
+    /// Both are deliberately inert while typing in a text box: inside the search field Ctrl+A is
+    /// "select all this text", and taking that over to mean "tick two hundred mods" would be a
+    /// keystroke the user cannot take back easily. Ctrl+F is safe there but pointless, since the
+    /// caret is already where it would put it.
+    /// </summary>
+    private void OnPageKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyModifiers != KeyModifiers.Control) return;
+        if (DataContext is not ModlistPageViewModel vm) return;
+        if (e.Source is TextBox) return;
+
+        switch (e.Key)
+        {
+            case Key.F:
+                if (ModSearchBox.IsEnabled)
+                {
+                    ModSearchBox.Focus();
+                    ModSearchBox.SelectAll();
+                    e.Handled = true;
+                }
+
+                break;
+
+            // Scoped to what the filter is showing, which is the whole reason it is worth having:
+            // with a search on, the rows on screen are the set the user is thinking about.
+            case Key.A:
+                if (vm.ToggleVisibleModsCommand.CanExecute(null))
+                {
+                    vm.ToggleVisibleModsCommand.Execute(null);
+                    e.Handled = true;
+                }
+
+                break;
+        }
     }
 
     // Route ComboBox SelectionChanged to SwitchProfileCommand.
@@ -281,4 +339,14 @@ public partial class ModlistPageView : UserControl
                 : null;
         }
     }
+
+    // ── Jumping the list ─────────────────────────────────────────────────────────
+
+    // Scrolling is a property of this view, not of the mod list, so it stays in the code-behind
+    // rather than becoming a command the view model has to know about.
+    private void ScrollModsToTopClick(object? sender, RoutedEventArgs e) =>
+        ModListScrollViewer.ScrollToHome();
+
+    private void ScrollModsToBottomClick(object? sender, RoutedEventArgs e) =>
+        ModListScrollViewer.ScrollToEnd();
 }

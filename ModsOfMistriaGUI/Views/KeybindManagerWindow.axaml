@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.KeybindManagerWindow"
+        Width="820"
+        Height="640"
+        MinWidth="420"
+        MinHeight="300"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <!-- Two rows, not five. The intro, the locked banner and the summary line used to be fixed rows
+       above the scrolling list, so on a narrow window - and especially with no keybinds found,
+       where the explanatory text is at its longest - they took the height and the list was left
+       with none. They scroll with the list now, and the only thing pinned is the footer, because
+       Close has to stay reachable whatever the window is doing. -->
+  <Grid Margin="14" RowDefinitions="*,Auto">
+
+    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+      <StackPanel Spacing="0">
+
+        <TextBlock x:Name="IntroText" TextWrapping="Wrap" />
+
+        <Border x:Name="LockedBanner"
+                Margin="0 10 0 0"
+                Padding="10"
+                CornerRadius="4"
+                IsVisible="False">
+          <TextBlock x:Name="LockedText" TextWrapping="Wrap" />
+        </Border>
+
+        <!-- Wraps, so the overlap toggle drops below the summary rather than off the edge. -->
+        <WrapPanel Margin="0 12 0 0">
+          <TextBlock x:Name="SummaryText"
+                     VerticalAlignment="Center"
+                     Margin="0 2 12 2"
+                     TextWrapping="Wrap"
+                     MaxWidth="520" />
+          <CheckBox x:Name="OnlyOverlapsToggle" Margin="0 2 0 2" />
+        </WrapPanel>
+
+        <StackPanel x:Name="BindingsPanel" Spacing="2" Margin="0 10 0 0" HorizontalAlignment="Stretch" />
+      </StackPanel>
+    </ScrollViewer>
+
+    <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0 12 0 0">
+      <Button x:Name="RefreshButton" Margin="0 2 8 2" />
+      <Button x:Name="CloseButton" Margin="0 2 0 2" IsDefault="True" IsCancel="True" />
+    </WrapPanel>
+  </Grid>
+</Window>

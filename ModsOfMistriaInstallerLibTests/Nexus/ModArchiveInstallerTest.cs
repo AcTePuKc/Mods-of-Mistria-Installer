@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using Garethp.ModsOfMistriaInstallerLib.Nexus;
 
 namespace ModsOfMistriaInstallerLibTests.Nexus;
@@ -163,6 +164,191 @@ public class ModArchiveInstallerTest
         });
     }
 
+    /// <summary>
+    /// Puts a mod on disk the way a .zip install leaves it: a real archive sitting directly in the
+    /// mods folder, which the installer reads without unpacking.
+    /// </summary>
+    private string InstallAsArchive(string name, params (string Path, string Content)[] entries)
+    {
+        var built = CreateArchive($"staged-{name}", entries);
+        var installed = Path.Combine(_modsFolder, name);
+        File.Move(built, installed);
+        return installed;
+    }
+
+    // An update replaces a zipped mod with an unpacked folder, so the old archive is moved out of
+    // the way before extraction starts. If extraction then fails, the user is left with neither the
+    // new version nor the one they had - the install reporting failure does not give the mod back.
+    [Test]
+    public void ShouldRestoreASupersededZipWhenAnUpdateFails()
+    {
+        var installedZip = InstallAsArchive("Some Mod.zip", ("manifest.toml", Manifest));
+        var before = File.ReadAllBytes(installedZip);
+
+        var update = CreateArchive("Some Mod-78-2-2-1760000000.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/../../unsafe.txt", "never write"));
+
+        Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.Install(
+            update, _modsFolder, "Some Mod-78-2-2-1760000000.zip", ArchiveConflictBehaviour.Replace,
+            new ModBackupStore(_modsFolder), "1.0.0", replacePath: installedZip));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(installedZip), Is.True,
+                "a failed update must leave the version that was installed before it available");
+            Assert.That(File.ReadAllBytes(installedZip), Is.EqualTo(before));
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.False,
+                "the half-written folder must not be left behind beside the restored archive");
+            Assert.That(File.Exists(installedZip + ".aim-old"), Is.False);
+            Assert.That(File.Exists(Path.Combine(_workspace, "unsafe.txt")), Is.False);
+        });
+    }
+
+    // The same invariant with no backup store to file the archive in, which is the path taken when
+    // the store cannot be written to.
+    [Test]
+    public void ShouldRestoreAFallbackArchiveWhenAnUpdateFails()
+    {
+        var installedZip = InstallAsArchive("Some Mod.zip", ("manifest.toml", Manifest));
+        var before = File.ReadAllBytes(installedZip);
+
+        var update = CreateArchive("update.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/../../unsafe.txt", "never write"));
+
+        Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            replacePath: installedZip));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(installedZip), Is.True);
+            Assert.That(File.ReadAllBytes(installedZip), Is.EqualTo(before));
+            Assert.That(File.Exists(installedZip + ".aim-old"), Is.False,
+                "the archive belongs back under its own name, not parked beside it");
+        });
+    }
+
+    // A successful update keeps the shape the mod had: the .zip goes into the backup store, so the
+    // versions dropdown can put the zipped copy back rather than offering an unpacked folder.
+    [Test]
+    public void ShouldKeepAndRestoreAnArchiveBackupWhenUpdatingToAFolder()
+    {
+        var installedZip = InstallAsArchive("Some Mod.zip", ("manifest.toml", Manifest));
+        var store = new ModBackupStore(_modsFolder);
+
+        var update = CreateArchive("update.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/new.txt", "new"));
+
+        var installed = ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            store, "1.0.0", replacePath: installedZip);
+
+        var backups = store.List("Some Mod");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(installed[0].Path, Is.EqualTo(Path.Combine(_modsFolder, "Some Mod")));
+            Assert.That(File.Exists(Path.Combine(_modsFolder, "Some Mod", "new.txt")), Is.True);
+            Assert.That(File.Exists(installedZip), Is.False, "the old archive must not stay in the list");
+            Assert.That(backups, Has.Count.EqualTo(1));
+            Assert.That(File.Exists(Path.Combine(backups[0].Path, "Some Mod.zip")), Is.True,
+                "the backup has to hold the archive itself so a rollback restores a zipped mod as a zip");
+        });
+
+        // Rolling back has to give the zip back under its own name, not as a folder.
+        store.Restore(backups[0], Path.Combine(_modsFolder, "Some Mod"));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(installedZip), Is.True);
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.False);
+        });
+    }
+
+    // An .aim-old already sitting beside a mod is the only copy of a version the user once had.
+    // Overwriting it to make room for the next one destroys it.
+    [Test]
+    public void ShouldNotDeleteAnExistingParkedArchiveWhenUsingFallbackBackup()
+    {
+        var installedZip = InstallAsArchive("Some Mod.zip", ("manifest.toml", Manifest));
+        var alreadyParked = installedZip + ".aim-old";
+        File.WriteAllText(alreadyParked, "a version kept from an earlier update");
+
+        var update = CreateArchive("update.zip", ("Some Mod/manifest.toml", Manifest));
+
+        ModArchiveInstaller.Install(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            replacePath: installedZip);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.ReadAllText(alreadyParked), Is.EqualTo("a version kept from an earlier update"));
+            Assert.That(File.Exists(installedZip + ".aim-old-1"), Is.True,
+                "the superseded archive needs a name of its own rather than the one already taken");
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, "Some Mod")), Is.True);
+        });
+    }
+
+    // A rollback that cannot put the archive back must say so, and say where the copy it kept is.
+    // Reporting a clean failure here would tell the user their mod is still installed when it is not.
+    [Test]
+    public void ShouldReportWhichArchiveBackupWasKeptWhenItCannotBeRestored()
+    {
+        var installedZip = InstallAsArchive("Some Mod.zip", ("manifest.toml", Manifest));
+
+        var update = CreateArchive("update.zip",
+            ("Some Mod/manifest.toml", Manifest),
+            ("Some Mod/../../unsafe.txt", "never write"));
+
+        var error = Assert.Throws<ModArchiveException>(() => ModArchiveInstaller.InstallForTesting(
+            update, _modsFolder, "update.zip", ArchiveConflictBehaviour.Replace,
+            null, "1.0.0", CancellationToken.None, null,
+            (target, _) => target.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)
+                ? new IOException("Simulated locked archive.")
+                : null,
+            installedZip));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(error!.Message, Does.Contain("original install error"));
+            Assert.That(error.Message, Does.Contain("Some Mod.zip"));
+            Assert.That(error.Message, Does.Contain("Simulated locked archive"));
+            Assert.That(error.Message, Does.Contain(".aim-old"),
+                "the message has to name the copy that was kept, or manual recovery is a guess");
+            Assert.That(File.Exists(installedZip + ".aim-old"), Is.True,
+                "the copy the message points at must actually be there");
+        });
+    }
+
+    // A manifest whose folder climbs out of the archive must still land inside the mods folder.
+    [Test]
+    public void ShouldNotInstallOutsideTheModsFolderFromAnEscapingManifestRoot()
+    {
+        var archive = CreateArchive("escaping-root.zip",
+            ("../../evil/manifest.toml", Manifest),
+            ("../../evil/payload.txt", "nope"));
+
+        try
+        {
+            ModArchiveInstaller.Install(archive, _modsFolder, "escaping-root.zip");
+        }
+        catch (ModArchiveException)
+        {
+            // Refusing it outright is fine. The property below is what matters either way.
+        }
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(Directory.Exists(Path.Combine(_workspace, "evil")), Is.False);
+            Assert.That(File.Exists(Path.Combine(_workspace, "payload.txt")), Is.False);
+            Assert.That(Directory.GetDirectories(_workspace).Select(Path.GetFileName),
+                Is.EquivalentTo(new[] { "mods" }));
+        });
+    }
+
     [Test]
     public void ShouldRestoreEveryEarlierReplacementWhenABundleFails()
     {
@@ -224,6 +410,96 @@ public class ModArchiveInstallerTest
             Assert.That(Directory.Exists(Path.Combine(_modsFolder, ModBackupStore.DirectoryName, "First Mod")), Is.True,
                 "the prior copy must remain available for manual recovery");
         });
+    }
+
+    // ── Already installed under another name ─────────────────────────────────────
+
+    /// <summary>A mod already unpacked in the mods folder, under whatever folder name.</summary>
+    private string InstallAsFolder(string folderName, string manifest)
+    {
+        var installed = Path.Combine(_modsFolder, folderName);
+        Directory.CreateDirectory(installed);
+        File.WriteAllText(Path.Combine(installed, "manifest.toml"), manifest);
+        return installed;
+    }
+
+    // Nexus names a download after the file - id, version, upload stamp - so the same mod
+    // downloaded twice lands in two folders with different names and nothing about the folder says
+    // they are the same mod. Only the manifest does.
+    [Test]
+    public void ShouldRefuseToInstallAModTheUserAlreadyHasUnderAnotherName()
+    {
+        var existing = InstallAsFolder("Some Mod 78 2 1 1751991240", Manifest);
+        var archive = CreateArchive("Some Mod-78-2-2-1760000000.zip", ("manifest.toml", Manifest));
+
+        var conflict = Assert.Throws<ModArchiveConflictException>(() => ModArchiveInstaller.Install(
+            archive, _modsFolder, "Some Mod-78-2-2-1760000000.zip",
+            installedMods: ModIdentity.Installed(_modsFolder)));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(conflict!.Folders, Is.Empty, "the folder names do not clash - only the mod does");
+            Assert.That(conflict.AlreadyInstalled, Has.Count.EqualTo(1));
+            Assert.That(conflict.AlreadyInstalled[0].SourcePath, Is.EqualTo(existing));
+            Assert.That(conflict.Message, Does.Contain("Some Mod 78 2 1 1751991240"),
+                "the message has to name the copy the user already has, or there is nothing to act on");
+            Assert.That(Directory.GetDirectories(_modsFolder), Has.Length.EqualTo(1),
+                "nothing may be unpacked while the question is unanswered");
+        });
+    }
+
+    // Saying yes to "you already have this" has to replace that copy. Unpacking under the new
+    // download's own name would be the duplicate the question was asked to prevent.
+    [Test]
+    public void ShouldReplaceTheCopyTheUserAlreadyHasWhenAimed()
+    {
+        var existing = InstallAsFolder("Some Mod 78 2 1 1751991240", Manifest);
+        File.WriteAllText(Path.Combine(existing, "old.txt"), "old");
+
+        var archive = CreateArchive("Some Mod-78-2-2-1760000000.zip",
+            ("manifest.toml", Manifest),
+            ("new.txt", "new"));
+
+        var installed = ModArchiveInstaller.Install(
+            archive, _modsFolder, "Some Mod-78-2-2-1760000000.zip", ArchiveConflictBehaviour.Replace,
+            replacePath: existing, installedMods: ModIdentity.Installed(_modsFolder));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(installed[0].Path, Is.EqualTo(existing));
+            Assert.That(File.Exists(Path.Combine(existing, "new.txt")), Is.True);
+            Assert.That(File.Exists(Path.Combine(existing, "old.txt")), Is.False);
+            Assert.That(Directory.GetDirectories(_modsFolder), Has.Length.EqualTo(1),
+                "an update replaces the copy that is there rather than installing beside it");
+        });
+    }
+
+    // A different mod is not a duplicate, whatever its folder is called.
+    [Test]
+    public void ShouldInstallADifferentModEvenWhenAnotherIsAlreadyThere()
+    {
+        InstallAsFolder("Some Mod", Manifest);
+
+        var archive = CreateArchive("Other Mod.zip",
+            ("manifest.toml", "name = \"Other Mod\"\nauthor = \"Someone Else\"\nversion = \"1.0.0\"\n"));
+
+        var installed = ModArchiveInstaller.Install(
+            archive, _modsFolder, "Other Mod.zip",
+            installedMods: ModIdentity.Installed(_modsFolder));
+
+        Assert.That(installed[0].Path, Is.EqualTo(Path.Combine(_modsFolder, "Other Mod")));
+    }
+
+    // The check is opt-in. A caller that does not say what is installed - every existing one -
+    // behaves exactly as it did.
+    [Test]
+    public void ShouldNotLookForDuplicatesWhenTheCallerDoesNotSayWhatIsInstalled()
+    {
+        InstallAsFolder("Some Mod 78 2 1 1751991240", Manifest);
+        var archive = CreateArchive("Some Mod-78-2-2-1760000000.zip", ("manifest.toml", Manifest));
+
+        Assert.DoesNotThrow(() => ModArchiveInstaller.Install(
+            archive, _modsFolder, "Some Mod-78-2-2-1760000000.zip"));
     }
 
     [Test]

@@ -163,11 +163,7 @@ public class RarMod() : IMod
     
     public void SetInstalled(bool installed) => _isInstalled = installed;
 
-    public string GetId()
-    {
-        var initialId = $"{GetAuthor().ToLower()}.{GetName().ToLower()}".Replace(" ", "_");
-        return Regex.Replace(initialId, "[^a-zA-Z0-9_\\.]", "");
-    }
+    public string GetId() => ModIdentity.For(GetAuthor(), GetName());
 
     public Validation Validate()
     {
@@ -201,11 +197,15 @@ public class RarMod() : IMod
                 _validation.Errors.Add(new ValidationMessage(this, Path.Combine(GetLocation(), "manifest.json"), Resources.CoreManifestHasNoMinimunInstallerVersion));
             }
 
+            // A warning rather than an error, deliberately. An error forces the mod off - AIM will
+            // not let it be ticked at all - on the strength of a prediction that it might not work.
+            // Most mods asking for a slightly newer installer run perfectly well, so the user is
+            // told which two versions disagree and left to decide.
             // TODO: Remove the workaround for 1.0.0 after the 12th of July
             if (requiredVersion.CompareTo(currentVersion) > 0 && requiredVersion.CompareTo(new Version("1.0")) < 0)
             {
-                _validation.Errors.Add(new ValidationMessage(this, Path.Combine(GetLocation(), "manifest.json"), Resources.CoreModRequiresNewerInstaller));
-
+                _validation.Warnings.Add(new ValidationMessage(this, Path.Combine(GetLocation(), "manifest.json"),
+                    string.Format(Resources.CoreModRequiresNewerInstaller, GetMinimumInstallerVersion(), currentVersion)));
             }
         }
         catch (Exception)

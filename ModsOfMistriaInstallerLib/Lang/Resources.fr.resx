@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -152,9 +152,6 @@
   </data>
   <data name="CoreManifestHasNoVersion" xml:space="preserve">
     <value>Le fichier manifest doit contenir une version.</value>
-  </data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve">
-    <value>Ce mod requiert une version récente de l'installateur.</value>
   </data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve">
     <value>L'emplacement de Fields of Mistria n'existe pas.</value>

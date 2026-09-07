@@ -10,7 +10,7 @@
         Title="{Binding WindowTitle}"
         Icon="/Assets/small_icon.png"
         Width="820" Height="600"
-        MinWidth="640" MinHeight="480"
+        MinWidth="480" MinHeight="420"
         WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
@@ -30,10 +30,24 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid RowDefinitions="Auto,*,Auto">
-        <Image Source="/Assets/header.jpg" Height="145" MaxHeight="160" Stretch="UniformToFill"/>
+    <!-- The header row is proportional with a cap rather than a fixed 145: on a short window a
+         fixed banner takes a third of the height away from the mod list, and the list is the
+         window. The cap goes on the row, not on the image - capping only the image would let the
+         row keep growing on a tall window and leave a widening empty band around the banner, which
+         costs the list more height than the fixed 145 ever did. As it is, the banner is its usual
+         145 on anything about 490 tall or more, and gives height back below that. -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.42*" MinHeight="80" MaxHeight="145" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Panel Grid.Row="1" Margin="32 16 32 0" ClipToBounds="True">
+        <Image Source="/Assets/header.jpg" Stretch="UniformToFill" />
+
+        <!-- 32 points of side margin is 64 points of a 480-wide window. The page inside wraps its
+             own toolbars now, so it needs the width more than the whitespace. -->
+        <Panel Grid.Row="1" Margin="16 12 16 0" ClipToBounds="True">
             <TransitioningContentControl Content="{Binding CurrentPage}" />
         </Panel>
 

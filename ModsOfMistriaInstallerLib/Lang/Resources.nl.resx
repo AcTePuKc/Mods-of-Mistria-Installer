@@ -150,9 +150,6 @@
   <data name="CoreManifestHasNoVersion" xml:space="preserve">
     <value>Het manifest moet een versie bevatten.</value>
   </data>
-  <data name="CoreModRequiresNewerInstaller" xml:space="preserve">
-    <value>Voor deze mod is een nieuwere versie van het installatieprogramma vereist.</value>
-  </data>
   <data name="CoreMistriaLocationDoesNotExist" xml:space="preserve">
     <value>De locatie Fields of Mistria bestaat niet.</value>
   </data>
