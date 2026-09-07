@@ -19,6 +19,19 @@ public sealed record RecordedInstallState(
     string GeneratedLiveSha256,
     DateTimeOffset? InstalledAtUtc);
 
+public enum ForeignArchiveRecoveryStatus
+{
+    NotRequired,
+    Recoverable,
+    Blocked
+}
+
+public sealed record ForeignArchiveRecoveryAssessment(
+    ForeignArchiveRecoveryStatus Status,
+    string? LiveSha256,
+    string? BackupSha256,
+    string Reason);
+
 // Owns the assets.zip transaction. The live archive is never opened for
 // writing: every install is rebuilt from a verified pristine archive into a
 // same-directory temporary archive and published only after validation.
@@ -347,6 +360,94 @@ public class AssetsStore(string fomLocation)
             state.PristineSha256,
             state.GeneratedLiveSha256,
             state.InstalledAtUtc);
+    }
+
+    /// <summary>
+    /// Checks whether an unknown live archive can be safely replaced by the
+    /// verified AIM backup. This is deliberately read-only: callers must ask
+    /// explicitly before anything is quarantined or restored.
+    /// </summary>
+    public ForeignArchiveRecoveryAssessment AssessForeignArchiveRecovery()
+    {
+        RecoverPendingStateCommit();
+
+        var state = ReadState();
+        if (state is null)
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, null,
+                "There is no AIM state file to prove which game version the backup belongs to.");
+
+        string? backupHash;
+        try
+        {
+            backupHash = EnsureReadableBackup();
+        }
+        catch (Exception exception) when (exception is InvalidDataException or IOException)
+        {
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, null,
+                $"The verified backup is missing or unreadable: {exception.Message}");
+        }
+
+        if (backupHash is null)
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, null,
+                "The verified backup is missing.");
+
+        if (!string.Equals(backupHash, state.PristineSha256, StringComparison.OrdinalIgnoreCase))
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, backupHash,
+                "The backup no longer matches the pristine archive recorded by AIM.");
+
+        if (GameExecutablePath is null || string.IsNullOrWhiteSpace(state.GameExecutableSha256))
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, backupHash,
+                "The game executable fingerprint is unavailable, so the backup version cannot be verified.");
+
+        if (Sha256File(GameExecutablePath) != state.GameExecutableSha256)
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, backupHash,
+                "The game executable changed after the backup was recorded; verify the game before recovery.");
+
+        if (!File.Exists(LivePath))
+            return new(ForeignArchiveRecoveryStatus.Recoverable, null, backupHash,
+                "The live archive is missing; the verified backup can restore it.");
+
+        string liveHash;
+        try
+        {
+            liveHash = Sha256File(LivePath);
+        }
+        catch (IOException exception)
+        {
+            return new(ForeignArchiveRecoveryStatus.Blocked, null, backupHash,
+                $"The live archive cannot be read: {exception.Message}");
+        }
+
+        if (liveHash == state.PristineSha256 || liveHash == state.GeneratedLiveSha256)
+            return new(ForeignArchiveRecoveryStatus.NotRequired, liveHash, backupHash,
+                "The live archive is already known to AIM.");
+
+        return new(ForeignArchiveRecoveryStatus.Recoverable, liveHash, backupHash,
+            "The live archive is foreign to AIM, but the verified backup matches the current game version.");
+    }
+
+    /// <summary>
+    /// Quarantines an unknown live archive and restores the verified backup.
+    /// The operation refuses to run unless the read-only assessment says it is
+    /// safe, so foreign MOMI installations are never silently discarded.
+    /// </summary>
+    public string RecoverForeignArchive()
+    {
+        var assessment = AssessForeignArchiveRecovery();
+        if (assessment.Status != ForeignArchiveRecoveryStatus.Recoverable)
+            throw new InvalidOperationException(assessment.Reason);
+
+        string? quarantinePath = null;
+        if (File.Exists(LivePath))
+        {
+            var stamp = DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff");
+            quarantinePath = Path.Combine(Path.GetDirectoryName(LivePath)!, $"assets.foreign-{stamp}.zip");
+            File.Copy(LivePath, quarantinePath, false);
+        }
+
+        RestoreBackupTransactionally();
+        WritePristineState(assessment.BackupSha256!);
+        return quarantinePath ?? string.Empty;
     }
 
     private void RestoreBackupTransactionally()

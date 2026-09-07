@@ -502,6 +502,59 @@ public class AssetsStoreTest
     }
 
     [Test]
+    public void ShouldQuarantineAndRecoverAForeignArchiveWhenTheGameVersionMatches()
+    {
+        var executable = Path.Combine(_fom, "FieldsOfMistria.exe");
+        File.WriteAllBytes(executable, [1, 2, 3]);
+        WriteVanillaLive();
+
+        var store = new AssetsStore(_fom);
+        store.EnsureBackup();
+        var modifier = store.BeginRebuild();
+        modifier.Write("manifest.toml", "");
+        store.Commit([new("font.choices", "1.0.0")]);
+
+        var backupBefore = File.ReadAllBytes(BackupPath);
+        WriteInstalledLive();
+
+        var assessment = store.AssessForeignArchiveRecovery();
+        Assert.That(assessment.Status, Is.EqualTo(ForeignArchiveRecoveryStatus.Recoverable));
+
+        var quarantine = store.RecoverForeignArchive();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(quarantine, Is.Not.Empty);
+            Assert.That(File.Exists(quarantine), Is.True);
+            Assert.That(File.ReadAllBytes(LivePath), Is.EqualTo(backupBefore));
+            Assert.That(File.ReadAllBytes(BackupPath), Is.EqualTo(backupBefore));
+            Assert.That(store.GetRecordedInstallState()!.Mods, Is.Empty);
+        });
+    }
+
+    [Test]
+    public void ShouldBlockForeignArchiveRecoveryAfterTheGameExecutableChanges()
+    {
+        var executable = Path.Combine(_fom, "FieldsOfMistria.exe");
+        File.WriteAllBytes(executable, [1, 2, 3]);
+        WriteVanillaLive();
+
+        var store = new AssetsStore(_fom);
+        store.EnsureBackup();
+        var modifier = store.BeginRebuild();
+        modifier.Write("manifest.toml", "");
+        store.Commit();
+
+        File.WriteAllBytes(executable, [4, 5, 6]);
+        WriteInstalledLive();
+
+        var assessment = store.AssessForeignArchiveRecovery();
+        Assert.That(assessment.Status, Is.EqualTo(ForeignArchiveRecoveryStatus.Blocked));
+        Assert.That(assessment.Reason, Does.Contain("executable changed"));
+        Assert.Throws<InvalidOperationException>(() => store.RecoverForeignArchive());
+    }
+
+    [Test]
     public void ShouldAdoptAValidVanillaArchiveAfterTheGameExecutableUpdates()
     {
         var executable = Path.Combine(_fom, "FieldsOfMistria.exe");
