@@ -346,4 +346,6 @@
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Включени</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Обновления</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложи ред</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Открит е външен архив</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM откри валиден assets.zip, създаден от друг инсталатор или променен извън AIM. AIM може да запази този архив като отделен файл, да възстанови провереното резервно копие и да повтори инсталацията. Модовете, които съществуват само във външния архив, няма да бъдат активни след тази операция. Да продължа ли?</value></data>
 </root>

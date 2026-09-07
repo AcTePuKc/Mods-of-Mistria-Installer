@@ -1117,4 +1117,6 @@ Open download page(s) in browser?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Enabled</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Updates</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggest order</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>External archive detected</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM found a valid assets.zip that was created by another installer or modified outside AIM. AIM can preserve that archive as a separate file, restore the verified backup, and retry this installation. Any mods that exist only in the external archive will not be active after this operation. Continue?</value></data>
 </root>

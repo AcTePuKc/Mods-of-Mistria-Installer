@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
+using Garethp.ModsOfMistriaInstallerLib.Store;
 using Garethp.ModsOfMistriaInstallerLib.Tools;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Worker;
@@ -20,9 +21,12 @@ public static class ArchiveWorkerRunner
             var request = JsonSerializer.Deserialize<ArchiveWorkerRequest>(
                               await File.ReadAllTextAsync(requestPath), ArchiveWorkerJson.Options)
                           ?? throw new InvalidDataException("Worker request is empty.");
-            var response = request.Operation.Equals("uninstall", StringComparison.OrdinalIgnoreCase)
-                ? RunUninstall(request)
-                : RunInstall(request);
+            var response = request.Operation.ToLowerInvariant() switch
+            {
+                "uninstall" => RunUninstall(request),
+                "recover" => RunRecover(request),
+                _ => RunInstall(request)
+            };
             await WriteResponseAsync(request.ResponsePath, response);
             return response.Success ? 0 : 1;
         }
@@ -65,6 +69,15 @@ public static class ArchiveWorkerRunner
     {
         new ModInstaller(request.MistriaLocation, request.ModsLocation).Uninstall();
         return new ArchiveWorkerResponse(true, "uninstall", "Uninstall completed", null, [], []);
+    }
+
+    private static ArchiveWorkerResponse RunRecover(ArchiveWorkerRequest request)
+    {
+        var quarantine = new AssetsStore(request.MistriaLocation).RecoverForeignArchive();
+        var summary = string.IsNullOrEmpty(quarantine)
+            ? "Verified backup restored."
+            : $"Verified backup restored; foreign archive preserved at {quarantine}.";
+        return new ArchiveWorkerResponse(true, "recover", summary, null, [], []);
     }
 
     private static async Task WriteResponseAsync(string path, ArchiveWorkerResponse response)

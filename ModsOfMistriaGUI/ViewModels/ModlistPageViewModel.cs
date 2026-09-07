@@ -38,6 +38,7 @@ public partial class ModlistPageViewModel : PageViewBase
     private int _localizationRefreshVersion;
     private int _conflictRefreshVersion;
     private int _bulkSelectionChangeDepth;
+    private bool _foreignRecoveryAttempted;
     private LoadOrderResultWindow? _issueReportWindow;
     private IReadOnlyList<ModModel> _filteredMods = [];
 
@@ -2002,6 +2003,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         // Auto-save profile state before installing so load order is persisted
         SaveCurrentProfileState();
+        _foreignRecoveryAttempted = false;
 
         // The icons describe the install that is about to run, not the last one
         foreach (var mod in Mods) mod.SetInstallOutcome(ModInstallState.None);
@@ -4292,6 +4294,13 @@ public partial class ModlistPageViewModel : PageViewBase
         }
         catch (Exception e)
         {
+            if (!_foreignRecoveryAttempted && await TryRecoverForeignArchiveAsync())
+            {
+                _foreignRecoveryAttempted = true;
+                await BackgroundInstall();
+                return;
+            }
+
             // Write the diagnostic first so its Recent AIM log contains only
             // the progress leading up to the failure, not a second copy of the
             // same full exception.
@@ -4322,6 +4331,48 @@ public partial class ModlistPageViewModel : PageViewBase
             });
 
             return GetRootCauseMessage(e);
+        }
+    }
+
+    private async Task<bool> TryRecoverForeignArchiveAsync()
+    {
+        ForeignArchiveRecoveryAssessment assessment;
+        try
+        {
+            assessment = await Task.Run(() =>
+                new AssetsStore(MistriaLocation).AssessForeignArchiveRecovery());
+        }
+        catch
+        {
+            return false;
+        }
+
+        if (assessment.Status != ForeignArchiveRecoveryStatus.Recoverable)
+            return false;
+
+        var prompt = Localized("GUIForeignArchiveRecoveryMessage") +
+                     "\n\n" + assessment.Reason;
+        var answer = await Dispatcher.UIThread.InvokeAsync(() =>
+            MessageBoxManager.GetMessageBoxStandard(
+                Localized("GUIForeignArchiveRecoveryTitle"), prompt, ButtonEnum.YesNo).ShowAsync());
+        if (answer != ButtonResult.Yes)
+            return false;
+
+        try
+        {
+            await new ArchiveWorkerClient().RunAsync(
+                new ArchiveWorkerRequest(
+                    "recover", MistriaLocation, ModsLocation, [], "", GateMode: "off"),
+                status =>
+                {
+                    if (IsInstalling) InstallStatus = status;
+                },
+                CancellationToken.None);
+            return true;
+        }
+        catch
+        {
+            return false;
         }
     }
 
