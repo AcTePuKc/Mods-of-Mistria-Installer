@@ -312,7 +312,8 @@ public static class NxmProtocolHandler
         // registration on our way out would be rude and hard to diagnose.
         var current = GetWindowsHandler();
         var protocol = GetWindowsProtocolHandler();
-        if ((current is null || !PointsAtUs(current)) && (protocol is null || !PointsAtUs(protocol))) return;
+        var hasOwnRegistration = IsWindowsApplicationRegistered();
+        if (!hasOwnRegistration && (current is null || !PointsAtUs(current)) && (protocol is null || !PointsAtUs(protocol))) return;
 
         if (protocol is not null && PointsAtUs(protocol))
             Registry.CurrentUser.DeleteSubKeyTree(WindowsProtocolKeyPath, throwOnMissingSubKey: false);

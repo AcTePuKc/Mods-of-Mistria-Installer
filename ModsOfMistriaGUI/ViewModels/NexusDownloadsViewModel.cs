@@ -37,12 +37,16 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     private readonly NexusOAuthService _oauth;
     private readonly NxmDownloadService _service;
     private bool _handlerIsActive;
+    private bool _handlerCanBeRemoved;
 
     /// <summary>Action shown in the Nexus submenu; it reflects the current handler state.</summary>
     public string HandlerActionText =>
         _handlerIsActive
             ? Localization["GUINexusHandlerDisableMenuItem"]
             : Localization["GUINexusHandlerEnableMenuItem"];
+
+    /// <summary>Whether AIM has a registered NXM entry that can be removed without touching another manager.</summary>
+    public bool HandlerCanBeRemoved => _handlerCanBeRemoved;
 
     /// <summary>Shows the account action that is valid for the current OAuth session.</summary>
     public string NexusAccountActionText =>
@@ -668,6 +672,21 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         RefreshHandlerStatus();
     }
 
+    [RelayCommand]
+    private async Task RemoveHandlerRegistration()
+    {
+        if (!NxmProtocolHandler.Unregister(out var error))
+        {
+            await ShowMessage(Localization["GUINexusHandlerTitle"],
+                string.Format(Localization["GUINexusHandlerUnregisterFailed"], error ?? ""));
+            return;
+        }
+
+        _nexusSettings.HandlerRegistered = false;
+        _nexusSettings.HandlerAlwaysClaim = false;
+        RefreshHandlerStatus();
+    }
+
     /// <summary>
     /// A manual way in for anyone whose browser will not hand over nxm links - copy the link from
     /// the browser's download prompt and paste it here.
@@ -728,9 +747,11 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         if (!NxmProtocolHandler.IsSupported())
         {
             _handlerIsActive = false;
+            _handlerCanBeRemoved = false;
             HandlerStatus = Localization["GUINexusHandlerUnsupported"];
             HandlerNeedsAttention = false;
             OnPropertyChanged(nameof(HandlerActionText));
+            OnPropertyChanged(nameof(HandlerCanBeRemoved));
             return;
         }
 
@@ -755,7 +776,10 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             HandlerNeedsAttention = true;
         }
 
+        _handlerCanBeRemoved = status.IsThisApplicationRegistered && !_handlerIsActive;
+
         OnPropertyChanged(nameof(HandlerActionText));
+        OnPropertyChanged(nameof(HandlerCanBeRemoved));
     }
 
     private static Task ShowMessage(string title, string message) =>

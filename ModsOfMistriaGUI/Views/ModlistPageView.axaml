@@ -86,6 +86,9 @@
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Nexus.HandlerActionText}"
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
+                        <MenuItem Header="{Binding Texts.GUINexusHandlerDisableMenuItem}"
+                                  Command="{Binding Nexus.RemoveHandlerRegistrationCommand}"
+                                  IsVisible="{Binding Nexus.HandlerCanBeRemoved}" />
                         <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
                         <Separator />
                         <MenuItem Header="{Binding Nexus.NexusAccountActionText}"
