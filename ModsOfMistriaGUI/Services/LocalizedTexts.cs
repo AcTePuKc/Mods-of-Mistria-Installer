@@ -155,6 +155,7 @@ public sealed class LocalizedTexts : ObservableObject
     // Nexus Vortex download-link support
     public string GUINexusMenu => T("GUINexusMenu");
     public string GUINexusHandlerMenuItem => T("GUINexusHandlerMenuItem");
+    public string GUINexusHandlerDisableMenuItem => T("GUINexusHandlerDisableMenuItem");
     public string GUINexusPasteLinkMenuItem => T("GUINexusPasteLinkMenuItem");
     public string GUINexusDownloadsHeader => T("GUINexusDownloadsHeader");
     public string GUINexusClearFinished => T("GUINexusClearFinished");
