@@ -688,4 +688,7 @@
   <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Не променяй нищо - само стартирай и наблюдавай</value></data>
   <data name="GUICrashLinksHeader" xml:space="preserve"><value>Струва си да провериш</value></data>
   <data name="GUICrashRawHeader" xml:space="preserve"><value>Crash файлът, така както играта го е записала</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Къде се е повредила</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Къде се е повредила ({0} кадъра)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Копирай доклада</value></data>
 </root>
