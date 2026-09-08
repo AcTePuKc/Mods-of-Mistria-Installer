@@ -348,4 +348,21 @@
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложи ред</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Открит е външен архив</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM откри външен assets.zip.&#xD;&#xA;&#xD;&#xA;Ако продължиш, AIM ще:&#xD;&#xA;• запази архива като assets.foreign-…zip&#xD;&#xA;• възстанови проверения backup&#xD;&#xA;• повтори тази инсталация&#xD;&#xA;&#xD;&#xA;Модовете, които съществуват само във външния архив, няма да са активни. Да продължа ли?</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Този мод изисква инсталатор {0}, а AIM поддържа {1}. Вероятно ще работи - опитай, а ако има проблем, провери страницата на мода за бележка за съвместимост.</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} от {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Влез в Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Излез от Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus акаунтът е свързан.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus акаунтът не е свързан. Влез, за да използваш функциите на Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus акаунтът е разкачен.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Редактирай манифеста на мода</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Отваря manifest.json или manifest.toml в обичайния ти текстов редактор. Достъпно е само за модове, които са папки - ZIP или RAR архивът няма файл за редактиране.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Редактирай конфигурацията на мода</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Отваря конфигурационния файл на мода в обичайния ти текстов редактор. Бутонът е неактивен, ако AIM не открие конфигурационен файл.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Файлът {0} не може да бъде отворен: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Премахни мода…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Премахва мода от папката с модове. AIM първо пита за потвърждение и изпраща файловете в кошчето, вместо да ги изтрие.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Премахване на мод</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows не премести мода в кошчето</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>„{0}“ вече не е в папката с модове. Списъкът е обновен.</value></data>
 </root>
