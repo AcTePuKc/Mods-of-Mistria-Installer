@@ -36,10 +36,15 @@ Invoke-CliCase -Name "version" `
     -ExpectedExitCode 0 `
     -ExpectedOutput '^[0-9]+\.[0-9]+'
 
+Invoke-CliCase -Name "help" `
+    -Arguments @('--help') `
+    -ExpectedExitCode 0 `
+    -ExpectedOutput '--list-mods'
+
 Invoke-CliCase -Name "lint usage" `
     -Arguments @('--lint') `
     -ExpectedExitCode 2 `
-    -ExpectedOutput '--lint requires a mod folder'
+    -ExpectedOutput '--lint requires a value'
 
 Invoke-CliCase -Name "missing seam archive" `
     -Arguments @('--seam-check-json', 'C:\aim-cli-smoke\missing-pristine.zip') `
@@ -54,7 +59,7 @@ Invoke-CliCase -Name "missing lint manifest" `
 Invoke-CliCase -Name "invalid compile-check value" `
     -Arguments @('--lint', 'C:\aim-cli-smoke\missing-mod', 'C:\aim-cli-smoke\missing-pristine.zip', '--compile-check', 'invalid') `
     -ExpectedExitCode 2 `
-    -ExpectedOutput '--compile-check must be "on", "off" or "require"'
+    -ExpectedOutput '--compile-check expects on, off, or require'
 
 if ($failures.Count -gt 0) {
     Write-Error ("CLI smoke tests failed:`n- " + ($failures -join "`n- "))

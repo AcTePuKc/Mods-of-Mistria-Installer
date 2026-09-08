@@ -64,7 +64,26 @@ without touching the game. `--uninstall` restores the verified archive instead.
 dotnet run --project ModsOfMistriaCommandLine -- --help
 dotnet run --project ModsOfMistriaCommandLine -- --install
 dotnet run --project ModsOfMistriaCommandLine -- --uninstall
+dotnet run --project ModsOfMistriaCommandLine -- --list-mods --json
+dotnet run --project ModsOfMistriaCommandLine -- --status --toml
+dotnet run --project ModsOfMistriaCommandLine -- --doctor
 ```
+
+`--list-mods`, `--status`, and `--doctor` are read-only inspection commands. Their default
+output is human-readable; `--json` and `--toml` produce machine-readable reports. The formats
+are mutually exclusive. `--doctor` exits `0` when the game, mods folder, and archive state look
+healthy, and `1` when a repair or investigation is needed.
+
+To preflight the same per-mod manifest, seam, skip, and compile checks without committing an
+archive, use:
+
+```powershell
+dotnet run --project ModsOfMistriaCommandLine -- --dry-run --install --json
+```
+
+This is deliberately a read-only per-mod preflight. It does not write `assets.zip` or the game
+manifest, and it cannot model interactions between multiple mods that only appear during the
+combined archive rebuild.
 
 The CLI can run manifest validation, seam staging, skip checks, lints, and the compile gate without writing the game:
 
