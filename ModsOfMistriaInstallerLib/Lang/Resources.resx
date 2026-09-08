@@ -979,6 +979,18 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Nexus sign-in was cancelled because the callback state did not match.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus did not return an authorization code.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>The Nexus account session needs to be connected again.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>Nexus OAuth registration for AIM is still pending.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus could not complete account sign-in.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus returned an incomplete account session.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Could not read the Nexus account response.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM is waiting for its Nexus sign-in callback.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>The Nexus sign-in response did not match this AIM session.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Nexus sign-in was cancelled. You can return to AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Nexus sign-in was cancelled or denied by the browser.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Nexus sign-in completed. You can return to AIM.</value></data>
   <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus returned no download servers for that file.</value></data>
   <data name="GUINexusApiTimedOut" xml:space="preserve"><value>The Nexus API did not respond in time.</value></data>
   <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Could not reach the Nexus API: {0}</value></data>
