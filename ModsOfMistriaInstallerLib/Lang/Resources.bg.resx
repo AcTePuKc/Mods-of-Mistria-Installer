@@ -595,4 +595,9 @@
   <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Входът в Nexus беше отменен, защото състоянието на обратната връзка не съвпадна.</value></data>
   <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus не върна код за оторизация.</value></data>
   <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus сесията на акаунта трябва да бъде свързана отново.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>OAuth регистрацията на AIM в Nexus все още се обработва.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus не можа да завърши влизането в акаунта.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus върна непълна сесия на акаунта.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Отговорът от Nexus акаунта не можа да бъде прочетен.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM изчаква обратната връзка от входа в Nexus.</value></data>
 </root>
