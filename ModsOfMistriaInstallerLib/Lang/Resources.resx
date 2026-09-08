@@ -979,6 +979,12 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>No Nexus account is connected yet.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>The file this mod came from is no longer on its Nexus page, and none of the files still there is a newer version of it. That page hosts several separate mods, so AIM will not offer one of the others as an update - check the page by hand if you think there is a newer release.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>That mod page has no main file to compare against.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM does not know which file on this page this mod came from, so it cannot tell whether the version on the page is newer. Download it once through AIM, or right-click the mod and associate it with a specific file, and update checks become reliable.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>The update check stopped early.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>The update check did not finish for this mod.</value></data>
   <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>No Nexus account is connected yet.</value></data>
   <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>That download is for another game ({0}), so this installer cannot handle it.</value></data>
   <data name="GUINxmDownloadExpired" xml:space="preserve"><value>That download link has expired. Click the "Vortex download" button on the mod page again.</value></data>
