@@ -816,4 +816,15 @@
   <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>ИЗВЕСТНА ПРИЧИНА ЗА СРИВ</value></data>
   <data name="GUICrashCulpritNote" xml:space="preserve"><value>Тестът го доказа: при изключен мод играта не се срина. AIM го остави изключен и го отбеляза в списъка ви с модове. Всичко, което AIM може да поправи сам, е по-долу; в нишката за грешки на мода може вече да има отговор.</value></data>
   <data name="GUICrashTagTested" xml:space="preserve"><value>ТЕСТВАН, БЕЗ ОТГОВОР</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Поправки, които AIM може да приложи сам</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Това са поправки, които AIM е извел от собствените си проверки, а не от нишка за грешки, затова всяка е механична корекция на доказано неправилно нещо във файла, а не предположение какво е имал предвид авторът. Целият мод първо се копира в историята на версиите ви, отбелязва се като редактиран и се задържа от обновления, докато не излезе версия, която може да поправи проблема правилно.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Приложи тази поправка</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Приложено към {0}. Модът е отбелязан като редактиран и е задържан от обновления; предишната версия е в списъка за възстановяване по-горе.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Тук няма проблем, който AIM да може да поправи сам.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;В {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM първо ще копира целия мод в историята на версиите ви и ще го задържи от обновления, за да не бъде тази поправка тихомълком презаписана. Да продължа ли?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Задържан от обновления, защото AIM го поправи: {0}</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Обновление може да поправи промененото</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>Излезе {0} {1}. Вие сте на {2} с приложена поправка от AIM: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Обнови и премахни поправката на AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Обновяването заменя папката на мода, затова редакцията на AIM ще бъде премахната заедно с нея. Ако новата версия не е поправила проблема, сривът ще се появи отново и можете да приложите поправката пак - предишната версия все още е в списъка за възстановяване.</value></data>
 </root>
