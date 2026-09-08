@@ -772,4 +772,20 @@ An AIM übergeben?</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Alle Tasten und Controller-Schaltflächen, die deine Mods verwenden, in einer Liste - Konflikte rot markiert und direkt bearbeitbar.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Tastenbelegungen der Mods</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Wofür deine Mods derzeit Tasten verwenden. Die Mods speichern dies im eigenen Konfigurationsordner des Spiels und nicht im Mods-Ordner, daher gehen die Belegungen bei einem Mod-Update nicht verloren. Ein Mod kann seine eigenen Einstellungen trotzdem zurücksetzen; AIM bietet dann an, deine Auswahl wiederherzustellen.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} Belegung(en), davon {1} in Konflikt.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Nur Konflikte anzeigen</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Aktualisieren</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM konnte die Tastenbelegungen deiner Mods nicht lesen: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Lesen der Tastenbelegungen deiner Mods…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Keiner deiner ausgewählten Mods hat eine für AIM sichtbare Tastenbelegung. Mods, die ihre Belegungen zur Laufzeit erstellen, zeigen sie erst nach einem Spielstart.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Keine Konflikte gefunden.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM konnte den Konfigurationsordner des Spiels nicht finden und zeigt daher die von deinen Mods mitgelieferten Standardwerte. Starte das Spiel einmal, damit daraus deine echten Belegungen werden.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria läuft. Die Bearbeitung ist deaktiviert, weil das Spiel beim Beenden die Einstellungen aller Mods neu schreibt und Änderungen hier überschreiben würde. Schließe das Spiel und drücke „Aktualisieren“.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>ebenfalls verwendet von {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Dieselbe Eingabe ist belegt in:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Mods auf dem Bildschirm markieren oder Markierung entfernen</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Gilt für die Zeilen, die deine Suche und Filter gerade anzeigen, und nicht für die ausgeblendeten. Ohne Filter gilt es für jeden Mod. Mods, die AIM nicht installieren kann, bleiben unverändert.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>Standard des Mods - AIM kann ihn erst ändern, wenn der Mod seine Einstellungen geschrieben hat</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Dieser Mod hat seine Einstellungen noch nicht geschrieben. Das ist der in ihn kompilierte Standardwert. Starte das Spiel einmal oder ändere ihn in den Einstellungen des Mods, dann kann AIM ihn hier bearbeiten.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(nicht belegt)</value></data>
 </root>
