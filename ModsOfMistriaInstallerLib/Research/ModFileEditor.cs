@@ -60,10 +60,14 @@ public static class ModFileEditor
                 "Mods packed as .zip or .rar have to be extracted first - any change inside the " +
                 "archive would be thrown away by the next install.");
 
-        var targets = paths
-            .Select(path => Path.Combine(folder, path.Replace('/', Path.DirectorySeparatorChar)))
-            .Where(File.Exists)
-            .ToList();
+        var targets = new List<string>();
+        foreach (var path in paths)
+        {
+            if (!TryResolveInsideFolder(folder, path, out var target))
+                return EditOutcome.Refused($"{path} is not a safe path inside {mod.GetName()}'s folder.");
+
+            if (File.Exists(target)) targets.Add(target);
+        }
 
         if (targets.Count == 0)
             return EditOutcome.Refused("None of those files are in the mod's folder any more.");
@@ -156,7 +160,8 @@ public static class ModFileEditor
                 "Mods packed as .zip or .rar have to be extracted first - any change inside the " +
                 "archive would be thrown away by the next install.");
 
-        var target = Path.Combine(folder, path.Replace('/', Path.DirectorySeparatorChar));
+        if (!TryResolveInsideFolder(folder, path, out var target))
+            return EditOutcome.Refused($"{path} is not a safe path inside {mod.GetName()}'s folder.");
 
         if (!File.Exists(target))
             return EditOutcome.Refused($"{path} is not in {mod.GetName()}'s folder.");
@@ -230,6 +235,32 @@ public static class ModFileEditor
     {
         var trimmed = text.Trim();
         return trimmed.Length <= 60 ? trimmed : trimmed[..57] + "…";
+    }
+
+    private static bool TryResolveInsideFolder(string folder, string relativePath, out string target)
+    {
+        target = "";
+        if (string.IsNullOrWhiteSpace(relativePath)) return false;
+
+        try
+        {
+            var root = Path.GetFullPath(folder).TrimEnd('/', '\\') + Path.DirectorySeparatorChar;
+            var normalised = relativePath.Replace('/', Path.DirectorySeparatorChar)
+                .Replace('\\', Path.DirectorySeparatorChar);
+
+            if (Path.IsPathRooted(normalised)) return false;
+
+            var full = Path.GetFullPath(Path.Combine(root, normalised));
+            if (!full.StartsWith(root, StringComparison.OrdinalIgnoreCase)) return false;
+
+            target = full;
+            return true;
+        }
+        catch (Exception exception)
+        {
+            Logger.Log($"Could not resolve mod-relative path {relativePath}: {exception.Message}");
+            return false;
+        }
     }
 
     /// <summary>

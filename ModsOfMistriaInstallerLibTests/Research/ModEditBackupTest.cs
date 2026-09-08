@@ -1,4 +1,5 @@
 using Garethp.ModsOfMistriaInstallerLib.Nexus;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using Garethp.ModsOfMistriaInstallerLib.Research;
 
 namespace ModsOfMistriaInstallerLibTests.Research;
@@ -126,5 +127,28 @@ public class ModEditBackupTest
         store.Forget("mod.a");
 
         Assert.That(new AppliedEditStore(_modsFolder).WasEdited("mod.a"), Is.False);
+    }
+
+    [Test]
+    public void ShouldRejectPathsThatEscapeTheModFolder()
+    {
+        var modPath = CreateMod("Witchy Tools");
+        var outside = Path.Combine(_modsFolder, "outside.txt");
+        File.WriteAllText(outside, "do not change");
+        var mod = FolderMod.FromManifest(modPath);
+        var store = new ModBackupStore(_modsFolder);
+
+        var setAside = ModFileEditor.SetAside(
+            mod, ["../outside.txt"], "test", store, new AppliedEditStore(_modsFolder));
+        var replace = ModFileEditor.ReplaceLine(
+            mod, "../outside.txt", 1, "changed", "test", store, new AppliedEditStore(_modsFolder));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(setAside.Applied, Is.False);
+            Assert.That(replace.Applied, Is.False);
+            Assert.That(File.ReadAllText(outside), Is.EqualTo("do not change"));
+            Assert.That(File.Exists(outside + ModFileEditor.DisabledSuffix), Is.False);
+        });
     }
 }

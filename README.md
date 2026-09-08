@@ -426,6 +426,14 @@ The release workflow builds the GUI and CLI for the supported desktop targets an
 
 The repository does not include game archives or copyrighted game localization data.
 
+## Project metrics
+
+[![Lifetime tracked clones](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/clones.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Lifetime tracked views](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/views.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Clones in the last 30 days](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/clones-30d.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Views in the last 30 days](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/views-30d.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Repository stars](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/stars.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md)
+
+[![AIM traffic history](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/charts/Mods-of-Mistria-Installer/traffic.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md)
+
+Project traffic is tracked by [`repo-metrics`](https://github.com/AcTePuKc/repo-metrics) from the first successful collection date. See the [full portfolio dashboard](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) for the wider project overview.
+
 ## Licensing
 
 This project is licensed under GPLv3 or later (see `LICENCE.txt`).
