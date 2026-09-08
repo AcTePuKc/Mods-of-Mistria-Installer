@@ -426,4 +426,25 @@
   <data name="GUIScrollToTop" xml:space="preserve"><value>Към началото на списъка</value></data>
   <data name="GUIScrollToBottom" xml:space="preserve"><value>Към края на списъка</value></data>
   <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) се използва и от {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Бележки към изданията</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Бележки към изданията - посочи, за да се заредят, и кликни, за да прочетеш цялата история.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Какво ново във версия {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Кликни, за да прочетеш всички версии.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Авторът на този мод не е публикувал бележки към изданията.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM не можа да прочете бележките към изданията на този мод. Необходим е свързан Nexus акаунт и AIM трябва да знае страницата на мода в Nexus.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} версии с бележки, от най-новата към най-старата.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Версия {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Версии</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Причинява срив на играта</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Маркиран като причинител на срив</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Редактиран от AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Тази поправка няма основен файл, който AIM може да инсталира сам. Файловете са отворени в браузъра ти - избери желания файл и използвай „Mod Manager Download“.</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Изтеглянето на поправката беше отменено.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM промени файл в този мод, за да разреши конфликт. Файловете на диска вече не са напълно същите като публикуваните от автора.</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Отмени промените на AIM</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Прочитане на файловете от AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM прочете всеки файл, който тези модове споделят.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM не можа да прочете всеки файл, затова приеми това като резултат от прочитането, а не като сигурен факт.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} споделен файл</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} споделени файла</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Част от този прозорец не можа да бъде създадена: {0}</value></data>
 </root>
