@@ -12,6 +12,7 @@ using Garethp.ModsOfMistriaGUI.Controls;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
+using System.ComponentModel;
 
 namespace Garethp.ModsOfMistriaGUI.Views;
 
