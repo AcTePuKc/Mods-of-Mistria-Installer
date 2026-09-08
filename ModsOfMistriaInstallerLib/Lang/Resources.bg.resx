@@ -574,4 +574,13 @@
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>В папката с модове няма място за подготовка на {0}.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>В папката с модове вече има твърде много копия на {0}.</value></data>
   <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Файлът не можа да бъде изтеглен от Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>няма отговор от сървър за изтегляне</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Няма към какво да се обнови.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nexus сесията на акаунта не можа да бъде запазена. Провери достъпа до диска и опитай отново.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Backup-ът на {0} липсва.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Изтегленият файл липсва.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Папката с модове не беше намерена.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Това изтегляне не съдържа manifest.toml, затова не е мод, който този инсталатор може да обработи. Възможно е да е по-стар мод или файл, който трябва да се инсталира ръчно.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Изтегленият мод не можа да бъде завършен. Първоначалната грешка при инсталиране беше: {0}&#xD;&#xA;&#xD;&#xA;Предишно копие на мода не можа да бъде възстановено. Backup-ът му е запазен за ръчно възстановяване:&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Копието, което беше оставено настрана, вече не се намира в {0}.</value></data>
 </root>
