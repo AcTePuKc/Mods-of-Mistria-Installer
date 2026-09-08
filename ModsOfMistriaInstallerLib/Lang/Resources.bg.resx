@@ -622,4 +622,13 @@
   <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Проверката за обновления на този мод не завърши.</value></data>
   <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Все още няма свързан Nexus акаунт.</value></data>
   <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова този инсталатор не може да го обработи.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Тази връзка за изтегляне е изтекла. Кликни отново върху бутона „Vortex download“ на страницата на мода.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Папката с модове не беше намерена.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Заявка към Nexus за информация за файла…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Изтегляне на {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Разархивиране на {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Инсталирането беше отменено</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>Инсталиран е {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>Инсталирани са {0} мода</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Изтеглянето беше отменено</value></data>
 </root>
