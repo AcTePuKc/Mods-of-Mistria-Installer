@@ -35,3 +35,11 @@ workflow does, and checks for the key before it starts.
 The release workflow builds the GUI and CLI for the supported desktop targets and uploads artifacts only to releases in this fork. Nexus publishing is manual and is not triggered by a normal GitHub release.
 
 The repository does not include game archives or copyrighted game localization data.
+
+## Localization audit
+
+Run `pwsh -File tools/check-localization.ps1` to compare every translated
+resource file with the English resource. Missing keys are reported as pending
+fallbacks: the application can use the English resource for them, but they
+still need a translation before that language is complete. Use
+`-FailOnMissing` only when a language-complete build is required.

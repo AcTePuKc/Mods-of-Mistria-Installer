@@ -397,8 +397,9 @@ public partial class ConflictResearchWindow : Window
             : texts.GUIResearchDiagnosisUncertain;
 
         DiagnosisFilesExpander.IsVisible = diagnosis.Files.Count > 0;
-        DiagnosisFilesExpander.Header = $"{diagnosis.Files.Count} shared " +
-                                        (diagnosis.Files.Count == 1 ? "file" : "files");
+        DiagnosisFilesExpander.Header = diagnosis.Files.Count == 1
+            ? string.Format(texts.GUIResearchDiagnosisFilesOne, diagnosis.Files.Count)
+            : string.Format(texts.GUIResearchDiagnosisFilesMany, diagnosis.Files.Count);
 
         foreach (var file in diagnosis.Files)
             DiagnosisFiles.Children.Add(CreateFileVerdict(file));

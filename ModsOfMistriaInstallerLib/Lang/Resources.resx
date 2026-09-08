@@ -856,6 +856,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIM's reading of the files</value></data>
   <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM read every file these mods share.</value></data>
   <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM could not read every file, so treat this as a reading rather than a fact.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} shared file</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} shared files</value></data>
   <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Part of this window could not be built: {0}</value></data>
   <data name="GUIResearchModsHeader" xml:space="preserve"><value>The mods in this conflict</value></data>
   <data name="GUIResearchModsHint" xml:space="preserve"><value>Open a page to judge the mod for yourself, or take one out of the mod list if you have decided against it.</value></data>

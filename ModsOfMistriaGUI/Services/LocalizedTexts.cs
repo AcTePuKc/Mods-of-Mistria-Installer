@@ -302,6 +302,8 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIResearchDiagnosisHeader => T("GUIResearchDiagnosisHeader");
     public string GUIResearchDiagnosisCertain => T("GUIResearchDiagnosisCertain");
     public string GUIResearchDiagnosisUncertain => T("GUIResearchDiagnosisUncertain");
+    public string GUIResearchDiagnosisFilesOne => T("GUIResearchDiagnosisFilesOne");
+    public string GUIResearchDiagnosisFilesMany => T("GUIResearchDiagnosisFilesMany");
     public string GUIResearchWindowFailed => T("GUIResearchWindowFailed");
     public string GUIResearchModsHeader => T("GUIResearchModsHeader");
     public string GUIResearchModsHint => T("GUIResearchModsHint");
