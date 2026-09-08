@@ -688,4 +688,24 @@ An AIM übergeben?</value></data>
   <data name="GUIRemoveSelected" xml:space="preserve"><value>Ausgewählte entfernen…</value></data>
   <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Entfernt alle markierten Mods auf einmal über den Papierkorb, nachdem die Liste angezeigt wurde.</value></data>
   <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Es sind keine Mods markiert, daher gibt es nichts zu entfernen.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>{0} Mod(s) in den Papierkorb verschieben?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Die Mods werden aus deinem Mods-Ordner entfernt und können aus dem Papierkorb zurückgeholt werden. Dateien, die sie bereits in der Spielinstallation abgelegt haben, bleiben bis zur nächsten Installation oder Deinstallation erhalten.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>{0} Mod(s) dauerhaft löschen?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Auf diesem System gibt es keinen Papierkorb, den AIM verwenden kann. Die Dateien werden daher gelöscht. Das kann nicht rückgängig gemacht werden.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>… und {0} weitere.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} von {1} Mod(s) entfernt.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Diese Mods konnten nicht entfernt werden: {0}&#xD;&#xA;&#xD;&#xA;Möglicherweise sind sie in einem anderen Programm geöffnet oder das Spiel läuft noch.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows konnte den Mod nicht in den Papierkorb verschieben</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>„{0}“ befindet sich nicht mehr in deinem Mods-Ordner. Die Liste wurde aktualisiert.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Markiert dieses Problem als geprüft und akzeptiert. AIM hält es aus dem Weg, bis sich die Version eines beteiligten Mods ändert. Danach wird erneut gefragt.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Als erledigt markierte Probleme anzeigen ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Als erledigt markiert</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[als erledigt markiert]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Dateien, die beide Mods schreiben</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>gewinnt jetzt</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Diesen Mod gewinnen lassen</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Verschiebt diesen Mod hinter die anderen Mods, mit denen er Dateien teilt, damit seine Versionen dieser Dateien installiert werden. Der Ladereihenfolge dahinter wird sofort geändert.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>„{0}“ wird jetzt als letzter der Mods geladen, die diese Dateien teilen, daher gewinnen seine Kopien.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Nach einer Lösung suchen…</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Liest, was die Nexus-Seiten dieser Mods übereinander sagen, und öffnet ihre Fehlerberichte, Kommentare und eine Websuche, damit du klären kannst, ob dies tatsächlich wichtig ist.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Neu zuweisen…</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Weist diesem Mod einen Schlüssel zu, den sonst niemand verwendet, indem die eigene Belegung in {0} bearbeitet wird. Der Mod wird vorher gesichert und die Änderung erreicht das Spiel bei der nächsten Installation.</value></data>
 </root>
