@@ -636,4 +636,9 @@
   <data name="GUINxmMissingGame" xml:space="preserve"><value>Връзката не посочва игра.</value></data>
   <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Колекциите на Nexus все още не се поддържат - изтегли модовете поотделно.</value></data>
   <data name="GUINxmNotModDownload" xml:space="preserve"><value>Връзката не е за изтегляне на файл с мод.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Връзката съдържа невалиден ID на мод или файл.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Не можа да се определи откъде се изпълнява инсталаторът.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Регистрацията на nxm:// връзки се поддържа само в Windows и Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM беше регистриран, но Windows може все още да използва {0} за nxm:// връзки.&#xD;&#xA;&#xD;&#xA;Избери AIM като приложение по подразбиране за nxm:// в настройките за приложения по подразбиране на Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Регистрацията на nxm:// не можа да бъде потвърдена след записването.</value></data>
 </root>
