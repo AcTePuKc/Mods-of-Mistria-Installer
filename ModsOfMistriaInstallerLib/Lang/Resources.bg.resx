@@ -760,4 +760,16 @@
   <data name="GUICrashEditHeader" xml:space="preserve"><value>Ръчно прилагане на поправка</value></data>
   <data name="GUICrashEditHint" xml:space="preserve"><value>Ако нишката за грешката или описанието на мода казва точно какво да промените, въведете го тук. AIM първо копира целия мод в историята на версиите ви, така че списъкът за възстановяване винаги ще съдържа версията отпреди промяната.</value></data>
   <data name="GUICrashEditFile" xml:space="preserve"><value>Файл, относителен спрямо папката на мода</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Ред</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Новият текст за този ред - оставете празно, за да го изтриете</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Приложи промяната</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Извади този файл от играта</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Изважда целия файл от употреба и оставя останалата част от мода инсталирана. Полезно е, когато играта се затруднява с един файл с данни, а искате да запазите останалата част от мода, докато авторът го обнови.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Първо посочете файл в мода и номер на реда за промяна.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Поправка на срив: ред {0} от {1} в {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Поправка на срив: {0} е изваден от {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM първо ще копира целия мод в историята на версиите ви, така че можете да го върнете от списъка за възстановяване по всяко време. Променя се само този мод.&#xD;&#xA;&#xD;&#xA;Да продължа ли?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Нищо не се променя - играта се стартира в текущото ѝ състояние.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Архивът вече съответства на списъка с модове, затова не беше нужно възстановяване.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Архивът на играта беше възстановен.</value></data>
 </root>
