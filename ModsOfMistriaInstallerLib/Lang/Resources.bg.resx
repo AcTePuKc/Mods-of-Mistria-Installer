@@ -600,4 +600,7 @@
   <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus върна непълна сесия на акаунта.</value></data>
   <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Отговорът от Nexus акаунта не можа да бъде прочетен.</value></data>
   <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM изчаква обратната връзка от входа в Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Отговорът от входа в Nexus не съвпадна с тази AIM сесия.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Входът в Nexus беше отменен. Можеш да се върнеш в AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Входът в Nexus беше отменен или отказан от браузъра.</value></data>
 </root>
