@@ -702,4 +702,5 @@
   <data name="GUICrashNoApiKey" xml:space="preserve"><value>Не си влязъл в Nexus, затова AIM не може да прочете bug tracker-ите на модовете. Всичко по-горе е установено само от собствените ти файлове.</value></data>
   <data name="GUICrashWorking" xml:space="preserve"><value>Прочитане на bug tracker-ите и коментарите за модовете, към които това сочи…</value></data>
   <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Нищо не сочи достатъчно ясно към мод, за да си струва да се прочете страницата му.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM не можа да прочете страниците на модовете: {0}. Изводът от собствените ти файлове остава валиден.</value></data>
 </root>
