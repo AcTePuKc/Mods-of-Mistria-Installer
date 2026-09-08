@@ -683,4 +683,9 @@
   <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Първо са най-силните кандидати. Мод, посочен тук, защото сривът е станал в собствения му код, не е предположение; мод, посочен защото записва данните, които играта е прочитала, е кандидат за проверка.</value></data>
   <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Провери дали това го поправя</value></data>
   <data name="GUICrashVerifyHint" xml:space="preserve"><value>Изключва избрания мод, възстановява играта, за да влезе промяната в сила, стартира я и наблюдава. Играй както обикновено - AIM ще покаже резултата, когато играта се затвори, или след няколко минути, ако не се е сринала.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Изключи, възстанови и стартирай</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Изключването на мод не променя нищо, което играта вижда, докато архивът не бъде възстановен, затова AIM прави всичко наведнъж, вместо да те кара да помниш междинната стъпка.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Не променяй нищо - само стартирай и наблюдавай</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Струва си да провериш</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>Crash файлът, така както играта го е записала</value></data>
 </root>
