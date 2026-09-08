@@ -631,4 +631,9 @@
   <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>Инсталиран е {0}</value></data>
   <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>Инсталирани са {0} мода</value></data>
   <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Изтеглянето беше отменено</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Празна връзка за изтегляне.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Това не е nxm:// връзка.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Връзката не посочва игра.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Колекциите на Nexus все още не се поддържат - изтегли модовете поотделно.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Връзката не е за изтегляне на файл с мод.</value></data>
 </root>
