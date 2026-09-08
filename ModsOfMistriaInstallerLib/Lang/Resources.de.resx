@@ -732,4 +732,22 @@ An AIM übergeben?</value></data>
   <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Zeigt nur Mods mit einem verfügbaren Update und Mods, die bei der letzten Prüfung nicht erreicht werden konnten, etwa wegen fehlender Nexus-Verknüpfung, eines Netzwerkproblems oder einer nicht mehr vorhandenen Seite.</value></data>
   <data name="GUIListReorderedNote" xml:space="preserve"><value>Nur Ansicht - Ladereihenfolge unverändert, Ziehen deaktiviert</value></data>
   <data name="GUIScrollToTop" xml:space="preserve"><value>Zum Anfang der Liste springen</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Zum Ende der Liste springen</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) wird ebenfalls von {2} verwendet</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Versionshinweise</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Versionshinweise - zum Laden darüberfahren, klicken, um die vollständige Historie zu lesen.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Neu in {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Klicke, um jede Version zu lesen.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Der Autor dieses Mods hat keine Versionshinweise veröffentlicht.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM konnte die Versionshinweise dieses Mods nicht lesen. Du brauchst ein verbundenes Nexus-Konto, und AIM muss die Nexus-Seite dieses Mods kennen.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} Version(en) mit Hinweisen, neueste zuerst.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versionen</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Verursacht Spielabstürze</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Als absturzverursachend markiert</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Ein überwachter Test hat bewiesen, dass dieser Mod das Spiel zum Absturz bringt: Bei deaktiviertem Mod lief das Spiel und der Absturz trat nicht wieder auf. AIM hat ihn deaktiviert gelassen.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Du hast diesen Mod selbst im Absturzprüfer als Ursache markiert. AIM hat ihn nicht getestet, sondern sich auf deine Angabe verlassen und ihn deaktiviert.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Version {0}, geprüft am {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Öffne „Abstürze prüfen“, um die von AIM anwendbaren Lösungen und die Aussagen auf den Seiten des Mods zu sehen. Die Markierung gehört zu dieser Version und wird durch ein Update des Autors gelöscht.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Von AIM bearbeitet</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Dieser Patch hat keine Hauptdatei, die AIM selbst installieren kann. Seine Dateien sind in deinem Browser geöffnet. Wähle die gewünschte Datei und verwende „Mod Manager Download“.</value></data>
 </root>
