@@ -551,4 +551,11 @@
   <data name="GUIDropFolderExplain" xml:space="preserve"><value>Модовете, които изтеглиш ръчно в следена папка, се преместват в папката с модове и се появяват сами в списъка.</value></data>
   <data name="GUIDropFolderLink" xml:space="preserve"><value>Следи папка…</value></data>
   <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Избери папка, в която да се следят изтеглени модове</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Провери следените папки сега</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Няма следени папки</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Спри следенето на тази папка</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Следени папки</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Няма нищо ново за добавяне. AIM премества само архиви и папки, които съдържат манифест, затова всичко останало се оставя на място.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Добавени са {0} мода от следена папка.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Преместени в папката ти с модове:&#xD;&#xA;{0}</value></data>
 </root>
