@@ -782,4 +782,14 @@
   <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Това стартиране не даде отговор, затова {0} все още е заподозрян. AIM ще го предложи отново.</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Играта се срина, но заради нещо друго, затова {0} е изключен като причина за първоначалния срив. AIM зареди новия срив, а вече събраните резултати са запазени.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>Тествани са {0} от {1} заподозрени за този срив.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM няма къде да запише тези резултати, затова те ще останат само докато този прозорец е отворен.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Следващ тест: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Изпълнява същата проверка върху следващия непроверен заподозрян: изключва го, възстановява архива, стартира играта и я наблюдава. Модовете, които вече са изключени като причина, остават включени.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Всеки заподозрян е тестван и никой не е бил причината сам по себе си. Възможно е два мода заедно да причиняват това - опитайте да изключите целия кратък списък наведнъж или докладвайте срива със списъка по-долу.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Започни отначало</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Изтрива всички резултати, които AIM е записал за този срив, и предлага отново всички заподозрени. Полезно е след добавяне, премахване или пренареждане на модове, защото резултатът има смисъл само спрямо списъка, с който е направен тестът.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Всички резултати за този срив бяха изчистени.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Изключени като причина - {0} от {1} заподозрени</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Покажи какво доказаха тестовете</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Четене на собствените страници на {0} за поправка…</value></data>
 </root>
