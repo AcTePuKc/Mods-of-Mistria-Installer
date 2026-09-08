@@ -3569,7 +3569,7 @@ public partial class ModlistPageViewModel : PageViewBase
             ? string.Format(Texts.GUIRemoveModConfirm, model.Mod.GetName(), model.Mod.GetVersion(), source)
             : string.Format(Texts.GUIRemoveModConfirmPermanent, model.Mod.GetName(), model.Mod.GetVersion(), source);
 
-        var confirm = await MessageBoxManager
+        var confirm = await AIMMessageDialog
             .GetMessageBoxStandard(Texts.GUIRemoveModTitle, prompt, ButtonEnum.YesNo)
             .ShowAsync();
         if (confirm != ButtonResult.Yes) return;
@@ -3644,7 +3644,7 @@ public partial class ModlistPageViewModel : PageViewBase
             ? string.Format(Texts.GUIRemoveSelectedConfirm, selected.Count, names)
             : string.Format(Texts.GUIRemoveSelectedConfirmPermanent, selected.Count, names);
 
-        var confirm = await MessageBoxManager
+        var confirm = await AIMMessageDialog
             .GetMessageBoxStandard(Texts.GUIRemoveModTitle, prompt, ButtonEnum.YesNo)
             .ShowAsync();
         if (confirm != ButtonResult.Yes) return;
@@ -4351,7 +4351,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         var prompt = Localized("GUIForeignArchiveRecoveryMessage");
         var answer = await Dispatcher.UIThread.InvokeAsync(() =>
-            MessageBoxManager.GetMessageBoxStandard(
+            AIMMessageDialog.GetMessageBoxStandard(
                 Localized("GUIForeignArchiveRecoveryTitle"), prompt, ButtonEnum.YesNo).ShowAsync());
         if (answer != ButtonResult.Yes)
             return false;
