@@ -788,4 +788,26 @@ An AIM übergeben?</value></data>
   <data name="GUIKeybindsDefault" xml:space="preserve"><value>Standard des Mods - AIM kann ihn erst ändern, wenn der Mod seine Einstellungen geschrieben hat</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Dieser Mod hat seine Einstellungen noch nicht geschrieben. Das ist der in ihn kompilierte Standardwert. Starte das Spiel einmal oder ändere ihn in den Einstellungen des Mods, dann kann AIM ihn hier bearbeiten.</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(nicht belegt)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>vom Spiel nicht akzeptiert</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>„{0}“ ist kein vom Spiel erkannter Name, daher verwendet dieser Mod seinen Standardwert. Wähle einen Eintrag aus der Liste, um das zu beheben.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM konnte nicht in {0} schreiben. Die Datei ist möglicherweise in einem anderen Programm geöffnet oder das Spiel wurde gestartet.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Taste oder Button auswählen</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Taste oder Controller-Button</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Drücke eine Taste, um sie zu erfassen</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Drücke jetzt eine Taste… (Escape zum Abbrechen)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Dies wird gespeichert als: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Controller-Buttons werden aus der Liste ausgewählt - AIM kann einen Controller nicht auslesen. Die Liste enthält jeden vom Spiel akzeptierten Namen. ALT, Sperrtasten und Nummernblock sind nicht enthalten; ein Mod, der eine davon verwendet, fällt still auf seinen Standardwert zurück.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Speichern</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Belegung aufheben</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Leert die Einstellung. Die meisten Mods behandeln das als „aus“, einige fallen stattdessen auf ihren Standardwert zurück.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (Standard des Mods - noch nicht konfiguriert)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Tastenbelegungen wurden geändert</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Die von dir gewählten {0} Belegung(en) wurden von den Mods selbst geändert, meist nachdem ein Update ihre Einstellungen zurückgesetzt hat.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Deine Auswahl wiederherstellen? Einstellungen, die das Update vollständig entfernt hat, werden nicht wiederhergestellt.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… und {0} weitere.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} Tastenbelegung(en) wiederhergestellt. Starte das Spiel, damit sie wirksam werden.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates prüfen</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Prüft die ausgewählten Mods anhand ihrer Nexus-Seiten. Verwende den Pfeil für alle Mods oder um alle verfügbaren Updates zu installieren.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} Mod(s) geprüft: Für {1} gibt es ein Update, {2} konnten nicht geprüft werden.&#xD;&#xA;&#xD;&#xA;Diese Updates jetzt herunterladen und installieren? Die aktuelle Version jedes Mods wird als wiederherstellbare Sicherung aufbewahrt.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Alle verfügbaren Updates installieren</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Lädt jedes ausstehende Update nacheinander herunter und installiert es. Die aktuelle Version jedes Mods bleibt als wiederherstellbare Sicherung erhalten.</value></data>
 </root>
