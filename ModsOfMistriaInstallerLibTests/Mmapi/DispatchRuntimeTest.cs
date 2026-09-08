@@ -89,4 +89,13 @@ public class DispatchRuntimeTest
         // edges on top, and a contradiction falls back rather than hanging.
         AssertBodyPasses("dispatch_ordering.gml");
     }
+
+    [Test]
+    public void ShouldComposePromptLocksMonotonically()
+    {
+        // Prompt locks are additive: vanilla and every mod may request true,
+        // but no later filter can clear an existing lock. The same fixture also
+        // pins handler isolation and the stable prompt context.
+        AssertBodyPasses("dispatch_monotonic_prompt_lock.gml");
+    }
 }

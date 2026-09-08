@@ -19,6 +19,7 @@
 //   ---------+-------------------------------+----------------------------------------+--------------------------
 //   event    | mmapi_on(name, fn, opts)      | mmapi_emit(name, ctx)                  | observe-only fan-out
 //   filter   | mmapi_filter(name, fn, opts)  | v = mmapi_apply_filters(name, v, ctx)  | chained value transform
+//   monotonic filter | mmapi_filter(name, fn, opts) | v = mmapi_apply_monotonic_filters(name, v, ctx) | true-only additive transform
 //   guard    | mmapi_guard(name, fn, opts)   | if (mmapi_check_guards(name, ctx)) ... | any false return vetoes
 //   override | mmapi_override(name, fn, opts)| r = mmapi_run_override(name, ctx)      | first non-undefined wins
 //
@@ -300,6 +301,34 @@ function mmapi_apply_filters(hook_name, value, ctx) {
                 // keep current (the filter declined)
             } else {
                 current = result;
+            }
+        } catch (err) {
+            // keep current (the handler failed)
+            __mmapi_hook_handler_failed(hook_name, record.mod_name, err);
+        }
+    }
+    return current;
+}
+
+// Chain a boolean value through a filter hook whose only permitted change is
+// false -> true. A handler returning false, undefined, or any other value
+// declines; once the running value is true, no later handler can clear it.
+// This is deliberately separate from mmapi_apply_filters: ordinary filters
+// are last-writer transforms, while additive decisions must be monotonic.
+function mmapi_apply_monotonic_filters(hook_name, value, ctx) {
+    var registry = global[$ "__mmapi_hooks"];
+    if (registry == undefined) { return value == true; }
+    var handlers = registry[$ hook_name];
+    if (handlers == undefined) { return value == true; }
+    var current = value == true;
+    var count = array_length(handlers);
+    for (var i = 0; i < count; i++) {
+        var record = handlers[i];
+        if (record.kind != "filter") { continue; }
+        try {
+            var result = record.fn(current, ctx);
+            if (typeof(result) == "bool" && result == true) {
+                current = true;
             }
         } catch (err) {
             // keep current (the handler failed)
