@@ -382,4 +382,23 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Lee lo que las páginas de Nexus de estos mods dicen entre sí y abre sus informes de errores, comentarios y una búsqueda web para que puedas decidir si esto importa realmente.</value></data>
   <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Reasignar…</value></data>
   <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Mueve este mod a una tecla que nadie más esté usando, editando su propia asignación en {0}. El mod se guarda primero y el cambio llegará al juego en la próxima instalación.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Reasignar un atajo</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>¿Mover «{0}» de {1} a {2}?&#xD;&#xA;&#xD;&#xA;AIM editará la asignación del propio mod y guardará una copia de seguridad que podrás restaurar desde el menú contextual. El cambio llegará al juego en la próxima instalación.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>«{0}» usa ahora {1}; se actualizaron {2} archivo(s).&#xD;&#xA;&#xD;&#xA;Instala de nuevo para que el cambio llegue al juego.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>No se pudo reasignar «{0}»: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>«{0}» usa ahora {1} en lugar de {2}. Instala de nuevo para que el cambio llegue al juego.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Solucionado: «{0}» se movió a {1}, así que ningún otro mod comparte ya este atajo. Instala de nuevo para que el cambio llegue al juego.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Este mod todavía es un archivo .zip o .rar. Extráelo primero en la carpeta de mods y AIM podrá editar su asignación.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Este mod no declara la tecla como una asignación con nombre, así que AIM no puede cambiarla de forma segura. Revisa los ajustes del propio mod dentro del juego o su archivo de configuración.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Todas las teclas de función ya las usa un mod seleccionado, así que no hay ninguna libre a la que mover esta.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM no pudo leer los archivos de este mod.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Ordenar A-Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Ordena la lista por nombre para encontrar un mod rápidamente. Solo cambia la vista: el orden de carga no se modifica y al desactivarlo vuelve a mostrarse el orden real. Mientras está activo no se puede arrastrar.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Ordenar por actualización</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Muestra primero los más recientes, según la última modificación de la carpeta de cada mod en el disco. Así, lo que acabas de instalar o actualizar aparece arriba. Solo cambia la vista: el orden de carga no se modifica y no se puede arrastrar.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Mover al principio del orden de carga</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Carga este mod primero para que los demás puedan basarse en él y sobrescribirlo. Aquí van los frameworks y los mods de los que dependen otros. Cambia el orden de carga real, no solo la vista actual.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Mover al final del orden de carga</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Carga este mod el último, de modo que si comparte un archivo con otro mod, este tenga prioridad. Aquí van los recolores y las sustituciones personales. Cambia el orden de carga real, no solo la vista actual.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Solo mods activados</value></data>
 </root>
