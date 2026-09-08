@@ -527,4 +527,13 @@
   <data name="GUIBindingEditorClear" xml:space="preserve"><value>Премахни клавиша</value></data>
   <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Изчиства настройката. Повечето модове приемат това като „изключено“, а някои се връщат към началната си стойност.</value></data>
   <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (началната стойност на мода - още не е конфигурирана)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Клавишните комбинации са променени</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} избрани от теб клавишни комбинации са променени от самите модове - обикновено след като обновяване е нулирало настройките им.&#xD;&#xA;&#xD;&#xA;Да върна ли избора ти? Настройки, които обновяването е премахнало напълно, няма да бъдат възстановени.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…и още {0}.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Възстановени са {0} клавишни комбинации. Стартирай играта, за да влязат в сила.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Провери за обновления</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Проверява избраните модове спрямо страниците им в Nexus. Използвай стрелката за всички модове или за инсталиране на всичко, което има обновление.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Проверени са {0} мода: за {1} има обновление, а {2} не можаха да бъдат проверени.&#xD;&#xA;&#xD;&#xA;Да изтегля и инсталирам ли тези обновления сега? Текущата версия на всеки мод ще бъде запазена като backup за възстановяване.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Обнови всичко, което има обновление</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Изтегля и инсталира всички чакащи обновления едно по едно, като запазва текущата версия на всеки мод като backup за възстановяване.</value></data>
 </root>
