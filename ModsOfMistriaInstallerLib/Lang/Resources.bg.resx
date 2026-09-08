@@ -619,4 +619,7 @@
   <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Страницата на този мод няма основен файл, с който да се направи сравнение.</value></data>
   <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM не знае от кой файл на тази страница произлиза този мод, затова не може да определи дали версията на страницата е по-нова. Изтегли го веднъж през AIM или кликни с десен бутон върху мода и го свържи с конкретен файл, за да станат проверките за обновления надеждни.</value></data>
   <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Проверката за обновления спря преждевременно.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Проверката за обновления на този мод не завърши.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Все още няма свързан Nexus акаунт.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова този инсталатор не може да го обработи.</value></data>
 </root>
