@@ -730,4 +730,7 @@
   <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - преди промяната на AIM</value></data>
   <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM ще изключи {0}, ще възстанови архива на играта и ще я стартира.&#xD;&#xA;&#xD;&#xA;Възстановяването отнема около минута. Играй както обикновено; AIM ще ти каже дали сривът се е повторил.</value></data>
   <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM ще стартира играта и ще наблюдава за срив, без да променя нищо.&#xD;&#xA;&#xD;&#xA;Играй както обикновено; AIM ще ти каже какво се е случило.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM не може да промени списъка с модове оттук.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} не можа да бъде изключен - възможно е вече да е изключен или да не е в списъка.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} е изключен.</value></data>
 </root>
