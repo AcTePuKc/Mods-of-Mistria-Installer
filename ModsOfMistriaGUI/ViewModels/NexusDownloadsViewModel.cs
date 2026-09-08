@@ -41,7 +41,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     /// <summary>Action shown in the Nexus submenu; it reflects the current handler state.</summary>
     public string HandlerActionText =>
-        _handlerIsActive || _handlerCanBeRemoved
+        _handlerIsActive
             ? Localization["GUINexusHandlerDisableMenuItem"]
             : Localization["GUINexusHandlerEnableMenuItem"];
 
@@ -640,9 +640,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     {
         var status = NxmProtocolHandler.GetStatus();
 
-        // If AIM is registered but another manager is currently selected, this button still
-        // means "stop using AIM": remove AIM's own registration without touching the other app.
-        if (status.IsThisApplicationRegistered)
+        // If AIM is the handler Windows currently uses, this button means "stop using AIM".
+        if (status.IsThisExecutable)
         {
             if (NxmProtocolHandler.Unregister(out var unregisterError))
             {
@@ -657,6 +656,16 @@ public partial class NexusDownloadsViewModel : ViewModelBase
                     string.Format(Localization["GUINexusHandlerUnregisterFailed"], unregisterError ?? ""));
             }
 
+            RefreshHandlerStatus();
+            return;
+        }
+
+        // AIM may still be registered as an available application while another manager owns the
+        // Windows UserChoice entry. In that state the action is "Use AIM": do not unregister AIM's
+        // registration, because that would remove the very choice the user is trying to select.
+        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
+        {
+            NxmProtocolHandler.OpenWindowsDefaultApps();
             RefreshHandlerStatus();
             return;
         }
