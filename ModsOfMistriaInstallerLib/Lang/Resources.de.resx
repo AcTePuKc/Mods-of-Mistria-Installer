@@ -886,4 +886,22 @@ An AIM übergeben?</value></data>
   <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Es ist noch kein Nexus-Konto verbunden.</value></data>
   <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Die Datei, von der dieser Mod stammt, befindet sich nicht mehr auf seiner Nexus-Seite, und keine der dort verbliebenen Dateien ist eine neuere Version davon. Auf dieser Seite werden mehrere einzelne Mods angeboten, daher bietet AIM keinen der anderen als Update an. Prüfe die Seite von Hand, wenn du eine neuere Veröffentlichung vermutest.</value></data>
   <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Diese Mod-Seite hat keine Hauptdatei, mit der verglichen werden kann.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM weiß nicht, aus welcher Datei dieser Mod auf dieser Seite stammt, und kann daher nicht feststellen, ob die dortige Version neuer ist. Lade ihn einmal über AIM herunter oder verknüpfe den Mod per Rechtsklick mit einer bestimmten Datei. Danach werden Updateprüfungen zuverlässig.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Die Updateprüfung wurde vorzeitig beendet.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Die Updateprüfung für diesen Mod wurde nicht abgeschlossen.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Es ist noch kein Nexus-Konto verbunden.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Dieser Download ist für ein anderes Spiel ({0}), daher kann dieser Installer ihn nicht verarbeiten.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Dieser Downloadlink ist abgelaufen. Klicke auf der Mod-Seite erneut auf „Vortex download“.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Der Mods-Ordner wurde nicht gefunden.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Nexus wird nach der Datei gefragt…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>{0} wird heruntergeladen</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>{0} wird entpackt</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Installation abgebrochen</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} installiert</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} Mods installiert</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Download abgebrochen</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Leerer Downloadlink.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Das ist kein nxm://-Link.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Der Link enthält keinen Spielnamen.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus-Sammlungen werden noch nicht unterstützt - lade die Mods einzeln herunter.</value></data>
 </root>
