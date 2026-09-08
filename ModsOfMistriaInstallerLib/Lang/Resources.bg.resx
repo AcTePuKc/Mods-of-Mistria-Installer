@@ -800,4 +800,12 @@
   <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Отменя резултата, който сте записали ръчно, и връща този мод в краткия списък като непроверен. Състоянието му на включен или изключен не се променя.</value></data>
   <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Отбелязан ръчно, не е тестван от AIM.</value></data>
   <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>ОТБЕЛЯЗАН КАТО НЕВИНЕН</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>ОТБЕЛЯЗАН КАТО ПРИЧИНА ЗА СРИВА</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Вие отбелязахте този мод като причина. AIM не го е тествал - изключил го е и го е отбелязал в списъка с модове по ваше решение. Всичко, което AIM може да поправи сам, е по-долу; в нишката за грешки на мода може вече да има отговор.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} е отбелязан като причина за срива и е изключен. Инсталирайте, за да възстановите играта без него.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} е отбелязан като причина за срива. Той вече е изключен.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} е отбелязан като невинен и повече няма да бъде предлаган за този срив.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} е отбелязан като невинен и е включен отново. Инсталирайте, за да го върнете в играта.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Вашето отбелязване за {0} е отменено. Модът отново е в краткия списък като непроверен.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM няма зареден срив, към който да запише това.</value></data>
 </root>
