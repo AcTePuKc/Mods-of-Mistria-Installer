@@ -660,16 +660,6 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             return;
         }
 
-        // AIM may still be registered as an available application while another manager owns the
-        // Windows UserChoice entry. In that state the action is "Use AIM": do not unregister AIM's
-        // registration, because that would remove the very choice the user is trying to select.
-        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
-        {
-            NxmProtocolHandler.OpenWindowsDefaultApps();
-            RefreshHandlerStatus();
-            return;
-        }
-
         if (status.IsClaimedByAnother)
         {
             var confirm = await AIMMessageDialog.GetMessageBoxStandard(
@@ -678,6 +668,17 @@ public partial class NexusDownloadsViewModel : ViewModelBase
                 ButtonEnum.YesNo).ShowAsync();
 
             if (confirm != ButtonResult.Yes) return;
+
+            // AIM may already be registered as an available application while another manager
+            // owns Windows' UserChoice entry. After the user confirms the takeover, open the
+            // Default apps page so Windows can make AIM the actual default; do not unregister AIM's
+            // registration, because that would remove the very choice the user is trying to make.
+            if (status.IsThisApplicationRegistered)
+            {
+                NxmProtocolHandler.OpenWindowsDefaultApps();
+                RefreshHandlerStatus();
+                return;
+            }
         }
 
         if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
