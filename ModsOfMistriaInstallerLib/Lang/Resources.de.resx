@@ -826,4 +826,26 @@ An AIM übergeben?</value></data>
   <data name="GUIDropFolderLink" xml:space="preserve"><value>Ordner überwachen…</value></data>
   <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Ordner auswählen, in dem nach heruntergeladenen Mods gesucht wird</value></data>
   <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Überwachte Ordner jetzt prüfen</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Keine Ordner werden überwacht</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Überwachung dieses Ordners beenden</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Überwachte Ordner</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Nichts Neues zum Importieren. AIM verschiebt nur Archive und Ordner mit einem Manifest. Alles andere bleibt dort liegen.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} Mod(s) aus einem überwachten Ordner importiert.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>In deinen Mods-Ordner verschoben:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - du hast diesen Mod bereits als „{1}“ installiert. Aktualisiere diese Kopie oder entferne sie zuerst: Zwei Kopien eines Mods überschreiben sich gegenseitig.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Im überwachten Ordner belassen:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Der Mods-Ordner wurde nicht gefunden, daher gibt es nichts zu öffnen.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Der Mods-Ordner konnte nicht geöffnet werden: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods-Ordner</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Öffnet den Mods-Ordner von Fields of Mistria in deinem Dateimanager</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Abstürze prüfen</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Liest das eigene Absturzprotokoll des Spiels, ermittelt, auf welchen Mod es hindeutet, und bietet an, diesen Mod zu deaktivieren und zu prüfen, ob der Absturz ausbleibt.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Im Mods-Ordner ist kein Platz mehr, um {0} zusammenzustellen.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Im Mods-Ordner befinden sich bereits zu viele Kopien von {0}.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Die Datei konnte nicht von Nexus heruntergeladen werden: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>Kein Downloadserver hat geantwortet</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Es gibt nichts zu aktualisieren.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Die Nexus-Kontositzung konnte nicht gespeichert werden. Prüfe den Festplattenzugriff und versuche es erneut.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Die Sicherung von {0} fehlt.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Die heruntergeladene Datei fehlt.</value></data>
 </root>
