@@ -2,13 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Garethp.ModsOfMistriaGUI.Views.AIMMessageDialog"
         Width="520"
+        SizeToContent="Height"
         MinWidth="360"
         MinHeight="170"
-        MaxHeight="720"
         WindowStartupLocation="CenterOwner"
         CanResize="True">
-  <Grid Margin="18" RowDefinitions="*,Auto">
-    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+  <Grid Margin="18" RowDefinitions="Auto,Auto">
+    <ScrollViewer Grid.Row="0"
+                  MaxHeight="520"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
       <SelectableTextBlock x:Name="MessageText"
                            TextWrapping="Wrap"
                            HorizontalAlignment="Stretch" />

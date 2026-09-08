@@ -101,12 +101,14 @@ public static class NxmProtocolHandler
                 };
             }
 
-            var isThisExecutable = PointsAtUs(current);
+            var isThisApplicationRegistered = OperatingSystem.IsWindows()
+                ? IsWindowsApplicationRegistered()
+                : IsThisProductCommand(current);
+            var isThisExecutable = PointsAtUs(current) ||
+                                   (isThisApplicationRegistered && IsThisProductCommand(current));
             return new NxmHandlerStatus(true, isThisExecutable, current)
             {
-                IsThisApplicationRegistered = OperatingSystem.IsWindows()
-                    ? IsWindowsApplicationRegistered()
-                    : isThisExecutable
+                IsThisApplicationRegistered = isThisApplicationRegistered
             };
         }
         catch (Exception e)
@@ -158,6 +160,24 @@ public static class NxmProtocolHandler
         }
 
         return current.Contains(us, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsThisProductCommand(string command)
+    {
+        var executable = ExtractExecutablePath(command);
+        return string.Equals(Path.GetFileName(executable), "AIM.exe", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string ExtractExecutablePath(string command)
+    {
+        command = command.Trim();
+        if (command.StartsWith('"'))
+        {
+            var closing = command.IndexOf('"', 1);
+            return closing > 1 ? command[1..closing] : command[1..];
+        }
+
+        return command.Split(' ', 2)[0];
     }
 
     // ── Register / unregister ────────────────────────────────────────────────────
