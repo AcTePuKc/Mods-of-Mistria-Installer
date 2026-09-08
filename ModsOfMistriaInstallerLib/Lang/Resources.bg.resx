@@ -651,4 +651,11 @@
   <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Играта отново се срина след {0}, но с друга грешка.</value></data>
   <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Играта приключи с код {0} след {1} и не остави crash log. Обикновено това означава, че е била затворена от нещо извън играта - грешка в драйвер или принудително прекратен процес - а не от мод, така че тази проверка не доказа нищо.</value></data>
   <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Играта работи {0} и приключи нормално, без нов срив.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Играта се е повредила в собствения код на този мод, на {0}, ред {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Кодът на този мод е в стека на извикванията, на {0}, ред {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Този мод е посочен в самото съобщение за срива.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Играта се срина при прочитане на данните „{0}“, към които добавя {1} инсталиран мод.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Играта се срина при прочитане на данните „{0}“, към които добавят {1} инсталирани мода.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Този мод добавя към данните „{0}“, които играта е прочитала при срива.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Данните „{0}“ в архива на играта на диска нямат липсващ запис {1}, така че причината вече е отстранена - от обновление, преинсталиране или мод, който оттогава си изключил. Ако се повтори, върни се тук: потърси сред модовете по-долу.</value></data>
 </root>
