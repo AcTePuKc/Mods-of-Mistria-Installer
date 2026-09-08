@@ -772,4 +772,14 @@
   <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Нищо не се променя - играта се стартира в текущото ѝ състояние.</value></data>
   <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Архивът вече съответства на списъка с модове, затова не беше нужно възстановяване.</value></data>
   <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Архивът на играта беше възстановен.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Стартиране на Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Наблюдение на стартирането. Играйте както обикновено - AIM ще съобщи, когато играта се затвори, или след {0} минути, ако не е претърпяла срив.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Играта не стартира, затова нищо не беше тествано.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Същият срив се появи отново при изключен {0}, затова {0} не е причината. AIM го изключи от списъка със заподозрени и го включи отново.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Същият срив се появи отново при изключен {0}, затова {0} не е причината. AIM го изключи от списъка със заподозрени, но не успя да го включи отново - използвайте „Включи отново“ върху неговата карта, в „Вече проверени“, преди следващата проверка.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Без срив при изключен {0}. Това го прави вероятната причина. Оставете го изключен, изчакайте обновление или опитайте поправка по-долу.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Играта работи без срив и нищо не беше променено. Сривът може да е изисквал запис или действие, което не сте повторили - опитайте отново и направете това, което сте направили последния път.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Това стартиране не даде отговор, затова {0} все още е заподозрян. AIM ще го предложи отново.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Играта се срина, но заради нещо друго, затова {0} е изключен като причина за първоначалния срив. AIM зареди новия срив, а вече събраните резултати са запазени.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>Тествани са {0} от {1} заподозрени за този срив.</value></data>
 </root>
