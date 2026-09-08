@@ -365,4 +365,26 @@
   <data name="GUIRemoveModTitle" xml:space="preserve"><value>Премахване на мод</value></data>
   <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows не премести мода в кошчето</value></data>
   <data name="GUIRemoveModMissing" xml:space="preserve"><value>„{0}“ вече не е в папката с модове. Списъкът е обновен.</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Да преместя ли „{0}“ v{1} в кошчето?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Модът ще бъде премахнат от папката с модове. Ако промениш решението си, можеш да го върнеш от кошчето. Файловете, които вече са инсталирани в играта, ще останат до следващото инсталиране или деинсталиране.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Да изтрия ли „{0}“ v{1} окончателно?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Тази система няма кошче, което AIM може да използва, затова файловете на мода ще бъдат изтрити. Това действие не може да бъде отменено.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>„{0}“ не можа да бъде премахнат: {1}&#xD;&#xA;&#xD;&#xA;Възможно е да е отворен в друга програма или играта все още да работи.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Премахни избраните…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Премахва всички избрани модове наведнъж чрез кошчето, след като покаже списъка.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Няма избрани модове за премахване.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>…и още {0}.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Премахнати са {0} от {1} мода.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Следните модове не можаха да бъдат премахнати: {0}&#xD;&#xA;&#xD;&#xA;Възможно е да са отворени в друга програма или играта все още да работи.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Маркира това като проверено и приемливо. AIM ще го скрие, докато някой от засегнатите модове не промени версията си, след което ще попита отново.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Покажи проблемите, които съм маркирал като приемливи ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Маркирано като приемливо</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[маркирано като приемливо]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Файлове, които и двата мода променят</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>печели в момента</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Направи този мод победител</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>„{0}“ вече се зарежда последен от модовете, които споделят тези файлове, така че неговите копия печелят.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Намери решение…</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Смени клавиша…</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Смяна на клавишна комбинация</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>„{0}“ вече използва {1} вместо {2}. Инсталирай отново, за да се приложи промяната.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Този мод все още е ZIP или RAR архив. Първо го разархивирай в папката с модове и AIM ще може да редактира клавиша му.</value></data>
 </root>
