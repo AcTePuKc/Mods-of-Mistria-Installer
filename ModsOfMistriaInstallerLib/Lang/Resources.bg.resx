@@ -708,4 +708,7 @@
   <data name="GUICrashBadgeCertain" xml:space="preserve"><value>СИГУРНО</value></data>
   <data name="GUICrashBadgeStrong" xml:space="preserve"><value>ВЕРОЯТНО</value></data>
   <data name="GUICrashBadgeLikely" xml:space="preserve"><value>ВЪЗМОЖНО</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>МАЛКО ВЕРОЯТНО</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Отвори страницата на мода</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Отвори тази страница</value></data>
 </root>
