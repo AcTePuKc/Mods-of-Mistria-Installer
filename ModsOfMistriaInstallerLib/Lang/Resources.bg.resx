@@ -563,4 +563,15 @@
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Папката с модове не беше намерена, затова няма какво да се отвори.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Папката с модове не можа да бъде отворена: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Папка с модове</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Отвори папката с модове на Fields of Mistria във файловия мениджър</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Провери сривовете</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Прочита собствения crash log на играта, установява към кой мод сочи и предлага да изключи мода, за да провери дали сривът ще изчезне.</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Проверка за срив</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Срив</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash файлове</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Отваря папката, в която AIM пази копие на всеки видян срив. Самата игра пази само най-новия.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Какво установи AIM</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>В папката с модове няма място за подготовка на {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>В папката с модове вече има твърде много копия на {0}.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Файлът не можа да бъде изтеглен от Nexus: {0}</value></data>
 </root>
