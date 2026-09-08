@@ -641,4 +641,9 @@
   <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Регистрацията на nxm:// връзки се поддържа само в Windows и Linux.</value></data>
   <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM беше регистриран, но Windows може все още да използва {0} за nxm:// връзки.&#xD;&#xA;&#xD;&#xA;Избери AIM като приложение по подразбиране за nxm:// в настройките за приложения по подразбиране на Windows.</value></data>
   <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Регистрацията на nxm:// не можа да бъде потвърдена след записването.</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM не откри изпълнимия файл на играта, затова не може да я стартира и наблюдава.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria вече работи. Затвори я първо, за да може AIM да наблюдава стартирането, което сам е започнал.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM не можа да стартира играта: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Играта се срина, но AIM не можа да прочете оставения crash log, затова това стартиране не доказа нищо за мода. Струва си да пуснеш проверката отново.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Играта отново се срина по време на проверката.</value></data>
 </root>
