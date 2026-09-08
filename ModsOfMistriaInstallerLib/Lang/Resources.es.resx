@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -19,7 +19,7 @@
   <data name="GUILanguageTraditionalChinese" xml:space="preserve"><value>Chino tradicional</value></data>
   <data name="GUILanguageRussian" xml:space="preserve"><value>Ruso</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>Indonesio</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Instalador alternativo para Fields of Mistria</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Instalador alternativo para Fields of Mistria</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>Idioma</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>Jugar</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>Perfil:</value></data>
@@ -279,7 +279,7 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIOk" xml:space="preserve"><value>Aceptar</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Sí</value></data>
   <data name="GUINo" xml:space="preserve"><value>No</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} de {1} seleccionados — {2} ya están en el juego, se añadirán {3}</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} de {1} seleccionados - {2} ya están en el juego, se añadirán {3}</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Buscar mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Borrar búsqueda</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Seleccionar o borrar todos los mods</value></data>

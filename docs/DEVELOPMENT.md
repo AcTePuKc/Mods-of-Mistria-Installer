@@ -42,4 +42,6 @@ Run `pwsh -File tools/check-localization.ps1` to compare every translated
 resource file with the English resource. Missing keys are reported as pending
 fallbacks: the application can use the English resource for them, but they
 still need a translation before that language is complete. Use
-`-FailOnMissing` only when a language-complete build is required.
+`-FailOnMissing` only when a language-complete build is required. The same
+check reports em dashes; use `-FixEmDash` for the mechanical em-dash to
+hyphen cleanup, or `-FailOnEmDash` to enforce the rule without modifying files.

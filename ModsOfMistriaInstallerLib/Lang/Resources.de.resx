@@ -313,7 +313,7 @@
     <value>Gegenstand {0} gibt nicht bekannt ob es eine andere Mod überschreibt.</value>
   </data>
   <data name="GUIApplicationTitle" xml:space="preserve">
-    <value>AIM — Alternative Installer for Mistria</value>
+    <value>AIM - Alternative Installer for Mistria</value>
   </data>
   <data name="GUIGreetingText" xml:space="preserve">
     <value>Willkommen beim Mods of Mistria Installer!</value>
@@ -580,7 +580,7 @@ Download-Seite(n) im Browser öffnen?</value></data>
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Abgeschlossene löschen</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus-Mod {0}</value></data>
  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus-Download</value></data>
-  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus konnte keinen Download-Link erstellen. Kostenlose Konten können nur über die Schaltfläche „Mod Manager Download“ auf der Website herunterladen — ein manuell geöffneter Link enthält kein Download-Token.</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus konnte keinen Download-Link erstellen. Kostenlose Konten können nur über die Schaltfläche „Mod Manager Download“ auf der Website herunterladen - ein manuell geöffneter Link enthält kein Download-Token.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Dieser Download ist für ein anderes Spiel ({0}) bestimmt, daher kann AIM ihn nicht installieren.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Richte zuerst deine Fields-of-Mistria- und Mod-Ordner ein.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>„Vortex“-Links</value></data>
@@ -605,7 +605,7 @@ An AIM übergeben?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Ja</value></data>
   <data name="GUINo" xml:space="preserve"><value>Nein</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} von {1} ausgewählt — {2} bereits im Spiel, {3} werden hinzugefügt</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} von {1} ausgewählt - {2} bereits im Spiel, {3} werden hinzugefügt</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Mods suchen…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Suche löschen</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Alle Mods auswählen oder abwählen</value></data>

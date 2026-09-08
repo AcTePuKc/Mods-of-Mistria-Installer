@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -16,7 +16,7 @@
   <data name="GUILanguageTraditionalChinese" xml:space="preserve"><value>번체 중국어</value></data>
   <data name="GUILanguageRussian" xml:space="preserve"><value>러시아어</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>인도네시아어</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Fields of Mistria 대체 설치 관리자</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Fields of Mistria 대체 설치 관리자</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>언어</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>게임 시작</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>프로필:</value></data>
@@ -159,7 +159,7 @@
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>새 오브젝트가 다른 모드의 오브젝트를 덮어쓰지 않습니다.</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>새 아이템이 다른 모드의 아이템을 덮어쓰지 않습니다.</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>AIM에 오신 것을 환영합니다</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} — 제작자 {1} — 버전 {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} - 제작자 {1} - 버전 {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Fields of Mistria 설치를 찾을 수 없습니다.</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>모드 폴더를 찾을 수 없습니다. 폴더를 선택하거나 자동으로 만드세요.</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>설치할 모드가 선택되지 않았습니다.</value></data>
@@ -279,7 +279,7 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>확인</value></data>
   <data name="GUIYes" xml:space="preserve"><value>예</value></data>
   <data name="GUINo" xml:space="preserve"><value>아니요</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0}개 중 {1}개 선택 — {2}개는 이미 게임에 있고 {3}개가 추가됩니다</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0}개 중 {1}개 선택 - {2}개는 이미 게임에 있고 {3}개가 추가됩니다</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>모드 검색…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>검색 지우기</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>모든 모드 선택 또는 선택 해제</value></data>

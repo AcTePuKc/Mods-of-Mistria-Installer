@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -313,7 +313,7 @@
     <value>Item {0} não especifica se sobrescreve outro mod.</value>
   </data>
   <data name="GUIApplicationTitle" xml:space="preserve">
-    <value>AIM — Instalador alternativo para Fields of Mistria</value>
+    <value>AIM - Instalador alternativo para Fields of Mistria</value>
   </data>
   <data name="GUIGreetingText" xml:space="preserve">
     <value>Bem-vindo ao Instalador de Mods de Mistria!</value>
@@ -605,7 +605,7 @@ Passá-los para o AIM?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Sim</value></data>
   <data name="GUINo" xml:space="preserve"><value>Não</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} de {1} selecionados — {2} já estão no jogo, {3} serão adicionados</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} de {1} selecionados - {2} já estão no jogo, {3} serão adicionados</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Procurar mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Limpar pesquisa</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Selecionar ou limpar todos os mods</value></data>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -313,7 +313,7 @@
     <value>L'objet {0} ne précise pas s'il écrase un autre mod.</value>
   </data>
   <data name="GUIApplicationTitle" xml:space="preserve">
-    <value>AIM — Installateur alternatif pour Mistria</value>
+    <value>AIM - Installateur alternatif pour Mistria</value>
   </data>
   <data name="GUIGreetingText" xml:space="preserve">
     <value>Bienvenue dans Mods of Mistria Installer!</value>
@@ -605,7 +605,7 @@ Les confier à AIM ?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Oui</value></data>
   <data name="GUINo" xml:space="preserve"><value>Non</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} sur {1} sélectionnés — {2} déjà dans le jeu, {3} seront ajoutés</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} sur {1} sélectionnés - {2} déjà dans le jeu, {3} seront ajoutés</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Rechercher des mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Effacer la recherche</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Sélectionner ou désélectionner tous les mods</value></data>

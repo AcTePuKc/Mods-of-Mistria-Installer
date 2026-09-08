@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -13,7 +13,7 @@
   <data name="GUILanguageDutch" xml:space="preserve"><value>Belanda</value></data>
   <data name="GUILanguagePortugueseBrazil" xml:space="preserve"><value>Portugis (Brasil)</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>Indonesia</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Penginstal Alternatif untuk Fields of Mistria</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Penginstal Alternatif untuk Fields of Mistria</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>Bahasa</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>Mainkan</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>Profil:</value></data>
@@ -159,7 +159,7 @@ Buka halaman unduhan di browser?</value></data>
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>Objek baru tidak menimpa objek dari mod lain.</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>Item baru tidak menimpa item dari mod lain.</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>Selamat datang di AIM</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} oleh {1} — Versi {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} oleh {1} - Versi {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Instalasi Fields of Mistria tidak ditemukan.</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>Folder mod tidak ditemukan. Pilih folder atau buat folder secara otomatis.</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>Tidak ada mod yang dipilih untuk dipasang.</value></data>
@@ -279,7 +279,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Ya</value></data>
   <data name="GUINo" xml:space="preserve"><value>Tidak</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih — {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih - {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Cari mod…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Hapus pencarian</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Pilih atau hapus pilihan semua mod</value></data>

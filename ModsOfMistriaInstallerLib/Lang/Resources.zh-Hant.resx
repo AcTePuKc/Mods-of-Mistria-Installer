@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -15,7 +15,7 @@
   <data name="GUILanguagePortugueseBrazil" xml:space="preserve"><value>巴西葡萄牙語</value></data>
   <data name="GUILanguageRussian" xml:space="preserve"><value>俄語</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>印度尼西亞語</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Fields of Mistria 替代安裝器</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Fields of Mistria 替代安裝器</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>語言</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>開始遊戲</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>設定檔：</value></data>
@@ -159,7 +159,7 @@
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>新物件不會覆寫其他模組的物件。</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>新物品不會覆寫其他模組的物品。</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>歡迎使用 AIM</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} — 作者：{1} — 版本 {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} - 作者：{1} - 版本 {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>找不到 Fields of Mistria 安裝。</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>找不到模組資料夾。請選擇資料夾，或自動建立。</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>未選擇要安裝的模組。</value></data>
@@ -279,7 +279,7 @@
   <data name="GUIOk" xml:space="preserve"><value>確定</value></data>
   <data name="GUIYes" xml:space="preserve"><value>是</value></data>
   <data name="GUINo" xml:space="preserve"><value>否</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 — {2} 個已在遊戲中，{3} 個將被加入</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 - {2} 個已在遊戲中，{3} 個將被加入</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>搜尋模組…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>清除搜尋</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>選取或清除所有模組</value></data>

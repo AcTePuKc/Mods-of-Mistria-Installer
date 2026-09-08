@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -17,7 +17,7 @@
   <data name="GUILanguageTraditionalChinese" xml:space="preserve"><value>繁体字中国語</value></data>
   <data name="GUILanguageRussian" xml:space="preserve"><value>ロシア語</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>インドネシア語</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Fields of Mistria 代替インストーラー</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Fields of Mistria 代替インストーラー</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>言語</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>ゲームを開始</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>プロファイル：</value></data>
@@ -109,7 +109,7 @@
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>新しいオブジェクトが他のModのオブジェクトを上書きしません。</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>新しいアイテムが他のModのアイテムを上書きしません。</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>AIMへようこそ</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} — {1} 作成 — バージョン {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} - {1} 作成 - バージョン {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Fields of Mistriaのインストールが見つかりません。</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>Modフォルダが見つかりません。フォルダを選択するか自動作成してください。</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>インストールするModが選択されていません。</value></data>
@@ -279,7 +279,7 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>はい</value></data>
   <data name="GUINo" xml:space="preserve"><value>いいえ</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} 個中 {1} 個を選択 — {2} 個はゲーム内にあり、{3} 個を追加します</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} 個中 {1} 個を選択 - {2} 個はゲーム内にあり、{3} 個を追加します</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Modを検索…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>検索をクリア</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>すべてのModを選択／選択解除</value></data>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -40,7 +40,7 @@
   <data name="GUILocationNoModsFolder" xml:space="preserve"><value>Папку модів не знайдено. Виберіть папку або створіть її автоматично.</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>Ласкаво просимо до інсталятора Mods of Mistria (MOMI)!</value></data>
   <data name="GUIModsWillBeInstalled" xml:space="preserve"><value>Позначте галочками всі моди, які ви хочете встановити:</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} від {1} — Версія {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} від {1} - Версія {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Не вдалося знайти розташування Fields of Mistria. Спробуйте помістити цю програму в ту ж папку, де знаходиться гра.</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>Не вдалося знайти папку з модами. Спробуйте створити папку з назвою «mods» у кореневій папці Fields of Mistria.</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>Не знайдено модів для встановлення</value></data>
@@ -57,7 +57,7 @@
   <data name="GUIWarning32BitTitle" xml:space="preserve"><value>Виявлено 32-розрядну версію</value></data>
   <data name="GUIWarning32Bit" xml:space="preserve"><value>Ви використовуєте 64-розрядну операційну систему, але випадково завантажили 32-розрядну версію MOMI. Будь ласка, завантажте версію MOMI без суфікса «-x86».</value></data>
   <data name="GUIPickLogFile" xml:space="preserve"><value>Виберіть місце для збереження файлу журналу</value></data>
-  <data name="GUIGreetingText_April" xml:space="preserve"><value>А ви знали, що вдумливий удар кайлом — це чудовий спосіб встановити будь-які завантажені вами моди?</value></data>
+  <data name="GUIGreetingText_April" xml:space="preserve"><value>А ви знали, що вдумливий удар кайлом - це чудовий спосіб встановити будь-які завантажені вами моди?</value></data>
   <data name="GUIInstallButtonText_April" xml:space="preserve"><value>Вдумливо вдарити</value></data>
   <data name="GUIInstallInProgress_April" xml:space="preserve"><value>Вдумливий удар...</value></data>
   <data name="GUINoModsToInstall_April" xml:space="preserve"><value>Не знайдено модів для удару</value></data>
@@ -246,7 +246,7 @@
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Очистити завершені</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Мод Nexus {0}</value></data>
  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Завантаження з Nexus</value></data>
-  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus відмовився створити посилання для завантаження. Безкоштовні облікові записи можуть завантажувати лише через кнопку «Mod Manager Download» на сайті — посилання, відкрите вручну, не містить токена завантаження.</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus відмовився створити посилання для завантаження. Безкоштовні облікові записи можуть завантажувати лише через кнопку «Mod Manager Download» на сайті - посилання, відкрите вручну, не містить токена завантаження.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Це завантаження призначене для іншої гри ({0}), тому AIM не може його встановити.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Спочатку налаштуйте папки Fields of Mistria і модів.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Посилання «Vortex»</value></data>
@@ -271,7 +271,7 @@
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Так</value></data>
   <data name="GUINo" xml:space="preserve"><value>Ні</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Вибрано {0} з {1} — {2} уже є в грі, буде додано: {3}</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Вибрано {0} з {1} - {2} уже є в грі, буде додано: {3}</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Пошук модів…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Очистити пошук</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Вибрати або очистити всі моди</value></data>
@@ -307,7 +307,7 @@
   <data name="GUIUpdateAvailableForMod" xml:space="preserve"><value>На Nexus доступна версія {0} для «{1}».</value></data>
   <data name="GUIModIsUpToDate" xml:space="preserve"><value>«{0}» уже відповідає версії на його сторінці Nexus.</value></data>
   <data name="GUIModIsFrozen" xml:space="preserve"><value>«{0}» зафіксовано, тому його не перевіряли.</value></data>
-  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM не може визначити, який мод Nexus — «{0}». Моди, завантажені через AIM, відстежуються автоматично; для інших у маніфесті потрібне посилання на сторінку Nexus.</value></data>
+  <data name="GUIModNotFromNexus" xml:space="preserve"><value>AIM не може визначити, який мод Nexus - «{0}». Моди, завантажені через AIM, відстежуються автоматично; для інших у маніфесті потрібне посилання на сторінку Nexus.</value></data>
   <data name="GUIUpdateModTitle" xml:space="preserve"><value>Оновити мод</value></data>
   <data name="GUIUpdateModConfirm" xml:space="preserve"><value>Оновити «{0}» з {1} до {2}?&#xD;&#xA;&#xD;&#xA;Поточна версія буде збережена як резервна копія.</value></data>
   <data name="GUINexusUpdateNeedsPage" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Відкрити сторінку файлів моду, щоб використати кнопку «Vortex»?</value></data>

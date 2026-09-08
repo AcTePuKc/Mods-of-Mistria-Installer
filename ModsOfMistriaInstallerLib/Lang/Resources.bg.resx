@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Алтернативен инсталатор за Мистрия</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Алтернативен инсталатор за Мистрия</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>Обнови списъка с модове</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>Запази лог файла</value></data>
   <data name="GUIEnableAllMods" xml:space="preserve"><value>Избери всички модове</value></data>
@@ -254,7 +254,7 @@
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Изчистване на завършените</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus мод {0}</value></data>
  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus изтегляне</value></data>
-  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus отказа да генерира връзка за изтегляне. Безплатните акаунти могат да изтеглят само чрез бутона „Mod Manager Download“ в сайта — ръчно отворена връзка няма токен за изтегляне.</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus отказа да генерира връзка за изтегляне. Безплатните акаунти могат да изтеглят само чрез бутона „Mod Manager Download“ в сайта - ръчно отворена връзка няма токен за изтегляне.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова AIM не може да го инсталира.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Настройте папките за Fields of Mistria и модовете, преди да изтегляте модове.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Връзки „Vortex“</value></data>
@@ -283,7 +283,7 @@
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Да</value></data>
   <data name="GUINo" xml:space="preserve"><value>Не</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода — {2} вече са в играта, {3} ще бъдат добавени</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода - {2} вече са в играта, {3} ще бъдат добавени</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Търси модове…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Изчисти търсенето</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Избери или изчисти всички модове</value></data>

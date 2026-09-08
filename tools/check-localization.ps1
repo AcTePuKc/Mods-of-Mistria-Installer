@@ -1,5 +1,7 @@
 param(
-    [switch]$FailOnMissing
+    [switch]$FailOnMissing,
+    [switch]$FailOnEmDash,
+    [switch]$FixEmDash
 )
 
 $ErrorActionPreference = 'Stop'
@@ -12,8 +14,29 @@ function Get-ResourceKeys([string] $path) {
 
 $englishKeys = @(Get-ResourceKeys $englishPath)
 $hasMissing = $false
+$hasEmDash = $false
+
+if ($FixEmDash) {
+    foreach ($file in Get-ChildItem -LiteralPath $languageDirectory -Filter 'Resources*.resx' | Sort-Object Name) {
+        $raw = Get-Content -LiteralPath $file.FullName -Raw
+        if (-not $raw.Contains('—')) { continue }
+
+        # Keep the existing XML formatting and line endings; this is deliberately a mechanical
+        # punctuation cleanup rather than a resource reserialization.
+        $raw = $raw.Replace('—', '-')
+        Set-Content -LiteralPath $file.FullName -Value $raw -NoNewline -Encoding utf8
+        Write-Output ("{0}: replaced em dashes" -f $file.Name)
+    }
+}
 
 foreach ($file in Get-ChildItem -LiteralPath $languageDirectory -Filter 'Resources.*.resx' | Sort-Object Name) {
+    $raw = Get-Content -LiteralPath $file.FullName -Raw
+    $emDashCount = ([regex]::Matches($raw, '—')).Count
+    if ($emDashCount -gt 0) {
+        $hasEmDash = $true
+        Write-Output ("{0}: em dashes={1}" -f $file.BaseName, $emDashCount)
+    }
+
     $translatedKeys = @(Get-ResourceKeys $file.FullName)
     $missing = @($englishKeys | Where-Object { $_ -notin $translatedKeys })
     $extra = @($translatedKeys | Where-Object { $_ -notin $englishKeys })
@@ -31,5 +54,9 @@ foreach ($file in Get-ChildItem -LiteralPath $languageDirectory -Filter 'Resourc
 }
 
 if ($FailOnMissing -and $hasMissing) {
+    exit 1
+}
+
+if ($FailOnEmDash -and $hasEmDash) {
     exit 1
 }

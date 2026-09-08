@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Alternatywny instalator do Mistrii</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Alternatywny instalator do Mistrii</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>Witaj w instalatorze modów do Mistrii!</value></data>
   <data name="GUIInstallButtonText" xml:space="preserve"><value>Instaluj</value></data>
   <data name="GUIFieldsOfMistriaDetectedLocation" xml:space="preserve"><value>Wykryto Fields of Mistria w: </value></data>
   <data name="GUIModsWillBeInstalled" xml:space="preserve"><value>Zaznacz wszystkie mody, które chcesz zainstalować:</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} autorstwa {1} — wersja {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} autorstwa {1} - wersja {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Nie znaleziono folderu Fields of Mistria. Spróbuj umieścić AIM w tym samym folderze co Fields of Mistria.</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>Nie znaleziono folderu modów. Spróbuj utworzyć folder „mods” w folderze Fields of Mistria.</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>Nie znaleziono modów do zainstalowania</value></data>
@@ -225,7 +225,7 @@ Otworzyć strony pobierania w przeglądarce?</value></data>
   <data name="GUIModFileConflicts" xml:space="preserve"><value>Wybrane mody używają tych samych plików docelowych. AIM pokaże sposób obsługi każdego z nich:
 {0}</value></data>
   <data name="GUIModLegacyGml" xml:space="preserve"><value>Ten mod zawiera starszy kod GML bez zadeklarowanych hooków. Nie można zweryfikować zgodności z bieżącą wersją gry; mod może być nieaktualny, uniemożliwić uruchomienie gry lub spowodować jej awarię. AIM nie zablokuje go automatycznie.</value></data>
-  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Te wybrane mody mogą używać tego samego skrótu klawiszowego. To tylko ostrzeżenie — w razie potrzeby sprawdź ich ustawienia w grze:
+  <data name="GUIModHotkeyConflicts" xml:space="preserve"><value>Te wybrane mody mogą używać tego samego skrótu klawiszowego. To tylko ostrzeżenie - w razie potrzeby sprawdź ich ustawienia w grze:
 {0}</value></data>
   <data name="GUIHotkeyRebindable" xml:space="preserve"><value> (można zmienić przypisanie)</value></data>
   <data name="GUIHardFileConflictBlocked" xml:space="preserve"><value>Instalacja zatrzymana: wybrane mody zastępują ten sam zasób. Pozostaw zaznaczony tylko jeden z konfliktujących modów.</value></data>
@@ -279,7 +279,7 @@ Przekazać je do AIM?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Tak</value></data>
   <data name="GUINo" xml:space="preserve"><value>Nie</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Wybrano {0} z {1} — {2} jest już w grze, {3} zostanie dodanych</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Wybrano {0} z {1} - {2} jest już w grze, {3} zostanie dodanych</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Szukaj modów…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Wyczyść wyszukiwanie</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Zaznacz lub wyczyść wszystkie mody</value></data>

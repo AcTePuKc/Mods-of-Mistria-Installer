@@ -310,7 +310,7 @@
     <value>Item {0} geeft niet aan of het een andere mod overschrijft.</value>
   </data>
   <data name="GUIApplicationTitle" xml:space="preserve">
-    <value>AIM — Alternatief installatieprogramma voor Mistria</value>
+    <value>AIM - Alternatief installatieprogramma voor Mistria</value>
   </data>
   <data name="GUIGreetingText" xml:space="preserve">
     <value>Welkom bij het Mods Of Mistria-installatieprogramma!</value>
@@ -602,7 +602,7 @@ De links aan AIM overdragen?</value></data>
   <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
   <data name="GUIYes" xml:space="preserve"><value>Ja</value></data>
   <data name="GUINo" xml:space="preserve"><value>Nee</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} van {1} geselecteerd — {2} al in het spel, {3} worden toegevoegd</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} van {1} geselecteerd - {2} al in het spel, {3} worden toegevoegd</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Mods zoeken…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Zoekopdracht wissen</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Alle mods selecteren of wissen</value></data>
