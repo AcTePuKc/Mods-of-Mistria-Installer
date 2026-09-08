@@ -558,4 +558,9 @@
   <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Няма нищо ново за добавяне. AIM премества само архиви и папки, които съдържат манифест, затова всичко останало се оставя на място.</value></data>
   <data name="GUIDropFolderImported" xml:space="preserve"><value>Добавени са {0} мода от следена папка.</value></data>
   <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Преместени в папката ти с модове:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - този мод вече е инсталиран като „{1}“. Обнови това копие или го премахни първо: две копия на един мод се борят за едни и същи файлове.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Оставени в следената папка:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Папката с модове не беше намерена, затова няма какво да се отвори.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Папката с модове не можа да бъде отворена: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Папка с модове</value></data>
 </root>
