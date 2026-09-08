@@ -2769,7 +2769,7 @@ replace = '''
                 .set_y(-13)
 
             popup.backplate.add_height(container_size.y);
-        }'''
+        } // mmapi_lut_selector_scrollable'''
 marker  = "mmapi_lut_selector_scrollable"
 
 [[engine_fix]]
@@ -2823,7 +2823,7 @@ replace = '''
             .set_y(9)
 
         popup.backplate.add_height(container_size.y);
-    }'''
+    } // mmapi_pet_appearance_scrollable'''
 marker  = "mmapi_pet_appearance_scrollable"
 
 # The remaining entries are appended after the earlier ones on purpose. Catalog
