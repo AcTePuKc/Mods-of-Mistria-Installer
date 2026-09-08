@@ -12,7 +12,6 @@ using Garethp.ModsOfMistriaGUI.Controls;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
-using System.ComponentModel;
 
 namespace Garethp.ModsOfMistriaGUI.Views;
 
@@ -50,8 +49,6 @@ public partial class ModlistPageView : UserControl
         {
             UpdateLanguageCheckmark();
         };
-        DataContextChanged += OnDataContextChanged;
-
         // A hover card is placed against the badge that opened it, so a scroll would leave it
         // hanging over whatever row moved into that spot.
         ModListScrollViewer.ScrollChanged += (_, _) => HoverCard.Hide();
@@ -107,47 +104,6 @@ public partial class ModlistPageView : UserControl
                 }
 
                 break;
-        }
-    }
-
-    private void OnDataContextChanged(object? sender, EventArgs e)
-    {
-        if (_observedNexus is not null)
-            _observedNexus.PropertyChanged -= OnNexusPropertyChanged;
-
-        _observedNexus = (DataContext as ModlistPageViewModel)?.Nexus;
-        if (_observedNexus is not null)
-            _observedNexus.PropertyChanged += OnNexusPropertyChanged;
-
-        UpdateNexusRegistrationMenu();
-    }
-
-    private void OnNexusPropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(NexusDownloadsViewModel.HandlerCanBeRemoved))
-            UpdateNexusRegistrationMenu();
-    }
-
-    private void UpdateNexusRegistrationMenu()
-    {
-        if (_observedNexus is null || NexusMenuItem is null || NexusHandlerStatusMenuItem is null)
-            return;
-
-        if (_observedNexus.HandlerCanBeRemoved && _removeNexusHandlerMenuItem is null)
-        {
-            _removeNexusHandlerMenuItem = new MenuItem
-            {
-                [!MenuItem.HeaderProperty] = new Avalonia.Data.Binding("Texts.GUINexusHandlerDisableMenuItem"),
-                [!MenuItem.CommandProperty] = new Avalonia.Data.Binding("Nexus.RemoveHandlerRegistrationCommand")
-            };
-            var statusIndex = NexusMenuItem.Items.IndexOf(NexusHandlerStatusMenuItem);
-            NexusMenuItem.Items.Insert(statusIndex < 0 ? NexusMenuItem.Items.Count : statusIndex,
-                _removeNexusHandlerMenuItem);
-        }
-        else if (!_observedNexus.HandlerCanBeRemoved && _removeNexusHandlerMenuItem is not null)
-        {
-            NexusMenuItem.Items.Remove(_removeNexusHandlerMenuItem);
-            _removeNexusHandlerMenuItem = null;
         }
     }
 
