@@ -680,4 +680,7 @@
   <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Играта не можа да намери ресурса „{0}“ - обикновено спрайт, към който модът се позовава, но не включва.</value></data>
   <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM не можа да свърже този срив с мод само по backtrace-а.</value></data>
   <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Модове, към които това сочи</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Първо са най-силните кандидати. Мод, посочен тук, защото сривът е станал в собствения му код, не е предположение; мод, посочен защото записва данните, които играта е прочитала, е кандидат за проверка.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Провери дали това го поправя</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Изключва избрания мод, възстановява играта, за да влезе промяната в сила, стартира я и наблюдава. Играй както обикновено - AIM ще покаже резултата, когато играта се затвори, или след няколко минути, ако не се е сринала.</value></data>
 </root>
