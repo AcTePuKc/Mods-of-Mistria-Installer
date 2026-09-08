@@ -691,4 +691,6 @@
   <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Къде се е повредила</value></data>
   <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Къде се е повредила ({0} кадъра)</value></data>
   <data name="GUICrashCopy" xml:space="preserve"><value>Копирай доклада</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Поставя целия доклад в clipboard-а: грешката, backtrace-а, заключението на AIM и инсталираните модове.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Обнови</value></data>
 </root>
