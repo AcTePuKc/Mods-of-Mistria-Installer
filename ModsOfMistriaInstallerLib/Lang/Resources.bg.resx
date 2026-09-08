@@ -694,4 +694,9 @@
   <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Поставя целия доклад в clipboard-а: грешката, backtrace-а, заключението на AIM и инсталираните модове.</value></data>
   <data name="GUICrashRefresh" xml:space="preserve"><value>Обнови</value></data>
   <data name="GUICrashLooking" xml:space="preserve"><value>Търсене на сривове…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Няма записани сривове. Играта не се е сривала, откакто си я инсталирал, или никога не е стартирана на тази машина.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Сравняване на backtrace-а с инсталираните ти модове…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM не вижда списъка ти с модове оттук, затова може да покаже срива, но не и да каже кой мод го е причинил.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM не можа да завърши прочитането на този срив: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Този срив е по-стар от модовете, които имаш сега. AIM е възстановил играта след него, така че причината за срива вече не е същата като файловете на диска - изиграй веднъж, преди да променяш нещо, и приеми модовете по-долу като насоки, а не като заключение.</value></data>
 </root>
