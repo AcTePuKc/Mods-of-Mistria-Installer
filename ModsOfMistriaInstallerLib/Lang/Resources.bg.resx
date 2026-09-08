@@ -720,4 +720,5 @@
   <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Изключва този мод, възстановява играта и я стартира, за да разбереш дали той е причината, вместо да гадаеш.</value></data>
   <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Възстановяване на играта без този мод - след завършването му тя ще стартира сама. Напредъкът е показан по-долу.</value></data>
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Премахни мода</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} беше премахнат.</value></data>
 </root>
