@@ -733,4 +733,7 @@
   <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM не може да промени списъка с модове оттук.</value></data>
   <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} не можа да бъде изключен - възможно е вече да е изключен или да не е в списъка.</value></data>
   <data name="GUICrashDisabled" xml:space="preserve"><value>{0} е изключен.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Възстановяване на архива на играта, за да влезе промяната в сила…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Архивът на играта не можа да бъде възстановен, затова нищо не беше тествано: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Стартиране и наблюдение на играта. Играй както обикновено.</value></data>
 </root>
