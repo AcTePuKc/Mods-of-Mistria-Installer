@@ -808,4 +808,12 @@
   <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} е отбелязан като невинен и е включен отново. Инсталирайте, за да го върнете в играта.</value></data>
   <data name="GUICrashUnmarked" xml:space="preserve"><value>Вашето отбелязване за {0} е отменено. Модът отново е в краткия списък като непроверен.</value></data>
   <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM няма зареден срив, към който да запише това.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Включи отново</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Този мод е изключен като причина, но все още е изключен. Обикновено AIM включва изключения мод отново автоматично, но този път не е успял, затова направете това тук.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} е включен отново. Инсталирайте, за да го върнете в играта.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM не успя да включи {0} отново - възможно е вече да не е в списъка ви с модове или да не е успял да се зареди.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>ИЗКЛЮЧЕН КАТО ПРИЧИНА</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>ИЗВЕСТНА ПРИЧИНА ЗА СРИВ</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Тестът го доказа: при изключен мод играта не се срина. AIM го остави изключен и го отбеляза в списъка ви с модове. Всичко, което AIM може да поправи сам, е по-долу; в нишката за грешки на мода може вече да има отговор.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>ТЕСТВАН, БЕЗ ОТГОВОР</value></data>
 </root>
