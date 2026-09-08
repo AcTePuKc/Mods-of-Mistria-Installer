@@ -658,4 +658,7 @@
   <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Играта се срина при прочитане на данните „{0}“, към които добавят {1} инсталирани мода.</value></data>
   <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Този мод добавя към данните „{0}“, които играта е прочитала при срива.</value></data>
   <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Данните „{0}“ в архива на играта на диска нямат липсващ запис {1}, така че причината вече е отстранена - от обновление, преинсталиране или мод, който оттогава си изключил. Ако се повтори, върни се тук: потърси сред модовете по-долу.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Данните „{0}“, които играта зарежда в момента, все още имат един запис без {2}. Този срив ще се повтори при следващото стартиране.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Данните „{0}“, които играта зарежда в момента, все още имат {1} записа без {2}. Този срив ще се повтори при следващото стартиране.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Този мод изисква инсталирани engine hooks, а сривът е извикване към нещо, което се е оказало, че не е функция - така изглежда в играта hook, който не е бил инсталиран.</value></data>
 </root>
