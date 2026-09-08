@@ -979,6 +979,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Could not save the Nexus account session. Check disk access and try again.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>The backup of {0} is missing.</value></data>
   <data name="GUIModArchiveMissing" xml:space="preserve"><value>The downloaded file is missing.</value></data>
   <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>The mods folder could not be found.</value></data>
   <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>That download does not contain a manifest.toml, so it is not a mod this installer can handle. It may be an older mod, or a file that has to be installed by hand.</value></data>

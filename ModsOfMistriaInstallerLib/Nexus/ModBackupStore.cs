@@ -1,4 +1,5 @@
 using System.Globalization;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
@@ -172,7 +173,9 @@ public class ModBackupStore
     public void Restore(ModBackup backup, string modFolderPath)
     {
         if (!Directory.Exists(backup.Path))
-            throw new IOException($"The backup of {backup.ModName} is missing.");
+            throw new IOException(string.Format(
+                Resources.ResourceManager.GetString("GUINexusBackupMissing", Resources.Culture)
+                ?? "GUINexusBackupMissing", backup.ModName));
 
         // Move the chosen backup out of the store first. Archiving the copy it replaces prunes the
         // oldest backups, and restoring the oldest one would otherwise delete it mid-restore.
