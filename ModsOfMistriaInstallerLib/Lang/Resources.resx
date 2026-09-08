@@ -979,6 +979,16 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Empty download link.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>That is not an nxm:// link.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>The link does not name a game.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus collections are not supported yet - download the mods individually.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>The link is not a mod file download.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>The link has an invalid mod or file id.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Could not work out where the installer is running from.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Registering nxm:// links is only supported on Windows and Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM was registered, but Windows might still be using {0} for nxm:// links.&#xD;&#xA;&#xD;&#xA;Choose AIM as the nxm:// default in Windows Default apps.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>The nxm:// registration could not be verified after writing it.</value></data>
   <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM could not find the game's executable, so it cannot run it and watch.</value></data>
   <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria is already running. Close it first, so AIM watches the run it started.</value></data>
   <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM could not start the game: {0}</value></data>

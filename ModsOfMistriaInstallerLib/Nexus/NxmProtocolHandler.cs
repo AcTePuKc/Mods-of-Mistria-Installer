@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.Versioning;
 using System.Text;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Microsoft.Win32;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -56,6 +57,9 @@ public record NxmHandlerStatus(bool IsRegistered, bool IsThisExecutable, string?
 /// </summary>
 public static class NxmProtocolHandler
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private const string Scheme = "nxm";
     private const string WindowsProtocolKeyPath = @"Software\Classes\nxm";
     private const string WindowsProgId = "AIM.nxm";
@@ -195,7 +199,7 @@ public static class NxmProtocolHandler
 
         if (string.IsNullOrEmpty(executable) || !File.Exists(executable))
         {
-            error = "Could not work out where the installer is running from.";
+            error = Text("GUINxmExecutablePathUnknown");
             return false;
         }
 
@@ -205,7 +209,7 @@ public static class NxmProtocolHandler
             else if (OperatingSystem.IsLinux()) RegisterLinux(executable);
             else
             {
-                error = "Registering nxm:// links is only supported on Windows and Linux.";
+                error = Text("GUINxmRegistrationUnsupported");
                 return false;
             }
 
@@ -213,8 +217,9 @@ public static class NxmProtocolHandler
             if (!status.IsThisExecutable)
             {
                 error = status.IsClaimedByAnother
-                    ? $"AIM was registered, but Windows might still be using {status.HandlerName ?? status.CurrentHandler} for nxm:// links.\n\nChoose AIM as the nxm:// default in Windows Default apps."
-                    : "The nxm:// registration could not be verified after writing it.";
+                    ? string.Format(Text("GUINxmRegistrationMayBeOverridden"),
+                        status.HandlerName ?? status.CurrentHandler)
+                    : Text("GUINxmRegistrationNotVerified");
                 Logger.Log($"Registration was not retained: {error}");
                 return false;
             }
