@@ -483,4 +483,26 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Comprueba los mods seleccionados en sus páginas de Nexus. Usa la flecha para comprobarlos todos o para instalar todo lo que tenga una actualización.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Se comprobaron {0} mod(s): {1} tienen una actualización y no se pudieron comprobar {2}.&#xD;&#xA;&#xD;&#xA;¿Descargar e instalar esas actualizaciones ahora? La versión actual de cada mod se conserva como copia de seguridad que podrás restaurar.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Actualizar todo lo que tenga una actualización</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Descarga e instala todas las actualizaciones pendientes una por una, conservando la versión actual de cada mod como copia de seguridad restaurable.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Actualizar mods</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>No hay ninguna actualización pendiente. Comprueba primero si hay actualizaciones.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>¿Actualizar {0} mod(s)?&#xD;&#xA;&#xD;&#xA;La versión actual de cada mod se conserva como copia de seguridad que podrás restaurar desde su menú contextual.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Actualizando {0} de {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Se actualizaron {0} de {1} mod(s).</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Estos mods no se pudieron descargar directamente y necesitan su página de Nexus: {0}&#xD;&#xA;&#xD;&#xA;Nexus solo ofrece enlaces de descarga directa a cuentas Premium. Con una cuenta gratuita, abre la página del mod y usa el botón «Mod Manager Download». AIM lo recogerá si está registrado para gestionar esos enlaces.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>No hay nada que informar. AIM no encontró archivos compartidos, conflictos de atajos, requisitos faltantes ni advertencias de compatibilidad entre los mods seleccionados.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Has marcado esto como un conflicto que no es real.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Has encontrado un parche para esto.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Has marcado estos mods como incompatibles. Desactiva uno de ellos.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Solucionado cambiando la asignación: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Carpetas de descarga supervisadas</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Los mods que descargues manualmente en una carpeta supervisada se moverán a tu carpeta de mods y aparecerán solos en la lista.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Supervisar una carpeta…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Elegir una carpeta donde buscar mods descargados</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Comprobar ahora las carpetas supervisadas</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>No se supervisa ninguna carpeta</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Dejar de supervisar esta carpeta</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Carpetas supervisadas</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>No hay nada nuevo que importar. AIM solo mueve archivos y carpetas que contienen un manifiesto, así que todo lo demás se queda allí.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Se importaron {0} mod(s) desde una carpeta supervisada.</value></data>
 </root>
