@@ -750,4 +750,26 @@ An AIM übergeben?</value></data>
   <data name="GUIModCrasherHint" xml:space="preserve"><value>Öffne „Abstürze prüfen“, um die von AIM anwendbaren Lösungen und die Aussagen auf den Seiten des Mods zu sehen. Die Markierung gehört zu dieser Version und wird durch ein Update des Autors gelöscht.</value></data>
   <data name="GUIModEditedBadge" xml:space="preserve"><value>Von AIM bearbeitet</value></data>
   <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Dieser Patch hat keine Hauptdatei, die AIM selbst installieren kann. Seine Dateien sind in deinem Browser geöffnet. Wähle die gewünschte Datei und verwende „Mod Manager Download“.</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Der Patch-Download wurde abgebrochen.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM hat eine Datei in diesem Mod geändert, um einen Konflikt zu lösen. Die Dateien auf dem Datenträger entsprechen daher nicht mehr genau der vom Autor veröffentlichten Version.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>Die Version dieses Mods vor der Änderung befindet sich im Versionsmenü. Stelle sie dort wieder her oder klicke mit der rechten Maustaste auf den Mod und wähle „AIM-Änderungen rückgängig machen“.</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>AIM-Änderungen rückgängig machen</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Auf Nexus Mods verfolgen</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Fügt diesen Mod deinem Nexus-Tracking hinzu, damit die Website dich über Updates und Beiträge des Autors informiert. Dein Nexus-Konto muss verbunden sein.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>{0} wird jetzt auf Nexus Mods verfolgt.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Du hast {0} auf Nexus Mods bereits verfolgt.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>{0} konnte auf Nexus Mods nicht verfolgt werden: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM konnte aus der für diesen Mod gespeicherten Seite keine Nexus-Mod-ID lesen.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Frühere Kopien dieses Mods, die AIM bei Updates aufbewahrt hat. Wähle eine aus, um zu ihr zurückzukehren.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Zurückkehren zu:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Klicken, um das Update herunterzuladen und zu installieren. Deine aktuelle Version wird als Sicherung aufbewahrt.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Klicken, um die Downloadseite zu öffnen - AIM weiß nicht, um welche Nexus-Datei es sich handelt. Klicke mit der rechten Maustaste auf den Mod und wähle „Mit Nexus verknüpfen…“, damit AIM diese Updates automatisch installieren kann.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus meldet dein Konto ({0}) als Premium. Diese Ablehnung liegt daher nicht an deiner Kontostufe, sondern bedeutet meist, dass die Anmeldung abgelaufen oder widerrufen wurde. Melde dich über das Zahnradmenü erneut an.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus meldet dein Konto ({0}) als kostenloses Konto. Direkte Downloads sind eine Premium-Funktion, daher ist die Schaltfläche auf der Website der richtige Weg.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Es ist kein Nexus-Konto verbunden, daher kann AIM nichts direkt herunterladen.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM konnte dein Nexus-Konto nicht prüfen: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Tastenbelegungen</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Alle Tasten und Controller-Schaltflächen, die deine Mods verwenden, in einer Liste - Konflikte rot markiert und direkt bearbeitbar.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Tastenbelegungen der Mods</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Wofür deine Mods derzeit Tasten verwenden. Die Mods speichern dies im eigenen Konfigurationsordner des Spiels und nicht im Mods-Ordner, daher gehen die Belegungen bei einem Mod-Update nicht verloren. Ein Mod kann seine eigenen Einstellungen trotzdem zurücksetzen; AIM bietet dann an, deine Auswahl wiederherzustellen.</value></data>
 </root>
