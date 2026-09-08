@@ -675,4 +675,9 @@
   <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} инсталирани мода добавят към данните, при които играта се е сринала. Много вероятно е един от тях да е причината.</value></data>
   <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Нищо не сочи ясно към мод, но има няколко, които си струва да бъдат изключени за проверка.</value></data>
   <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>На нещо, което играта е заредила, му липсва „{0}“, а нито един инсталиран мод не изглежда очевидно да го притежава.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Играта е прочела „{0}“, преди нещо да му зададе стойност. Обикновено това е код на мод.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Играта е извикала нещо, което не е функция - обикновено hook, който не е бил инсталиран.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Играта не можа да намери ресурса „{0}“ - обикновено спрайт, към който модът се позовава, но не включва.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM не можа да свърже този срив с мод само по backtrace-а.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Модове, към които това сочи</value></data>
 </root>
