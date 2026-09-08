@@ -693,4 +693,5 @@
   <data name="GUICrashCopy" xml:space="preserve"><value>Копирай доклада</value></data>
   <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Поставя целия доклад в clipboard-а: грешката, backtrace-а, заключението на AIM и инсталираните модове.</value></data>
   <data name="GUICrashRefresh" xml:space="preserve"><value>Обнови</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Търсене на сривове…</value></data>
 </root>
