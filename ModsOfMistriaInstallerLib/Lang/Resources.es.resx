@@ -465,4 +465,22 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>el juego no lo aceptará</value></data>
   <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>«{0}» no es un nombre que el juego reconozca, así que este mod usará su valor predeterminado. Elige algo de la lista para solucionarlo.</value></data>
   <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM no pudo escribir en {0}. Puede estar abierto en otro programa o el juego puede haberse iniciado.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Elegir una tecla o un botón</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Tecla o botón del mando</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Pulsa una tecla para capturarla</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Pulsa una tecla ahora… (Escape para detener)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Se guardará como: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Los botones del mando se eligen de la lista. AIM no puede leer un mando. La lista contiene todos los nombres que acepta el juego; ALT, las teclas de bloqueo y el teclado numérico no están incluidos, y un mod configurado con uno de ellos volverá silenciosamente a su valor predeterminado.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Guardar</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Quitar asignación</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Vacía el ajuste. La mayoría de los mods lo interpretan como «desactivado»; algunos vuelven a su valor predeterminado.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (valor predeterminado del mod: todavía no configurado)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Se cambiaron las asignaciones</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Los {0} cambios que elegiste fueron modificados por los propios mods, normalmente después de que una actualización restableciera sus ajustes.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;¿Quieres recuperar tus elecciones? Los ajustes que la actualización eliminó por completo no se restaurarán.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… y {0} más.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Se restauraron {0} asignación(es). Inicia el juego para que surtan efecto.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Comprobar actualizaciones</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Comprueba los mods seleccionados en sus páginas de Nexus. Usa la flecha para comprobarlos todos o para instalar todo lo que tenga una actualización.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Se comprobaron {0} mod(s): {1} tienen una actualización y no se pudieron comprobar {2}.&#xD;&#xA;&#xD;&#xA;¿Descargar e instalar esas actualizaciones ahora? La versión actual de cada mod se conserva como copia de seguridad que podrás restaurar.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Actualizar todo lo que tenga una actualización</value></data>
 </root>
