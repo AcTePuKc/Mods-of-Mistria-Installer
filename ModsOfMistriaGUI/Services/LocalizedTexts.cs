@@ -146,6 +146,9 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUILoadOrderAlreadyGood => T("GUILoadOrderAlreadyGood");
     public string GUIShowDetails => T("GUIShowDetails");
     public string GUIClose => T("GUIClose");
+    public string GUIOk => T("GUIOk");
+    public string GUIYes => T("GUIYes");
+    public string GUINo => T("GUINo");
     public string GUIConflictDetailsHint => T("GUIConflictDetailsHint");
     public string GUICopyReport => T("GUICopyReport");
 

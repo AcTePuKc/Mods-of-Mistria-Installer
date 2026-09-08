@@ -601,6 +601,9 @@ An AIM übergeben?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Die Zwischenablage enthält keinen nxm://-Link. Klicke auf der Modseite mit der rechten Maustaste auf „Vortex“ und kopiere zuerst die Linkadresse.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Speichern</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Abbrechen</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Ja</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Nein</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} von {1} ausgewählt — {2} bereits im Spiel, {3} werden hinzugefügt</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Mods suchen…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Suche löschen</value></data>

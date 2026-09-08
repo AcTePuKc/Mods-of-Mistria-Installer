@@ -275,6 +275,9 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>クリップボードにnxm://リンクがありません。MODページで「Vortex」を右クリックし、先にリンクアドレスをコピーしてください。</value></data>
   <data name="GUISave" xml:space="preserve"><value>保存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>はい</value></data>
+  <data name="GUINo" xml:space="preserve"><value>いいえ</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} 個中 {1} 個を選択 — {2} 個はゲーム内にあり、{3} 個を追加します</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Modを検索…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>検索をクリア</value></data>

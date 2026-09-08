@@ -601,6 +601,9 @@ Les confier à AIM ?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Le presse-papiers ne contient aucun lien nxm://. Sur la page du mod, faites un clic droit sur « Vortex » et copiez d’abord l’adresse du lien.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Enregistrer</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Annuler</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Oui</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Non</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} sur {1} sélectionnés — {2} déjà dans le jeu, {3} seront ajoutés</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Rechercher des mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Effacer la recherche</value></data>

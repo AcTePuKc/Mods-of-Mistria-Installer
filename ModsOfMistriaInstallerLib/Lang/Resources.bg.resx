@@ -275,6 +275,9 @@
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>В клипборда няма nxm:// връзка. В страницата на мода щракнете с десния бутон върху „Vortex“ и първо копирайте адреса на връзката.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Запази</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Отказ</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Да</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Не</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода — {2} вече са в играта, {3} ще бъдат добавени</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Търси модове…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Изчисти търсенето</value></data>

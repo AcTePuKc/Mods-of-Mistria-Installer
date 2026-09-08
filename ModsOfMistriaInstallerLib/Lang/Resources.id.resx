@@ -275,6 +275,9 @@ Alihkan ke AIM?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Clipboard tidak berisi tautan nxm://. Di halaman mod, klik kanan “Vortex”, lalu salin alamat tautannya terlebih dahulu.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Simpan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Batal</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Ya</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Tidak</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih — {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Cari mod…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Hapus pencarian</value></data>

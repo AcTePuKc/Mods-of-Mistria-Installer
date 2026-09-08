@@ -275,6 +275,9 @@ Przekazać je do AIM?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Schowek nie zawiera linku nxm://. Na stronie moda kliknij prawym przyciskiem „Vortex” i najpierw skopiuj adres linku.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Zapisz</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Anuluj</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Tak</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Nie</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>Wybrano {0} z {1} — {2} jest już w grze, {3} zostanie dodanych</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Szukaj modów…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Wyczyść wyszukiwanie</value></data>

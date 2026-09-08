@@ -666,7 +666,7 @@ public partial class ConflictResearchWindow : Window
             return;
         }
 
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             plan.Title,
             $"{plan.Consequence}\n\n{LocalizedTexts.Instance.GUIResearchSetAsideWarning}",
             ButtonEnum.YesNo).ShowAsync();

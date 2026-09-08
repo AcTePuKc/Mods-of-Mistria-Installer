@@ -87,7 +87,7 @@ public class App : Application
             {
                 Dispatcher.UIThread.InvokeAsync(() =>
                 {
-                    MessageBoxManager.GetMessageBoxStandard(
+                    AIMMessageDialog.GetMessageBoxStandard(
                         ModsOfMistriaInstallerLib.Lang.Resources.GUIWarning32BitTitle,
                         ModsOfMistriaInstallerLib.Lang.Resources.GUIWarning32Bit
                     ).ShowAsync();

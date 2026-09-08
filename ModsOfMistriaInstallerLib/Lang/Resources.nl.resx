@@ -598,6 +598,9 @@ De links aan AIM overdragen?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Het klembord bevat geen nxm://-link. Klik op de modpagina met de rechtermuisknop op „Vortex“ en kopieer eerst het linkadres.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Opslaan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Ja</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Nee</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} van {1} geselecteerd — {2} al in het spel, {3} worden toegevoegd</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Mods zoeken…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Zoekopdracht wissen</value></data>

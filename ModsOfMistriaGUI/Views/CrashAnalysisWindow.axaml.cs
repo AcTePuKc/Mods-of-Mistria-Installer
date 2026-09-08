@@ -828,7 +828,7 @@ public partial class CrashAnalysisWindow : Window
                 var applyRepair = _context?.ApplyRepair;
                 if (applyRepair is null) return;
 
-                var confirm = await MessageBoxManager.GetMessageBoxStandard(
+                var confirm = await AIMMessageDialog.GetMessageBoxStandard(
                     texts.GUICrashRepairHeader,
                     string.Format(texts.GUICrashRepairConfirm,
                         repair.Why, $"{repair.Path}:{repair.Line}", repair.Diff),
@@ -941,7 +941,7 @@ public partial class CrashAnalysisWindow : Window
 
                     var summary = string.Format(texts.GUICrashEditSummary, target, at, suspect.Name);
 
-                    var confirm = await MessageBoxManager.GetMessageBoxStandard(
+                    var confirm = await AIMMessageDialog.GetMessageBoxStandard(
                         texts.GUICrashEditHeader,
                         string.Format(texts.GUICrashEditConfirm, summary),
                         ButtonEnum.YesNo).ShowAsync();
@@ -982,7 +982,7 @@ public partial class CrashAnalysisWindow : Window
 
                     var summary = string.Format(texts.GUICrashEditAsideSummary, target, suspect.Name);
 
-                    var confirm = await MessageBoxManager.GetMessageBoxStandard(
+                    var confirm = await AIMMessageDialog.GetMessageBoxStandard(
                         texts.GUICrashEditHeader,
                         string.Format(texts.GUICrashEditConfirm, summary),
                         ButtonEnum.YesNo).ShowAsync();
@@ -1482,7 +1482,7 @@ public partial class CrashAnalysisWindow : Window
             return;
         }
 
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             texts.GUICrashVerifyHeader,
             suspect is null
                 ? texts.GUICrashVerifyConfirmNothing

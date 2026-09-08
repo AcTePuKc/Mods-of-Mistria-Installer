@@ -275,6 +275,9 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>El portapapeles no contiene ningún enlace nxm://. En la página del mod, haz clic derecho en «Vortex» y copia primero la dirección del enlace.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Guardar</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>Aceptar</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Sí</value></data>
+  <data name="GUINo" xml:space="preserve"><value>No</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} de {1} seleccionados — {2} ya están en el juego, se añadirán {3}</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Buscar mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Borrar búsqueda</value></data>

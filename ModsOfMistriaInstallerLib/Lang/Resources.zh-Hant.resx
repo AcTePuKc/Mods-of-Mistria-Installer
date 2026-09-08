@@ -275,6 +275,9 @@
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>剪貼簿中沒有 nxm:// 連結。請在模組頁面上以滑鼠右鍵點選「Vortex」，然後先複製連結位址。</value></data>
   <data name="GUISave" xml:space="preserve"><value>儲存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>取消</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>確定</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>是</value></data>
+  <data name="GUINo" xml:space="preserve"><value>否</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 — {2} 個已在遊戲中，{3} 個將被加入</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>搜尋模組…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>清除搜尋</value></data>

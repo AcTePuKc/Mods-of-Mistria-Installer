@@ -635,7 +635,7 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
         if (status.IsClaimedByAnother)
         {
-            var confirm = await MessageBoxManager.GetMessageBoxStandard(
+            var confirm = await AIMMessageDialog.GetMessageBoxStandard(
                 Localization["GUINexusHandlerTitle"],
                 string.Format(Localization["GUINexusHandlerTakeOver"], status.HandlerName ?? status.CurrentHandler),
                 ButtonEnum.YesNo).ShowAsync();
@@ -792,21 +792,9 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         {
             try
             {
-                var box = MessageBoxManager.GetMessageBoxStandard(title, message, buttons);
+                var box = AIMMessageDialog.GetMessageBoxStandard(title, message, buttons);
 
-                // Shown as a dialog of the main window rather than as a loose top-level.
-                //
-                // ShowAsync opens an unowned window, and a download is exactly when AIM is not the
-                // application the user is looking at - they started it and alt-tabbed away. The
-                // question then opens behind whatever is in front, and comes up as an empty
-                // transparent frame with a title bar and no buttons in it: nothing to read, nothing
-                // to click, and a download that sits at "Unpacking" until AIM is killed.
-                //
-                // An owner fixes both halves: the dialog is laid out and composited against a real
-                // parent, and it comes to the front with it.
-                completion.TrySetResult(App.TopLevel is Window owner
-                    ? await box.ShowWindowDialogAsync(owner)
-                    : await box.ShowWindowAsync());
+                completion.TrySetResult(await box.ShowAsync());
             }
             catch (Exception e)
             {

@@ -275,6 +275,9 @@
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>В буфере обмена нет ссылки nxm://. На странице мода щёлкните правой кнопкой по «Vortex» и сначала скопируйте адрес ссылки.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Сохранить</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Отмена</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>ОК</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Да</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Нет</value></data>
   <data name="GUIModSelectionSummary" xml:space="preserve"><value>Выбрано {0} из {1} — {2} уже в игре, будет добавлено: {3}</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Поиск модов…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Очистить поиск</value></data>

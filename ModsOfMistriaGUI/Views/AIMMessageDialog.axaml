@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Garethp.ModsOfMistriaGUI.Views.AIMMessageDialog"
+        Width="520"
+        MinWidth="360"
+        MinHeight="170"
+        MaxHeight="720"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="18" RowDefinitions="*,Auto">
+    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+      <SelectableTextBlock x:Name="MessageText"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Stretch" />
+    </ScrollViewer>
+
+    <StackPanel x:Name="ButtonPanel"
+                Grid.Row="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8"
+                Margin="0,18,0,0" />
+  </Grid>
+</Window>
