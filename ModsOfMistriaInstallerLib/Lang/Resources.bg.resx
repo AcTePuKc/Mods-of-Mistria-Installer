@@ -646,4 +646,9 @@
   <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM не можа да стартира играта: {0}</value></data>
   <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Играта се срина, но AIM не можа да прочете оставения crash log, затова това стартиране не доказа нищо за мода. Струва си да пуснеш проверката отново.</value></data>
   <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Играта отново се срина по време на проверката.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Играта все още работи след прозореца за проверка и не се е сринала. Това е резултатът, който искаше - продължи да играеш.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Същият срив се повтори след {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Играта отново се срина след {0}, но с друга грешка.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Играта приключи с код {0} след {1} и не остави crash log. Обикновено това означава, че е била затворена от нещо извън играта - грешка в драйвер или принудително прекратен процес - а не от мод, така че тази проверка не доказа нищо.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Играта работи {0} и приключи нормално, без нов срив.</value></data>
 </root>
