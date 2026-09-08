@@ -362,4 +362,24 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIRemoveSelected" xml:space="preserve"><value>Eliminar seleccionados…</value></data>
   <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Elimina todos los mods marcados a la vez mediante la Papelera, después de mostrarte la lista.</value></data>
   <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>No hay mods marcados, así que no hay nada que eliminar.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>¿Mover {0} mod(s) a la Papelera de reciclaje?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Se quitarán de tu carpeta de mods y podrás recuperarlos desde la Papelera. Los archivos que ya hayan instalado en el juego permanecerán hasta la próxima instalación o desinstalación.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>¿Eliminar {0} mod(s) permanentemente?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Este sistema no tiene una Papelera que AIM pueda usar, así que los archivos se borrarán. Esta acción no se puede deshacer.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>… y {0} más.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Se eliminaron {0} de {1} mod(s).</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>No se pudieron eliminar estos mods: {0}&#xD;&#xA;&#xD;&#xA;Puede que estén abiertos en otro programa o que el juego siga ejecutándose.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows no pudo moverlo a la Papelera de reciclaje</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>«{0}» ya no está en tu carpeta de mods. La lista se ha actualizado.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Marca este problema como revisado y aceptado. AIM lo mantiene oculto hasta que cambie la versión de uno de los mods implicados y vuelva a preguntar.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Mostrar problemas marcados como correctos ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Marcado como correcto</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[marcado como correcto]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Archivos que ambos escriben</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>gana ahora</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Hacer que este mod gane</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Mueve este mod debajo de los demás con los que comparte archivos, para que se instalen sus versiones de esos archivos. El orden de carga de la lista cambia inmediatamente.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>«{0}» se carga ahora el último de los mods que comparten estos archivos, así que ganan sus copias.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Buscar una solución…</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Lee lo que las páginas de Nexus de estos mods dicen entre sí y abre sus informes de errores, comentarios y una búsqueda web para que puedas decidir si esto importa realmente.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Reasignar…</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Mueve este mod a una tecla que nadie más esté usando, editando su propia asignación en {0}. El mod se guarda primero y el cambio llegará al juego en la próxima instalación.</value></data>
 </root>
