@@ -792,4 +792,12 @@
   <data name="GUICrashSettledHeader" xml:space="preserve"><value>Изключени като причина - {0} от {1} заподозрени</value></data>
   <data name="GUICrashSettledExpander" xml:space="preserve"><value>Покажи какво доказаха тестовете</value></data>
   <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Четене на собствените страници на {0} за поправка…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Не е причината</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Записва, че знаете, че този мод не е причината за срива, без да губите стартиране за тест. Модът се премества в списъка с изключени причини, спира да се предлага за тест и се включва отново, ако AIM го е изключил. Отбелязва се като ваше решение, а не като доказано от AIM, и можете да го отмените.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Отбележи като причина за срива</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Записва, че знаете, че този мод причинява срива. AIM го изключва, отбелязва го в списъка с модове и го третира като причината - както когато тест установи това, но с етикет, че е ваше решение. Можете да го отмените.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Отмени моето отбелязване</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Отменя резултата, който сте записали ръчно, и връща този мод в краткия списък като непроверен. Състоянието му на включен или изключен не се променя.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Отбелязан ръчно, не е тестван от AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>ОТБЕЛЯЗАН КАТО НЕВИНЕН</value></data>
 </root>
