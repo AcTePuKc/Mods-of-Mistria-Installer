@@ -67,7 +67,7 @@ and [Mod list tools](#mod-list-tools) below.
   it; it appears in the list and waits for **Install** like any other mod.
 - ZIP and RAR mods are still read in place. A downloaded archive is unpacked because AIM knows it is
   a fresh download, but an archive you drop in yourself is left exactly as it is.
-- No existing file format, profile or command-line flag changes. The new state lives in three new
+- No existing file format or profile changes. The new state lives in three new
   files: `aim_nexus.json` and `aim_dismissed_issues.json` in the mods folder, and `nexus.json` in
   `%LOCALAPPDATA%\AIM`.
 
@@ -361,6 +361,11 @@ When the AIM interface is set to a supported language, it uses that language's s
 ## Updating the game
 
 After a Fields of Mistria update, start AIM and reinstall the enabled mods. When the new `assets.zip` is a valid vanilla archive and the game executable also changed, AIM automatically adopts it as the new pristine source; no manual `assets.bak.zip` creation is required. AIM keeps the previous backup with a timestamped name until the update is accepted. If the archive is damaged or the update cannot be verified, AIM preserves the existing backup and asks you to verify the game files through Steam. Mods made for an older game or installer version may still need to be updated by their authors.
+
+## Command line
+
+The release also includes a non-interactive CLI for installation, archive and mod diagnostics,
+read-only preflight checks, and JSON/TOML reports. See the full [AIM CLI reference](docs/CLI.md).
 
 ## Troubleshooting
 

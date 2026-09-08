@@ -54,50 +54,16 @@ A throwing handler never breaks the game or another mod. The framework skips it 
 - A missing primary means genuinely fresh data. MMAPI does not resurrect a leftover backup in that case.
 - Config IO at top-level boot throws. Load from a handler or the first `mmapi_register` drain.
 
-## Preflight One Mod
+## CLI preflight
 
-The CLI is explicit and non-interactive. Use `--help` for the complete usage summary. An install
-must use `--install`; an empty command, unknown option, or conflicting action exits with code `2`
-without touching the game. `--uninstall` restores the verified archive instead.
+The complete non-interactive CLI reference, including `--lint`, `--seam-check`, read-only
+inspection, dry-run preflight, JSON/TOML output, and exit codes, is in [`docs/CLI.md`](../CLI.md).
 
-```powershell
-dotnet run --project ModsOfMistriaCommandLine -- --help
-dotnet run --project ModsOfMistriaCommandLine -- --install
-dotnet run --project ModsOfMistriaCommandLine -- --uninstall
-dotnet run --project ModsOfMistriaCommandLine -- --list-mods --json
-dotnet run --project ModsOfMistriaCommandLine -- --status --toml
-dotnet run --project ModsOfMistriaCommandLine -- --doctor
-```
-
-`--list-mods`, `--status`, and `--doctor` are read-only inspection commands. Their default
-output is human-readable; `--json` and `--toml` produce machine-readable reports. The formats
-are mutually exclusive. `--doctor` exits `0` when the game, mods folder, and archive state look
-healthy, and `1` when a repair or investigation is needed.
-
-To preflight the same per-mod manifest, seam, skip, and compile checks without committing an
-archive, use:
-
-```powershell
-dotnet run --project ModsOfMistriaCommandLine -- --dry-run --install --json
-```
-
-This is deliberately a read-only per-mod preflight. It does not write `assets.zip` or the game
-manifest, and it cannot model interactions between multiple mods that only appear during the
-combined archive rebuild.
-
-The CLI can run manifest validation, seam staging, skip checks, lints, and the compile gate without writing the game:
+For a one-mod preflight from this document, use:
 
 ```powershell
 dotnet run --project ModsOfMistriaCommandLine -- --lint "C:\path\to\mod-folder" "C:\path\to\pristine-assets.zip" --strict-lints --compile-check require
 ```
-
-The pristine zip is optional when AIM CLI can locate the installed game's backup. `--strict-lints` is optional. `--compile-check on` uses a checker when one resolves, `off` disables the pass, and `require` fails when no checker is available.
-
-| Exit | Meaning |
-| ---- | ------- |
-| `0` | The mod would install. |
-| `1` | The mod would be skipped. |
-| `2` | The lint could not run, such as a bad path, missing pristine source, or stale seam catalog. |
 
 ## It Worked, Then A Game Update Broke It
 
