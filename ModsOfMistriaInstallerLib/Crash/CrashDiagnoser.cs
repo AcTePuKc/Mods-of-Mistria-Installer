@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Crash;
@@ -89,6 +90,9 @@ public sealed record CrashDiagnosis(
 /// </summary>
 public static class CrashDiagnoser
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     public static CrashDiagnosis Diagnose(
         GameCrashLog crash,
         IReadOnlyList<IMod> enabled,
@@ -140,8 +144,8 @@ public static class CrashDiagnoser
             Note(owner,
                 frame.Index == 0 ? CrashConfidence.Certain : CrashConfidence.Strong,
                 frame.Index == 0
-                    ? $"The game broke inside this mod's own code, at {inTheMod} line {frame.Line}."
-                    : $"This mod's code is on the call stack, at {inTheMod} line {frame.Line}.",
+                    ? string.Format(Text("GUICrashDiagnosisFrameFault"), inTheMod, frame.Line)
+                    : string.Format(Text("GUICrashDiagnosisFrameCallStack"), inTheMod, frame.Line),
                 $"{inTheMod}:{frame.Line}");
         }
 
@@ -158,7 +162,7 @@ public static class CrashDiagnoser
 
             if (Regex.IsMatch(crash.RawReport, $@"\b{Regex.Escape(symbol)}\b", RegexOptions.IgnoreCase) &&
                 !crash.Frames.Any(frame => string.Equals(frame.Symbol, symbol, StringComparison.OrdinalIgnoreCase)))
-                Note(mod, CrashConfidence.Strong, "This mod is named in the crash message itself.");
+                Note(mod, CrashConfidence.Strong, Text("GUICrashDiagnosisModNamed"));
         }
 
         // ── 3 and 4. Engine code reading data that mods contribute to ────────────
@@ -173,13 +177,14 @@ public static class CrashDiagnoser
             var writers = enabled.Where(mod => DomainFiles(mod, domain).Count > 0).ToList();
             if (writers.Count == 0) continue;
 
-            reasons.Add(
-                $"The game crashed while reading its \"{domain}\" data, which {writers.Count} " +
-                $"{(writers.Count == 1 ? "installed mod adds to" : "installed mods add to")}.");
+            reasons.Add(string.Format(
+                Text(writers.Count == 1
+                    ? "GUICrashDiagnosisDomainOneWriter"
+                    : "GUICrashDiagnosisDomainManyWriters"), domain, writers.Count));
 
             foreach (var mod in writers)
                 Note(mod, CrashConfidence.Likely,
-                    $"It adds to the \"{domain}\" data the game was reading when it crashed.");
+                    string.Format(Text("GUICrashDiagnosisModAddsToDomain"), domain));
 
             if (crash.Symptom != CrashSymptom.MissingField || crash.Subject.Length == 0) continue;
 
@@ -190,20 +195,17 @@ public static class CrashDiagnoser
 
             if (faults.Count == 0)
             {
-                reasons.Add(
-                    $"The \"{domain}\" data in the game archive on disk has no entry missing " +
-                    $"{crash.Subject}, so whatever caused this has already been resolved - by an " +
-                    "update, a reinstall, or a mod you have since switched off. If it happens " +
-                    "again, come back: the mods below are where to look.");
+                reasons.Add(string.Format(
+                    Text("GUICrashDiagnosisFaultResolved"), domain, crash.Subject));
                 continue;
             }
 
             stillPresent = true;
 
-            reasons.Add(
-                $"The \"{domain}\" data the game loads right now still has " +
-                $"{(faults.Count == 1 ? "one entry" : $"{faults.Count} entries")} with no " +
-                $"{crash.Subject}. This crash will happen again on the next launch.");
+            reasons.Add(string.Format(
+                Text(faults.Count == 1
+                    ? "GUICrashDiagnosisFaultStillPresentOne"
+                    : "GUICrashDiagnosisFaultStillPresentMany"), domain, faults.Count, crash.Subject));
 
             foreach (var fault in faults) Blame(fault, writers, domain, crash.Subject, Note);
         }
@@ -212,10 +214,7 @@ public static class CrashDiagnoser
 
         if (crash.Symptom == CrashSymptom.NotAFunction)
             foreach (var mod in enabled.Where(mod => mod.GetRequiredHooks().Count > 0))
-                Note(mod, CrashConfidence.Possible,
-                    "It requires engine hooks to be installed, and the crash is a call to something " +
-                    "that turned out not to be a function - which is what a hook that did not " +
-                    "install looks like from inside the game.");
+                Note(mod, CrashConfidence.Possible, Text("GUICrashDiagnosisMissingHook"));
 
         var suspects = scores.Values
             .Select(entry => new CrashSuspect(
@@ -231,18 +230,14 @@ public static class CrashDiagnoser
         var stale = installedAt is not null && crash.When < installedAt;
 
         if (stale)
-            reasons.Insert(0, stillPresent
-                ? "This crash is older than the mods currently installed - but the fault it " +
-                  "describes is still in the game archive on disk, so it is not a stale report. " +
-                  "Expect it again on the next launch."
-                : "This crash is older than the mods currently installed. AIM rebuilt the game's " +
-                  "archive after it happened, so the game that crashed is not the game on disk " +
-                  "now - treat everything below as a lead rather than a verdict, and play once " +
-                  "before changing anything.");
+            reasons.Insert(0, Text(stillPresent
+                ? "GUICrashDiagnosisStaleButPresent"
+                : "GUICrashDiagnosisStale"));
 
         foreach (var entry in sources.Take(1))
             if (entry.Function is not null)
-                reasons.Add($"It broke inside {entry.Function}(), on: {entry.Text}");
+                reasons.Add(string.Format(
+                    Text("GUICrashDiagnosisFunction"), entry.Function, entry.Text));
 
         return new CrashDiagnosis(
             Headline(crash, suspects, stale, stillPresent), reasons, suspects, sources)
@@ -291,13 +286,10 @@ public static class CrashDiagnoser
         if (signature.Value is { Count: 1 })
         {
             note(signature.Value[0], CrashConfidence.Certain,
-                $"The game's own \"{domain}\" data has an entry with no {key} at line {fault.Line}, " +
-                $"and it contains \"{signature.Key}\" - which no other installed mod defines. " +
-                (fault.Identifies
-                    ? "The entry still carries its MOMIidentify block, which means the merge it was " +
-                      "waiting for never matched anything: instead of updating an entry that " +
-                      $"already had a {key}, it was added as a new one without any."
-                    : $"An entry with no {key} is exactly what the game stopped on."),
+                string.Format(
+                    Text(fault.Identifies
+                        ? "GUICrashDiagnosisUniqueFaultWithIdentity"
+                        : "GUICrashDiagnosisUniqueFault"), domain, key, fault.Line, signature.Key),
                 $"{domain} line {fault.Line}");
 
             return;
@@ -307,8 +299,7 @@ public static class CrashDiagnoser
         // rather than picking one of them and being wrong about it.
         foreach (var mod in owners.SelectMany(pair => pair.Value).Distinct())
             note(mod, CrashConfidence.Strong,
-                $"The game's \"{domain}\" data has an entry with no {key} at line {fault.Line}, and " +
-                "this mod is one of the ones that could have written it.",
+                string.Format(Text("GUICrashDiagnosisSharedFault"), domain, key, fault.Line),
                 $"{domain} line {fault.Line}");
     }
 
@@ -355,7 +346,7 @@ public static class CrashDiagnoser
         GameCrashLog crash, IReadOnlyList<CrashSuspect> suspects, bool stale, bool stillPresent)
     {
         if (stale && !stillPresent && suspects.Count == 0)
-            return "This crash predates your current install, and nothing in it matches a mod you have now.";
+            return Text("GUICrashDiagnosisNoCurrentMatch");
 
         var top = suspects.FirstOrDefault();
         if (top is null) return Describe(crash);
@@ -364,33 +355,32 @@ public static class CrashDiagnoser
 
         return top.Confidence switch
         {
-            CrashConfidence.Certain when certain == 1 => $"{top.Name} is what crashed the game.",
+            CrashConfidence.Certain when certain == 1 =>
+                string.Format(Text("GUICrashDiagnosisHeadlineCertainOne"), top.Name),
             CrashConfidence.Certain =>
-                $"{certain} mods each put something into the game's data that it cannot load. " +
-                "Any one of them is enough to cause this.",
-            CrashConfidence.Strong => $"{top.Name} is the most likely cause.",
+                string.Format(Text("GUICrashDiagnosisHeadlineCertainMany"), certain),
+            CrashConfidence.Strong =>
+                string.Format(Text("GUICrashDiagnosisHeadlineStrong"), top.Name),
             CrashConfidence.Likely when suspects.Count(s => s.Confidence >= CrashConfidence.Likely) == 1 =>
-                $"{top.Name} is the only installed mod that touches what the game was reading.",
+                string.Format(Text("GUICrashDiagnosisHeadlineLikelyOne"), top.Name),
             CrashConfidence.Likely =>
-                $"{suspects.Count(s => s.Confidence >= CrashConfidence.Likely)} installed mods add to " +
-                "the data the game crashed on. One of them is very likely the cause.",
-            _ => "Nothing points clearly at a mod, but a few are worth ruling out."
+                string.Format(Text("GUICrashDiagnosisHeadlineLikelyMany"),
+                    suspects.Count(s => s.Confidence >= CrashConfidence.Likely)),
+            _ => Text("GUICrashDiagnosisHeadlineUnclear")
         };
     }
 
     private static string Describe(GameCrashLog crash) => crash.Symptom switch
     {
         CrashSymptom.MissingField =>
-            $"Something the game loaded was missing its \"{crash.Subject}\", and no installed mod " +
-            "obviously owns it.",
+            string.Format(Text("GUICrashDiagnosisDescribeMissingField"), crash.Subject),
         CrashSymptom.UndefinedVariable =>
-            $"The game read \"{crash.Subject}\" before anything set it. That is usually mod code.",
+            string.Format(Text("GUICrashDiagnosisDescribeUndefinedVariable"), crash.Subject),
         CrashSymptom.NotAFunction =>
-            "The game called something that was not a function - usually a hook that did not install.",
+            Text("GUICrashDiagnosisDescribeNotAFunction"),
         CrashSymptom.MissingAsset =>
-            $"The game could not find the asset \"{crash.Subject}\" - usually a sprite a mod refers " +
-            "to but does not ship.",
-        _ => "AIM could not tie this crash to a mod from the backtrace alone."
+            string.Format(Text("GUICrashDiagnosisDescribeMissingAsset"), crash.Subject),
+        _ => Text("GUICrashDiagnosisDescribeUnknown")
     };
 
     // ── Reading the data ─────────────────────────────────────────────────────────

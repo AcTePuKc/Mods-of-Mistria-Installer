@@ -979,6 +979,34 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>The game broke inside this mod's own code, at {0} line {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>This mod's code is on the call stack, at {0} line {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>This mod is named in the crash message itself.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>The game crashed while reading its "{0}" data, which {1} installed mod adds to.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>The game crashed while reading its "{0}" data, which {1} installed mods add to.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>It adds to the "{0}" data the game was reading when it crashed.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>The "{0}" data in the game archive on disk has no entry missing {1}, so whatever caused this has already been resolved - by an update, a reinstall, or a mod you have since switched off. If it happens again, come back: the mods below are where to look.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>The "{0}" data the game loads right now still has one entry with no {2}. This crash will happen again on the next launch.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>The "{0}" data the game loads right now still has {1} entries with no {2}. This crash will happen again on the next launch.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>It requires engine hooks to be installed, and the crash is a call to something that turned out not to be a function - which is what a hook that did not install looks like from inside the game.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>This crash is older than the mods currently installed - but the fault it describes is still in the game archive on disk, so it is not a stale report. Expect it again on the next launch.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>This crash is older than the mods currently installed. AIM rebuilt the game's archive after it happened, so the game that crashed is not the game on disk now - treat everything below as a lead rather than a verdict, and play once before changing anything.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>It broke inside {0}(), on: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>The game's own "{0}" data has an entry with no {1} at line {2}, and it contains "{3}" - which no other installed mod defines. An entry with no {1} is exactly what the game stopped on.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>The game's own "{0}" data has an entry with no {1} at line {2}, and it contains "{3}" - which no other installed mod defines. The entry still carries its MOMIidentify block, which means the merge it was waiting for never matched anything: instead of updating an entry that already had a {1}, it was added as a new one without any.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>The game's "{0}" data has an entry with no {1} at line {2}, and this mod is one of the ones that could have written it.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>This crash predates your current install, and nothing in it matches a mod you have now.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} is what crashed the game.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mods each put something into the game's data that it cannot load. Any one of them is enough to cause this.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} is the most likely cause.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} is the only installed mod that touches what the game was reading.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} installed mods add to the data the game crashed on. One of them is very likely the cause.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Nothing points clearly at a mod, but a few are worth ruling out.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Something the game loaded was missing its "{0}", and no installed mod obviously owns it.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>The game read "{0}" before anything set it. That is usually mod code.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>The game called something that was not a function - usually a hook that did not install.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>The game could not find the asset "{0}" - usually a sprite a mod refers to but does not ship.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM could not tie this crash to a mod from the backtrace alone.</value></data>
   <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mods this points at</value></data>
   <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Strongest first. A mod named here because the crash happened inside its own code is not a guess; one named because it writes the data the game was reading is a shortlist.</value></data>
   <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Check whether that fixes it</value></data>
