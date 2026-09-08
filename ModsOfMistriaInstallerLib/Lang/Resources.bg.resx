@@ -517,4 +517,14 @@
   <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>„{0}“ не е име, което играта разпознава, затова този мод използва началната си стойност. Избери нещо от списъка, за да го поправиш.</value></data>
   <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM не можа да запише в {0}. Възможно е файлът да е отворен в друга програма или играта да е стартирала.</value></data>
   <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Избери клавиш или бутон</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Този мод още не е записал настройките си, затова това е началната стойност, вградена в него. Стартирай играта веднъж или промени настройката в самия мод и AIM ще може да я редактира тук.</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Клавиш или бутон на контролер</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Натисни клавиш, за да го зададеш</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Натисни клавиш сега… (Escape за спиране)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Това ще бъде запазено като: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Бутоните на контролер се избират от списъка - AIM не може да прочете контролер. Списъкът съдържа всички имена, които играта приема; ALT, клавишите за заключване и цифровият блок не са сред тях, а мод, зададен с някой от тях, тихо се връща към началната си стойност.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Запази</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Премахни клавиша</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Изчиства настройката. Повечето модове приемат това като „изключено“, а някои се връщат към началната си стойност.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (началната стойност на мода - още не е конфигурирана)</value></data>
 </root>
