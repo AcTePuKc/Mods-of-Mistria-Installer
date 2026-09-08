@@ -979,6 +979,16 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus returned no download servers for that file.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>The Nexus API did not respond in time.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Could not reach the Nexus API: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus returned an unexpected response.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Could not read the response from Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus rejected the account session. Connect your Nexus account again.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus refused the request. The download link may have expired - try clicking it again.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>That mod or file no longer exists on Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>You have hit the Nexus API rate limit. Wait a while before downloading again.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus returned an error ({0}).</value></data>
   <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>No Nexus account is connected yet.</value></data>
   <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>The file this mod came from is no longer on its Nexus page, and none of the files still there is a newer version of it. That page hosts several separate mods, so AIM will not offer one of the others as an update - check the page by hand if you think there is a newer release.</value></data>
   <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>That mod page has no main file to compare against.</value></data>
