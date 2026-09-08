@@ -714,4 +714,6 @@
   <data name="GUICrashReportBug" xml:space="preserve"><value>Докладвай тази грешка</value></data>
   <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Създава доклада, който авторът има нужда да види - грешката, backtrace-а, версията на играта и останалите инсталирани модове - поставя го в clipboard-а и отваря bug tracker-а на мода. Ти го прочиташ и публикуваш; AIM не го прави.</value></data>
   <data name="GUICrashReportReady" xml:space="preserve"><value>Докладът е в clipboard-а ти, а bug tracker-ът е отворен. Прочети го, после го публикувай.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Докладът е в clipboard-а ти. AIM не знае откъде е този мод, затова сам трябва да намериш tracker-а или Discord-а на автора.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Копирано.</value></data>
 </root>
