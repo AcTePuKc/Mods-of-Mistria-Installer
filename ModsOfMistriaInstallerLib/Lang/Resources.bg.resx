@@ -536,4 +536,19 @@
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Проверени са {0} мода: за {1} има обновление, а {2} не можаха да бъдат проверени.&#xD;&#xA;&#xD;&#xA;Да изтегля и инсталирам ли тези обновления сега? Текущата версия на всеки мод ще бъде запазена като backup за възстановяване.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Обнови всичко, което има обновление</value></data>
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Изтегля и инсталира всички чакащи обновления едно по едно, като запазва текущата версия на всеки мод като backup за възстановяване.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Обновяване на модове</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Няма чакащи обновления. Първо провери за обновления.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Да обновя ли {0} мода?&#xD;&#xA;&#xD;&#xA;Текущата версия на всеки мод ще бъде запазена като backup, който можеш да възстановиш от менюто с десен бутон.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Обновяване на {0} от {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Обновени са {0} от {1} мода.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Следните модове не можаха да бъдат изтеглени директно и изискват страницата си в Nexus: {0}&#xD;&#xA;&#xD;&#xA;Nexus издава директни връзки за изтегляне само на Premium акаунти. При безплатен акаунт отвори страницата на мода и използвай бутона „Mod Manager Download“ - AIM ще го поеме, ако е регистриран да обработва тези връзки.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Няма какво да се докладва. AIM не откри споделени файлове, конфликти на клавишни комбинации, липсващи зависимости или предупреждения за съвместимост сред избраните модове.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Маркира това като нереален конфликт.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Откри поправка за това.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Установи, че тези модове са несъвместими - изключи единия.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Решено чрез смяна на клавишната комбинация: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Следени папки за изтегляния</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Модовете, които изтеглиш ръчно в следена папка, се преместват в папката с модове и се появяват сами в списъка.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Следи папка…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Избери папка, в която да се следят изтеглени модове</value></data>
 </root>
