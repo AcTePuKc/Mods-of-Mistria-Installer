@@ -748,4 +748,16 @@
   <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Зарежда този мод последен, така че когато споделя файл с друг мод, този мод да има предимство. Тук обикновено се поставят recolor модове и лични замени. Това променя истинския ред на зареждане, а не само текущия изглед.</value></data>
   <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Скрива всичко, което е изключено. Важен е редът на модовете, които действително влизат в играта, а в дълъг списък е трудно да го разчетете сред изключените модове.</value></data>
   <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Показва само модове с налично обновление и модове, до които последната проверка не е успяла да достигне - без Nexus връзка, поради мрежов проблем или защото страницата вече не съществува.</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Копира „{0}“ и отваря страницата, от която идва. Натиснете Ctrl+F там и го поставете, за да стигнете директно до него. Ако е коментар, може да е на няколко страници назад, затова го поставете в собственото поле за търсене на нишката.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM вече инсталира. Първо изчакайте това да завърши.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Няма какво да се инсталира: липсва папка на играта или няма включени модове.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM не знае къде се намира папката ви с модове.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Този мод вече не е в списъка.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Показва, че това е известен проблем</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Показва, че този мод е изправен</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Работи, но само ако направите нещо</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Други неща, споменати на страниците</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Ръчно прилагане на поправка</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Ако нишката за грешката или описанието на мода казва точно какво да промените, въведете го тук. AIM първо копира целия мод в историята на версиите ви, така че списъкът за възстановяване винаги ще съдържа версията отпреди промяната.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Файл, относителен спрямо папката на мода</value></data>
 </root>
