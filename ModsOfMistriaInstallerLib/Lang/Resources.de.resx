@@ -864,4 +864,26 @@ An AIM übergeben?</value></data>
   <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Die Nexus-Anmeldung wurde abgebrochen, weil der Status der Rückgabe nicht übereinstimmte.</value></data>
   <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus hat keinen Autorisierungscode zurückgegeben.</value></data>
   <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Die Sitzung des Nexus-Kontos muss erneut verbunden werden.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>Die Nexus-OAuth-Registrierung für AIM ist noch nicht abgeschlossen.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus konnte die Anmeldung des Kontos nicht abschließen.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus hat eine unvollständige Kontositzung zurückgegeben.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Die Antwort des Nexus-Kontos konnte nicht gelesen werden.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM wartet auf die Rückgabe der Nexus-Anmeldung.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Die Antwort der Nexus-Anmeldung gehört nicht zu dieser AIM-Sitzung.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Die Nexus-Anmeldung wurde abgebrochen. Du kannst zu AIM zurückkehren.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Die Nexus-Anmeldung wurde vom Browser abgebrochen oder abgelehnt.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Die Nexus-Anmeldung ist abgeschlossen. Du kannst zu AIM zurückkehren.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus hat für diese Datei keine Downloadserver zurückgegeben.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Die Nexus-API hat nicht rechtzeitig geantwortet.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Die Nexus-API konnte nicht erreicht werden: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus hat eine unerwartete Antwort zurückgegeben.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Die Antwort von Nexus konnte nicht gelesen werden.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus hat die Kontositzung abgelehnt. Verbinde dein Nexus-Konto erneut.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus hat die Anfrage abgelehnt. Der Downloadlink ist möglicherweise abgelaufen - klicke erneut darauf.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Dieser Mod oder diese Datei existiert auf Nexus nicht mehr.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Du hast das Rate-Limit der Nexus-API erreicht. Warte eine Weile, bevor du erneut herunterlädst.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus hat einen Fehler zurückgegeben ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Es ist noch kein Nexus-Konto verbunden.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Die Datei, von der dieser Mod stammt, befindet sich nicht mehr auf seiner Nexus-Seite, und keine der dort verbliebenen Dateien ist eine neuere Version davon. Auf dieser Seite werden mehrere einzelne Mods angeboten, daher bietet AIM keinen der anderen als Update an. Prüfe die Seite von Hand, wenn du eine neuere Veröffentlichung vermutest.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Diese Mod-Seite hat keine Hauptdatei, mit der verglichen werden kann.</value></data>
 </root>
