@@ -4297,8 +4297,7 @@ public partial class ModlistPageViewModel : PageViewBase
             if (!_foreignRecoveryAttempted && await TryRecoverForeignArchiveAsync())
             {
                 _foreignRecoveryAttempted = true;
-                await BackgroundInstall();
-                return;
+                return await BackgroundInstall();
             }
 
             // Write the diagnostic first so its Recent AIM log contains only
