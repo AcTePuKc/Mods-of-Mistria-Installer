@@ -469,4 +469,25 @@
   <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Това не проработи: {0}</value></data>
   <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Казва, че няма проблем</value></data>
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Казва, че има проблем</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Работи, но с условие</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Споменава темата, без да отговаря на въпроса</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>ПРИЕМЛИВО</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>ПРОБЛЕМ</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>УСЛОВИЕ</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>КОНТЕКСТ</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Следи в Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Добавя този мод в центъра ти за проследяване в Nexus, за да получаваш известия за обновления и публикации от автора. Необходим е свързан Nexus акаунт.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>„{0}“ вече се следи в Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Вече следиш „{0}“ в Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>„{0}“ не можа да бъде добавен за проследяване в Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM не можа да прочете Nexus ID на мод от страницата, която има за този мод.</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Покажи целия цитат</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Покажи по-малко</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Намери го на страницата</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Копирано. Натисни Ctrl+F на току-що отворената страница и постави текста.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Това ще промени файлове в мод, който не си писал ти. AIM първо копира целия мод в падащото меню „Версии“ и маркира реда като редактиран. Да продължа ли?</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>По-стари копия на този мод, които AIM е запазил при обновяване. Избери едно, за да се върнеш към него.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Върни се към:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Кликни, за да го изтеглиш и инсталираш. Текущата ти версия ще бъде запазена като backup.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Кликни, за да отвориш страницата за изтегляне - AIM не знае кой Nexus файл е това. Кликни с десния бутон върху мода и избери „Свържи с Nexus…“, за да може AIM да го инсталира автоматично.</value></data>
 </root>
