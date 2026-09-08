@@ -505,4 +505,16 @@
   <data name="GUIKeybindsScanning" xml:space="preserve"><value>Прочитане на клавишните комбинации на модовете…</value></data>
   <data name="GUIKeybindsNone" xml:space="preserve"><value>Нито един от избраните модове няма клавишна комбинация, която AIM да вижда. Модовете, които създават комбинациите си по време на работа, не ги показват, преди играта да е стартирала.</value></data>
   <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Няма конфликти.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM не откри конфигурационната папка на играта, затова показва началните комбинации от модовете. Стартирай играта веднъж, за да се появят действителните ти комбинации.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria работи. Редактирането е изключено, защото при затваряне играта презаписва настройките на всички модове и ще заличи промените тук. Затвори играта и натисни „Обнови“.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>използва се и от {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Същият вход е зададен на:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Избери или премахни избора на модовете на екрана</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Прилага се само към редовете, които текущо се виждат според търсенето и филтрите, и към нищо скрито от тях. Без включен филтър това са всички модове. Модовете, които AIM не може да инсталира, остават непроменени.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>началната комбинация на мода - AIM не може да я промени, докато модът не запише настройките си</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(няма зададен клавиш)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>играта няма да го приеме</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>„{0}“ не е име, което играта разпознава, затова този мод използва началната си стойност. Избери нещо от списъка, за да го поправиш.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM не можа да запише в {0}. Възможно е файлът да е отворен в друга програма или играта да е стартирала.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Избери клавиш или бутон</value></data>
 </root>
