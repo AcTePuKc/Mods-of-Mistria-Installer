@@ -47,22 +47,17 @@
                     <Separator />
                     <!-- Mods downloaded by hand. A free Nexus account cannot use "Mod Manager
                          Download" at all, so for a lot of users this is how every mod arrives. -->
-                    <MenuItem Header="{Binding Texts.GUIDropFolderMenu}"
+                    <MenuItem x:Name="DropFolderMenuItem"
+                              Header="{Binding Texts.GUIDropFolderMenu}"
                               ToolTip.Tip="{Binding Texts.GUIDropFolderExplain}"
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Texts.GUIDropFolderLink}"
                                   Command="{Binding LinkDropFolderCommand}" />
-                        <MenuItem Header="{Binding Texts.GUIDropFolderScanNow}"
-                                  IsEnabled="{Binding HasDropFolders}"
-                                  Command="{Binding ImportDropFoldersNowCommand}" />
-                        <Separator />
-                        <MenuItem Header="{Binding Texts.GUIDropFolderNone}"
-                                  IsEnabled="False"
-                                  IsVisible="{Binding !HasDropFolders}" />
                         <!-- Each watched folder is its own item, and clicking it stops watching -
                              there is nothing else a linked folder can be asked to do. The command
                              comes from the item, because a menu item's DataContext is the item. -->
-                        <MenuItem Header="{Binding Texts.GUIDropFolderTitle}"
+                        <MenuItem x:Name="WatchedFoldersMenuItem"
+                                  Header="{Binding Texts.GUIDropFolderTitle}"
                                   ItemsSource="{Binding DropFolders}"
                                   IsVisible="{Binding HasDropFolders}">
                             <MenuItem.ItemContainerTheme>
