@@ -904,4 +904,16 @@ An AIM übergeben?</value></data>
   <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Das ist kein nxm://-Link.</value></data>
   <data name="GUINxmMissingGame" xml:space="preserve"><value>Der Link enthält keinen Spielnamen.</value></data>
   <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus-Sammlungen werden noch nicht unterstützt - lade die Mods einzeln herunter.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Der Link ist kein Download einer Mod-Datei.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Der Link enthält eine ungültige Mod- oder Datei-ID.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Der Pfad, von dem der Installer ausgeführt wird, konnte nicht ermittelt werden.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Die Registrierung von nxm://-Links wird nur unter Windows und Linux unterstützt.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM wurde registriert, aber Windows verwendet möglicherweise weiterhin {0} für nxm://-Links.&#xD;&#xA;&#xD;&#xA;Wähle AIM in den Windows-Standard-Apps als Standard für nxm://-Links.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Die nxm://-Registrierung konnte nach dem Schreiben nicht überprüft werden.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Ein Update könnte die von dir angewendete Reparatur ersetzen</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} ist verfügbar. Du verwendest {2} mit angewendeter AIM-Reparatur: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Aktualisieren und AIM-Reparatur entfernen</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Beim Aktualisieren wird der Mod-Ordner ersetzt und damit auch die Änderung von AIM entfernt. Wenn die neue Version das Problem nicht behoben hat, tritt der Absturz erneut auf und du kannst die Reparatur wieder anwenden. Die vorherige Version befindet sich weiterhin in der Liste zum Wiederherstellen.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Externes Archiv erkannt</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM hat eine externe assets.zip gefunden.&#xD;&#xA;&#xD;&#xA;Wenn du fortfährst, wird AIM:&#xD;&#xA;• sie als assets.foreign-…zip aufbewahren&#xD;&#xA;• die verifizierte Sicherung wiederherstellen&#xD;&#xA;• diese Installation erneut versuchen&#xD;&#xA;&#xD;&#xA;Mods, die nur im externen Archiv vorhanden sind, werden deaktiviert. Fortfahren?</value></data>
 </root>
