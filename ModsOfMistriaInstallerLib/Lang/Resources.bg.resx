@@ -387,4 +387,23 @@
   <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Смяна на клавишна комбинация</value></data>
   <data name="GUIHotkeyRebound" xml:space="preserve"><value>„{0}“ вече използва {1} вместо {2}. Инсталирай отново, за да се приложи промяната.</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Този мод все още е ZIP или RAR архив. Първо го разархивирай в папката с модове и AIM ще може да редактира клавиша му.</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Премества този мод под останалите, с които споделя файлове, така че неговите версии на тези файлове да бъдат инсталирани. Редът на зареждане в списъка се променя веднага.</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Прочита какво казват страниците на тези модове в Nexus един за друг и отваря докладите за грешки, коментарите и уеб търсене, за да прецениш дали проблемът е реален.</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Премества този мод към клавиш, който не се използва от нищо друго, като редактира собствената му настройка в {0}. Модът първо се архивира, а промяната влиза в играта при следващото инсталиране.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Решено - „{0}“ е преместен на {1}, така че вече няма друг мод със същата клавишна комбинация. Инсталирай отново, за да се приложи промяната.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Този мод не обявява клавиша като именувана клавишна комбинация, затова AIM не може да го промени безопасно. Провери собствените настройки в играта или конфигурационния му файл.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Всеки функционален клавиш вече се използва от избран мод, така че няма свободен клавиш, на който този да бъде преместен.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM не можа да прочете файловете на този мод.</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Намери решение</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Прочитане на информацията от страниците на тези модове…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Свържи Nexus акаунта си от менюто със зъбното колело и AIM ще може да прочете страниците на тези модове. Дотогава връзките по-долу са най-бързият начин да ги провериш.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM не можа да прочете страниците на модовете: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Какво казват страниците на модовете</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Провери сам</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Отвори страницата на този мод</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Отвори поправката</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Какво откри?</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Връзка към поправката (по избор):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Не е реален конфликт</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Модовете споделят файлове, но това няма практическо значение. Маркира проблема като приемлив и го скрива, докато някой от модовете не се обнови.</value></data>
 </root>
