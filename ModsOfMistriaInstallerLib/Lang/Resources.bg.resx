@@ -603,4 +603,13 @@
   <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Отговорът от входа в Nexus не съвпадна с тази AIM сесия.</value></data>
   <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Входът в Nexus беше отменен. Можеш да се върнеш в AIM.</value></data>
   <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Входът в Nexus беше отменен или отказан от браузъра.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Входът в Nexus завърши. Можеш да се върнеш в AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus не върна сървъри за изтегляне за този файл.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus API не отговори навреме.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Nexus API не може да бъде достигнат: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus върна неочакван отговор.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Отговорът от Nexus не можа да бъде прочетен.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus отхвърли сесията на акаунта. Свържи Nexus акаунта си отново.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus отказа заявката. Връзката за изтегляне може да е изтекла - опитай да кликнеш върху нея отново.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Този мод или файл вече не съществува в Nexus.</value></data>
 </root>
