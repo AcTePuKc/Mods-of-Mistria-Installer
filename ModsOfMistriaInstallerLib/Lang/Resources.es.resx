@@ -401,4 +401,26 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIMoveModToBottom" xml:space="preserve"><value>Mover al final del orden de carga</value></data>
   <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Carga este mod el último, de modo que si comparte un archivo con otro mod, este tenga prioridad. Aquí van los recolores y las sustituciones personales. Cambia el orden de carga real, no solo la vista actual.</value></data>
   <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Solo mods activados</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Oculta todo lo que está desactivado. Lo importante es el orden de los mods que realmente entran en el juego y, en una lista larga, cuesta leerlo entre los que están desactivados.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Solo mods que requieren atención</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Muestra solo los mods con una actualización pendiente y los que no se pudieron consultar la última vez, por ejemplo por falta de asociación con Nexus, un problema de red o una página que ya no existe.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Solo vista: orden de carga sin cambios, arrastre desactivado</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Ir al principio de la lista</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Ir al final de la lista</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) también lo usa {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Notas de la versión</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Notas de la versión: pasa el cursor para cargarlas y haz clic para leer todo el historial.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Novedades de {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Haz clic para leer todas las versiones.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>El autor de este mod no ha publicado notas de la versión.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM no pudo leer las notas de la versión de este mod. Necesita una cuenta de Nexus conectada y que AIM conozca la página de Nexus del mod.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versión(es) con notas, empezando por la más reciente.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Versión {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versiones</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Provoca cierres del juego</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Marcado como causante de cierres</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Una ejecución supervisada demostró que este mod cierra el juego: con él desactivado, el juego funcionó y el cierre no volvió a ocurrir. AIM lo ha dejado desactivado.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Tú mismo marcaste este mod como causante del cierre en el comprobador de cierres. AIM no lo probó: confió en tu indicación y lo desactivó.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Versión {0}, comprobada el {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Abre «Comprobar cierres» para ver las soluciones que AIM puede aplicar y lo que dicen las páginas del propio mod. La marca pertenece a esta versión, así que una actualización del autor la elimina.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Editado por AIM</value></data>
 </root>
