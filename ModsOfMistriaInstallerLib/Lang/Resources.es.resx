@@ -443,4 +443,26 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>No hay ninguna cuenta de Nexus conectada, así que AIM no puede descargar nada directamente.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM no pudo comprobar tu cuenta de Nexus: {0}</value></data>
   <data name="GUIKeybindsButton" xml:space="preserve"><value>Asignaciones</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Todas las teclas y botones del mando que usan tus mods, en una sola lista, con los conflictos en rojo y edición directa.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Asignaciones de los mods</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Lo que usan ahora tus mods. Los mods guardan estas asignaciones en la carpeta de configuración del juego, no en la carpeta de mods, así que una actualización no las pierde. Aun así, un mod puede restablecer sus propios ajustes y AIM ofrecerá recuperar tu elección cuando ocurra.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} asignación(es), {1} en conflicto.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Mostrar solo conflictos</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Actualizar</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM no pudo leer las asignaciones de tus mods: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Leyendo las asignaciones de tus mods…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Ninguno de tus mods seleccionados tiene una asignación visible para AIM. Los mods que crean sus asignaciones durante la ejecución no las muestran hasta que se haya iniciado el juego.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>No hay conflictos.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM no pudo encontrar la carpeta de configuración del juego, así que muestra los valores predeterminados incluidos por tus mods. Inicia el juego una vez para que se conviertan en tus asignaciones reales.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria está en ejecución. La edición está desactivada porque el juego vuelve a escribir los ajustes de todos los mods al cerrarse y sobrescribiría cualquier cambio hecho aquí. Cierra el juego y pulsa «Actualizar».</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>también lo usa {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>La misma entrada está asignada en:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Marcar o desmarcar los mods mostrados</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Se aplica a las filas que muestran actualmente tu búsqueda y tus filtros, y a ninguna de las ocultas. Sin filtros se aplica a todos los mods. Los mods que AIM no puede instalar no se modifican.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>valor predeterminado del mod: AIM no puede cambiarlo hasta que el mod escriba sus ajustes</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Este mod todavía no ha escrito sus ajustes, así que este es el valor predeterminado incluido en él. Inicia el juego una vez o cámbialo en los ajustes del propio mod y AIM podrá editarlo aquí.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(sin asignar)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>el juego no lo aceptará</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>«{0}» no es un nombre que el juego reconozca, así que este mod usará su valor predeterminado. Elige algo de la lista para solucionarlo.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM no pudo escribir en {0}. Puede estar abierto en otro programa o el juego puede haberse iniciado.</value></data>
 </root>
