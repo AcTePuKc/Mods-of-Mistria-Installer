@@ -494,7 +494,7 @@
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus съобщава, че акаунтът ти ({0}) е безплатен. Директните изтегляния са Premium функция, затова използвай бутона на уебсайта.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Няма свързан Nexus акаунт, затова AIM не може да изтегля нищо директно.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM не можа да провери Nexus акаунта ти: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Клавишни комбинации</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Клавиши</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Всички клавиши и бутони на контролери, към които модовете ти са привързани, в един списък - конфликтите са в червено и могат да се редактират на място.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Клавишни комбинации на модовете</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Какво използват модовете ти в момента. Те пазят тези настройки в собствената конфигурационна папка на играта, а не в папката с модове, така че обновяването на мод не ги губи - но модът може да нулира собствените си настройки и AIM ще предложи да върне избора ти, когато това се случи.</value></data>
