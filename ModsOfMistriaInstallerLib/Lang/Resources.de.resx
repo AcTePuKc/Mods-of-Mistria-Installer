@@ -848,4 +848,20 @@ An AIM übergeben?</value></data>
   <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Die Nexus-Kontositzung konnte nicht gespeichert werden. Prüfe den Festplattenzugriff und versuche es erneut.</value></data>
   <data name="GUINexusBackupMissing" xml:space="preserve"><value>Die Sicherung von {0} fehlt.</value></data>
   <data name="GUIModArchiveMissing" xml:space="preserve"><value>Die heruntergeladene Datei fehlt.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Der Mods-Ordner wurde nicht gefunden.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Dieser Download enthält kein manifest.toml und ist daher kein Mod, den dieser Installer verarbeiten kann. Es könnte ein älterer Mod oder eine Datei sein, die manuell installiert werden muss.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Der heruntergeladene Mod konnte nicht fertiggestellt werden. Der ursprüngliche Installationsfehler war: {0}&#xD;&#xA;Eine vorherige Mod-Kopie konnte nicht wiederhergestellt werden. Ihre Sicherung wurde zur manuellen Wiederherstellung aufbewahrt:&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Die beiseitegelegte Kopie befindet sich nicht mehr unter {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Neben dem Mods-Ordner befinden sich bereits zu viele aufbewahrte Kopien von {0}.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Der Mod konnte nicht entpackt werden: {0} Die vorherige Kopie konnte nicht wiederhergestellt werden; ihre Sicherung wurde zur manuellen Wiederherstellung aufbewahrt{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Der Mod konnte nicht entpackt werden: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Das heruntergeladene Archiv enthält zu viele Dateien.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Das heruntergeladene Archiv enthält eine zu große Datei.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Das heruntergeladene Archiv überschreitet die unterstützte Größe nach dem Entpacken.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Der Archiveintrag „{0}“ überschreitet die unterstützte Größe nach dem Entpacken.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Die heruntergeladene Datei ist kein Archiv, das dieser Installer lesen kann. Unterstützt werden zip, rar und 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Das Archiv enthält einen unsicheren Pfad: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Die Nexus-Anmeldung wurde abgebrochen, weil der Status der Rückgabe nicht übereinstimmte.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus hat keinen Autorisierungscode zurückgegeben.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Die Sitzung des Nexus-Kontos muss erneut verbunden werden.</value></data>
 </root>
