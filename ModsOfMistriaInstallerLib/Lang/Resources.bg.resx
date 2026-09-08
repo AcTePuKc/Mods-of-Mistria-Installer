@@ -668,4 +668,11 @@
   <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Собствените данни на играта „{0}“ имат запис без {1} на ред {2} и съдържат „{3}“ - нещо, което никой друг инсталиран мод не дефинира. Записът все още съдържа своя MOMIidentify блок, което означава, че очакваното сливане не е намерило съвпадение: вместо да обнови запис, който вече има {1}, е добавен нов без него.</value></data>
   <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Данните на играта „{0}“ имат запис без {1} на ред {2}, а този мод е един от тези, които е възможно да са го записали.</value></data>
   <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Този срив е преди текущата ти инсталация и нищо в него не съвпада с мод, който имаш сега.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} е причинил срива на играта.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>Всеки от {0}-те мода е добавил нещо в данните на играта, което тя не може да зареди. Всеки един от тях е достатъчен, за да причини това.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} е най-вероятната причина.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} е единственият инсталиран мод, който засяга това, което играта е прочитала.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} инсталирани мода добавят към данните, при които играта се е сринала. Много вероятно е един от тях да е причината.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Нищо не сочи ясно към мод, но има няколко, които си струва да бъдат изключени за проверка.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>На нещо, което играта е заредила, му липсва „{0}“, а нито един инсталиран мод не изглежда очевидно да го притежава.</value></data>
 </root>
