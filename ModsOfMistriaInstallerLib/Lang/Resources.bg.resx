@@ -406,4 +406,24 @@
   <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Връзка към поправката (по избор):</value></data>
   <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Не е реален конфликт</value></data>
   <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Модовете споделят файлове, но това няма практическо значение. Маркира проблема като приемлив и го скрива, докато някой от модовете не се обнови.</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Да преместя ли „{0}“ от {1} на {2}?&#xD;&#xA;&#xD;&#xA;AIM редактира собствената клавишна комбинация на мода и запазва backup, който можеш да възстановиш от менюто с десен бутон. Промяната влиза в играта при следващото инсталиране.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>„{0}“ вече използва {1}; обновени са {2} файла.&#xD;&#xA;&#xD;&#xA;Инсталирай отново, за да се приложи промяната.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Клавишната комбинация на „{0}“ не можа да бъде сменена: {1}</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} резултата от страниците на тези модове са свързани с тази двойка.</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Записването на заключението го запазва към проблема, така че следващия път няма да се налага да го преценяваш отново.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Има публикувана поправка</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Модовете са несъвместими</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Още не е решено</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Запиши поправката</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Това не изглежда като HTTPS връзка. Постави уеб адреса на поправката или остави полето празно.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Сортирай А-Я</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Сортирай по скорошна промяна</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Премести най-отгоре в реда на зареждане</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Премести най-отдолу в реда на зареждане</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Само включените модове</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Само модовете, изискващи внимание</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Само преглед - редът на зареждане не е променен, влаченето е спряно</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Към началото на списъка</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Към края на списъка</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) се използва и от {2}</value></data>
 </root>
