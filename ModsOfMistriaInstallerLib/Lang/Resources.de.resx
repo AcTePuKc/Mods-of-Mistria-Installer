@@ -810,4 +810,20 @@ An AIM übergeben?</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} Mod(s) geprüft: Für {1} gibt es ein Update, {2} konnten nicht geprüft werden.&#xD;&#xA;&#xD;&#xA;Diese Updates jetzt herunterladen und installieren? Die aktuelle Version jedes Mods wird als wiederherstellbare Sicherung aufbewahrt.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Alle verfügbaren Updates installieren</value></data>
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Lädt jedes ausstehende Update nacheinander herunter und installiert es. Die aktuelle Version jedes Mods bleibt als wiederherstellbare Sicherung erhalten.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Mods aktualisieren</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Es gibt keine ausstehenden Updates. Prüfe zuerst auf Updates.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>{0} Mod(s) aktualisieren?&#xD;&#xA;&#xD;&#xA;Die aktuelle Version jedes Mods wird als Sicherung aufbewahrt, die du über sein Kontextmenü wiederherstellen kannst.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Aktualisiere {0} von {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} von {1} Mod(s) aktualisiert.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Diese Mods konnten nicht direkt heruntergeladen werden und benötigen ihre Nexus-Seite: {0}&#xD;&#xA;&#xD;&#xA;Nexus stellt direkte Downloadlinks nur für Premium-Konten aus. Öffne bei einem kostenlosen Konto die Mod-Seite und verwende die Schaltfläche „Mod Manager Download“. AIM übernimmt den Download, wenn es für diese Links registriert ist.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Nichts zu berichten. AIM hat unter den ausgewählten Mods keine gemeinsamen Dateien, Tastenkonflikte, fehlenden Voraussetzungen oder Kompatibilitätswarnungen gefunden.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Du hast dies als keinen echten Konflikt markiert.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Du hast einen Patch dafür gefunden.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Du hast diese Mods als inkompatibel eingestuft - deaktiviere einen von ihnen.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Durch neue Tastenbelegung gelöst: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Überwachte Downloadordner</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mods, die du manuell in einen überwachten Ordner herunterlädst, werden in deinen Mods-Ordner verschoben und erscheinen automatisch in der Liste.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Ordner überwachen…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Ordner auswählen, in dem nach heruntergeladenen Mods gesucht wird</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Überwachte Ordner jetzt prüfen</value></data>
 </root>
