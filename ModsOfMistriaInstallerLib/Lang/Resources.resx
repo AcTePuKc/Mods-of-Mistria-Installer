@@ -979,6 +979,20 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>The downloaded file is missing.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>The mods folder could not be found.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>That download does not contain a manifest.toml, so it is not a mod this installer can handle. It may be an older mod, or a file that has to be installed by hand.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Could not complete the downloaded mod. The original install error was: {0}&#xD;&#xA;A previous mod copy could not be restored. Its backup was kept for manual recovery:&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>The copy that was put aside is no longer at {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>There are already too many kept copies of {0} beside the mods folder.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Could not unpack the mod: {0} The previous copy could not be restored; its backup was kept for manual recovery{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Could not unpack the mod: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>The downloaded archive contains too many files.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>The downloaded archive contains a file that is too large.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>The downloaded archive exceeds the supported extracted size.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Archive entry '{0}' exceeds the supported extracted size.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>The downloaded file is not an archive this installer can read (zip, rar and 7z are supported).</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>The archive contains an unsafe path: {0}</value></data>
   <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Nexus sign-in was cancelled because the callback state did not match.</value></data>
   <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus did not return an authorization code.</value></data>
   <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>The Nexus account session needs to be connected again.</value></data>
