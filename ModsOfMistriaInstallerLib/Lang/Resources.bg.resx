@@ -661,4 +661,6 @@
   <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Данните „{0}“, които играта зарежда в момента, все още имат един запис без {2}. Този срив ще се повтори при следващото стартиране.</value></data>
   <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Данните „{0}“, които играта зарежда в момента, все още имат {1} записа без {2}. Този срив ще се повтори при следващото стартиране.</value></data>
   <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Този мод изисква инсталирани engine hooks, а сривът е извикване към нещо, което се е оказало, че не е функция - така изглежда в играта hook, който не е бил инсталиран.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Този срив е по-стар от текущо инсталираните модове - но описаната грешка все още е в архива на играта на диска, така че това не е остарял доклад. Очаквай да се повтори при следващото стартиране.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Този срив е по-стар от текущо инсталираните модове. AIM е възстановил архива на играта след него, така че сега играта на диска не е същата, която се е сринала - приеми всичко по-долу като насока, а не като заключение, и изиграй веднъж, преди да променяш нещо.</value></data>
 </root>
