@@ -1,11 +1,11 @@
 # Upstream MMAPI parity and deferred candidates
 
 This file records the comparison against the upstream MMAPI catalog. The
-shipped 0.1.9 branch includes the stable entries from `upstream/main` at
-`d437e08` (`v0.15.10`), plus the entity-creation hooks already accepted from
-the upstream #173 work.
+shipped 0.2.0 branch includes the stable entries from `upstream/main` at
+`d437e08` (`v0.15.10`), plus selected upstream hooks and engine fixes that
+were compared against the current catalog and accepted with focused tests.
 
-## Stable parity imported for 0.1.9
+## Stable parity imported for 0.2.0
 
 The following entries were missing from the branch's earlier catalog and are
 now included, tested through the normal seam verification, and documented:
@@ -22,6 +22,9 @@ now included, tested through the normal seam verification, and documented:
   backplate seams)
 - `ui_crafting_refreshed` (an additional seam feeding the existing
   `ui.menu_refreshed` hook)
+- `dialogue.line` speaker context
+- `ui.relationship_row_built`
+- `items.chest_opened` and its narrow fishing-chest engine fixes
 
 The two breeding-result seams remain separate because the GeminiSeason path
 has distinct engine context, while both dispatch the same hook.
@@ -30,10 +33,11 @@ has distinct engine context, while both dispatch the same hook.
 
 | Hook | Matching seam | Status | Reason |
 |---|---|---|---|
-| `ui.relationship_row_built` | `ui_relationship_row_built` | Experimental branch only | Present on upstream branch #180, but not yet in `upstream/main`; defer until it has a stable release baseline and a demonstrated consumer. |
+| `dialogue.romance_prompt_guard` | `dialogue_romance_prompt_guard` | Deferred | Superseded by the existing, more general `dialogue.prompt_lock` hook; do not ship both. |
+| sprite TOML generator | `momi/sprites` generator | Deferred | The upstream implementation is incomplete and risks duplicate sprite installation; revisit with focused design and tests. |
 
 Branch-only or localization/future-work changes are intentionally not copied
-into the 0.1.9 release branch. Re-run this comparison when upstream publishes
+into the 0.2.0 release branch. Re-run this comparison when upstream publishes
 the next stable MMAPI baseline.
 
 ## Import policy
