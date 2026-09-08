@@ -979,6 +979,17 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>No Nexus account is connected yet.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>That download is for another game ({0}), so this installer cannot handle it.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>That download link has expired. Click the "Vortex download" button on the mod page again.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>The mods folder could not be found.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Asking Nexus about the file...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Downloading {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Unpacking {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Install cancelled</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>Installed {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>Installed {0} mods</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Download cancelled</value></data>
   <data name="GUINxmEmptyLink" xml:space="preserve"><value>Empty download link.</value></data>
   <data name="GUINxmInvalidScheme" xml:space="preserve"><value>That is not an nxm:// link.</value></data>
   <data name="GUINxmMissingGame" xml:space="preserve"><value>The link does not name a game.</value></data>
