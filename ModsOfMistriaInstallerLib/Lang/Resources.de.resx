@@ -668,4 +668,24 @@ An AIM übergeben?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Aktiv</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Updates</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Reihenfolge</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} von {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Bei Nexus anmelden</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Von Nexus abmelden</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus-Konto verbunden.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus-Konto nicht verbunden. Melde dich an, um Nexus-Funktionen zu verwenden.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus-Konto getrennt.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Manifest des Mods bearbeiten</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Öffnet manifest.json (oder manifest.toml) in deinem üblichen Texteditor. Nur für Mods verfügbar, die als Ordner vorliegen - ein Mod in einer .zip- oder .rar-Datei hat keine bearbeitbare Datei.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Konfiguration des Mods bearbeiten</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Öffnet die Konfigurationsdatei des Mods in deinem üblichen Texteditor. Deaktiviert, wenn AIM keine Konfigurationsdatei für den Mod findet.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>{0} konnte nicht geöffnet werden: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Mod entfernen…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Entfernt den Mod aus deinem Mods-Ordner. AIM fragt vorher nach und verschiebt die Dateien in den Papierkorb, statt sie zu löschen.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Mod entfernen</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>„{0}“ v{1} in den Papierkorb verschieben?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Der Mod wird aus deinem Mods-Ordner entfernt. Wenn du es dir anders überlegst, kannst du ihn aus dem Papierkorb zurückholen. Dateien, die er bereits in der Spielinstallation abgelegt hat, bleiben bis zur nächsten Installation oder Deinstallation erhalten.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>„{0}“ v{1} dauerhaft löschen?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Auf diesem System gibt es keinen Papierkorb, den AIM verwenden kann. Die Dateien des Mods werden daher gelöscht. Das kann nicht rückgängig gemacht werden.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>„{0}“ konnte nicht entfernt werden: {1}&#xD;&#xA;&#xD;&#xA;Möglicherweise ist der Mod in einem anderen Programm geöffnet oder das Spiel läuft noch.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Ausgewählte entfernen…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Entfernt alle markierten Mods auf einmal über den Papierkorb, nachdem die Liste angezeigt wurde.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Es sind keine Mods markiert, daher gibt es nichts zu entfernen.</value></data>
 </root>
