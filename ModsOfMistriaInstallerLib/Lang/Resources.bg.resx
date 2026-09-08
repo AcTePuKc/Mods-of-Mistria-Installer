@@ -703,4 +703,9 @@
   <data name="GUICrashWorking" xml:space="preserve"><value>Прочитане на bug tracker-ите и коментарите за модовете, към които това сочи…</value></data>
   <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Нищо не сочи достатъчно ясно към мод, за да си струва да се прочете страницата му.</value></data>
   <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM не можа да прочете страниците на модовете: {0}. Изводът от собствените ти файлове остава валиден.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>На страниците на модовете няма нищо за този срив.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} резултата от страниците на модовете имат отношение към това.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>СИГУРНО</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>ВЕРОЯТНО</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>ВЪЗМОЖНО</value></data>
 </root>
