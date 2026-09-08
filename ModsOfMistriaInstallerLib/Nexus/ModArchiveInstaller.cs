@@ -726,7 +726,7 @@ public static class ModArchiveInstaller
         public void Consume(int count)
         {
             if (count < 0 || _remaining < count)
-                throw new ModArchiveException("The downloaded archive exceeds the supported extracted size.");
+            throw new ModArchiveException(Text("GUIModArchiveTotalTooLarge"));
             _remaining -= count;
         }
     }

@@ -308,7 +308,7 @@ public class NexusUpdateService
         CancellationToken ct = default)
     {
         if (status.Record is null || status.LatestFileId is null)
-            throw new NexusApiException("There is nothing to update to.");
+            throw new NexusApiException(Text("GUINexusUpdateNothingToDo"));
 
         var link = new NxmLink(status.Record.Game, status.Record.ModId, status.LatestFileId.Value, null, null, null);
 

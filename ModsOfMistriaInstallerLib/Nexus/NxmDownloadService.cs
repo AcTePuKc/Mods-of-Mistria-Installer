@@ -229,8 +229,9 @@ public class NxmDownloadService(
             }
         }
 
-        throw new NexusApiException(
-            $"Could not download the file from Nexus: {lastFailure?.Message ?? "no download server responded"}");
+        throw new NexusApiException(string.Format(
+            Text("GUINxmDownloadFailed"),
+            lastFailure?.Message ?? Text("GUINxmDownloadNoServerResponse")));
     }
 
     private static void RecordProvenance(

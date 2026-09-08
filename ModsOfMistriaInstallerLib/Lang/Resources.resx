@@ -979,6 +979,11 @@ Open download page(s) in browser?</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash files</value></data>
   <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opens the folder where AIM keeps a copy of every crash it has seen. The game itself keeps only the most recent one.</value></data>
   <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>What AIM makes of it</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>There is nowhere left in the mods folder to assemble {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>There are already too many copies of {0} in the mods folder.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Could not download the file from Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>no download server responded</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>There is nothing to update to.</value></data>
   <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Could not save the Nexus account session. Check disk access and try again.</value></data>
   <data name="GUINexusBackupMissing" xml:space="preserve"><value>The backup of {0} is missing.</value></data>
   <data name="GUIModArchiveMissing" xml:space="preserve"><value>The downloaded file is missing.</value></data>
