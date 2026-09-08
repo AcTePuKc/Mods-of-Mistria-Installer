@@ -137,6 +137,7 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIClearModSearch => T("GUIClearModSearch");
     public string GUIToggleAllMods => T("GUIToggleAllMods");
     public string GUISuggestLoadOrder => T("GUISuggestLoadOrder");
+    public string GUISuggestLoadOrderShort => T("GUISuggestLoadOrderShort");
     public string GUISuggestLoadOrderTooltip => T("GUISuggestLoadOrderTooltip");
     public string GUIReportConflicts => T("GUIReportConflicts");
     public string GUIConflictReportTitle => T("GUIConflictReportTitle");
@@ -252,16 +253,20 @@ public sealed class LocalizedTexts : ObservableObject
 
     // Viewing the list: sorting, filtering and jumping. None of these touches the load order.
     public string GUISortAlphabetically => T("GUISortAlphabetically");
+    public string GUISortAlphabeticallyShort => T("GUISortAlphabeticallyShort");
     public string GUISortAlphabeticallyTooltip => T("GUISortAlphabeticallyTooltip");
     public string GUISortRecentlyUpdated => T("GUISortRecentlyUpdated");
+    public string GUISortRecentlyUpdatedShort => T("GUISortRecentlyUpdatedShort");
     public string GUISortRecentlyUpdatedTooltip => T("GUISortRecentlyUpdatedTooltip");
     public string GUIMoveModToTop => T("GUIMoveModToTop");
     public string GUIMoveModToTopTooltip => T("GUIMoveModToTopTooltip");
     public string GUIMoveModToBottom => T("GUIMoveModToBottom");
     public string GUIMoveModToBottomTooltip => T("GUIMoveModToBottomTooltip");
     public string GUIShowOnlyEnabled => T("GUIShowOnlyEnabled");
+    public string GUIShowOnlyEnabledShort => T("GUIShowOnlyEnabledShort");
     public string GUIShowOnlyEnabledTooltip => T("GUIShowOnlyEnabledTooltip");
     public string GUIShowOnlyUpdatable => T("GUIShowOnlyUpdatable");
+    public string GUIShowOnlyUpdatableShort => T("GUIShowOnlyUpdatableShort");
     public string GUIShowOnlyUpdatableTooltip => T("GUIShowOnlyUpdatableTooltip");
     public string GUIListReorderedNote => T("GUIListReorderedNote");
     public string GUIScrollToTop => T("GUIScrollToTop");

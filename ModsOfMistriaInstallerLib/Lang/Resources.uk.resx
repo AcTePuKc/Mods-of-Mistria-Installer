@@ -325,4 +325,9 @@
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архів ресурсів було замінено, але AIM не зміг зберегти стан встановлення. Перезапустіть AIM, щоб відновити завершену операцію.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Файл відновлення очікуваного стану встановлення AIM недійсний: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM відновив assets.zip, але не зміг відновити стан встановлення. Закрийте програму, яка використовує файл стану, і спробуйте ще раз.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>А–Я</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Нещодавні</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Увімкнені</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Оновлення</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Запропонувати порядок</value></data>
 </root>

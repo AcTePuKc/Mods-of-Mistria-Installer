@@ -333,4 +333,9 @@ Przekazać je do AIM?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Archiwum zasobów zostało zastąpione, ale AIM nie mógł zapisać stanu instalacji. Uruchom ponownie AIM, aby odzyskać ukończoną transakcję.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Plik odzyskiwania oczekującego stanu instalacji AIM jest nieprawidłowy: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM przywrócił assets.zip, ale nie mógł przywrócić stanu instalacji. Zamknij program używający pliku stanu i spróbuj ponownie.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Najnowsze</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Włączone</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Aktualizacje</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Zaproponuj kolejność</value></data>
 </root>

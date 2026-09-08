@@ -656,4 +656,9 @@ De links aan AIM overdragen?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Het assetsarchief is vervangen, maar AIM kon de installatiestatus niet opslaan. Start AIM opnieuw om de voltooide transactie te herstellen.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Het herstelbestand voor de wachtende installatiestatus van AIM is ongeldig: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM heeft assets.zip hersteld, maar kon de installatiestatus niet herstellen. Sluit een programma dat het statusbestand gebruikt en probeer het opnieuw.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Recent</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Ingeschakeld</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Updates</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Volgorde</value></data>
 </root>

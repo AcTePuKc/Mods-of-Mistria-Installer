@@ -333,4 +333,9 @@ Alihkan ke AIM?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Arsip aset telah diganti, tetapi AIM tidak dapat menyimpan status pemasangan. Mulai ulang AIM untuk memulihkan transaksi yang selesai.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Berkas pemulihan status pemasangan tertunda AIM tidak valid: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM memulihkan assets.zip, tetapi tidak dapat memulihkan status pemasangan. Tutup program apa pun yang menggunakan berkas status, lalu coba lagi.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Terbaru</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Aktif</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Perlu diperbarui</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sarankan urutan</value></data>
 </root>

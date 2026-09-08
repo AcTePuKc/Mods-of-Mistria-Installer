@@ -659,4 +659,9 @@ Passá-los para o AIM?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>O arquivo de recursos foi substituído, mas o AIM não conseguiu salvar o estado da instalação. Reinicie o AIM para recuperar a transação concluída.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>O arquivo de recuperação do estado de instalação pendente do AIM é inválido: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>O AIM restaurou assets.zip, mas não conseguiu restaurar o estado da instalação. Feche qualquer programa que use o arquivo de estado e tente novamente.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Recentes</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Ativos</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Atualizações</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir ordem</value></data>
 </root>

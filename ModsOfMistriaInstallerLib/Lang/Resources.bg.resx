@@ -333,4 +333,9 @@
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архивът с ресурсите беше заменен, но AIM не успя да запише състоянието на инсталацията. Рестартирайте AIM, за да възстанови завършената операция.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Файлът на AIM за възстановяване на чакащото състояние на инсталацията е невалиден: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM възстанови assets.zip, но не успя да възстанови състоянието на инсталацията. Затворете програма, която използва файла със състоянието, и опитайте отново.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>А–Я</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Скорошни</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Включени</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Обновления</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложи ред</value></data>
 </root>

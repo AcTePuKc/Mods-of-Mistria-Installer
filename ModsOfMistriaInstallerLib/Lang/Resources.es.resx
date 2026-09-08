@@ -333,4 +333,9 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>El archivo de recursos se reemplazó, pero AIM no pudo guardar el estado de instalación. Reinicia AIM para recuperar la transacción completada.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>El archivo de recuperación del estado de instalación pendiente de AIM no es válido: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM restauró assets.zip, pero no pudo restaurar el estado de instalación. Cierra cualquier programa que use el archivo de estado e inténtalo de nuevo.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Recientes</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Activos</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Actualizaciones</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir orden</value></data>
 </root>

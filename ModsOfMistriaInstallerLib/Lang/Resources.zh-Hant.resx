@@ -333,4 +333,9 @@
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>資源封存已被取代，但 AIM 無法儲存安裝狀態。請重新啟動 AIM 以復原已完成的交易。</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM 的待處理安裝狀態復原檔案無效：{0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM 已復原 assets.zip，但無法復原安裝狀態。請關閉正在使用狀態檔案的程式後再試一次。</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>最近更新</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>已啟用</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>需更新</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>建議順序</value></data>
 </root>

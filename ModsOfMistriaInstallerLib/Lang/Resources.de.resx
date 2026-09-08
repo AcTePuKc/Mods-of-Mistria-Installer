@@ -659,4 +659,9 @@ An AIM übergeben?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Das Ressourcenarchiv wurde ersetzt, aber AIM konnte den Installationsstatus nicht speichern. Starte AIM neu, um die abgeschlossene Transaktion wiederherzustellen.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Die ausstehende Wiederherstellungsdatei des AIM-Installationsstatus ist ungültig: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM hat assets.zip wiederhergestellt, konnte den Installationsstatus jedoch nicht wiederherstellen. Schließe ein Programm, das die Statusdatei verwendet, und versuche es erneut.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Zuletzt</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Updates</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Reihenfolge</value></data>
 </root>

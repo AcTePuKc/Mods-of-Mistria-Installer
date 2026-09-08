@@ -659,4 +659,9 @@ Les confier à AIM ?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>L'archive de ressources a été remplacée, mais AIM n'a pas pu enregistrer l'état de l'installation. Redémarrez AIM pour récupérer la transaction terminée.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Le fichier de récupération de l'état d'installation en attente d'AIM n'est pas valide : {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM a restauré assets.zip, mais n'a pas pu restaurer l'état de l'installation. Fermez tout programme utilisant le fichier d'état et réessayez.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Récents</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Activés</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>À mettre à jour</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggérer l’ordre</value></data>
 </root>

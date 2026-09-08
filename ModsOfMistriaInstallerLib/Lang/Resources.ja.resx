@@ -333,4 +333,9 @@ AIMに引き継ぎますか？</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>アセットアーカイブは置き換えられましたが、AIM はインストール状態を保存できませんでした。AIM を再起動して、完了したトランザクションを復旧してください。</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM の保留中のインストール状態復旧ファイルが無効です: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM は assets.zip を復元しましたが、インストール状態を復元できませんでした。状態ファイルを使用しているプログラムを閉じて、もう一度試してください。</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>最近</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>有効</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>要更新</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>順序を提案</value></data>
 </root>

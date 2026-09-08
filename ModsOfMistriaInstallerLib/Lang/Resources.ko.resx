@@ -333,4 +333,9 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>에셋 아카이브는 교체되었지만 AIM이 설치 상태를 저장하지 못했습니다. 완료된 트랜잭션을 복구하려면 AIM을 다시 시작하세요.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM의 보류 중인 설치 상태 복구 파일이 올바르지 않습니다: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM이 assets.zip을 복원했지만 설치 상태를 복원하지 못했습니다. 상태 파일을 사용하는 프로그램을 닫고 다시 시도하세요.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>최근</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>활성</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>업데이트 필요</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>순서 제안</value></data>
 </root>

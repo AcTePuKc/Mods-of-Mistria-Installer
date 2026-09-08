@@ -1108,4 +1108,9 @@ Open download page(s) in browser?</value></data>
   <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} is out. You are on {2} with AIM's fix applied: {3}</value></data>
   <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Update and drop AIM's fix</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Updating replaces the mod folder, so AIM's edit goes with it. If the new version has not fixed the problem, the crash comes back and you can re-apply the fix — the version from before is still in the Restore list.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Recent</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Enabled</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Updates</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggest order</value></data>
 </root>
