@@ -612,4 +612,11 @@
   <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus отхвърли сесията на акаунта. Свържи Nexus акаунта си отново.</value></data>
   <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus отказа заявката. Връзката за изтегляне може да е изтекла - опитай да кликнеш върху нея отново.</value></data>
   <data name="GUINexusApiNotFound" xml:space="preserve"><value>Този мод или файл вече не съществува в Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Достигна ограничението на Nexus API. Изчакай малко, преди да изтегляш отново.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus върна грешка ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Все още няма свързан Nexus акаунт.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Файлът, от който произлиза този мод, вече не е на страницата му в Nexus и нито един от останалите файлове там не е по-нова версия. На тази страница се хостват няколко отделни мода, затова AIM няма да предложи друг като обновление - провери страницата ръчно, ако смяташ, че има по-нова версия.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Страницата на този мод няма основен файл, с който да се направи сравнение.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM не знае от кой файл на тази страница произлиза този мод, затова не може да определи дали версията на страницата е по-нова. Изтегли го веднъж през AIM или кликни с десен бутон върху мода и го свържи с конкретен файл, за да станат проверките за обновления надеждни.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Проверката за обновления спря преждевременно.</value></data>
 </root>
