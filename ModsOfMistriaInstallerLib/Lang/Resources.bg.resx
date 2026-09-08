@@ -699,4 +699,7 @@
   <data name="GUICrashNoModList" xml:space="preserve"><value>AIM не вижда списъка ти с модове оттук, затова може да покаже срива, но не и да каже кой мод го е причинил.</value></data>
   <data name="GUICrashFailed" xml:space="preserve"><value>AIM не можа да завърши прочитането на този срив: {0}</value></data>
   <data name="GUICrashStale" xml:space="preserve"><value>Този срив е по-стар от модовете, които имаш сега. AIM е възстановил играта след него, така че причината за срива вече не е същата като файловете на диска - изиграй веднъж, преди да променяш нещо, и приеми модовете по-долу като насоки, а не като заключение.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Не си влязъл в Nexus, затова AIM не може да прочете bug tracker-ите на модовете. Всичко по-горе е установено само от собствените ти файлове.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Прочитане на bug tracker-ите и коментарите за модовете, към които това сочи…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Нищо не сочи достатъчно ясно към мод, за да си струва да се прочете страницата му.</value></data>
 </root>
