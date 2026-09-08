@@ -588,4 +588,11 @@
   <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Модът не можа да бъде разархивиран: {0}</value></data>
   <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Изтегленият архив съдържа твърде много файлове.</value></data>
   <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Изтегленият архив съдържа файл, който е твърде голям.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Изтегленият архив надхвърля поддържания размер след разархивиране.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Записът „{0}“ в архива надхвърля поддържания размер след разархивиране.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Изтегленият файл не е архив, който този инсталатор може да прочете. Поддържат се ZIP, RAR и 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Архивът съдържа опасен път: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Входът в Nexus беше отменен, защото състоянието на обратната връзка не съвпадна.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus не върна код за оторизация.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus сесията на акаунта трябва да бъде свързана отново.</value></data>
 </root>
