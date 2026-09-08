@@ -583,4 +583,9 @@
   <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Това изтегляне не съдържа manifest.toml, затова не е мод, който този инсталатор може да обработи. Възможно е да е по-стар мод или файл, който трябва да се инсталира ръчно.</value></data>
   <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Изтегленият мод не можа да бъде завършен. Първоначалната грешка при инсталиране беше: {0}&#xD;&#xA;&#xD;&#xA;Предишно копие на мода не можа да бъде възстановено. Backup-ът му е запазен за ръчно възстановяване:&#xD;&#xA;{1}</value></data>
   <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Копието, което беше оставено настрана, вече не се намира в {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>До папката с модове вече има твърде много запазени копия на {0}.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Модът не можа да бъде разархивиран: {0} Предишното копие не можа да бъде възстановено; backup-ът му е запазен за ръчно възстановяване{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Модът не можа да бъде разархивиран: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Изтегленият архив съдържа твърде много файлове.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Изтегленият архив съдържа файл, който е твърде голям.</value></data>
 </root>
