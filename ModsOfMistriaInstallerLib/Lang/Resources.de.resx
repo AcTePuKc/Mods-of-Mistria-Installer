@@ -964,4 +964,28 @@ An AIM übergeben?</value></data>
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Sagt, dass es ein Problem ist</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Funktioniert unter einer Bedingung</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Erwähnt das Thema, beantwortet es aber nicht</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLEM</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>BEDINGUNG</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>KONTEXT</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Vollständiges Zitat anzeigen</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Weniger anzeigen</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Auf der Seite suchen</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Kopiert „{0}“ und öffnet die Seite, von der es stammt. Drücke dort Strg+F und füge den Text ein, um direkt dorthin zu springen. Bei einem Kommentar kann er mehrere Seiten zurückliegen; füge ihn dann stattdessen in das Suchfeld des Kommentarverlaufs ein.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Kopiert. Drücke auf der gerade geöffneten Seite Strg+F und füge den Text ein.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Dies ändert Dateien in einer Mod, die du nicht geschrieben hast. AIM kopiert zuerst die gesamte Mod in das Versionsmenü und markiert die Zeile als bearbeitet. Fortfahren?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Absturzprüfung</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Absturz</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Absturzdateien</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Öffnet den Ordner, in dem AIM eine Kopie jedes gefundenen Absturzes aufbewahrt. Das Spiel selbst behält nur den neuesten.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Was AIM daraus schließt</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM konnte die ausführbare Datei des Spiels nicht finden und kann es daher nicht starten und überwachen.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria läuft bereits. Schließe es zuerst, damit AIM den von ihm gestarteten Lauf überwachen kann.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM konnte das Spiel nicht starten: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Das Spiel ist abgestürzt, aber AIM konnte das hinterlassene Absturzprotokoll nicht lesen. Dieser Lauf hat daher nichts über die Mod bewiesen. Eine erneute Prüfung kann sich lohnen.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Das Spiel ist während der Prüfung erneut abgestürzt.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Das Spiel läuft nach dem Prüfzeitraum noch und ist nicht abgestürzt. Das ist das gewünschte Ergebnis. Du kannst weiterspielen.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Nach {0} trat derselbe Absturz erneut auf.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Nach {0} ist das Spiel mit einem anderen Fehler erneut abgestürzt.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Das Spiel wurde nach {1} mit dem Code {0} beendet und hat kein Absturzprotokoll hinterlassen. Das bedeutet normalerweise, dass es von etwas außerhalb des Spiels geschlossen wurde, etwa durch einen Treiberfehler oder das Beenden des Prozesses, und nicht durch eine Mod. Dieser Lauf hat daher ebenfalls nichts bewiesen.</value></data>
 </root>
