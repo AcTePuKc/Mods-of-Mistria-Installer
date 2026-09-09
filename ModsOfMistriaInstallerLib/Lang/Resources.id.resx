@@ -573,4 +573,21 @@ Alihkan ke AIM?</value></data>
   <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Pemasangan dibatalkan</value></data>
   <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} dipasang</value></data>
   <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} mod dipasang</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Unduhan dibatalkan</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Tautan unduhan kosong.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Itu bukan tautan nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Tautan tersebut tidak menyebutkan game.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Koleksi Nexus belum didukung - unduh mod satu per satu.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Tautan tersebut bukan unduhan file mod.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Tautan tersebut memiliki ID mod atau file yang tidak valid.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Tidak dapat menentukan lokasi installer dijalankan.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Pendaftaran tautan nxm:// hanya didukung di Windows dan Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM telah didaftarkan, tetapi Windows mungkin masih menggunakan {0} untuk tautan nxm://.&#xD;&#xA;&#xD;&#xA;Pilih AIM sebagai default untuk tautan nxm:// di Aplikasi default Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Pendaftaran nxm:// tidak dapat diverifikasi setelah ditulis.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Pembaruan mungkin memperbaiki yang Anda tambal</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} tersedia. Anda menggunakan {2} dengan perbaikan AIM diterapkan: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Perbarui dan hapus perbaikan AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Pembaruan mengganti folder mod, sehingga edit AIM ikut terhapus. Jika versi baru belum memperbaiki masalah, crash akan muncul lagi dan Anda dapat menerapkan perbaikan kembali. Versi sebelumnya masih ada di daftar Pemulihan.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Arsip eksternal terdeteksi</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM menemukan assets.zip eksternal.&#xD;&#xA;&#xD;&#xA;Jika Anda melanjutkan, AIM akan:&#xD;&#xA;• menyimpannya sebagai file assets.foreign-…zip&#xD;&#xA;• memulihkan cadangan terverifikasi&#xD;&#xA;• mencoba kembali instalasi ini&#xD;&#xA;&#xD;&#xA;Mod yang hanya ada di arsip eksternal akan dinonaktifkan. Lanjutkan?</value></data>
 </root>
