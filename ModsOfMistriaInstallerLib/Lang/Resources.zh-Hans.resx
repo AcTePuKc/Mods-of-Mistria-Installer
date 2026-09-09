@@ -417,4 +417,29 @@
   <data name="GUIChangelogNone" xml:space="preserve"><value>此模组的作者没有发布版本说明。</value></data>
   <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM 无法读取此模组的版本说明。需要连接 Nexus 帐户，并且 AIM 必须知道此模组的 Nexus 页面。</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>有版本说明的版本数：{0}，从最新开始。</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>版本 {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>版本</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>会导致游戏崩溃</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>已标记为会导致崩溃</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>受监督的运行证明此模组会导致游戏崩溃：关闭它后游戏正常运行，崩溃也没有再次出现。AIM 已保持模组关闭。</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>你在崩溃检查中自行将此模组标记为崩溃原因。AIM 没有测试它，而是采纳了你的判断并关闭了模组。</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>版本 {0}，检查于 {1}。
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>打开崩溃检查，查看 AIM 可以应用的修复，以及模组页面上的相关说明。标记与此版本关联，因此作者更新后会清除标记。</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>由 AIM 编辑</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>此补丁没有 AIM 可以自行安装的主文件。文件已在浏览器中打开，请选择需要的文件并使用“Mod Manager Download”。</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>补丁下载已取消。</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM 修改了此模组中的文件以解决冲突。磁盘上的文件已不再完全等同于作者发布的文件。</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>更改前的模组位于“版本”下拉列表中。你可以在那里恢复，或右键单击模组并选择“撤销 AIM 的修改”。</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>撤销 AIM 的修改</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>在 Nexus Mods 上跟踪</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>将此模组添加到 Nexus 跟踪中心，以便网站通知你更新和作者发布的内容。需要连接 Nexus 帐户。</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>现在正在 Nexus Mods 上跟踪 {0}。</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>你已经在 Nexus Mods 上跟踪 {0}。</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>无法在 Nexus Mods 上跟踪 {0}：{1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM 无法从此模组对应的页面读取 Nexus 模组 ID。</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>AIM 在此模组更新时保留的早期副本。选择一个以回滚到该版本。</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>回滚到：</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>点击以下载并安装。当前版本会作为备份保留。</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>点击打开下载页面。AIM 不知道这是 Nexus 上的哪个文件。右键单击模组并使用“关联到 Nexus...”，即可让 AIM 自动安装。</value></data>
 </root>
