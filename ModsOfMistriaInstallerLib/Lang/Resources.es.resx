@@ -527,4 +527,26 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>No se pudo completar el mod descargado. El error de instalación original fue: {0}&#xD;&#xA;No se pudo restaurar una copia anterior del mod. Su copia de seguridad se conservó para una recuperación manual:&#xD;&#xA;{1}</value></data>
   <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>La copia apartada ya no está en {0}.</value></data>
   <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Ya hay demasiadas copias conservadas de {0} junto a la carpeta de mods.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>No se pudo extraer el mod: {0} No se pudo restaurar la copia anterior; su copia de seguridad se conservó para una recuperación manual{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>No se pudo extraer el mod: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>El archivo descargado contiene demasiados archivos.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>El archivo descargado contiene un archivo demasiado grande.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>El archivo descargado supera el tamaño extraído compatible.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>La entrada «{0}» del archivo supera el tamaño extraído compatible.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>El archivo descargado no es un formato que este instalador pueda leer. Se admiten zip, rar y 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>El archivo contiene una ruta no segura: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Se canceló el inicio de sesión de Nexus porque el estado de la respuesta no coincidía.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus no devolvió un código de autorización.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>La sesión de la cuenta de Nexus debe conectarse de nuevo.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>El registro OAuth de Nexus para AIM todavía está pendiente.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus no pudo completar el inicio de sesión de la cuenta.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus devolvió una sesión de cuenta incompleta.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>No se pudo leer la respuesta de la cuenta de Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM está esperando la respuesta del inicio de sesión de Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>La respuesta del inicio de sesión de Nexus no corresponde a esta sesión de AIM.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Se canceló el inicio de sesión de Nexus. Puedes volver a AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>El navegador canceló o rechazó el inicio de sesión de Nexus.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Se completó el inicio de sesión de Nexus. Puedes volver a AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus no devolvió servidores de descarga para ese archivo.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>La API de Nexus no respondió a tiempo.</value></data>
 </root>
