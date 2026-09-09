@@ -555,4 +555,22 @@ Alihkan ke AIM?</value></data>
   <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus menolak sesi akun. Hubungkan kembali akun Nexus Anda.</value></data>
   <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus menolak permintaan. Tautan unduhan mungkin sudah kedaluwarsa - coba klik lagi.</value></data>
   <data name="GUINexusApiNotFound" xml:space="preserve"><value>Mod atau file tersebut sudah tidak ada di Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Anda telah mencapai batas API Nexus. Tunggu sebentar sebelum mengunduh lagi.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus mengembalikan kesalahan ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Belum ada akun Nexus yang terhubung.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>File asal mod ini sudah tidak ada di halaman Nexus-nya, dan tidak ada file yang tersisa yang merupakan versi lebih baru. Halaman tersebut memuat beberapa mod terpisah, jadi AIM tidak akan menawarkan mod lain sebagai pembaruan. Periksa halaman itu secara manual jika Anda merasa ada rilis yang lebih baru.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Halaman mod tersebut tidak memiliki file utama untuk dibandingkan.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM tidak tahu dari file mana di halaman ini mod tersebut berasal, jadi tidak dapat menentukan apakah versi di halaman lebih baru. Unduh sekali melalui AIM, atau klik kanan mod dan hubungkan dengan file tertentu agar pemeriksaan pembaruan dapat dipercaya.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Pemeriksaan pembaruan berhenti lebih awal.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Pemeriksaan pembaruan tidak selesai untuk mod ini.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Belum ada akun Nexus yang terhubung.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Unduhan ini untuk game lain ({0}), jadi installer ini tidak dapat menanganinya.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Tautan unduhan telah kedaluwarsa. Klik tombol «Vortex download» di halaman mod lagi.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Folder mod tidak ditemukan.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Menanyakan file kepada Nexus…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Mengunduh {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Mengekstrak {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Pemasangan dibatalkan</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} dipasang</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} mod dipasang</value></data>
 </root>
