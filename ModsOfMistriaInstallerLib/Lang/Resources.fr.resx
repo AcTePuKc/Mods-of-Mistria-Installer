@@ -1060,4 +1060,52 @@ Les confier à AIM ?</value></data>
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Supprimer le mod</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} a été supprimé.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versions et modifications d’AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM a modifié ce mod :</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Annuler les modifications d’AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Remet en place chaque fichier mis de côté par AIM dans ce mod et laisse les autres fichiers du dossier intacts. Une ligne modifiée par AIM est annulée en restaurant la version ci-dessous.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Restaurer</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} a été restauré à la version {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - avant la modification d’AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM va désactiver {0}, reconstruire l’archive du jeu et le démarrer.&#xD;&#xA;&#xD;&#xA;La reconstruction prend environ une minute. Jouez normalement ; AIM vous dira si le plantage revient.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM va démarrer le jeu et surveiller un éventuel plantage sans rien modifier.&#xD;&#xA;&#xD;&#xA;Jouez normalement ; AIM vous dira ce qui s’est passé.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM ne peut pas modifier la liste des mods depuis cette fenêtre.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} n’a pas pu être désactivé. Il est peut-être déjà désactivé ou ne figure plus dans la liste.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} est désactivé.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Reconstruction de l’archive du jeu pour appliquer le changement…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Le jeu n’a pas pu être reconstruit, rien n’a donc été testé : {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Démarrage et surveillance du jeu. Jouez normalement.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM est déjà en train d’installer. Attendez la fin de cette opération.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Rien à installer : le dossier du jeu est absent ou aucun mod n’est activé.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM ne sait pas où se trouve votre dossier de mods.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Ce mod ne figure plus dans la liste.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Dit qu’il s’agit d’un problème connu</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Dit que ce mod fonctionne correctement</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Fonctionne, mais seulement si vous faites quelque chose</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Autres informations des pages</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Appliquer une correction manuellement</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Si un fil de bugs ou la description du mod indique exactement quoi modifier, saisissez-le ici. AIM copie d’abord le mod complet dans votre historique des versions : la liste de restauration ci-dessus contiendra donc toujours la version précédente.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Fichier relatif au dossier du mod</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Ligne</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Nouveau texte pour cette ligne ; laissez vide pour la vider</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Appliquer cette modification</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Mettre ce fichier de côté</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Retire tout le fichier du jeu et laisse le reste du mod installé. Utile lorsqu’un fichier de données fait planter le jeu et que vous souhaitez conserver le reste du mod en attendant une mise à jour de l’auteur.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Indiquez d’abord un fichier du mod et le numéro de la ligne à modifier.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Correction de plantage : ligne {0} de {1} dans {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Correction de plantage : {0} mis de côté dans {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM copiera d’abord le mod complet dans votre historique des versions pour que vous puissiez le remettre à tout moment depuis la liste de restauration. Seul ce mod sera modifié.&#xD;&#xA;&#xD;&#xA;Continuer ?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Aucune modification : lancement du jeu tel quel.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>L’archive correspond déjà à la liste des mods, aucune reconstruction n’était donc nécessaire.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>L’archive du jeu a été reconstruite.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Démarrage de Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Session surveillée. Jouez normalement ; AIM vous répondra à la fermeture du jeu ou après {0} minutes s’il n’a pas planté.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Le jeu n’a pas démarré, rien n’a donc été testé.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Le même plantage est revenu avec {0} désactivé : {0} n’est donc pas la cause. AIM l’a écarté et l’a réactivé.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Le même plantage est revenu avec {0} désactivé : {0} n’est donc pas la cause. AIM l’a écarté mais n’a pas pu le réactiver. Utilisez « Réactiver » sur sa carte, dans « Déjà vérifiés », avant la prochaine vérification.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Aucun plantage avec {0} désactivé. C’est donc la cause probable. Laissez-le désactivé, attendez une mise à jour ou essayez une correction ci-dessous.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Le jeu a fonctionné sans planter et rien n’a été modifié. Le plantage nécessitait peut-être une sauvegarde ou une action que vous n’avez pas répétée. Réessayez en reproduisant ce que vous aviez fait.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Cette session n’a rien permis de conclure, {0} reste donc suspect. AIM le proposera à nouveau.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Le jeu a planté pour une autre raison : {0} est donc écarté pour le plantage d’origine. AIM a chargé le nouveau plantage et conserve les conclusions déjà obtenues.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} suspects sur {1} ont été testés pour ce plantage.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM ne peut pas enregistrer ces résultats : ils ne durent que tant que cette fenêtre est ouverte.</value></data>
 </root>

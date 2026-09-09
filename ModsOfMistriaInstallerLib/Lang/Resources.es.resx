@@ -734,4 +734,52 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Eliminar mod</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} se ha eliminado.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versiones y cambios de AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM ha cambiado este mod:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Deshacer cambios de AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Devuelve todos los archivos que AIM apartó de este mod y deja intacto lo demás. Una línea cambiada por AIM se deshace restaurando la versión de abajo.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Restaurar</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} se ha restaurado a {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - antes del cambio de AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM desactivará {0}, reconstruirá el archivo del juego y lo iniciará.&#xD;&#xA;&#xD;&#xA;La reconstrucción tarda aproximadamente un minuto. Juega normalmente; AIM te dirá si vuelve el fallo.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM iniciará el juego y observará si hay un fallo, sin cambiar nada.&#xD;&#xA;&#xD;&#xA;Juega normalmente; AIM te dirá qué ha ocurrido.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM no puede cambiar la lista de mods desde aquí.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>No se pudo desactivar {0}; puede que ya esté desactivado o ya no esté en la lista.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} está desactivado.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Reconstruyendo el archivo del juego para aplicar el cambio…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>No se pudo reconstruir el juego, así que no se ha probado nada: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Iniciando y observando el juego. Juega normalmente.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM ya está instalando. Espera a que termine primero.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>No hay nada que instalar: falta la carpeta del juego o no hay mods activados.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM no sabe dónde está tu carpeta de mods.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Ese mod ya no está en la lista.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Dice que es un problema conocido</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Dice que este mod funciona bien</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Funciona, pero solo si haces algo</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Otras cosas que dicen las páginas</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Aplicar una corrección manualmente</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Si un hilo de errores o la descripción del mod dice exactamente qué cambiar, escríbelo aquí. AIM copia primero el mod completo en tu historial de versiones, así que la lista de restauración de arriba siempre tendrá la versión anterior.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Archivo relativo a la carpeta del mod</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Línea</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Texto nuevo para esa línea; déjalo vacío para borrarla</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Aplicar este cambio</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Apartar este archivo</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Retira todo el archivo del juego y deja instalado el resto del mod. Es útil cuando un archivo de datos provoca el fallo y quieres conservar lo demás hasta que el autor lo actualice.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Indica primero un archivo dentro del mod y un número de línea que cambiar.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Corrección de fallo: línea {0} de {1} en {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Corrección de fallo: {0} apartado en {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM copiará primero el mod completo en tu historial de versiones, para que puedas recuperarlo en cualquier momento desde la lista de restauración. Solo se modificará este mod.&#xD;&#xA;&#xD;&#xA;¿Continuar?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>No se cambia nada: se ejecuta el juego tal como está.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>El archivo ya coincide con la lista de mods, así que no hacía falta reconstruirlo.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>El archivo del juego se ha reconstruido.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Iniciando Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Observando la ejecución. Juega normalmente. AIM informará cuando el juego se cierre o después de {0} minutos si no ha fallado.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>El juego no se inició, así que no se ha probado nada.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>El mismo fallo volvió con {0} desactivado, así que {0} no es la causa. AIM lo ha descartado y lo ha vuelto a activar.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>El mismo fallo volvió con {0} desactivado, así que {0} no es la causa. AIM lo ha descartado, pero no pudo volver a activarlo. Usa «Volver a activar» en su tarjeta, dentro de «Ya comprobados», antes de la próxima comprobación.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>No hubo fallo con {0} desactivado. Eso lo convierte en la causa probable. Déjalo desactivado, espera una actualización o prueba una corrección de abajo.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>El juego funcionó sin fallar y no se cambió nada. Puede que el fallo necesitara una partida guardada o una acción que no repetiste. Inténtalo otra vez y haz lo mismo que la última vez.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Esta ejecución no ha aclarado nada, así que {0} sigue siendo sospechoso. AIM volverá a ofrecerlo.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>El juego falló por otra causa, así que {0} queda descartado para el fallo original. AIM ha cargado el nuevo fallo y conserva las conclusiones anteriores.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>Se han probado {0} de {1} sospechosos para este fallo.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM no puede guardar estos resultados, así que solo duran mientras esta ventana esté abierta.</value></data>
 </root>
