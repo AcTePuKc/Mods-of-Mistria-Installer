@@ -538,4 +538,28 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>모드 압축을 풀지 못했습니다: {0} 이전 복사본을 복원하지 못했으며 백업을 수동 복구용으로 보관했습니다{1}.</value></data>
   <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>모드 압축을 풀지 못했습니다: {0}</value></data>
   <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>다운로드한 압축 파일에 파일이 너무 많습니다.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>다운로드한 압축 파일에 너무 큰 파일이 들어 있습니다.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>다운로드한 압축 파일의 압축 해제 크기가 지원 한도를 초과합니다.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>압축 파일 항목 「{0}」의 압축 해제 크기가 지원 한도를 초과합니다.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>다운로드한 파일은 이 설치 프로그램이 읽을 수 있는 압축 형식이 아닙니다. zip, rar, 7z를 지원합니다.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>압축 파일에 안전하지 않은 경로가 있습니다: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>콜백 상태가 일치하지 않아 Nexus 로그인이 취소되었습니다.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus가 인증 코드를 반환하지 않았습니다.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus 계정 세션을 다시 연결해야 합니다.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>AIM의 Nexus OAuth 등록이 아직 처리 중입니다.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus가 계정 로그인을 완료하지 못했습니다.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus가 불완전한 계정 세션을 반환했습니다.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Nexus 계정 응답을 읽지 못했습니다.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM이 Nexus 로그인 콜백을 기다리는 중입니다.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Nexus 로그인 응답이 이 AIM 세션과 일치하지 않습니다.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Nexus 로그인이 취소되었습니다. AIM으로 돌아갈 수 있습니다.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Nexus 로그인이 취소되었거나 브라우저에서 거부되었습니다.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Nexus 로그인이 완료되었습니다. AIM으로 돌아갈 수 있습니다.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus가 해당 파일의 다운로드 서버를 반환하지 않았습니다.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus API가 제시간에 응답하지 않았습니다.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Nexus API에 연결하지 못했습니다: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus에서 예상하지 못한 응답을 반환했습니다.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Nexus의 응답을 읽지 못했습니다.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus가 계정 세션을 거부했습니다. Nexus 계정을 다시 연결하세요.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus가 요청을 거부했습니다. 다운로드 링크가 만료되었을 수 있으니 다시 클릭하세요.</value></data>
 </root>
