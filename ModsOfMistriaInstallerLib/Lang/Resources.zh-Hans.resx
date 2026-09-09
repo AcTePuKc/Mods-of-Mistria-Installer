@@ -342,4 +342,28 @@
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>已启用</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>需更新</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>建议顺序</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0}，作者 {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>登录 Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>退出 Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus 帐户已连接。</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus 帐户未连接。登录后才能使用 Nexus 功能。</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus 帐户已断开连接。</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>编辑模组清单</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>使用常用文本编辑器打开 manifest.json（或 manifest.toml）。仅适用于文件夹形式的模组；.zip 或 .rar 中的模组没有可编辑的文件。</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>编辑模组配置</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>使用常用文本编辑器打开模组配置文件。找不到 AIM 可识别的配置文件时，此选项会被禁用。</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>无法打开 {0}：{1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>移除模组...</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>从模组文件夹中移除模组。AIM 会先询问，并将文件移入回收站而不是直接删除。</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>移除模组</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>要将模组“{0}”v{1}移入回收站吗？&#xA;&#xA;{2}&#xA;&#xA;它会从模组文件夹中移除。如果改变主意，可以从回收站恢复。已经安装到游戏中的文件会保留，直到下次安装或卸载。</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>要永久删除模组“{0}”v{1}吗？&#xA;&#xA;{2}&#xA;&#xA;此系统没有 AIM 可使用的回收站，因此模组文件会被删除。此操作无法撤销。</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>无法移除“{0}”：{1}&#xA;&#xA;它可能在其他程序中打开，或者游戏仍在运行。</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>移除选中的模组...</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>显示列表后，通过回收站一次移除所有勾选的模组。</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>没有勾选模组，因此没有可移除的内容。</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>要将 {0} 个模组移入回收站吗？&#xA;&#xA;{1}&#xA;&#xA;它们会从模组文件夹中移除，并可从回收站恢复。已经安装到游戏中的文件会保留，直到下次安装或卸载。</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>要永久删除 {0} 个模组吗？&#xA;&#xA;{1}&#xA;&#xA;此系统没有 AIM 可使用的回收站，因此文件会被删除。此操作无法撤销。</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... 以及另外 {0} 个</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>已移除 {1} 个模组中的 {0} 个。</value></data>
 </root>

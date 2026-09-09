@@ -508,4 +508,28 @@
 {0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Папку модів не знайдено, тому відкривати нічого.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Не вдалося відкрити папку модів: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Папка модів</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Відкрити папку модів Fields of Mistria у файловому менеджері</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Перевірити збої</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Читає журнал збоїв гри, визначає, на який мод він вказує, і пропонує вимкнути цей мод, щоб перевірити, чи зникне збій.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>У папці модів більше немає місця для підготовки {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>У папці модів уже забагато копій {0}.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Не вдалося завантажити файл із Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>сервер завантаження не відповів</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Немає чого оновлювати.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Не вдалося зберегти сеанс облікового запису Nexus. Перевірте доступ до диска та спробуйте ще раз.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Резервної копії {0} немає.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Завантаженого файла немає.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Папку модів не знайдено.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Це завантаження не містить manifest.toml, тому це не мод, який може обробити цей інсталятор. Це може бути старий мод або файл для ручного встановлення.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Не вдалося завершити завантажений мод. Початкова помилка встановлення: {0}&#xA;Не вдалося відновити попередню копію моду. Її резервну копію збережено для ручного відновлення:&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Відкладеної копії більше немає за адресою {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Поруч із папкою модів уже забагато збережених копій {0}.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Не вдалося розпакувати мод: {0}. Попередню копію не вдалося відновити; її резервну копію збережено для ручного відновлення{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Не вдалося розпакувати мод: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Завантажений архів містить забагато файлів.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Завантажений архів містить надто великий файл.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Розмір завантаженого архіву після розпакування перевищує підтримуваний.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Розмір елемента архіву «{0}» після розпакування перевищує підтримуваний.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Завантажений файл не є архівом, який може прочитати цей інсталятор. Підтримуються zip, rar і 7z.</value></data>
 </root>
