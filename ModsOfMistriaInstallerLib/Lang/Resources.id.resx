@@ -448,4 +448,25 @@ Alihkan ke AIM?</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Pengaturan tombol yang digunakan mod Anda saat ini. Mod menyimpannya di folder konfigurasi milik game, bukan di folder mod, jadi pembaruan mod tidak akan menghapusnya. Namun mod tetap dapat mengatur ulang pengaturannya sendiri, dan AIM akan menawarkan untuk mengembalikan pilihan Anda.</value></data>
   <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} pengaturan tombol, {1} di antaranya berkonflik.</value></data>
   <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Hanya tampilkan konflik</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Muat ulang</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM tidak dapat membaca pengaturan tombol mod Anda: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Membaca pengaturan tombol mod Anda…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Tidak ada mod yang dipilih memiliki pengaturan tombol yang dapat dilihat AIM. Mod yang membuat pengaturan saat berjalan tidak akan menampilkannya sampai game dijalankan.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Tidak ada konflik.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM tidak dapat menemukan folder konfigurasi game, jadi yang ditampilkan adalah nilai bawaan dari mod Anda. Jalankan game sekali agar nilai tersebut menjadi pengaturan tombol sebenarnya.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria sedang berjalan. Pengeditan dimatikan karena game menulis ulang pengaturan semua mod saat ditutup dan akan menimpa perubahan di sini. Tutup game lalu tekan Muat ulang.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>juga digunakan oleh {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Input yang sama digunakan di:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Centang atau hapus centang mod di layar</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Berlaku untuk baris yang sedang ditampilkan oleh pencarian dan filter Anda, bukan yang tersembunyi. Tanpa filter, berlaku untuk semua mod. Mod yang tidak dapat dipasang AIM dibiarkan.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>bawaan mod - AIM tidak dapat mengubahnya sampai mod menulis pengaturannya</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Mod ini belum menulis pengaturannya, jadi ini adalah nilai bawaan yang tertanam di dalamnya. Jalankan game sekali atau ubah dari pengaturan mod, lalu AIM dapat mengeditnya di sini.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(tidak ditetapkan)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>tidak akan diterima game</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>"{0}" bukan nama yang dikenali game, jadi mod ini kembali ke nilai bawaannya. Pilih sesuatu dari daftar untuk memperbaikinya.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM tidak dapat menulis ke {0}. File mungkin sedang dibuka di program lain, atau game mungkin sudah dimulai.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Pilih tombol atau button</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Tombol keyboard atau pengendali</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Tekan tombol untuk menangkapnya</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Tekan tombol sekarang… (Escape untuk berhenti)</value></data>
 </root>
