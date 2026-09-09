@@ -590,4 +590,52 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>更新するとModフォルダーが置き換わるため、AIMの編集はなくなります。新しい版で問題が直っていなければクラッシュが再発しますが、もう一度修正できます。以前の版は復元リストに残ります。</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>外部アーカイブを検出しました</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIMは外部で変更されたassets.zipを検出しました。&#xA;&#xA;続行するとAIMは次を行います:&#xA;• assets.foreign-...zipとして保存&#xA;• 確認済みのバックアップを復元&#xA;• このインストールを再試行&#xA;&#xA;外部アーカイブにしかないModは無効になります。続行しますか?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>修正を探す</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>これらのModのページを読んでいます…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>歯車メニューからNexusアカウントを接続すると、AIMがModのページを読み取れます。それまでは、下のリンクから確認するのが最も早い方法です。</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Modの説明、readme、変更履歴、バグ報告、コメントのどこにも、この組み合わせについての答えはありませんでした。AIMはコメントスレッド全体からもう一方のMod名を検索し、最近のバグ報告も読みました。これは「誰も書いていない」ということであり、「誰も調べていない」という意味ではありません。ただし「問題がない」という意味でもありません。下のリンクから実際のページを確認できます。</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>この組み合わせに関係する項目がModページで{0}件見つかりました。</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIMはModページを読み取れませんでした: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Modページの記載</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>自分で確認する</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIMはコメントをスレッド全体から検索し、バグトラッカーを数ページ分読み取りますが、常にログアウトした訪問者として行います。これらのリンクから実際のページを開けます。</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>このModのページを開く</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>パッチを開く</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>何が分かりましたか？</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>保存すると答えが問題と一緒に記録されるため、次回もう一度調べる必要がありません。</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>パッチへのリンク（任意）:</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>実際の競合ではない</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>ファイルは共有していますが、実際には問題ありません。問題を解決済みとして記録し、どちらかのModが更新されるまで非表示にします。</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>パッチがある</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>互換性パッチが公開されています。1回目のクリックでリンクを追加し、2回目で記録します。問題は解決済みになります。</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>互換性がない</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>結果を記録しますが、どちらか一方を無効にする必要があるため問題は表示したままにします。</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>まだ判断中</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>パッチを記録</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>httpsリンクのように見えません。パッチのWebアドレスを貼り付けるか、空欄のままにしてください。</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIMによるファイルの解析</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIMはこれらのModが共有するすべてのファイルを読み取りました。</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIMはすべてのファイルを読み取れなかったため、これは事実ではなく解析結果として扱ってください。</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>共有ファイル {0}件</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>共有ファイル {0}件</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>このウィンドウの一部を作成できませんでした: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>この競合に関係するMod</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>ページを開いて自分でModを判断するか、使用しないと決めた場合はMod一覧から削除してください。</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>ページを開く</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIMはこのModの入手元を認識できないため、開けるページがありません。</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>削除</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>このModをModフォルダーから取り除きます。AIMは確認してからファイルをごみ箱に移動します。</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0}を削除したため、競合はなくなりました。</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>すでにインストール済み</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>この組み合わせに関係する、すでに一覧にあるModです。AIMはダウンロードを提案する前にこれらを確認しました。</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>AIMができること</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>ここにある操作は選択するまで実行されず、すべて元に戻せます。</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>すでに存在するパッチ</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>承認して適用</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>完了: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>実行できませんでした: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>問題ないと記載</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>問題があると記載</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>条件付きで動作</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>答えずに話題だけ言及</value></data>
 </root>

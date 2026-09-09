@@ -590,4 +590,52 @@ Alihkan ke AIM?</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Pembaruan mengganti folder mod, sehingga edit AIM ikut terhapus. Jika versi baru belum memperbaiki masalah, crash akan muncul lagi dan Anda dapat menerapkan perbaikan kembali. Versi sebelumnya masih ada di daftar Pemulihan.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Arsip eksternal terdeteksi</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM menemukan assets.zip eksternal.&#xD;&#xA;&#xD;&#xA;Jika Anda melanjutkan, AIM akan:&#xD;&#xA;• menyimpannya sebagai file assets.foreign-…zip&#xD;&#xA;• memulihkan cadangan terverifikasi&#xD;&#xA;• mencoba kembali instalasi ini&#xD;&#xA;&#xD;&#xA;Mod yang hanya ada di arsip eksternal akan dinonaktifkan. Lanjutkan?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Cari perbaikan</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Membaca halaman mod ini…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Hubungkan akun Nexus dari menu roda gigi agar AIM dapat membacakan halaman mod ini. Sementara itu, tautan di bawah adalah cara tercepat untuk memeriksanya.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Tidak ada jawaban di deskripsi, readme, changelog, laporan bug, atau komentar mod ini. AIM mencari nama mod lain di seluruh utas komentar dan membaca laporan bug terbaru. Jadi benar-benar berarti "belum ada yang mengatakan", bukan "belum ada yang mencari", tetapi bukan berarti "tidak ada masalah". Tautan di bawah tetap menuju halaman aslinya.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} hal dari halaman mod ini berkaitan dengan pasangan ini.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM tidak dapat membaca halaman mod: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Isi halaman mod</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Periksa sendiri</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM membaca komentar dengan mencari seluruh utas dan membaca beberapa halaman pelacak bug, tetapi selalu sebagai pengunjung yang belum masuk. Tautan ini membuka halaman aslinya.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Buka halaman mod ini</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Buka patch</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Apa yang kamu temukan?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Menyimpan ini membuat jawabannya tetap bersama masalah, jadi kamu tidak perlu mencarinya lagi nanti.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Tautan patch (opsional):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Bukan konflik nyata</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Mod berbagi file, tetapi dalam praktiknya tidak masalah. Tandai masalah sebagai selesai dan sembunyikan sampai salah satu mod diperbarui.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Ada patch</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Seseorang telah menerbitkan patch kompatibilitas. Klik sekali untuk menambahkan tautannya, lalu sekali lagi untuk menyimpannya. Masalah akan ditandai selesai.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Keduanya tidak kompatibel</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Menyimpan hasilnya, tetapi masalah tetap ditampilkan karena kamu masih perlu menonaktifkan salah satunya.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Masih memutuskan</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Simpan patch</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Itu tidak terlihat seperti tautan https. Tempelkan alamat web patch atau biarkan kotaknya kosong.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Hasil pembacaan file oleh AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM membaca semua file yang dibagikan mod ini.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM tidak dapat membaca semua file, jadi anggap ini sebagai hasil pembacaan, bukan fakta.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} file bersama</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} file bersama</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Sebagian jendela ini tidak dapat dibuat: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Mod dalam konflik ini</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Buka halaman untuk menilai mod sendiri, atau keluarkan dari daftar jika kamu sudah memutuskan untuk tidak menggunakannya.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Buka halaman</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM tidak tahu asal mod ini, jadi tidak ada halaman yang dapat dibuka.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Hapus</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Mengeluarkan mod ini dari folder mod. AIM akan bertanya dulu, lalu memindahkan file ke Recycle Bin.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} telah dihapus, jadi konflik tidak ada lagi.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Yang sudah kamu punya</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mod yang sudah ada di daftarmu dan berkaitan dengan pasangan ini. AIM memeriksanya sebelum menawarkan apa pun untuk diunduh.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Yang dapat dilakukan AIM</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Tidak ada yang terjadi di sini sebelum kamu memilihnya, dan semua tindakan ini dapat dibatalkan.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Patch yang sudah tersedia</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Setujui dan terapkan</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Selesai: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Tidak berhasil: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Mengatakan ini baik-baik saja</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Mengatakan ini masalah</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Berfungsi dengan satu syarat</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Menyebutkan topik tanpa menjawabnya</value></data>
 </root>
