@@ -638,4 +638,52 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Dice que es un problema</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Funciona, con una condición</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Menciona el tema sin responderlo</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>BIEN</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLEMA</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>CONDICIÓN</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>CONTEXTO</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Mostrar la cita completa</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Mostrar menos</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Buscarlo en la página</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Copia «{0}» y abre la página de origen. Pulsa Ctrl+F allí y pega el texto para ir directamente. Si era un comentario, puede estar varias páginas atrás; pégalo en el buscador del propio hilo.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Copiado. Pulsa Ctrl+F en la página que se acaba de abrir y pega el texto.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Esto cambia archivos de un mod que no has creado. AIM copiará primero el mod completo en su lista de versiones y marcará la fila como editada. ¿Continuar?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Comprobar fallos</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Fallo</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Archivos de fallos</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Abre la carpeta donde AIM guarda una copia de cada fallo detectado. El juego solo conserva el más reciente.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Interpretación de AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM no pudo encontrar el ejecutable del juego, así que no puede iniciarlo ni vigilarlo.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria ya está ejecutándose. Ciérralo primero para que AIM vigile la ejecución que inicie.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM no pudo iniciar el juego: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>El juego se bloqueó, pero AIM no pudo leer el registro que dejó. Por eso esta ejecución no demuestra nada sobre el mod. Vale la pena repetir la comprobación.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>El juego volvió a bloquearse durante la comprobación.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>El juego sigue ejecutándose después de la ventana de comprobación y no se ha bloqueado. Ese es el resultado esperado: continúa jugando.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>El mismo fallo volvió a aparecer después de {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>El juego volvió a bloquearse después de {0}, pero por un error diferente.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>El juego terminó con el código {0} después de {1} y no dejó registro de fallo. Normalmente significa que algo externo al juego lo cerró, como un fallo del controlador o la finalización del proceso, y no un mod. Esta ejecución tampoco demuestra nada.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>El juego se ejecutó durante {0} y se cerró normalmente, sin un fallo nuevo.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>El juego falló dentro del código propio de este mod, en {0}, línea {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>El código de este mod aparece en la pila de llamadas, en {0}, línea {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Este mod aparece mencionado en el propio mensaje del fallo.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>El juego falló al leer sus datos «{0}», a los que añade contenido {1} mod instalado.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>El juego falló al leer sus datos «{0}», a los que añaden contenido {1} mods instalados.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Añade contenido a los datos «{0}» que el juego estaba leyendo cuando falló.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Los datos «{0}» del archivo del juego en el disco no contienen ninguna entrada sin {1}. La causa ya se ha resuelto, quizá mediante una actualización, reinstalación o un mod que desactivaste después. Si vuelve a ocurrir, revisa los mods de abajo.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Los datos «{0}» que carga el juego aún contienen una entrada sin {2}. Este fallo volverá a ocurrir en el próximo inicio.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Los datos «{0}» que carga el juego aún contienen {1} entradas sin {2}. Este fallo volverá a ocurrir en el próximo inicio.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Requiere hooks del motor instalados, y el fallo consiste en llamar a algo que no resultó ser una función. Así se ve desde el juego un hook que no se instaló.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Este fallo es anterior a los mods instalados actualmente, pero el problema que describe sigue en el archivo del juego. No es un informe obsoleto: espera que vuelva a ocurrir en el próximo inicio.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Este fallo es anterior a los mods instalados actualmente. AIM reconstruyó el archivo del juego después, así que el juego que falló no es el que está ahora en el disco. Toma lo siguiente como una pista, no como una conclusión, y juega una vez antes de cambiar nada.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Falló dentro de {0}(), en: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Los datos propios «{0}» del juego tienen en la línea {2} una entrada sin {1} que contiene «{3}», algo que ningún otro mod instalado define. Una entrada sin {1} es exactamente donde el juego se detuvo.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Los datos propios «{0}» del juego tienen en la línea {2} una entrada sin {1} que contiene «{3}», algo que ningún otro mod instalado define. La entrada conserva su bloque MOMIidentify, lo que significa que la combinación esperada no coincidió con nada: se añadió una entrada nueva sin {1} en vez de actualizar una existente.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Los datos «{0}» del juego tienen en la línea {2} una entrada sin {1}, y este mod es uno de los que podrían haberla escrito.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Este fallo es anterior a tu instalación actual y nada de él coincide con un mod que tengas ahora.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} provocó el fallo del juego.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mods han añadido algo a los datos del juego que no puede cargar. Cualquiera de ellos basta para causarlo.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} es la causa más probable.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} es el único mod instalado que modifica lo que el juego estaba leyendo.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mods instalados añaden contenido a los datos donde falló el juego. Uno de ellos es muy probablemente la causa.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Nada señala claramente a un mod, pero conviene descartar algunos.</value></data>
 </root>

@@ -964,4 +964,52 @@ Les confier à AIM ?</value></data>
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Dit que c’est un problème</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Fonctionne, sous réserve d’une condition</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Mentionne le sujet sans y répondre</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLÈME</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>CONDITION</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>CONTEXTE</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Afficher toute la citation</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Afficher moins</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Le trouver sur la page</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Copie « {0} » et ouvre la page d’origine. Appuyez sur Ctrl+F et collez le texte pour y accéder directement. S’il s’agissait d’un commentaire, il peut être plusieurs pages plus loin ; collez-le plutôt dans le champ de recherche du fil.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Copié. Appuyez sur Ctrl+F dans la page qui vient de s’ouvrir, puis collez.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Cela modifie des fichiers d’un mod que vous n’avez pas créé. AIM copiera d’abord le mod complet dans son historique des versions et marquera la ligne comme modifiée. Continuer ?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Vérification des plantages</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Plantage</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Fichiers de plantage</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Ouvre le dossier où AIM conserve une copie de chaque plantage rencontré. Le jeu lui-même ne garde que le plus récent.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Ce qu’en déduit AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM n’a pas trouvé l’exécutable du jeu et ne peut donc pas le lancer ni le surveiller.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria est déjà en cours d’exécution. Fermez-le d’abord pour qu’AIM surveille la session qu’il lancera.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM n’a pas pu démarrer le jeu : {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Le jeu a planté, mais AIM n’a pas pu lire le journal laissé par le jeu. Cette session ne prouve donc rien sur le mod. Il vaut mieux relancer la vérification.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Le jeu a de nouveau planté pendant la vérification.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Le jeu fonctionne encore après la fenêtre de vérification et n’a pas planté. C’est le résultat attendu : continuez à jouer.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Le même plantage est revenu après {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Le jeu a de nouveau planté après {0}, avec une erreur différente.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Le jeu s’est arrêté avec le code {0} après {1} sans laisser de journal de plantage. Cela signifie généralement qu’il a été fermé par un élément extérieur au jeu, comme un problème de pilote ou l’arrêt du processus, plutôt que par un mod. Cette session ne prouve donc rien non plus.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Le jeu a fonctionné pendant {0} puis s’est fermé normalement, sans nouveau plantage.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Le jeu a rencontré une erreur dans le code propre de ce mod, à {0}, ligne {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Le code de ce mod figure dans la pile d’appels, à {0}, ligne {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Ce mod est nommé dans le message de plantage lui-même.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Le jeu a planté en lisant ses données « {0} », auxquelles contribue {1} mod installé.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Le jeu a planté en lisant ses données « {0} », auxquelles contribuent {1} mods installés.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Il contribue aux données « {0} » que le jeu lisait au moment du plantage.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Les données « {0} » de l’archive du jeu sur le disque ne contiennent plus d’entrée sans {1}. La cause a donc déjà été résolue, par une mise à jour, une réinstallation ou un mod désactivé depuis. Si cela recommence, regardez les mods ci-dessous.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Les données « {0} » actuellement chargées par le jeu contiennent encore une entrée sans {2}. Ce plantage reviendra au prochain lancement.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Les données « {0} » actuellement chargées par le jeu contiennent encore {1} entrées sans {2}. Ce plantage reviendra au prochain lancement.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Des hooks du moteur doivent être installés, et le plantage est un appel vers quelque chose qui n’est finalement pas une fonction. C’est ainsi qu’un hook non installé apparaît depuis le jeu.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Ce plantage est plus ancien que les mods actuellement installés, mais le problème qu’il décrit est toujours présent dans l’archive du jeu. Ce n’est donc pas un rapport obsolète : attendez-vous à le revoir au prochain lancement.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Ce plantage est plus ancien que les mods actuellement installés. AIM a reconstruit l’archive du jeu ensuite : le jeu qui a planté n’est donc pas celui qui se trouve maintenant sur le disque. Considérez ce qui suit comme une piste et non comme une conclusion, et jouez une fois avant de modifier quoi que ce soit.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Erreur dans {0}(), sur : {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Les données « {0} » du jeu contiennent à la ligne {2} une entrée sans {1}, qui contient « {3} », une valeur définie par aucun autre mod installé. Une entrée sans {1} est exactement l’endroit où le jeu s’est arrêté.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Les données « {0} » du jeu contiennent à la ligne {2} une entrée sans {1}, qui contient « {3} », une valeur définie par aucun autre mod installé. L’entrée conserve son bloc MOMIidentify : la fusion attendue n’a rien trouvé. Une nouvelle entrée sans {1} a donc été ajoutée au lieu de mettre à jour une entrée existante.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Les données « {0} » du jeu contiennent à la ligne {2} une entrée sans {1}, et ce mod pourrait être l’un de ceux qui l’ont écrite.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Ce plantage précède votre installation actuelle et rien ne correspond à un mod que vous avez maintenant.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} a fait planter le jeu.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mods ont chacun ajouté aux données du jeu quelque chose qu’il ne peut pas charger. N’importe lequel suffit à provoquer ce plantage.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} est la cause la plus probable.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} est le seul mod installé qui touche à ce que le jeu lisait.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mods installés contribuent aux données sur lesquelles le jeu a planté. L’un d’eux est très probablement la cause.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Rien ne désigne clairement un mod, mais quelques-uns méritent d’être écartés.</value></data>
 </root>
