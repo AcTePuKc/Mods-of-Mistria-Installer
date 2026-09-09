@@ -1063,4 +1063,52 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Mod verwijderen</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} is verwijderd.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versies en wijzigingen van AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM heeft deze mod gewijzigd:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Wijzigingen van AIM ongedaan maken</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Zet elk bestand terug dat AIM bij deze mod apart heeft gezet en laat de rest van de map ongemoeid. Een door AIM gewijzigde regel wordt ongedaan gemaakt door de onderstaande versie te herstellen.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Herstellen</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} is teruggezet naar {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - vóór de wijziging van AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM schakelt {0} uit, bouwt het gamearchief opnieuw op en start de game.&#xD;&#xA;&#xD;&#xA;Het opnieuw opbouwen duurt ongeveer een minuut. Speel zoals gewoonlijk; AIM laat weten of de crash terugkomt.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM start de game en let op crashes zonder iets te wijzigen.&#xD;&#xA;&#xD;&#xA;Speel zoals gewoonlijk; AIM laat weten wat er gebeurt.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM kan de modlijst hier niet wijzigen.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} kon niet worden uitgeschakeld. De mod staat misschien al uit of niet meer in de lijst.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} is uitgeschakeld.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Het gamearchief wordt opnieuw opgebouwd zodat de wijziging effect heeft…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>De game kon niet opnieuw worden opgebouwd, dus er is niets getest: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>De game wordt gestart en gevolgd. Speel zoals gewoonlijk.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM is al aan het installeren. Wacht eerst tot dat klaar is.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Er is niets te installeren: geen gamemap of geen mods ingeschakeld.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM weet niet waar je modmap staat.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Deze mod staat niet meer in de lijst.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Zegt dat dit een bekend probleem is</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Zegt dat deze mod goed werkt</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Werkt, maar alleen als je iets doet</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Andere informatie op de pagina’s</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Handmatig een oplossing toepassen</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Als een bugdraad of de beschrijving van de mod precies zegt wat er moet worden gewijzigd, vul je dat hier in. AIM kopieert eerst de hele mod naar je versiegeschiedenis, dus de bovenstaande herstelijst bevat altijd de versie van vóór deze wijziging.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Bestand relatief aan de modmap</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Regel</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Nieuwe tekst voor die regel; laat leeg om hem leeg te maken</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Deze wijziging toepassen</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Dit bestand apart zetten</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Haalt het hele bestand uit het spel en laat de rest van de mod geïnstalleerd. Nuttig wanneer één databestand de game laat crashen en je de rest wilt behouden totdat de auteur de mod bijwerkt.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Noem eerst een bestand in de mod en het regelnummer dat moet worden gewijzigd.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Crashfix: regel {0} van {1} in {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Crashfix: {0} apart gezet in {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM kopieert eerst de hele mod naar je versiegeschiedenis, zodat je hem altijd via de herstelijst kunt terugzetten. Alleen deze mod wordt gewijzigd.&#xD;&#xA;&#xD;&#xA;Doorgaan?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Niets gewijzigd; de game wordt uitgevoerd zoals hij is.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Het archief komt al overeen met de modlijst, dus opnieuw opbouwen was niet nodig.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Het gamearchief is opnieuw opgebouwd.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Fields of Mistria starten…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>De sessie wordt gevolgd. Speel zoals gewoonlijk; AIM meldt zich wanneer de game sluit, of na {0} minuten als hij niet is gecrasht.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>De game is niet gestart, dus er is niets getest.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Dezelfde crash kwam terug met {0} uitgeschakeld, dus {0} is niet de oorzaak. AIM heeft hem uitgesloten en weer ingeschakeld.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Dezelfde crash kwam terug met {0} uitgeschakeld, dus {0} is niet de oorzaak. AIM heeft hem uitgesloten, maar kon hem niet weer inschakelen. Gebruik vóór de volgende controle ‘Weer inschakelen’ op de kaart, onder ‘Al gecontroleerd’.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Geen crash met {0} uitgeschakeld. Dat maakt de mod de waarschijnlijke oorzaak. Laat hem uit, wacht op een update of probeer een oplossing hieronder.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>De game draaide zonder crash en er is niets gewijzigd. De crash had misschien een save of een actie nodig die je niet hebt herhaald. Probeer opnieuw en doe wat je de vorige keer deed.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Deze sessie gaf geen antwoord, dus {0} blijft verdacht. AIM biedt hem opnieuw aan.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>De game crashte door iets anders, dus {0} is uitgesloten voor de oorspronkelijke crash. AIM heeft de nieuwe crash geladen; eerdere conclusies blijven behouden.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} van {1} verdachten zijn voor deze crash getest.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM kan deze resultaten nergens opslaan, dus ze blijven alleen bestaan zolang dit venster open is.</value></data>
 </root>
