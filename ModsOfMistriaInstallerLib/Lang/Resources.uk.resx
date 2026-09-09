@@ -482,4 +482,30 @@
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>По черзі завантажує та встановлює всі очікувані оновлення, зберігаючи поточну версію кожного моду як резервну копію для відновлення.</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Оновити моди</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Немає очікуваних оновлень. Спочатку перевірте оновлення.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Оновити {0} модів?&#xA;&#xA;{1}&#xA;&#xA;Поточну версію кожного моду буде збережено як резервну копію, яку можна відновити з контекстного меню.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Оновлення {0} з {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Оновлено модів: {0} із {1}.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Ці моди не вдалося завантажити безпосередньо, потрібна їхня сторінка на Nexus: {0}&#xA;&#xA;Nexus надає прямі посилання лише обліковим записам Premium. Для безкоштовного облікового запису відкрийте сторінку моду та скористайтеся кнопкою «Mod Manager Download». AIM перехопить її, якщо зареєстрований для роботи з такими посиланнями.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Нічого повідомляти. AIM не знайшов серед вибраних модів спільних файлів, конфліктів сполучень, відсутніх вимог або попереджень про сумісність.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Ви позначили це як несправжній конфлікт.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Ви знайшли патч для цього.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Ви визнали ці моди несумісними. Вимкніть один із них.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Вирішено перепризначенням: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Відстежувані папки завантажень</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Моди, які ви вручну завантажуєте до відстежуваної папки, переміщуються до папки модів і самі з’являються у списку.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Відстежувати папку...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Виберіть папку для відстеження завантажених модів</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Перевірити відстежувані папки</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Немає відстежуваних папок</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Припинити відстеження цієї папки</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Відстежувані папки</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Нічого нового для додавання немає. AIM переміщує лише архіви та папки, що містять маніфест, а все інше залишає на місці.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Імпортовано модів із відстежуваної папки: {0}.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Переміщено до вашої папки модів:
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - цей мод уже встановлено як «{1}». Оновіть цю копію або спочатку видаліть її: дві копії одного моду конфліктують через спільні файли.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Залишено у відстежуваній папці:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Папку модів не знайдено, тому відкривати нічого.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Не вдалося відкрити папку модів: {0}</value></data>
 </root>

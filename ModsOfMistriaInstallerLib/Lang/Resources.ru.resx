@@ -588,4 +588,12 @@
   <data name="GUINxmInvalidIds" xml:space="preserve"><value>Ссылка содержит неверный идентификатор мода или файла.</value></data>
   <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Не удалось определить, откуда запущен установщик.</value></data>
   <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Регистрация ссылок nxm:// поддерживается только в Windows и Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM зарегистрирован, но Windows может по-прежнему использовать {0} для ссылок nxm://.&#xA;&#xA;Выберите AIM как приложение по умолчанию для nxm:// в настройках приложений Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Не удалось проверить регистрацию nxm:// после её записи.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Обновление может исправить то, что вы исправляли</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>Доступен {0} {1}. У вас {2} с применённым исправлением AIM: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Обновить и убрать исправление AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Обновление заменяет папку мода, поэтому изменение AIM исчезнет. Если новая версия не исправила проблему, сбой вернётся, и исправление можно применить снова. Предыдущая версия останется в списке восстановления.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Обнаружен внешний архив</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM обнаружил изменённый извне assets.zip.&#xA;&#xA;Если продолжить, AIM:&#xA;• сохранит его как файл assets.foreign-...zip&#xA;• восстановит проверенную резервную копию&#xA;• повторит эту установку&#xA;&#xA;Моды, существующие только во внешнем архиве, будут неактивны. Продолжить?</value></data>
 </root>
