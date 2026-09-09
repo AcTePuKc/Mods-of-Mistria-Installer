@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T02:56:30.5857016Z",
+  "generatedAt": "2026-09-09T03:04:49.3617174Z",
   "coreKeyCount": 465,
   "nextLanguage": "pl",
   "nextBatch": [
-    "GUINexusAccountPremium",
-    "GUINexusAccountFree",
-    "GUINexusAccountNoKey",
-    "GUINexusAccountUnknown",
-    "GUIKeybindsButton",
-    "GUIKeybindsButtonTooltip",
-    "GUIKeybindsTitle",
-    "GUIKeybindsIntro",
-    "GUIKeybindsSummary",
-    "GUIKeybindsOnlyOverlaps",
-    "GUIKeybindsRefresh",
-    "GUIKeybindsScanFailed",
-    "GUIKeybindsScanning",
-    "GUIKeybindsNone",
-    "GUIKeybindsNoOverlaps",
-    "GUIKeybindsNoConfigDirectory",
-    "GUIKeybindsGameRunning",
-    "GUIKeybindsAlsoUsedBy",
-    "GUIKeybindsClashHeader",
-    "GUIToggleVisibleMods",
-    "GUIToggleVisibleModsTooltip",
-    "GUIKeybindsDefault",
-    "GUIKeybindsDefaultTooltip",
-    "GUIKeybindsUnbound"
+    "GUIKeybindsUnrecognised",
+    "GUIKeybindsUnrecognisedTooltip",
+    "GUIKeybindsWriteFailed",
+    "GUIBindingEditorTitle",
+    "GUIBindingEditorTrigger",
+    "GUIBindingEditorCapture",
+    "GUIBindingEditorCapturing",
+    "GUIBindingEditorPreview",
+    "GUIBindingEditorNote",
+    "GUIBindingEditorSave",
+    "GUIBindingEditorClear",
+    "GUIBindingEditorClearTooltip",
+    "GUIBindingIsDefault",
+    "GUIBindingRestoreTitle",
+    "GUIBindingRestorePrompt",
+    "GUIBindingRestoreMore",
+    "GUIBindingRestoreDone",
+    "GUICheckUpdatesButton",
+    "GUICheckUpdatesButtonTooltip",
+    "GUICheckForUpdatesResultWithOffer",
+    "GUIUpdateAllNow",
+    "GUIUpdateAllNowTooltip",
+    "GUIUpdateAllTitle",
+    "GUIUpdateAllNothing"
   ],
   "languages": [
     {
@@ -61,7 +61,7 @@
     },
     {
       "language": "ko",
-      "coreMissing": 60,
+      "coreMissing": 36,
       "coreComplete": false
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "language": "pl",
-      "coreMissing": 152,
+      "coreMissing": 128,
       "coreComplete": false
     },
     {
