@@ -967,4 +967,52 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Zegt dat het een probleem is</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Werkt onder een voorwaarde</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Vermeldt het onderwerp zonder antwoord</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>IN ORDE</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLEEM</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>VOORWAARDE</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>CONTEXT</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>De volledige quote tonen</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Minder tonen</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Op de pagina zoeken</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Kopieert ‘{0}’ en opent de pagina waar het vandaan komt. Druk daar op Ctrl+F en plak om er direct naartoe te springen. Bij een reactie kan het enkele pagina’s terug staan; plak het dan in het zoekveld van de draad.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Gekopieerd. Druk op Ctrl+F op de zojuist geopende pagina en plak.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Dit wijzigt bestanden in een mod die je niet zelf hebt gemaakt. AIM kopieert eerst de hele mod naar de versielijst en markeert de rij als bewerkt. Doorgaan?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Crashes controleren</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Crash</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crashbestanden</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Opent de map waarin AIM een kopie bewaart van elke crash die het heeft gezien. De game zelf bewaart alleen de meest recente.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Wat AIM eruit opmaakt</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM kon het uitvoerbare bestand van de game niet vinden en kan de game daarom niet starten en volgen.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria draait al. Sluit de game eerst, zodat AIM de sessie kan volgen die het zelf start.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM kon de game niet starten: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>De game is gecrasht, maar AIM kon het achtergelaten crashlog niet lezen. Deze sessie bewijst daarom niets over de mod. Voer de controle nog eens uit.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>De game is tijdens de controle opnieuw gecrasht.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>De game draait nog na de controleperiode en is niet gecrasht. Dat is het gewenste resultaat, dus speel verder.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Dezelfde crash kwam terug na {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>De game crashte opnieuw na {0}, maar met een andere fout.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>De game werd na {1} afgesloten met code {0} en liet geen crashlog achter. Dat betekent meestal dat iets buiten de game, zoals een driverfout of beëindigd proces, de game sloot en niet een mod. Deze sessie bewijst dus niets.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>De game draaide {0} en sloot normaal af zonder nieuwe crash.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>De game faalde in de eigen code van deze mod, bij {0} regel {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>De code van deze mod staat in de call stack, bij {0} regel {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Deze mod wordt genoemd in het crashbericht zelf.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>De game crashte tijdens het lezen van de gegevens ‘{0}’, waaraan {1} geïnstalleerde mod toevoegt.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>De game crashte tijdens het lezen van de gegevens ‘{0}’, waaraan {1} geïnstalleerde mods toevoegen.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Deze mod voegt toe aan de gegevens ‘{0}’ die de game las toen hij crashte.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>De ‘{0}’-gegevens in het gamearchief op de schijf hebben geen item zonder {1}. De oorzaak is al opgelost, bijvoorbeeld door een update, herinstallatie of een mod die je inmiddels hebt uitgeschakeld. Kijk bij een herhaling naar de mods hieronder.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>De ‘{0}’-gegevens die de game nu laadt hebben nog steeds één item zonder {2}. Deze crash komt bij de volgende start terug.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>De ‘{0}’-gegevens die de game nu laadt hebben nog steeds {1} items zonder {2}. Deze crash komt bij de volgende start terug.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Er moeten engine-hooks zijn geïnstalleerd. De crash is een aanroep van iets dat geen functie bleek te zijn, precies hoe een niet-geïnstalleerde hook er vanuit de game uitziet.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Deze crash is ouder dan de momenteel geïnstalleerde mods, maar het beschreven probleem staat nog in het gamearchief op de schijf. Het rapport is dus niet verouderd; verwacht het opnieuw bij de volgende start.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Deze crash is ouder dan de momenteel geïnstalleerde mods. AIM heeft het gamearchief daarna opnieuw opgebouwd, dus de gecrashte game is niet dezelfde als die nu op de schijf staat. Zie alles hieronder als aanwijzing en niet als oordeel, en speel één keer voordat je iets wijzigt.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Fout binnen {0}(), bij: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>De eigen ‘{0}’-gegevens van de game hebben op regel {2} een item zonder {1} dat ‘{3}’ bevat, iets wat geen andere geïnstalleerde mod definieert. Een item zonder {1} is precies waar de game stopte.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>De eigen ‘{0}’-gegevens van de game hebben op regel {2} een item zonder {1} dat ‘{3}’ bevat, iets wat geen andere geïnstalleerde mod definieert. Het item bevat nog steeds zijn MOMIidentify-blok, dus de verwachte samenvoeging vond niets. Er is een nieuw item zonder {1} toegevoegd in plaats van een bestaand item met {1} bij te werken.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>De ‘{0}’-gegevens van de game hebben op regel {2} een item zonder {1}, en deze mod is een van de mods die het geschreven kan hebben.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Deze crash is ouder dan je huidige installatie en niets erin komt overeen met een mod die je nu hebt.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} heeft de game laten crashen.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mods hebben elk iets aan de gamegegevens toegevoegd dat niet kan worden geladen. Eén ervan is al genoeg om dit te veroorzaken.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} is de meest waarschijnlijke oorzaak.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} is de enige geïnstalleerde mod die wijzigt wat de game aan het lezen was.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} geïnstalleerde mods voegen toe aan de gegevens waarop de game crashte. Een ervan is zeer waarschijnlijk de oorzaak.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Niets wijst duidelijk naar een mod, maar enkele zijn het uitsluiten waard.</value></data>
 </root>

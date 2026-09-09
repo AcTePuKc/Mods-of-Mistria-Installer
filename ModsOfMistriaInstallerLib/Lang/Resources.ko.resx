@@ -646,4 +646,52 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>문제라고 함</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>조건부로 작동</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>답하지 않고 주제만 언급</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>문제없음</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>문제</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>조건</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>맥락</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>전체 인용 표시</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>간단히 표시</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>페이지에서 찾기</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>"{0}"을(를) 복사하고 출처 페이지를 엽니다. 거기서 Ctrl+F를 누르고 붙여 넣으면 바로 이동할 수 있습니다. 댓글이라면 여러 페이지 뒤에 있을 수 있으므로 스레드 검색창에 붙여 넣으세요.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>복사했습니다. 방금 열린 페이지에서 Ctrl+F를 누르고 붙여 넣으세요.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>직접 만든 모드가 아닌 모드의 파일을 변경합니다. AIM은 먼저 전체 모드를 버전 목록에 복사하고 행을 편집됨으로 표시합니다. 계속할까요?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>충돌 확인</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>충돌</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>충돌 파일</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>AIM이 확인한 모든 충돌의 사본을 보관하는 폴더를 엽니다. 게임 자체에는 최신 파일만 남습니다.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>AIM의 분석</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>게임 실행 파일을 찾지 못해 AIM이 게임을 실행하고 감시할 수 없습니다.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria가 이미 실행 중입니다. AIM이 시작한 실행을 감시할 수 있도록 먼저 종료하세요.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM이 게임을 시작하지 못했습니다: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>게임이 충돌했지만 AIM이 남은 충돌 로그를 읽지 못했습니다. 따라서 이 실행은 모드에 대해 아무것도 증명하지 못합니다. 다시 확인하는 것이 좋습니다.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>확인 중 게임이 다시 충돌했습니다.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>확인 시간이 지난 뒤에도 게임이 실행 중이며 충돌하지 않았습니다. 원하는 결과입니다. 계속 플레이하세요.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>{0} 후 같은 충돌이 다시 발생했습니다.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>{0} 후 다른 오류로 게임이 다시 충돌했습니다.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>게임이 {1} 후 코드 {0}(으)로 종료되었고 충돌 로그를 남기지 않았습니다. 보통 모드가 아니라 드라이버 오류나 프로세스 종료처럼 게임 외부의 원인으로 닫혔다는 뜻입니다. 이 실행도 아무것도 증명하지 못합니다.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>게임이 {0} 동안 실행된 뒤 새 충돌 없이 정상 종료되었습니다.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>게임이 이 모드의 자체 코드 {0} {1}행에서 실패했습니다.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>이 모드의 코드가 호출 스택의 {0} {1}행에 있습니다.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>충돌 메시지 자체에 이 모드가 언급되어 있습니다.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>게임이 "{0}" 데이터를 읽는 중 충돌했습니다. 이 데이터에는 설치된 모드 {1}개가 추가합니다.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>게임이 "{0}" 데이터를 읽는 중 충돌했습니다. 이 데이터에는 설치된 모드 {1}개가 추가합니다.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>충돌 당시 게임이 읽던 "{0}" 데이터에 이 모드가 추가합니다.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>디스크의 게임 아카이브에 있는 "{0}" 데이터에는 {1}이(가) 없는 항목이 없습니다. 업데이트, 재설치 또는 이후 비활성화한 모드로 이미 해결된 것입니다. 다시 발생하면 아래 모드를 확인하세요.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>현재 게임이 불러오는 "{0}" 데이터에 아직 {2}이(가) 없는 항목이 하나 있습니다. 다음 실행에서도 이 충돌이 발생합니다.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>현재 게임이 불러오는 "{0}" 데이터에 아직 {2}이(가) 없는 항목이 {1}개 있습니다. 다음 실행에서도 이 충돌이 발생합니다.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>엔진 훅이 설치되어야 하며, 충돌은 함수가 아닌 것으로 밝혀진 항목을 호출해서 발생했습니다. 게임 안에서는 설치되지 않은 훅이 이렇게 보입니다.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>이 충돌은 현재 설치된 모드보다 오래되었지만, 설명된 문제가 디스크의 게임 아카이브에 아직 있습니다. 오래된 보고가 아니므로 다음 실행에서도 다시 발생할 수 있습니다.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>이 충돌은 현재 설치된 모드보다 오래되었습니다. AIM은 충돌 후 게임을 다시 만들었으므로 충돌한 게임과 현재 디스크의 게임은 다릅니다. 아래 내용을 결론이 아닌 단서로 보고, 변경하기 전에 한 번 플레이하세요.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>{0}() 내부의 {1}에서 실패했습니다</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>게임 자체의 "{0}" 데이터에 {2}행에서 {1}이(가) 없는 항목이 있으며 "{3}"을(를) 포함합니다. 다른 설치 모드에는 정의되지 않은 값입니다. 게임이 멈춘 곳이 바로 {1}이(가) 없는 항목입니다.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>게임 자체의 "{0}" 데이터에 {2}행에서 {1}이(가) 없는 항목이 있으며 "{3}"을(를) 포함합니다. 다른 설치 모드에는 정의되지 않은 값입니다. 항목에 MOMIidentify 블록이 남아 있으므로 기다리던 병합이 일치하지 않았습니다. {1}이(가) 있는 항목을 갱신하지 않고 {1}이(가) 없는 새 항목으로 추가되었습니다.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>게임의 "{0}" 데이터에 {2}행에서 {1}이(가) 없는 항목이 있으며, 이 모드는 이를 작성했을 수 있는 모드 중 하나입니다.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>이 충돌은 현재 설치보다 오래되었으며, 현재 가지고 있는 모드와 일치하는 내용이 없습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0}이(가) 게임을 충돌시켰습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>모드 {0}개가 각각 게임이 불러올 수 없는 데이터를 추가했습니다. 하나만으로도 원인이 될 수 있습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0}이(가) 가장 가능성 높은 원인입니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0}은(는) 게임이 읽던 내용을 건드리는 유일한 설치 모드입니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>설치된 모드 {0}개가 게임이 충돌한 데이터에 추가합니다. 그중 하나가 원인일 가능성이 높습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>특정 모드를 명확히 가리키는 것은 없지만, 몇 가지를 제외해 볼 가치가 있습니다.</value></data>
 </root>
