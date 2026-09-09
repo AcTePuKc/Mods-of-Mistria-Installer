@@ -689,4 +689,28 @@ De links aan AIM overdragen?</value></data>
   <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>{0} mod(s) definitief verwijderen?&#xA;&#xA;{1}&#xA;&#xA;Dit systeem heeft geen Prullenbak die AIM kan gebruiken, dus de bestanden worden gewist. Dit kan niet ongedaan worden gemaakt.</value></data>
   <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... en nog {0}</value></data>
   <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} van {1} mod(s) verwijderd.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Deze konden niet worden verwijderd: {0}&#xA;&#xA;Ze zijn mogelijk geopend in een ander programma of het spel draait nog.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows kon dit niet naar de Prullenbak verplaatsen</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>„{0}” staat niet meer in je mods-map. De lijst is vernieuwd.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Markeer dit als gecontroleerd en in orde. AIM houdt het uit beeld tot een betrokken mod van versie verandert en vraagt het daarna opnieuw.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Problemen tonen die ik als in orde heb gemarkeerd ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Gemarkeerd als in orde</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[gemarkeerd als in orde]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Bestanden die beide schrijven</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>wint nu</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Laat deze winnen</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Verplaatst deze mod onder de andere mods waarmee hij bestanden deelt, zodat de versies van deze mod worden geïnstalleerd. De laadvolgorde in de lijst verandert meteen.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>„{0}” wordt nu als laatste geladen van de mods die deze bestanden delen, dus zijn kopieën winnen.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Een oplossing zoeken...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Leest wat de Nexus-pagina's van deze mods over elkaar zeggen en opent bugrapporten, reacties en een webzoekopdracht om te bepalen of dit echt belangrijk is.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Opnieuw toewijzen...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Verplaatst deze mod naar een toets die geen andere mod gebruikt door de eigen binding in {0} te bewerken. De mod wordt eerst geback-upt en de wijziging bereikt het spel bij de volgende installatie.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Sneltoets opnieuw toewijzen</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>„{0}” van {1} naar {2} verplaatsen?&#xA;&#xA;AIM bewerkt de eigen binding van de mod en bewaart een back-up die je vanuit het contextmenu kunt herstellen. De wijziging bereikt het spel bij de volgende installatie.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>„{0}” gebruikt nu {1}; {2} bestand(en) bijgewerkt.&#xA;&#xA;Installeer opnieuw om de wijziging in het spel toe te passen.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>„{0}” kon niet opnieuw worden toegewezen: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>„{0}” gebruikt nu {1} in plaats van {2}. Installeer opnieuw om de wijziging in het spel toe te passen.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Opgelost: „{0}” is naar {1} verplaatst, zodat deze sneltoets niet meer wordt gedeeld. Installeer opnieuw om de wijziging in het spel toe te passen.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Deze mod is nog een .zip- of .rar-bestand. Pak hem eerst uit in de mods-map, dan kan AIM de binding bewerken.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Deze mod declareert de toets niet als benoemde binding, dus AIM kan hem niet veilig wijzigen. Controleer de eigen instellingen van de mod in het spel of het configuratiebestand.</value></data>
 </root>
