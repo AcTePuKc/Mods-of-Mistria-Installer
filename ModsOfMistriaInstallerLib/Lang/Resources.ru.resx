@@ -466,4 +466,28 @@
   <data name="GUIKeybindsDefault" xml:space="preserve"><value>значение мода по умолчанию; AIM не может изменить его, пока мод не сохранит настройки</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Этот мод ещё не сохранил настройки, поэтому используется значение по умолчанию, встроенное в него. Запустите игру один раз или измените настройку в самом моде, чтобы AIM мог редактировать её здесь.</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(не назначено)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>игра это не примет</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>«{0}» не является именем, которое распознаёт игра, поэтому мод использует значение по умолчанию. Выберите значение из списка, чтобы исправить это.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM не удалось записать данные в {0}. Файл может быть открыт в другой программе или игра могла запуститься.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Выберите клавишу или кнопку</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Клавиша или кнопка контроллера</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Нажмите клавишу, чтобы назначить её</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Нажмите клавишу сейчас... (Escape для остановки)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Будет сохранено как: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Кнопки контроллера выбираются из списка, поскольку AIM не может прочитать контроллер. В списке есть все имена, которые принимает игра; ALT, клавиши блокировки и цифровая клавиатура отсутствуют, а мод с одним из них молча вернётся к значению по умолчанию.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Сохранить</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Снять привязку</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Очищает настройку. Большинство модов воспринимают это как «выключено», а некоторые вместо этого возвращаются к значению по умолчанию.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (значение мода по умолчанию, ещё не настроено)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Привязки клавиш изменены</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Выбранные вами привязки ({0}) были изменены самими модами, обычно после сброса настроек обновлением.&#xA;&#xA;{1}&#xA;&#xA;Вернуть ваши значения? Настройки, полностью удалённые обновлением, не восстанавливаются.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... и ещё {0}</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Восстановлено привязок: {0}. Запустите игру, чтобы они начали действовать.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Проверить обновления</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Проверяет выбранные моды по их страницам на Nexus. Используйте стрелку для проверки всех модов или установки всего, что имеет обновление.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Проверено модов: {0}; обновление есть у {1}, проверить не удалось: {2}.&#xA;&#xA;Скачать и установить эти обновления сейчас? Текущая версия каждого мода будет сохранена как резервная копия.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Обновить всё доступное</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>По очереди скачивает и устанавливает все ожидающие обновления, сохраняя текущую версию каждого мода как резервную копию для восстановления.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Обновить моды</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Нет ожидающих обновлений. Сначала проверьте обновления.</value></data>
 </root>

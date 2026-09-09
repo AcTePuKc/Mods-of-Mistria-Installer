@@ -358,4 +358,28 @@
   <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Видалити {0} модів назавжди?&#xA;&#xA;{1}&#xA;&#xA;У цій системі немає Кошика, який може використовувати AIM, тому файли буде стерто. Цю дію неможливо скасувати.</value></data>
   <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... і ще {0}</value></data>
   <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Видалено модів: {0} із {1}.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Не вдалося видалити такі моди: {0}&#xA;&#xA;Вони можуть бути відкриті в іншій програмі або гра ще працює.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows не зміг перемістити об’єкт до Кошика</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>«{0}» більше немає у вашій папці модів. Список оновлено.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Позначити як перевірене й нормальне. AIM приховуватиме це, доки один із пов’язаних модів не змінить версію, а потім запитає знову.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Показувати проблеми, позначені як нормальні ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Позначено як нормальне</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[позначено як нормальне]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Файли, які змінюють обидва моди</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>зараз перемагає</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Зробити цей мод головним</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Переміщує цей мод нижче за інші моди, з якими він ділиться файлами, щоб встановлювалися його версії. Порядок завантаження у списку змінюється одразу.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>«{0}» тепер завантажується останнім серед модів, які ділять ці файли, тому перемагають його копії.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Знайти рішення...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Читає, що сторінки цих модів на Nexus кажуть один про одного, і відкриває звіти про помилки, коментарі та вебпошук, щоб визначити, чи це справді важливо.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Перепризначити...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Змінює власну прив’язку цього моду у {0}, переносячи її на клавішу, яку не використовує інший мод. Спочатку мод буде збережено в резервній копії, а зміна потрапить у гру під час наступного встановлення.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Перепризначити сполучення</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Перемістити «{0}» з {1} на {2}?&#xA;&#xA;AIM змінить власну прив’язку моду та збереже резервну копію, яку можна відновити з контекстного меню. Зміна потрапить у гру під час наступного встановлення.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>«{0}» тепер використовує {1}; оновлено файлів: {2}.&#xA;&#xA;Встановіть мод ще раз, щоб застосувати зміну в грі.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Не вдалося перепризначити «{0}»: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>«{0}» тепер використовує {1} замість {2}. Встановіть мод ще раз, щоб застосувати зміну в грі.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Вирішено: «{0}» переміщено на {1}, тому це сполучення більше не спільне. Встановіть мод ще раз, щоб застосувати зміну в грі.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Цей мод усе ще є файлом .zip або .rar. Спочатку розпакуйте його до папки модів, і AIM зможе змінити його прив’язку.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Цей мод не оголошує клавішу як іменовану прив’язку, тому AIM не може безпечно її змінити. Перевірте власні налаштування моду в грі або його файл конфігурації.</value></data>
 </root>
