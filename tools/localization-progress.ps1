@@ -1,6 +1,6 @@
 param(
     [string] $Language,
-    [int] $BatchSize = 24,
+    [int] $BatchSize = 48,
     [switch] $AllMissing,
     [switch] $Deferred
 )
