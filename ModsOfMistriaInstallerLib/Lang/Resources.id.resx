@@ -382,4 +382,26 @@ Alihkan ke AIM?</value></data>
   <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Membaca apa yang dikatakan halaman Nexus mod-mod ini tentang satu sama lain, lalu membuka laporan bug, komentar, dan pencarian web agar Anda dapat menentukan apakah ini benar-benar penting.</value></data>
   <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Ubah…</value></data>
   <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Memindahkan mod ini ke tombol yang belum digunakan siapa pun dengan mengedit pengaturannya sendiri di {0}. Mod dicadangkan terlebih dahulu, dan perubahan diterapkan ke game pada instalasi berikutnya.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Ubah pintasan</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Pindahkan "{0}" dari {1} ke {2}?&#xD;&#xA;&#xD;&#xA;AIM mengedit pengaturan milik mod tersebut dan menyimpan cadangan yang dapat dipulihkan dari menu klik kanan. Perubahan akan diterapkan ke game pada instalasi berikutnya.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>"{0}" sekarang menggunakan {1}, diperbarui dalam {2} file.&#xD;&#xA;&#xD;&#xA;Pasang ulang agar perubahan diterapkan ke game.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>"{0}" tidak dapat diubah: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>"{0}" sekarang menggunakan {1}, bukan {2}. Pasang ulang agar perubahan diterapkan ke game.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Selesai - "{0}" dipindahkan ke {1}, jadi tidak ada lagi yang menggunakan pintasan ini. Pasang ulang agar perubahan diterapkan ke game.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Mod ini masih berupa .zip atau .rar. Ekstrak terlebih dahulu ke folder mod agar AIM dapat mengedit pengaturannya.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Mod ini tidak mendeklarasikan tombol sebagai pengaturan bernama, jadi AIM tidak dapat mengubahnya dengan aman. Periksa pengaturan mod di dalam game atau file konfigurasinya.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Semua tombol fungsi sudah digunakan oleh mod yang dipilih, jadi tidak ada tombol kosong untuk memindahkan yang ini.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM tidak dapat membaca file mod ini.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Urutkan A-Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Mengurutkan daftar berdasarkan nama agar Anda dapat menemukan mod dengan cepat. Ini hanya tampilan; urutan pemuatan tidak berubah. Mematikannya menampilkan urutan sebenarnya lagi dan fitur seret ditangguhkan saat aktif.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Urutkan berdasarkan pembaruan terbaru</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Menampilkan yang terbaru terlebih dahulu berdasarkan perubahan terakhir folder mod di disk. Mod yang baru dipasang atau diperbarui akan muncul di atas. Ini hanya tampilan; urutan pemuatan tidak berubah dan fitur seret ditangguhkan.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Pindahkan ke atas urutan pemuatan</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Memuat mod ini terlebih dahulu agar mod lain dapat dibangun di atasnya dan menimpanya. Framework dan mod yang menjadi dependensi mod lain sebaiknya berada di sini. Ini mengubah urutan pemuatan sebenarnya, bukan hanya tampilan.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Pindahkan ke bawah urutan pemuatan</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Memuat mod ini terakhir. Jika berbagi file dengan mod lain, versi file milik mod ini akan menang. Recolor dan penggantian pribadi sebaiknya berada di sini. Ini mengubah urutan pemuatan sebenarnya, bukan hanya tampilan.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Hanya mod yang aktif</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Menyembunyikan semua yang dinonaktifkan. Yang penting adalah urutan mod yang benar-benar masuk ke game; pada daftar panjang, urutan itu lebih mudah dibaca tanpa mod yang dinonaktifkan.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Hanya mod yang memerlukan perhatian</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Menampilkan hanya mod yang memiliki pembaruan dan mod yang tidak dapat dijangkau saat pemeriksaan terakhir, misalnya karena tidak terhubung ke Nexus, masalah jaringan, atau halaman yang sudah tidak ada.</value></data>
 </root>
