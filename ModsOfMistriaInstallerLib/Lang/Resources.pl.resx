@@ -516,4 +516,27 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
 {0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Nie znaleziono folderu modów, więc nie ma czego otworzyć.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Nie można otworzyć folderu modów: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Folder modów</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Otwórz folder modów Fields of Mistria w menedżerze plików</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Sprawdź awarie</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Odczytuje własny dziennik awarii gry, ustala, na który mod wskazuje, i proponuje jego wyłączenie oraz sprawdzenie, czy awaria zniknie.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>W folderze modów nie ma już miejsca na przygotowanie {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>W folderze modów jest już zbyt wiele kopii {0}.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Nie można pobrać pliku z Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>żaden serwer pobierania nie odpowiedział</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Nie ma niczego do zaktualizowania.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nie można zapisać sesji konta Nexus. Sprawdź dostęp do dysku i spróbuj ponownie.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Brakuje kopii zapasowej {0}.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Brakuje pobranego pliku.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Nie znaleziono folderu modów.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>To pobranie nie zawiera manifest.toml, więc nie jest modem obsługiwanym przez ten instalator. Może to być starszy mod albo plik wymagający instalacji ręcznej.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Nie można ukończyć pobranego moda. Oryginalny błąd instalacji: {0}&#xA;Nie można przywrócić poprzedniej kopii moda. Jej kopia zapasowa została zachowana do ręcznego odzyskania:&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Odłożonej kopii nie ma już w {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Obok folderu modów jest już zbyt wiele zachowanych kopii {0}.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Nie można wypakować moda: {0}. Nie można przywrócić poprzedniej kopii; jej kopia zapasowa została zachowana do ręcznego odzyskania{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Nie można wypakować moda: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Pobrane archiwum zawiera zbyt wiele plików.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Pobrane archiwum zawiera zbyt duży plik.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Pobrane archiwum przekracza obsługiwany rozmiar po wypakowaniu.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Element archiwum „{0}” przekracza obsługiwany rozmiar po wypakowaniu.</value></data>
 </root>

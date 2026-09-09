@@ -665,4 +665,28 @@ De links aan AIM overdragen?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Ingeschakeld</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Updates</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Volgorde</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} door {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Inloggen bij Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Uitloggen bij Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus-account verbonden.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Geen Nexus-account verbonden. Log in om Nexus-functies te gebruiken.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus-account losgekoppeld.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Manifest van mod bewerken</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Opent manifest.json (of manifest.toml) in je gewone teksteditor. Alleen beschikbaar voor mods die mappen zijn; een mod in .zip of .rar heeft geen bestand om te bewerken.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Configuratie van mod bewerken</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Opent het configuratiebestand van de mod in je gewone teksteditor. Uitgeschakeld wanneer AIM geen configuratiebestand kan vinden.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Kon {0} niet openen: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Mod verwijderen...</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Haalt de mod uit je mods-map. AIM vraagt eerst toestemming en verplaatst de bestanden naar de Prullenbak in plaats van ze te wissen.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Mod verwijderen</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>„{0}” v{1} naar de Prullenbak verplaatsen?&#xA;&#xA;{2}&#xA;&#xA;De mod wordt uit je mods-map gehaald. Je kunt hem vanuit de Prullenbak terugzetten als je van gedachten verandert. Bestanden die al in het spel zijn geïnstalleerd blijven staan tot de volgende installatie of verwijdering.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>„{0}” v{1} definitief verwijderen?&#xA;&#xA;{2}&#xA;&#xA;Dit systeem heeft geen Prullenbak die AIM kan gebruiken, dus de bestanden worden gewist. Dit kan niet ongedaan worden gemaakt.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>„{0}” kon niet worden verwijderd: {1}&#xA;&#xA;Het bestand kan in een ander programma geopend zijn of het spel draait mogelijk nog.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Geselecteerde verwijderen...</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Verwijdert alle aangevinkte mods tegelijk via de Prullenbak, nadat de lijst is getoond.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Er zijn geen mods aangevinkt, dus er is niets te verwijderen.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>{0} mod(s) naar de Prullenbak verplaatsen?&#xA;&#xA;{1}&#xA;&#xA;Ze worden uit je mods-map gehaald en kunnen vanuit de Prullenbak worden teruggezet. Bestanden die al in het spel zijn geïnstalleerd blijven staan tot de volgende installatie of verwijdering.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>{0} mod(s) definitief verwijderen?&#xA;&#xA;{1}&#xA;&#xA;Dit systeem heeft geen Prullenbak die AIM kan gebruiken, dus de bestanden worden gewist. Dit kan niet ongedaan worden gemaakt.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... en nog {0}</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} van {1} mod(s) verwijderd.</value></data>
 </root>
