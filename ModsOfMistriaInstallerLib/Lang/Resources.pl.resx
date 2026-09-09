@@ -417,4 +417,29 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIChangelogNone" xml:space="preserve"><value>Autor tego moda nie opublikował informacji o wydaniu.</value></data>
   <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM nie może odczytać informacji o wydaniu tego moda. Potrzebne jest połączone konto Nexus, a AIM musi znać stronę Nexus tego moda.</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} wersji z informacjami, od najnowszej.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Wersja {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Wersje</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Powoduje awarię gry</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Oznaczony jako powodujący awarie</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Monitorowane uruchomienie potwierdziło, że ten mod powoduje awarię gry: po jego wyłączeniu gra działała i awaria nie wróciła. AIM pozostawił mod wyłączony.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Samodzielnie oznaczyłeś ten mod jako powodujący awarie w sprawdzaniu awarii. AIM go nie testował, tylko zaufał tej ocenie i wyłączył mod.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Wersja {0}, sprawdzono {1}.
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Otwórz sprawdzanie awarii, aby zobaczyć poprawki, które może zastosować AIM, oraz informacje z własnych stron moda. Oznaczenie dotyczy tej wersji, więc aktualizacja autora je usunie.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Edytowane przez AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Ta łatka nie ma głównego pliku, który AIM może zainstalować samodzielnie. Jej pliki są otwarte w przeglądarce. Wybierz właściwy i użyj „Mod Manager Download”.</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Pobieranie łatki zostało anulowane.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM zmienił plik wewnątrz tego moda, aby rozwiązać konflikt. Pliki na dysku nie są już dokładnie takie, jak opublikowane przez autora.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>Mod sprzed zmiany znajduje się na liście rozwijanej Wersje. Przywróć go tam albo kliknij moda prawym przyciskiem i wybierz „Cofnij zmiany AIM”.</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Cofnij zmiany AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Śledź na Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Dodaje tego moda do centrum śledzenia Nexus, aby strona informowała o aktualizacjach i wpisach autora. Wymaga połączonego konta Nexus.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Teraz śledzisz „{0}” na Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Już śledzisz „{0}” na Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Nie można śledzić „{0}” na Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM nie może odczytać identyfikatora moda Nexus ze strony znanej dla tego moda.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Wcześniejsze kopie tego moda zachowane przez AIM podczas aktualizacji. Wybierz jedną, aby przywrócić tę wersję.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Przywróć:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Kliknij, aby pobrać i zainstalować. Twoja bieżąca wersja zostanie zachowana jako kopia zapasowa.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Kliknij, aby otworzyć stronę pobierania. AIM nie wie, który to plik Nexus. Kliknij moda prawym przyciskiem i użyj „Powiąż z Nexus...”, aby umożliwić automatyczną instalację.</value></data>
 </root>

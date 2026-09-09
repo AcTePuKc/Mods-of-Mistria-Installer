@@ -511,4 +511,31 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUIDropFolderImported" xml:space="preserve"><value>감시 중인 폴더에서 {0}개의 모드를 가져왔습니다.</value></data>
   <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>모드 폴더로 이동됨:
 {0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - 이미 「{1}」(으)로 설치되어 있습니다. 이 복사본을 업데이트하거나 먼저 제거하세요. 같은 모드의 두 복사본은 같은 파일을 두고 충돌합니다.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>감시 중인 폴더에 남겨 둠:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>모드 폴더를 찾지 못해 열 수 없습니다.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>모드 폴더를 열지 못했습니다: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>모드 폴더</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>파일 관리자에서 Fields of Mistria 모드 폴더 열기</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>충돌 확인</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>게임의 충돌 로그를 읽고 어떤 모드가 원인인지 판단한 다음, 해당 모드를 끄고 충돌이 사라지는지 확인하도록 합니다.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>모드 폴더에 {0}을(를) 준비할 공간이 더 이상 없습니다.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>모드 폴더에 이미 {0}의 복사본이 너무 많습니다.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Nexus에서 파일을 다운로드하지 못했습니다: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>다운로드 서버가 응답하지 않음</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>업데이트할 항목이 없습니다.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nexus 계정 세션을 저장하지 못했습니다. 디스크 접근 권한을 확인하고 다시 시도하세요.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>{0}의 백업이 없습니다.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>다운로드한 파일이 없습니다.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>모드 폴더를 찾지 못했습니다.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>이 다운로드에는 manifest.toml이 없어 이 설치 프로그램이 처리할 수 있는 모드가 아닙니다. 오래된 모드이거나 수동 설치가 필요한 파일일 수 있습니다.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>다운로드한 모드를 완료하지 못했습니다. 원래 설치 오류: {0}
+이전 모드 복사본을 복원하지 못했습니다. 수동 복구를 위해 백업을 보관했습니다:
+{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>따로 보관한 복사본이 더 이상 {0}에 없습니다.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>모드 폴더 옆에 이미 {0}의 보관된 복사본이 너무 많습니다.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>모드 압축을 풀지 못했습니다: {0} 이전 복사본을 복원하지 못했으며 백업을 수동 복구용으로 보관했습니다{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>모드 압축을 풀지 못했습니다: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>다운로드한 압축 파일에 파일이 너무 많습니다.</value></data>
 </root>
