@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T08:28:14.0689937Z",
+  "generatedAt": "2026-09-09T08:37:33.9180076Z",
   "coreKeyCount": 465,
   "nextLanguage": "uk",
   "nextBatch": [
-    "GUIUpdateAllConfirm",
-    "GUIUpdateAllProgress",
-    "GUIUpdateAllDone",
-    "GUIUpdateAllFailed",
-    "GUIConflictReportNothing",
-    "GUIVerdictNotAnIssue",
-    "GUIVerdictPatchExists",
-    "GUIVerdictIncompatible",
-    "GUIVerdictRebound",
-    "GUIDropFolderMenu",
-    "GUIDropFolderExplain",
-    "GUIDropFolderLink",
-    "GUIDropFolderPickTitle",
-    "GUIDropFolderScanNow",
-    "GUIDropFolderNone",
-    "GUIDropFolderUnlinkTooltip",
-    "GUIDropFolderTitle",
-    "GUIDropFolderNothingFound",
-    "GUIDropFolderImported",
-    "GUIDropFolderImportedDetail",
-    "GUIDropFolderAlreadyInstalled",
-    "GUIDropFolderSkippedDetail",
-    "GUIDropFolderNoModsFolder",
-    "GUIDropFolderCannotOpen"
+    "GUIOpenModsFolderButton",
+    "GUIOpenModsFolderButtonTooltip",
+    "GUICheckCrashes",
+    "GUICheckCrashesTooltip",
+    "GUIModDropStagingFull",
+    "GUIModDropTooManyCopies",
+    "GUINxmDownloadFailed",
+    "GUINxmDownloadNoServerResponse",
+    "GUINexusUpdateNothingToDo",
+    "GUINexusSettingsSaveSessionFailed",
+    "GUINexusBackupMissing",
+    "GUIModArchiveMissing",
+    "GUIModArchiveModsFolderMissing",
+    "GUIModArchiveManifestMissing",
+    "GUIModArchiveRollbackFailed",
+    "GUIModArchiveParkedCopyMissing",
+    "GUIModArchiveTooManyBackups",
+    "GUIModArchiveUnpackRollbackFailed",
+    "GUIModArchiveUnpackFailed",
+    "GUIModArchiveTooManyFiles",
+    "GUIModArchiveFileTooLarge",
+    "GUIModArchiveTotalTooLarge",
+    "GUIModArchiveEntryTooLarge",
+    "GUIModArchiveUnsupportedFormat"
   ],
   "languages": [
     {
@@ -81,12 +81,12 @@
     },
     {
       "language": "ru",
-      "coreMissing": 8,
-      "coreComplete": false
+      "coreMissing": 0,
+      "coreComplete": true
     },
     {
       "language": "uk",
-      "coreMissing": 104,
+      "coreMissing": 80,
       "coreComplete": false
     },
     {
