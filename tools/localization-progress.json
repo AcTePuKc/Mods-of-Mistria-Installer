@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T02:48:15.7122405Z",
+  "generatedAt": "2026-09-09T02:52:06.9210095Z",
   "coreKeyCount": 465,
   "nextLanguage": "pl",
   "nextBatch": [
-    "GUIRemoveSelectedFailed",
-    "GUIRemoveModRefused",
-    "GUIRemoveModMissing",
-    "GUIIssueDismissTooltip",
-    "GUIIssueShowDismissed",
-    "GUIIssueDismissedHeader",
-    "GUIIssueDismissedMarker",
-    "GUIConflictSharedFilesHeader",
-    "GUIConflictCurrentWinner",
-    "GUIConflictMakeThisWin",
-    "GUIConflictMakeThisWinTooltip",
-    "GUIConflictWinnerNow",
-    "GUIConflictFindAFix",
-    "GUIConflictFindAFixTooltip",
-    "GUIHotkeyRebindButton",
-    "GUIHotkeyRebindTooltip",
-    "GUIHotkeyRebindTitle",
-    "GUIHotkeyRebindConfirm",
-    "GUIHotkeyRebindDone",
-    "GUIHotkeyRebindFailed",
-    "GUIHotkeyRebound",
-    "GUIHotkeyReboundResolved",
-    "GUIHotkeyBlockedArchive",
-    "GUIHotkeyBlockedNotDeclared"
+    "GUIHotkeyBlockedNoFreeKeys",
+    "GUIHotkeyBlockedUnreadable",
+    "GUISortAlphabetically",
+    "GUISortAlphabeticallyTooltip",
+    "GUISortRecentlyUpdated",
+    "GUISortRecentlyUpdatedTooltip",
+    "GUIMoveModToTop",
+    "GUIMoveModToTopTooltip",
+    "GUIMoveModToBottom",
+    "GUIMoveModToBottomTooltip",
+    "GUIShowOnlyEnabled",
+    "GUIShowOnlyEnabledTooltip",
+    "GUIShowOnlyUpdatable",
+    "GUIShowOnlyUpdatableTooltip",
+    "GUIListReorderedNote",
+    "GUIScrollToTop",
+    "GUIScrollToBottom",
+    "GUIRowBindingClash",
+    "GUIChangelogTitle",
+    "GUIChangelogLoading",
+    "GUIChangelogPreview",
+    "GUIChangelogNone",
+    "GUIChangelogUnavailable",
+    "GUIChangelogVersionCount"
   ],
   "languages": [
     {
@@ -61,7 +61,7 @@
     },
     {
       "language": "ko",
-      "coreMissing": 132,
+      "coreMissing": 108,
       "coreComplete": false
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "language": "pl",
-      "coreMissing": 224,
+      "coreMissing": 200,
       "coreComplete": false
     },
     {
