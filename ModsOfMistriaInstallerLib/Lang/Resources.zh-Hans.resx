@@ -442,4 +442,28 @@
   <data name="GUIVersionsHeader" xml:space="preserve"><value>回滚到：</value></data>
   <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>点击以下载并安装。当前版本会作为备份保留。</value></data>
   <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>点击打开下载页面。AIM 不知道这是 Nexus 上的哪个文件。右键单击模组并使用“关联到 Nexus...”，即可让 AIM 自动安装。</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus 报告你的帐户（{0}）为 Premium，因此此次拒绝与帐户等级无关，通常是登录已过期或被撤销。请从齿轮菜单重新登录。</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus 报告你的帐户（{0}）为免费帐户。直接下载是 Premium 功能，请使用网站上的按钮。</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>未连接 Nexus 帐户，因此 AIM 无法直接下载任何内容。</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM 无法检查你的 Nexus 帐户：{0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>按键绑定</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>在一个列表中显示模组绑定的所有按键和控制器按钮，冲突以红色显示并可直接编辑。</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>模组按键绑定</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>你的模组当前绑定的按键。模组将这些设置保存在游戏自己的配置文件夹中，而不是模组文件夹中，因此更新模组不会丢失它们。但模组仍可能重置自己的设置，AIM 会在发生这种情况时提供恢复你的选择。</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} 个绑定，其中 {1} 个冲突。</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>仅显示冲突</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>刷新</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM 无法读取你的模组按键绑定：{0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>正在读取模组绑定...</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>你选择的模组中没有 AIM 可以看到的按键绑定。运行时创建绑定的模组要在游戏运行后才会显示。</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>没有冲突。</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM 找不到游戏的配置文件夹，因此正在显示模组自带的默认值。运行一次游戏后，这些会变成实际绑定。</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria 正在运行。编辑功能已关闭，因为游戏退出时会重写每个模组的设置，并覆盖这里的修改。关闭游戏后点击“刷新”。</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>也被 {0} 使用</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>相同输入绑定于：</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>勾选或取消勾选屏幕上的模组</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>应用于搜索和筛选器当前显示的行，不适用于被隐藏的内容。没有筛选器时就是所有模组。AIM 无法安装的模组保持不变。</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>模组默认值 - 在模组保存设置之前 AIM 无法更改</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>此模组尚未保存设置，因此这是编译在模组中的默认值。运行一次游戏，或在模组自己的设置中更改它，AIM 才能在这里编辑。</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>（未绑定）</value></data>
 </root>
