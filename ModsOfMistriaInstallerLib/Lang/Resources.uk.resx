@@ -707,6 +707,46 @@
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Гра завершилася зі збоєм з іншої причини; {0} виключено для початкового збою. Попередні результати збережено.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>Для цього збою перевірено підозрюваних: {0} із {1}.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM не може зберегти результати; вони доступні лише доки відкрите це вікно.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Перевірити наступний: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Перевіряє наступного неперевіреного підозрюваного: вимикає, перебудовує, запускає та спостерігає.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Усіх підозрюваних перевірено, але жоден не був причиною сам по собі. Два моди можуть спричиняти проблему разом.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Почати спочатку</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Видаляє всі результати для цього збою та знову пропонує всіх підозрюваних.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Усі результати цього збою очищено.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Виключено — {0} із {1} підозрюваних</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Показати докази</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Читаю сторінки {0} у пошуках виправлення…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Не винен</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Позначає мод невинним без запуску перевірки. Він виключається з пропозицій і знову вмикається, якщо AIM його вимикав.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Позначити причиною збою</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Записує, що цей мод спричиняє збій. AIM вимикає та позначає його винуватцем за вашим рішенням.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Скасувати мою позначку</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Скасовує вашу позначку й повертає мод до списку неперевірених.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Позначено вручну, AIM не перевіряв.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>ПОЗНАЧЕНО ЯК НЕВИННИЙ</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>ПОЗНАЧЕНО ЯК ПРИЧИНУ ЗБОЮ</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Ви вказали цей мод як причину. AIM його не перевіряв, а вимкнув за вашим рішенням.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} позначено причиною збою та вимкнено. Встановіть, щоб перебудувати гру без нього.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} позначено причиною збою. Він уже вимкнений.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} позначено невинним і більше не буде запропоновано для цього збою.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} позначено невинним і знову ввімкнено. Встановіть, щоб повернути його в гру.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Позначку {0} скасовано. Він знову у списку неперевірених.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM не завантажив збій, до якого можна це прив’язати.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Увімкнути знову</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Мод виключено, але він досі вимкнений. Ця кнопка вмикає його знову.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} знову ввімкнено. Встановіть, щоб повернути його в гру.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM не зміг увімкнути {0}. Мода може не бути у списку або він не завантажився.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>ВИКЛЮЧЕНО</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>ВІДОМА ПРИЧИНА ЗБОЮ</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Перевірка це довела: без мода гра не завершилася зі збоєм. AIM залишив його вимкненим і позначив у списку.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>ПЕРЕВІРЕНО, ВІДПОВІДІ НЕМАЄ</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Виправлення, які AIM може застосувати сам</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Це механічні виправлення явно помилкових даних, а не здогадки про наміри автора. Мод спочатку зберігається в історії версій і захищається від оновлень.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Застосувати виправлення</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Застосовано до {0}. Мод позначено зміненим і захищено від оновлень.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Тут немає проблеми, яку AIM може виправити сам.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;У {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM збереже мод в історії та захистить виправлення від непомітного перезапису. Продовжити?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Оновлення заблоковано: AIM виправив мод: {0}</value></data>
   <data name="GUICrashTitle" xml:space="preserve"><value>Перевірка збою</value></data>
   <data name="GUICrashPickerLabel" xml:space="preserve"><value>Збій</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Файли збоїв</value></data>
