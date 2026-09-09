@@ -820,4 +820,5 @@
   <data name="GUICrashBadgeStrong" xml:space="preserve"><value>ЙМОВІРНО</value></data>
   <data name="GUICrashBadgeLikely" xml:space="preserve"><value>МОЖЛИВО</value></data>
   <data name="GUICrashBadgePossible" xml:space="preserve"><value>МАЛОЙМОВІРНО</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Цей мод потребує інсталятор {0}, а AIM підтримує {1}. Найімовірніше, він все одно працюватиме - спробуйте, а якщо щось буде не так, перевірте сторінку моду на наявність примітки щодо версії.</value></data>
 </root>

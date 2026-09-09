@@ -1,9 +1,8 @@
 {
-  "generatedAt": "2026-09-09T12:51:01.8559717Z",
+  "generatedAt": "2026-09-09T12:52:44.7379737Z",
   "scope": "remaining",
   "coreKeyCount": 106,
-  "nextLanguage": "de",
-  "nextBatch": "CoreModRequiresNewerInstaller",
+  "nextLanguage": null,
   "languages": [
     {
       "language": "bg",
@@ -16,120 +15,120 @@
     },
     {
       "language": "de",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "es",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "fr",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "id",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "ja",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "ko",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "nl",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "pl",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "pt-br",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "ru",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "uk",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "zh-Hans",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     },
     {
       "language": "zh-Hant",
-      "coreMissing": 1,
-      "coreComplete": false,
+      "coreMissing": 0,
+      "coreComplete": true,
       "deferredMissing": null,
       "deferredComplete": null,
-      "remainingMissing": 1,
-      "remainingComplete": false
+      "remainingMissing": 0,
+      "remainingComplete": true
     }
   ]
 }

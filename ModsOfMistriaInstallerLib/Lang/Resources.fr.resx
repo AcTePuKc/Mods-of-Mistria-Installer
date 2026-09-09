@@ -1148,4 +1148,5 @@ Les confier à AIM ?</value></data>
   <data name="GUICrashRepairNone" xml:space="preserve"><value>Rien ici n’est endommagé d’une manière qu’AIM puisse réparer seul.</value></data>
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Dans {1} :&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM copiera d’abord le mod complet dans votre historique et empêchera ses mises à jour afin que cette correction ne soit pas écrasée silencieusement. Continuer ?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Exclu des mises à jour car AIM l’a corrigé : {0}</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Ce mod demande l'installateur {0}, tandis qu'AIM implémente {1}. Il fonctionnera probablement quand même : essaie-le et, si quelque chose ne va pas, consulte la page du mod pour connaître la version requise.</value></data>
 </root>
