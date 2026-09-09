@@ -568,4 +568,26 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUINxmDownloadExpired" xml:space="preserve"><value>このダウンロードリンクの期限が切れています。Modページでもう一度「Vortex download」ボタンをクリックしてください。</value></data>
   <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Modフォルダーが見つかりませんでした。</value></data>
   <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Nexusにファイルを問い合わせています...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>{0}をダウンロードしています</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>{0}を展開しています</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>インストールをキャンセルしました</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0}をインストールしました</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0}個のModをインストールしました</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>ダウンロードをキャンセルしました</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>ダウンロードリンクが空です。</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>これはnxm://リンクではありません。</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>リンクにゲーム名がありません。</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexusコレクションにはまだ対応していません。Modを個別にダウンロードしてください。</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>このリンクはModファイルのダウンロードではありません。</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>リンクのMod IDまたはファイルIDが無効です。</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>インストーラーの実行場所を特定できませんでした。</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>nxm://リンクの登録に対応しているのはWindowsとLinuxだけです。</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIMは登録されましたが、Windowsはまだnxm://リンクに{0}を使用している可能性があります。&#xA;&#xA;Windowsの既定のアプリで、nxm://の既定としてAIMを選択してください。</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>書き込み後にnxm://の登録を確認できませんでした。</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>アップデートで修正済みになる可能性があります</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1}が利用可能です。現在は{2}で、AIMの修正が適用されています: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>更新してAIMの修正を削除</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>更新するとModフォルダーが置き換わるため、AIMの編集はなくなります。新しい版で問題が直っていなければクラッシュが再発しますが、もう一度修正できます。以前の版は復元リストに残ります。</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>外部アーカイブを検出しました</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIMは外部で変更されたassets.zipを検出しました。&#xA;&#xA;続行するとAIMは次を行います:&#xA;• assets.foreign-...zipとして保存&#xA;• 確認済みのバックアップを復元&#xA;• このインストールを再試行&#xA;&#xA;外部アーカイブにしかないModは無効になります。続行しますか?</value></data>
 </root>
