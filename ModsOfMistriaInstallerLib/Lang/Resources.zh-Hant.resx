@@ -593,4 +593,52 @@
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>更新會取代模組資料夾，因此 AIM 的編輯也會隨之移除。如果新版本沒有修正問題，崩潰會再次出現，你可以重新套用修正。之前的版本仍在還原清單中。</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>偵測到外部壓縮檔</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM 找到了外部的 assets.zip。&#xD;&#xA;&#xD;&#xA;如果繼續，AIM 將：&#xD;&#xA;• 將其保留為 assets.foreign-…zip 檔案&#xD;&#xA;• 還原已驗證的備份&#xD;&#xA;• 重試此次安裝&#xD;&#xA;&#xD;&#xA;僅存在於外部壓縮檔中的模組將保持未啟用。要繼續嗎？</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>尋找修復</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>正在讀取這些模組的頁面…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>在齒輪選單中連接 Nexus 帳戶，AIM 就能為你讀取模組頁面。在此之前，下面的連結仍是最快的檢查方式。</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>這些模組的說明、readme、更新日誌、錯誤報告和留言都沒有回答這個問題。AIM 搜尋了整個留言串和最近的錯誤報告，所以這是「沒人提到」，而不是「沒人查過」。這不等於「沒有問題」。</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>這些模組頁面中與此組合有關的內容：{0}。</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM 無法讀取模組頁面：{0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>模組頁面上的說法</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>自行查看</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM 會搜尋完整留言串並深入讀取錯誤追蹤器，但始終只是未登入訪客。這些連結會開啟真實頁面。</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>開啟此模組頁面</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>開啟修補程式</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>你找到了什麼？</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>記錄結果後，答案會與問題一起保存，下次無需重新判斷。</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>修補程式連結（選填）：</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>不是真正的衝突</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>模組共用檔案，但實際使用沒有影響。將問題標記為正常，並隱藏到任一模組更新為止。</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>已有修補程式</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>有人發布了相容性修補程式。按一下新增連結，再按一下記錄連結。將問題標記為正常。</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>兩者不相容</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>記錄這個結果，但繼續顯示問題，因為你仍需停用其中一個模組。</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>仍在判斷</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>記錄修補程式</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>這不像是 https 連結。貼上修補程式網址，或將輸入框留空。</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIM 的檔案分析</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM 已讀取這些模組共用的所有檔案。</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM 無法讀取所有檔案，請將其視為分析而非事實。</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} 個共用檔案</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} 個共用檔案</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>無法建立此視窗的一部分：{0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>衝突中的模組</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>開啟頁面自行判斷模組，或在決定不使用它後將其從模組清單中移除。</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>開啟頁面</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM 不知道此模組的來源，因此沒有可開啟的頁面。</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>移除</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>從模組資料夾中移除該模組。AIM 會先詢問，並將檔案移到資源回收筒。</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} 已移除，因此衝突不再存在。</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>你已經擁有的內容</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>清單中與此組合有關的模組。AIM 在提供下載前已檢查它們。</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>AIM 可以做什麼</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>只有在你選擇後才會執行操作，而且這些操作都可以復原。</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>已有的修補程式</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>核准並套用</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>完成：{0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>操作失敗：{0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>表示它沒有問題</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>表示這是一個問題</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>符合條件時有效</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>提到主題但沒有回答</value></data>
 </root>
