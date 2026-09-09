@@ -782,4 +782,44 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>ゲームは別の原因でクラッシュしたため、元のクラッシュについて{0}は除外されました。AIMは新しいクラッシュを読み込み、これまでの結果を保持しています。</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>このクラッシュについて、{1}個中{0}個の候補をテストしました。</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIMはこれらの結果を書き込めないため、このウィンドウを開いている間だけ有効です。</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>次をテスト: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>次の未テスト候補で同じ確認を行います。無効化、再構築、起動、監視を実行します。除外済みのModは有効なままです。</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>すべての候補をテストしましたが、単独で原因になったものはありません。2つのModが組み合わさっている可能性があります。候補全体を一度に無効にするか、下の一覧を添えてクラッシュを報告してください。</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>最初からやり直す</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>このクラッシュについてAIMが記録した判定をすべて破棄し、候補を再び提示します。Modを追加、削除、並べ替えした後に行ってください。判定はテストした一覧に対してのみ有効です。</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>このクラッシュの判定をすべて消去しました。</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>除外済み: {1}個中{0}個の候補</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>テストで分かったことを表示</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>{0}のページから修正を探しています…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>原因ではない</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>テストを行わず、このModがクラッシュの原因ではないと記録します。除外一覧に移動し、テスト対象から外れ、AIMが無効にしていた場合は再有効化されます。AIMが証明したのではなく、あなたの判断として記録され、元に戻せます。</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>クラッシュの原因としてマーク</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>このModがクラッシュを起こすと記録します。AIMは無効化して一覧にマークし、テストで原因が見つかった場合と同じように扱いますが、あなたの判断として表示されます。元に戻せます。</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>自分のマークを取り消す</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>手動で記録した判定を取り消し、このModを未テストの候補一覧に戻します。Modの有効・無効状態は現在のままです。</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>手動でマーク済み。AIMによるテストなし。</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>原因ではないとマーク</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>クラッシュの原因としてマーク</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>あなたが原因としてマークしました。AIMはテストせず、あなたの判断に基づいて無効化し一覧にマークしています。AIMが自動で修正できる内容は下にあります。Modのバグスレッドに答えがあるかもしれません。</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0}はクラッシュの原因としてマークされ、無効になっています。インストールして、このModなしでゲームを再構築してください。</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0}はクラッシュの原因としてマークされています。すでに無効でした。</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0}は原因ではないとマークされ、このクラッシュの候補には再び表示されません。</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0}は原因ではないとマークされ、再び有効になりました。インストールしてゲームに戻してください。</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>{0}へのマークを取り消しました。再び未テストの候補一覧に戻っています。</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>これを記録するためのクラッシュが読み込まれていません。</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>再有効化</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>このModは除外されていますが、まだ無効です。通常AIMは除外したModを自動で再有効化しますが、今回はできなかったため、この操作で行います。</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0}を再有効化しました。インストールしてゲームに戻してください。</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIMは{0}を再有効化できませんでした。一覧から削除されたか、読み込みに失敗した可能性があります。</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>除外済み</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>既知のクラッシュ原因</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>テストで証明されました。このModを無効にするとゲームはクラッシュしませんでした。AIMは無効のまま一覧にマークしています。AIMが自動で修正できる内容は下にあります。Modのバグスレッドに答えがあるかもしれません。</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>テスト済み、答えなし</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>AIMが自動で適用できる修正</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>これらはバグスレッドではなく、AIM自身の確認結果から導いた修正です。どれもファイル内の明らかに誤った内容を機械的に直すもので、作成者の意図を推測するものではありません。最初にMod全体をバージョン履歴へコピーし、編集済みとマークして、正しく修正できる更新が来るまで更新対象から外します。</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>この修正を適用</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>{0}に適用しました。編集済みとしてマークし更新対象から外しています。変更前のバージョンは上の復元一覧にあります。</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>AIMが自動で修正できる形で壊れているものはありません。</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;{1}内:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIMはまずMod全体をバージョン履歴にコピーし、この修正が更新で静かに上書きされないよう更新対象から外します。続行しますか？</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>AIMが修正したため更新対象外: {0}</value></data>
 </root>

@@ -782,4 +782,44 @@ Alihkan ke AIM?</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Game crash karena hal lain, jadi {0} disingkirkan untuk crash awal. AIM memuat crash baru dan tetap menyimpan hasil yang sudah dikumpulkan.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} dari {1} tersangka telah diuji untuk crash ini.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM tidak memiliki tempat untuk menulis hasil ini, jadi hasilnya hanya bertahan selama jendela ini terbuka.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Uji berikutnya: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Menjalankan pemeriksaan yang sama pada tersangka berikutnya yang belum diuji: menonaktifkan, membangun ulang, menjalankan, lalu mengawasi. Mod yang sudah disingkirkan tetap aktif.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Semua tersangka sudah diuji dan tidak ada yang menjadi penyebab sendirian. Dua mod dapat menyebabkan ini bersama-sama. Coba nonaktifkan seluruh daftar sekaligus atau laporkan crash dengan daftar di bawah.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Mulai lagi</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Membuang semua hasil yang dicatat AIM untuk crash ini dan menawarkan semua tersangka lagi. Sebaiknya lakukan setelah menambah, menghapus, atau mengurutkan ulang mod, karena hasil hanya berlaku untuk daftar yang diuji.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Semua hasil untuk crash ini telah dihapus.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Disingkirkan: {0} dari {1} tersangka</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Tampilkan bukti dari sesi-sesi itu</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Membaca halaman {0} untuk mencari perbaikan…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Bukan penyebab</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Mencatat bahwa kamu tahu mod ini bukan penyebab crash tanpa mengujinya. Mod dipindahkan ke daftar yang disingkirkan, tidak lagi ditawarkan untuk diuji, dan diaktifkan kembali jika AIM sebelumnya menonaktifkannya. Ini ditandai sebagai keputusanmu, bukan bukti AIM, dan dapat dibatalkan.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Tandai sebagai penyebab crash</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Mencatat bahwa kamu tahu mod ini menyebabkan crash. AIM menonaktifkannya, menandainya di daftar mod, dan menganggapnya sebagai penyebab seperti hasil pengujian, tetapi diberi label sebagai keputusanmu. Dapat dibatalkan.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Batalkan tandaku</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Membatalkan hasil yang kamu catat sendiri dan mengembalikan mod ini ke daftar tersangka sebagai belum diuji. Mod dibiarkan dalam keadaan aktif atau nonaktif seperti sekarang.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Ditandai manual, tidak diuji oleh AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>DITANDAI BUKAN PENYEBAB</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>DITANDAI SEBAGAI PENYEBAB</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Kamu menandainya sebagai penyebab. AIM tidak mengujinya, tetapi menonaktifkan dan menandainya di daftar mod berdasarkan keputusanmu. Hal yang dapat diperbaiki AIM ada di bawah; utas bug-nya mungkin sudah memiliki jawaban.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} ditandai sebagai penyebab crash dan telah dinonaktifkan. Instal untuk membangun ulang game tanpanya.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} ditandai sebagai penyebab crash. Mod itu sudah nonaktif.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} ditandai bukan penyebab dan tidak akan ditawarkan lagi untuk crash ini.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} ditandai bukan penyebab dan telah diaktifkan kembali. Instal untuk memasukkannya lagi ke game.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Tandamu pada {0} telah dibatalkan. Mod kembali ada di daftar sebagai belum diuji.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM tidak memiliki crash yang dimuat untuk mencatat ini.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Aktifkan kembali</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Mod ini sudah disingkirkan tetapi masih nonaktif. Biasanya AIM mengaktifkan kembali mod yang disingkirkan, tetapi kali ini gagal, jadi tombol ini melakukannya.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} kembali aktif. Instal untuk memasukkannya ke game.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM tidak dapat mengaktifkan kembali {0}. Mungkin mod sudah tidak ada di daftar atau gagal dimuat.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>DISINGKIRKAN</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>PENYEBAB CRASH YANG DIKENAL</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Pengujian membuktikannya: game tidak crash saat mod dinonaktifkan. AIM membiarkannya nonaktif dan menandainya di daftar mod. Hal yang dapat diperbaiki AIM ada di bawah; utas bug-nya mungkin sudah memiliki jawaban.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>DIUJI, TIDAK ADA JAWABAN</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Perbaikan yang dapat diterapkan AIM sendiri</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Perbaikan ini ditemukan AIM dari pemeriksaannya sendiri, bukan dari utas bug. Setiap perbaikan adalah koreksi mekanis terhadap sesuatu yang terbukti salah di file, bukan tebakan tentang maksud penulis. Seluruh mod disalin ke riwayat versi terlebih dahulu, ditandai diedit, dan ditahan dari update sampai ada versi yang mungkin memperbaikinya dengan benar.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Terapkan perbaikan ini</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Diterapkan pada {0}. Mod ditandai diedit dan ditahan dari update; versi sebelumnya ada di daftar Pemulihan.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Tidak ada yang rusak dengan cara yang dapat diperbaiki AIM sendiri.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Di {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM akan menyalin seluruh mod ke riwayat versi terlebih dahulu dan menahan update agar perbaikan ini tidak tertimpa diam-diam. Lanjutkan?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Ditahan dari update karena telah diperbaiki AIM: {0}</value></data>
 </root>
