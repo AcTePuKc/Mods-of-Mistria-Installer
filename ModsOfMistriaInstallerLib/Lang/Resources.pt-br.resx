@@ -816,4 +816,30 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Baixa e instala cada atualização pendente em sequência, mantendo a versão atual de cada mod como um backup que pode ser restaurado.</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Atualizar mods</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Não há atualizações pendentes. Verifique as atualizações primeiro.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Atualizar {0} mod(s)?&#xA;&#xA;{1}&#xA;&#xA;A versão atual de cada mod será mantida como backup, que você pode restaurar pelo menu do botão direito.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Atualizando {0} de {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} de {1} mod(s) atualizado(s).</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Não foi possível baixar estes mods diretamente; é necessária a página deles no Nexus: {0}&#xA;&#xA;O Nexus fornece links diretos de download apenas para contas Premium. Em uma conta gratuita, abra a página do mod e use o botão "Mod Manager Download". O AIM o receberá se estiver registrado para lidar com esses links.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Nada a informar. O AIM não encontrou arquivos compartilhados, conflitos de atalhos, requisitos ausentes ou avisos de compatibilidade entre os mods selecionados.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Você marcou isto como não sendo um conflito real.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Você encontrou um patch para isto.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Você considerou estes mods incompatíveis. Desative um deles.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Resolvido redefinindo a configuração: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Pastas de download monitoradas</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mods baixados manualmente para uma pasta monitorada são movidos para sua pasta de mods e aparecem na lista automaticamente.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Monitorar uma pasta...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Escolha uma pasta para monitorar mods baixados</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Verificar pastas monitoradas agora</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Nenhuma pasta está sendo monitorada</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Parar de monitorar esta pasta</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Pastas monitoradas</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Nada novo para importar. O AIM move apenas arquivos e pastas que contenham um manifesto; todo o restante permanece no local.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod(s) importado(s) de uma pasta monitorada.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Movido para sua pasta de mods:
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - você já tem este mod instalado como "{1}". Atualize essa cópia ou remova-a primeiro: duas cópias do mesmo mod disputam os mesmos arquivos.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Deixado na pasta monitorada:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>A pasta de mods não foi encontrada, então não há nada para abrir.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Não foi possível abrir a pasta de mods: {0}</value></data>
 </root>

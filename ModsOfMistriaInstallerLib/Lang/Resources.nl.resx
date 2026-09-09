@@ -911,4 +911,12 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUINxmInvalidIds" xml:space="preserve"><value>De link bevat een ongeldige mod- of bestands-ID.</value></data>
   <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Kon niet bepalen waar de installer vandaan draait.</value></data>
   <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Registratie van nxm://-links wordt alleen ondersteund op Windows en Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM is geregistreerd, maar Windows gebruikt mogelijk nog {0} voor nxm://-links.&#xA;&#xA;Kies AIM als standaard voor nxm:// in de standaardapps van Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>De nxm://-registratie kon na het opslaan niet worden geverifieerd.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Een update kan je patch herstellen</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} is beschikbaar. Je gebruikt {2} met de AIM-fix toegepast: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Bijwerken en AIM-fix verwijderen</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Bijwerken vervangt de mods-map, dus de bewerking van AIM verdwijnt. Als de nieuwe versie het probleem niet heeft opgelost, komt de crash terug en kun je de fix opnieuw toepassen. De vorige versie staat nog in de herstel-lijst.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Extern archief gevonden</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM heeft een extern gewijzigde assets.zip gevonden.&#xA;&#xA;Als je doorgaat zal AIM:&#xA;• het bewaren als assets.foreign-...zip&#xA;• de gecontroleerde back-up herstellen&#xA;• deze installatie opnieuw proberen&#xA;&#xA;Mods die alleen in het externe archief bestaan worden inactief. Doorgaan?</value></data>
 </root>
