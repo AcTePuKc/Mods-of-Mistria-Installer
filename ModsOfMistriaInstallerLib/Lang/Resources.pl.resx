@@ -740,6 +740,54 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUICrashReading" xml:space="preserve"><value>Odczytywanie śladu wywołań w odniesieniu do zainstalowanych modów…</value></data>
   <data name="GUICrashNoModList" xml:space="preserve"><value>AIM nie widzi stąd listy modów, więc może pokazać awarię, ale nie wskaże jej przyczyny.</value></data>
   <data name="GUICrashFailed" xml:space="preserve"><value>AIM nie mógł dokończyć odczytywania tej awarii: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Ta awaria jest starsza od obecnie zainstalowanych modów. AIM przebudował grę później, więc przyczyna awarii nie jest już tym, co znajduje się na dysku. Zagraj raz przed zmianami i potraktuj poniższe mody jako wskazówki, nie werdykty.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Nie jesteś zalogowany do Nexus, więc AIM nie może czytać trackerów błędów modów. Wszystkie powyższe wnioski pochodzą z własnych plików.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Odczytywanie trackerów błędów i komentarzy wskazanych modów…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Nic nie wskazuje dostatecznie wyraźnie na mod, aby warto było czytać jego stronę.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM nie mógł odczytać stron modów: {0}. Wnioski z własnych plików pozostają aktualne.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Na stronach modów nie ma wzmianki o tej awarii.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>Liczba elementów na stronach modów odnoszących się do tego problemu: {0}.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>PEWNE</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>PRAWDOPODOBNE</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>MOŻLIWE</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>MAŁO PRAWDOPODOBNE</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Otwórz stronę moda</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Otwórz tę stronę</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Zgłoś ten błąd</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Tworzy raport potrzebny autorowi — błąd, ślad wywołań, wersję gry i pozostałe zainstalowane mody — kopiuje go do schowka i otwiera tracker błędów moda. To Ty go czytasz i publikujesz; AIM tego nie robi.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Raport jest w schowku, a tracker błędów został otwarty. Przeczytaj go i opublikuj.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Raport jest w schowku. AIM nie wie, skąd pochodzi ten mod, więc musisz sam znaleźć tracker autora lub jego Discord.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Skopiowano.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Wyłącz i sprawdź</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Wyłącza ten mod, przebudowuje grę i uruchamia ją, aby sprawdzić, czy był przyczyną, zamiast zgadywać.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Przebudowa gry bez tego moda — po zakończeniu gra uruchomi się sama. Postęp znajduje się poniżej.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Usuń mod</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>Usunięto {0}.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Wersje i zmiany AIM</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Przetestuj następny: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Wykonuje tę samą kontrolę dla kolejnego nieprzetestowanego podejrzanego: wyłącza go, przebudowuje, uruchamia i obserwuje. Mody już wykluczone pozostają włączone.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Każdy podejrzany został przetestowany i żaden sam nie był przyczyną. Dwa mody mogą powodować problem razem — spróbuj wyłączyć całą listę albo zgłoś awarię z poniższą listą.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Zacznij od nowa</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Usuwa wszystkie werdykty zapisane przez AIM dla tej awarii i ponownie proponuje wszystkich podejrzanych. Warto to zrobić po dodaniu, usunięciu lub zmianie kolejności modów.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Wyczyszczono wszystkie werdykty dla tej awarii.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Wykluczono — {0} z {1} podejrzanych</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Pokaż, co udowodniły te testy</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Odczytywanie własnych stron {0} w poszukiwaniu poprawki…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Nie jest przyczyną</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Zapisuje, że wiesz, iż ten mod nie powoduje tej awarii, bez zużywania testu. Przenosi go na listę wykluczonych, przestaje go proponować i włącza ponownie, jeśli AIM go wyłączył. To Twój wybór, nie dowód AIM, i można go cofnąć.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Oznacz jako przyczynę awarii</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Zapisuje, że wiesz, iż ten mod powoduje awarię. AIM wyłącza go, oznacza na liście i traktuje jako przyczynę — jak po udanym teście, ale z etykietą Twojej decyzji. Można to cofnąć.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Cofnij moje oznaczenie</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Cofa werdykt zapisany ręcznie i przywraca mod na listę jako nieprzetestowany. Pozostawia jego obecny stan włączenia bez zmian.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Oznaczono ręcznie, nie przetestowano przez AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>OZNACZONY JAKO NIEBĘDĄCY PRZYCZYNĄ</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>OZNACZONY JAKO PRZYCZYNA AWARII</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Oznaczyłeś ten mod jako przyczynę. AIM go nie testował — wyłączył go i oznaczył na Twoje polecenie. Poprawki, które AIM może zastosować sam, są poniżej; wątek błędu może już zawierać odpowiedź.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} oznaczono jako przyczynę awarii i wyłączono. Zainstaluj, aby przebudować grę bez niego.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} oznaczono jako przyczynę awarii. Był już wyłączony.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} oznaczono jako niebędący przyczyną i nie zostanie ponownie zaproponowany dla tej awarii.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} oznaczono jako niebędący przyczyną i ponownie włączono. Zainstaluj, aby przywrócić go w grze.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Cofnięto Twoje oznaczenie {0}. Mod znów jest na liście jako nieprzetestowany.</value></data>
   <data name="GUIResearchTitle" xml:space="preserve"><value>Znajdź poprawkę</value></data>
   <data name="GUIResearchWorking" xml:space="preserve"><value>Odczytywanie informacji ze stron tych modów…</value></data>
   <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Połącz konto Nexus w menu koła zębatego, a AIM będzie mógł czytać strony tych modów. Do tego czasu najszybsze pozostają poniższe linki.</value></data>

@@ -1090,4 +1090,52 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashReading" xml:space="preserve"><value>Lendo a pilha de chamadas em relação aos mods instalados…</value></data>
   <data name="GUICrashNoModList" xml:space="preserve"><value>O AIM não consegue ver sua lista de mods daqui, então pode mostrar o crash, mas não dizer qual mod o causou.</value></data>
   <data name="GUICrashFailed" xml:space="preserve"><value>O AIM não conseguiu terminar de ler este crash: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Este crash é mais antigo que os mods instalados agora. O AIM reconstruiu o jogo depois, então a causa do crash não é mais o que está no disco. Jogue uma vez antes de alterar qualquer coisa e trate os mods abaixo como pistas, não vereditos.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Você não está conectado ao Nexus, então o AIM não pode ler os rastreadores de bugs dos mods. Tudo acima foi descoberto a partir dos seus próprios arquivos.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Lendo os rastreadores de bugs e comentários dos mods indicados…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Nada aponta claramente para um mod a ponto de valer a pena ler sua página.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>O AIM não conseguiu ler as páginas dos mods: {0}. As conclusões dos seus próprios arquivos continuam válidas.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Nada nas páginas dos mods menciona este crash.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} item(ns) nas páginas dos mods se relacionam a este problema.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>CERTO</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>PROVÁVEL</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>POSSÍVEL</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>IMPROVÁVEL</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Abrir página do mod</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Abrir esta página</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Relatar este bug</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Cria o relatório que o autor precisa — erro, pilha de chamadas, versão do jogo e outros mods instalados — coloca-o na área de transferência e abre o rastreador de bugs do mod. Você lê e publica; o AIM não faz isso.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>O relatório está na área de transferência e o rastreador de bugs está aberto. Leia-o e publique.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>O relatório está na área de transferência. O AIM não sabe de onde veio este mod, então você terá que encontrar o rastreador ou Discord do autor.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Copiado.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Desativar e verificar</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Desativa este mod, reconstrói o jogo e o executa, para descobrir se ele era a causa em vez de adivinhar.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Reconstruindo o jogo sem este mod — ele iniciará sozinho quando terminar. O progresso está abaixo.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Remover mod</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} foi removido.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versões e alterações do AIM</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Testar o próximo: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Executa a mesma verificação no próximo suspeito não testado: desativa, reconstrói, inicia e observa. Os mods já descartados permanecem ativados.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Todos os suspeitos foram testados e nenhum foi a causa sozinho. Dois mods podem causar isso juntos — tente desativar toda a lista ou relate o crash com a lista abaixo.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Recomeçar</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Descarta todos os vereditos que o AIM registrou para este crash e oferece todos os suspeitos novamente. É útil depois de adicionar, remover ou reordenar mods.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Todos os vereditos deste crash foram apagados.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Descartados — {0} de {1} suspeitos</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Mostrar o que esses testes provaram</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Lendo as próprias páginas de {0} em busca de uma correção…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Não é a causa</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Registra que você sabe que este mod não está por trás do crash, sem gastar uma execução. Ele vai para a lista de descartados, deixa de ser oferecido para testes e é ativado novamente se o AIM o tiver desativado. É uma decisão sua, não algo provado pelo AIM, e pode ser desfeito.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Marcar como causador do crash</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Registra que você sabe que este mod causa o crash. O AIM o desativa, marca-o na lista e trata-o como a causa, como quando um teste encontra um, mas identificado como sua decisão. Pode ser desfeito.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Desfazer minha marcação</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Desfaz o veredito registrado manualmente e coloca este mod novamente na lista como não testado. O estado atual do mod é mantido.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Marcado manualmente, não testado pelo AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>MARCADO COMO NÃO SENDO A CAUSA</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>MARCADO COMO CAUSADOR DO CRASH</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Você marcou isto como a causa. O AIM não o testou — desativou o mod e o marcou na sua lista por sua decisão. Correções que o AIM pode aplicar sozinho estão abaixo; a discussão do bug talvez já tenha uma resposta.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} foi marcado como causador do crash e desativado. Instale para reconstruir o jogo sem ele.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} foi marcado como causador do crash. Ele já estava desativado.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} foi marcado como não sendo a causa e não será oferecido novamente para este crash.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} foi marcado como não sendo a causa e ativado novamente. Instale para colocá-lo de volta no jogo.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Sua marcação de {0} foi desfeita. Ele está novamente na lista como não testado.</value></data>
 </root>
