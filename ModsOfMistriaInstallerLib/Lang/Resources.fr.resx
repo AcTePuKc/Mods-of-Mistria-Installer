@@ -1151,4 +1151,6 @@ Les confier à AIM ?</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Ce mod demande l'installateur {0}, tandis qu'AIM implémente {1}. Il fonctionnera probablement quand même : essaie-le et, si quelque chose ne va pas, consulte la page du mod pour connaître la version requise.</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>Thème</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Par défaut du système</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Clair</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Sombre</value></data>
 </root>

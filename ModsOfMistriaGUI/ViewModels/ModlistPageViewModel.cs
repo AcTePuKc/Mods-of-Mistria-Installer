@@ -87,6 +87,7 @@ public partial class ModlistPageViewModel : PageViewBase
         }
 
         SetLanguageCommand = new RelayCommand<string?>(SetLanguage);
+        SetThemeCommand = new RelayCommand<string?>(SetTheme);
         Localization.LanguageChanged += OnLocalizationChanged;
         _settings.PropertyChanged += (_, e) =>
         {
@@ -107,11 +108,18 @@ public partial class ModlistPageViewModel : PageViewBase
     public NexusDownloadsViewModel? Nexus { get; }
 
     public IRelayCommand<string?> SetLanguageCommand { get; }
+    public IRelayCommand<string?> SetThemeCommand { get; }
 
     private void SetLanguage(string? languageCode)
     {
         _settings.UiLanguage = string.IsNullOrWhiteSpace(languageCode) ? "system" : languageCode;
         Localization.SetLanguage(_settings.UiLanguage);
+    }
+
+    private void SetTheme(string? theme)
+    {
+        _settings.UiTheme = Settings.NormalizeTheme(theme);
+        App.SetTheme(_settings.UiTheme);
     }
 
     private void OnLocalizationChanged(object? sender, EventArgs e)

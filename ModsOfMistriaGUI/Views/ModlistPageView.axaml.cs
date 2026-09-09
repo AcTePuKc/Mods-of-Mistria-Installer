@@ -52,6 +52,7 @@ public partial class ModlistPageView : UserControl
         AttachedToVisualTree += (_, _) =>
         {
             UpdateLanguageCheckmark();
+            UpdateThemeCheckmark();
             OnDataContextChanged(this, EventArgs.Empty);
         };
         DataContextChanged += OnDataContextChanged;
@@ -386,6 +387,15 @@ public partial class ModlistPageView : UserControl
             viewModel.ShowSettings();
     }
 
+    private void ThemeMenuClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not MenuItem { Tag: string theme }) return;
+        if (DataContext is not ModlistPageViewModel viewModel) return;
+
+        viewModel.SetThemeCommand.Execute(theme);
+        UpdateThemeCheckmark();
+    }
+
     private void UpdateLanguageCheckmark()
     {
         var selected = LocalizationService.Instance.LanguageCode;
@@ -409,6 +419,17 @@ public partial class ModlistPageView : UserControl
                     FontWeight = FontWeight.Bold,
                     VerticalAlignment = VerticalAlignment.Center
                 }
+                : null;
+        }
+    }
+
+    private void UpdateThemeCheckmark()
+    {
+        var selected = Settings.LoadSavedUiTheme();
+        foreach (var item in new[] { ThemeSystemMenuItem, ThemeLightMenuItem, ThemeDarkMenuItem })
+        {
+            item.Icon = string.Equals(item.Tag as string, selected, StringComparison.OrdinalIgnoreCase)
+                ? new TextBlock { Text = "✓", FontWeight = FontWeight.Bold, VerticalAlignment = VerticalAlignment.Center }
                 : null;
         }
     }

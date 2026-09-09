@@ -1231,4 +1231,6 @@ Open download page(s) in browser?</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM found an external assets.zip.&#xD;&#xA;&#xD;&#xA;If you continue, AIM will:&#xD;&#xA;• preserve it as an assets.foreign-…zip file&#xD;&#xA;• restore the verified backup&#xD;&#xA;• retry this installation&#xD;&#xA;&#xD;&#xA;Mods that exist only in the external archive will be inactive. Continue?</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>Theme</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>System default</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Light</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Dark</value></data>
 </root>

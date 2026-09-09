@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using System.Diagnostics;
 using Garethp.ModsOfMistriaGUI.Models;
@@ -41,7 +42,20 @@ public class App : Application
     {
         var stopwatch = Stopwatch.StartNew();
         AvaloniaXamlLoader.Load(this);
+        SetTheme(Settings.LoadSavedUiTheme());
         PerformanceDiagnostics.Log($"Startup: Avalonia resources={stopwatch.ElapsedMilliseconds} ms");
+    }
+
+    public static void SetTheme(string? preference)
+    {
+        if (Current is null) return;
+
+        Current.RequestedThemeVariant = Settings.NormalizeTheme(preference) switch
+        {
+            "light" => ThemeVariant.Light,
+            "dark" => ThemeVariant.Dark,
+            _ => ThemeVariant.Default
+        };
     }
 
     public override void OnFrameworkInitializationCompleted()

@@ -120,13 +120,12 @@
             </Menu>
 
             <!-- Appearance is a global preference like language, so it belongs in the bottom
-                 toolbar rather than competing with the mod-list controls. The menu deliberately
-                 exposes only the current system-default theme for now; future themes can extend
-                 this menu without moving the control again. -->
+                 toolbar rather than competing with the mod-list controls. -->
             <Menu Grid.Column="2" Margin="-1 0 0 0">
-                <MenuItem Header="{Binding Texts.GUIThemeMenu}">
-                    <MenuItem Header="{Binding Texts.GUIThemeSystemDefault}"
-                              IsEnabled="False" />
+                <MenuItem Header="{Binding Texts.GUIThemeMenu}" IsEnabled="{Binding !IsInstalling}">
+                    <MenuItem x:Name="ThemeSystemMenuItem" Header="{Binding Texts.GUIThemeSystemDefault}" Tag="system" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeLightMenuItem" Header="{Binding Texts.GUIThemeLight}" Tag="light" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeDarkMenuItem" Header="{Binding Texts.GUIThemeDark}" Tag="dark" Click="ThemeMenuClick" />
                 </MenuItem>
             </Menu>
 

@@ -825,4 +825,6 @@ Alihkan ke AIM?</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Mod ini meminta installer {0}, sedangkan AIM mengimplementasikan {1}. Mod ini kemungkinan tetap akan berfungsi - coba saja, dan jika ada masalah, periksa halaman mod untuk catatan versi.</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>Tema</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Default sistem</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Terang</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Gelap</value></data>
 </root>

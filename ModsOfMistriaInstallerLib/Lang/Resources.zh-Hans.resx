@@ -784,4 +784,6 @@
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>此模组要求安装器 {0}，而 AIM 实现的是 {1}。它可能仍然可以正常工作 - 请尝试使用；如果出现问题，请查看模组页面上的版本说明。</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>主题</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>系统默认</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>浅色</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>深色</value></data>
 </root>

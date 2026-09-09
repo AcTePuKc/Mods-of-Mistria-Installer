@@ -831,4 +831,6 @@
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Этот мод запрашивает установщик {0}, а AIM поддерживает {1}. Скорее всего, он всё равно будет работать - попробуйте, а если возникнут проблемы, проверьте страницу мода на наличие примечания о версии.</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>Тема</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системная по умолчанию</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Светлая</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Тёмная</value></data>
 </root>

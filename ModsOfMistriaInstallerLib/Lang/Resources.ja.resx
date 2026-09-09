@@ -825,4 +825,6 @@ AIMに引き継ぎますか？</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>この mod はインストーラー {0} を要求していますが、AIM が実装しているのは {1} です。それでも動作する可能性があります。試してみて、問題があれば mod のページでバージョンに関する注記を確認してください。</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>テーマ</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>システムの既定</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>ライト</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>ダーク</value></data>
 </root>

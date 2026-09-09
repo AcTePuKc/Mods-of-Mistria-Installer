@@ -1154,4 +1154,6 @@ Klik om elke versie te lezen.</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Deze mod vraagt om installer {0}, terwijl AIM {1} ondersteunt. Waarschijnlijk werkt hij toch - probeer het en kijk bij problemen op de modpagina voor een versieopmerking.</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>Thema</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Systeemstandaard</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Licht</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Donker</value></data>
 </root>

@@ -829,4 +829,6 @@
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Обновяването заменя папката на мода, затова редакцията на AIM ще бъде премахната заедно с нея. Ако новата версия не е поправила проблема, сривът ще се появи отново и можете да приложите поправката пак - предишната версия все още е в списъка за възстановяване.</value></data>
   <data name="GUIThemeMenu" xml:space="preserve"><value>Тема</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системна по подразбиране</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Светла</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Тъмна</value></data>
 </root>
