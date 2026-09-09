@@ -730,4 +730,26 @@ Les confier à AIM ?</value></data>
   <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Masque tout ce qui est désactivé. L'ordre important est celui des mods réellement chargés dans le jeu et, dans une longue liste, il est plus facile à lire sans les mods désactivés.</value></data>
   <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Mods nécessitant une action uniquement</value></data>
   <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Affiche uniquement les mods pour lesquels une mise à jour est disponible et ceux que la dernière vérification n'a pas pu atteindre, par exemple faute d'association Nexus, à cause d'un problème réseau ou parce que la page n'existe plus.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Affichage uniquement : ordre de chargement inchangé, glisser-déposer suspendu</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Aller en haut de la liste</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Aller en bas de la liste</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) est également utilisé par {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Notes de version</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Notes de version : survolez pour charger, cliquez pour lire l'historique complet.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Nouveautés de {0} :&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Cliquez pour lire chaque version.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>L'auteur de ce mod n'a publié aucune note de version.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM n'a pas pu lire les notes de version de ce mod. Un compte Nexus connecté est nécessaire et AIM doit connaître la page Nexus du mod.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} version(s) avec des notes, de la plus récente à la plus ancienne.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versions</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Fait planter le jeu</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Marqué comme responsable d'un plantage</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Un test supervisé a prouvé que ce mod fait planter le jeu : lorsqu'il était désactivé, le jeu fonctionnait et le plantage ne s'est pas reproduit. AIM l'a laissé désactivé.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Vous avez vous-même marqué ce mod comme responsable du plantage dans le vérificateur. AIM ne l'a pas testé : il s'est fié à votre indication et l'a désactivé.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Version {0}, vérifiée le {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Ouvrez « Vérifier les plantages » pour voir les corrections qu'AIM peut appliquer et ce qu'en disent les pages du mod. La marque est liée à cette version et sera supprimée lors d'une mise à jour de l'auteur.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Modifié par AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Ce correctif n'a pas de fichier principal qu'AIM puisse installer seul. Ses fichiers sont ouverts dans votre navigateur : choisissez celui qui vous convient et utilisez « Mod Manager Download ».</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Le téléchargement du correctif a été annulé.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM a modifié un fichier de ce mod pour résoudre un conflit. Les fichiers sur le disque ne sont donc plus exactement ceux publiés par l'auteur.</value></data>
 </root>
