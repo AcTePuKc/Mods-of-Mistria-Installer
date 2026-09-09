@@ -792,4 +792,22 @@ Les confier à AIM ?</value></data>
   <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>« {0} » n'est pas un nom reconnu par le jeu, ce mod revient donc à sa valeur par défaut. Choisissez une valeur dans la liste pour corriger cela.</value></data>
   <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM n'a pas pu écrire dans {0}. Le fichier est peut-être ouvert dans un autre programme ou le jeu a peut-être été lancé.</value></data>
   <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Choisir une touche ou un bouton</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Touche ou bouton de manette</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Appuyez sur une touche pour la capturer</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Appuyez maintenant sur une touche… (Échap pour arrêter)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Cette valeur sera enregistrée : {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Les boutons de manette sont choisis dans la liste : AIM ne peut pas lire une manette. La liste contient tous les noms acceptés par le jeu ; ALT, les touches de verrouillage et le pavé numérique n'en font pas partie. Un mod configuré avec l'une de ces touches revient silencieusement à sa valeur par défaut.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Supprimer l'attribution</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Vide ce paramètre. La plupart des mods l'interprètent comme « désactivé » ; certains reviennent plutôt à leur valeur par défaut.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (valeur par défaut du mod - pas encore configuré)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Les raccourcis ont été modifiés</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Les {0} raccourci(s) que vous aviez choisis ont été modifiés par les mods eux-mêmes, généralement après qu'une mise à jour a réinitialisé leurs paramètres.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Rétablir vos choix ? Les paramètres entièrement supprimés par la mise à jour ne seront pas restaurés.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… et {0} autre(s).</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} raccourci(s) restauré(s). Lancez le jeu pour les appliquer.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Vérifier les mises à jour</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Vérifie les mods sélectionnés sur leurs pages Nexus. Utilisez la flèche pour tous les mods ou pour installer tout ce qui possède une mise à jour.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) vérifié(s) : {1} ont une mise à jour et {2} n'ont pas pu être vérifiés.&#xD;&#xA;&#xD;&#xA;Télécharger et installer ces mises à jour maintenant ? La version actuelle de chaque mod est conservée comme sauvegarde restaurable.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Mettre à jour tous les mods concernés</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Télécharge et installe chaque mise à jour en attente à tour de rôle, en conservant la version actuelle de chaque mod comme sauvegarde restaurable.</value></data>
 </root>
