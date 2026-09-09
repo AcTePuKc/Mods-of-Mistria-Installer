@@ -782,4 +782,44 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>El juego falló por otra causa, así que {0} queda descartado para el fallo original. AIM ha cargado el nuevo fallo y conserva las conclusiones anteriores.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>Se han probado {0} de {1} sospechosos para este fallo.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM no puede guardar estos resultados, así que solo duran mientras esta ventana esté abierta.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Probar a continuación: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Realiza la misma comprobación con el siguiente sospechoso sin probar: lo desactiva, reconstruye, inicia y observa el juego. Los mods ya descartados permanecen activados.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Se han probado todos los sospechosos y ninguno fue la causa por sí solo. Dos mods pueden provocar esto juntos: intenta desactivar toda la lista a la vez o informa del fallo con la lista de abajo.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Empezar de nuevo</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Descarta todas las conclusiones que AIM ha guardado para este fallo y vuelve a ofrecer todos los sospechosos. Conviene hacerlo después de añadir, quitar u ordenar mods, porque una conclusión solo vale para la lista con la que se probó.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Se han borrado todas las conclusiones de este fallo.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Descartados: {0} de {1} sospechosos</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Mostrar lo que demostraron esas ejecuciones</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Buscando una solución en las páginas de {0}…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>No es la causa</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Registra que sabes que este mod no causa el fallo, sin gastar una ejecución en él. Pasa a la lista de descartados, deja de ofrecerse para pruebas y vuelve a activarse si AIM lo había desactivado. Se marca como tu propia decisión, no como algo demostrado por AIM, y puedes deshacerlo.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Marcar como causante del fallo</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Registra que sabes que este mod causa el fallo. AIM lo desactiva, lo marca en tu lista y lo trata como culpable, igual que cuando una prueba encuentra uno, pero señalado como tu decisión. Puedes deshacerlo.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Deshacer mi marca</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Retira la conclusión que registraste manualmente y devuelve este mod a la lista de sospechosos sin probar. El mod queda activado o desactivado como esté ahora.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Marcado manualmente, no probado por AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>MARCADO COMO NO CAUSANTE</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>MARCADO COMO CAUSANTE</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Lo has marcado como causa. AIM no lo ha probado: lo ha desactivado y marcado en tu lista basándose en tu decisión. Las correcciones que AIM puede aplicar están abajo; su hilo de errores quizá ya tenga una respuesta.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} está marcado como causante del fallo y se ha desactivado. Instala para reconstruir el juego sin él.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} está marcado como causante del fallo. Ya estaba desactivado.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} está marcado como no causante y no volverá a ofrecerse para este fallo.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} está marcado como no causante y se ha vuelto a activar. Instala para devolverlo al juego.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Se ha retirado tu marca sobre {0}. Vuelve a estar en la lista como no probado.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM no tiene ningún fallo cargado al que asociar esto.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Volver a activar</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Este mod está descartado pero sigue desactivado. AIM normalmente vuelve a activar por sí solo un mod descartado; esta vez no pudo, así que este botón lo hace.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} vuelve a estar activado. Instala para devolverlo al juego.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM no pudo volver a activar {0}; puede que ya no esté en tu lista o que no se haya podido cargar.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>DESCARTADO</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>CAUSANTE CONOCIDO</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Una prueba lo demostró: con el mod desactivado, el juego no falló. AIM lo ha dejado desactivado y marcado en tu lista. Las correcciones que AIM puede aplicar están abajo; su hilo de errores quizá ya tenga una respuesta.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>PROBADO, SIN RESPUESTA</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Correcciones que AIM puede aplicar por sí solo</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Son reparaciones que AIM ha deducido de sus propias comprobaciones, no de un hilo de errores. Cada una corrige mecánicamente algo demostrablemente incorrecto en el archivo, nunca adivina lo que pretendía el autor. Primero se copia el mod completo en el historial de versiones, se marca como editado y se bloquean sus actualizaciones hasta que llegue una que pueda arreglarlo correctamente.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Aplicar esta corrección</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Aplicado a {0}. Está marcado como editado y bloqueado para actualizaciones; la versión anterior está en la lista de restauración.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Aquí no hay nada roto de una forma que AIM pueda reparar por sí solo.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;En {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM copiará primero el mod completo en tu historial de versiones y bloqueará sus actualizaciones para que esta corrección no se sobrescriba en silencio. ¿Continuar?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Bloqueado para actualizaciones porque AIM lo ha corregido: {0}</value></data>
 </root>

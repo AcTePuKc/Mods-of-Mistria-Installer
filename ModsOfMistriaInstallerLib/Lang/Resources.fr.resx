@@ -1108,4 +1108,44 @@ Les confier à AIM ?</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Le jeu a planté pour une autre raison : {0} est donc écarté pour le plantage d’origine. AIM a chargé le nouveau plantage et conserve les conclusions déjà obtenues.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} suspects sur {1} ont été testés pour ce plantage.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM ne peut pas enregistrer ces résultats : ils ne durent que tant que cette fenêtre est ouverte.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Tester ensuite : {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Effectue la même vérification sur le prochain suspect non testé : le désactive, reconstruit, lance et surveille le jeu. Les mods déjà écartés restent activés.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Tous les suspects ont été testés et aucun n’était la cause à lui seul. Deux mods peuvent provoquer cela ensemble : désactivez toute la liste à la fois ou signalez le plantage avec la liste ci-dessous.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Recommencer</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Supprime toutes les conclusions enregistrées par AIM pour ce plantage et propose à nouveau tous les suspects. À faire après avoir ajouté, supprimé ou réordonné des mods, car une conclusion ne vaut que pour la liste avec laquelle elle a été testée.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Toutes les conclusions de ce plantage ont été supprimées.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Écartés : {0} suspects sur {1}</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Afficher ce que ces sessions ont prouvé</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Lecture des pages de {0} à la recherche d’une solution…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Pas la cause</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Enregistre que vous savez que ce mod n’est pas responsable du plantage sans lui consacrer une session. Il passe dans la liste des écartés, ne sera plus proposé aux tests et sera réactivé si AIM l’avait désactivé. Il est marqué comme votre propre jugement, pas comme une preuve d’AIM, et vous pouvez l’annuler.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Marquer comme cause du plantage</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Enregistre que vous savez que ce mod provoque ce plantage. AIM le désactive, le marque dans votre liste et le traite comme la cause, comme après un test concluant, mais en indiquant qu’il s’agit de votre jugement. Vous pouvez l’annuler.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Annuler ma marque</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Retire la conclusion enregistrée manuellement et remet ce mod dans la liste des suspects non testés. Le mod reste dans son état actuel, activé ou désactivé.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Marqué manuellement, non testé par AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>MARQUÉ COMME NON RESPONSABLE</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>MARQUÉ COMME CAUSE DU PLANTAGE</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Vous l’avez marqué comme cause. AIM ne l’a pas testé : il l’a désactivé et marqué dans votre liste sur la base de votre jugement. Les corrections qu’AIM peut appliquer sont ci-dessous ; son fil de bugs contient peut-être déjà une réponse.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} est marqué comme cause du plantage et a été désactivé. Installez pour reconstruire le jeu sans lui.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} est marqué comme cause du plantage. Il était déjà désactivé.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} est marqué comme non responsable et ne sera plus proposé pour ce plantage.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} est marqué comme non responsable et a été réactivé. Installez pour le remettre dans le jeu.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Votre marque sur {0} a été retirée. Il figure à nouveau parmi les suspects non testés.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM n’a aucun plantage chargé auquel associer cela.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Réactiver</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Ce mod est écarté mais toujours désactivé. AIM réactive normalement lui-même un mod écarté ; il n’a pas pu le faire cette fois, ce bouton s’en charge.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} est réactivé. Installez pour le remettre dans le jeu.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM n’a pas pu réactiver {0}. Il ne figure peut-être plus dans votre liste ou n’a peut-être pas pu être chargé.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>ÉCARTÉ</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>CAUSE DE PLANTAGE CONNUE</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Un test l’a prouvé : avec ce mod désactivé, le jeu n’a pas planté. AIM l’a laissé désactivé et l’a marqué dans votre liste. Les corrections qu’AIM peut appliquer sont ci-dessous ; son fil de bugs contient peut-être déjà une réponse.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>TESTÉ, AUCUNE RÉPONSE</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Corrections qu’AIM peut appliquer seul</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Ces réparations ont été déduites par AIM de ses propres vérifications, et non d’un fil de bugs. Chacune corrige mécaniquement quelque chose de manifestement incorrect dans le fichier, sans jamais deviner l’intention de l’auteur. Le mod complet est d’abord copié dans votre historique, marqué comme modifié et exclu des mises à jour jusqu’à l’arrivée d’une version susceptible de corriger réellement le problème.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Appliquer cette correction</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Appliqué à {0}. Le mod est marqué comme modifié et exclu des mises à jour ; la version précédente se trouve dans la liste de restauration.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Rien ici n’est endommagé d’une manière qu’AIM puisse réparer seul.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Dans {1} :&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM copiera d’abord le mod complet dans votre historique et empêchera ses mises à jour afin que cette correction ne soit pas écrasée silencieusement. Continuer ?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Exclu des mises à jour car AIM l’a corrigé : {0}</value></data>
 </root>
