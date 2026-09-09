@@ -776,4 +776,9 @@
   <data name="GUICrashCopyTooltip" xml:space="preserve"><value>将错误、调用堆栈、AIM 结论和已安装模组全部复制到剪贴板。</value></data>
   <data name="GUICrashRefresh" xml:space="preserve"><value>刷新</value></data>
   <data name="GUICrashLooking" xml:space="preserve"><value>正在查找崩溃…</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>应用修复</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>修复已应用。</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>没有可应用的修复。</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>应用此修复？</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>此模组已暂停更新，直到修复完成。</value></data>
 </root>

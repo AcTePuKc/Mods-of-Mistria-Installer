@@ -790,4 +790,9 @@
   <data name="GUICrashTagTested" xml:space="preserve"><value>已測試</value></data>
   <data name="GUICrashRepairHeader" xml:space="preserve"><value>AIM 可以自行套用的修復</value></data>
   <data name="GUICrashRepairHint" xml:space="preserve"><value>這些是 AIM 根據檢查發現的機械修復，用於修正檔案中明確錯誤的內容，而不是猜測作者意圖。模組會先儲存到版本歷史並暫停更新。</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>套用修復</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>修復已套用。</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>沒有可套用的修復。</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>要套用此修復嗎？</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>此模組已暫停更新，直到修復完成。</value></data>
 </root>

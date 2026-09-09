@@ -1,15 +1,9 @@
 {
-  "generatedAt": "2026-09-09T12:48:12.3839883Z",
+  "generatedAt": "2026-09-09T12:48:48.1109635Z",
   "scope": "deferred",
   "coreKeyCount": 232,
   "nextLanguage": "zh-Hant",
-  "nextBatch": [
-    "GUICrashRepairApply",
-    "GUICrashRepairApplied",
-    "GUICrashRepairNone",
-    "GUICrashRepairConfirm",
-    "GUICrashRepairFrozen"
-  ],
+  "nextBatch": null,
   "languages": [
     {
       "language": "bg",
@@ -99,15 +93,15 @@
       "language": "zh-Hans",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 5,
-      "deferredComplete": false
+      "deferredMissing": 0,
+      "deferredComplete": true
     },
     {
       "language": "zh-Hant",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 5,
-      "deferredComplete": false
+      "deferredMissing": 0,
+      "deferredComplete": true
     }
   ]
 }
