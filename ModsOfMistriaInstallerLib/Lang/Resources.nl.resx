@@ -713,4 +713,31 @@ De links aan AIM overdragen?</value></data>
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Opgelost: „{0}” is naar {1} verplaatst, zodat deze sneltoets niet meer wordt gedeeld. Installeer opnieuw om de wijziging in het spel toe te passen.</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Deze mod is nog een .zip- of .rar-bestand. Pak hem eerst uit in de mods-map, dan kan AIM de binding bewerken.</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Deze mod declareert de toets niet als benoemde binding, dus AIM kan hem niet veilig wijzigen. Controleer de eigen instellingen van de mod in het spel of het configuratiebestand.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Elke functietoets wordt al gebruikt door een geselecteerde mod, dus er is geen vrije toets om deze naartoe te verplaatsen.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM kon de bestanden van deze mod niet lezen.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Sorteren A-Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Sorteert de lijst op naam zodat je een mod snel kunt vinden. Dit is alleen een weergave; de laadvolgorde blijft ongewijzigd. Zet het uit om de echte volgorde weer te zien. Slepen is gepauzeerd zolang dit aanstaat.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Sorteren op recent bijgewerkt</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Nieuwste eerst, op basis van wanneer de map van elke mod voor het laatst op schijf veranderde. Net geïnstalleerde of bijgewerkte mods komen bovenaan. Dit is alleen een weergave; de laadvolgorde blijft ongewijzigd en slepen is gepauzeerd.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Naar bovenkant van laadvolgorde</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Laadt deze mod als eerste, zodat de rest erop kan voortbouwen en hem kan overschrijven. Dit is de plek voor een framework of een mod waarvan andere mods afhankelijk zijn. Dit wijzigt de echte laadvolgorde, niet alleen de huidige lijstweergave.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Naar onderkant van laadvolgorde</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Laadt deze mod als laatste, zodat hij wint wanneer hij een bestand met een andere mod deelt. Dit is de plek voor een recolor of persoonlijke overschrijving. Dit wijzigt de echte laadvolgorde, niet alleen de huidige lijstweergave.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Alleen ingeschakelde mods</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Verbergt alles wat is uitgeschakeld. De belangrijke laadvolgorde is die van de mods die echt naar het spel gaan, en op een lange lijst is die moeilijk te lezen tussen ongebruikte mods.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Alleen mods die aandacht nodig hebben</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Toont alleen mods met een beschikbare update en mods die bij de laatste controle niet konden worden bereikt: geen Nexus-koppeling, een netwerkprobleem of een pagina die niet meer bestaat.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Alleen weergave - laadvolgorde ongewijzigd, slepen gepauzeerd</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Naar bovenkant van lijst</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Naar onderkant van lijst</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) wordt ook gebruikt door {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Releaseopmerkingen</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Releaseopmerkingen - beweeg erover om te laden, klik om de volledige geschiedenis te lezen.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Nieuw in {0}:
+{1}
+
+Klik om elke versie te lezen.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>De auteur van deze mod heeft geen releaseopmerkingen geplaatst.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM kon de releaseopmerkingen van deze mod niet lezen. Er is een verbonden Nexus-account nodig en AIM moet de Nexus-pagina van de mod kennen.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versie(s) met opmerkingen, nieuwste eerst.</value></data>
 </root>
