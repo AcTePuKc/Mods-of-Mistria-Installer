@@ -910,4 +910,10 @@ Les confier à AIM ?</value></data>
   <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>L'enregistrement des liens nxm:// n'est pris en charge que sous Windows et Linux.</value></data>
   <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM a été enregistré, mais Windows utilise peut-être encore {0} pour les liens nxm://.&#xD;&#xA;&#xD;&#xA;Choisissez AIM comme application par défaut pour les liens nxm:// dans les applications par défaut de Windows.</value></data>
   <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>L'enregistrement nxm:// n'a pas pu être vérifié après son écriture.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Une mise à jour pourrait corriger votre modification</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} est disponible. Vous utilisez {2} avec la correction d'AIM appliquée : {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Mettre à jour et supprimer la correction d'AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>La mise à jour remplace le dossier du mod et supprime donc la modification d'AIM. Si la nouvelle version n'a pas corrigé le problème, le plantage réapparaîtra et vous pourrez réappliquer la correction. La version précédente se trouve toujours dans la liste de restauration.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Archive externe détectée</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM a trouvé un assets.zip externe.&#xD;&#xA;&#xD;&#xA;Si vous continuez, AIM va :&#xD;&#xA;• le conserver sous le nom assets.foreign-…zip&#xD;&#xA;• restaurer la sauvegarde vérifiée&#xD;&#xA;• réessayer cette installation&#xD;&#xA;&#xD;&#xA;Les mods présents uniquement dans l'archive externe seront inactifs. Continuer ?</value></data>
 </root>
