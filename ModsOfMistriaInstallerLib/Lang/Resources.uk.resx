@@ -280,7 +280,7 @@
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Порядок завантаження</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Моди впорядковано так, щоб кожен завантажувався після потрібних модів.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Немає чого змінювати: кожен мод завантажується після потрібних модів.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Перевірити проблеми</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Проблеми</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Перевірка проблем</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Показати докладні відомості</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Закрити</value></data>
@@ -333,7 +333,7 @@
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Нещодавні</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Увімкнені</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Оновлення</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Запропонувати порядок</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Запропонувати</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0} від {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Увійти до Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Вийти з Nexus</value></data>
@@ -438,7 +438,7 @@
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus повідомляє, що ваш обліковий запис ({0}) безкоштовний. Пряме завантаження доступне лише Premium, тому скористайтеся кнопкою на сайті.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Обліковий запис Nexus не підключено, тому AIM не може нічого завантажити безпосередньо.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM не вдалося перевірити ваш обліковий запис Nexus: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Прив’язки клавіш</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Клавіші</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Усі клавіші та кнопки контролера, призначені вашими модами, в одному списку; конфлікти виділено червоним і їх можна редагувати на місці.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Прив’язки клавіш модів</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Поточні прив’язки ваших модів. Моди зберігають їх у власній папці конфігурації гри, а не в папці модів, тому оновлення не втрачає їх. Проте мод може скинути власні налаштування, і AIM запропонує повернути ваш вибір.</value></data>

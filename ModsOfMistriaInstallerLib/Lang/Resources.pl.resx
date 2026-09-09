@@ -288,7 +288,7 @@ Przekazać je do AIM?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Kolejność ładowania</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mody zostały ułożone tak, aby każdy ładował się po wymaganych modach.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nie ma nic do zmiany: każdy mod ładuje się po wymaganych modach.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Sprawdź problemy</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problemy</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Sprawdzanie problemów</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Pokaż szczegóły</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Zamknij</value></data>
@@ -341,7 +341,7 @@ Przekazać je do AIM?</value></data>
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Najnowsze</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Włączone</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Aktualizacje</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Zaproponuj kolejność</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Zaproponuj</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0} autorstwa {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Zaloguj się do Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Wyloguj z Nexus</value></data>
@@ -446,7 +446,7 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus rozpoznaje Twoje konto ({0}) jako bezpłatne. Bezpośrednie pobieranie jest funkcją Premium, więc użyj przycisku na stronie.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Nie połączono konta Nexus, więc AIM nie może niczego pobrać bezpośrednio.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM nie może sprawdzić konta Nexus: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Skróty klawiszowe</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Klawisze</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Wszystkie klawisze i przyciski kontrolera używane przez mody w jednej liście, z konfliktami na czerwono i edycją na miejscu.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Skróty klawiszowe modów</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>To przypisania używane obecnie przez mody. Mody przechowują je w folderze konfiguracji gry, a nie w folderze modów, więc aktualizacja moda ich nie usuwa. Mod może jednak zresetować własne ustawienia, a AIM zaproponuje wtedy ponowne zastosowanie Twojego wyboru.</value></data>

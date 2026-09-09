@@ -288,7 +288,7 @@
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Порядок загрузки</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Моды перестроены так, чтобы каждый загружался после необходимых ему модов.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Нечего менять: каждый мод загружается после необходимых модов.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Проверить проблемы</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Проблемы</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Проверка проблем</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Показать подробности</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Закрыть</value></data>
@@ -341,7 +341,7 @@
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Недавние</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Включённые</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Обновления</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложить порядок</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложить</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0}, автор {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Войти в Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Выйти из Nexus</value></data>
@@ -446,7 +446,7 @@
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus сообщает, что ваш аккаунт ({0}) бесплатный. Прямые загрузки доступны только Premium, поэтому используйте кнопку на сайте.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Аккаунт Nexus не подключён, поэтому AIM не может ничего скачать напрямую.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM не удалось проверить аккаунт Nexus: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Привязки клавиш</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Клавиши</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Все клавиши и кнопки контроллера, назначенные вашим модам, в одном списке; конфликты выделены красным и доступны для редактирования.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Привязки клавиш модов</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Текущие привязки ваших модов. Моды хранят их в папке конфигурации игры, а не в папке модов, поэтому обновление мода их не удаляет. Но мод может сбросить собственные настройки, и тогда AIM предложит вернуть выбранные вами значения.</value></data>
