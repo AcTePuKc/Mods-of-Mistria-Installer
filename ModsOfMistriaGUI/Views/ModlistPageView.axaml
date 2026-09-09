@@ -328,7 +328,7 @@
 
                     <!-- This row is permanent, even when there are no mods yet, so the list
                          never jumps when selection or filtering state changes. -->
-                    <Grid Grid.Row="1" Margin="0 8 0 0" MinHeight="36" ColumnDefinitions="Auto,Auto,*,Auto,Auto">
+                    <Grid Grid.Row="1" Margin="0 8 0 0" MinHeight="36" ColumnDefinitions="Auto,*,*,Auto,Auto">
                     <CheckBox Grid.Column="0"
                               Margin="0 0 4 0"
                               VerticalAlignment="Center"
@@ -345,7 +345,6 @@
                     <TextBlock Grid.Column="1"
                                VerticalAlignment="Center"
                                Foreground="Gray"
-                               MaxWidth="420"
                                TextTrimming="CharacterEllipsis"
                                Text="{Binding SelectionSummary}"
                                Tag="{Binding SelectionSummary}"
@@ -355,7 +354,6 @@
                     <TextBlock Grid.Column="2"
                                VerticalAlignment="Center"
                                Margin="12 0"
-                               MaxWidth="360"
                                Foreground="Gray"
                                TextTrimming="CharacterEllipsis"
                                IsVisible="{Binding IsListReordered}"
