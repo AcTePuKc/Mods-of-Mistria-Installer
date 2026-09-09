@@ -716,4 +716,31 @@ Passá-los para o AIM?</value></data>
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Resolvido: "{0}" foi movido para {1}, então nada mais compartilha este atalho. Instale novamente para aplicar a mudança no jogo.</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Este mod ainda é um .zip ou .rar. Extraia-o primeiro para a pasta de mods, e o AIM poderá editar sua configuração.</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Este mod não declara a tecla como uma configuração nomeada, então o AIM não pode alterá-la com segurança. Verifique as configurações do próprio mod no jogo ou o arquivo de configuração.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Todas as teclas de função já são usadas por um mod selecionado, então não há uma tecla livre para mover este mod.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>O AIM não conseguiu ler os arquivos deste mod.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Ordenar A-Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Ordena a lista por nome para você encontrar um mod rapidamente. É apenas uma visualização: a ordem de carregamento não muda. Desative para ver a ordem real novamente; arrastar fica pausado enquanto estiver ativo.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Ordenar por atualização recente</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Os mais recentes primeiro, pela data da última alteração da pasta de cada mod no disco. Assim, o que acabou de ser instalado ou atualizado aparece no topo. É apenas uma visualização: a ordem de carregamento não muda e arrastar fica pausado.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Mover para o topo da ordem de carregamento</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Carrega este mod primeiro, para que os outros possam se basear nele e substituí-lo. É onde deve ficar um framework ou um mod do qual outros dependem. Altera a ordem real de carregamento, não apenas a lista exibida.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Mover para o fim da ordem de carregamento</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Carrega este mod por último, então, quando ele compartilha um arquivo com outro mod, ele vence. É onde deve ficar uma recoloração ou substituição pessoal. Altera a ordem real de carregamento, não apenas a lista exibida.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Apenas mods ativados</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Oculta tudo que está desativado. A ordem importante é a dos mods que realmente entram no jogo, e em uma lista longa é difícil enxergá-la entre os mods que não estão em uso.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Apenas mods que precisam de atenção</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Mostra apenas mods com uma atualização pendente e mods que a última verificação não conseguiu acessar: sem associação ao Nexus, problema de rede ou página que não existe mais.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Apenas visualização - ordem de carregamento inalterada, arrastar pausado</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Ir para o topo da lista</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Ir para o fim da lista</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) também é usado por {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Notas da versão</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Notas da versão - passe o mouse para carregar, clique para ler o histórico completo.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Novidades em {0}:
+{1}
+
+Clique para ler todas as versões.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>O autor deste mod não publicou notas da versão.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>O AIM não conseguiu ler as notas da versão deste mod. É necessário ter uma conta do Nexus conectada e o AIM precisa conhecer a página do mod no Nexus.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versão(ões) com notas, da mais recente para a mais antiga.</value></data>
 </root>

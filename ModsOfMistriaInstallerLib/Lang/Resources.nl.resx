@@ -813,4 +813,30 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Downloadt en installeert elke openstaande update na elkaar en bewaart de huidige versie van elke mod als herstelbare back-up.</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Mods bijwerken</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Er zijn geen openstaande updates. Controleer eerst op updates.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>{0} mod(s) bijwerken?&#xA;&#xA;{1}&#xA;&#xA;De huidige versie van elke mod wordt als back-up bewaard en kan vanuit het contextmenu worden hersteld.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Bezig met bijwerken van {0} van {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} van {1} mod(s) bijgewerkt.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Deze mods konden niet rechtstreeks worden gedownload en hebben hun Nexus-pagina nodig: {0}&#xA;&#xA;Nexus geeft directe downloadlinks alleen aan Premium-accounts. Open bij een gratis account de pagina van de mod en gebruik de knop „Mod Manager Download”. AIM pakt die op als het daarvoor is geregistreerd.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Niets te melden. AIM vond onder de geselecteerde mods geen gedeelde bestanden, sneltoetsconflicten, ontbrekende vereisten of compatibiliteitswaarschuwingen.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Je hebt aangegeven dat dit geen echt conflict is.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Je hebt hiervoor een patch gevonden.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Je hebt aangegeven dat deze mods niet compatibel zijn; schakel er één uit.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Opgelost door opnieuw toewijzen: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>In de gaten gehouden downloadmappen</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mods die je handmatig in een bewaakte map downloadt worden naar je mods-map verplaatst en verschijnen vanzelf in de lijst.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Een map bewaken...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Kies een map om gedownloade mods in te bewaken</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Bewaakte mappen nu controleren</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Er worden geen mappen bewaakt</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Stop met deze map bewaken</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Bewaakte mappen</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Niets nieuws om toe te voegen. AIM verplaatst alleen archieven en mappen met een manifest; al het andere blijft daar staan.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod(s) uit een bewaakte map toegevoegd.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Verplaatst naar je mods-map:
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - deze mod is al geïnstalleerd als „{1}”. Werk die kopie bij of verwijder hem eerst: twee kopieën van één mod strijden om dezelfde bestanden.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>In de bewaakte map gelaten:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>De mods-map kon niet worden gevonden, dus er is niets om te openen.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Kon de mods-map niet openen: {0}</value></data>
 </root>
