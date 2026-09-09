@@ -898,4 +898,16 @@ Les confier à AIM ?</value></data>
   <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Extraction de {0}</value></data>
   <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Installation annulée</value></data>
   <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} installé</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} mods installés</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Téléchargement annulé</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Lien de téléchargement vide.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Ce n'est pas un lien nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Le lien ne précise aucun jeu.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Les collections Nexus ne sont pas encore prises en charge. Téléchargez les mods individuellement.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Le lien n'est pas un téléchargement de fichier de mod.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Le lien contient un identifiant de mod ou de fichier invalide.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Impossible de déterminer depuis quel emplacement l'installeur est exécuté.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>L'enregistrement des liens nxm:// n'est pris en charge que sous Windows et Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM a été enregistré, mais Windows utilise peut-être encore {0} pour les liens nxm://.&#xD;&#xA;&#xD;&#xA;Choisissez AIM comme application par défaut pour les liens nxm:// dans les applications par défaut de Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>L'enregistrement nxm:// n'a pas pu être vérifié après son écriture.</value></data>
 </root>
