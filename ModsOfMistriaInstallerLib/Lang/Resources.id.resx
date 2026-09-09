@@ -404,4 +404,26 @@ Alihkan ke AIM?</value></data>
   <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Menyembunyikan semua yang dinonaktifkan. Yang penting adalah urutan mod yang benar-benar masuk ke game; pada daftar panjang, urutan itu lebih mudah dibaca tanpa mod yang dinonaktifkan.</value></data>
   <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Hanya mod yang memerlukan perhatian</value></data>
   <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Menampilkan hanya mod yang memiliki pembaruan dan mod yang tidak dapat dijangkau saat pemeriksaan terakhir, misalnya karena tidak terhubung ke Nexus, masalah jaringan, atau halaman yang sudah tidak ada.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Hanya tampilan - urutan pemuatan tidak berubah, fitur seret ditangguhkan</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Lompat ke bagian atas daftar</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Lompat ke bagian bawah daftar</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) juga digunakan oleh {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Catatan rilis</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Catatan rilis - arahkan kursor untuk memuat, klik untuk membaca riwayat lengkap.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Yang baru di {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Klik untuk membaca setiap versi.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Penulis mod ini belum memublikasikan catatan rilis.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM tidak dapat membaca catatan rilis mod ini. Akun Nexus harus terhubung dan AIM harus mengetahui halaman Nexus mod tersebut.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versi dengan catatan, dimulai dari yang terbaru.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Versi {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versi</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Membuat game crash</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Ditandai sebagai penyebab crash</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Uji coba yang diawasi membuktikan bahwa mod ini membuat game crash: saat dinonaktifkan, game berjalan dan crash tidak muncul lagi. AIM membiarkannya tetap dinonaktifkan.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Anda sendiri menandai mod ini sebagai penyebab crash di pemeriksa crash. AIM tidak mengujinya, tetapi mempercayai Anda dan menonaktifkan mod tersebut.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Versi {0}, diperiksa {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Buka «Periksa Crash» untuk melihat perbaikan yang dapat diterapkan AIM dan keterangan di halaman mod. Tanda ini terkait dengan versi tersebut dan akan dihapus saat penulis merilis pembaruan.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Diedit oleh AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Patch tersebut tidak memiliki file utama yang dapat dipasang AIM sendiri. File-nya terbuka di browser; pilih yang Anda inginkan dan gunakan «Mod Manager Download».</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Unduhan patch dibatalkan.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM mengubah file di dalam mod ini untuk menyelesaikan konflik. File di disk sekarang tidak lagi persis sama dengan yang diterbitkan penulis.</value></data>
 </root>
