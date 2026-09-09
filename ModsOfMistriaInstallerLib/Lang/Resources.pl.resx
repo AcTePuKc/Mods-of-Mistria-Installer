@@ -644,4 +644,28 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Gra uległa awarii z innego powodu, więc {0} zostaje wykluczony tylko dla pierwotnej awarii. AIM wczytał nową awarię, a wcześniejsze wyniki zachował.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>Przetestowano {0} z {1} podejrzanych dla tej awarii.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM nie może zapisać tych wyników, więc pozostaną dostępne tylko do czasu zamknięcia tego okna.</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Znajdź poprawkę</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Odczytywanie informacji ze stron tych modów…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Połącz konto Nexus w menu koła zębatego, a AIM będzie mógł czytać strony tych modów. Do tego czasu najszybsze pozostają poniższe linki.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Opisy, readme, changelogi, zgłoszenia błędów ani komentarze tych modów nie odpowiadają na to pytanie. AIM przeszukał cały wątek komentarzy pod kątem nazwy drugiego moda oraz najnowsze zgłoszenia, więc to prawdziwe „nikt o tym nie napisał”, a nie „nikt nie sprawdził”. Nie oznacza to jednak „brak problemu”; poniższe linki nadal prowadzą do stron.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>Elementy na stronach tych modów odnoszące się do tej pary: {0}.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM nie mógł odczytać stron modów: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Co mówią strony modów</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Sprawdź samodzielnie</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM czyta komentarze, przeszukując cały wątek, a tracker błędów kilka stron w głąb, ale zawsze tylko jako wylogowany odwiedzający. Te linki otwierają prawdziwe strony.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Otwórz stronę tego moda</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Otwórz poprawkę</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Co znalazłeś?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Zapisanie tego wyniku zachowa odpowiedź przy problemie, więc następnym razem nie trzeba będzie ustalać jej od nowa.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Link do poprawki (opcjonalnie):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>To nie jest prawdziwy konflikt</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Mody współdzielą pliki, ale w praktyce nie ma to znaczenia. Oznacza problem jako rozwiązany i ukrywa go do czasu aktualizacji któregoś moda.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Istnieje poprawka</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Ktoś opublikował poprawkę zgodności. Kliknij raz, aby dodać jej link, a drugi raz, aby go zapisać. Oznacza problem jako rozwiązany.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Mody są niezgodne</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Zapisuje wynik, ale pozostawia problem widoczny, ponieważ nadal trzeba wyłączyć jeden z modów.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Nadal sprawdzam</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Zapisz poprawkę</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>To nie wygląda na link https. Wklej adres internetowy poprawki albo pozostaw pole puste.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Analiza plików AIM</value></data>
 </root>

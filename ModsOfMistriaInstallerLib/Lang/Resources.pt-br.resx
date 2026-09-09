@@ -970,4 +970,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>O jogo travou por outra causa, então {0} foi excluído apenas para o crash original. O AIM carregou o novo crash e manteve as conclusões anteriores.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} de {1} suspeitos foram testados para este crash.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>O AIM não pode salvar estes resultados, então eles existirão apenas enquanto esta janela estiver aberta.</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Encontrar uma correção</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Lendo o que as páginas destes mods dizem…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Conecte sua conta Nexus no menu da engrenagem e o AIM poderá ler as páginas destes mods. Até lá, os links abaixo continuam sendo a forma mais rápida de verificar.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Nada nas descrições, readmes, changelogs, relatos de bugs ou comentários destes mods responde à pergunta. O AIM pesquisou toda a conversa de comentários pelo nome do outro mod e leu os relatos recentes, então este é um verdadeiro “ninguém disse”, não um “ninguém procurou”. Isso não é o mesmo que “não há problema”, e os links abaixo ainda levam às próprias páginas.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} item(ns) nas páginas destes mods se relacionam a esta combinação.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>O AIM não conseguiu ler as páginas dos mods: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>O que dizem as páginas dos mods</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Verifique por conta própria</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>O AIM lê os comentários pesquisando toda a conversa e o rastreador de bugs algumas páginas adiante, mas sempre como visitante desconectado. Estes links abrem as páginas reais.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Abrir a página deste mod</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Abrir a correção</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>O que você encontrou?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Registrar isso mantém a resposta junto do problema, para você não precisar descobrir tudo novamente na próxima vez.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Link para a correção (opcional):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Não é um conflito real</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Os mods compartilham arquivos, mas isso não importa na prática. Marca o problema como resolvido e o oculta até que um dos mods seja atualizado.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Existe uma correção</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Alguém publicou uma correção de compatibilidade. Clique uma vez para adicionar o link e novamente para registrá-lo. Marca o problema como resolvido.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>São incompatíveis</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Registra a descoberta, mas mantém o problema visível porque você ainda precisa desativar um dos mods.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Ainda decidindo</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Registrar a correção</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Isso não parece ser um link https. Cole o endereço da correção ou deixe o campo vazio.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Análise dos arquivos pelo AIM</value></data>
 </root>
