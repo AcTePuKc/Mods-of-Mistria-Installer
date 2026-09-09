@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-09T11:07:18.3754729Z",
+  "generatedAt": "2026-09-09T11:09:52.8297922Z",
   "scope": "deferred",
   "coreKeyCount": 232,
-  "nextLanguage": "pl",
+  "nextLanguage": "pt-br",
   "nextBatch": [
     "GUICrashRunNormalExit",
     "GUICrashDiagnosisFrameFault",
@@ -121,7 +121,7 @@
       "language": "pt-br",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 160,
+      "deferredMissing": 112,
       "deferredComplete": false
     },
     {
