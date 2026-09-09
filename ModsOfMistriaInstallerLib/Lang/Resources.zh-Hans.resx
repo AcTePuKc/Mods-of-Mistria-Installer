@@ -644,4 +644,14 @@
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>表示这是一个问题</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>满足条件时有效</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>提到主题但没有回答</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>正常</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>问题</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>条件</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>背景</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>显示完整引用</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>显示更少</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>在页面中查找</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>复制“{0}”并打开来源页面。按 Ctrl+F 后粘贴即可跳转。</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>已复制。在刚打开的页面按 Ctrl+F 并粘贴。</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>这会修改并非由你编写的模组文件。AIM 会先将整个模组复制到版本列表，并标记为已修改。继续吗？</value></data>
 </root>
