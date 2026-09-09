@@ -589,4 +589,5 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Actualizar y eliminar la corrección de AIM</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>La actualización sustituye la carpeta del mod, así que también elimina la edición de AIM. Si la nueva versión no ha solucionado el problema, el cierre volverá y podrás aplicar la corrección de nuevo. La versión anterior sigue en la lista de restauración.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Se detectó un archivo externo</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM ha encontrado un assets.zip externo.&#xD;&#xA;&#xD;&#xA;Si continúas, AIM hará lo siguiente:&#xD;&#xA;• lo conservará como archivo assets.foreign-…zip&#xD;&#xA;• restaurará la copia de seguridad verificada&#xD;&#xA;• volverá a intentar esta instalación&#xD;&#xA;&#xD;&#xA;Los mods que solo existan en el archivo externo quedarán inactivos. ¿Continuar?</value></data>
 </root>
