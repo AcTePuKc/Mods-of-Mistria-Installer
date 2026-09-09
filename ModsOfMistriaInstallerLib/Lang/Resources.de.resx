@@ -1132,4 +1132,20 @@ An AIM übergeben?</value></data>
   <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} ist als nicht ursächlich markiert und wird für diesen Absturz nicht erneut angeboten.</value></data>
   <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} ist als nicht ursächlich markiert und wurde wieder aktiviert. Installiere, um sie wieder ins Spiel zu übernehmen.</value></data>
   <data name="GUICrashUnmarked" xml:space="preserve"><value>Deine Markierung für {0} wurde zurückgenommen. Die Mod steht wieder als ungetestet auf der Auswahlliste.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM hat keinen geladenen Absturz, dem dies zugeordnet werden kann.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Wieder aktivieren</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Diese Mod wurde ausgeschlossen, ist aber weiterhin deaktiviert. AIM aktiviert eine ausgeschlossene Mod normalerweise selbst wieder. Diesmal war das nicht möglich, daher übernimmt diese Schaltfläche es.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} ist wieder aktiviert. Installiere, um sie ins Spiel zu übernehmen.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM konnte {0} nicht wieder aktivieren. Die Mod befindet sich möglicherweise nicht mehr in deiner Mod-Liste oder konnte nicht geladen werden.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>AUSGESCHLOSSEN</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>BEKANNTER ABSTURZVERURSACHER</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Ein Testlauf hat dies bewiesen: Mit deaktivierter Mod ist das Spiel nicht abgestürzt. AIM hat sie deaktiviert und in deiner Mod-Liste markiert. Alles, was AIM selbst beheben kann, steht unten; im Fehlerthread der Mod gibt es möglicherweise bereits eine Antwort.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>GETESTET, KEINE ANTWORT</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Korrekturen, die AIM selbst anwenden kann</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Diese Korrekturen hat AIM aus eigenen Prüfungen ermittelt und nicht aus einem Fehlerthread. Jede ist eine mechanische Korrektur eines nachweislich falschen Werts in der Datei und niemals eine Vermutung über die Absicht des Autors. Die gesamte Mod wird zuerst in deinen Versionsverlauf kopiert, als bearbeitet markiert und von Updates zurückgehalten, bis ein Update erscheint, das den Fehler möglicherweise richtig behebt.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Diese Korrektur anwenden</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Auf {0} angewendet. Die Mod ist als bearbeitet markiert und von Updates zurückgehalten. Die Version davor befindet sich in der obigen Wiederherstellungsliste.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Hier ist nichts auf eine Weise beschädigt, die AIM selbst reparieren kann.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;In {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM kopiert zuerst die gesamte Mod in deinen Versionsverlauf und hält sie von Updates zurück, damit diese Korrektur nicht unbemerkt überschrieben wird. Fortfahren?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Von Updates zurückgehalten, weil AIM die Mod korrigiert hat: {0}</value></data>
 </root>
