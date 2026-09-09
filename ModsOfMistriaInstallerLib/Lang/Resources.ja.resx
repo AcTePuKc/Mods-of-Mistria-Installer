@@ -544,4 +544,28 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Nexus アカウントの応答を読み取れませんでした。</value></data>
   <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM は Nexus サインインのコールバックを待っています。</value></data>
   <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Nexus サインインの応答がこの AIM セッションと一致しません。</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Nexusへのサインインがキャンセルされました。AIMに戻れます。</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Nexusへのサインインがキャンセルされたか、ブラウザーで拒否されました。</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Nexusへのサインインが完了しました。AIMに戻れます。</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexusはこのファイルのダウンロードサーバーを返しませんでした。</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus APIが時間内に応答しませんでした。</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Nexus APIに接続できませんでした: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexusから予期しない応答が返されました。</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Nexusからの応答を読み取れませんでした。</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexusがアカウントのセッションを拒否しました。Nexusアカウントをもう一度接続してください。</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexusがリクエストを拒否しました。ダウンロードリンクの期限が切れている可能性があります。もう一度クリックしてください。</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>そのModまたはファイルはNexusに存在しません。</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Nexus APIのレート制限に達しました。しばらく待ってから再度ダウンロードしてください。</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexusがエラーを返しました ({0})。</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Nexusアカウントがまだ接続されていません。</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>このModの元ファイルはNexusページからなくなっており、現在あるファイルにも新しい版はありません。このページには複数のModがあるため、AIMは別のModを更新候補にしません。新しいリリースがあると思う場合はページを確認してください。</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>このModページには比較できるメインファイルがありません。</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIMはこのModがページ上のどのファイルから来たか分からないため、ページの版が新しいか判断できません。AIMで一度ダウンロードするか、Modを右クリックして特定のファイルに関連付けると、更新確認が正確になります。</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>更新確認が途中で停止しました。</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>このModの更新確認は完了しませんでした。</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Nexusアカウントがまだ接続されていません。</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>このダウンロードは別のゲーム ({0}) 用のため、このインストーラーでは処理できません。</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>このダウンロードリンクの期限が切れています。Modページでもう一度「Vortex download」ボタンをクリックしてください。</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Modフォルダーが見つかりませんでした。</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Nexusにファイルを問い合わせています...</value></data>
 </root>
