@@ -362,4 +362,24 @@ Alihkan ke AIM?</value></data>
   <data name="GUIRemoveSelected" xml:space="preserve"><value>Hapus yang dipilih…</value></data>
   <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Menghapus semua mod yang dicentang sekaligus melalui Recycle Bin setelah menampilkan daftarnya.</value></data>
   <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Tidak ada mod yang dicentang, jadi tidak ada yang dapat dihapus.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Pindahkan {0} mod ke Recycle Bin?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Mod akan dikeluarkan dari folder mod dan dapat dikembalikan dari Recycle Bin. File yang sudah dipasang ke dalam game akan tetap ada sampai instalasi atau penghapusan berikutnya.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Hapus {0} mod secara permanen?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Sistem ini tidak memiliki Recycle Bin yang dapat digunakan AIM, jadi file akan dihapus. Tindakan ini tidak dapat dibatalkan.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>… dan {0} lainnya.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} dari {1} mod dihapus.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Mod berikut tidak dapat dihapus: {0}&#xD;&#xA;&#xD;&#xA;Mod mungkin sedang dibuka di program lain, atau game masih berjalan.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows tidak dapat memindahkannya ke Recycle Bin</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>"{0}" tidak lagi berada di folder mod. Daftar telah dimuat ulang.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Menandai masalah ini sebagai sudah diperiksa dan tidak bermasalah. AIM akan menyembunyikannya sampai versi salah satu mod yang terlibat berubah, lalu akan bertanya lagi.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Tampilkan masalah yang ditandai baik-baik saja ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Ditandai baik-baik saja</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[ditandai baik-baik saja]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>File yang ditulis oleh keduanya</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>menang sekarang</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Jadikan ini pemenang</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Memindahkan mod ini ke bawah mod lain yang berbagi file dengannya, sehingga versi file miliknya yang dipasang. Urutan pemuatan di daftar akan langsung berubah.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>"{0}" sekarang dimuat paling akhir di antara mod yang berbagi file ini, sehingga salinannya menang.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Cari solusi…</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Membaca apa yang dikatakan halaman Nexus mod-mod ini tentang satu sama lain, lalu membuka laporan bug, komentar, dan pencarian web agar Anda dapat menentukan apakah ini benar-benar penting.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Ubah…</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Memindahkan mod ini ke tombol yang belum digunakan siapa pun dengan mengedit pengaturannya sendiri di {0}. Mod dicadangkan terlebih dahulu, dan perubahan diterapkan ke game pada instalasi berikutnya.</value></data>
 </root>
