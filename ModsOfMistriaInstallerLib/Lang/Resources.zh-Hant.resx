@@ -390,4 +390,31 @@
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>已解決：「{0}」已移至 {1}，因此沒有其他模組共用此快速鍵。請重新安裝，讓變更套用到遊戲。</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>此模組仍是 .zip 或 .rar 檔案。請先將它解壓縮到模組資料夾，AIM 才能編輯其繫結。</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>此模組沒有將按鍵宣告為具名繫結，因此 AIM 無法安全地變更它。請檢查模組自己的遊戲內設定或設定檔。</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>選取的模組已使用所有功能鍵，因此沒有可移動到的空閒按鍵。</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM 無法讀取此模組的檔案。</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>依字母排序</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>依名稱排序清單，方便快速找到模組。這只是檢視方式，不會改變載入順序；關閉後會再次顯示實際順序，啟用時無法拖曳。</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>依最近更新排序</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>依每個模組資料夾在磁碟上的最後變更時間，從最新開始顯示。剛安裝或更新的模組會出現在頂端。這只是檢視方式，不會改變載入順序，啟用時無法拖曳。</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>移至載入順序頂端</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>最先載入此模組，讓其他模組可以以它為基礎並覆寫它。框架或其他模組所依賴的模組應放在這裡。這會改變實際載入順序，而不只是目前的清單檢視。</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>移至載入順序底端</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>最後載入此模組，因此與其他模組共用檔案時，此模組會生效。重新著色或個人覆寫應放在這裡。這會改變實際載入順序，而不只是目前的清單檢視。</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>僅顯示已啟用模組</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>隱藏所有已關閉的內容。重要的是實際進入遊戲的模組順序，而在長清單中，不使用的模組會讓順序難以閱讀。</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>僅顯示需要注意的模組</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>僅顯示有待更新的模組，以及上次檢查無法存取的模組：未關聯 Nexus、網路問題或頁面已不存在。</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>僅供檢視 - 載入順序未變更，拖曳已暫停</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>跳至清單頂端</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>跳至清單底端</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0}（{1}）也被 {2} 使用</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>版本資訊</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>版本資訊 - 懸停以載入，按一下以閱讀完整記錄。</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>{0} 的更新內容：
+{1}
+
+按一下以閱讀所有版本。</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>此模組的作者沒有發佈版本資訊。</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM 無法讀取此模組的版本資訊。需要已連線的 Nexus 帳戶，且 AIM 必須知道此模組的 Nexus 頁面。</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>有版本資訊的版本數：{0}，從最新開始。</value></data>
 </root>

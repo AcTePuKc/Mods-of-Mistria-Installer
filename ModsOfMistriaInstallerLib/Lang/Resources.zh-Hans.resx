@@ -490,4 +490,30 @@
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>依次下载并安装所有待处理的更新，并保留每个模组的当前版本以便恢复。</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>更新模组</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>没有待处理的更新。请先检查更新。</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>要更新 {0} 个模组吗？&#xA;&#xA;{1}&#xA;&#xA;每个模组的当前版本都会作为备份保留，可以从右键菜单恢复。</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>正在更新 {0}/{1}：{2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>已更新 {1} 个模组中的 {0} 个。</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>以下模组无法直接下载，需要打开其 Nexus 页面：{0}&#xA;&#xA;Nexus 只向 Premium 帐户提供直接下载链接。免费帐户请打开模组页面并使用“Mod Manager Download”按钮。如果 AIM 已注册来处理这些链接，就会自动接收。</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>没有可报告的内容。AIM 没有在选中的模组之间发现共享文件、快捷键冲突、缺失要求或兼容性警告。</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>你已标记这不是真正的冲突。</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>你找到了此问题的补丁。</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>你认为这些模组不兼容，请关闭其中一个。</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>通过重新绑定解决：{0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>受监控的下载文件夹</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>手动下载到受监控文件夹中的模组会被移入模组文件夹，并自动出现在列表中。</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>监控文件夹...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>选择要监控已下载模组的文件夹</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>立即检查受监控文件夹</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>没有正在监控的文件夹</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>停止监控此文件夹</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>受监控的文件夹</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>没有发现可导入的新内容。AIM 只移动包含清单的压缩包和文件夹，其他内容会保留原位。</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>已从受监控文件夹导入 {0} 个模组。</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>已移入模组文件夹：
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - 你已经将此模组安装为“{1}”。请更新该副本，或先将其移除：同一模组的两个副本会争用相同文件。</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>保留在受监控文件夹中：
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>找不到模组文件夹，因此没有可打开的内容。</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>无法打开模组文件夹：{0}</value></data>
 </root>

@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T09:03:18.7732840Z",
+  "generatedAt": "2026-09-09T09:26:22.3771085Z",
   "coreKeyCount": 465,
   "nextLanguage": "zh-Hant",
   "nextBatch": [
-    "GUIHotkeyBlockedNoFreeKeys",
-    "GUIHotkeyBlockedUnreadable",
-    "GUISortAlphabetically",
-    "GUISortAlphabeticallyTooltip",
-    "GUISortRecentlyUpdated",
-    "GUISortRecentlyUpdatedTooltip",
-    "GUIMoveModToTop",
-    "GUIMoveModToTopTooltip",
-    "GUIMoveModToBottom",
-    "GUIMoveModToBottomTooltip",
-    "GUIShowOnlyEnabled",
-    "GUIShowOnlyEnabledTooltip",
-    "GUIShowOnlyUpdatable",
-    "GUIShowOnlyUpdatableTooltip",
-    "GUIListReorderedNote",
-    "GUIScrollToTop",
-    "GUIScrollToBottom",
-    "GUIRowBindingClash",
-    "GUIChangelogTitle",
-    "GUIChangelogLoading",
-    "GUIChangelogPreview",
-    "GUIChangelogNone",
-    "GUIChangelogUnavailable",
-    "GUIChangelogVersionCount"
+    "GUIChangelogVersionHeading",
+    "GUIVersionsBadge",
+    "GUIModCrasherBadge",
+    "GUIModCrasherBadgeManual",
+    "GUIModCrasherTooltip",
+    "GUIModCrasherTooltipManual",
+    "GUIModCrasherSummary",
+    "GUIModCrasherHint",
+    "GUIModEditedBadge",
+    "GUINexusPatchNoMainFile",
+    "GUINexusPatchCancelled",
+    "GUIModEditedTooltip",
+    "GUIModEditedUndoHint",
+    "GUIModUndoAimEdits",
+    "GUINexusTrack",
+    "GUINexusTrackTooltip",
+    "GUINexusTracked",
+    "GUINexusAlreadyTracked",
+    "GUINexusTrackFailed",
+    "GUINexusTrackNoModId",
+    "GUIVersionsTooltip",
+    "GUIVersionsHeader",
+    "GUIUpdateBadgeInstalls",
+    "GUIUpdateBadgeOpensPage"
   ],
   "languages": [
     {
@@ -91,12 +91,12 @@
     },
     {
       "language": "zh-Hans",
-      "coreMissing": 104,
+      "coreMissing": 80,
       "coreComplete": false
     },
     {
       "language": "zh-Hant",
-      "coreMissing": 200,
+      "coreMissing": 176,
       "coreComplete": false
     }
   ]
