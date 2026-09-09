@@ -491,4 +491,24 @@ Alihkan ke AIM?</value></data>
   <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} dari {1} mod diperbarui.</value></data>
   <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Mod berikut tidak dapat diunduh langsung dan memerlukan halaman Nexus-nya: {0}&#xD;&#xA;&#xD;&#xA;Nexus hanya memberikan tautan unduhan langsung kepada akun Premium. Untuk akun gratis, buka halaman mod dan gunakan tombol «Mod Manager Download». AIM akan mengambilnya jika terdaftar untuk menangani tautan tersebut.</value></data>
   <data name="GUIConflictReportNothing" xml:space="preserve"><value>Tidak ada yang dilaporkan. AIM tidak menemukan file bersama, konflik pintasan, persyaratan yang hilang, atau peringatan kompatibilitas di antara mod yang Anda pilih.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Anda menandai ini bukan sebagai konflik yang sebenarnya.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Anda menemukan patch untuk ini.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Anda menandai mod ini tidak kompatibel - matikan salah satunya.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Diselesaikan dengan mengubah tombol: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Folder unduhan yang dipantau</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mod yang Anda unduh secara manual ke folder yang dipantau akan dipindahkan ke folder mod dan muncul sendiri dalam daftar.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Pantau folder…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Pilih folder untuk memantau mod yang diunduh</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Periksa folder yang dipantau sekarang</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Tidak ada folder yang dipantau</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Berhenti memantau folder ini</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Folder yang dipantau</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Tidak ada yang baru untuk diimpor. AIM hanya memindahkan arsip dan folder yang berisi manifest; yang lain dibiarkan di tempatnya.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod dibawa dari folder yang dipantau.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Dipindahkan ke folder mod Anda:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - Anda sudah memasang mod ini sebagai "{1}". Perbarui salinan itu atau hapus terlebih dahulu; dua salinan dari satu mod akan saling berebut file.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Dibiarkan di folder yang dipantau:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Folder mod tidak ditemukan, jadi tidak ada yang dapat dibuka.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Tidak dapat membuka folder mod: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Folder mod</value></data>
 </root>
