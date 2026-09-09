@@ -752,4 +752,22 @@ Les confier à AIM ?</value></data>
   <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Ce correctif n'a pas de fichier principal qu'AIM puisse installer seul. Ses fichiers sont ouverts dans votre navigateur : choisissez celui qui vous convient et utilisez « Mod Manager Download ».</value></data>
   <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Le téléchargement du correctif a été annulé.</value></data>
   <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM a modifié un fichier de ce mod pour résoudre un conflit. Les fichiers sur le disque ne sont donc plus exactement ceux publiés par l'auteur.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>La version de ce mod avant la modification se trouve dans la liste déroulante des versions. Restaurez-la ici ou faites un clic droit sur le mod et choisissez « Annuler les modifications d'AIM ».</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Annuler les modifications d'AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Suivre sur Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Ajoute ce mod à votre suivi Nexus afin que le site vous informe des mises à jour et des publications de l'auteur. Votre compte Nexus doit être connecté.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Vous suivez maintenant {0} sur Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Vous suiviez déjà {0} sur Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Impossible de suivre {0} sur Nexus Mods : {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM n'a pas pu lire l'identifiant du mod Nexus depuis la page qu'il connaît pour ce mod.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Copies précédentes de ce mod conservées par AIM lors de ses mises à jour. Choisissez-en une pour revenir à cette version.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Revenir à :</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Cliquez pour télécharger et installer. Votre version actuelle est conservée comme sauvegarde.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Cliquez pour ouvrir la page de téléchargement. AIM ne sait pas de quel fichier Nexus il s'agit. Faites un clic droit sur le mod et utilisez « Associer à Nexus… » pour permettre son installation automatique.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus indique que votre compte ({0}) est Premium. Ce refus ne vient donc pas de votre niveau de compte, mais signifie le plus souvent que la connexion a expiré ou a été révoquée. Reconnectez-vous depuis le menu de la roue dentée.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus indique que votre compte ({0}) est un compte gratuit. Les téléchargements directs sont une fonction Premium ; utilisez donc le bouton du site Web.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Aucun compte Nexus n'est connecté, AIM ne peut donc rien télécharger directement.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM n'a pas pu vérifier votre compte Nexus : {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Raccourcis</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Toutes les touches et tous les boutons de manette utilisés par vos mods, dans une seule liste, avec les conflits en rouge et la modification sur place.</value></data>
 </root>
