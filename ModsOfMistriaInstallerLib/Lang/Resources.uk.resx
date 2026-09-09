@@ -434,4 +434,28 @@
   <data name="GUIVersionsHeader" xml:space="preserve"><value>Повернути версію:</value></data>
   <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Натисніть, щоб завантажити й встановити. Поточну версію буде збережено як резервну копію.</value></data>
   <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Натисніть, щоб відкрити сторінку завантаження. AIM не знає, який це файл Nexus. Клацніть мод правою кнопкою та виберіть «Пов’язати з Nexus...», щоб встановлювати його автоматично.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus повідомляє, що ваш обліковий запис ({0}) має статус Premium, тож ця відмова не пов’язана з рівнем облікового запису. Найчастіше термін входу минув або доступ було відкликано. Увійдіть знову через меню з шестернею.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus повідомляє, що ваш обліковий запис ({0}) безкоштовний. Пряме завантаження доступне лише Premium, тому скористайтеся кнопкою на сайті.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Обліковий запис Nexus не підключено, тому AIM не може нічого завантажити безпосередньо.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM не вдалося перевірити ваш обліковий запис Nexus: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Прив’язки клавіш</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Усі клавіші та кнопки контролера, призначені вашими модами, в одному списку; конфлікти виділено червоним і їх можна редагувати на місці.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Прив’язки клавіш модів</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Поточні прив’язки ваших модів. Моди зберігають їх у власній папці конфігурації гри, а не в папці модів, тому оновлення не втрачає їх. Проте мод може скинути власні налаштування, і AIM запропонує повернути ваш вибір.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>Прив’язок: {0}, конфліктують: {1}.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Показувати лише конфлікти</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Оновити</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM не вдалося прочитати прив’язки клавіш ваших модів: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Читаємо, до чого прив’язані ваші моди...</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Жоден із вибраних модів не має прив’язки, яку бачить AIM. Моди, що створюють прив’язки під час роботи, не показують їх до запуску гри.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Конфліктів немає.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM не знайшов папку конфігурації гри, тому показує стандартні значення, з якими постачаються моди. Запустіть гру один раз, і вони стануть справжніми прив’язками.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria запущено. Редагування вимкнено, оскільки під час виходу гра переписує налаштування кожного моду й перезапише зміни, зроблені тут. Закрийте гру та натисніть «Оновити».</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>також використовується модом {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Однаковий ввід призначено в:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Позначити або зняти позначку з модів на екрані</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Застосовується до рядків, які зараз показують пошук і фільтри, але не до прихованих. Без фільтра це всі моди. Моди, які AIM не може встановити, залишаються без змін.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>стандартне значення моду; AIM не може змінити його, доки мод не збереже налаштування</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Цей мод ще не зберіг налаштування, тому це стандартне значення, вбудоване в нього. Запустіть гру один раз або змініть його у власних налаштуваннях моду, щоб AIM міг редагувати його тут.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(не призначено)</value></data>
 </root>

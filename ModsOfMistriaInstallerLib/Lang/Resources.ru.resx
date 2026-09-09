@@ -540,4 +540,28 @@
   <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Размер загруженного архива после распаковки превышает допустимый.</value></data>
   <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Размер элемента архива «{0}» после распаковки превышает допустимый.</value></data>
   <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Загруженный файл не является архивом, который может прочитать этот установщик. Поддерживаются zip, rar и 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Архив содержит небезопасный путь: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Вход в Nexus отменён, поскольку состояние обратного вызова не совпало.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus не вернул код авторизации.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Сессию аккаунта Nexus нужно подключить заново.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>Регистрация AIM в Nexus OAuth ещё не завершена.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus не смог завершить вход в аккаунт.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus вернул неполную сессию аккаунта.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Не удалось прочитать ответ аккаунта Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM ожидает обратный вызов входа в Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Ответ входа в Nexus не соответствует этой сессии AIM.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Вход в Nexus отменён. Можно вернуться в AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Вход в Nexus отменён или отклонён браузером.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Вход в Nexus завершён. Можно вернуться в AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus не вернул серверы загрузки для этого файла.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>API Nexus не ответил вовремя.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Не удалось связаться с API Nexus: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus вернул неожиданный ответ.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Не удалось прочитать ответ Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus отклонил сессию аккаунта. Подключите аккаунт Nexus снова.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus отклонил запрос. Срок ссылки загрузки мог истечь; нажмите её снова.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Этого мода или файла больше нет на Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Вы достигли ограничения API Nexus. Подождите немного перед следующей загрузкой.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus вернул ошибку ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Подключённого аккаунта Nexus ещё нет.</value></data>
 </root>
