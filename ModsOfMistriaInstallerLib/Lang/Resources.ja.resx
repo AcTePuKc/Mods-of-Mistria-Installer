@@ -342,4 +342,24 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>有効</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>要更新</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>順序を提案</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} 作成者：{1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Nexus にサインイン</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Nexus からサインアウト</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus アカウントに接続しました。</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus アカウントに接続されていません。Nexus の機能を使うにはサインインしてください。</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus アカウントを切断しました。</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Mod のマニフェストを編集</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>manifest.json（または manifest.toml）を通常使うテキストエディターで開きます。フォルダー形式の Mod でのみ使用できます。.zip や .rar 内の Mod には編集できるファイルがありません。</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Mod の設定を編集</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Mod の設定ファイルを通常使うテキストエディターで開きます。AIM が設定ファイルを見つけられない場合は無効になります。</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>{0} を開けませんでした：{1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Mod を削除…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Mod を Mod フォルダーから取り除きます。AIM は確認してからファイルを消去せず、ごみ箱に移動します。</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Mod を削除</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>「{0}」v{1} をごみ箱に移動しますか？&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Mod は Mod フォルダーから取り除かれます。気が変わった場合はごみ箱から戻せます。ゲームにすでにインストールされたファイルは、次回のインストールまたはアンインストールまで残ります。</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>「{0}」v{1} を完全に削除しますか？&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;このシステムには AIM が使えるごみ箱がないため、Mod のファイルは消去されます。この操作は元に戻せません。</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>「{0}」を削除できませんでした：{1}&#xD;&#xA;&#xD;&#xA;別のプログラムで開かれているか、ゲームがまだ実行中の可能性があります。</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>選択した Mod を削除…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>一覧を表示してから、チェックしたすべての Mod をごみ箱経由で一度に削除します。</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>チェックされた Mod がないため、削除するものがありません。</value></data>
 </root>
