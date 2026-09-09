@@ -740,4 +740,29 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIChangelogNone" xml:space="preserve"><value>De auteur van deze mod heeft geen releaseopmerkingen geplaatst.</value></data>
   <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM kon de releaseopmerkingen van deze mod niet lezen. Er is een verbonden Nexus-account nodig en AIM moet de Nexus-pagina van de mod kennen.</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versie(s) met opmerkingen, nieuwste eerst.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Versie {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versies</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Laat het spel crashen</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Gemarkeerd als crashveroorzaker</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Een gecontroleerde uitvoering bewees dat deze mod het spel laat crashen: met de mod uitgeschakeld draaide het spel en kwam de crash niet terug. AIM heeft de mod uitgeschakeld gelaten.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Je hebt deze mod zelf als crashveroorzaker gemarkeerd in de crashcontrole. AIM heeft hem niet getest, maar je oordeel gevolgd en de mod uitgeschakeld.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Versie {0}, gecontroleerd op {1}.
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Open Crashcontrole voor oplossingen die AIM kan toepassen en wat de eigen pagina's van de mod zeggen. De markering hoort bij deze versie en verdwijnt dus wanneer de auteur een update uitbrengt.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Bewerkt door AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Deze patch heeft geen hoofd bestand dat AIM zelfstandig kan installeren. De bestanden zijn in je browser geopend; kies het gewenste bestand en gebruik „Mod Manager Download”.</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Het downloaden van de patch is geannuleerd.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM heeft een bestand in deze mod gewijzigd om een conflict op te lossen. De bestanden op schijf zijn niet meer precies dezelfde als die de auteur heeft gepubliceerd.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>De mod van vóór de wijziging staat in de vervolgkeuzelijst Versies. Herstel hem daar of klik met de rechtermuisknop op de mod en kies „Wijzigingen van AIM ongedaan maken”.</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Wijzigingen van AIM ongedaan maken</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Volgen op Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Voegt deze mod toe aan je Nexus-volgcentrum, zodat de site je informeert over updates en berichten van de auteur. Een verbonden Nexus-account is nodig.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Je volgt „{0}” nu op Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Je volgde „{0}” al op Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Kon „{0}” niet volgen op Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM kon geen Nexus-mod-ID lezen van de pagina die het voor deze mod heeft.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Eerdere kopieën van deze mod die AIM bij een update heeft bewaard. Kies er een om naar terug te draaien.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Terugdraaien naar:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Klik om te downloaden en installeren. Je huidige versie wordt als back-up bewaard.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Klik om de downloadpagina te openen. AIM weet niet welk Nexus-bestand dit is. Klik met de rechtermuisknop op de mod en kies „Koppelen aan Nexus...” om automatische installatie mogelijk te maken.</value></data>
 </root>

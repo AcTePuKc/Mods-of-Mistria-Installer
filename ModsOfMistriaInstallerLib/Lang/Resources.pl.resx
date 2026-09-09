@@ -587,4 +587,13 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUINxmNotModDownload" xml:space="preserve"><value>Link nie prowadzi do pobrania pliku moda.</value></data>
   <data name="GUINxmInvalidIds" xml:space="preserve"><value>Link zawiera nieprawidłowy identyfikator moda lub pliku.</value></data>
   <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Nie można ustalić, skąd uruchomiono instalator.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Rejestrowanie linków nxm:// jest obsługiwane tylko w systemach Windows i Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM został zarejestrowany, ale Windows może nadal używać {0} dla linków nxm://.&#xA;&#xA;Wybierz AIM jako domyślną aplikację dla nxm:// w aplikacjach domyślnych Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Nie udało się zweryfikować rejestracji nxm:// po jej zapisaniu.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Aktualizacja może naprawić to, co zostało spatchowane</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>Wydano {0} {1}. Używasz {2} z zastosowaną poprawką AIM: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Aktualizuj i usuń poprawkę AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Aktualizacja zastępuje folder moda, więc zmiana AIM znika. Jeśli nowa wersja nie naprawi problemu, awaria wróci i będzie można ponownie zastosować poprawkę. Poprzednia wersja nadal znajduje się na liście przywracania.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Wykryto zewnętrzne archiwum</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM znalazł zewnętrznie zmieniony assets.zip.&#xA;&#xA;Jeśli będziesz kontynuować, AIM:&#xA;• zachowa go jako plik assets.foreign-...zip&#xA;• przywróci sprawdzoną kopię zapasową&#xA;• ponowi tę instalację&#xA;&#xA;Mody istniejące tylko w zewnętrznym archiwum będą nieaktywne. Kontynuować?</value></data>
 </root>
