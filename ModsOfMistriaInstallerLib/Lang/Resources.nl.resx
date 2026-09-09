@@ -765,4 +765,28 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIVersionsHeader" xml:space="preserve"><value>Terugdraaien naar:</value></data>
   <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Klik om te downloaden en installeren. Je huidige versie wordt als back-up bewaard.</value></data>
   <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Klik om de downloadpagina te openen. AIM weet niet welk Nexus-bestand dit is. Klik met de rechtermuisknop op de mod en kies „Koppelen aan Nexus...” om automatische installatie mogelijk te maken.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus meldt dat je account ({0}) Premium is. Deze weigering ligt dus niet aan je accountniveau; meestal is de aanmelding verlopen of ingetrokken. Log opnieuw in via het tandwielmenu.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus meldt dat je account ({0}) een gratis account is. Directe downloads zijn een Premium-functie, dus gebruik de knop op de website.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Er is geen Nexus-account verbonden, dus AIM kan niets rechtstreeks downloaden.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM kon je Nexus-account niet controleren: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Toetsenbindingen</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Elke toets en controllerknop die je mods gebruiken in één lijst, met conflicten in rood en directe bewerking.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Toetsenbindingen van mods</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Waar je mods momenteel aan gebonden zijn. Mods bewaren dit in de eigen configuratiemap van het spel, niet in de mods-map, zodat een update het niet verliest. Een mod kan zijn eigen instellingen wel resetten; AIM biedt dan aan jouw keuze opnieuw toe te passen.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} bindingen, waarvan {1} conflicten.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Alleen conflicten tonen</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Vernieuwen</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM kon de toetsenbindingen van je mods niet lezen: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Bezig met lezen waaraan je mods zijn gebonden...</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Geen van je geselecteerde mods heeft een toetsenbinding die AIM kan zien. Mods die bindingen tijdens het uitvoeren maken tonen ze pas nadat het spel is gestart.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Geen conflicten.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM kon de configuratiemap van het spel niet vinden en toont daarom de standaardwaarden die je mods meeleveren. Start het spel één keer om je echte bindingen te krijgen.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria draait. Bewerken is uitgeschakeld, omdat het spel bij afsluiten de instellingen van elke mod opnieuw schrijft en wijzigingen hier zou overschrijven. Sluit het spel en klik op Vernieuwen.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>wordt ook gebruikt door {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Dezelfde invoer is gebonden in:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Mods op het scherm aan- of uitvinken</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Geldt voor de rijen die je zoekopdracht en filters nu tonen, niet voor verborgen rijen. Zonder filter betekent dat elke mod. Mods die AIM niet kan installeren blijven ongemoeid.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>standaard van de mod; AIM kan dit niet wijzigen voordat de mod instellingen opslaat</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Deze mod heeft zijn instellingen nog niet opgeslagen, dus dit is de standaardwaarde die erin is ingebouwd. Start het spel één keer of wijzig dit in de eigen instellingen van de mod, dan kan AIM het hier bewerken.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(niet gebonden)</value></data>
 </root>

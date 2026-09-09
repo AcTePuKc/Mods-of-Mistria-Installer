@@ -668,4 +668,28 @@ Passá-los para o AIM?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Ativos</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Atualizações</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir ordem</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} por {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Entrar no Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Sair do Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Conta do Nexus conectada.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Conta do Nexus não conectada. Entre para usar os recursos do Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Conta do Nexus desconectada.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Editar o manifesto do mod</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Abre manifest.json (ou manifest.toml) no seu editor de texto habitual. Disponível apenas para mods que são pastas; um mod em .zip ou .rar não tem arquivo para editar.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Editar a configuração do mod</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Abre o arquivo de configuração do mod no seu editor de texto habitual. Fica desativado quando o AIM não encontra um arquivo de configuração.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Não foi possível abrir {0}: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Remover mod...</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Remove o mod da pasta de mods. O AIM pergunta antes e envia os arquivos para a Lixeira em vez de apagá-los.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Remover mod</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Mover o mod "{0}" v{1} para a Lixeira?&#xA;&#xA;{2}&#xA;&#xA;Ele será removido da pasta de mods. Você poderá restaurá-lo da Lixeira se mudar de ideia. Os arquivos que ele já instalou no jogo permanecem até a próxima instalação ou desinstalação.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Excluir permanentemente o mod "{0}" v{1}?&#xA;&#xA;{2}&#xA;&#xA;Este sistema não tem uma Lixeira que o AIM possa usar, então os arquivos do mod serão apagados. Não é possível desfazer.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>Não foi possível remover "{0}": {1}&#xA;&#xA;Ele pode estar aberto em outro programa ou o jogo ainda pode estar em execução.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Remover selecionados...</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Remove todos os mods marcados de uma vez pela Lixeira, depois de mostrar a lista.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Nenhum mod está marcado, então não há nada para remover.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Mover {0} mod(s) para a Lixeira?&#xA;&#xA;{1}&#xA;&#xA;Eles serão removidos da pasta de mods e poderão ser restaurados da Lixeira. Os arquivos já instalados no jogo permanecem até a próxima instalação ou desinstalação.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Excluir permanentemente {0} mod(s)?&#xA;&#xA;{1}&#xA;&#xA;Este sistema não tem uma Lixeira que o AIM possa usar, então os arquivos serão apagados. Não é possível desfazer.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... e mais {0}</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} de {1} mod(s) removido(s).</value></data>
 </root>
