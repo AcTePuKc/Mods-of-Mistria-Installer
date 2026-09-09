@@ -890,4 +890,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Você atingiu o limite da API do Nexus. Aguarde um pouco antes de baixar novamente.</value></data>
   <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>O Nexus retornou um erro ({0}).</value></data>
   <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Nenhuma conta do Nexus está conectada ainda.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>O arquivo de origem deste mod não está mais na página dele no Nexus, e nenhum dos arquivos restantes é uma versão mais nova. Essa página hospeda vários mods separados, então o AIM não oferecerá outro como atualização. Verifique a página manualmente se você acha que existe uma versão mais nova.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>A página desse mod não tem um arquivo principal para comparação.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>O AIM não sabe de qual arquivo desta página este mod veio, então não consegue dizer se a versão na página é mais recente. Baixe-o uma vez pelo AIM ou clique com o botão direito no mod e associe-o a um arquivo específico para que a verificação de atualizações seja confiável.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>A verificação de atualizações foi interrompida antes do fim.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>A verificação de atualizações não foi concluída para este mod.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Nenhuma conta do Nexus está conectada ainda.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Este download é para outro jogo ({0}), então este instalador não pode processá-lo.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Este link de download expirou. Clique novamente no botão "Vortex download" na página do mod.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>A pasta de mods não foi encontrada.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Consultando o Nexus sobre o arquivo...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Baixando {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Extraindo {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Instalação cancelada</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} instalado</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} mods instalados</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Download cancelado</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Link de download vazio.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Este não é um link nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>O link não informa um jogo.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Coleções do Nexus ainda não são compatíveis. Baixe os mods individualmente.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>O link não é um download de arquivo de mod.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>O link tem um ID de mod ou arquivo inválido.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Não foi possível descobrir de onde o instalador está sendo executado.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>O registro de links nxm:// só é compatível com Windows e Linux.</value></data>
 </root>

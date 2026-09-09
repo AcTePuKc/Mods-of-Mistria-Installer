@@ -390,4 +390,31 @@
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Исправлено: «{0}» перенесён на {1}, поэтому это сочетание больше не используется совместно. Переустановите мод, чтобы изменение попало в игру.</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Этот мод всё ещё является файлом .zip или .rar. Сначала распакуйте его в папку модов, после чего AIM сможет изменить его привязку.</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Этот мод не объявляет клавишу как именованную привязку, поэтому AIM не может безопасно её изменить. Проверьте настройки самого мода в игре или его конфигурационный файл.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Все функциональные клавиши уже используются выбранным модом, поэтому свободной клавиши для переноса нет.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM не удалось прочитать файлы этого мода.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Сортировать от А до Я</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Сортирует список по названию, чтобы быстро найти мод. Это только представление: порядок загрузки не меняется, а после отключения снова показывается настоящий порядок. Перетаскивание при этом приостановлено.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Сортировать по последнему обновлению</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Сначала показываются самые новые моды, по времени последнего изменения их папки на диске. Недавно установленные или обновлённые моды поднимаются наверх. Это только представление: порядок загрузки не меняется, а перетаскивание приостановлено.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Переместить в начало порядка загрузки</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Загружает этот мод первым, чтобы остальные могли опираться на него и переопределять его. Здесь должен находиться фреймворк или мод, от которого зависят другие. Меняется настоящий порядок загрузки, а не только текущий вид списка.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Переместить в конец порядка загрузки</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Загружает этот мод последним, поэтому при общих файлах он побеждает. Здесь должен находиться перекрас или личное переопределение. Меняется настоящий порядок загрузки, а не только текущий вид списка.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Только включённые моды</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Скрывает всё выключенное. Важен порядок модов, которые действительно попадают в игру, а в длинном списке трудно видеть его среди неиспользуемых модов.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Только моды, требующие внимания</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Показывает только моды с ожидающим обновлением и моды, до которых не удалось достучаться при последней проверке: нет связи с Nexus, проблема сети или страница больше не существует.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Только просмотр: порядок загрузки не изменён, перетаскивание приостановлено</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Перейти в начало списка</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Перейти в конец списка</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) также используется модом {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Примечания к выпуску</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Примечания к выпуску: наведите для загрузки, нажмите, чтобы прочитать всю историю.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Что нового в {0}:
+{1}
+
+Нажмите, чтобы прочитать все версии.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Автор этого мода не опубликовал примечания к выпуску.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM не удалось прочитать примечания к выпуску этого мода. Нужен подключённый аккаунт Nexus, а AIM должен знать страницу мода на Nexus.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>Версий с примечаниями: {0}, начиная с самой новой.</value></data>
 </root>
