@@ -1156,4 +1156,7 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Systeemstandaard</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Licht</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Donker</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Mistria-weide</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>Mistria-nacht</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rozentuin</value></data>
 </root>

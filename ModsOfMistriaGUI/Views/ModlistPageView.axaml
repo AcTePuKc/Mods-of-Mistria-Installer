@@ -126,6 +126,10 @@
                     <MenuItem x:Name="ThemeSystemMenuItem" Header="{Binding Texts.GUIThemeSystemDefault}" Tag="system" Click="ThemeMenuClick" />
                     <MenuItem x:Name="ThemeLightMenuItem" Header="{Binding Texts.GUIThemeLight}" Tag="light" Click="ThemeMenuClick" />
                     <MenuItem x:Name="ThemeDarkMenuItem" Header="{Binding Texts.GUIThemeDark}" Tag="dark" Click="ThemeMenuClick" />
+                    <Separator />
+                    <MenuItem x:Name="ThemeMeadowMenuItem" Header="{Binding Texts.GUIThemeMeadow}" Tag="meadow" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeNightMenuItem" Header="{Binding Texts.GUIThemeNight}" Tag="night" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeRoseMenuItem" Header="{Binding Texts.GUIThemeRoseGarden}" Tag="rose" Click="ThemeMenuClick" />
                 </MenuItem>
             </Menu>
 

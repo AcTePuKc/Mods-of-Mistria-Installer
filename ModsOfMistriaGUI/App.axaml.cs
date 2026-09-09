@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using System.Diagnostics;
@@ -50,12 +51,37 @@ public class App : Application
     {
         if (Current is null) return;
 
-        Current.RequestedThemeVariant = Settings.NormalizeTheme(preference) switch
+        var theme = Settings.NormalizeTheme(preference);
+        Current.RequestedThemeVariant = theme switch
         {
             "light" => ThemeVariant.Light,
+            "meadow" => ThemeVariant.Light,
             "dark" => ThemeVariant.Dark,
+            "night" => ThemeVariant.Dark,
+            "rose" => ThemeVariant.Dark,
             _ => ThemeVariant.Default
         };
+
+        // Fluent supports only Light and Dark base variants, but its accent is designed to be
+        // changed at runtime. Our palettes intentionally build on those stable bases rather than
+        // replacing Fluent's control templates with a second theme framework.
+        const string accentKey = "SystemAccentColor";
+        switch (theme)
+        {
+            case "meadow":
+                Current.Resources[accentKey] = Color.Parse("#4F8058");
+                break;
+            case "night":
+                Current.Resources[accentKey] = Color.Parse("#9A8BE5");
+                break;
+            case "rose":
+                Current.Resources[accentKey] = Color.Parse("#E69AB5");
+                break;
+            default:
+                // Return to the operating system accent rather than retaining an old preset.
+                Current.Resources.Remove(accentKey);
+                break;
+        }
     }
 
     public override void OnFrameworkInitializationCompleted()

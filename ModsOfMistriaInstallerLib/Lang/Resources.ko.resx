@@ -835,4 +835,7 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>시스템 기본값</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>라이트</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>다크</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>미스트리아 초원</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>미스트리아의 밤</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>장미 정원</value></data>
 </root>

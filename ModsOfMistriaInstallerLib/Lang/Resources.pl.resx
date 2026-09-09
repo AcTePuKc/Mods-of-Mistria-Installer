@@ -833,4 +833,7 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Domyślny systemowy</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Jasny</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Ciemny</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Łąka Mistrii</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>Noc Mistrii</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Ogród różany</value></data>
 </root>

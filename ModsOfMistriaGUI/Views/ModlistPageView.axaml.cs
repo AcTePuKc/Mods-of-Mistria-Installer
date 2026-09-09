@@ -426,7 +426,11 @@ public partial class ModlistPageView : UserControl
     private void UpdateThemeCheckmark()
     {
         var selected = Settings.LoadSavedUiTheme();
-        foreach (var item in new[] { ThemeSystemMenuItem, ThemeLightMenuItem, ThemeDarkMenuItem })
+        foreach (var item in new[]
+                 {
+                     ThemeSystemMenuItem, ThemeLightMenuItem, ThemeDarkMenuItem,
+                     ThemeMeadowMenuItem, ThemeNightMenuItem, ThemeRoseMenuItem
+                 })
         {
             item.Icon = string.Equals(item.Tag as string, selected, StringComparison.OrdinalIgnoreCase)
                 ? new TextBlock { Text = "✓", FontWeight = FontWeight.Bold, VerticalAlignment = VerticalAlignment.Center }

@@ -1153,4 +1153,7 @@ An AIM übergeben?</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Systemstandard</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Hell</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Dunkel</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Mistria-Wiese</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>Mistria-Nacht</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rosengarten</value></data>
 </root>

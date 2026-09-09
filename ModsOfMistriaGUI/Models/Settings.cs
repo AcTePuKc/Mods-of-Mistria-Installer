@@ -139,6 +139,9 @@ public partial class Settings : ObservableObject
     {
         "light" => "light",
         "dark" => "dark",
+        "meadow" => "meadow",
+        "night" => "night",
+        "rose" => "rose",
         _ => "system"
     };
 
