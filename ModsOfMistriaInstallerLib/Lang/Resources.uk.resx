@@ -659,6 +659,54 @@
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Вилучити мод</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} вилучено.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Версії та зміни AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM змінив цей мод:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Скасувати зміни AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Відновлює файли, відкладені AIM для цього мода, не змінюючи решту папки.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Відновити</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} відновлено до {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — до зміни AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM вимкне {0}, перебудує архів гри та запустить гру.&#xD;&#xA;&#xD;&#xA;Перебудова триватиме близько хвилини. Грайте як завжди; AIM повідомить, чи повернувся збій.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM запустить гру й спостерігатиме за збоями без змін. Грайте як завжди; AIM повідомить результат.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM не може змінити список модів тут.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>Не вдалося вимкнути {0}. Мод уже вимкнений або відсутній у списку.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} вимкнено.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Перебудовую архів гри…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Не вдалося перебудувати гру: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Запускаю гру та спостерігаю за нею.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM уже встановлює моди. Дочекайтеся завершення.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Немає чого встановлювати: немає папки гри або ввімкнених модів.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM не знає розташування папки модів.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Цього мода більше немає у списку.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Каже, що це відома проблема</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Каже, що мод працює нормально</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Працює за умови</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Інша інформація на сторінках</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Застосувати виправлення вручну</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Якщо в обговоренні помилки або описі мода точно сказано, що змінити, вкажіть це тут. AIM спочатку збереже весь мод в історії версій.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Файл відносно папки мода</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Рядок</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Новий текст рядка; порожнє поле очистить його</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Застосувати зміну</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Відкласти файл</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Вилучає файл із гри, залишаючи решту мода встановленою.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Спочатку вкажіть файл мода та номер рядка.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Виправлення збою: рядок {0} з {1} у {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Виправлення збою: {0} відкладено в {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM спочатку збереже весь мод в історії версій, щоб його можна було відновити. Буде змінено лише цей мод.&#xD;&#xA;&#xD;&#xA;Продовжити?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Нічого не змінено; гру запущено як є.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Архів уже відповідає списку модів, перебудова не потрібна.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Архів гри перебудовано.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Запускаю Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Спостерігаю за грою. Грайте як завжди; AIM повідомить після закриття або через {0} хвилин без збою.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Гра не запустилася, тому нічого не перевірено.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Той самий збій повторився з вимкненим {0}, тож він не винен. AIM виключив і знову ввімкнув його.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Той самий збій повторився з вимкненим {0}, тож він не винен. AIM виключив його, але не зміг увімкнути знову.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Без {0} гра не завершилася зі збоєм. Мод, імовірно, винен. Залиште його вимкненим або дочекайтеся оновлення.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Гра працювала без збою, і нічого не змінено. Повторіть попередні дії та спробуйте знову.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Цей запуск нічого не вирішив, тому {0} досі підозрілий. AIM запропонує його знову.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Гра завершилася зі збоєм з іншої причини; {0} виключено для початкового збою. Попередні результати збережено.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>Для цього збою перевірено підозрюваних: {0} із {1}.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM не може зберегти результати; вони доступні лише доки відкрите це вікно.</value></data>
   <data name="GUICrashTitle" xml:space="preserve"><value>Перевірка збою</value></data>
   <data name="GUICrashPickerLabel" xml:space="preserve"><value>Збій</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Файли збоїв</value></data>

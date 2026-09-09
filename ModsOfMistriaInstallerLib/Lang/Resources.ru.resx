@@ -740,4 +740,52 @@
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Удалить мод</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} удалён.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Версии и изменения AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM изменил этот мод:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Отменить изменения AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Возвращает файлы, отложенные AIM для этого мода, не меняя остальную папку.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Восстановить</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} восстановлен до {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — до изменения AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM отключит {0}, перестроит архив игры и запустит игру.&#xD;&#xA;&#xD;&#xA;Перестройка займёт около минуты. Играйте обычно; AIM сообщит, вернулся ли сбой.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM запустит игру и будет наблюдать за сбоями без изменений. Играйте обычно; AIM сообщит результат.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM не может изменить список модов здесь.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>Не удалось отключить {0}. Мод уже отключён или отсутствует в списке.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} отключён.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Перестраиваю архив игры…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Не удалось перестроить игру: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Запускаю игру и наблюдаю за ней.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM уже устанавливает моды. Дождитесь завершения.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Нечего устанавливать: нет папки игры или включённых модов.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM не знает расположение папки модов.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Этого мода больше нет в списке.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Говорит, что это известная проблема</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Говорит, что мод работает нормально</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Работает при условии</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Другая информация на страницах</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Применить исправление вручную</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Если в обсуждении ошибки или описании мода точно сказано, что изменить, укажите это здесь. AIM сначала сохранит весь мод в истории версий.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Файл относительно папки мода</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Строка</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Новый текст строки; пустое поле очистит её</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Применить изменение</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Отложить файл</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Исключает файл из игры, оставляя остальной мод установленным.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Сначала укажите файл мода и номер строки.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Исправление сбоя: строка {0} из {1} в {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Исправление сбоя: {0} отложен в {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM сначала сохранит весь мод в истории версий, чтобы его можно было восстановить. Изменён будет только этот мод.&#xD;&#xA;&#xD;&#xA;Продолжить?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Ничего не изменено; игра запускается как есть.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Архив уже соответствует списку модов, перестройка не нужна.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Архив игры перестроен.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Запускаю Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Наблюдаю за игрой. Играйте обычно; AIM сообщит после закрытия или через {0} минут без сбоя.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Игра не запустилась, поэтому ничего не проверено.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Тот же сбой повторился с отключённым {0}, значит он не виноват. AIM исключил и снова включил его.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Тот же сбой повторился с отключённым {0}, значит он не виноват. AIM исключил его, но не смог включить снова.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Без {0} игра не сбилась. Мод, вероятно, виноват. Оставьте его отключённым или ждите обновления.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Игра работала без сбоя, и ничего не изменилось. Повторите прошлые действия и попробуйте снова.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Этот запуск ничего не решил, поэтому {0} всё ещё подозрителен. AIM предложит его снова.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Игра сбилась по другой причине; {0} исключён для исходного сбоя. Предыдущие результаты сохранены.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>Для этого сбоя проверено подозреваемых: {0} из {1}.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM не может сохранить результаты; они доступны только пока открыто это окно.</value></data>
 </root>
