@@ -1036,4 +1036,52 @@ An AIM übergeben?</value></data>
   <data name="GUICrashReading" xml:space="preserve"><value>Der Aufrufstapel wird mit deinen installierten Mods verglichen…</value></data>
   <data name="GUICrashNoModList" xml:space="preserve"><value>AIM kann deine Mod-Liste von hier aus nicht sehen. Daher kann es den Absturz anzeigen, aber nicht sagen, welche Mod ihn verursacht hat.</value></data>
   <data name="GUICrashFailed" xml:space="preserve"><value>AIM konnte diesen Absturz nicht vollständig lesen: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Dieser Absturz ist älter als die derzeit installierten Mods. AIM hat das Spiel danach neu erstellt, daher entspricht die Absturzversion nicht dem aktuellen Stand auf der Festplatte. Spiele einmal, bevor du etwas änderst, und betrachte die unten genannten Mods als Hinweise statt als Urteil.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Du bist nicht bei Nexus angemeldet, daher kann AIM die Fehlertracker der Mods nicht lesen. Alles oben wurde aus deinen eigenen Dateien ermittelt.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Fehlertracker und Kommentare zu den genannten Mods werden gelesen…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Nichts weist eindeutig genug auf eine Mod hin, deren Seite sich zu lesen lohnt.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM konnte die Mod-Seiten nicht lesen: {0}. Die Auswertung deiner eigenen Dateien bleibt trotzdem bestehen.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Auf den Mod-Seiten wird dieser Absturz nicht erwähnt.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} Einträge auf den Mod-Seiten sind hierfür relevant.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>SICHER</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>WAHRSCHEINLICH</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>MÖGLICH</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>UNWAHRSCHEINLICH</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Mod-Seite öffnen</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Diese Seite öffnen</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Diesen Fehler melden</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Erstellt den Bericht, den der Autor benötigt, mit Fehler, Aufrufstapel, Spielversion und deinen anderen installierten Mods, kopiert ihn in die Zwischenablage und öffnet den Fehlertracker der Mod. Du liest ihn und veröffentlichst ihn selbst; AIM tut das nicht.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Der Bericht befindet sich in der Zwischenablage und der Fehlertracker ist geöffnet. Lies ihn durch und veröffentliche ihn anschließend.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Der Bericht befindet sich in der Zwischenablage. AIM weiß nicht, woher diese Mod stammt, daher musst du den Tracker oder Discord des Autors selbst finden.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Kopiert.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Deaktivieren und prüfen</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Deaktiviert diese Mod, erstellt das Spiel neu und startet es, damit du herausfindest, ob sie die Ursache war, statt zu raten.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Das Spiel wird ohne diese Mod neu erstellt und danach automatisch gestartet. Der Fortschritt steht unten.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Mod entfernen</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} wurde entfernt.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versionen und AIMs Änderungen</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM hat diese Mod geändert:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>AIMs Änderungen rückgängig machen</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Stellt jede Datei wieder her, die AIM in dieser Mod beiseitegelegt hat, und lässt alle anderen Dateien im Ordner unangetastet. Eine von AIM geänderte Zeile wird durch Wiederherstellen der unten aufgeführten Version rückgängig gemacht.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Wiederherstellen</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} wurde auf {1} zurückgesetzt.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - vor der Änderung durch AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM deaktiviert {0}, erstellt das Spielarchiv neu und startet das Spiel.&#xD;&#xA;&#xD;&#xA;Das Neuerstellen dauert etwa eine Minute. Spiele wie gewohnt; AIM teilt dir mit, ob der Absturz zurückkehrt.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM startet das Spiel und achtet auf einen Absturz, ohne etwas zu ändern.&#xD;&#xA;&#xD;&#xA;Spiele wie gewohnt; AIM teilt dir mit, was passiert ist.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM kann die Mod-Liste von hier aus nicht ändern.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} konnte nicht deaktiviert werden. Sie ist möglicherweise bereits deaktiviert oder nicht mehr in der Liste.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} ist deaktiviert.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Das Spielarchiv wird neu erstellt, damit die Änderung wirksam wird…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Das Spiel konnte nicht neu erstellt werden, daher wurde nichts getestet: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Das Spiel wird gestartet und überwacht. Spiele wie gewohnt.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM installiert bereits. Warte zuerst, bis dieser Vorgang abgeschlossen ist.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Es gibt nichts zu installieren: kein Spieleordner oder keine Mods sind aktiviert.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM kennt den Speicherort deines Mod-Ordners nicht.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Diese Mod befindet sich nicht mehr in der Liste.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Behauptet, dass dies ein bekanntes Problem ist</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Behauptet, dass diese Mod in Ordnung ist</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Funktioniert, aber nur nach einer bestimmten Aktion</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Weitere Aussagen auf den Seiten</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Eine Korrektur manuell anwenden</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Wenn ein Fehlerthread oder die Beschreibung der Mod genau angibt, was geändert werden muss, trage es hier ein. AIM kopiert zuerst die gesamte Mod in deinen Versionsverlauf, daher enthält die obige Wiederherstellungsliste immer die Version vor dieser Änderung.</value></data>
 </root>
