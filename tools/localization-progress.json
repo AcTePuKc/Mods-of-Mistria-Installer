@@ -1,32 +1,17 @@
 {
-  "generatedAt": "2026-09-09T05:09:12.5349336Z",
+  "generatedAt": "2026-09-09T05:31:48.1799455Z",
   "coreKeyCount": 465,
   "nextLanguage": "pl",
   "nextBatch": [
-    "GUINexusUpdateNoAccount",
-    "GUINexusUpdateSourceFileMissing",
-    "GUINexusUpdateNoMainFile",
-    "GUINexusUpdateUnknownSourceFile",
-    "GUINexusUpdateStoppedEarly",
-    "GUINexusUpdateDidNotFinish",
-    "GUINxmDownloadNoAccount",
-    "GUINxmDownloadWrongGame",
-    "GUINxmDownloadExpired",
-    "GUINxmDownloadModsFolderMissing",
-    "GUINxmDownloadResolving",
-    "GUINxmDownloadDownloading",
-    "GUINxmDownloadUnpacking",
-    "GUINxmDownloadInstallCancelled",
-    "GUINxmDownloadInstalledOne",
-    "GUINxmDownloadInstalledMany",
-    "GUINxmDownloadCancelled",
-    "GUINxmEmptyLink",
-    "GUINxmInvalidScheme",
-    "GUINxmMissingGame",
-    "GUINxmCollectionsUnsupported",
-    "GUINxmNotModDownload",
-    "GUINxmInvalidIds",
-    "GUINxmExecutablePathUnknown"
+    "GUINxmRegistrationUnsupported",
+    "GUINxmRegistrationMayBeOverridden",
+    "GUINxmRegistrationNotVerified",
+    "GUIUpdateMayFixHeader",
+    "GUIUpdateMayFix",
+    "GUIUpdateMayFixAction",
+    "GUIUpdateMayFixTooltip",
+    "GUIForeignArchiveRecoveryTitle",
+    "GUIForeignArchiveRecoveryMessage"
   ],
   "languages": [
     {
@@ -66,12 +51,12 @@
     },
     {
       "language": "nl",
-      "coreMissing": 200,
+      "coreMissing": 176,
       "coreComplete": false
     },
     {
       "language": "pl",
-      "coreMissing": 33,
+      "coreMissing": 9,
       "coreComplete": false
     },
     {
