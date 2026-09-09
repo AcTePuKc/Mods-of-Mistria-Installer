@@ -743,4 +743,29 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIChangelogNone" xml:space="preserve"><value>O autor deste mod não publicou notas da versão.</value></data>
   <data name="GUIChangelogUnavailable" xml:space="preserve"><value>O AIM não conseguiu ler as notas da versão deste mod. É necessário ter uma conta do Nexus conectada e o AIM precisa conhecer a página do mod no Nexus.</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versão(ões) com notas, da mais recente para a mais antiga.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Versão {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versões</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Causa falha no jogo</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Marcado como causador de falhas</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Uma execução supervisionada comprovou que este mod causa falha no jogo: com ele desativado, o jogo rodou e a falha não voltou. O AIM deixou o mod desativado.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Você marcou este mod como causador de falhas na verificação de falhas. O AIM não o testou, apenas confiou na sua avaliação e desativou o mod.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Versão {0}, verificado em {1}.
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Abra Verificar falhas para ver as correções que o AIM pode aplicar e o que as páginas do próprio mod dizem. A marca está ligada a esta versão, então uma atualização do autor a remove.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Editado pelo AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Este patch não tem um arquivo principal que o AIM possa instalar sozinho. Os arquivos estão abertos no navegador. Escolha o que deseja e use "Mod Manager Download".</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>O download do patch foi cancelado.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>O AIM alterou um arquivo dentro deste mod para resolver um conflito. Os arquivos no disco não são mais exatamente os publicados pelo autor.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>O mod como era antes da alteração está na lista suspensa Versões. Restaure-o ali ou clique com o botão direito no mod e escolha "Desfazer alterações do AIM".</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Desfazer alterações do AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Acompanhar no Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Adiciona este mod ao seu centro de acompanhamento do Nexus, para que o site avise sobre atualizações e publicações do autor. É necessário conectar sua conta do Nexus.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Agora acompanhando {0} no Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Você já acompanhava {0} no Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Não foi possível acompanhar {0} no Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>O AIM não conseguiu ler um ID de mod do Nexus na página conhecida para este mod.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Cópias anteriores deste mod que o AIM manteve quando ele foi atualizado. Escolha uma para reverter para ela.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Reverter para:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Clique para baixar e instalar. Sua versão atual será mantida como backup.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Clique para abrir a página de download. O AIM não sabe qual arquivo do Nexus é este. Clique com o botão direito no mod e use "Associar ao Nexus..." para permitir que ele seja instalado automaticamente.</value></data>
 </root>

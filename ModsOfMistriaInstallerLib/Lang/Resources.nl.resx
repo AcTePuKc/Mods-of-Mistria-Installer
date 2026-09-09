@@ -839,4 +839,28 @@ Klik om elke versie te lezen.</value></data>
 {0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>De mods-map kon niet worden gevonden, dus er is niets om te openen.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Kon de mods-map niet openen: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods-map</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Open de Fields of Mistria-mods-map in je bestandsbeheerder</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Crashes controleren</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Leest het eigen crashlogboek van het spel, bepaalt naar welke mod het verwijst en biedt aan die mod uit te schakelen om te controleren of de crash verdwijnt.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Er is geen ruimte meer in de mods-map om {0} klaar te zetten.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Er staan al te veel kopieën van {0} in de mods-map.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Kon het bestand niet downloaden van Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>geen downloadserver reageerde</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Er is niets om naar bij te werken.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Kon de Nexus-accountsessie niet opslaan. Controleer de schijftoegang en probeer het opnieuw.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>De back-up van {0} ontbreekt.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Het gedownloade bestand ontbreekt.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>De mods-map kon niet worden gevonden.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Deze download bevat geen manifest.toml en is dus geen mod die deze installer kan verwerken. Het kan een oudere mod zijn of een bestand dat handmatig moet worden geïnstalleerd.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Kon de gedownloade mod niet voltooien. De oorspronkelijke installatiefout was: {0}&#xA;Een eerdere modkopie kon niet worden hersteld. De back-up is bewaard voor handmatig herstel:&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>De apart gehouden kopie staat niet meer op {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Er staan al te veel bewaarde kopieën van {0} naast de mods-map.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Kon de mod niet uitpakken: {0}. De vorige kopie kon niet worden hersteld; de back-up is bewaard voor handmatig herstel{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Kon de mod niet uitpakken: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Het gedownloade archief bevat te veel bestanden.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Het gedownloade archief bevat een te groot bestand.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Het gedownloade archief overschrijdt de ondersteunde grootte na uitpakken.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Archiefitem „{0}” overschrijdt de ondersteunde grootte na uitpakken.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Het gedownloade bestand is geen archief dat deze installer kan lezen. zip, rar en 7z worden ondersteund.</value></data>
 </root>
