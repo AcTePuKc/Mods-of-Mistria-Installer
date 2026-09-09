@@ -496,4 +496,28 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIVerdictIncompatible" xml:space="preserve"><value>これらの Mod は互換性がないと記録しました。どちらか一方を無効にしてください。</value></data>
   <data name="GUIVerdictRebound" xml:space="preserve"><value>キーの再割り当てで解決：{0}</value></data>
   <data name="GUIDropFolderMenu" xml:space="preserve"><value>監視中のダウンロードフォルダー</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>監視中のフォルダーに手動でダウンロードした Mod は Mod フォルダーへ移動され、自動的に一覧に表示されます。</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>フォルダーを監視…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>ダウンロードした Mod を監視するフォルダーを選択</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>監視中のフォルダーを今すぐ確認</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>監視中のフォルダーはありません</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>このフォルダーの監視を停止</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>監視中のフォルダー</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>新しく取り込むものはありません。AIM はマニフェストを含むアーカイブとフォルダーだけを移動し、それ以外はそのまま残します。</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>監視中のフォルダーから {0} 個の Mod を取り込みました。</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Mod フォルダーへ移動：&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - この Mod はすでに「{1}」としてインストールされています。そのコピーを更新するか、先に削除してください。同じ Mod のコピーが2つあると同じファイルを奪い合います。</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>監視中のフォルダーに残しました：&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Mod フォルダーが見つからないため、開くものがありません。</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Mod フォルダーを開けませんでした：{0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mod フォルダー</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Fields of Mistria の Mod フォルダーをファイルマネージャーで開きます</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>クラッシュを確認</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>ゲーム自身のクラッシュログを読み、どの Mod を指しているかを判断し、その Mod を無効にしてクラッシュがなくなるか確認します。</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Mod フォルダーに {0} を準備する空きがありません。</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Mod フォルダーにはすでに {0} のコピーが多すぎます。</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Nexus からファイルをダウンロードできませんでした：{0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>ダウンロードサーバーから応答がありません</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>更新するものはありません。</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nexus アカウントのセッションを保存できませんでした。ディスクへのアクセスを確認して、もう一度試してください。</value></data>
 </root>
