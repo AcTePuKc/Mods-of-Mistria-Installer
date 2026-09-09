@@ -1,23 +1,9 @@
 {
-  "generatedAt": "2026-09-09T11:32:37.5675265Z",
+  "generatedAt": "2026-09-09T11:37:38.1885753Z",
   "scope": "deferred",
   "coreKeyCount": 232,
   "nextLanguage": "uk",
   "nextBatch": [
-    "GUICrashTitle",
-    "GUICrashPickerLabel",
-    "GUICrashOpenFolder",
-    "GUICrashOpenFolderTooltip",
-    "GUICrashDiagnosisHeader",
-    "GUICrashRunExecutableMissing",
-    "GUICrashRunAlreadyRunning",
-    "GUICrashRunStartFailed",
-    "GUICrashRunUnreadableCrash",
-    "GUICrashRunCrashedDuringCheck",
-    "GUICrashRunStillRunning",
-    "GUICrashRunSameCrash",
-    "GUICrashRunDifferentCrash",
-    "GUICrashRunAbnormalExit",
     "GUICrashRunNormalExit",
     "GUICrashDiagnosisFrameFault",
     "GUICrashDiagnosisFrameCallStack",
@@ -61,7 +47,21 @@
     "GUICrashCopy",
     "GUICrashCopyTooltip",
     "GUICrashRefresh",
-    "GUICrashLooking"
+    "GUICrashLooking",
+    "GUICrashNone",
+    "GUICrashReading",
+    "GUICrashNoModList",
+    "GUICrashFailed",
+    "GUICrashStale",
+    "GUICrashNoApiKey",
+    "GUICrashWorking",
+    "GUICrashNothingToResearch",
+    "GUICrashResearchFailed",
+    "GUICrashNothingFound",
+    "GUICrashFoundCount",
+    "GUICrashBadgeCertain",
+    "GUICrashBadgeStrong",
+    "GUICrashBadgeLikely"
   ],
   "languages": [
     {
@@ -138,14 +138,14 @@
       "language": "ru",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 174,
+      "deferredMissing": 160,
       "deferredComplete": false
     },
     {
       "language": "uk",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 174,
+      "deferredMissing": 160,
       "deferredComplete": false
     },
     {

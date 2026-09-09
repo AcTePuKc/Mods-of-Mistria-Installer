@@ -646,4 +646,18 @@
   <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Копіює «{0}» і відкриває сторінку-джерело. Натисніть там Ctrl+F і вставте текст. Якщо це коментар, скористайтеся пошуком самої гілки.</value></data>
   <data name="GUIResearchFindCopied" xml:space="preserve"><value>Скопійовано. Натисніть Ctrl+F на відкритій сторінці та вставте текст.</value></data>
   <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Це змінить файли мода, який написали не ви. AIM спочатку скопіює весь мод до списку версій і позначить рядок як змінений. Продовжити?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Перевірка збою</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Збій</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Файли збоїв</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Відкриває папку, де AIM зберігає копію кожного виявленого збою. Сама гра зберігає лише останній.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Висновок AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM не знайшов виконуваний файл гри, тому не може її запустити й спостерігати.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria уже запущена. Спочатку закрийте її, щоб AIM спостерігав запущений ним сеанс.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM не зміг запустити гру: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Гра завершилася зі збоєм, але AIM не зміг прочитати залишений журнал. Цей запуск нічого не доводить щодо мода. Варто повторити перевірку.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Під час перевірки гра знову завершилася зі збоєм.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Після перевірки гра все ще працює й не завершилася зі збоєм. Це бажаний результат — продовжуйте грати.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Після {0} повторився той самий збій.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Після {0} гра знову завершилася зі збоєм, але з іншою помилкою.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Гра завершилася з кодом {0} після {1} і не залишила журналу збою. Зазвичай це означає, що її закрило щось поза грою — помилка драйвера або завершення процесу, а не мод. Цей запуск нічого не доводить.</value></data>
 </root>

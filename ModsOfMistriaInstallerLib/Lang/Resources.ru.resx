@@ -654,4 +654,18 @@
   <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Копирует «{0}» и открывает страницу-источник. Нажмите там Ctrl+F и вставьте текст. Если это комментарий, используйте поиск самой ветки.</value></data>
   <data name="GUIResearchFindCopied" xml:space="preserve"><value>Скопировано. Нажмите Ctrl+F на открытой странице и вставьте текст.</value></data>
   <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Это изменит файлы мода, который написали не вы. AIM сначала скопирует весь мод в список версий и отметит строку как изменённую. Продолжить?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Проверка сбоя</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Сбой</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Файлы сбоев</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Открывает папку, где AIM хранит копию каждого обнаруженного сбоя. Сама игра хранит только последний.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Вывод AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM не нашёл исполняемый файл игры и не может запустить её для наблюдения.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria уже запущена. Сначала закройте её, чтобы AIM наблюдал запущенный им сеанс.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM не смог запустить игру: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Игра завершилась сбоем, но AIM не смог прочитать оставленный журнал. Этот запуск ничего не доказывает о моде. Стоит повторить проверку.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Во время проверки игра снова завершилась сбоем.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>После проверки игра всё ещё запущена и не завершилась сбоем. Это нужный результат — продолжайте играть.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>После {0} повторился тот же сбой.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>После {0} игра снова завершилась сбоем, но с другой ошибкой.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Игра завершилась с кодом {0} после {1} и не оставила журнала сбоя. Обычно это значит, что её закрыло что-то вне игры — ошибка драйвера или завершение процесса, а не мод. Этот запуск ничего не доказывает.</value></data>
 </root>
