@@ -438,4 +438,28 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Nexus Mods에서 이미 {0}을(를) 추적하고 있습니다.</value></data>
   <data name="GUINexusTrackFailed" xml:space="preserve"><value>Nexus Mods에서 {0}을(를) 추적하지 못했습니다: {1}</value></data>
   <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM이 이 모드에 연결된 페이지에서 Nexus 모드 ID를 읽지 못했습니다.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>업데이트할 때 AIM이 보관한 이 모드의 이전 버전입니다. 하나를 선택하여 되돌리세요.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>되돌릴 버전:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>클릭하면 다운로드하여 설치합니다. 현재 버전은 백업으로 보관됩니다.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>클릭하면 다운로드 페이지를 엽니다. AIM은 이것이 Nexus의 어느 파일인지 모릅니다. 모드를 마우스 오른쪽 버튼으로 클릭하고 「Nexus에 연결」을 사용하면 자동 설치할 수 있습니다.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus에서 계정 ({0})을(를) Premium으로 확인했으므로 이 거부는 계정 등급 때문이 아닙니다. 대부분 로그인 만료 또는 취소가 원인입니다. 톱니바퀴 메뉴에서 다시 로그인하세요.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus에서 계정 ({0})을(를) 무료 계정으로 확인했습니다. 직접 다운로드는 Premium 기능이므로 웹사이트 버튼을 사용하세요.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Nexus 계정이 연결되지 않아 AIM이 직접 다운로드할 수 없습니다.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM이 Nexus 계정을 확인하지 못했습니다: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>키 설정</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>모드가 지정한 모든 키와 컨트롤러 버튼을 한 목록에서 확인합니다. 충돌은 빨간색으로 표시되며 바로 편집할 수 있습니다.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>모드 키 설정</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>현재 모드에 지정된 키입니다. 모드는 모드 폴더가 아닌 게임의 설정 폴더에 이를 저장하므로 업데이트해도 사라지지 않습니다. 단, 모드가 자체 설정을 초기화할 수 있으며 AIM은 그때 사용자의 선택을 다시 적용할 수 있습니다.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0}개 키 설정, 그중 {1}개 충돌</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>충돌만 표시</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>새로 고침</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM이 모드의 키 설정을 읽지 못했습니다: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>모드의 키 설정을 읽는 중...</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>선택한 모드에서 AIM이 확인할 수 있는 키 설정이 없습니다. 실행 중에 키를 만드는 모드는 게임을 실행하기 전까지 이를 공개하지 않습니다.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>충돌이 없습니다.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM이 게임 설정 폴더를 찾지 못해 모드가 제공한 기본값을 표시하고 있습니다. 게임을 한 번 실행하면 실제 키 설정이 됩니다.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria가 실행 중입니다. 게임이 종료될 때 모든 모드 설정을 다시 써서 여기서 변경한 내용을 덮어쓰므로 편집이 꺼져 있습니다. 게임을 닫고 새로 고침을 누르세요.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>{0}에서도 사용됨</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>같은 입력이 지정된 위치:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>화면에 표시된 모드 선택 또는 선택 해제</value></data>
 </root>

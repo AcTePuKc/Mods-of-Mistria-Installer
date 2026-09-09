@@ -342,4 +342,28 @@ Przekazać je do AIM?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Włączone</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Aktualizacje</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Zaproponuj kolejność</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} autorstwa {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Zaloguj się do Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Wyloguj z Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Konto Nexus jest połączone.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Konto Nexus nie jest połączone. Zaloguj się, aby korzystać z funkcji Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Konto Nexus zostało odłączone.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Edytuj manifest moda</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Otwiera manifest.json (lub manifest.toml) w domyślnym edytorze tekstu. Dostępne tylko dla modów będących folderami; ZIP lub RAR nie ma pliku do edycji.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Edytuj konfigurację moda</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Otwiera plik konfiguracyjny moda w domyślnym edytorze tekstu. Opcja jest wyłączona, gdy AIM nie znajdzie pliku konfiguracji.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Nie można otworzyć {0}: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Usuń moda...</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Usuwa moda z folderu modów. AIM najpierw zapyta i przeniesie pliki do Kosza zamiast je kasować.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Usuń moda</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Przenieść moda „{0}” w wersji {1} do Kosza?&#xA;&#xA;{2}&#xA;&#xA;Mod zostanie usunięty z folderu modów. Jeśli zmienisz zdanie, możesz przywrócić go z Kosza. Pliki już zainstalowane w grze pozostaną do następnej instalacji lub dezinstalacji.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Trwale usunąć moda „{0}” w wersji {1}?&#xA;&#xA;{2}&#xA;&#xA;Ten system nie ma Kosza, którego AIM może użyć, więc pliki moda zostaną usunięte. Tej operacji nie można cofnąć.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>Nie można usunąć „{0}”: {1}&#xA;&#xA;Plik może być otwarty w innym programie albo gra może być nadal uruchomiona.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Usuń zaznaczone...</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Usuwa jednocześnie wszystkie zaznaczone mody przez Kosz, po pokazaniu listy.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Nie zaznaczono modów, więc nie ma czego usuwać.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Przenieść {0} modów do Kosza?&#xA;&#xA;{1}&#xA;&#xA;Mody zostaną usunięte z folderu modów. Jeśli zmienisz zdanie, możesz przywrócić je z Kosza. Pliki już zainstalowane w grze pozostaną do następnej instalacji lub dezinstalacji.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Trwale usunąć {0} modów?&#xA;&#xA;{1}&#xA;&#xA;Ten system nie ma Kosza, którego AIM może użyć, więc pliki zostaną usunięte. Tej operacji nie można cofnąć.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... i jeszcze {0}</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Usunięto {0} z {1} modów.</value></data>
 </root>
