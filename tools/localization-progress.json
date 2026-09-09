@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T06:23:19.7107083Z",
+  "generatedAt": "2026-09-09T06:24:33.1851006Z",
   "coreKeyCount": 465,
   "nextLanguage": "ru",
   "nextBatch": [
-    "GUIChangelogVersionHeading",
-    "GUIVersionsBadge",
-    "GUIModCrasherBadge",
-    "GUIModCrasherBadgeManual",
-    "GUIModCrasherTooltip",
-    "GUIModCrasherTooltipManual",
-    "GUIModCrasherSummary",
-    "GUIModCrasherHint",
-    "GUIModEditedBadge",
-    "GUINexusPatchNoMainFile",
-    "GUINexusPatchCancelled",
-    "GUIModEditedTooltip",
-    "GUIModEditedUndoHint",
-    "GUIModUndoAimEdits",
-    "GUINexusTrack",
-    "GUINexusTrackTooltip",
-    "GUINexusTracked",
-    "GUINexusAlreadyTracked",
-    "GUINexusTrackFailed",
-    "GUINexusTrackNoModId",
-    "GUIVersionsTooltip",
-    "GUIVersionsHeader",
-    "GUIUpdateBadgeInstalls",
-    "GUIUpdateBadgeOpensPage"
+    "GUINexusAccountPremium",
+    "GUINexusAccountFree",
+    "GUINexusAccountNoKey",
+    "GUINexusAccountUnknown",
+    "GUIKeybindsButton",
+    "GUIKeybindsButtonTooltip",
+    "GUIKeybindsTitle",
+    "GUIKeybindsIntro",
+    "GUIKeybindsSummary",
+    "GUIKeybindsOnlyOverlaps",
+    "GUIKeybindsRefresh",
+    "GUIKeybindsScanFailed",
+    "GUIKeybindsScanning",
+    "GUIKeybindsNone",
+    "GUIKeybindsNoOverlaps",
+    "GUIKeybindsNoConfigDirectory",
+    "GUIKeybindsGameRunning",
+    "GUIKeybindsAlsoUsedBy",
+    "GUIKeybindsClashHeader",
+    "GUIToggleVisibleMods",
+    "GUIToggleVisibleModsTooltip",
+    "GUIKeybindsDefault",
+    "GUIKeybindsDefaultTooltip",
+    "GUIKeybindsUnbound"
   ],
   "languages": [
     {
@@ -76,12 +76,12 @@
     },
     {
       "language": "pt-br",
-      "coreMissing": 8,
-      "coreComplete": false
+      "coreMissing": 0,
+      "coreComplete": true
     },
     {
       "language": "ru",
-      "coreMissing": 176,
+      "coreMissing": 152,
       "coreComplete": false
     },
     {
