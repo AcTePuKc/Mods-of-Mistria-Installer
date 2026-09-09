@@ -668,4 +668,24 @@ Les confier à AIM ?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Activés</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>À mettre à jour</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggérer l’ordre</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} par {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Se connecter à Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Se déconnecter de Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Compte Nexus connecté.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Compte Nexus non connecté. Connectez-vous pour utiliser les fonctions de Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Compte Nexus déconnecté.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Modifier le manifeste du mod</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Ouvre manifest.json (ou manifest.toml) dans votre éditeur de texte habituel. Disponible uniquement pour les mods sous forme de dossiers. Un mod encore dans une archive .zip ou .rar n'a aucun fichier à modifier.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Modifier la configuration du mod</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Ouvre le fichier de configuration du mod dans votre éditeur de texte habituel. Désactivé lorsqu'AIM ne trouve aucun fichier de configuration.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Impossible d'ouvrir {0} : {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Supprimer le mod…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Retire le mod de votre dossier de mods. AIM demande d'abord confirmation et envoie les fichiers dans la Corbeille au lieu de les effacer.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Supprimer le mod</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Déplacer « {0} » v{1} dans la Corbeille ?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Le mod sera retiré de votre dossier de mods. Vous pourrez le restaurer depuis la Corbeille si vous changez d'avis. Les fichiers qu'il a déjà installés dans le jeu resteront jusqu'à la prochaine installation ou désinstallation.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Supprimer définitivement « {0} » v{1} ?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Ce système ne possède pas de Corbeille utilisable par AIM. Les fichiers du mod seront donc effacés définitivement.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>Impossible de supprimer « {0} » : {1}&#xD;&#xA;&#xD;&#xA;Le mod est peut-être ouvert dans un autre programme ou le jeu est peut-être encore en cours d'exécution.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Supprimer la sélection…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Supprime tous les mods cochés en une fois via la Corbeille, après vous avoir montré la liste.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Aucun mod n'est coché, il n'y a donc rien à supprimer.</value></data>
 </root>
