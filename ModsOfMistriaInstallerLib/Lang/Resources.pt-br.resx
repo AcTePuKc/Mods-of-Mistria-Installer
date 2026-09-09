@@ -922,4 +922,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>A atualização substitui a pasta do mod, então a alteração do AIM desaparece. Se a nova versão não tiver corrigido o problema, a falha voltará e você poderá aplicar a correção novamente. A versão anterior continua na lista de restauração.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Arquivo externo detectado</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>O AIM encontrou um assets.zip alterado externamente.&#xA;&#xA;Se você continuar, o AIM irá:&#xA;• preservá-lo como um arquivo assets.foreign-...zip&#xA;• restaurar o backup verificado&#xA;• tentar esta instalação novamente&#xA;&#xA;Mods que existem apenas no arquivo externo ficarão inativos. Continuar?</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>O AIM alterou este mod:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Desfazer alterações do AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Restaura todos os arquivos que o AIM separou neste mod e deixa o restante da pasta como está. Uma linha alterada pelo AIM é desfeita restaurando a versão abaixo.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Restaurar</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} foi restaurado para {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — antes da alteração do AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>O AIM desativará {0}, reconstruirá o arquivo do jogo e iniciará o jogo.&#xD;&#xA;&#xD;&#xA;A reconstrução leva cerca de um minuto. Jogue normalmente; o AIM informará se o crash voltar.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>O AIM iniciará o jogo e observará crashes sem alterar nada.&#xD;&#xA;&#xD;&#xA;Jogue normalmente; o AIM informará o resultado.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>O AIM não pode alterar a lista de mods aqui.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>Não foi possível desativar {0}. O mod pode já estar desativado ou não estar mais na lista.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} foi desativado.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Reconstruindo o arquivo do jogo para aplicar a alteração…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Não foi possível reconstruir o jogo, então nada foi testado: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Iniciando e observando o jogo. Jogue normalmente.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>O AIM já está instalando. Espere terminar primeiro.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Não há nada para instalar: falta a pasta do jogo ou não há mods ativados.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>O AIM não sabe onde está sua pasta de mods.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Este mod não está mais na lista.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Diz que este é um problema conhecido</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Diz que este mod funciona corretamente</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Funciona, mas somente se você fizer algo</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Outras informações nas páginas</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Aplicar uma correção manualmente</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Se uma discussão de bug ou a descrição do mod disser exatamente o que deve ser alterado, informe aqui. O AIM primeiro copia o mod inteiro para o histórico de versões, então a lista de restauração sempre contém a versão anterior à alteração.</value></data>
 </root>

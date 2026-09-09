@@ -596,4 +596,28 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Aktualizacja zastępuje folder moda, więc zmiana AIM znika. Jeśli nowa wersja nie naprawi problemu, awaria wróci i będzie można ponownie zastosować poprawkę. Poprzednia wersja nadal znajduje się na liście przywracania.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Wykryto zewnętrzne archiwum</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM znalazł zewnętrznie zmieniony assets.zip.&#xA;&#xA;Jeśli będziesz kontynuować, AIM:&#xA;• zachowa go jako plik assets.foreign-...zip&#xA;• przywróci sprawdzoną kopię zapasową&#xA;• ponowi tę instalację&#xA;&#xA;Mody istniejące tylko w zewnętrznym archiwum będą nieaktywne. Kontynuować?</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM zmodyfikował ten mod:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Cofnij zmiany AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Przywraca każdy plik odłożony przez AIM dla tego moda i pozostawia resztę folderu bez zmian. Zmienioną przez AIM linię można cofnąć, przywracając poniższą wersję.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Przywróć</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>Przywrócono {0} do wersji {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — przed zmianą AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM wyłączy {0}, przebuduje archiwum gry i uruchomi grę.&#xD;&#xA;&#xD;&#xA;Przebudowa zajmie około minuty. Graj normalnie; AIM poinformuje, czy awaria powróci.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM uruchomi grę i będzie obserwować awarie bez wprowadzania zmian.&#xD;&#xA;&#xD;&#xA;Graj normalnie; AIM poinformuje o wyniku.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM nie może tutaj zmienić listy modów.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>Nie udało się wyłączyć {0}. Mod może być już wyłączony albo nie znajdować się na liście.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>Wyłączono {0}.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Przebudowywanie archiwum gry, aby zastosować zmianę…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Nie udało się przebudować gry, więc niczego nie przetestowano: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Uruchamianie gry i obserwowanie jej działania. Graj normalnie.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM już instaluje mody. Poczekaj, aż zakończy pracę.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Nie ma nic do zainstalowania: brak folderu gry albo włączonych modów.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM nie zna położenia folderu modów.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Tego moda nie ma już na liście.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Strona mówi, że to znany problem</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Strona mówi, że ten mod działa poprawnie</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Działa, ale tylko po wykonaniu określonej czynności</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Inne informacje na stronach</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Zastosuj poprawkę ręcznie</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Jeśli w wątku błędu lub opisie moda dokładnie podano, co zmienić, wpisz to tutaj. AIM najpierw kopiuje cały mod do historii wersji, więc lista przywracania zawsze zawiera wersję sprzed tej zmiany.</value></data>
 </root>
