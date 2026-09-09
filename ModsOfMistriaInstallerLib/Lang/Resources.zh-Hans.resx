@@ -390,4 +390,31 @@
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>已解决：“{0}”已移到 {1}，因此没有其他模组共享此快捷键。请重新安装以使改动进入游戏。</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>此模组仍是 .zip 或 .rar 文件。请先将其解压到模组文件夹，AIM 才能编辑其绑定。</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>此模组没有将按键声明为命名绑定，因此 AIM 无法安全地更改它。请检查模组自己的游戏内设置或配置文件。</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>选中的模组已使用所有功能键，因此没有空闲按键可供移动。</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM 无法读取此模组的文件。</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>按字母排序</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>按名称排序列表，方便快速找到模组。这只是视图变化，不会改变加载顺序；关闭后会再次显示实际顺序，启用时无法拖动。</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>按最近更新时间排序</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>按照每个模组文件夹在磁盘上的最后修改时间，从最新开始显示。刚安装或更新的模组会出现在顶部。这只是视图变化，不会改变加载顺序，启用时无法拖动。</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>移到加载顺序顶部</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>最先加载此模组，让其他模组可以在其基础上构建并覆盖它。框架或其他模组依赖的模组应放在这里。这会改变实际加载顺序，而不只是当前列表视图。</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>移到加载顺序底部</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>最后加载此模组，因此与其他模组共享文件时，此模组会生效。重新着色或个人覆盖应放在这里。这会改变实际加载顺序，而不只是当前列表视图。</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>仅显示已启用模组</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>隐藏所有已关闭的内容。重要的是实际进入游戏的模组顺序，而在长列表中，不使用的模组会让顺序难以阅读。</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>仅显示需要关注的模组</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>仅显示有待更新版本的模组，以及上次检查无法访问的模组：未关联 Nexus、网络问题或页面已不存在。</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>仅供查看 - 加载顺序未改变，拖动已暂停</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>跳到列表顶部</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>跳到列表底部</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) 也被 {2} 使用</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>版本说明</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>版本说明 - 悬停以加载，点击以阅读完整历史。</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>{0} 的更新内容：
+{1}
+
+点击阅读所有版本。</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>此模组的作者没有发布版本说明。</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM 无法读取此模组的版本说明。需要连接 Nexus 帐户，并且 AIM 必须知道此模组的 Nexus 页面。</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>有版本说明的版本数：{0}，从最新开始。</value></data>
 </root>

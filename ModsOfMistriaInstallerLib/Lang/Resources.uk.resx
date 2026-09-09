@@ -556,4 +556,28 @@
   <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Ви досягли обмеження API Nexus. Зачекайте трохи перед наступним завантаженням.</value></data>
   <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus повернув помилку ({0}).</value></data>
   <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Підключеного облікового запису Nexus ще немає.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Файла, з якого походить цей мод, більше немає на його сторінці Nexus, і серед решти немає новішої версії. На цій сторінці розміщено кілька окремих модів, тому AIM не запропонує інший як оновлення. Якщо ви вважаєте, що є новий випуск, перевірте сторінку вручну.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>На сторінці цього моду немає головного файла для порівняння.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM не знає, з якого файла на цій сторінці походить цей мод, тому не може визначити, чи новіша версія на сторінці. Завантажте його один раз через AIM або клацніть мод правою кнопкою й пов’яжіть із конкретним файлом, щоб перевірка оновлень була надійною.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Перевірку оновлень зупинено зарано.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Перевірку оновлень цього моду не завершено.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Підключеного облікового запису Nexus ще немає.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Це завантаження призначене для іншої гри ({0}), тому цей інсталятор не може його обробити.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Термін дії посилання на завантаження минув. Ще раз натисніть кнопку «Vortex download» на сторінці моду.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Папку модів не знайдено.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Запитуємо Nexus про файл...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Завантаження {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Розпакування {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Встановлення скасовано</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>Встановлено: {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>Встановлено модів: {0}</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Завантаження скасовано</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Порожнє посилання на завантаження.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Це не посилання nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>У посиланні не вказано гру.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Колекції Nexus ще не підтримуються. Завантажуйте моди окремо.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Посилання не є завантаженням файла моду.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Посилання містить неправильний ідентифікатор моду або файла.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Не вдалося визначити, звідки запущено інсталятор.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Реєстрація посилань nxm:// підтримується лише у Windows і Linux.</value></data>
 </root>
