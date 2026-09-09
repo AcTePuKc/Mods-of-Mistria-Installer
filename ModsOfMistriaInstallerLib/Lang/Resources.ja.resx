@@ -448,4 +448,28 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>現在 Mod が使っているキー設定です。Mod は Mod フォルダーではなくゲーム自身の設定フォルダーに保存するため、更新しても失われません。ただし Mod が設定をリセットすることはあり、その場合 AIM は選択を戻すことを提案します。</value></data>
   <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} 件の設定、うち {1} 件が競合</value></data>
   <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>競合のみ表示</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>更新</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM は Mod のキー設定を読み取れませんでした：{0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Mod のキー設定を読み取り中…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>選択した Mod に、AIM が確認できるキー設定はありません。実行時に設定を作る Mod は、ゲームを起動するまで表示されません。</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>競合はありません。</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM はゲームの設定フォルダーを見つけられないため、Mod に含まれる初期値を表示しています。ゲームを一度起動すると、実際のキー設定になります。</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria は実行中です。ゲームは終了時にすべての Mod の設定を書き換えるため、ここでの変更が上書きされないよう編集を無効にしています。ゲームを終了して「更新」を押してください。</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>{0} でも使用</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>同じ入力が割り当てられている場所：</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>画面上の Mod をチェックまたは解除</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>現在の検索とフィルターで表示されている行に適用され、隠れている行には適用されません。フィルターがない場合はすべての Mod が対象です。AIM がインストールできない Mod はそのままです。</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>Mod の初期値 - Mod が設定を書き込むまで AIM は変更できません</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>この Mod はまだ設定を書き込んでいないため、これは Mod に組み込まれた初期値です。ゲームを一度起動するか、Mod 自身の設定で変更すると、AIM がここで編集できます。</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>（未割り当て）</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>ゲームでは受け付けられません</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>「{0}」はゲームが認識する名前ではないため、この Mod は初期値に戻ります。リストから選んで修正してください。</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM は {0} に書き込めませんでした。別のプログラムで開かれているか、ゲームが起動した可能性があります。</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>キーまたはボタンを選択</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>キーまたはコントローラーボタン</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>キーを押して取得</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>今すぐキーを押してください…（Escape で停止）</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>次の値として保存されます：{0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>コントローラーのボタンはリストから選びます。AIM はコントローラーを読み取れません。リストにはゲームが受け付けるすべての名前がありますが、ALT、ロックキー、テンキーは含まれません。これらを設定した Mod は自動的に初期値へ戻ります。</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>保存</value></data>
 </root>
