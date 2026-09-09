@@ -513,4 +513,28 @@
   <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>留在受監控資料夾中：&#xD;&#xA;{0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>找不到模組資料夾，因此沒有可開啟的內容。</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>無法開啟模組資料夾：{0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>模組資料夾</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>在檔案管理員中開啟 Fields of Mistria 模組資料夾</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>檢查崩潰</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>讀取遊戲自己的崩潰記錄，判斷它指向哪個模組，並提供關閉該模組及檢查崩潰是否消失的選項。</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>模組資料夾中沒有空間整理 {0}。</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>模組資料夾中已經有太多份 {0}。</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>無法從 Nexus 下載檔案：{0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>沒有下載伺服器回應</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>沒有可更新的版本。</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>無法儲存 Nexus 帳戶工作階段。請檢查磁碟存取權限後重試。</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>{0} 的備份不存在。</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>下載的檔案不存在。</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>找不到模組資料夾。</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>此下載不包含 manifest.toml，因此不是此安裝程式可以處理的模組。它可能是舊版模組，或必須手動安裝的檔案。</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>無法完成下載的模組。原始安裝錯誤為：{0}&#xD;&#xA;無法還原先前的模組副本。其備份已保留，可手動復原：&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>暫存的副本已不在 {0}。</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>模組資料夾旁已經保留了太多份 {0} 的副本。</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>無法解壓模組：{0} 無法還原先前的副本；其備份已保留，可手動復原{1}。</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>無法解壓模組：{0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>下載的壓縮檔包含太多檔案。</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>下載的壓縮檔包含過大的檔案。</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>下載的壓縮檔超過支援的解壓縮後大小。</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>壓縮檔項目「{0}」超過支援的解壓縮後大小。</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>下載的檔案不是此安裝程式可以讀取的壓縮檔（支援 zip、rar 和 7z）。</value></data>
 </root>

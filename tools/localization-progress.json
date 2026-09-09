@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T09:40:24.2768915Z",
+  "generatedAt": "2026-09-09T09:42:40.4361806Z",
   "coreKeyCount": 465,
   "nextLanguage": "zh-Hant",
   "nextBatch": [
-    "GUIUpdateAllConfirm",
-    "GUIUpdateAllProgress",
-    "GUIUpdateAllDone",
-    "GUIUpdateAllFailed",
-    "GUIConflictReportNothing",
-    "GUIVerdictNotAnIssue",
-    "GUIVerdictPatchExists",
-    "GUIVerdictIncompatible",
-    "GUIVerdictRebound",
-    "GUIDropFolderMenu",
-    "GUIDropFolderExplain",
-    "GUIDropFolderLink",
-    "GUIDropFolderPickTitle",
-    "GUIDropFolderScanNow",
-    "GUIDropFolderNone",
-    "GUIDropFolderUnlinkTooltip",
-    "GUIDropFolderTitle",
-    "GUIDropFolderNothingFound",
-    "GUIDropFolderImported",
-    "GUIDropFolderImportedDetail",
-    "GUIDropFolderAlreadyInstalled",
-    "GUIDropFolderSkippedDetail",
-    "GUIDropFolderNoModsFolder",
-    "GUIDropFolderCannotOpen"
+    "GUIOpenModsFolderButton",
+    "GUIOpenModsFolderButtonTooltip",
+    "GUICheckCrashes",
+    "GUICheckCrashesTooltip",
+    "GUIModDropStagingFull",
+    "GUIModDropTooManyCopies",
+    "GUINxmDownloadFailed",
+    "GUINxmDownloadNoServerResponse",
+    "GUINexusUpdateNothingToDo",
+    "GUINexusSettingsSaveSessionFailed",
+    "GUINexusBackupMissing",
+    "GUIModArchiveMissing",
+    "GUIModArchiveModsFolderMissing",
+    "GUIModArchiveManifestMissing",
+    "GUIModArchiveRollbackFailed",
+    "GUIModArchiveParkedCopyMissing",
+    "GUIModArchiveTooManyBackups",
+    "GUIModArchiveUnpackRollbackFailed",
+    "GUIModArchiveUnpackFailed",
+    "GUIModArchiveTooManyFiles",
+    "GUIModArchiveFileTooLarge",
+    "GUIModArchiveTotalTooLarge",
+    "GUIModArchiveEntryTooLarge",
+    "GUIModArchiveUnsupportedFormat"
   ],
   "languages": [
     {
@@ -91,12 +91,12 @@
     },
     {
       "language": "zh-Hans",
-      "coreMissing": 8,
-      "coreComplete": false
+      "coreMissing": 0,
+      "coreComplete": true
     },
     {
       "language": "zh-Hant",
-      "coreMissing": 104,
+      "coreMissing": 80,
       "coreComplete": false
     }
   ]
