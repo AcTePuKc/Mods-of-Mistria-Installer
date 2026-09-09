@@ -1042,4 +1042,52 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashRunSameCrash" xml:space="preserve"><value>O mesmo crash voltou após {0}.</value></data>
   <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>O jogo travou novamente após {0}, mas com um erro diferente.</value></data>
   <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>O jogo foi encerrado com o código {0} após {1} e não deixou um log de crash. Isso geralmente significa que algo fora do jogo o fechou — falha de driver ou processo encerrado — e não um mod. Portanto, esta sessão também não prova nada.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>O jogo funcionou por {0} e fechou normalmente, sem um novo crash.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>O jogo falhou dentro do código próprio deste mod, em {0}, linha {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>O código deste mod está na pilha de chamadas, em {0}, linha {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>O nome deste mod aparece na própria mensagem de crash.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>O jogo travou ao ler os dados “{0}”, aos quais {1} mod instalado adiciona conteúdo.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>O jogo travou ao ler os dados “{0}”, aos quais {1} mods instalados adicionam conteúdo.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Este mod adiciona conteúdo aos dados “{0}” que o jogo estava lendo quando travou.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Os dados “{0}” no arquivo do jogo não têm uma entrada sem {1}, então a causa já foi resolvida — por uma atualização, reinstalação ou mod que você desativou. Se acontecer novamente, volte aqui: os mods abaixo são onde procurar.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Os dados “{0}” carregados agora ainda têm uma entrada sem {2}. Este crash voltará na próxima inicialização.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Os dados “{0}” carregados agora ainda têm {1} entradas sem {2}. Este crash voltará na próxima inicialização.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>É necessário instalar hooks do mecanismo, e o crash é uma chamada para algo que não era uma função — exatamente como um hook não instalado aparece dentro do jogo.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Este crash é mais antigo que os mods instalados atualmente, mas o problema descrito ainda está no arquivo do jogo. Portanto, o relatório não está desatualizado; espere vê-lo novamente na próxima inicialização.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Este crash é mais antigo que os mods instalados atualmente. O AIM reconstruiu o arquivo do jogo depois, então o jogo que travou não é o que está no disco agora. Trate tudo abaixo como uma pista, não como um veredito, e jogue uma vez antes de alterar qualquer coisa.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Falha dentro de {0}(), em: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Os dados próprios “{0}” do jogo têm, na linha {2}, uma entrada sem {1} contendo “{3}”, algo que nenhum outro mod instalado define. Uma entrada sem {1} é exatamente onde o jogo parou.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Os dados próprios “{0}” do jogo têm, na linha {2}, uma entrada sem {1} contendo “{3}”, algo que nenhum outro mod instalado define. A entrada ainda tem seu bloco MOMIidentify, então a mesclagem esperada não encontrou correspondência e uma nova entrada sem {1} foi adicionada.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Os dados “{0}” do jogo têm, na linha {2}, uma entrada sem {1}, e este mod é um dos que poderiam tê-la escrito.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Este crash é anterior à instalação atual e nada nele corresponde a um mod que você tem agora.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>Foi {0} que causou o crash do jogo.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>Cada um dos {0} mods colocou algo nos dados do jogo que ele não consegue carregar. Qualquer um deles basta para causar o crash.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} é a causa mais provável.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} é o único mod instalado que altera o que o jogo estava lendo.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mods instalados adicionam conteúdo aos dados que causaram o crash. Um deles é muito provavelmente a causa.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Nada aponta claramente para um mod, mas vale a pena descartar alguns.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Algo carregado pelo jogo não tinha o campo “{0}”, e nenhum mod instalado parece ser o dono dele.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>O jogo leu “{0}” antes que qualquer coisa o definisse. Isso geralmente é código de mod.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>O jogo chamou algo que não era uma função — geralmente um hook que não foi instalado.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>O jogo não encontrou o recurso “{0}” — geralmente um sprite referenciado pelo mod, mas não incluído nele.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>O AIM não conseguiu relacionar este crash a um mod apenas pela pilha de chamadas.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mods indicados por isso</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Os indícios mais fortes vêm primeiro. Um mod citado porque o crash ocorreu dentro do próprio código não é um palpite; um mod citado porque escreve os dados lidos pelo jogo é um candidato.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Verificar se isso resolve</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Desativa o mod escolhido, reconstrói o jogo para a alteração surtir efeito, inicia-o e observa. Jogue normalmente — o AIM informará quando o jogo fechar ou após alguns minutos sem crash.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Desativar, reconstruir e executar</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Desativar um mod não muda nada que o jogo consiga ver até o arquivo ser reconstruído, então o AIM faz tudo em vez de deixar você lembrar da etapa intermediária.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Não alterar nada — apenas executar e observar</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Vale a pena conferir</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>O arquivo de crash como o jogo o escreveu</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Onde ocorreu</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Onde ocorreu ({0} quadros)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Copiar relatório</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Coloca tudo na área de transferência: o erro, a pilha de chamadas, as conclusões do AIM e os mods instalados.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Atualizar</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Procurando crashes…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Nenhum crash registrado. O jogo não travou desde que foi instalado ou nunca foi executado nesta máquina.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Lendo a pilha de chamadas em relação aos mods instalados…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>O AIM não consegue ver sua lista de mods daqui, então pode mostrar o crash, mas não dizer qual mod o causou.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>O AIM não conseguiu terminar de ler este crash: {0}</value></data>
 </root>
