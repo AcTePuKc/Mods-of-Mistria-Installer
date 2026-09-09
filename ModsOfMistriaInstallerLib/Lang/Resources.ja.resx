@@ -686,4 +686,52 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0}は、ゲームが読み込んでいた内容を変更する唯一のインストール済みModです。</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0}個のインストール済みModが、ゲームがクラッシュしたデータに追加しています。そのうちの1つが原因である可能性が高いです。</value></data>
   <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Modを明確に示すものはありませんが、いくつか除外して確認する価値があります。</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>ゲームが読み込んだものに「{0}」がなく、インストール済みModにも明らかな所有者がいません。</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>ゲームは何も設定していないうちに「{0}」を読み取りました。通常はModのコードです。</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>ゲームは関数ではないものを呼び出しました。通常はインストールされなかったフックです。</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>ゲームはアセット「{0}」を見つけられませんでした。通常はModが参照しているのに同梱していないスプライトです。</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIMはバックトレースだけでは、このクラッシュをModに結び付けられませんでした。</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>原因として示されたMod</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>可能性の高い順です。自身のコード内でクラッシュしたため名前が出たModは推測ではありません。ゲームが読み込んでいたデータを書き込むModは候補です。</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>これで直るか確認</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>選択したModを無効にし、変更を反映するためゲームを再構築して起動し、監視します。通常どおりプレイしてください。ゲーム終了時、またはクラッシュしなければ数分後にAIMが結果を知らせます。</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>無効化して再構築・起動</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>アーカイブを再構築するまで、Modを無効にしてもゲームから見える内容は変わりません。そのためAIMが途中の手順までまとめて行います。</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>何も変更せず起動して監視</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>確認する価値があります</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>ゲームが書き込んだクラッシュファイル</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>クラッシュした場所</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>クラッシュした場所（{0}フレーム）</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>レポートをコピー</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>エラー、バックトレース、AIMの結論、インストール済みModをすべてクリップボードにコピーします。</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>更新</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>クラッシュを検索しています…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>記録されたクラッシュはありません。インストール後にゲームがクラッシュしていないか、このPCで一度も起動されていません。</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>バックトレースをインストール済みModと照合しています…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>ここからMod一覧を確認できないため、クラッシュは表示できますが原因のModは特定できません。</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIMはこのクラッシュの読み取りを完了できませんでした: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>このクラッシュは現在インストールされているModより古いものです。AIMは発生後にゲームを再構築したため、クラッシュした状態と現在ディスクにある状態は異なります。変更する前に一度プレイし、下のModは結論ではなく手がかりとして扱ってください。</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Nexusにログインしていないため、AIMはModのバグトラッカーを読めません。上の内容はすべて手元のファイルから判断しています。</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>このクラッシュが示すModのバグトラッカーとコメントを読んでいます…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>ページを読む価値があるほど明確に示されたModはありません。</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIMはModページを読み取れませんでした: {0}。手元のファイルからの判断は有効です。</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Modのページにはこのクラッシュについての記載がありません。</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>これに関係する項目がModページで{0}件見つかりました。</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>確実</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>可能性が高い</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>可能性あり</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>可能性は低い</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Modページを開く</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>このページを開く</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>このバグを報告</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>エラー、バックトレース、ゲームのバージョン、インストール済みの内容を含む、作成者に必要なレポートをクリップボードにコピーし、Modのバグトラッカーを開きます。内容を確認して投稿するのはあなたです。AIMは投稿しません。</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>レポートをクリップボードにコピーし、バグトラッカーを開きました。確認して投稿してください。</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>レポートをクリップボードにコピーしました。AIMはこのModの入手元を認識できないため、作成者のトラッカーやDiscordを自分で探してください。</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>コピーしました。</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>無効にして確認</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>このModを無効にし、ゲームを再構築して起動します。推測ではなく、原因だったかどうかを確認できます。</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>このModなしでゲームを再構築しています。完了後に自動で起動します。進行状況は下に表示されます。</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Modを削除</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0}を削除しました。</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>バージョンとAIMの変更</value></data>
 </root>

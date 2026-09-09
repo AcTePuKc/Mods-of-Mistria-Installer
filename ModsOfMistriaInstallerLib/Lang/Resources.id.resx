@@ -686,4 +686,52 @@ Alihkan ke AIM?</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} adalah satu-satunya mod terpasang yang menyentuh data yang sedang dibaca game.</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mod terpasang menambahkan data tempat game crash. Salah satunya sangat mungkin menjadi penyebab.</value></data>
   <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Tidak ada yang jelas menunjuk ke mod tertentu, tetapi beberapa layak disingkirkan.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Sesuatu yang dimuat game tidak memiliki "{0}", dan tidak ada mod terpasang yang jelas memilikinya.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Game membaca "{0}" sebelum ada yang mengisinya. Biasanya ini adalah kode mod.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Game memanggil sesuatu yang bukan fungsi, biasanya hook yang gagal dipasang.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Game tidak menemukan asset "{0}", biasanya sprite yang dirujuk mod tetapi tidak disertakan.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM tidak dapat menghubungkan crash ini ke mod hanya dari backtrace.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mod yang ditunjuk</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Yang paling kuat ditampilkan lebih dulu. Mod yang disebut karena crash terjadi di kodenya sendiri bukan tebakan; mod yang menulis data yang sedang dibaca game adalah daftar kandidat.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Periksa apakah ini memperbaikinya</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Menonaktifkan mod yang dipilih, membangun ulang game agar perubahan berlaku, menjalankannya, lalu mengawasi. Bermainlah seperti biasa. AIM akan melapor saat game ditutup, atau setelah beberapa menit jika tidak crash.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Nonaktifkan, bangun ulang, dan jalankan</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Menonaktifkan mod tidak mengubah apa yang dapat dilihat game sampai arsip dibangun ulang. AIM melakukan semuanya agar kamu tidak perlu mengingat langkah tengah.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Jangan ubah apa pun, cukup jalankan dan awasi</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Layak dilihat</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>File crash seperti yang ditulis game</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Tempat crash terjadi</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Tempat crash terjadi ({0} frame)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Salin laporan</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Menyalin semuanya ke clipboard: error, backtrace, kesimpulan AIM, dan mod yang terpasang.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Segarkan</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Mencari crash…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Tidak ada crash yang tersimpan. Game belum crash sejak dipasang, atau belum pernah dijalankan di komputer ini.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Membandingkan backtrace dengan mod yang terpasang…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM tidak dapat melihat daftar mod dari sini, jadi dapat menampilkan crash tetapi tidak dapat mengatakan mod mana penyebabnya.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM tidak dapat selesai membaca crash ini: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Crash ini lebih lama daripada mod yang sekarang terpasang. AIM membangun ulang game setelahnya, jadi game yang crash bukan game yang sekarang ada di disk. Mainkan sekali sebelum mengubah apa pun, dan anggap mod di bawah sebagai petunjuk, bukan kesimpulan.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Kamu belum masuk ke Nexus, jadi AIM tidak dapat membaca pelacak bug mod. Semua hasil di atas berasal dari file milikmu sendiri.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Membaca pelacak bug dan komentar mod yang ditunjuk…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Tidak ada mod yang cukup jelas untuk diteliti halamannya.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM tidak dapat membaca halaman mod: {0}. Kesimpulan dari file milikmu tetap berlaku.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Tidak ada halaman mod yang menyebutkan crash ini.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} hal dari halaman mod berkaitan dengan ini.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>PASTI</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>MUNGKIN</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>MUNGKIN SAJA</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>KECIL KEMUNGKINANNYA</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Buka halaman mod</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Buka halaman ini</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Laporkan bug ini</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Menulis laporan yang dibutuhkan penulis, berisi error, backtrace, versi game, dan mod lain yang terpasang, menyalinnya ke clipboard, lalu membuka pelacak bug mod. Kamu yang membaca dan mengirimkannya; AIM tidak melakukannya.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Laporan ada di clipboard dan pelacak bug sudah terbuka. Baca lalu kirimkan.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Laporan ada di clipboard. AIM tidak tahu asal mod ini, jadi kamu harus mencari pelacak atau Discord penulisnya sendiri.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Disalin.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Nonaktifkan dan periksa</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Menonaktifkan mod ini, membangun ulang game, lalu menjalankannya agar kamu tahu apakah mod ini penyebabnya, bukan sekadar menebak.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Membangun ulang game tanpa mod ini. Game akan dimulai sendiri setelah selesai. Progres ada di bawah.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Hapus mod</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} telah dihapus.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versi dan perubahan AIM</value></data>
 </root>
