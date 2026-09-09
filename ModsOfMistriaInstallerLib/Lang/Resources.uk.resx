@@ -409,4 +409,29 @@
   <data name="GUIChangelogNone" xml:space="preserve"><value>Автор цього моду не опублікував приміток до випуску.</value></data>
   <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM не вдалося прочитати примітки до випуску цього моду. Потрібен підключений обліковий запис Nexus, а AIM має знати сторінку моду на Nexus.</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>Версій із примітками: {0}, починаючи з найновішої.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Версія {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Версії</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Спричиняє збій гри</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Позначено як причина збою</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Контрольований запуск підтвердив, що цей мод спричиняє збій гри: коли його вимкнули, гра запустилася і збій не повторився. AIM залишив мод вимкненим.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Ви самі позначили цей мод як причину збою під час перевірки. AIM не тестував його, а повірив вашій оцінці та вимкнув мод.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Версія {0}, перевірено {1}.
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Відкрийте перевірку збоїв, щоб побачити виправлення, які може застосувати AIM, і відомості зі сторінок самого моду. Позначка прив’язана до цієї версії, тому оновлення від автора її прибере.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Змінено AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Цей патч не має головного файла, який AIM може встановити самостійно. Його файли відкриті у браузері: виберіть потрібний і скористайтеся «Mod Manager Download».</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Завантаження патчу скасовано.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM змінив файл усередині цього моду, щоб усунути конфлікт. Файли на диску більше не є точно такими, як опубліковані автором.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>Мод до зміни знаходиться у спадному списку версій. Відновіть його там або клацніть мод правою кнопкою та виберіть «Скасувати зміни AIM».</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Скасувати зміни AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Відстежувати на Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Додає цей мод до центру відстеження Nexus, щоб сайт повідомляв про оновлення та дописи автора. Потрібен підключений обліковий запис Nexus.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Тепер відстежується на Nexus Mods: {0}.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Ви вже відстежували {0} на Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Не вдалося відстежувати {0} на Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM не вдалося прочитати ідентифікатор моду Nexus зі сторінки, відомої для цього моду.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Попередні копії цього моду, які AIM зберіг під час оновлення. Виберіть одну, щоб повернутися до неї.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Повернути версію:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Натисніть, щоб завантажити й встановити. Поточну версію буде збережено як резервну копію.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Натисніть, щоб відкрити сторінку завантаження. AIM не знає, який це файл Nexus. Клацніть мод правою кнопкою та виберіть «Пов’язати з Nexus...», щоб встановлювати його автоматично.</value></data>
 </root>
