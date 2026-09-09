@@ -708,4 +708,26 @@ Les confier à AIM ?</value></data>
   <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Lit ce que les pages Nexus de ces mods disent l'une de l'autre et ouvre leurs rapports de bugs, commentaires et une recherche Web afin que vous puissiez déterminer si le problème est réel.</value></data>
   <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Réattribuer…</value></data>
   <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Déplace ce mod vers une touche utilisée par personne d'autre en modifiant sa propre configuration dans {0}. Le mod est sauvegardé avant la modification, qui sera appliquée au jeu lors de la prochaine installation.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Réattribuer un raccourci</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Déplacer « {0} » de {1} vers {2} ?&#xD;&#xA;&#xD;&#xA;AIM modifie la configuration du mod et conserve une sauvegarde que vous pourrez restaurer depuis le menu contextuel. La modification sera appliquée au jeu lors de la prochaine installation.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>« {0} » utilise maintenant {1}, dans {2} fichier(s) mis à jour.&#xD;&#xA;&#xD;&#xA;Réinstallez pour appliquer la modification au jeu.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Impossible de réattribuer « {0} » : {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>« {0} » utilise maintenant {1} au lieu de {2}. Réinstallez pour appliquer la modification au jeu.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Résolu : « {0} » a été déplacé vers {1}, plus aucun mod ne partage donc ce raccourci. Réinstallez pour appliquer la modification au jeu.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Ce mod est encore une archive .zip ou .rar. Extrayez-le d'abord dans le dossier des mods pour qu'AIM puisse modifier sa configuration.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Ce mod ne déclare pas cette touche comme une configuration nommée. AIM ne peut donc pas la modifier en toute sécurité. Vérifiez les paramètres du mod dans le jeu ou son fichier de configuration.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Toutes les touches de fonction sont déjà utilisées par un mod sélectionné. Il n'y a aucune touche libre vers laquelle déplacer celle-ci.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM n'a pas pu lire les fichiers de ce mod.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Trier de A à Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Trie la liste par nom pour trouver rapidement un mod. Cela ne modifie que l'affichage : l'ordre de chargement reste inchangé et l'ordre réel réapparaît lorsque l'option est désactivée. Le glisser-déposer est suspendu pendant le tri.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Trier par mise à jour récente</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Affiche les plus récents en premier, selon la dernière modification du dossier de chaque mod sur le disque. Les mods que vous venez d'installer ou de mettre à jour apparaissent ainsi en haut. Cela ne modifie que l'affichage : l'ordre de chargement reste inchangé et le glisser-déposer est suspendu.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Déplacer au début de l'ordre de chargement</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Charge ce mod en premier afin que les autres puissent s'appuyer dessus et le remplacer. C'est ici que doivent se trouver les frameworks et les mods dont d'autres dépendent. Cela modifie l'ordre de chargement réel, pas seulement l'affichage.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Déplacer à la fin de l'ordre de chargement</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Charge ce mod en dernier. Lorsqu'il partage un fichier avec un autre mod, ses fichiers ont ainsi la priorité. C'est ici que doivent se trouver les recolorations et remplacements personnels. Cela modifie l'ordre de chargement réel, pas seulement l'affichage.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Mods activés uniquement</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Masque tout ce qui est désactivé. L'ordre important est celui des mods réellement chargés dans le jeu et, dans une longue liste, il est plus facile à lire sans les mods désactivés.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Mods nécessitant une action uniquement</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Affiche uniquement les mods pour lesquels une mise à jour est disponible et ceux que la dernière vérification n'a pas pu atteindre, par exemple faute d'association Nexus, à cause d'un problème réseau ou parce que la page n'existe plus.</value></data>
 </root>
