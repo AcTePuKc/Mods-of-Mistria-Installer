@@ -384,4 +384,26 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>この Mod 自身の {0} 内の設定を編集し、誰も使っていないキーに移動します。変更前に Mod をバックアップし、次回のインストールでゲームに反映します。</value></data>
   <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>ショートカットを再割り当て</value></data>
   <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>「{0}」を {1} から {2} に移動しますか？&#xD;&#xA;&#xD;&#xA;AIM は Mod 自身の設定を編集し、右クリックメニューから復元できるバックアップを保存します。次回のインストールでゲームに反映されます。</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>「{0}」は {1} を使用するようになり、{2} 個のファイルを更新しました。&#xD;&#xA;&#xD;&#xA;変更をゲームに反映するには、もう一度インストールしてください。</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>「{0}」を再割り当てできませんでした：{1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>「{0}」は {2} ではなく {1} を使用するようになりました。変更をゲームに反映するには、もう一度インストールしてください。</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>解決済み - 「{0}」を {1} に移動したため、このショートカットを共有する Mod はなくなりました。変更をゲームに反映するには、もう一度インストールしてください。</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>この Mod はまだ .zip または .rar です。まず Mod フォルダーに展開すれば、AIM が設定を編集できます。</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>この Mod はキーを名前付き設定として宣言していないため、AIM は安全に変更できません。Mod のゲーム内設定または設定ファイルを確認してください。</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>選択した Mod がすべてのファンクションキーを使っているため、このキーを移動できる空きがありません。</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM はこの Mod のファイルを読み取れませんでした。</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>A-Z 順</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Mod をすぐ見つけられるよう、名前順に一覧を並べ替えます。これは表示だけを変更し、ロード順は変わりません。解除すると実際の順番に戻り、オンの間はドラッグ操作が停止します。</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>更新順</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>ディスク上の Mod フォルダーが最後に変更された時刻を基準に、新しいものから表示します。インストールまたは更新したばかりの Mod が上に来ます。表示だけを変更し、ロード順は変わらず、ドラッグ操作は停止します。</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>ロード順の先頭へ移動</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>この Mod を最初に読み込み、ほかの Mod がその上に構築したり上書きしたりできるようにします。フレームワークや、ほかの Mod が依存する Mod を置く場所です。現在の表示だけでなく、実際のロード順を変更します。</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>ロード順の末尾へ移動</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>この Mod を最後に読み込みます。ほかの Mod とファイルを共有する場合、この Mod のファイルが優先されます。リカラーや個人的な上書きを置く場所です。現在の表示だけでなく、実際のロード順を変更します。</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>有効な Mod のみ</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>無効になっているものをすべて隠します。重要なのは実際にゲームへ入る Mod の順番であり、長い一覧では無効な Mod を除くと読みやすくなります。</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>要対応の Mod のみ</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>更新がある Mod と、前回の確認で到達できなかった Mod だけを表示します。Nexus との関連付けがない、ネットワークに問題がある、ページが存在しない場合などです。</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>表示のみ - ロード順は変更されず、ドラッグ操作は停止中</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>一覧の先頭へ</value></data>
 </root>
