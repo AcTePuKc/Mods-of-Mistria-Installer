@@ -809,7 +809,7 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>As {0} configuração(ões) escolhidas por você foram alteradas pelos próprios mods, normalmente depois que uma atualização redefiniu suas configurações.&#xA;&#xA;{1}&#xA;&#xA;Restaurar suas escolhas? Configurações que a atualização removeu completamente não serão restauradas.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... e mais {0}</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} configuração(ões) de atalho restaurada(s). Inicie o jogo para que tenham efeito.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Atualizações</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Verificar atualizações</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Compara os mods selecionados com suas páginas no Nexus. Use a seta para todos os mods ou para instalar tudo que tiver uma atualização.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) verificado(s): {1} têm atualização, {2} não puderam ser verificados.&#xA;&#xA;Baixar e instalar essas atualizações agora? A versão atual de cada mod será mantida como backup para restauração.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Atualizar tudo que tiver atualização</value></data>

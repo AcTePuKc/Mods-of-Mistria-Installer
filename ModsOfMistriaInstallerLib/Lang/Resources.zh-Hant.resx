@@ -482,7 +482,7 @@
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>你選擇的 {0} 個按鍵綁定已被模組自行變更，通常是更新重設了設定。&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;要還原你的選擇嗎？更新完全移除的設定不會還原。</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…以及另外 {0} 個。</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>已還原 {0} 個按鍵綁定。啟動遊戲後才會生效。</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>更新</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>檢查更新</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>檢查選取的模組是否與其 Nexus 頁面一致。使用箭頭可檢查所有模組，或安裝所有有更新的模組。</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>已檢查 {0} 個模組：{1} 個有更新，{2} 個無法檢查。&#xD;&#xA;&#xD;&#xA;要現在下載並安裝這些更新嗎？每個模組的目前版本都會保留為可還原的備份。</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>更新所有有更新的模組</value></data>

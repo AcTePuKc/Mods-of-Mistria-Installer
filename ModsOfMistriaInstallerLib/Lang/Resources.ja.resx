@@ -479,7 +479,7 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>選択した {0} 件のキー設定が Mod 自身によって変更されています。通常は更新によって設定がリセットされたためです。&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;選択を戻しますか？更新によって完全に削除された設定は復元されません。</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…ほか {0} 件</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} 件のキー設定を復元しました。ゲームを起動すると反映されます。</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>更新</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>更新を確認</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>選択した Mod を Nexus ページと照合します。矢印からすべての Mod を確認するか、更新があるものをすべてインストールできます。</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} 個の Mod を確認しました：{1} 個に更新があり、{2} 個は確認できませんでした。&#xD;&#xA;&#xD;&#xA;これらの更新を今すぐダウンロードしてインストールしますか？各 Mod の現在のバージョンは復元可能なバックアップとして保持されます。</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>更新があるものをすべて更新</value></data>
