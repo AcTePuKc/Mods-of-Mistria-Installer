@@ -520,4 +520,28 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>ダウンロードサーバーから応答がありません</value></data>
   <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>更新するものはありません。</value></data>
   <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nexus アカウントのセッションを保存できませんでした。ディスクへのアクセスを確認して、もう一度試してください。</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>{0} のバックアップがありません。</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>ダウンロードしたファイルがありません。</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Mod フォルダーが見つかりません。</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>このダウンロードには manifest.toml がないため、このインストーラーで扱える Mod ではありません。古い Mod か、手動でインストールするファイルの可能性があります。</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>ダウンロードした Mod を完了できませんでした。元のインストールエラー：{0}&#xD;&#xA;以前の Mod のコピーを復元できませんでした。手動復旧用にバックアップを保持しています：&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>退避したコピーが {0} にもうありません。</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Mod フォルダーの隣に {0} の保存済みコピーが多すぎます。</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Mod を展開できませんでした：{0} 以前のコピーを復元できませんでした。手動復旧用にバックアップを保持しています{1}。</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Mod を展開できませんでした：{0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>ダウンロードしたアーカイブにファイルが多すぎます。</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>ダウンロードしたアーカイブに大きすぎるファイルがあります。</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>ダウンロードしたアーカイブは、展開後の対応サイズを超えています。</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>アーカイブ内の「{0}」は、展開後の対応サイズを超えています。</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>ダウンロードしたファイルは、このインストーラーが読み取れるアーカイブではありません。zip、rar、7z に対応しています。</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>アーカイブに安全でないパスが含まれています：{0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>コールバックの状態が一致しないため、Nexus へのサインインをキャンセルしました。</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus から認証コードが返されませんでした。</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus アカウントのセッションをもう一度接続する必要があります。</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>AIM の Nexus OAuth 登録はまだ保留中です。</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus はアカウントへのサインインを完了できませんでした。</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus から不完全なアカウントセッションが返されました。</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Nexus アカウントの応答を読み取れませんでした。</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM は Nexus サインインのコールバックを待っています。</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Nexus サインインの応答がこの AIM セッションと一致しません。</value></data>
 </root>
