@@ -390,4 +390,31 @@ Przekazać je do AIM?</value></data>
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Rozwiązano: „{0}” przeniesiono na {1}, więc ten skrót nie jest już współdzielony. Zainstaluj ponownie, aby zastosować zmianę w grze.</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Ten mod jest nadal plikiem .zip lub .rar. Najpierw wypakuj go do folderu modów, a AIM będzie mógł edytować jego przypisanie.</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Ten mod nie deklaruje klawisza jako nazwanego przypisania, więc AIM nie może bezpiecznie go zmienić. Sprawdź ustawienia moda w grze lub jego plik konfiguracji.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Każdy klawisz funkcyjny jest już używany przez zaznaczony mod, więc nie ma wolnego klawisza, na który można go przenieść.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM nie może odczytać plików tego moda.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Sortuj A-Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Sortuje listę według nazwy, aby łatwo znaleźć moda. To tylko widok: kolejność ładowania pozostaje bez zmian, a po wyłączeniu wraca rzeczywista kolejność. Przeciąganie jest wtedy wstrzymane.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Sortuj według ostatniej aktualizacji</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Najnowsze mody są pierwsze, według czasu ostatniej zmiany ich folderu na dysku. Dzięki temu świeżo zainstalowane lub zaktualizowane mody trafiają na górę. To tylko widok: kolejność ładowania pozostaje bez zmian, a przeciąganie jest wstrzymane.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Przenieś na początek kolejności ładowania</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Ładuje tego moda jako pierwszego, aby pozostałe mogły na nim bazować i go nadpisywać. To właściwe miejsce dla frameworka lub moda, od którego zależą inne. Zmienia rzeczywistą kolejność ładowania, a nie tylko aktualny widok listy.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Przenieś na koniec kolejności ładowania</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Ładuje tego moda jako ostatniego, więc gdy dzieli pliki z innym modem, jego wersja wygrywa. To właściwe miejsce dla recoloru lub własnego nadpisania. Zmienia rzeczywistą kolejność ładowania, a nie tylko aktualny widok listy.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Tylko włączone mody</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Ukrywa wszystko, co jest wyłączone. Liczy się kolejność modów faktycznie trafiających do gry, a na długiej liście trudno ją odczytać przez nieużywane mody.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Tylko mody wymagające uwagi</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Pokazuje tylko mody z oczekującą aktualizacją oraz te, których nie udało się sprawdzić: bez powiązania z Nexus, przez problem sieciowy lub z powodu nieistniejącej już strony.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Tylko widok: kolejność ładowania bez zmian, przeciąganie wstrzymane</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Przejdź na początek listy</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Przejdź na koniec listy</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) jest również używany przez {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Informacje o wydaniu</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Informacje o wydaniu: najedź, aby wczytać, kliknij, aby przeczytać pełną historię.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Co nowego w {0}:
+{1}
+
+Kliknij, aby przeczytać wszystkie wersje.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Autor tego moda nie opublikował informacji o wydaniu.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM nie może odczytać informacji o wydaniu tego moda. Potrzebne jest połączone konto Nexus, a AIM musi znać stronę Nexus tego moda.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} wersji z informacjami, od najnowszej.</value></data>
 </root>
