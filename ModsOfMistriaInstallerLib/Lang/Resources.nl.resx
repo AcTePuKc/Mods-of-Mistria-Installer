@@ -919,4 +919,52 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Bijwerken vervangt de mods-map, dus de bewerking van AIM verdwijnt. Als de nieuwe versie het probleem niet heeft opgelost, komt de crash terug en kun je de fix opnieuw toepassen. De vorige versie staat nog in de herstel-lijst.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Extern archief gevonden</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM heeft een extern gewijzigde assets.zip gevonden.&#xA;&#xA;Als je doorgaat zal AIM:&#xA;• het bewaren als assets.foreign-...zip&#xA;• de gecontroleerde back-up herstellen&#xA;• deze installatie opnieuw proberen&#xA;&#xA;Mods die alleen in het externe archief bestaan worden inactief. Doorgaan?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Een oplossing zoeken</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>De pagina’s van deze mods worden gelezen…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Verbind je Nexus-account via het tandwielmenu zodat AIM deze modpagina’s voor je kan lezen. Tot die tijd zijn de links hieronder de snelste manier om dit te controleren.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Niets in de beschrijvingen, readme’s, wijzigingslogboeken, bugrapporten of reacties van deze mods beantwoordt de vraag. AIM heeft de naam van de andere mod in de hele reactiedraad gezocht en recente bugrapporten gelezen. Dat betekent echt ‘niemand heeft het gezegd’, niet ‘niemand heeft gekeken’, maar het is niet hetzelfde als ‘geen probleem’. De links hieronder openen nog steeds de pagina’s zelf.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} item(s) op de modpagina’s hebben betrekking op deze combinatie.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM kon de modpagina’s niet lezen: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Wat de modpagina’s zeggen</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Zelf controleren</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM leest deze inhoud zelf: reacties door de hele draad te doorzoeken en de bugtracker enkele pagina’s diep te lezen, maar altijd als uitgelogde bezoeker. Deze links openen de echte pagina’s.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Pagina van deze mod openen</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Patch openen</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Wat heb je gevonden?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Door dit op te slaan blijft het antwoord bij het probleem staan, zodat je het de volgende keer niet opnieuw hoeft uit te zoeken.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Link naar de patch (optioneel):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Geen echt conflict</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Ze delen bestanden, maar dat maakt in de praktijk niet uit. Markeer het probleem als opgelost en verberg het totdat een van de mods wordt bijgewerkt.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Er bestaat een patch</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Iemand heeft een compatibiliteitspatch gepubliceerd. Klik eenmaal om de link toe te voegen en nogmaals om hem op te slaan. Het probleem wordt als opgelost gemarkeerd.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Ze zijn incompatibel</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Slaat de uitkomst op, maar laat het probleem zichtbaar omdat je nog steeds een van de twee moet uitschakelen.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Nog niet beslist</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Patch opslaan</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Dat lijkt geen https-link. Plak het webadres van de patch of laat het veld leeg.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Lezing van de bestanden door AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM heeft elk bestand gelezen dat deze mods delen.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM kon niet elk bestand lezen, dus beschouw dit als een analyse en niet als een feit.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} gedeeld bestand</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} gedeelde bestanden</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Een deel van dit venster kon niet worden gemaakt: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>De mods in dit conflict</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Open een pagina om de mod zelf te beoordelen, of haal hem uit de modlijst als je hebt besloten hem niet te gebruiken.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Pagina openen</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM weet niet waar deze mod vandaan komt en heeft daarom geen pagina om te openen.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Verwijderen</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Haalt deze mod uit de modmap. AIM vraagt eerst om bevestiging en zet de bestanden in de Prullenbak.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} is verwijderd, dus het conflict bestaat niet meer.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Wat je al hebt</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mods die al in je lijst staan en bij deze combinatie horen. AIM heeft ze gecontroleerd voordat het iets ter download aanbood.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Wat AIM eraan kan doen</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Hier gebeurt niets totdat je het kiest, en elke actie kan ongedaan worden gemaakt.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Patches die al bestaan</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Goedkeuren en toepassen</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Gereed: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Dat is niet gelukt: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Zegt dat het goed werkt</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Zegt dat het een probleem is</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Werkt onder een voorwaarde</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Vermeldt het onderwerp zonder antwoord</value></data>
 </root>
