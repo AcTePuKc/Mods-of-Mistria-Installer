@@ -1111,4 +1111,44 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>De game crashte door iets anders, dus {0} is uitgesloten voor de oorspronkelijke crash. AIM heeft de nieuwe crash geladen; eerdere conclusies blijven behouden.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} van {1} verdachten zijn voor deze crash getest.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM kan deze resultaten nergens opslaan, dus ze blijven alleen bestaan zolang dit venster open is.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Volgende testen: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Voert dezelfde controle uit op de volgende ongeteste verdachte: schakelt hem uit, bouwt opnieuw op, start en volgt. Mods die al zijn uitgesloten blijven ingeschakeld.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Elke verdachte is getest en geen ervan was alleen de oorzaak. Twee mods kunnen dit samen veroorzaken: schakel de hele shortlist tegelijk uit of meld de crash met de onderstaande lijst.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Opnieuw beginnen</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Verwijdert elke conclusie die AIM voor deze crash heeft opgeslagen en biedt alle verdachten opnieuw aan. Nuttig nadat je mods toevoegt, verwijdert of herschikt, want een conclusie is alleen geldig tegen de lijst waarin is getest.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Alle conclusies voor deze crash zijn gewist.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Uitgesloten - {0} van {1} verdachten</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Bekijk wat die sessies bewezen</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>De eigen pagina’s van {0} lezen voor een oplossing…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Geen oorzaak</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Legt vast dat je weet dat deze mod niet achter deze crash zit, zonder er een sessie aan te besteden. De mod gaat naar de uitgesloten lijst, wordt niet meer voor testen aangeboden en wordt weer ingeschakeld als AIM hem had uitgeschakeld. Gelabeld als jouw eigen oordeel, niet als iets dat AIM heeft bewezen; je kunt dit ongedaan maken.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Als crashveroorzaker markeren</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Legt vast dat je weet dat deze mod deze crash veroorzaakt. AIM schakelt hem uit, markeert hem in je modlijst en behandelt hem als de oorzaak, net als wanneer een sessie er een vindt, maar met jouw eigen oordeel als label. Je kunt dit ongedaan maken.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Mijn markering ongedaan maken</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Maakt het oordeel dat je met de hand hebt vastgelegd ongedaan en zet deze mod terug in de shortlist als ongetest. De mod blijft ingeschakeld of uitgeschakeld zoals hij nu is.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Met de hand gemarkeerd, niet door AIM getest.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>GEMARKEERD ALS GEEN OORZAAK</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>GEMARKEERD ALS CRASHVEROORZAKER</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Je hebt dit als oorzaak gemarkeerd. AIM heeft het niet getest; het heeft de mod op jouw aanwijzing uitgeschakeld en in je modlijst gemarkeerd. Alles wat AIM zelf kan repareren staat hieronder; in de bugthread staat misschien al een oplossing.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} is gemarkeerd als crashveroorzaker en uitgeschakeld. Installeer opnieuw om de game zonder deze mod op te bouwen.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} is gemarkeerd als crashveroorzaker. Hij was al uitgeschakeld.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} is gemarkeerd als geen oorzaak en wordt niet opnieuw voor deze crash aangeboden.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} is gemarkeerd als geen oorzaak en weer ingeschakeld. Installeer opnieuw om hem terug in de game te zetten.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Je markering van {0} is ingetrokken. De mod staat weer als ongetest in de shortlist.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM heeft geen crash geladen om dit aan te koppelen.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Weer inschakelen</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Deze mod is uitgesloten maar nog steeds uitgeschakeld. AIM schakelt een uitgesloten mod normaal zelf weer in; dat lukte deze keer niet. Met deze knop doe je dat.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} is weer ingeschakeld. Installeer opnieuw om hem in de game te zetten.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM kon {0} niet weer inschakelen. De mod staat misschien niet meer in je lijst of kon niet worden geladen.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>UITGESLOTEN</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>BEKENDE CRASHVEROORZAKER</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Een test heeft dit bewezen: met deze mod uitgeschakeld crashte de game niet. AIM heeft hem uitgeschakeld gelaten en in je modlijst gemarkeerd. Alles wat AIM zelf kan repareren staat hieronder; in de bugthread staat misschien al een oplossing.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>GETEST, GEEN ANTWOORD</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Reparaties die AIM zelf kan toepassen</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Deze reparaties zijn door AIM uit eigen controles afgeleid, niet uit een bugthread. Het zijn dus mechanische correcties van iets dat aantoonbaar fout is in het bestand, nooit een gok naar de bedoeling van de auteur. De hele mod wordt eerst naar je versiegeschiedenis gekopieerd, de mod krijgt het label gewijzigd en wordt tegen updates beschermd totdat er een update komt die dit goed kan oplossen.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Deze reparatie toepassen</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Toegepast op {0}. De mod is als gewijzigd gemarkeerd en tegen updates beschermd; de vorige versie staat in de herstelijst hierboven.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Hier is niets kapot dat AIM zelf kan repareren.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;In {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM kopieert eerst de hele mod naar je versiegeschiedenis en beschermt hem tegen updates, zodat deze reparatie niet stilletjes wordt overschreven. Doorgaan?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Tegen updates beschermd omdat AIM dit heeft gerepareerd: {0}</value></data>
 </root>

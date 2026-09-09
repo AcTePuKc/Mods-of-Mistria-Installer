@@ -790,4 +790,44 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>게임이 다른 원인으로 충돌했으므로 원래 충돌에 대해서는 {0}을(를) 제외합니다. AIM이 새 충돌을 불러오고 기존 결과는 보존합니다.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>이 충돌에 대해 {1}개 중 {0}개의 의심 대상을 테스트했습니다.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM이 이 결과를 저장할 수 없어 이 창이 열려 있는 동안만 유지됩니다.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>다음 테스트: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>아직 테스트하지 않은 다음 의심 대상을 같은 방식으로 확인합니다. 끄고, 다시 빌드하고, 시작한 뒤 감시합니다. 이미 배제된 모드는 켜진 상태로 둡니다.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>모든 의심 대상을 테스트했지만 단독 원인은 없었습니다. 두 모드가 함께 문제를 일으킬 수 있으니, 의심 목록 전체를 한꺼번에 꺼 보거나 아래 목록과 함께 충돌을 신고하세요.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>처음부터 다시</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>이 충돌에 대해 AIM이 기록한 모든 판정을 버리고 모든 의심 대상을 다시 제안합니다. 모드를 추가, 제거 또는 순서 변경한 뒤에 유용합니다. 판정은 테스트한 목록에 대해서만 의미가 있기 때문입니다.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>이 충돌에 대한 모든 판정을 지웠습니다.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>배제됨 - {1}개 중 {0}개 의심 대상</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>테스트 결과 보기</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>{0}의 페이지에서 해결 방법을 읽는 중…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>원인 아님으로 표시</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>실행을 소모하지 않고 이 모드가 이 충돌의 원인이 아님을 기록합니다. 배제 목록으로 이동하고 테스트 대상에서 제외되며, AIM이 껐던 경우 다시 켭니다. AIM이 입증한 것이 아니라 사용자의 판단으로 표시되며 취소할 수 있습니다.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>충돌 원인으로 표시</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>이 모드가 이 충돌을 일으킨다는 것을 기록합니다. AIM이 모드를 끄고 모드 목록에 표시하며 원인으로 취급합니다. 테스트에서 원인을 찾은 경우와 같지만 사용자의 판단으로 표시됩니다. 취소할 수 있습니다.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>내 표시 취소</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>직접 기록한 판정을 취소하고 이 모드를 미테스트 상태로 후보 목록에 되돌립니다. 모드는 현재 상태 그대로 둡니다.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>직접 표시됨, AIM이 테스트하지 않음.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>원인 아님으로 표시됨</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>충돌 원인으로 표시됨</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>사용자가 원인으로 표시했습니다. AIM은 테스트하지 않았으며, 사용자의 판단에 따라 모드를 끄고 모드 목록에 표시했습니다. AIM이 직접 고칠 수 있는 항목은 아래에 있고, 버그 스레드에 이미 해결 방법이 있을 수 있습니다.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0}이(가) 충돌 원인으로 표시되어 꺼졌습니다. 설치하면 이 모드 없이 게임을 다시 빌드합니다.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0}이(가) 충돌 원인으로 표시되었습니다. 이미 꺼져 있습니다.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0}이(가) 원인이 아님으로 표시되어 이 충돌의 테스트 대상에서 제외됩니다.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0}이(가) 원인이 아님으로 표시되고 다시 켜졌습니다. 설치하면 게임에 다시 넣습니다.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>{0}에 대한 표시를 취소했습니다. 다시 미테스트 후보 목록에 있습니다.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>기록할 충돌이 AIM에 없습니다.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>다시 켜기</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>이 모드는 배제되었지만 아직 꺼져 있습니다. AIM은 보통 배제된 모드를 자동으로 다시 켜지만 이번에는 실패했습니다. 이 버튼으로 다시 켭니다.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0}이(가) 다시 켜졌습니다. 설치하면 게임에 넣습니다.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>{0}을(를) 다시 켜지 못했습니다. 모드 목록에 없거나 불러오기에 실패했을 수 있습니다.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>배제됨</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>충돌 원인 확인됨</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>테스트로 입증되었습니다. 이 모드를 끄자 게임이 충돌하지 않았습니다. AIM은 모드를 끈 상태로 두고 모드 목록에 표시했습니다. AIM이 직접 고칠 수 있는 항목은 아래에 있고, 버그 스레드에 이미 해결 방법이 있을 수 있습니다.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>테스트됨, 결론 없음</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>AIM이 직접 적용할 수 있는 수정</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>이 수정은 버그 스레드가 아니라 AIM의 자체 검사에서 알아낸 것입니다. 따라서 작성자의 의도를 추측하지 않고 파일에서 명백히 잘못된 부분을 기계적으로 고칩니다. 먼저 전체 모드를 버전 기록에 복사하고, 모드를 수정됨으로 표시하며, 제대로 고칠 수 있는 업데이트가 나올 때까지 업데이트 대상에서 제외합니다.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>이 수정 적용</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>{0}에 적용했습니다. 수정됨으로 표시하고 업데이트 대상에서 제외했습니다. 이전 버전은 위의 복원 목록에 있습니다.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>AIM이 직접 고칠 수 있는 문제가 없습니다.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;{1}에서:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM은 먼저 전체 모드를 버전 기록에 복사하고, 이 수정이 조용히 덮어써지지 않도록 업데이트 대상에서 제외합니다. 계속할까요?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>AIM이 수정했으므로 업데이트 대상에서 제외됨: {0}</value></data>
 </root>
