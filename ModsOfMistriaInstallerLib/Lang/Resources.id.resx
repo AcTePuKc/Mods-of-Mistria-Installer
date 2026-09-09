@@ -469,4 +469,26 @@ Alihkan ke AIM?</value></data>
   <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Tombol keyboard atau pengendali</value></data>
   <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Tekan tombol untuk menangkapnya</value></data>
   <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Tekan tombol sekarang… (Escape untuk berhenti)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Ini akan disimpan sebagai: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Button pengendali dipilih dari daftar - AIM tidak dapat membaca pengendali. Daftar ini berisi semua nama yang diterima game; ALT, tombol kunci, dan numpad tidak termasuk, dan mod yang menggunakan salah satunya akan diam-diam kembali ke nilai bawaan.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Simpan</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Hapus penetapan</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Mengosongkan pengaturan. Sebagian besar mod menganggapnya sebagai «mati»; beberapa mod justru kembali ke nilai bawaan.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (bawaan mod - belum dikonfigurasi)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Pengaturan tombol berubah</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} pengaturan tombol yang Anda pilih telah diubah oleh mod itu sendiri, biasanya setelah pembaruan mengatur ulang pengaturannya.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Kembalikan pilihan Anda? Pengaturan yang sepenuhnya dihapus oleh pembaruan tidak akan dipulihkan.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… dan {0} lainnya.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} pengaturan tombol dipulihkan. Jalankan game agar perubahan berlaku.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Periksa pembaruan</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Memeriksa mod yang dipilih pada halaman Nexus-nya. Gunakan panah untuk semua mod, atau untuk memasang semua yang memiliki pembaruan.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Memeriksa {0} mod: {1} memiliki pembaruan, {2} tidak dapat diperiksa.&#xD;&#xA;&#xD;&#xA;Unduh dan pasang pembaruan tersebut sekarang? Versi saat ini dari setiap mod disimpan sebagai cadangan yang dapat dipulihkan.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Perbarui semua yang memiliki pembaruan</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Mengunduh dan memasang semua pembaruan yang tertunda satu per satu, sambil menyimpan versi saat ini dari setiap mod sebagai cadangan yang dapat dipulihkan.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Perbarui mod</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Tidak ada pembaruan yang tertunda. Periksa pembaruan terlebih dahulu.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Perbarui {0} mod?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Versi saat ini dari setiap mod disimpan sebagai cadangan yang dapat dipulihkan dari menu klik kanannya.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Memperbarui {0} dari {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} dari {1} mod diperbarui.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Mod berikut tidak dapat diunduh langsung dan memerlukan halaman Nexus-nya: {0}&#xD;&#xA;&#xD;&#xA;Nexus hanya memberikan tautan unduhan langsung kepada akun Premium. Untuk akun gratis, buka halaman mod dan gunakan tombol «Mod Manager Download». AIM akan mengambilnya jika terdaftar untuk menangani tautan tersebut.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Tidak ada yang dilaporkan. AIM tidak menemukan file bersama, konflik pintasan, persyaratan yang hilang, atau peringatan kompatibilitas di antara mod yang Anda pilih.</value></data>
 </root>
