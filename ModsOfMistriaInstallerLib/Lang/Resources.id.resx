@@ -533,4 +533,26 @@ Alihkan ke AIM?</value></data>
   <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Arsip yang diunduh berisi file yang terlalu besar.</value></data>
   <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Arsip yang diunduh melebihi ukuran hasil ekstrak yang didukung.</value></data>
   <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Entri arsip «{0}» melebihi ukuran hasil ekstrak yang didukung.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>File yang diunduh bukan arsip yang dapat dibaca installer ini. Format yang didukung: zip, rar, dan 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Arsip berisi jalur yang tidak aman: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Masuk ke Nexus dibatalkan karena status callback tidak cocok.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus tidak mengembalikan kode otorisasi.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Sesi akun Nexus perlu dihubungkan kembali.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>Pendaftaran OAuth Nexus untuk AIM masih menunggu.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus tidak dapat menyelesaikan proses masuk akun.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus mengembalikan sesi akun yang tidak lengkap.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Tidak dapat membaca respons akun Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM sedang menunggu callback masuk dari Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Respons masuk Nexus tidak cocok dengan sesi AIM ini.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Masuk ke Nexus dibatalkan. Anda dapat kembali ke AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Masuk ke Nexus dibatalkan atau ditolak oleh browser.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Masuk ke Nexus selesai. Anda dapat kembali ke AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus tidak mengembalikan server unduhan untuk file tersebut.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>API Nexus tidak merespons tepat waktu.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Tidak dapat menghubungi API Nexus: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus mengembalikan respons yang tidak terduga.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Tidak dapat membaca respons dari Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus menolak sesi akun. Hubungkan kembali akun Nexus Anda.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus menolak permintaan. Tautan unduhan mungkin sudah kedaluwarsa - coba klik lagi.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Mod atau file tersebut sudah tidak ada di Nexus.</value></data>
 </root>
