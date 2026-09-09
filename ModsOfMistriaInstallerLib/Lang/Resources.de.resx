@@ -940,4 +940,28 @@ An AIM übergeben?</value></data>
   <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Patch speichern</value></data>
   <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Das sieht nicht wie ein https-Link aus. Füge die Webadresse des Patches ein oder lasse das Feld leer.</value></data>
   <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIMs Auswertung der Dateien</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM hat jede Datei gelesen, die diese Mods gemeinsam verwenden.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM konnte nicht jede Datei lesen. Betrachte dies daher als Einschätzung und nicht als Tatsache.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} gemeinsame Datei</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} gemeinsame Dateien</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Ein Teil dieses Fensters konnte nicht erstellt werden: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Die Mods in diesem Konflikt</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Öffne eine Seite, um die Mod selbst zu beurteilen, oder entferne sie aus der Mod-Liste, wenn du dich dagegen entschieden hast.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Seite öffnen</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM weiß nicht, woher diese Mod stammt, und hat daher keine Seite zum Öffnen.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Entfernen</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Entfernt diese Mod aus dem Mod-Ordner. AIM fragt vorher nach, und die Dateien werden in den Papierkorb verschoben.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} wurde entfernt, daher besteht der Konflikt nicht mehr.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Was bereits installiert ist</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mods in deiner Liste, die für diese Kombination relevant sind. AIM hat sie geprüft, bevor etwas zum Download angeboten wurde.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Was AIM dagegen tun kann</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Hier geschieht nichts, bevor du es auswählst, und jede dieser Aktionen kann rückgängig gemacht werden.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Bereits vorhandene Patches</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Genehmigen und anwenden</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Fertig: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Das hat nicht funktioniert: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Sagt, dass alles in Ordnung ist</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Sagt, dass es ein Problem ist</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Funktioniert unter einer Bedingung</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Erwähnt das Thema, beantwortet es aber nicht</value></data>
 </root>
