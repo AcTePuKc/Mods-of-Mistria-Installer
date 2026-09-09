@@ -914,4 +914,12 @@ Clique para ler todas as versões.</value></data>
   <data name="GUINxmInvalidIds" xml:space="preserve"><value>O link tem um ID de mod ou arquivo inválido.</value></data>
   <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Não foi possível descobrir de onde o instalador está sendo executado.</value></data>
   <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>O registro de links nxm:// só é compatível com Windows e Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>O AIM foi registrado, mas o Windows ainda pode estar usando {0} para links nxm://.&#xA;&#xA;Escolha o AIM como padrão para nxm:// em Aplicativos padrão do Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Não foi possível verificar o registro nxm:// depois de gravá-lo.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Uma atualização pode corrigir o que você alterou</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} está disponível. Você está usando {2} com a correção do AIM aplicada: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Atualizar e remover a correção do AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>A atualização substitui a pasta do mod, então a alteração do AIM desaparece. Se a nova versão não tiver corrigido o problema, a falha voltará e você poderá aplicar a correção novamente. A versão anterior continua na lista de restauração.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Arquivo externo detectado</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>O AIM encontrou um assets.zip alterado externamente.&#xA;&#xA;Se você continuar, o AIM irá:&#xA;• preservá-lo como um arquivo assets.foreign-...zip&#xA;• restaurar o backup verificado&#xA;• tentar esta instalação novamente&#xA;&#xA;Mods que existem apenas no arquivo externo ficarão inativos. Continuar?</value></data>
 </root>
