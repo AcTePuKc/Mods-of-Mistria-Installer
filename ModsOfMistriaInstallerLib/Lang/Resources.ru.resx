@@ -712,4 +712,19 @@
   <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Копирует всё в буфер обмена: ошибку, стек вызовов, вывод AIM и установленные моды.</value></data>
   <data name="GUICrashRefresh" xml:space="preserve"><value>Обновить</value></data>
   <data name="GUICrashLooking" xml:space="preserve"><value>Ищу сбои…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Сбоев не найдено.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Читаю стек вызовов…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM не видит список модов и не может назвать виновника.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM не смог прочитать этот сбой: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Этот сбой старше нынешних модов. Сыграйте один раз до изменений.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Войдите в Nexus, чтобы AIM мог читать трекеры ошибок модов.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Читаю трекеры ошибок и комментарии…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Ни один мод не указан достаточно ясно для исследования.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM не смог прочитать страницы модов: {0}</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>На страницах модов об этом сбое ничего нет.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>Связанных сведений найдено: {0}.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>ТОЧНО</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>ВЕРОЯТНО</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>ВОЗМОЖНО</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>МАЛОВЕРОЯТНО</value></data>
 </root>
