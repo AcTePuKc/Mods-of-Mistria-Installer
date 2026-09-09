@@ -842,4 +842,28 @@ Clique para ler todas as versões.</value></data>
 {0}</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>A pasta de mods não foi encontrada, então não há nada para abrir.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Não foi possível abrir a pasta de mods: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Pasta de mods</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Abrir a pasta de mods do Fields of Mistria no gerenciador de arquivos</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Verificar falhas</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Lê o registro de falhas do próprio jogo, identifica o mod indicado e oferece desativá-lo para verificar se a falha desaparece.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Não há mais espaço na pasta de mods para preparar {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Já existem cópias demais de {0} na pasta de mods.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Não foi possível baixar o arquivo do Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>nenhum servidor de download respondeu</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Não há nada para atualizar.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Não foi possível salvar a sessão da conta do Nexus. Verifique o acesso ao disco e tente novamente.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>O backup de {0} está faltando.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>O arquivo baixado está faltando.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>A pasta de mods não foi encontrada.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Este download não contém um manifest.toml, então não é um mod que este instalador possa processar. Pode ser um mod antigo ou um arquivo que precisa ser instalado manualmente.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Não foi possível concluir o mod baixado. O erro original de instalação foi: {0}&#xA;Não foi possível restaurar uma cópia anterior do mod. O backup foi mantido para recuperação manual:&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>A cópia colocada de lado não está mais em {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Já existem cópias mantidas demais de {0} ao lado da pasta de mods.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Não foi possível extrair o mod: {0}. A cópia anterior não pôde ser restaurada; o backup foi mantido para recuperação manual{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Não foi possível extrair o mod: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>O arquivo baixado contém arquivos demais.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>O arquivo baixado contém um arquivo grande demais.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>O arquivo baixado excede o tamanho extraído suportado.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>A entrada "{0}" do arquivo excede o tamanho extraído suportado.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>O arquivo baixado não é um formato que este instalador consiga ler. zip, rar e 7z são aceitos.</value></data>
 </root>

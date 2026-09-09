@@ -342,4 +342,28 @@
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Включённые</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Обновления</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложить порядок</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0}, автор {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Войти в Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Выйти из Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Аккаунт Nexus подключён.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Аккаунт Nexus не подключён. Войдите, чтобы использовать функции Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Аккаунт Nexus отключён.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Изменить манифест мода</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Открывает manifest.json (или manifest.toml) в обычном текстовом редакторе. Доступно только для модов-папок: у мода в .zip или .rar нет файла для редактирования.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Изменить конфигурацию мода</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Открывает файл конфигурации мода в обычном текстовом редакторе. Кнопка недоступна, если AIM не может найти файл конфигурации.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Не удалось открыть {0}: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Удалить мод...</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Убирает мод из папки модов. AIM сначала спросит подтверждение и отправит файлы в Корзину, а не удалит их сразу.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Удалить мод</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Переместить мод «{0}» версии {1} в Корзину?&#xA;&#xA;{2}&#xA;&#xA;Он будет убран из папки модов. Если вы передумаете, его можно вернуть из Корзины. Файлы, уже установленные в игру, останутся до следующей установки или удаления.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Удалить мод «{0}» версии {1} навсегда?&#xA;&#xA;{2}&#xA;&#xA;В этой системе нет Корзины, которую может использовать AIM, поэтому файлы мода будут удалены. Это действие нельзя отменить.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>Не удалось удалить «{0}»: {1}&#xA;&#xA;Файл может быть открыт в другой программе или игра всё ещё запущена.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Удалить выбранные...</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Удаляет все отмеченные моды одновременно через Корзину после показа списка.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Моды не отмечены, поэтому удалять нечего.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Переместить {0} модов в Корзину?&#xA;&#xA;{1}&#xA;&#xA;Они будут убраны из папки модов и их можно будет вернуть из Корзины. Файлы, уже установленные в игру, останутся до следующей установки или удаления.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Удалить {0} модов навсегда?&#xA;&#xA;{1}&#xA;&#xA;В этой системе нет Корзины, которую может использовать AIM, поэтому файлы будут удалены. Это действие нельзя отменить.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... и ещё {0}</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Удалено модов: {0} из {1}.</value></data>
 </root>
