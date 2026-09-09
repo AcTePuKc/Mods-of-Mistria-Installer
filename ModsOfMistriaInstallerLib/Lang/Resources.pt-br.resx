@@ -946,4 +946,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Outras informações nas páginas</value></data>
   <data name="GUICrashEditHeader" xml:space="preserve"><value>Aplicar uma correção manualmente</value></data>
   <data name="GUICrashEditHint" xml:space="preserve"><value>Se uma discussão de bug ou a descrição do mod disser exatamente o que deve ser alterado, informe aqui. O AIM primeiro copia o mod inteiro para o histórico de versões, então a lista de restauração sempre contém a versão anterior à alteração.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Arquivo relativo à pasta do mod</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Linha</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Texto novo para essa linha; deixe vazio para limpá-la</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Aplicar esta alteração</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Separar este arquivo</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Remove o arquivo inteiro do jogo e mantém o restante do mod instalado. Útil quando um arquivo de dados faz o jogo travar, mas você quer manter o restante até o autor atualizar o mod.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Primeiro informe um arquivo do mod e o número da linha que deve ser alterada.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Correção de crash: linha {0} de {1} em {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Correção de crash: {0} separado em {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;O AIM primeiro copia o mod inteiro para o histórico de versões, então você sempre pode restaurá-lo pela lista acima. Apenas este mod será alterado.&#xD;&#xA;&#xD;&#xA;Continuar?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Nada foi alterado; o jogo será executado como está.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>O arquivo já corresponde à lista de mods, então não foi necessário reconstruí-lo.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>O arquivo do jogo foi reconstruído.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Iniciando Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Observando a execução. Jogue normalmente; o AIM avisará quando o jogo fechar ou após {0} minutos sem crash.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>O jogo não foi iniciado, então nada foi testado.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>O mesmo crash voltou com {0} desativado, então {0} não é a causa. O AIM o excluiu e o ativou novamente.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>O mesmo crash voltou com {0} desativado, então ele não é a causa. O AIM o excluiu, mas não conseguiu ativá-lo novamente. Antes da próxima verificação, use “Ativar novamente” no cartão “Já verificado”.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Não houve crash com {0} desativado. Isso torna o mod a causa provável. Deixe-o desativado, espere uma atualização ou tente uma correção abaixo.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>O jogo funcionou sem crash e nada foi alterado. O crash pode ter exigido um save ou uma ação que não foi repetida. Tente novamente e faça o que fez da última vez.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Esta sessão não deu uma resposta, então {0} continua suspeito. O AIM o oferecerá novamente.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>O jogo travou por outra causa, então {0} foi excluído apenas para o crash original. O AIM carregou o novo crash e manteve as conclusões anteriores.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} de {1} suspeitos foram testados para este crash.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>O AIM não pode salvar estes resultados, então eles existirão apenas enquanto esta janela estiver aberta.</value></data>
 </root>

@@ -620,4 +620,28 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Inne informacje na stronach</value></data>
   <data name="GUICrashEditHeader" xml:space="preserve"><value>Zastosuj poprawkę ręcznie</value></data>
   <data name="GUICrashEditHint" xml:space="preserve"><value>Jeśli w wątku błędu lub opisie moda dokładnie podano, co zmienić, wpisz to tutaj. AIM najpierw kopiuje cały mod do historii wersji, więc lista przywracania zawsze zawiera wersję sprzed tej zmiany.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Plik względny wobec folderu moda</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Wiersz</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Nowy tekst tego wiersza; zostaw puste, aby go wyczyścić</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Zastosuj tę zmianę</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Odłóż ten plik</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Wyklucza cały plik z gry, pozostawiając resztę moda zainstalowaną. Przydatne, gdy jeden plik danych powoduje awarię, ale chcesz używać pozostałej części do czasu aktualizacji autora.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Najpierw podaj plik w modzie i numer wiersza do zmiany.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Naprawa awarii: wiersz {0} z {1} w {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Naprawa awarii: odłożono {0} w {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM najpierw kopiuje cały mod do historii wersji, więc zawsze możesz przywrócić go z listy przywracania. Zmieniony zostanie tylko ten mod.&#xD;&#xA;&#xD;&#xA;Kontynuować?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Nic nie zmieniono; gra zostanie uruchomiona w obecnym stanie.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Archiwum już odpowiada liście modów, więc przebudowa nie była potrzebna.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Przebudowano archiwum gry.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Uruchamianie Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Obserwowanie uruchomionej gry. Graj normalnie; AIM poinformuje, gdy gra się zamknie albo po {0} minutach bez awarii.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Gra nie została uruchomiona, więc niczego nie przetestowano.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Ta sama awaria wystąpiła ponownie przy wyłączonym {0}, więc {0} nie jest przyczyną. AIM wykluczył go i włączył ponownie.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Ta sama awaria wystąpiła ponownie przy wyłączonym {0}, więc nie jest on przyczyną. AIM go wykluczył, ale nie zdołał ponownie włączyć. Przed kolejną kontrolą użyj opcji „Włącz ponownie” na karcie „Już sprawdzone”.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Gra nie uległa awarii przy wyłączonym {0}. Mod jest prawdopodobną przyczyną. Pozostaw go wyłączonego, poczekaj na aktualizację albo wypróbuj poniższą poprawkę.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Gra działała bez awarii i niczego nie zmieniono. Awaria mogła wymagać zapisu lub czynności, której nie powtórzono. Spróbuj ponownie i wykonaj to samo co poprzednio.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Ta sesja nie dała odpowiedzi, więc {0} nadal jest podejrzany. AIM zaproponuje go ponownie.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Gra uległa awarii z innego powodu, więc {0} zostaje wykluczony tylko dla pierwotnej awarii. AIM wczytał nową awarię, a wcześniejsze wyniki zachował.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>Przetestowano {0} z {1} podejrzanych dla tej awarii.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM nie może zapisać tych wyników, więc pozostaną dostępne tylko do czasu zamknięcia tego okna.</value></data>
 </root>

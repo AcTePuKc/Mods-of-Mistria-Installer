@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T10:58:44.3835352Z",
+  "generatedAt": "2026-09-09T11:01:10.2182298Z",
   "scope": "deferred",
   "coreKeyCount": 232,
   "nextLanguage": "pt-br",
@@ -114,14 +114,14 @@
       "language": "pl",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 208,
+      "deferredMissing": 184,
       "deferredComplete": false
     },
     {
       "language": "pt-br",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 208,
+      "deferredMissing": 184,
       "deferredComplete": false
     },
     {
