@@ -727,4 +727,17 @@
   <data name="GUICrashBadgeStrong" xml:space="preserve"><value>ВЕРОЯТНО</value></data>
   <data name="GUICrashBadgeLikely" xml:space="preserve"><value>ВОЗМОЖНО</value></data>
   <data name="GUICrashBadgePossible" xml:space="preserve"><value>МАЛОВЕРОЯТНО</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Открыть страницу мода</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Открыть эту страницу</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Сообщить об ошибке</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Создаёт нужный автору отчёт, копирует его и открывает трекер ошибок мода. Прочитать и опубликовать его должны вы.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Отчёт скопирован, трекер открыт. Прочитайте и опубликуйте его.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Отчёт скопирован. Найдите трекер или Discord автора самостоятельно.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Скопировано.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Отключить и проверить</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Отключает мод, перестраивает и запускает игру, чтобы проверить причину.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Игра перестраивается без этого мода и запустится сама после завершения.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Удалить мод</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} удалён.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Версии и изменения AIM</value></data>
 </root>

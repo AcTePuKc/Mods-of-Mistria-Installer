@@ -1,22 +1,9 @@
 {
-  "generatedAt": "2026-09-09T11:46:35.9395612Z",
+  "generatedAt": "2026-09-09T11:53:49.7670782Z",
   "scope": "deferred",
   "coreKeyCount": 232,
   "nextLanguage": "uk",
   "nextBatch": [
-    "GUICrashOpenModPage",
-    "GUICrashOpenPage",
-    "GUICrashReportBug",
-    "GUICrashReportBugTooltip",
-    "GUICrashReportReady",
-    "GUICrashReportCopiedOnly",
-    "GUICrashCopied",
-    "GUICrashDisableAndCheck",
-    "GUICrashDisableAndCheckTooltip",
-    "GUICrashHandedToVerify",
-    "GUICrashRemoveMod",
-    "GUICrashRemoved",
-    "GUICrashVersionsHeader",
     "GUICrashEditedByAim",
     "GUICrashUndoEdits",
     "GUICrashUndoEditsTooltip",
@@ -51,7 +38,20 @@
     "GUICrashEditSummary",
     "GUICrashEditAsideSummary",
     "GUICrashEditConfirm",
-    "GUICrashStepNothingChanged"
+    "GUICrashStepNothingChanged",
+    "GUICrashStepRebuildSkipped",
+    "GUICrashStepRebuilt",
+    "GUICrashStepStarting",
+    "GUICrashStepWatching",
+    "GUICrashStepNotStarted",
+    "GUICrashVerdictCleared",
+    "GUICrashVerdictClearedNoReenable",
+    "GUICrashVerdictGuilty",
+    "GUICrashVerdictNothingGuilty",
+    "GUICrashVerdictInconclusive",
+    "GUICrashVerdictDifferentCrash",
+    "GUICrashTrialProgress",
+    "GUICrashTrialsNotKept"
   ],
   "languages": [
     {
@@ -128,14 +128,14 @@
       "language": "ru",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 101,
+      "deferredMissing": 88,
       "deferredComplete": false
     },
     {
       "language": "uk",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 101,
+      "deferredMissing": 88,
       "deferredComplete": false
     },
     {

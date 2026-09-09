@@ -646,6 +646,19 @@
   <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Копіює «{0}» і відкриває сторінку-джерело. Натисніть там Ctrl+F і вставте текст. Якщо це коментар, скористайтеся пошуком самої гілки.</value></data>
   <data name="GUIResearchFindCopied" xml:space="preserve"><value>Скопійовано. Натисніть Ctrl+F на відкритій сторінці та вставте текст.</value></data>
   <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Це змінить файли мода, який написали не ви. AIM спочатку скопіює весь мод до списку версій і позначить рядок як змінений. Продовжити?</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Відкрити сторінку мода</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Відкрити цю сторінку</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Повідомити про помилку</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Створює потрібний автору звіт, копіює його та відкриває трекер помилок мода. Прочитати й опублікувати його маєте ви.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Звіт скопійовано, трекер відкрито. Прочитайте й опублікуйте його.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Звіт скопійовано. Знайдіть трекер або Discord автора самостійно.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Скопійовано.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Вимкнути й перевірити</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Вимикає мод, перебудовує та запускає гру, щоб перевірити причину.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Гра перебудовується без цього мода й запуститься сама після завершення.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Вилучити мод</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} вилучено.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Версії та зміни AIM</value></data>
   <data name="GUICrashTitle" xml:space="preserve"><value>Перевірка збою</value></data>
   <data name="GUICrashPickerLabel" xml:space="preserve"><value>Збій</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>Файли збоїв</value></data>
