@@ -692,4 +692,28 @@ Passá-los para o AIM?</value></data>
   <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Excluir permanentemente {0} mod(s)?&#xA;&#xA;{1}&#xA;&#xA;Este sistema não tem uma Lixeira que o AIM possa usar, então os arquivos serão apagados. Não é possível desfazer.</value></data>
   <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... e mais {0}</value></data>
   <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} de {1} mod(s) removido(s).</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Não foi possível remover estes itens: {0}&#xA;&#xA;Eles podem estar abertos em outro programa, ou o jogo ainda pode estar em execução.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>O Windows não moveu o item para a Lixeira</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>"{0}" não está mais na sua pasta de mods. A lista foi atualizada.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Marque como verificado e sem problemas. O AIM manterá isso oculto até que um dos mods envolvidos mude de versão, e então perguntará novamente.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Mostrar problemas marcados como resolvidos ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Marcado como resolvido</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[marcado como resolvido]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Arquivos que ambos modificam</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>vence agora</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Fazer este vencer</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Move este mod para baixo dos outros com os quais compartilha arquivos, para que as versões dele sejam instaladas. A ordem de carregamento na lista muda imediatamente.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>"{0}" agora carrega por último entre os mods que compartilham estes arquivos, então suas cópias vencem.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Encontrar uma solução...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Lê o que as páginas do Nexus desses mods dizem umas sobre as outras e abre relatórios de bugs, comentários e uma busca na web para ajudar a decidir se isso realmente importa.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Redefinir...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Move este mod para uma tecla que nenhum outro usa, editando a própria configuração em {0}. O mod é salvo em backup primeiro, e a mudança chega ao jogo na próxima instalação.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Redefinir atalho</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Mover "{0}" de {1} para {2}?&#xA;&#xA;O AIM edita a configuração do próprio mod e mantém um backup que pode ser restaurado pelo menu do botão direito. A mudança chega ao jogo na próxima instalação.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>"{0}" agora usa {1}; {2} arquivo(s) atualizado(s).&#xA;&#xA;Instale novamente para aplicar a mudança no jogo.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Não foi possível redefinir "{0}": {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>"{0}" agora usa {1} em vez de {2}. Instale novamente para aplicar a mudança no jogo.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Resolvido: "{0}" foi movido para {1}, então nada mais compartilha este atalho. Instale novamente para aplicar a mudança no jogo.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Este mod ainda é um .zip ou .rar. Extraia-o primeiro para a pasta de mods, e o AIM poderá editar sua configuração.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Este mod não declara a tecla como uma configuração nomeada, então o AIM não pode alterá-la com segurança. Verifique as configurações do próprio mod no jogo ou o arquivo de configuração.</value></data>
 </root>

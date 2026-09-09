@@ -789,4 +789,28 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIKeybindsDefault" xml:space="preserve"><value>standaard van de mod; AIM kan dit niet wijzigen voordat de mod instellingen opslaat</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Deze mod heeft zijn instellingen nog niet opgeslagen, dus dit is de standaardwaarde die erin is ingebouwd. Start het spel één keer of wijzig dit in de eigen instellingen van de mod, dan kan AIM het hier bewerken.</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(niet gebonden)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>het spel accepteert dit niet</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>„{0}” is geen naam die het spel herkent, dus deze mod valt terug op de standaardwaarde. Kies iets uit de lijst om dit op te lossen.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM kon niet naar {0} schrijven. Het bestand kan in een ander programma geopend zijn of het spel is gestart.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Kies een toets of knop</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Toets of controllerknop</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Druk op een toets om hem vast te leggen</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Druk nu op een toets... (Escape om te stoppen)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Dit wordt opgeslagen als: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Controllerknoppen kies je uit de lijst; AIM kan een controller niet uitlezen. De lijst bevat elke naam die het spel accepteert. ALT, vergrendeltoetsen en het numerieke toetsenblok staan er niet tussen; een mod die daarop is ingesteld valt stilletjes terug op zijn standaardwaarde.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Opslaan</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Binding verwijderen</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Maakt de instelling leeg. De meeste mods behandelen dat als uitgeschakeld; sommige vallen in plaats daarvan terug op hun standaardwaarde.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (standaardwaarde van mod - nog niet ingesteld)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Toetsenbindingen gewijzigd</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>De {0} binding(en) die je koos zijn door de mods zelf gewijzigd, meestal nadat een update hun instellingen heeft gereset.&#xA;&#xA;{1}&#xA;&#xA;Je keuzes terugzetten? Instellingen die de update volledig heeft verwijderd worden niet hersteld.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... en nog {0}</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} toetsenbinding(en) hersteld. Start het spel om ze toe te passen.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates controleren</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Controleert de geselecteerde mods tegen hun Nexus-pagina's. Gebruik de pijl voor alle mods of om alles met een update te installeren.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) gecontroleerd: {1} hebben een update, {2} konden niet worden gecontroleerd.&#xA;&#xA;Deze updates nu downloaden en installeren? De huidige versie van elke mod wordt als back-up bewaard.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Alles met een update bijwerken</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Downloadt en installeert elke openstaande update na elkaar en bewaart de huidige versie van elke mod als herstelbare back-up.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Mods bijwerken</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Er zijn geen openstaande updates. Controleer eerst op updates.</value></data>
 </root>
