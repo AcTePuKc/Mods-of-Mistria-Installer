@@ -586,4 +586,16 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUINxmInvalidScheme" xml:space="preserve"><value>nxm:// 링크가 아닙니다.</value></data>
   <data name="GUINxmMissingGame" xml:space="preserve"><value>링크에 게임 이름이 없습니다.</value></data>
   <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus 컬렉션은 아직 지원되지 않습니다. 모드를 개별적으로 다운로드하세요.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>이 링크는 모드 파일 다운로드가 아닙니다.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>링크의 모드 ID 또는 파일 ID가 잘못되었습니다.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>설치 프로그램이 실행 중인 위치를 확인하지 못했습니다.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>nxm:// 링크 등록은 Windows와 Linux에서만 지원됩니다.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM이 등록되었지만 Windows가 nxm:// 링크에 아직 {0}을(를) 사용하고 있을 수 있습니다.&#xA;&#xA;Windows 기본 앱에서 nxm:// 기본 앱으로 AIM을 선택하세요.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>등록을 기록한 후 nxm:// 등록을 확인하지 못했습니다.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>업데이트로 패치한 문제가 해결될 수 있음</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1}이(가) 출시되었습니다. 현재 {2}이며 AIM의 수정이 적용되어 있습니다: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>업데이트하고 AIM 수정 제거</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>업데이트하면 모드 폴더가 교체되어 AIM의 편집 내용이 사라집니다. 새 버전에서 문제가 해결되지 않았다면 충돌이 다시 발생할 수 있으며 수정 사항을 다시 적용할 수 있습니다. 이전 버전은 복원 목록에 남아 있습니다.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>외부 압축 파일 감지</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM이 외부에서 변경된 assets.zip을 찾았습니다.&#xA;&#xA;계속하면 AIM이 다음을 수행합니다:&#xA;• assets.foreign-...zip으로 보존&#xA;• 확인된 백업 복원&#xA;• 이 설치 다시 시도&#xA;&#xA;외부 압축 파일에만 있는 모드는 비활성화됩니다. 계속할까요?</value></data>
 </root>

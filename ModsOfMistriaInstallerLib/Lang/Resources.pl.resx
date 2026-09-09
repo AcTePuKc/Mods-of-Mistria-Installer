@@ -490,4 +490,30 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Pobiera i instaluje po kolei wszystkie oczekujące aktualizacje, zachowując bieżącą wersję każdego moda jako kopię zapasową do przywrócenia.</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Aktualizuj mody</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Brak oczekujących aktualizacji. Najpierw sprawdź aktualizacje.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Zaktualizować {0} modów?&#xA;&#xA;{1}&#xA;&#xA;Bieżąca wersja każdego moda zostanie zachowana jako kopia zapasowa, którą można przywrócić z menu prawego przycisku.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Aktualizowanie {0} z {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Zaktualizowano {0} z {1} modów.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Nie można pobrać tych modów bezpośrednio, potrzebna jest ich strona Nexus: {0}&#xA;&#xA;Nexus udostępnia bezpośrednie linki pobierania tylko kontom Premium. Przy koncie bezpłatnym otwórz stronę moda i użyj przycisku „Mod Manager Download”. AIM przechwyci go, jeśli jest zarejestrowany do obsługi tych linków.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Brak wyników. AIM nie znalazł wśród zaznaczonych modów wspólnych plików, konfliktów skrótów, brakujących wymagań ani ostrzeżeń o zgodności.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Oznaczono jako niebędące rzeczywistym konfliktem.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Znaleziono łatkę do tego problemu.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Uznano te mody za niezgodne. Wyłącz jeden z nich.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Rozwiązano przez zmianę przypisania: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Obserwowane foldery pobierania</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mody pobrane ręcznie do obserwowanego folderu są przenoszone do folderu modów i pojawiają się na liście automatycznie.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Obserwuj folder...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Wybierz folder do obserwowania pobranych modów</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Sprawdź teraz obserwowane foldery</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Brak obserwowanych folderów</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Przestań obserwować ten folder</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Obserwowane foldery</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Nie znaleziono niczego nowego do dodania. AIM przenosi tylko archiwa i foldery zawierające manifest, a resztę pozostawia na miejscu.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Dodano {0} modów z obserwowanego folderu.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Przeniesiono do folderu modów:
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - ten mod jest już zainstalowany jako „{1}”. Zaktualizuj tamtą kopię albo najpierw ją usuń. Dwie kopie jednego moda będą walczyć o te same pliki.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Pozostawiono w obserwowanym folderze:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Nie znaleziono folderu modów, więc nie ma czego otworzyć.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Nie można otworzyć folderu modów: {0}</value></data>
 </root>
