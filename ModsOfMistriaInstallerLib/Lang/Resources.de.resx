@@ -614,7 +614,7 @@ An AIM übergeben?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ladereihenfolge</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Die Mods wurden so neu geordnet, dass jeder nach seinen Abhängigkeiten geladen wird.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nichts zu ändern: Alle Mods werden nach ihren Abhängigkeiten geladen.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Probleme prüfen</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Probleme</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Problemprüfung</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Details anzeigen</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Schließen</value></data>
@@ -768,7 +768,7 @@ An AIM übergeben?</value></data>
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus meldet dein Konto ({0}) als kostenloses Konto. Direkte Downloads sind eine Premium-Funktion, daher ist die Schaltfläche auf der Website der richtige Weg.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Es ist kein Nexus-Konto verbunden, daher kann AIM nichts direkt herunterladen.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM konnte dein Nexus-Konto nicht prüfen: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Tastenbelegungen</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Tasten</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Alle Tasten und Controller-Schaltflächen, die deine Mods verwenden, in einer Liste - Konflikte rot markiert und direkt bearbeitbar.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Tastenbelegungen der Mods</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Wofür deine Mods derzeit Tasten verwenden. Die Mods speichern dies im eigenen Konfigurationsordner des Spiels und nicht im Mods-Ordner, daher gehen die Belegungen bei einem Mod-Update nicht verloren. Ein Mod kann seine eigenen Einstellungen trotzdem zurücksetzen; AIM bietet dann an, deine Auswahl wiederherzustellen.</value></data>
@@ -838,7 +838,7 @@ An AIM übergeben?</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Der Mods-Ordner konnte nicht geöffnet werden: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods-Ordner</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Öffnet den Mods-Ordner von Fields of Mistria in deinem Dateimanager</value></data>
-  <data name="GUICheckCrashes" xml:space="preserve"><value>Abstürze prüfen</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Abstürze</value></data>
   <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Liest das eigene Absturzprotokoll des Spiels, ermittelt, auf welchen Mod es hindeutet, und bietet an, diesen Mod zu deaktivieren und zu prüfen, ob der Absturz ausbleibt.</value></data>
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>Im Mods-Ordner ist kein Platz mehr, um {0} zusammenzustellen.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Im Mods-Ordner befinden sich bereits zu viele Kopien von {0}.</value></data>

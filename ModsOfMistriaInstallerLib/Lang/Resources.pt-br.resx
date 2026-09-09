@@ -614,7 +614,7 @@ Passá-los para o AIM?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ordem de carregamento</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Os mods foram reordenados para que cada um seja carregado depois dos mods necessários.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Nada a alterar: todos os mods carregam depois dos necessários.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Verificar problemas</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problemas</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Verificação de problemas</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Mostrar detalhes</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Fechar</value></data>
@@ -667,7 +667,7 @@ Passá-los para o AIM?</value></data>
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Recentes</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Ativos</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Atualizações</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir ordem</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0} por {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Entrar no Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Sair do Nexus</value></data>
@@ -844,7 +844,7 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Não foi possível abrir a pasta de mods: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Pasta de mods</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Abrir a pasta de mods do Fields of Mistria no gerenciador de arquivos</value></data>
-  <data name="GUICheckCrashes" xml:space="preserve"><value>Verificar falhas</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Falhas</value></data>
   <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Lê o registro de falhas do próprio jogo, identifica o mod indicado e oferece desativá-lo para verificar se a falha desaparece.</value></data>
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>Não há mais espaço na pasta de mods para preparar {0}.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Já existem cópias demais de {0} na pasta de mods.</value></data>

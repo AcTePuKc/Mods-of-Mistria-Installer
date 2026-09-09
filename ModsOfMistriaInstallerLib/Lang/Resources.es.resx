@@ -288,7 +288,7 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Orden de carga</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Los mods se reordenaron para que cada uno se cargue después de los mods que necesita.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>No hay nada que cambiar: todos los mods se cargan después de sus requisitos.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Comprobar problemas</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problemas</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Comprobación de problemas</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Mostrar detalles</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Cerrar</value></data>
@@ -341,7 +341,7 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Recientes</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Activos</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Actualizaciones</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir orden</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sugerir</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0} de {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Iniciar sesión en Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Cerrar sesión en Nexus</value></data>
@@ -442,7 +442,7 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus indica que tu cuenta ({0}) es gratuita. Las descargas directas son una función Premium, así que debes usar el botón del sitio web.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>No hay ninguna cuenta de Nexus conectada, así que AIM no puede descargar nada directamente.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM no pudo comprobar tu cuenta de Nexus: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Asignaciones</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Teclas</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Todas las teclas y botones del mando que usan tus mods, en una sola lista, con los conflictos en rojo y edición directa.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Asignaciones de los mods</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Lo que usan ahora tus mods. Los mods guardan estas asignaciones en la carpeta de configuración del juego, no en la carpeta de mods, así que una actualización no las pierde. Aun así, un mod puede restablecer sus propios ajustes y AIM ofrecerá recuperar tu elección cuando ocurra.</value></data>
@@ -512,7 +512,7 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>No se pudo abrir la carpeta de mods: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Carpeta de mods</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Abre la carpeta de mods de Fields of Mistria en el administrador de archivos</value></data>
-  <data name="GUICheckCrashes" xml:space="preserve"><value>Comprobar cierres</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Fallos</value></data>
   <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Lee el registro de cierres del juego, averigua a qué mod apunta y ofrece desactivarlo para comprobar si el cierre desaparece.</value></data>
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>No queda espacio en la carpeta de mods para preparar {0}.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Ya hay demasiadas copias de {0} en la carpeta de mods.</value></data>

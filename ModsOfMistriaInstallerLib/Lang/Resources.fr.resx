@@ -614,7 +614,7 @@ Les confier à AIM ?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ordre de chargement</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Les mods ont été réordonnés afin que chacun soit chargé après ceux dont il dépend.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Rien à modifier : chaque mod est chargé après ses dépendances.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Vérifier les problèmes</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problèmes</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Vérification des problèmes</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Afficher les détails</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Fermer</value></data>
@@ -667,7 +667,7 @@ Les confier à AIM ?</value></data>
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Récents</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Activés</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>À mettre à jour</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggérer l’ordre</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggérer</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0} par {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Se connecter à Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Se déconnecter de Nexus</value></data>
@@ -838,7 +838,7 @@ Les confier à AIM ?</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Impossible d'ouvrir le dossier des mods : {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Dossier des mods</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Ouvre le dossier des mods de Fields of Mistria dans votre gestionnaire de fichiers</value></data>
-  <data name="GUICheckCrashes" xml:space="preserve"><value>Vérifier les plantages</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Plantages</value></data>
   <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Lit le journal de plantage du jeu, détermine vers quel mod il pointe et propose de désactiver ce mod pour vérifier si le plantage disparaît.</value></data>
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>Il n'y a plus de place dans le dossier des mods pour préparer {0}.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Il y a déjà trop de copies de {0} dans le dossier des mods.</value></data>

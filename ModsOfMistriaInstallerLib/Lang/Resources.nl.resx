@@ -611,7 +611,7 @@ De links aan AIM overdragen?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Laadvolgorde</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>De mods zijn opnieuw geordend zodat elke mod na zijn vereisten wordt geladen.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Niets te wijzigen: elke mod wordt na zijn vereisten geladen.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Problemen controleren</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problemen</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Probleemcontrole</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Details tonen</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Sluiten</value></data>
@@ -769,7 +769,7 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus meldt dat je account ({0}) een gratis account is. Directe downloads zijn een Premium-functie, dus gebruik de knop op de website.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Er is geen Nexus-account verbonden, dus AIM kan niets rechtstreeks downloaden.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM kon je Nexus-account niet controleren: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Toetsenbindingen</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Toetsen</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Elke toets en controllerknop die je mods gebruiken in één lijst, met conflicten in rood en directe bewerking.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Toetsenbindingen van mods</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Waar je mods momenteel aan gebonden zijn. Mods bewaren dit in de eigen configuratiemap van het spel, niet in de mods-map, zodat een update het niet verliest. Een mod kan zijn eigen instellingen wel resetten; AIM biedt dan aan jouw keuze opnieuw toe te passen.</value></data>
@@ -841,7 +841,7 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Kon de mods-map niet openen: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Mods-map</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Open de Fields of Mistria-mods-map in je bestandsbeheerder</value></data>
-  <data name="GUICheckCrashes" xml:space="preserve"><value>Crashes controleren</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Crashes</value></data>
   <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Leest het eigen crashlogboek van het spel, bepaalt naar welke mod het verwijst en biedt aan die mod uit te schakelen om te controleren of de crash verdwijnt.</value></data>
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>Er is geen ruimte meer in de mods-map om {0} klaar te zetten.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Er staan al te veel kopieën van {0} in de mods-map.</value></data>

@@ -288,7 +288,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Urutan pemuatan</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mod telah diurutkan ulang agar setiap mod dimuat setelah mod yang dibutuhkannya.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Tidak ada yang perlu diubah: setiap mod sudah dimuat setelah dependensinya.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Periksa masalah</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Masalah</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Pemeriksaan masalah</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Tampilkan detail</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Tutup</value></data>
@@ -341,7 +341,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Terbaru</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Aktif</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Perlu diperbarui</value></data>
-  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sarankan urutan</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sarankan</value></data>
   <data name="GUIModByAuthor" xml:space="preserve"><value>{0} oleh {1}</value></data>
   <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Masuk ke Nexus</value></data>
   <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Keluar dari Nexus</value></data>
@@ -442,7 +442,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus melaporkan akun Anda ({0}) sebagai akun gratis. Unduhan langsung adalah fitur Premium, jadi gunakan tombol di situs web.</value></data>
   <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Tidak ada akun Nexus yang terhubung, jadi AIM tidak dapat mengunduh apa pun secara langsung.</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM tidak dapat memeriksa akun Nexus Anda: {0}</value></data>
-  <data name="GUIKeybindsButton" xml:space="preserve"><value>Pengaturan tombol</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Tombol</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Semua tombol keyboard dan pengendali yang digunakan mod Anda dalam satu daftar, dengan konflik berwarna merah dan pengeditan langsung.</value></data>
   <data name="GUIKeybindsTitle" xml:space="preserve"><value>Pengaturan tombol mod</value></data>
   <data name="GUIKeybindsIntro" xml:space="preserve"><value>Pengaturan tombol yang digunakan mod Anda saat ini. Mod menyimpannya di folder konfigurasi milik game, bukan di folder mod, jadi pembaruan mod tidak akan menghapusnya. Namun mod tetap dapat mengatur ulang pengaturannya sendiri, dan AIM akan menawarkan untuk mengembalikan pilihan Anda.</value></data>
@@ -512,7 +512,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Tidak dapat membuka folder mod: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Folder mod</value></data>
   <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Buka folder mod Fields of Mistria di pengelola file Anda</value></data>
-  <data name="GUICheckCrashes" xml:space="preserve"><value>Periksa Crash</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Crash</value></data>
   <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Membaca log crash game, mencari tahu mod yang ditunjuk, lalu menawarkan untuk mematikannya dan memeriksa apakah crash berhenti.</value></data>
   <data name="GUIModDropStagingFull" xml:space="preserve"><value>Tidak ada tempat tersisa di folder mod untuk menyiapkan {0}.</value></data>
   <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Sudah terlalu banyak salinan {0} di folder mod.</value></data>
