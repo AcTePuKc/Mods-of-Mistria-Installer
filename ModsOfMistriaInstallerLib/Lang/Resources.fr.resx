@@ -770,4 +770,26 @@ Les confier à AIM ?</value></data>
   <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM n'a pas pu vérifier votre compte Nexus : {0}</value></data>
   <data name="GUIKeybindsButton" xml:space="preserve"><value>Raccourcis</value></data>
   <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Toutes les touches et tous les boutons de manette utilisés par vos mods, dans une seule liste, avec les conflits en rouge et la modification sur place.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Raccourcis des mods</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Les touches actuellement utilisées par vos mods. Ils les conservent dans le dossier de configuration du jeu plutôt que dans le dossier des mods, donc une mise à jour ne les fait pas perdre. Un mod peut toutefois réinitialiser ses paramètres ; AIM proposera alors de rétablir votre choix.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} raccourci(s), dont {1} en conflit.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Afficher uniquement les conflits</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Actualiser</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM n'a pas pu lire les raccourcis de vos mods : {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Lecture des raccourcis de vos mods…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Aucun de vos mods sélectionnés ne possède de raccourci visible par AIM. Les mods qui créent leurs raccourcis à l'exécution ne les exposent qu'après le lancement du jeu.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Aucun conflit.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM n'a pas trouvé le dossier de configuration du jeu et affiche donc les valeurs par défaut fournies par vos mods. Lancez le jeu une fois pour obtenir vos vrais raccourcis.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria est en cours d'exécution. La modification est désactivée, car le jeu réécrit les paramètres de tous les mods en se fermant et écraserait tout changement effectué ici. Fermez le jeu et appuyez sur « Actualiser ».</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>également utilisé par {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>La même entrée est attribuée dans :</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Cocher ou décocher les mods affichés</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>S'applique aux lignes actuellement affichées par votre recherche et vos filtres, et à aucune ligne masquée. Sans filtre, cela concerne tous les mods. Les mods qu'AIM ne peut pas installer restent inchangés.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>valeur par défaut du mod - AIM ne peut pas la modifier avant que le mod n'enregistre ses paramètres</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Ce mod n'a pas encore enregistré ses paramètres : cette valeur est donc celle compilée par défaut. Lancez le jeu une fois ou modifiez-la dans les paramètres du mod, puis AIM pourra la modifier ici.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(non attribué)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>le jeu ne l'acceptera pas</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>« {0} » n'est pas un nom reconnu par le jeu, ce mod revient donc à sa valeur par défaut. Choisissez une valeur dans la liste pour corriger cela.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM n'a pas pu écrire dans {0}. Le fichier est peut-être ouvert dans un autre programme ou le jeu a peut-être été lancé.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Choisir une touche ou un bouton</value></data>
 </root>
