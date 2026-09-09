@@ -417,4 +417,28 @@
   <data name="GUIChangelogNone" xml:space="preserve"><value>此模組的作者沒有發佈版本資訊。</value></data>
   <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM 無法讀取此模組的版本資訊。需要已連線的 Nexus 帳戶，且 AIM 必須知道此模組的 Nexus 頁面。</value></data>
   <data name="GUIChangelogVersionCount" xml:space="preserve"><value>有版本資訊的版本數：{0}，從最新開始。</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>版本 {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>版本</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>會使遊戲崩潰</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>已標記為會崩潰</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>監督式測試證實此模組會使遊戲崩潰：關閉它後遊戲正常執行，崩潰也沒有再次出現。AIM 已將它保持關閉。</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>你在崩潰檢查器中親自標記此模組會造成崩潰。AIM 沒有測試它，而是採信你的判斷並將模組關閉。</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>版本 {0}，檢查於 {1}。&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>開啟「檢查崩潰」查看 AIM 可以套用的修正，以及模組頁面對此問題的說明。標記與此版本相關，因此作者更新後會清除標記。</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>由 AIM 編輯</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>此修補程式沒有 AIM 可以自行安裝的主檔案。檔案已在瀏覽器中開啟，請選擇需要的檔案並使用「Mod Manager Download」。</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>修補程式下載已取消。</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM 已變更此模組中的檔案以解決衝突。磁碟上的檔案已不完全是作者發佈的版本。</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>變更前的模組位於「版本」下拉選單中。請在那裡還原，或右鍵按一下模組並選擇「復原 AIM 的編輯」。</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>復原 AIM 的編輯</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>在 Nexus Mods 上追蹤</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>將此模組加入 Nexus 追蹤中心，讓網站通知你更新和作者貼文。需要連線你的 Nexus 帳戶。</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>現在已在 Nexus Mods 上追蹤 {0}。</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>你已經在 Nexus Mods 上追蹤 {0}。</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>無法在 Nexus Mods 上追蹤 {0}：{1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM 無法從此模組的頁面讀取 Nexus 模組 ID。</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>AIM 在更新時保留的此模組舊版本。選擇其中一個即可還原。</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>還原至：</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>按一下即可下載並安裝。你目前的版本會保留為備份。</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>按一下即可開啟下載頁面 - AIM 不知道這是哪個 Nexus 檔案。右鍵按一下模組並使用「與 Nexus 建立關聯…」，即可讓它自動安裝。</value></data>
 </root>
