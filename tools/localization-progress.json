@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-09-09T02:32:47.0299234Z",
+  "coreKeyCount": 465,
+  "nextLanguage": "ja",
+  "nextBatch": [
+    "GUIKeybindsRefresh",
+    "GUIKeybindsScanFailed",
+    "GUIKeybindsScanning",
+    "GUIKeybindsNone",
+    "GUIKeybindsNoOverlaps",
+    "GUIKeybindsNoConfigDirectory",
+    "GUIKeybindsGameRunning",
+    "GUIKeybindsAlsoUsedBy",
+    "GUIKeybindsClashHeader",
+    "GUIToggleVisibleMods",
+    "GUIToggleVisibleModsTooltip",
+    "GUIKeybindsDefault",
+    "GUIKeybindsDefaultTooltip",
+    "GUIKeybindsUnbound",
+    "GUIKeybindsUnrecognised",
+    "GUIKeybindsUnrecognisedTooltip",
+    "GUIKeybindsWriteFailed",
+    "GUIBindingEditorTitle",
+    "GUIBindingEditorTrigger",
+    "GUIBindingEditorCapture",
+    "GUIBindingEditorCapturing",
+    "GUIBindingEditorPreview",
+    "GUIBindingEditorNote",
+    "GUIBindingEditorSave"
+  ],
+  "languages": [
+    {
+      "language": "bg",
+      "coreMissing": 0,
+      "coreComplete": true
+    },
+    {
+      "language": "de",
+      "coreMissing": 0,
+      "coreComplete": true
+    },
+    {
+      "language": "es",
+      "coreMissing": 0,
+      "coreComplete": true
+    },
+    {
+      "language": "fr",
+      "coreMissing": 0,
+      "coreComplete": true
+    },
+    {
+      "language": "id",
+      "coreMissing": 0,
+      "coreComplete": true
+    },
+    {
+      "language": "ja",
+      "coreMissing": 142,
+      "coreComplete": false
+    },
+    {
+      "language": "ko",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "nl",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "pl",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "pt-br",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "ru",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "uk",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "zh-Hans",
+      "coreMissing": 248,
+      "coreComplete": false
+    },
+    {
+      "language": "zh-Hant",
+      "coreMissing": 248,
+      "coreComplete": false
+    }
+  ]
+}
