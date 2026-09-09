@@ -694,4 +694,52 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0}은(는) 게임이 읽던 내용을 건드리는 유일한 설치 모드입니다.</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>설치된 모드 {0}개가 게임이 충돌한 데이터에 추가합니다. 그중 하나가 원인일 가능성이 높습니다.</value></data>
   <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>특정 모드를 명확히 가리키는 것은 없지만, 몇 가지를 제외해 볼 가치가 있습니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>게임이 불러온 항목에 "{0}"이(가) 없으며, 설치된 모드 중 명확한 소유자도 없습니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>아무것도 설정하지 않았는데 게임이 "{0}"을(를) 읽었습니다. 보통 모드 코드입니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>게임이 함수가 아닌 항목을 호출했습니다. 보통 설치되지 않은 훅입니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>게임이 "{0}" 에셋을 찾지 못했습니다. 보통 모드가 참조하지만 제공하지 않은 스프라이트입니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM이 백트레이스만으로 이 충돌을 모드와 연결하지 못했습니다.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>원인으로 지목된 모드</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>가능성이 높은 순서입니다. 충돌이 자체 코드에서 발생해 언급된 모드는 추측이 아니며, 게임이 읽던 데이터를 작성하는 모드는 후보 목록입니다.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>이 방법으로 해결되는지 확인</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>선택한 모드를 끄고, 변경을 적용하도록 게임을 다시 빌드한 뒤 실행하여 감시합니다. 평소처럼 플레이하세요. 게임이 닫히거나 몇 분 동안 충돌하지 않으면 AIM이 알려 줍니다.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>끄고 다시 빌드하여 실행</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>아카이브를 다시 빌드하기 전에는 모드를 꺼도 게임에서 보이는 내용이 바뀌지 않습니다. AIM이 중간 단계까지 모두 처리합니다.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>아무것도 바꾸지 않고 실행 및 감시</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>확인할 만한 내용</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>게임이 작성한 그대로의 충돌 파일</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>충돌이 발생한 위치</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>충돌이 발생한 위치({0} 프레임)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>보고서 복사</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>오류, 백트레이스, AIM의 결론, 설치된 모드를 모두 클립보드에 복사합니다.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>새로 고침</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>충돌을 찾는 중…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>기록된 충돌이 없습니다. 설치 후 게임이 충돌하지 않았거나 이 컴퓨터에서 실행된 적이 없습니다.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>설치된 모드와 백트레이스를 비교하는 중…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>여기서는 모드 목록을 볼 수 없어 충돌은 표시할 수 있지만 원인 모드는 말할 수 없습니다.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM이 이 충돌을 끝까지 읽지 못했습니다: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>이 충돌은 현재 설치된 모드보다 오래되었습니다. AIM이 이후 게임을 다시 빌드했으므로 충돌한 게임과 현재 디스크의 게임은 다릅니다. 변경하기 전에 한 번 플레이하고, 아래 모드는 결론이 아닌 단서로 취급하세요.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Nexus에 로그인하지 않아 AIM이 모드의 버그 추적기를 읽을 수 없습니다. 위 내용은 모두 내 파일에서 확인한 결과입니다.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>지목된 모드의 버그 추적기와 댓글을 읽는 중…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>페이지를 읽을 만큼 명확하게 지목된 모드가 없습니다.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM이 모드 페이지를 읽지 못했습니다: {0}. 내 파일에서 분석한 결과는 그대로 유효합니다.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>모드 페이지 어디에도 이 충돌에 대한 언급이 없습니다.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>이 내용과 관련된 항목이 모드 페이지에서 {0}개 발견되었습니다.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>확실함</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>가능성 높음</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>가능성 있음</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>가능성 낮음</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>모드 페이지 열기</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>이 페이지 열기</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>이 버그 보고</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>오류, 백트레이스, 게임 버전, 설치된 다른 모드를 포함한 작성자용 보고서를 만들고 클립보드에 복사한 뒤 모드의 버그 추적기를 엽니다. 읽고 게시하는 것은 사용자이며 AIM이 대신하지 않습니다.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>보고서가 클립보드에 있고 버그 추적기가 열려 있습니다. 내용을 확인한 뒤 게시하세요.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>보고서가 클립보드에 있습니다. AIM이 이 모드의 출처를 알 수 없으므로 작성자의 추적기나 Discord를 직접 찾아야 합니다.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>복사했습니다.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>끄고 확인</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>이 모드를 끄고 게임을 다시 빌드한 다음 실행하여 추측하지 않고 원인인지 확인합니다.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>이 모드 없이 게임을 다시 빌드하는 중입니다. 완료되면 자동으로 시작됩니다. 진행 상황은 아래에 표시됩니다.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>모드 제거</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0}을(를) 제거했습니다.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>버전 및 AIM 변경 사항</value></data>
 </root>
