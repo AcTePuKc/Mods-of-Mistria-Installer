@@ -406,4 +406,26 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>更新がある Mod と、前回の確認で到達できなかった Mod だけを表示します。Nexus との関連付けがない、ネットワークに問題がある、ページが存在しない場合などです。</value></data>
   <data name="GUIListReorderedNote" xml:space="preserve"><value>表示のみ - ロード順は変更されず、ドラッグ操作は停止中</value></data>
   <data name="GUIScrollToTop" xml:space="preserve"><value>一覧の先頭へ</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>一覧の末尾へ</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0}（{1}）は {2} でも使われています</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>リリースノート</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>リリースノート - ホバーで読み込み、クリックで全履歴を表示</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>「{0}」の変更点：&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;クリックすると各バージョンを読めます。</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>この Mod の作成者はリリースノートを公開していません。</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM はこの Mod のリリースノートを読めませんでした。Nexus アカウントへの接続と、AIM がこの Mod の Nexus ページを把握していることが必要です。</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>リリースノート付きのバージョン {0} 個（新しい順）</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>バージョン {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>バージョン</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>ゲームをクラッシュさせる</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>クラッシュ原因として記録済み</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>監視付きの実行で、この Mod がゲームをクラッシュさせることが証明されました。無効にするとゲームは動作し、クラッシュは再発しませんでした。AIM は無効のままにしています。</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>クラッシュチェッカーで、この Mod を自分で原因として記録しました。AIM はテストせず、あなたの判断に基づいて Mod を無効にしています。</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>バージョン {0}、確認日 {1}。&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>「クラッシュを確認」を開くと、AIM が適用できる修正と Mod のページに書かれている内容を確認できます。この記録は現在のバージョンに紐づくため、作成者が更新すると消去されます。</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>AIM が編集済み</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>このパッチには AIM が単独でインストールできるメインファイルがありません。ファイルはブラウザーで開いているため、必要なものを選んで「Mod Manager Download」を使ってください。</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>パッチのダウンロードをキャンセルしました。</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>競合を解決するため、AIM はこの Mod 内のファイルを変更しました。ディスク上のファイルは、作成者が公開したものと完全には同じではありません。</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>変更前の Mod はバージョンのドロップダウンにあります。そこで復元するか、Mod を右クリックして「AIM の編集を元に戻す」を選んでください。</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>AIM の編集を元に戻す</value></data>
 </root>
