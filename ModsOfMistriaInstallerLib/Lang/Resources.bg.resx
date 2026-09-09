@@ -827,4 +827,6 @@
   <data name="GUIUpdateMayFix" xml:space="preserve"><value>Излезе {0} {1}. Вие сте на {2} с приложена поправка от AIM: {3}</value></data>
   <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Обнови и премахни поправката на AIM</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Обновяването заменя папката на мода, затова редакцията на AIM ще бъде премахната заедно с нея. Ако новата версия не е поправила проблема, сривът ще се появи отново и можете да приложите поправката пак - предишната версия все още е в списъка за възстановяване.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Тема</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системна по подразбиране</value></data>
 </root>

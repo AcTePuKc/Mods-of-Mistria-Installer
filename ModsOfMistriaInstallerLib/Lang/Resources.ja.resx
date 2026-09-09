@@ -823,4 +823,6 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;{1}内:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIMはまずMod全体をバージョン履歴にコピーし、この修正が更新で静かに上書きされないよう更新対象から外します。続行しますか？</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>AIMが修正したため更新対象外: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>この mod はインストーラー {0} を要求していますが、AIM が実装しているのは {1} です。それでも動作する可能性があります。試してみて、問題があれば mod のページでバージョンに関する注記を確認してください。</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>テーマ</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>システムの既定</value></data>
 </root>

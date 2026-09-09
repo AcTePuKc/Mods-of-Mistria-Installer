@@ -829,4 +829,6 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>To nie wygląda na link https. Wklej adres internetowy poprawki albo pozostaw pole puste.</value></data>
   <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Analiza plików AIM</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Ten mod wymaga instalatora {0}, a AIM obsługuje {1}. Prawdopodobnie nadal będzie działać - wypróbuj go, a jeśli coś będzie nie tak, sprawdź stronę moda pod kątem informacji o wersji.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Motyw</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Domyślny systemowy</value></data>
 </root>

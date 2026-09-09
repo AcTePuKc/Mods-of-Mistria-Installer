@@ -829,4 +829,6 @@
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;В {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM сохранит мод в истории и защитит исправление от тихой перезаписи. Продолжить?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Обновления заблокированы: AIM исправил мод: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Этот мод запрашивает установщик {0}, а AIM поддерживает {1}. Скорее всего, он всё равно будет работать - попробуйте, а если возникнут проблемы, проверьте страницу мода на наличие примечания о версии.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Тема</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системная по умолчанию</value></data>
 </root>

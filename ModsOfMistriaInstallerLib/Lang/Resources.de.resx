@@ -1149,4 +1149,6 @@ An AIM übergeben?</value></data>
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;In {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM kopiert zuerst die gesamte Mod in deinen Versionsverlauf und hält sie von Updates zurück, damit diese Korrektur nicht unbemerkt überschrieben wird. Fortfahren?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Von Updates zurückgehalten, weil AIM die Mod korrigiert hat: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Diese Mod fordert Installer {0} an, und AIM unterstützt {1}. Sie wird wahrscheinlich trotzdem funktionieren - probiere es aus. Falls etwas nicht stimmt, prüfe die Mod-Seite auf einen Versionshinweis.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Design</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Systemstandard</value></data>
 </root>

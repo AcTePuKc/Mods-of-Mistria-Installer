@@ -823,4 +823,6 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;En {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM copiará primero el mod completo en tu historial de versiones y bloqueará sus actualizaciones para que esta corrección no se sobrescriba en silencio. ¿Continuar?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Bloqueado para actualizaciones porque AIM lo ha corregido: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Este mod solicita el instalador {0}, y AIM implementa {1}. Probablemente funcionará de todos modos: pruébalo y, si algo no va bien, consulta la página del mod para ver una nota de versión.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Tema</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Predeterminado del sistema</value></data>
 </root>

@@ -58,6 +58,8 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUILanguageJapanese => T("GUILanguageJapanese");
     public string GUILanguageSpanish => T("GUILanguageSpanish");
     public string GUILanguageUkrainian => T("GUILanguageUkrainian");
+    public string GUIThemeMenu => T("GUIThemeMenu");
+    public string GUIThemeSystemDefault => T("GUIThemeSystemDefault");
     public string GUINewProfile => T("GUINewProfile");
     public string GUIDeleteCurrentProfile => T("GUIDeleteCurrentProfile");
     public string GUIMoveUp => T("GUIMoveUp");

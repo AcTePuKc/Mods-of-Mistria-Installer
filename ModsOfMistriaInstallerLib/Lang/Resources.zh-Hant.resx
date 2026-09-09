@@ -796,4 +796,6 @@
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>要套用此修復嗎？</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>此模組已暫停更新，直到修復完成。</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>此模組要求安裝器 {0}，而 AIM 實作的是 {1}。它可能仍然可以正常運作 - 請嘗試使用；如果出現問題，請查看模組頁面上的版本說明。</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>佈景主題</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>系統預設</value></data>
 </root>

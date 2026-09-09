@@ -831,4 +831,6 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;{1}에서:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM은 먼저 전체 모드를 버전 기록에 복사하고, 이 수정이 조용히 덮어써지지 않도록 업데이트 대상에서 제외합니다. 계속할까요?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>AIM이 수정했으므로 업데이트 대상에서 제외됨: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>이 모드는 인스톨러 {0}을(를) 요청하지만 AIM은 {1}을(를) 구현합니다. 그래도 작동할 가능성이 있으니 시도해 보세요. 문제가 있으면 모드 페이지에서 버전 안내를 확인하세요.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>테마</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>시스템 기본값</value></data>
 </root>

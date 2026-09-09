@@ -1155,4 +1155,6 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Em {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;O AIM primeiro copiará o mod inteiro para o histórico de versões e bloqueará suas atualizações para que esta correção não seja sobrescrita silenciosamente. Continuar?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Atualizações bloqueadas porque o AIM corrigiu este mod: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Este mod requer o instalador {0}, mas o AIM implementa {1}. Ele provavelmente ainda funcionará - experimente e, se algo estiver errado, verifique a página do mod para obter uma nota sobre a versão.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Tema</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Padrão do sistema</value></data>
 </root>

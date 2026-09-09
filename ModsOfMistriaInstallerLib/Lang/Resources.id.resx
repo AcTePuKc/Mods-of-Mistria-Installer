@@ -823,4 +823,6 @@ Alihkan ke AIM?</value></data>
   <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Di {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM akan menyalin seluruh mod ke riwayat versi terlebih dahulu dan menahan update agar perbaikan ini tidak tertimpa diam-diam. Lanjutkan?</value></data>
   <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Ditahan dari update karena telah diperbaiki AIM: {0}</value></data>
   <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Mod ini meminta installer {0}, sedangkan AIM mengimplementasikan {1}. Mod ini kemungkinan tetap akan berfungsi - coba saja, dan jika ada masalah, periksa halaman mod untuk catatan versi.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Tema</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Default sistem</value></data>
 </root>
