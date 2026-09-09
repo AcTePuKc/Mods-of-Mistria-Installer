@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T03:06:59.8237404Z",
+  "generatedAt": "2026-09-09T03:23:12.6040857Z",
   "coreKeyCount": 465,
   "nextLanguage": "pl",
   "nextBatch": [
-    "GUIUpdateAllConfirm",
-    "GUIUpdateAllProgress",
-    "GUIUpdateAllDone",
-    "GUIUpdateAllFailed",
-    "GUIConflictReportNothing",
-    "GUIVerdictNotAnIssue",
-    "GUIVerdictPatchExists",
-    "GUIVerdictIncompatible",
-    "GUIVerdictRebound",
-    "GUIDropFolderMenu",
-    "GUIDropFolderExplain",
-    "GUIDropFolderLink",
-    "GUIDropFolderPickTitle",
-    "GUIDropFolderScanNow",
-    "GUIDropFolderNone",
-    "GUIDropFolderUnlinkTooltip",
-    "GUIDropFolderTitle",
-    "GUIDropFolderNothingFound",
-    "GUIDropFolderImported",
-    "GUIDropFolderImportedDetail",
-    "GUIDropFolderAlreadyInstalled",
-    "GUIDropFolderSkippedDetail",
-    "GUIDropFolderNoModsFolder",
-    "GUIDropFolderCannotOpen"
+    "GUIOpenModsFolderButton",
+    "GUIOpenModsFolderButtonTooltip",
+    "GUICheckCrashes",
+    "GUICheckCrashesTooltip",
+    "GUIModDropStagingFull",
+    "GUIModDropTooManyCopies",
+    "GUINxmDownloadFailed",
+    "GUINxmDownloadNoServerResponse",
+    "GUINexusUpdateNothingToDo",
+    "GUINexusSettingsSaveSessionFailed",
+    "GUINexusBackupMissing",
+    "GUIModArchiveMissing",
+    "GUIModArchiveModsFolderMissing",
+    "GUIModArchiveManifestMissing",
+    "GUIModArchiveRollbackFailed",
+    "GUIModArchiveParkedCopyMissing",
+    "GUIModArchiveTooManyBackups",
+    "GUIModArchiveUnpackRollbackFailed",
+    "GUIModArchiveUnpackFailed",
+    "GUIModArchiveTooManyFiles",
+    "GUIModArchiveFileTooLarge",
+    "GUIModArchiveTotalTooLarge",
+    "GUIModArchiveEntryTooLarge",
+    "GUIModArchiveUnsupportedFormat"
   ],
   "languages": [
     {
@@ -61,8 +61,8 @@
     },
     {
       "language": "ko",
-      "coreMissing": 12,
-      "coreComplete": false
+      "coreMissing": 0,
+      "coreComplete": true
     },
     {
       "language": "nl",
@@ -71,7 +71,7 @@
     },
     {
       "language": "pl",
-      "coreMissing": 104,
+      "coreMissing": 80,
       "coreComplete": false
     },
     {
