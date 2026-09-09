@@ -366,4 +366,28 @@ Przekazać je do AIM?</value></data>
   <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Trwale usunąć {0} modów?&#xA;&#xA;{1}&#xA;&#xA;Ten system nie ma Kosza, którego AIM może użyć, więc pliki zostaną usunięte. Tej operacji nie można cofnąć.</value></data>
   <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... i jeszcze {0}</value></data>
   <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Usunięto {0} z {1} modów.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Nie można usunąć tych elementów: {0}&#xA;&#xA;Mogą być otwarte w innym programie albo gra może być nadal uruchomiona.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows nie przeniósł elementu do Kosza</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>„{0}” nie ma już w folderze modów. Lista została odświeżona.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Oznacz jako sprawdzone i prawidłowe. AIM ukryje problem, dopóki jeden z powiązanych modów nie zmieni wersji, a następnie zapyta ponownie.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Pokaż problemy oznaczone jako prawidłowe ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Oznaczone jako prawidłowe</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[oznaczone jako prawidłowe]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Pliki zapisywane przez oba mody</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>obecnie wygrywa</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Ustaw ten mod jako zwycięzcę</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Przenosi ten mod za pozostałe mody, z którymi dzieli pliki, aby jego wersje plików zostały zainstalowane. Kolejność ładowania na liście zmienia się od razu.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>„{0}” jest teraz ładowany jako ostatni spośród modów dzielących te pliki, więc jego kopie wygrywają.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Znajdź rozwiązanie...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Odczytuje, co strony Nexus tych modów mówią o sobie nawzajem, i otwiera zgłoszenia błędów, komentarze oraz wyszukiwanie w sieci, aby ustalić, czy problem ma znaczenie.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Zmień przypisanie...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Edytuje własne przypisanie tego moda w {0}, przenosząc je na klawisz nieużywany przez inny mod. Mod jest najpierw kopiowany zapasowo, a zmiana trafi do gry przy następnej instalacji.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Zmień przypisanie skrótu</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Przenieść „{0}” z {1} na {2}?&#xA;&#xA;AIM edytuje własne przypisanie moda i zachowuje kopię zapasową, którą można przywrócić z menu prawego przycisku myszy. Zmiana trafi do gry przy następnej instalacji.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>„{0}” używa teraz {1}; zaktualizowano {2} plik(ów).&#xA;&#xA;Zainstaluj ponownie, aby zastosować zmianę w grze.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Nie można zmienić przypisania „{0}”: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>„{0}” używa teraz {1} zamiast {2}. Zainstaluj ponownie, aby zastosować zmianę w grze.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Rozwiązano: „{0}” przeniesiono na {1}, więc ten skrót nie jest już współdzielony. Zainstaluj ponownie, aby zastosować zmianę w grze.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Ten mod jest nadal plikiem .zip lub .rar. Najpierw wypakuj go do folderu modów, a AIM będzie mógł edytować jego przypisanie.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Ten mod nie deklaruje klawisza jako nazwanego przypisania, więc AIM nie może bezpiecznie go zmienić. Sprawdź ustawienia moda w grze lub jego plik konfiguracji.</value></data>
 </root>
