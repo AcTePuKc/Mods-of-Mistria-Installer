@@ -866,4 +866,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>O arquivo baixado excede o tamanho extraído suportado.</value></data>
   <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>A entrada "{0}" do arquivo excede o tamanho extraído suportado.</value></data>
   <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>O arquivo baixado não é um formato que este instalador consiga ler. zip, rar e 7z são aceitos.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>O arquivo contém um caminho inseguro: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>O login no Nexus foi cancelado porque o estado do retorno não correspondeu.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>O Nexus não retornou um código de autorização.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>A sessão da conta do Nexus precisa ser conectada novamente.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>O registro OAuth do AIM no Nexus ainda está pendente.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>O Nexus não conseguiu concluir o login da conta.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>O Nexus retornou uma sessão de conta incompleta.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Não foi possível ler a resposta da conta do Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>O AIM está aguardando o retorno do login do Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>A resposta do login do Nexus não corresponde a esta sessão do AIM.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>O login no Nexus foi cancelado. Você pode voltar ao AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>O login no Nexus foi cancelado ou recusado pelo navegador.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Login no Nexus concluído. Você pode voltar ao AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>O Nexus não retornou servidores de download para esse arquivo.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>A API do Nexus não respondeu a tempo.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Não foi possível alcançar a API do Nexus: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>O Nexus retornou uma resposta inesperada.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Não foi possível ler a resposta do Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>O Nexus rejeitou a sessão da conta. Conecte sua conta do Nexus novamente.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>O Nexus recusou a solicitação. O link de download pode ter expirado; clique nele novamente.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Esse mod ou arquivo não existe mais no Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Você atingiu o limite da API do Nexus. Aguarde um pouco antes de baixar novamente.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>O Nexus retornou um erro ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Nenhuma conta do Nexus está conectada ainda.</value></data>
 </root>
