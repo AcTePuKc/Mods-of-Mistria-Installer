@@ -734,4 +734,52 @@ Alihkan ke AIM?</value></data>
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Hapus mod</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} telah dihapus.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versi dan perubahan AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM mengubah mod ini:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Batalkan perubahan AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Mengembalikan setiap file yang disisihkan AIM di mod ini dan membiarkan file lain tetap apa adanya. Baris yang diubah AIM dibatalkan dengan memulihkan versi di bawah.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Pulihkan</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} dikembalikan ke {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - sebelum perubahan AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM akan menonaktifkan {0}, membangun ulang arsip game, lalu menjalankan game.&#xD;&#xA;&#xD;&#xA;Pembangunan ulang memerlukan sekitar satu menit. Bermainlah seperti biasa; AIM akan memberi tahu jika crash muncul lagi.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM akan menjalankan game dan mengawasi crash tanpa mengubah apa pun.&#xD;&#xA;&#xD;&#xA;Bermainlah seperti biasa; AIM akan memberi tahu hasilnya.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM tidak dapat mengubah daftar mod dari sini.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} tidak dapat dinonaktifkan. Mungkin sudah nonaktif atau tidak lagi ada di daftar.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} dinonaktifkan.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Membangun ulang arsip game agar perubahan berlaku…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Game tidak dapat dibangun ulang, jadi tidak ada yang diuji: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Menjalankan dan mengawasi game. Bermainlah seperti biasa.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM sedang menginstal. Tunggu sampai selesai terlebih dahulu.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Tidak ada yang perlu diinstal: folder game tidak ada atau tidak ada mod yang aktif.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM tidak tahu lokasi folder modmu.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Mod itu tidak lagi ada di daftar.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Mengatakan ini masalah yang dikenal</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Mengatakan mod ini baik-baik saja</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Berfungsi, tetapi hanya jika kamu melakukan sesuatu</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Hal lain yang dikatakan halaman</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Terapkan perbaikan secara manual</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Jika utas bug atau deskripsi mod menyebutkan tepat apa yang harus diubah, masukkan di sini. AIM terlebih dahulu menyalin seluruh mod ke riwayat versi, jadi daftar Pemulihan di atas selalu memiliki versi sebelum perubahan ini.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>File relatif terhadap folder mod</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Baris</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Teks baru untuk baris itu; kosongkan untuk mengosongkannya</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Terapkan perubahan ini</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Sisihkan file ini</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Mengeluarkan seluruh file dari permainan dan membiarkan bagian mod lainnya terpasang. Berguna ketika satu file data membuat game crash dan kamu ingin menyimpan bagian mod lainnya sampai penulis memperbaruinya.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Sebutkan file di dalam mod dan nomor baris yang akan diubah terlebih dahulu.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Perbaikan crash: baris {0} dari {1} di {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Perbaikan crash: sisihkan {0} di {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM akan menyalin seluruh mod ke riwayat versi terlebih dahulu agar dapat dikembalikan kapan saja dari daftar Pemulihan. Hanya mod ini yang disentuh.&#xD;&#xA;&#xD;&#xA;Lanjutkan?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Tidak ada yang diubah, menjalankan game apa adanya.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Arsip sudah sesuai dengan daftar mod, jadi tidak perlu dibangun ulang.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Arsip game telah dibangun ulang.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Menjalankan Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Mengawasi sesi. Bermainlah seperti biasa. AIM akan melapor saat game ditutup, atau setelah {0} menit jika tidak crash.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Game tidak dimulai, jadi tidak ada yang diuji.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Crash yang sama muncul saat {0} nonaktif, jadi {0} bukan penyebabnya. AIM telah menyingkirkannya dan mengaktifkannya kembali.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Crash yang sama muncul saat {0} nonaktif, jadi {0} bukan penyebabnya. AIM telah menyingkirkannya, tetapi tidak dapat mengaktifkannya kembali. Gunakan "Aktifkan kembali" pada kartunya di bawah "Sudah diperiksa" sebelum pemeriksaan berikutnya.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Tidak ada crash saat {0} nonaktif. Itu menjadikannya penyebab yang mungkin. Biarkan nonaktif, tunggu update, atau coba perbaikan di bawah.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Game berjalan tanpa crash dan tidak ada yang diubah. Crash mungkin memerlukan save atau tindakan yang belum kamu ulangi. Coba lagi dan lakukan apa yang kamu lakukan sebelumnya.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Sesi ini tidak memberi jawaban, jadi {0} masih dicurigai. AIM akan menawarkannya lagi.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Game crash karena hal lain, jadi {0} disingkirkan untuk crash awal. AIM memuat crash baru dan tetap menyimpan hasil yang sudah dikumpulkan.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} dari {1} tersangka telah diuji untuk crash ini.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM tidak memiliki tempat untuk menulis hasil ini, jadi hasilnya hanya bertahan selama jendela ini terbuka.</value></data>
 </root>

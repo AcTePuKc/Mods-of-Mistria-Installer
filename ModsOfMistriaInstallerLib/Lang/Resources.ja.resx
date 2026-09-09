@@ -734,4 +734,52 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Modを削除</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0}を削除しました。</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>バージョンとAIMの変更</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIMがこのModを変更しました:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>AIMの変更を元に戻す</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>AIMがこのModから退避させたすべてのファイルを戻し、他のファイルはそのままにします。AIMが変更した行は、下のバージョンを復元すると元に戻ります。</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>復元</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0}を{1}に戻しました。</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - AIMによる変更前</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIMは{0}を無効にし、ゲームアーカイブを再構築して起動します。&#xD;&#xA;&#xD;&#xA;再構築には1分ほどかかります。通常どおりプレイしてください。クラッシュが再発したかAIMが知らせます。</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIMは何も変更せずにゲームを起動し、クラッシュを監視します。&#xD;&#xA;&#xD;&#xA;通常どおりプレイしてください。結果をAIMが知らせます。</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>ここからMod一覧を変更することはできません。</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0}を無効にできませんでした。すでに無効か、一覧から削除されている可能性があります。</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0}を無効にしました。</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>変更を反映するためゲームアーカイブを再構築しています…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>ゲームを再構築できなかったため、何もテストされませんでした: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>ゲームを起動して監視しています。通常どおりプレイしてください。</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIMはすでにインストール中です。先に完了するまでお待ちください。</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>インストールするものがありません。ゲームフォルダーがないか、有効なModがありません。</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIMはModフォルダーの場所を認識できません。</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>そのModは一覧にありません。</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>既知の問題だと記載</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>このModは問題ないと記載</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>操作すれば動作</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>ページにあるその他の情報</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>手動で修正を適用</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>バグスレッドやModの説明に変更内容が正確に書かれている場合は、ここに入力してください。AIMはまずMod全体をバージョン履歴にコピーするため、上の復元一覧には常に変更前のバージョンがあります。</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Modフォルダーからの相対ファイル</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>行</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>その行の新しいテキスト（空欄にすると内容を消去）</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>この変更を適用</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>このファイルを退避</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>ファイル全体をゲームから外し、Modの残りはインストールしたままにします。1つのデータファイルがゲームをクラッシュさせるとき、作成者が更新するまで残りを使いたい場合に便利です。</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>まずMod内のファイル名と変更する行番号を指定してください。</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>クラッシュ修正: {2}の{1}、{0}行目</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>クラッシュ修正: {1}の{0}を退避</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIMはまずMod全体をバージョン履歴にコピーするため、復元一覧からいつでも戻せます。変更されるのはこのModだけです。&#xD;&#xA;&#xD;&#xA;続行しますか？</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>何も変更せず、現在の状態でゲームを起動します。</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>アーカイブはすでにMod一覧と一致しているため、再構築は不要でした。</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>ゲームアーカイブを再構築しました。</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Fields of Mistriaを起動しています…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>実行を監視しています。通常どおりプレイしてください。ゲーム終了時、またはクラッシュしなければ{0}分後にAIMが知らせます。</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>ゲームが起動しなかったため、何もテストされませんでした。</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>{0}を無効にしても同じクラッシュが再発したため、{0}は原因ではありません。AIMは除外して再び有効にしました。</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>{0}を無効にしても同じクラッシュが再発したため、{0}は原因ではありません。AIMは除外しましたが再有効化できませんでした。次の確認前に「確認済み」のカードから「再有効化」を使ってください。</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>{0}を無効にするとクラッシュしませんでした。原因である可能性が高いです。無効のままにするか、更新を待つか、下の修正を試してください。</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>ゲームはクラッシュせず、何も変更されませんでした。セーブデータや前回と同じ操作が必要だった可能性があります。もう一度、前回と同じことを行ってください。</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>この実行では判断できなかったため、{0}はまだ候補です。AIMは再度提案します。</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>ゲームは別の原因でクラッシュしたため、元のクラッシュについて{0}は除外されました。AIMは新しいクラッシュを読み込み、これまでの結果を保持しています。</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>このクラッシュについて、{1}個中{0}個の候補をテストしました。</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIMはこれらの結果を書き込めないため、このウィンドウを開いている間だけ有効です。</value></data>
 </root>
