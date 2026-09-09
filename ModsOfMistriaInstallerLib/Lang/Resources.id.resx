@@ -511,4 +511,26 @@ Alihkan ke AIM?</value></data>
   <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Folder mod tidak ditemukan, jadi tidak ada yang dapat dibuka.</value></data>
   <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Tidak dapat membuka folder mod: {0}</value></data>
   <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Folder mod</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Buka folder mod Fields of Mistria di pengelola file Anda</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Periksa Crash</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Membaca log crash game, mencari tahu mod yang ditunjuk, lalu menawarkan untuk mematikannya dan memeriksa apakah crash berhenti.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Tidak ada tempat tersisa di folder mod untuk menyiapkan {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Sudah terlalu banyak salinan {0} di folder mod.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Tidak dapat mengunduh file dari Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>tidak ada server unduhan yang merespons</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Tidak ada yang perlu diperbarui.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Tidak dapat menyimpan sesi akun Nexus. Periksa akses disk dan coba lagi.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Cadangan {0} tidak ditemukan.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>File yang diunduh tidak ditemukan.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Folder mod tidak ditemukan.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Unduhan tersebut tidak berisi manifest.toml, jadi bukan mod yang dapat ditangani installer ini. Mungkin itu mod lama atau file yang harus dipasang secara manual.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Tidak dapat menyelesaikan mod yang diunduh. Kesalahan instalasi awal: {0}&#xD;&#xA;Salinan mod sebelumnya tidak dapat dipulihkan. Cadangannya disimpan untuk pemulihan manual:&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Salinan yang disisihkan tidak lagi berada di {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Sudah terlalu banyak salinan {0} yang disimpan di samping folder mod.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Tidak dapat mengekstrak mod: {0} Salinan sebelumnya tidak dapat dipulihkan; cadangannya disimpan untuk pemulihan manual{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Tidak dapat mengekstrak mod: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Arsip yang diunduh berisi terlalu banyak file.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Arsip yang diunduh berisi file yang terlalu besar.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Arsip yang diunduh melebihi ukuran hasil ekstrak yang didukung.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Entri arsip «{0}» melebihi ukuran hasil ekstrak yang didukung.</value></data>
 </root>
