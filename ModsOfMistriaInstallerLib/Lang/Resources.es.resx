@@ -567,4 +567,26 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>La descarga es para otro juego ({0}), así que este instalador no puede gestionarla.</value></data>
   <data name="GUINxmDownloadExpired" xml:space="preserve"><value>El enlace de descarga ha caducado. Vuelve a hacer clic en el botón «Vortex download» de la página del mod.</value></data>
   <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>No se encontró la carpeta de mods.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Preguntando a Nexus por el archivo…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Descargando {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Extrayendo {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Instalación cancelada</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>Se instaló {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>Se instalaron {0} mods</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Descarga cancelada</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Enlace de descarga vacío.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Ese no es un enlace nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>El enlace no indica ningún juego.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Las colecciones de Nexus todavía no son compatibles. Descarga los mods individualmente.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>El enlace no es una descarga de un archivo de mod.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>El enlace contiene un identificador de mod o archivo no válido.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>No se pudo determinar desde dónde se está ejecutando el instalador.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>El registro de enlaces nxm:// solo es compatible con Windows y Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM se ha registrado, pero puede que Windows siga usando {0} para los enlaces nxm://.&#xD;&#xA;&#xD;&#xA;Elige AIM como predeterminado para los enlaces nxm:// en las aplicaciones predeterminadas de Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>No se pudo verificar el registro de nxm:// después de escribirlo.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Una actualización podría solucionar lo que has corregido</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>Ha salido {0} {1}. Tienes {2} con la corrección de AIM aplicada: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Actualizar y eliminar la corrección de AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>La actualización sustituye la carpeta del mod, así que también elimina la edición de AIM. Si la nueva versión no ha solucionado el problema, el cierre volverá y podrás aplicar la corrección de nuevo. La versión anterior sigue en la lista de restauración.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Se detectó un archivo externo</value></data>
 </root>
