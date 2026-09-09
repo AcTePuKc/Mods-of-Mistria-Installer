@@ -916,4 +916,28 @@ An AIM übergeben?</value></data>
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Beim Aktualisieren wird der Mod-Ordner ersetzt und damit auch die Änderung von AIM entfernt. Wenn die neue Version das Problem nicht behoben hat, tritt der Absturz erneut auf und du kannst die Reparatur wieder anwenden. Die vorherige Version befindet sich weiterhin in der Liste zum Wiederherstellen.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Externes Archiv erkannt</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM hat eine externe assets.zip gefunden.&#xD;&#xA;&#xD;&#xA;Wenn du fortfährst, wird AIM:&#xD;&#xA;• sie als assets.foreign-…zip aufbewahren&#xD;&#xA;• die verifizierte Sicherung wiederherstellen&#xD;&#xA;• diese Installation erneut versuchen&#xD;&#xA;&#xD;&#xA;Mods, die nur im externen Archiv vorhanden sind, werden deaktiviert. Fortfahren?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Eine Lösung finden</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Die Mod-Seiten werden gelesen…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Verbinde dein Nexus-Konto über das Zahnradmenü, damit AIM die Mod-Seiten für dich lesen kann. Bis dahin sind die Links unten der schnellste Weg zur Prüfung.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Die Beschreibungen, Readmes, Änderungsprotokolle, Fehlerberichte und Kommentare dieser Mods beantworten die Frage nicht. AIM hat den gesamten Kommentarverlauf nach dem Namen der anderen Mod durchsucht und die aktuellen Fehlerberichte gelesen. Das bedeutet wirklich „niemand hat es gesagt“ und nicht „niemand hat nachgesehen“. Es ist aber nicht dasselbe wie „kein Problem“, und die Links unten führen weiterhin zu den eigentlichen Seiten.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} relevante Einträge zu dieser Kombination wurden auf den Mod-Seiten gefunden.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM konnte die Mod-Seiten nicht lesen: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Was auf den Mod-Seiten steht</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Selbst nachsehen</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM liest diese Inhalte selbst: Kommentare werden im gesamten Verlauf gesucht und der Fehlertracker wird einige Seiten tief durchsucht. Das geschieht jedoch nur als abgemeldeter Besucher. Diese Links öffnen die echten Seiten.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Mod-Seite öffnen</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Patch öffnen</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Was hast du herausgefunden?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Wenn du dies speicherst, bleibt die Antwort beim Problem erhalten und muss beim nächsten Mal nicht erneut ermittelt werden.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Link zum Patch (optional):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Kein echter Konflikt</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Die Mods teilen Dateien, aber das ist in der Praxis unproblematisch. Markiert das Problem als erledigt und blendet es aus, bis eine der Mods aktualisiert wird.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Ein Patch ist vorhanden</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Jemand hat einen Kompatibilitätspatch veröffentlicht. Klicke einmal, um seinen Link einzufügen, und ein zweites Mal, um ihn zu speichern. Das Problem wird als erledigt markiert.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Sie sind inkompatibel</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Speichert das Ergebnis, lässt das Problem aber sichtbar, weil du weiterhin eine der beiden Mods deaktivieren musst.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Noch nicht entschieden</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Patch speichern</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Das sieht nicht wie ein https-Link aus. Füge die Webadresse des Patches ein oder lasse das Feld leer.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIMs Auswertung der Dateien</value></data>
 </root>

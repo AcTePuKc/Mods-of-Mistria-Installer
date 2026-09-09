@@ -1,87 +1,132 @@
 {
-  "generatedAt": "2026-09-09T09:44:57.4957257Z",
-  "coreKeyCount": 465,
-  "nextLanguage": "zh-Hant",
+  "generatedAt": "2026-09-09T09:47:44.7885982Z",
+  "scope": "deferred",
+  "coreKeyCount": 232,
+  "nextLanguage": "de",
   "nextBatch": [
-    "GUINxmRegistrationMayBeOverridden",
-    "GUINxmRegistrationNotVerified",
-    "GUIUpdateMayFixHeader",
-    "GUIUpdateMayFix",
-    "GUIUpdateMayFixAction",
-    "GUIUpdateMayFixTooltip",
-    "GUIForeignArchiveRecoveryTitle",
-    "GUIForeignArchiveRecoveryMessage"
+    "GUIResearchDiagnosisCertain",
+    "GUIResearchDiagnosisUncertain",
+    "GUIResearchDiagnosisFilesOne",
+    "GUIResearchDiagnosisFilesMany",
+    "GUIResearchWindowFailed",
+    "GUIResearchModsHeader",
+    "GUIResearchModsHint",
+    "GUIResearchOpenModPage",
+    "GUIResearchOpenPageMissing",
+    "GUIResearchRemoveMod",
+    "GUIResearchRemoveModTooltip",
+    "GUIResearchRemovedNote",
+    "GUIResearchInstalledHeader",
+    "GUIResearchInstalledHint",
+    "GUIResearchFixesHeader",
+    "GUIResearchFixesHint",
+    "GUIResearchPatchesHeader",
+    "GUIResearchApply",
+    "GUIResearchApplied",
+    "GUIResearchApplyFailed",
+    "GUIResearchEvidenceAgainst",
+    "GUIResearchEvidenceFor",
+    "GUIResearchEvidenceCaution",
+    "GUIResearchEvidenceOther"
   ],
   "languages": [
     {
       "language": "bg",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 0,
+      "deferredComplete": true
     },
     {
       "language": "de",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 208,
+      "deferredComplete": false
     },
     {
       "language": "es",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "fr",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "id",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "ja",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "ko",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "nl",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "pl",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "pt-br",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "ru",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "uk",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "zh-Hans",
-      "coreMissing": 0,
-      "coreComplete": true
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     },
     {
       "language": "zh-Hant",
-      "coreMissing": 8,
-      "coreComplete": false
+      "coreMissing": null,
+      "coreComplete": null,
+      "deferredMissing": 232,
+      "deferredComplete": false
     }
   ]
 }

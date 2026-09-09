@@ -1,7 +1,8 @@
 param(
     [string] $Language,
     [int] $BatchSize = 24,
-    [switch] $AllMissing
+    [switch] $AllMissing,
+    [switch] $Deferred
 )
 
 $ErrorActionPreference = 'Stop'
@@ -20,7 +21,14 @@ function Test-CoreKey([string] $key) {
         -not $key.StartsWith('GUICrash')
 }
 
-$englishKeys = @(Get-ResourceKeys $englishPath | Where-Object { Test-CoreKey $_ })
+function Test-DeferredKey([string] $key) {
+    return $key.StartsWith('GUIResearch') -or $key.StartsWith('GUICrash')
+}
+
+$scopeName = if ($Deferred) { 'deferred' } else { 'core' }
+$englishKeys = @(Get-ResourceKeys $englishPath | Where-Object {
+    if ($Deferred) { Test-DeferredKey $_ } else { Test-CoreKey $_ }
+})
 $localeFiles = @(Get-ChildItem -LiteralPath $languageDirectory -Filter 'Resources.*.resx' | Sort-Object Name)
 $languages = @()
 
@@ -30,20 +38,27 @@ foreach ($file in $localeFiles) {
     $missing = @($englishKeys | Where-Object { $_ -notin $translated })
     $languages += [pscustomobject]@{
         language = $locale
-        coreMissing = $missing.Count
-        coreComplete = $missing.Count -eq 0
+        coreMissing = if ($Deferred) { $null } else { $missing.Count }
+        coreComplete = if ($Deferred) { $null } else { $missing.Count -eq 0 }
+        deferredMissing = if ($Deferred) { $missing.Count } else { $null }
+        deferredComplete = if ($Deferred) { $missing.Count -eq 0 } else { $null }
     }
 }
 
 $selected = if ($Language) {
     @($languages | Where-Object { $_.language -eq $Language })
 } else {
-    @($languages | Where-Object { -not $_.coreComplete } | Select-Object -First 1)
+    if ($Deferred) {
+        @($languages | Where-Object { -not $_.deferredComplete } | Select-Object -First 1)
+    } else {
+        @($languages | Where-Object { -not $_.coreComplete } | Select-Object -First 1)
+    }
 }
 
 if ($selected.Count -eq 0) {
     $state = [pscustomobject]@{
         generatedAt = (Get-Date).ToUniversalTime().ToString('o')
+        scope = $scopeName
         coreKeyCount = $englishKeys.Count
         nextLanguage = $null
         languages = $languages
@@ -61,6 +76,7 @@ $nextBatch = if ($AllMissing) { $missingKeys } else { @($missingKeys | Select-Ob
 
 $state = [pscustomobject]@{
     generatedAt = (Get-Date).ToUniversalTime().ToString('o')
+    scope = $scopeName
     coreKeyCount = $englishKeys.Count
     nextLanguage = $current.language
     nextBatch = $nextBatch
@@ -68,6 +84,6 @@ $state = [pscustomobject]@{
 }
 $state | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $statePath -Encoding utf8
 
-Write-Output ("Current language: {0}; core missing={1}; batch={2}" -f $current.language, $current.coreMissing, $nextBatch.Count)
+Write-Output ("Current language: {0}; {1} missing={2}; batch={3}" -f $current.language, $scopeName, $missingKeys.Count, $nextBatch.Count)
 Write-Output ("Progress file: {0}" -f $statePath)
 Write-Output ($nextBatch -join [Environment]::NewLine)
