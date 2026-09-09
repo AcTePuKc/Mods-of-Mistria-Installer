@@ -810,4 +810,26 @@ Les confier à AIM ?</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) vérifié(s) : {1} ont une mise à jour et {2} n'ont pas pu être vérifiés.&#xD;&#xA;&#xD;&#xA;Télécharger et installer ces mises à jour maintenant ? La version actuelle de chaque mod est conservée comme sauvegarde restaurable.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Mettre à jour tous les mods concernés</value></data>
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Télécharge et installe chaque mise à jour en attente à tour de rôle, en conservant la version actuelle de chaque mod comme sauvegarde restaurable.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Mettre à jour les mods</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Aucune mise à jour en attente. Vérifiez d'abord les mises à jour.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Mettre à jour {0} mod(s) ?&#xD;&#xA;&#xD;&#xA;La version actuelle de chaque mod sera conservée comme sauvegarde restaurable depuis son menu contextuel.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Mise à jour de {0} sur {1} : {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} mod(s) sur {1} mis à jour.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Ces mods n'ont pas pu être téléchargés directement et nécessitent leur page Nexus : {0}&#xD;&#xA;&#xD;&#xA;Nexus ne fournit des liens de téléchargement direct qu'aux comptes Premium. Avec un compte gratuit, ouvrez la page du mod et utilisez le bouton « Mod Manager Download ». AIM le récupérera s'il est enregistré pour gérer ces liens.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Rien à signaler. AIM n'a trouvé aucun fichier partagé, conflit de raccourcis, prérequis manquant ni avertissement de compatibilité parmi les mods sélectionnés.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Vous avez indiqué qu'il ne s'agissait pas d'un vrai conflit.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Vous avez trouvé un correctif pour ce problème.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Vous avez jugé ces mods incompatibles. Désactivez l'un d'eux.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Résolu en réattribuant la touche : {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Dossiers de téléchargement surveillés</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Les mods téléchargés manuellement dans un dossier surveillé sont déplacés vers votre dossier de mods et apparaissent automatiquement dans la liste.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Surveiller un dossier…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Choisir un dossier où rechercher les mods téléchargés</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Vérifier les dossiers surveillés maintenant</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Aucun dossier n'est surveillé</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Ne plus surveiller ce dossier</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Dossiers surveillés</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Rien de nouveau à importer. AIM ne déplace que les archives et les dossiers contenant un manifeste ; le reste est laissé sur place.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod(s) importé(s) depuis un dossier surveillé.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Déplacé(s) dans votre dossier de mods :&#xD;&#xA;{0}</value></data>
 </root>
