@@ -1,8 +1,33 @@
 {
-  "generatedAt": "2026-09-09T05:36:15.2525948Z",
+  "generatedAt": "2026-09-09T05:38:41.2785370Z",
   "coreKeyCount": 465,
-  "nextLanguage": "pl",
-  "nextBatch": null,
+  "nextLanguage": "pt-br",
+  "nextBatch": [
+    "GUIRemoveSelectedFailed",
+    "GUIRemoveModRefused",
+    "GUIRemoveModMissing",
+    "GUIIssueDismissTooltip",
+    "GUIIssueShowDismissed",
+    "GUIIssueDismissedHeader",
+    "GUIIssueDismissedMarker",
+    "GUIConflictSharedFilesHeader",
+    "GUIConflictCurrentWinner",
+    "GUIConflictMakeThisWin",
+    "GUIConflictMakeThisWinTooltip",
+    "GUIConflictWinnerNow",
+    "GUIConflictFindAFix",
+    "GUIConflictFindAFixTooltip",
+    "GUIHotkeyRebindButton",
+    "GUIHotkeyRebindTooltip",
+    "GUIHotkeyRebindTitle",
+    "GUIHotkeyRebindConfirm",
+    "GUIHotkeyRebindDone",
+    "GUIHotkeyRebindFailed",
+    "GUIHotkeyRebound",
+    "GUIHotkeyReboundResolved",
+    "GUIHotkeyBlockedArchive",
+    "GUIHotkeyBlockedNotDeclared"
+  ],
   "languages": [
     {
       "language": "bg",
@@ -41,7 +66,7 @@
     },
     {
       "language": "nl",
-      "coreMissing": 152,
+      "coreMissing": 128,
       "coreComplete": false
     },
     {
@@ -51,7 +76,7 @@
     },
     {
       "language": "pt-br",
-      "coreMissing": 248,
+      "coreMissing": 224,
       "coreComplete": false
     },
     {
