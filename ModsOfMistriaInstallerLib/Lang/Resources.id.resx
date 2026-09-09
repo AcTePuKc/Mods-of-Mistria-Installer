@@ -342,4 +342,24 @@ Alihkan ke AIM?</value></data>
   <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Aktif</value></data>
   <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Perlu diperbarui</value></data>
   <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sarankan urutan</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} oleh {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Masuk ke Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Keluar dari Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Akun Nexus terhubung.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Akun Nexus belum terhubung. Masuk untuk menggunakan fitur Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Akun Nexus terputus.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Edit manifest mod</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Membuka manifest.json (atau manifest.toml) di editor teks biasa. Hanya tersedia untuk mod yang berupa folder; mod di dalam .zip atau .rar tidak memiliki file yang dapat diedit.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Edit konfigurasi mod</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Membuka file konfigurasi mod di editor teks biasa. Dinonaktifkan jika AIM tidak menemukan file konfigurasi.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Tidak dapat membuka {0}: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Hapus mod…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Mengeluarkan mod dari folder mod. AIM akan bertanya terlebih dahulu dan mengirim file ke Recycle Bin, bukan menghapusnya.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Hapus mod</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Pindahkan "{0}" v{1} ke Recycle Bin?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Mod akan dikeluarkan dari folder mod. Jika berubah pikiran, Anda dapat mengembalikannya dari Recycle Bin. File yang sudah dipasang ke dalam game akan tetap ada sampai instalasi atau penghapusan berikutnya.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Hapus "{0}" v{1} secara permanen?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Sistem ini tidak memiliki Recycle Bin yang dapat digunakan AIM, jadi file mod akan dihapus. Tindakan ini tidak dapat dibatalkan.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>"{0}" tidak dapat dihapus: {1}&#xD;&#xA;&#xD;&#xA;Mod mungkin sedang dibuka di program lain, atau game masih berjalan.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Hapus yang dipilih…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Menghapus semua mod yang dicentang sekaligus melalui Recycle Bin setelah menampilkan daftarnya.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Tidak ada mod yang dicentang, jadi tidak ada yang dapat dihapus.</value></data>
 </root>
