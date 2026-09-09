@@ -466,4 +466,28 @@
   <data name="GUIKeybindsDefault" xml:space="preserve"><value>模组默认值 - 在模组保存设置之前 AIM 无法更改</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>此模组尚未保存设置，因此这是编译在模组中的默认值。运行一次游戏，或在模组自己的设置中更改它，AIM 才能在这里编辑。</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>（未绑定）</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>游戏不接受此按键</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>“{0}”不是游戏识别的名称，因此此模组会恢复为默认值。请从列表中选择可用项目来修复。</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM 无法写入 {0}。它可能在其他程序中打开，或者游戏已经启动。</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>选择按键或按钮</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>按键或控制器按钮</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>按下一个按键以捕获</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>现在按下按键...（按 Escape 停止）</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>将保存为：{0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>控制器按钮从列表中选择，因为 AIM 无法读取控制器。列表包含游戏接受的所有名称；ALT、锁定键和数字键盘不在其中，模组设置为这些按键之一时会静默恢复默认值。</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>保存</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>解除绑定</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>清空此设置。大多数模组会将其视为“关闭”，有些则会恢复为默认值。</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0}（模组默认值 - 尚未配置）</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>按键绑定已更改</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>你选择的 {0} 个绑定已被模组自行更改，通常是更新重置设置后发生的。&#xA;&#xA;{1}&#xA;&#xA;要恢复你的选择吗？更新完全移除的设置不会恢复。</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... 以及另外 {0} 个</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>已恢复 {0} 个按键绑定。启动游戏后即可生效。</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>检查更新</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>将选中的模组与其 Nexus 页面进行比较。使用箭头检查所有模组，或安装所有有更新的模组。</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>已检查 {0} 个模组：{1} 个有更新，{2} 个无法检查。&#xA;&#xA;现在下载并安装这些更新吗？每个模组的当前版本都会作为备份保留。</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>更新所有可更新项目</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>依次下载并安装所有待处理的更新，并保留每个模组的当前版本以便恢复。</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>更新模组</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>没有待处理的更新。请先检查更新。</value></data>
 </root>

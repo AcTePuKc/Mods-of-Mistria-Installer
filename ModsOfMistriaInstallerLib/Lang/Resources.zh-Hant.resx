@@ -366,4 +366,28 @@
   <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>要永久刪除 {0} 個模組嗎？&#xA;&#xA;{1}&#xA;&#xA;此系統沒有 AIM 可使用的資源回收筒，因此檔案會被刪除。此操作無法復原。</value></data>
   <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... 以及另外 {0} 個</value></data>
   <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>已移除 {1} 個模組中的 {0} 個。</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>無法移除以下模組：{0}&#xA;&#xA;它們可能在其他程式中開啟，或者遊戲仍在執行。</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows 無法將項目移至資源回收筒</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>「{0}」已不在模組資料夾中。清單已重新整理。</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>標記為已檢查且沒有問題。AIM 會將它隱藏，直到相關模組之一變更版本，然後再次詢問。</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>顯示我標記為正常的問題（{0}）</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>已標記為正常</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[已標記為正常]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>兩個模組都寫入的檔案</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>目前生效</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>讓此模組生效</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>將此模組移到與它共用檔案的其他模組下方，使其檔案版本被安裝。清單中的載入順序會立即變更。</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>「{0}」現在會在共用這些檔案的模組中最後載入，因此其副本會生效。</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>尋找解決方案...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>讀取這些模組的 Nexus 頁面如何描述彼此，並開啟錯誤報告、留言和網頁搜尋，協助你判斷這是否真的重要。</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>重新繫結...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>透過編輯 {0} 中模組自己的繫結，將此模組移到其他模組未使用的按鍵上。模組會先備份，變更將在下次安裝時套用到遊戲。</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>重新繫結快速鍵</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>要將「{0}」從 {1} 移到 {2} 嗎？&#xA;&#xA;AIM 會編輯模組自己的繫結，並保留可從右鍵選單還原的備份。變更將在下次安裝時套用到遊戲。</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>「{0}」現在使用 {1}，已更新 {2} 個檔案。&#xA;&#xA;請重新安裝，讓變更套用到遊戲。</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>無法重新繫結「{0}」：{1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>「{0}」現在使用 {1} 而不是 {2}。請重新安裝，讓變更套用到遊戲。</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>已解決：「{0}」已移至 {1}，因此沒有其他模組共用此快速鍵。請重新安裝，讓變更套用到遊戲。</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>此模組仍是 .zip 或 .rar 檔案。請先將它解壓縮到模組資料夾，AIM 才能編輯其繫結。</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>此模組沒有將按鍵宣告為具名繫結，因此 AIM 無法安全地變更它。請檢查模組自己的遊戲內設定或設定檔。</value></data>
 </root>
