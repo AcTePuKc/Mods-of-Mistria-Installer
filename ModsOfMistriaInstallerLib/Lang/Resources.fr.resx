@@ -832,4 +832,26 @@ Les confier à AIM ?</value></data>
   <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Rien de nouveau à importer. AIM ne déplace que les archives et les dossiers contenant un manifeste ; le reste est laissé sur place.</value></data>
   <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod(s) importé(s) depuis un dossier surveillé.</value></data>
   <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Déplacé(s) dans votre dossier de mods :&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - vous avez déjà installé ce mod sous le nom « {1} ». Mettez cette copie à jour ou supprimez-la d'abord : deux copies d'un même mod se disputent les mêmes fichiers.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Laissé dans le dossier surveillé :&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Le dossier des mods est introuvable, il n'y a donc rien à ouvrir.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Impossible d'ouvrir le dossier des mods : {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Dossier des mods</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Ouvre le dossier des mods de Fields of Mistria dans votre gestionnaire de fichiers</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Vérifier les plantages</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Lit le journal de plantage du jeu, détermine vers quel mod il pointe et propose de désactiver ce mod pour vérifier si le plantage disparaît.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Il n'y a plus de place dans le dossier des mods pour préparer {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Il y a déjà trop de copies de {0} dans le dossier des mods.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Impossible de télécharger le fichier depuis Nexus : {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>aucun serveur de téléchargement n'a répondu</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Il n'y a rien à mettre à jour.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Impossible d'enregistrer la session du compte Nexus. Vérifiez l'accès au disque et réessayez.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>La sauvegarde de {0} est manquante.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Le fichier téléchargé est manquant.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Le dossier des mods est introuvable.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Ce téléchargement ne contient pas de manifest.toml et n'est donc pas un mod géré par cet installeur. Il peut s'agir d'un ancien mod ou d'un fichier à installer manuellement.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Impossible de terminer le mod téléchargé. L'erreur d'installation d'origine était : {0}&#xD;&#xA;Impossible de restaurer une ancienne copie du mod. Sa sauvegarde a été conservée pour une récupération manuelle :&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>La copie mise de côté ne se trouve plus à l'emplacement {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Il y a déjà trop de copies conservées de {0} à côté du dossier des mods.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Impossible d'extraire le mod : {0} La copie précédente n'a pas pu être restaurée ; sa sauvegarde a été conservée pour une récupération manuelle{1}.</value></data>
 </root>
