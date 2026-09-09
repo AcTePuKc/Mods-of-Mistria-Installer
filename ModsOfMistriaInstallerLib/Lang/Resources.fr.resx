@@ -854,4 +854,26 @@ Les confier à AIM ?</value></data>
   <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>La copie mise de côté ne se trouve plus à l'emplacement {0}.</value></data>
   <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Il y a déjà trop de copies conservées de {0} à côté du dossier des mods.</value></data>
   <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Impossible d'extraire le mod : {0} La copie précédente n'a pas pu être restaurée ; sa sauvegarde a été conservée pour une récupération manuelle{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Impossible d'extraire le mod : {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>L'archive téléchargée contient trop de fichiers.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>L'archive téléchargée contient un fichier trop volumineux.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>L'archive téléchargée dépasse la taille extraite prise en charge.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>L'entrée « {0} » de l'archive dépasse la taille extraite prise en charge.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Le fichier téléchargé n'est pas une archive lisible par cet installeur. Les formats zip, rar et 7z sont pris en charge.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>L'archive contient un chemin dangereux : {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>La connexion à Nexus a été annulée, car l'état de retour ne correspondait pas.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus n'a pas renvoyé de code d'autorisation.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>La session du compte Nexus doit être reconnectée.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>L'enregistrement OAuth de Nexus pour AIM est toujours en attente.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus n'a pas pu terminer la connexion au compte.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus a renvoyé une session de compte incomplète.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Impossible de lire la réponse du compte Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM attend le retour de la connexion à Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>La réponse de connexion à Nexus ne correspond pas à cette session AIM.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>La connexion à Nexus a été annulée. Vous pouvez revenir à AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>La connexion à Nexus a été annulée ou refusée par le navigateur.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>La connexion à Nexus est terminée. Vous pouvez revenir à AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus n'a renvoyé aucun serveur de téléchargement pour ce fichier.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>L'API Nexus n'a pas répondu à temps.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Impossible d'atteindre l'API Nexus : {0}</value></data>
 </root>
