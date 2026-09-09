@@ -654,4 +654,62 @@
   <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>复制“{0}”并打开来源页面。按 Ctrl+F 后粘贴即可跳转。</value></data>
   <data name="GUIResearchFindCopied" xml:space="preserve"><value>已复制。在刚打开的页面按 Ctrl+F 并粘贴。</value></data>
   <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>这会修改并非由你编写的模组文件。AIM 会先将整个模组复制到版本列表，并标记为已修改。继续吗？</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>检查崩溃</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>崩溃</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>崩溃文件</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>打开 AIM 保存所有崩溃副本的文件夹。游戏本身只保留最近一次。</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>AIM 的判断</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM 找不到游戏可执行文件，因此无法启动并监视游戏。</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria 已在运行。请先关闭它，让 AIM 监视由自己启动的会话。</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM 无法启动游戏：{0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>游戏崩溃了，但 AIM 无法读取留下的崩溃日志，因此这次运行无法证明模组有问题。建议再次检查。</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>检查期间游戏再次崩溃。</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>检查窗口结束后游戏仍在运行，没有崩溃。这正是预期结果，请继续游戏。</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>{0} 后再次出现相同崩溃。</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>{0} 后游戏再次崩溃，但错误不同。</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>游戏在 {1} 后以代码 {0} 退出，且没有留下崩溃日志。这通常表示游戏被外部因素关闭，而不是模组导致的。</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>游戏运行了 {0} 后正常关闭，没有新的崩溃。</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>游戏在此模组自己的代码中崩溃，位置为 {0} 第 {1} 行。</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>此模组的代码出现在调用堆栈中，位置为 {0} 第 {1} 行。</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>崩溃消息本身提到了此模组。</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>游戏读取“{0}”数据时崩溃，该数据由 {1} 个已安装模组添加内容。</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>游戏读取“{0}”数据时崩溃，该数据由 {1} 个已安装模组添加内容。</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>此模组向游戏崩溃时正在读取的“{0}”数据中添加内容。</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>磁盘上的游戏档案中，“{0}”数据已没有缺少 {1} 的条目，因此原因已经通过更新、重装或禁用模组解决。</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>游戏当前加载的“{0}”数据仍有一个条目缺少 {2}。下次启动时会再次崩溃。</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>游戏当前加载的“{0}”数据仍有 {1} 个条目缺少 {2}。下次启动时会再次崩溃。</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>需要安装引擎 hook，而崩溃是调用了一个实际并非函数的对象，这正是不完整 hook 在游戏中的表现。</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>此崩溃早于当前模组，但描述的问题仍在磁盘上的游戏档案中，因此报告并不过时。下次启动可能再次发生。</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>此崩溃早于当前安装的模组。AIM 之后重建了游戏档案，因此崩溃时的游戏与现在磁盘上的版本不同。请把下面内容当作线索，而不是结论。</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>在 {0}() 中出错，位置：{1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>游戏自己的“{0}”数据在第 {2} 行有一个缺少 {1} 的条目，其中包含“{3}”，且其他模组都没有定义它。</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>游戏自己的“{0}”数据在第 {2} 行有一个缺少 {1} 的条目，其中包含“{3}”。它仍带有 MOMIidentify 块，但预期的合并没有匹配到任何内容。</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>游戏的“{0}”数据在第 {2} 行有一个缺少 {1} 的条目，此模组可能写入了它。</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>此崩溃早于当前安装，且没有内容匹配你现在拥有的模组。</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} 导致了游戏崩溃。</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} 个模组分别向游戏添加了无法加载的内容，其中任意一个都足以导致崩溃。</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} 最可能是原因。</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} 是唯一影响游戏正在读取内容的已安装模组。</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} 个已安装模组添加了导致游戏崩溃的数据，其中一个很可能是原因。</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>没有模组被明确指出，但有几个值得排除。</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>游戏加载的内容缺少“{0}”字段，且没有明显由某个已安装模组负责。</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>游戏读取“{0}”时还没有任何内容设置它。这通常是模组代码。</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>游戏调用了一个并非函数的对象，通常是未安装的 hook。</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>游戏找不到资源“{0}”，通常是模组引用但没有提供的精灵图。</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM 仅凭调用堆栈无法将此崩溃关联到某个模组。</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>分析指向的模组</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>最强的线索在前面。因崩溃发生在其代码中而被列出的模组不是猜测；因写入游戏正在读取的数据而被列出的模组是候选者。</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>检查这是否能解决问题</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>禁用所选模组，重建游戏，启动并观察。正常游戏即可；游戏关闭或几分钟未崩溃后 AIM 会报告结果。</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>禁用、重建并运行</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>禁用模组后，只有重建档案游戏才能看到变化，所以 AIM 会完成全部步骤。</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>不改变任何内容—直接运行并观察</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>值得查看</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>游戏写入的崩溃文件</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>崩溃位置</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>崩溃位置（{0} 个帧）</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>复制报告</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>将错误、调用堆栈、AIM 结论和已安装模组全部复制到剪贴板。</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>刷新</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>正在查找崩溃…</value></data>
 </root>
