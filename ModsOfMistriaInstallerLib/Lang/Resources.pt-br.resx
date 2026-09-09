@@ -792,4 +792,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIKeybindsDefault" xml:space="preserve"><value>padrão do mod; o AIM não pode alterá-lo até o mod salvar suas configurações</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Este mod ainda não salvou suas configurações, então este é o padrão compilado nele. Execute o jogo uma vez ou altere nas configurações do próprio mod para que o AIM possa editá-lo aqui.</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(não configurado)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>o jogo não aceitará isso</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>"{0}" não é um nome reconhecido pelo jogo, então este mod está usando o padrão. Escolha algo da lista para corrigir.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>O AIM não conseguiu escrever em {0}. Ele pode estar aberto em outro programa ou o jogo pode ter iniciado.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Escolha uma tecla ou botão</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Tecla ou botão do controle</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Pressione uma tecla para capturá-la</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Pressione uma tecla agora... (Escape para parar)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Será salvo como: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Os botões do controle são escolhidos na lista, pois o AIM não consegue ler um controle. A lista contém todos os nomes aceitos pelo jogo; ALT, teclas de bloqueio e o teclado numérico não estão nela, e um mod configurado com um desses volta silenciosamente ao padrão.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Salvar</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Desvincular</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Esvazia a configuração. A maioria dos mods trata isso como "desativado"; alguns voltam ao padrão em vez disso.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (padrão do mod - ainda não configurado)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Os atalhos foram alterados</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>As {0} configuração(ões) escolhidas por você foram alteradas pelos próprios mods, normalmente depois que uma atualização redefiniu suas configurações.&#xA;&#xA;{1}&#xA;&#xA;Restaurar suas escolhas? Configurações que a atualização removeu completamente não serão restauradas.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... e mais {0}</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} configuração(ões) de atalho restaurada(s). Inicie o jogo para que tenham efeito.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Verificar atualizações</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Compara os mods selecionados com suas páginas no Nexus. Use a seta para todos os mods ou para instalar tudo que tiver uma atualização.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) verificado(s): {1} têm atualização, {2} não puderam ser verificados.&#xA;&#xA;Baixar e instalar essas atualizações agora? A versão atual de cada mod será mantida como backup para restauração.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Atualizar tudo que tiver atualização</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Baixa e instala cada atualização pendente em sequência, mantendo a versão atual de cada mod como um backup que pode ser restaurado.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Atualizar mods</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Não há atualizações pendentes. Verifique as atualizações primeiro.</value></data>
 </root>
