@@ -988,4 +988,52 @@ An AIM übergeben?</value></data>
   <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Nach {0} trat derselbe Absturz erneut auf.</value></data>
   <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Nach {0} ist das Spiel mit einem anderen Fehler erneut abgestürzt.</value></data>
   <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Das Spiel wurde nach {1} mit dem Code {0} beendet und hat kein Absturzprotokoll hinterlassen. Das bedeutet normalerweise, dass es von etwas außerhalb des Spiels geschlossen wurde, etwa durch einen Treiberfehler oder das Beenden des Prozesses, und nicht durch eine Mod. Dieser Lauf hat daher ebenfalls nichts bewiesen.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Das Spiel lief {0} und wurde normal beendet, ohne neuen Absturz.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Das Spiel ist im eigenen Code dieser Mod in {0}, Zeile {1}, fehlgeschlagen.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Der Code dieser Mod befindet sich im Aufrufstapel, in {0}, Zeile {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Diese Mod wird bereits in der Absturzmeldung selbst genannt.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Das Spiel ist beim Lesen seiner Daten „{0}“ abgestürzt, zu denen {1} installierte Mod beiträgt.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Das Spiel ist beim Lesen seiner Daten „{0}“ abgestürzt, zu denen {1} installierte Mods beitragen.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Diese Mod trägt zu den Daten „{0}“ bei, die das Spiel beim Absturz gelesen hat.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Die Daten „{0}“ im Spielarchiv auf der Festplatte enthalten keinen Eintrag ohne {1}. Die Ursache wurde daher bereits behoben, etwa durch ein Update, eine Neuinstallation oder eine Mod, die du inzwischen deaktiviert hast. Wenn es erneut passiert, komm zurück: Bei den unten aufgeführten Mods solltest du suchen.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Die Daten „{0}“, die das Spiel jetzt lädt, enthalten weiterhin einen Eintrag ohne {2}. Dieser Absturz tritt beim nächsten Start erneut auf.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Die Daten „{0}“, die das Spiel jetzt lädt, enthalten weiterhin {1} Einträge ohne {2}. Dieser Absturz tritt beim nächsten Start erneut auf.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Es benötigt installierte Engine-Hooks, und der Absturz ist ein Aufruf von etwas, das sich als keine Funktion erwiesen hat. So sieht ein Hook aus, der aus Sicht des Spiels nicht installiert wurde.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Dieser Absturz ist älter als die derzeit installierten Mods. Der beschriebene Fehler befindet sich jedoch weiterhin im Spielarchiv auf der Festplatte und ist daher kein veralteter Bericht. Rechne beim nächsten Start erneut damit.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Dieser Absturz ist älter als die derzeit installierten Mods. AIM hat das Spielarchiv nach dem Absturz neu erstellt, daher ist das abgestürzte Spiel nicht mehr dasselbe wie das aktuelle auf der Festplatte. Betrachte alles unten als Hinweis und nicht als Urteil, und spiele einmal, bevor du etwas änderst.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Der Fehler trat innerhalb von {0}() auf, bei: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Die eigenen „{0}“-Daten des Spiels enthalten in Zeile {2} einen Eintrag ohne {1}, der „{3}“ enthält. Keine andere installierte Mod definiert diesen Wert. Ein Eintrag ohne {1} ist genau die Stelle, an der das Spiel angehalten hat.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Die eigenen „{0}“-Daten des Spiels enthalten in Zeile {2} einen Eintrag ohne {1}, der „{3}“ enthält. Keine andere installierte Mod definiert diesen Wert. Der Eintrag enthält weiterhin seinen MOMIidentify-Block. Das bedeutet, dass die erwartete Zusammenführung nichts gefunden hat: Statt einen vorhandenen Eintrag mit {1} zu aktualisieren, wurde ein neuer Eintrag ohne diesen Wert hinzugefügt.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Die „{0}“-Daten des Spiels enthalten in Zeile {2} einen Eintrag ohne {1}, und diese Mod ist eine der Mods, die ihn geschrieben haben könnte.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Dieser Absturz ist älter als deine aktuelle Installation, und nichts darin passt zu einer derzeit installierten Mod.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} hat den Spielabsturz verursacht.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} Mods haben jeweils etwas in die Spieldaten geschrieben, das nicht geladen werden kann. Jede einzelne davon reicht als Ursache aus.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} ist die wahrscheinlichste Ursache.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} ist die einzige installierte Mod, die die vom Spiel gelesenen Daten verändert.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} installierte Mods tragen zu den Daten bei, bei denen das Spiel abgestürzt ist. Eine davon ist sehr wahrscheinlich die Ursache.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Nichts weist eindeutig auf eine Mod hin, aber einige sollten ausgeschlossen werden.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Etwas, das das Spiel geladen hat, enthielt nicht sein „{0}“, und keine installierte Mod besitzt es offensichtlich.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Das Spiel hat „{0}“ gelesen, bevor es von irgendetwas gesetzt wurde. Das ist normalerweise Mod-Code.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Das Spiel hat etwas aufgerufen, das keine Funktion war. Meistens handelt es sich um einen Hook, der nicht installiert wurde.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Das Spiel konnte das Asset „{0}“ nicht finden. Meistens handelt es sich um ein Sprite, auf das eine Mod verweist, das sie aber nicht mitliefert.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM konnte diesen Absturz allein anhand des Aufrufstapels keiner Mod zuordnen.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Diese Mods kommen infrage</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Zuerst die wahrscheinlichsten. Eine hier genannte Mod, weil der Absturz in ihrem eigenen Code auftrat, ist keine Vermutung. Eine Mod, die die vom Spiel gelesenen Daten schreibt, ist eine engere Auswahl.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Prüfen, ob das den Fehler behebt</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Deaktiviert die ausgewählte Mod, erstellt das Spiel neu, damit die Änderung wirksam wird, startet es und überwacht den Lauf. Spiele wie gewohnt. AIM meldet sich, wenn das Spiel beendet wird, oder nach einigen Minuten, falls es nicht abgestürzt ist.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Deaktivieren, neu erstellen und starten</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Das Deaktivieren einer Mod ändert nichts, was das Spiel sehen kann, bis das Archiv neu erstellt wurde. AIM erledigt daher alles, statt dich den mittleren Schritt selbst merken zu lassen.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Nichts ändern, nur starten und beobachten</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Das könnte hilfreich sein</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>Die Absturzdatei, wie das Spiel sie geschrieben hat</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Wo der Fehler auftrat</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Wo der Fehler auftrat ({0} Frames)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Bericht kopieren</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Kopiert alles in die Zwischenablage: den Fehler, den Aufrufstapel, AIMs Ergebnis und die installierten Mods.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Aktualisieren</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Suche nach Abstürzen…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Keine Abstürze vorhanden. Das Spiel ist seit der Installation nicht abgestürzt oder wurde auf diesem Computer noch nie ausgeführt.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Der Aufrufstapel wird mit deinen installierten Mods verglichen…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM kann deine Mod-Liste von hier aus nicht sehen. Daher kann es den Absturz anzeigen, aber nicht sagen, welche Mod ihn verursacht hat.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM konnte diesen Absturz nicht vollständig lesen: {0}</value></data>
 </root>
