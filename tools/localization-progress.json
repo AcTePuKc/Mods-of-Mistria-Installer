@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T02:44:36.8863862Z",
+  "generatedAt": "2026-09-09T02:48:15.7122405Z",
   "coreKeyCount": 465,
-  "nextLanguage": "ko",
+  "nextLanguage": "pl",
   "nextBatch": [
-    "GUIVersionsTooltip",
-    "GUIVersionsHeader",
-    "GUIUpdateBadgeInstalls",
-    "GUIUpdateBadgeOpensPage",
-    "GUINexusAccountPremium",
-    "GUINexusAccountFree",
-    "GUINexusAccountNoKey",
-    "GUINexusAccountUnknown",
-    "GUIKeybindsButton",
-    "GUIKeybindsButtonTooltip",
-    "GUIKeybindsTitle",
-    "GUIKeybindsIntro",
-    "GUIKeybindsSummary",
-    "GUIKeybindsOnlyOverlaps",
-    "GUIKeybindsRefresh",
-    "GUIKeybindsScanFailed",
-    "GUIKeybindsScanning",
-    "GUIKeybindsNone",
-    "GUIKeybindsNoOverlaps",
-    "GUIKeybindsNoConfigDirectory",
-    "GUIKeybindsGameRunning",
-    "GUIKeybindsAlsoUsedBy",
-    "GUIKeybindsClashHeader",
-    "GUIToggleVisibleMods"
+    "GUIRemoveSelectedFailed",
+    "GUIRemoveModRefused",
+    "GUIRemoveModMissing",
+    "GUIIssueDismissTooltip",
+    "GUIIssueShowDismissed",
+    "GUIIssueDismissedHeader",
+    "GUIIssueDismissedMarker",
+    "GUIConflictSharedFilesHeader",
+    "GUIConflictCurrentWinner",
+    "GUIConflictMakeThisWin",
+    "GUIConflictMakeThisWinTooltip",
+    "GUIConflictWinnerNow",
+    "GUIConflictFindAFix",
+    "GUIConflictFindAFixTooltip",
+    "GUIHotkeyRebindButton",
+    "GUIHotkeyRebindTooltip",
+    "GUIHotkeyRebindTitle",
+    "GUIHotkeyRebindConfirm",
+    "GUIHotkeyRebindDone",
+    "GUIHotkeyRebindFailed",
+    "GUIHotkeyRebound",
+    "GUIHotkeyReboundResolved",
+    "GUIHotkeyBlockedArchive",
+    "GUIHotkeyBlockedNotDeclared"
   ],
   "languages": [
     {
@@ -61,7 +61,7 @@
     },
     {
       "language": "ko",
-      "coreMissing": 156,
+      "coreMissing": 132,
       "coreComplete": false
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "language": "pl",
-      "coreMissing": 248,
+      "coreMissing": 224,
       "coreComplete": false
     },
     {
