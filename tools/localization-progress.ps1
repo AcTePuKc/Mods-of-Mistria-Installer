@@ -2,10 +2,15 @@ param(
     [string] $Language,
     [int] $BatchSize = 48,
     [switch] $AllMissing,
-    [switch] $Deferred
+    [switch] $Deferred,
+    [switch] $Remaining
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ($Deferred -and $Remaining) {
+    throw 'Use either -Deferred or -Remaining, not both.'
+}
 
 $languageDirectory = Join-Path $PSScriptRoot '..\ModsOfMistriaInstallerLib\Lang'
 $englishPath = Join-Path $languageDirectory 'Resources.resx'
@@ -25,9 +30,15 @@ function Test-DeferredKey([string] $key) {
     return $key.StartsWith('GUIResearch') -or $key.StartsWith('GUICrash')
 }
 
-$scopeName = if ($Deferred) { 'deferred' } else { 'core' }
+$scopeName = if ($Deferred) { 'deferred' } elseif ($Remaining) { 'remaining' } else { 'core' }
 $englishKeys = @(Get-ResourceKeys $englishPath | Where-Object {
-    if ($Deferred) { Test-DeferredKey $_ } else { Test-CoreKey $_ }
+    if ($Deferred) {
+        Test-DeferredKey $_
+    } elseif ($Remaining) {
+        -not (Test-CoreKey $_) -and -not (Test-DeferredKey $_)
+    } else {
+        Test-CoreKey $_
+    }
 })
 $localeFiles = @(Get-ChildItem -LiteralPath $languageDirectory -Filter 'Resources.*.resx' | Sort-Object Name)
 $languages = @()
@@ -42,6 +53,8 @@ foreach ($file in $localeFiles) {
         coreComplete = if ($Deferred) { $null } else { $missing.Count -eq 0 }
         deferredMissing = if ($Deferred) { $missing.Count } else { $null }
         deferredComplete = if ($Deferred) { $missing.Count -eq 0 } else { $null }
+        remainingMissing = if ($Remaining) { $missing.Count } else { $null }
+        remainingComplete = if ($Remaining) { $missing.Count -eq 0 } else { $null }
     }
 }
 
@@ -50,6 +63,8 @@ $selected = if ($Language) {
 } else {
     if ($Deferred) {
         @($languages | Where-Object { -not $_.deferredComplete } | Select-Object -First 1)
+    } elseif ($Remaining) {
+        @($languages | Where-Object { -not $_.remainingComplete } | Select-Object -First 1)
     } else {
         @($languages | Where-Object { -not $_.coreComplete } | Select-Object -First 1)
     }
@@ -64,7 +79,7 @@ if ($selected.Count -eq 0) {
         languages = $languages
     }
     $state | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $statePath -Encoding utf8
-    Write-Output "Core UI localization is complete for every language."
+    Write-Output ("{0} localization is complete for every language." -f $scopeName)
     exit 0
 }
 
