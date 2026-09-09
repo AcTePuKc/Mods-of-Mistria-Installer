@@ -490,4 +490,30 @@
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>По очереди скачивает и устанавливает все ожидающие обновления, сохраняя текущую версию каждого мода как резервную копию для восстановления.</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Обновить моды</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Нет ожидающих обновлений. Сначала проверьте обновления.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Обновить модов: {0}?&#xA;&#xA;{1}&#xA;&#xA;Текущая версия каждого мода будет сохранена как резервная копия, которую можно восстановить из контекстного меню.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Обновление {0} из {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Обновлено модов: {0} из {1}.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Эти моды нельзя скачать напрямую, нужна их страница на Nexus: {0}&#xA;&#xA;Nexus выдаёт прямые ссылки только Premium-аккаунтам. Для бесплатного аккаунта откройте страницу мода и нажмите «Mod Manager Download». AIM перехватит эту ссылку, если он зарегистрирован для её обработки.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Нечего сообщить. Среди выбранных модов AIM не нашёл общих файлов, конфликтов сочетаний, отсутствующих требований или предупреждений о совместимости.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Вы отметили это как не настоящий конфликт.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Вы нашли исправление для этого случая.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Вы признали эти моды несовместимыми. Выключите один из них.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Исправлено переназначением: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Отслеживаемые папки загрузки</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Моды, вручную загруженные в отслеживаемую папку, перемещаются в папку модов и сами появляются в списке.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Отслеживать папку...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Выберите папку для отслеживания загруженных модов</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Проверить отслеживаемые папки</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Нет отслеживаемых папок</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Перестать отслеживать эту папку</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Отслеживаемые папки</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Ничего нового для добавления нет. AIM перемещает только архивы и папки с манифестом, остальное оставляется на месте.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Добавлено модов из отслеживаемой папки: {0}.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Перемещено в папку модов:
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - этот мод уже установлен как «{1}». Обновите ту копию или сначала удалите её: две копии одного мода конфликтуют из-за общих файлов.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Оставлено в отслеживаемой папке:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Папка модов не найдена, поэтому открывать нечего.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Не удалось открыть папку модов: {0}</value></data>
 </root>

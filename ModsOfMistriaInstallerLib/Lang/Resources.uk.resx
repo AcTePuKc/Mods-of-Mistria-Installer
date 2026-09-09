@@ -382,4 +382,31 @@
   <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Вирішено: «{0}» переміщено на {1}, тому це сполучення більше не спільне. Встановіть мод ще раз, щоб застосувати зміну в грі.</value></data>
   <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Цей мод усе ще є файлом .zip або .rar. Спочатку розпакуйте його до папки модів, і AIM зможе змінити його прив’язку.</value></data>
   <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Цей мод не оголошує клавішу як іменовану прив’язку, тому AIM не може безпечно її змінити. Перевірте власні налаштування моду в грі або його файл конфігурації.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Усі функціональні клавіші вже використовуються вибраним модом, тому вільної клавіші для переміщення немає.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM не вдалося прочитати файли цього моду.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Сортувати від А до Я</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Сортує список за назвою, щоб швидко знайти мод. Це лише вигляд: порядок завантаження не змінюється, а після вимкнення знову показується справжній порядок. Перетягування призупинено, доки параметр увімкнено.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Сортувати за недавнім оновленням</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Найновіші спочатку, за часом останньої зміни папки кожного моду на диску. Щойно встановлені або оновлені моди піднімаються нагору. Це лише вигляд: порядок завантаження не змінюється, а перетягування призупинено.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Перемістити на початок порядку завантаження</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Завантажує цей мод першим, щоб інші могли на ньому будуватися та перевизначати його. Тут має бути фреймворк або мод, від якого залежать інші. Змінює справжній порядок завантаження, а не лише поточний вигляд списку.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Перемістити в кінець порядку завантаження</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Завантажує цей мод останнім, тому коли він ділить файл з іншим модом, перемагає саме він. Тут має бути перефарбування або особисте перевизначення. Змінює справжній порядок завантаження, а не лише поточний вигляд списку.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Лише увімкнені моди</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Приховує все вимкнене. Важливий порядок модів, які справді потрапляють у гру, а в довгому списку його важко читати серед невикористовуваних модів.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Лише моди, що потребують уваги</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Показує лише моди з доступним оновленням і моди, до яких не вдалося звернутися під час останньої перевірки: немає зв’язку з Nexus, проблема мережі або сторінка більше не існує.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Лише перегляд: порядок завантаження не змінено, перетягування призупинено</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Перейти на початок списку</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Перейти в кінець списку</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) також використовується модом {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Примітки до випуску</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Примітки до випуску: наведіть для завантаження, натисніть, щоб прочитати всю історію.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Що нового у {0}:
+{1}
+
+Натисніть, щоб прочитати всі версії.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Автор цього моду не опублікував приміток до випуску.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM не вдалося прочитати примітки до випуску цього моду. Потрібен підключений обліковий запис Nexus, а AIM має знати сторінку моду на Nexus.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>Версій із примітками: {0}, починаючи з найновішої.</value></data>
 </root>
