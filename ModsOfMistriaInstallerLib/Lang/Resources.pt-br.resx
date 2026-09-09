@@ -1138,4 +1138,20 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} foi marcado como não sendo a causa e não será oferecido novamente para este crash.</value></data>
   <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} foi marcado como não sendo a causa e ativado novamente. Instale para colocá-lo de volta no jogo.</value></data>
   <data name="GUICrashUnmarked" xml:space="preserve"><value>Sua marcação de {0} foi desfeita. Ele está novamente na lista como não testado.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>O AIM não tem um crash carregado para registrar isto.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Ativar novamente</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Este mod foi descartado, mas ainda está desativado. Normalmente o AIM ativa um mod descartado sozinho; desta vez não conseguiu. Esta opção faz isso.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} está ativado novamente. Instale para colocá-lo no jogo.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>O AIM não conseguiu ativar {0} novamente. O mod pode não estar mais na sua lista ou pode ter falhado ao carregar.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>DESCARTADO</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>CAUSADOR DE CRASH CONHECIDO</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Um teste provou isto: com o mod desativado, o jogo não travou. O AIM o deixou desativado e o marcou na sua lista. Correções que o AIM pode aplicar sozinho estão abaixo; a discussão do bug talvez já tenha uma resposta.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>TESTADO, SEM RESPOSTA</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Correções que o AIM pode aplicar sozinho</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Estas correções foram descobertas pelo AIM em suas próprias verificações, não em uma discussão de bug. São correções mecânicas de algo comprovadamente errado no arquivo — nunca um palpite sobre o que o autor quis dizer. O mod inteiro é copiado primeiro para o histórico de versões, marcado como alterado e protegido contra atualizações até surgir uma atualização que corrija isso corretamente.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Aplicar esta correção</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Aplicado a {0}. O mod foi marcado como alterado e protegido contra atualizações; a versão anterior está na lista de restauração acima.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Nada aqui está quebrado de uma forma que o AIM possa reparar sozinho.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Em {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;O AIM primeiro copiará o mod inteiro para o histórico de versões e bloqueará suas atualizações para que esta correção não seja sobrescrita silenciosamente. Continuar?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Atualizações bloqueadas porque o AIM corrigiu este mod: {0}</value></data>
 </root>

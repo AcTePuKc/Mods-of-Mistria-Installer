@@ -788,6 +788,22 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} oznaczono jako niebędący przyczyną i nie zostanie ponownie zaproponowany dla tej awarii.</value></data>
   <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} oznaczono jako niebędący przyczyną i ponownie włączono. Zainstaluj, aby przywrócić go w grze.</value></data>
   <data name="GUICrashUnmarked" xml:space="preserve"><value>Cofnięto Twoje oznaczenie {0}. Mod znów jest na liście jako nieprzetestowany.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM nie ma załadowanej awarii, do której można to przypisać.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Włącz ponownie</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Ten mod został wykluczony, ale nadal jest wyłączony. AIM zwykle sam włącza ponownie wykluczony mod, lecz tym razem się nie udało. Ta opcja robi to teraz.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} jest ponownie włączony. Zainstaluj, aby przywrócić go w grze.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM nie mógł ponownie włączyć {0}. Moda może już nie być na liście albo nie udało się go załadować.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>WYKLUCZONY</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>ZNANY POWODUJĄCY AWARIE</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Test to udowodnił: przy wyłączonym modzie gra nie uległa awarii. AIM pozostawił go wyłączonego i oznaczył na liście. Poprawki, które AIM może zastosować sam, są poniżej; wątek błędu może już zawierać odpowiedź.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>PRZETESTOWANY, BRAK ODPOWIEDZI</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Poprawki, które AIM może zastosować sam</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>To poprawki wyprowadzone przez AIM z własnych kontroli, a nie z wątku błędu. Są mechaniczną korektą czegoś, co jest wyraźnie nieprawidłowe w pliku — nigdy zgadywaniem intencji autora. Cały mod jest najpierw kopiowany do historii wersji, oznaczany jako zmieniony i chroniony przed aktualizacjami do czasu pojawienia się właściwej poprawki.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Zastosuj tę poprawkę</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Zastosowano do {0}. Mod oznaczono jako zmieniony i wstrzymano jego aktualizacje; poprzednia wersja znajduje się powyżej na liście przywracania.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Nic tutaj nie jest zepsute w sposób, który AIM może sam naprawić.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;W {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM najpierw skopiuje cały mod do historii wersji i wstrzyma jego aktualizacje, aby poprawka nie została po cichu nadpisana. Kontynuować?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Wstrzymano aktualizacje, ponieważ AIM naprawił ten mod: {0}</value></data>
   <data name="GUIResearchTitle" xml:space="preserve"><value>Znajdź poprawkę</value></data>
   <data name="GUIResearchWorking" xml:space="preserve"><value>Odczytywanie informacji ze stron tych modów…</value></data>
   <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Połącz konto Nexus w menu koła zębatego, a AIM będzie mógł czytać strony tych modów. Do tego czasu najszybsze pozostają poniższe linki.</value></data>

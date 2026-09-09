@@ -1,26 +1,9 @@
 {
-  "generatedAt": "2026-09-09T11:17:03.6641687Z",
+  "generatedAt": "2026-09-09T11:18:43.8608219Z",
   "scope": "deferred",
   "coreKeyCount": 232,
   "nextLanguage": "pt-br",
-  "nextBatch": [
-    "GUICrashCannotMarkWithoutCrash",
-    "GUICrashSwitchBackOn",
-    "GUICrashSwitchBackOnTooltip",
-    "GUICrashSwitchedBackOn",
-    "GUICrashCannotSwitchBackOn",
-    "GUICrashTagRuledOut",
-    "GUICrashTagLikelyCause",
-    "GUICrashCulpritNote",
-    "GUICrashTagTested",
-    "GUICrashRepairHeader",
-    "GUICrashRepairHint",
-    "GUICrashRepairApply",
-    "GUICrashRepairApplied",
-    "GUICrashRepairNone",
-    "GUICrashRepairConfirm",
-    "GUICrashRepairFrozen"
-  ],
+  "nextBatch": null,
   "languages": [
     {
       "language": "bg",
@@ -82,15 +65,15 @@
       "language": "pl",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 16,
-      "deferredComplete": false
+      "deferredMissing": 0,
+      "deferredComplete": true
     },
     {
       "language": "pt-br",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 16,
-      "deferredComplete": false
+      "deferredMissing": 0,
+      "deferredComplete": true
     },
     {
       "language": "ru",
