@@ -694,6 +694,30 @@
   <data name="GUICrashEditNeedFile" xml:space="preserve"><value>请先指定模组中的文件和要修改的行号。</value></data><data name="GUICrashEditSummary" xml:space="preserve"><value>崩溃修复：{2} 中的第 {1} 行 {0}</value></data>
   <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>崩溃修复：在 {1} 中暂存 {0}</value></data><data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM 会先保存整个模组，之后可以从恢复列表还原。只会修改此模组。&#xD;&#xA;&#xD;&#xA;继续吗？</value></data>
   <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>未修改任何内容；按当前状态运行游戏。</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>档案已与模组列表一致，无需重建。</value></data><data name="GUICrashStepRebuilt" xml:space="preserve"><value>游戏档案已重建。</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>正在启动 Fields of Mistria…</value></data><data name="GUICrashStepWatching" xml:space="preserve"><value>正在监视游戏。正常游戏即可；游戏关闭或 {0} 分钟未崩溃后 AIM 会报告。</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>游戏未启动，因此未进行检查。</value></data><data name="GUICrashVerdictCleared" xml:space="preserve"><value>禁用 {0} 后相同崩溃仍出现，因此它不是原因。AIM 已排除并重新启用它。</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>禁用 {0} 后相同崩溃仍出现，因此它不是原因。AIM 已排除它，但无法重新启用。</value></data><data name="GUICrashVerdictGuilty" xml:space="preserve"><value>禁用 {0} 后没有崩溃，它很可能是原因。请保持禁用或等待更新。</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>游戏没有崩溃，且没有内容改变。请重复上次的操作后再试。</value></data><data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>这次运行没有结论，因此 {0} 仍然可疑。AIM 会再次提供它。</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>游戏因其他原因崩溃，因此仅针对原崩溃排除 {0}。之前的结果已保留。</value></data><data name="GUICrashTrialProgress" xml:space="preserve"><value>针对这次崩溃已检查 {0}/{1} 个可疑对象。</value></data><data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM 无法保存这些结果，它们只在此窗口打开时保留。</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>测试下一个：{0}</value></data><data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>对下一个未测试的可疑模组执行相同检查：禁用、重建、启动并观察。已排除的模组保持启用。</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>所有可疑模组都已测试，但没有一个单独导致问题。两个模组可能共同造成问题。</value></data><data name="GUICrashRestartHunt" xml:space="preserve"><value>重新开始</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>删除 AIM 为此崩溃记录的所有结论，并再次提供所有可疑模组。</value></data><data name="GUICrashRestartedHunt" xml:space="preserve"><value>此崩溃的所有结论已清除。</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>已排除 — {0}/{1} 个可疑对象</value></data><data name="GUICrashSettledExpander" xml:space="preserve"><value>显示测试证明的内容</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>正在读取 {0} 的页面以寻找修复…</value></data><data name="GUICrashMarkInnocent" xml:space="preserve"><value>不是原因</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>无需运行测试即可记录此模组不是原因。它会移到排除列表，不再提供测试，并在 AIM 曾禁用它时重新启用。</value></data><data name="GUICrashMarkCulprit" xml:space="preserve"><value>标记为崩溃原因</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>记录此模组会导致崩溃。AIM 会禁用并标记它，但这是你的判断而非 AIM 的测试结论。</value></data><data name="GUICrashUnmark" xml:space="preserve"><value>撤销我的标记</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>撤销手动结论，并将此模组放回未测试列表。</value></data><data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>手动标记，AIM 未测试。</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>标记为非原因</value></data><data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>标记为崩溃原因</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>你将此模组标记为原因。AIM 未测试它，而是按你的判断禁用了它。</value></data><data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} 已标记为崩溃原因并禁用。安装后会在没有它的情况下重建游戏。</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} 已标记为崩溃原因，且原本就已禁用。</value></data><data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} 已标记为非原因，不会再次针对这次崩溃提供。</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} 已标记为非原因并重新启用。安装后会将它放回游戏。</value></data><data name="GUICrashUnmarked" xml:space="preserve"><value>已撤销对 {0} 的标记，它重新作为未测试对象出现。</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM 没有加载崩溃，无法记录此结论。</value></data><data name="GUICrashSwitchBackOn" xml:space="preserve"><value>重新启用</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>此模组已排除但仍处于禁用状态。此按钮会重新启用它。</value></data><data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} 已重新启用。安装后会将它放回游戏。</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM 无法重新启用 {0}。它可能不在列表中或加载失败。</value></data><data name="GUICrashTagRuledOut" xml:space="preserve"><value>已排除</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>已知崩溃原因</value></data><data name="GUICrashCulpritNote" xml:space="preserve"><value>测试证明了这一点：禁用它后游戏没有崩溃。AIM 保持禁用并在列表中标记了它。</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>已测试，无结论</value></data><data name="GUICrashRepairHeader" xml:space="preserve"><value>AIM 可以自行应用的修复</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>这些是 AIM 根据检查发现的机械修复，用于修正文件中明确错误的内容，而不是猜测作者意图。模组会先保存到版本历史并暂停更新。</value></data>
   <data name="GUICrashTitle" xml:space="preserve"><value>检查崩溃</value></data>
   <data name="GUICrashPickerLabel" xml:space="preserve"><value>崩溃</value></data>
   <data name="GUICrashOpenFolder" xml:space="preserve"><value>崩溃文件</value></data>

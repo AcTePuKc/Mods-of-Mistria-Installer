@@ -742,4 +742,52 @@
   <data name="GUICrashCopyTooltip" xml:space="preserve"><value>將錯誤、呼叫堆疊、AIM 結論和已安裝模組全部複製到剪貼簿。</value></data>
   <data name="GUICrashRefresh" xml:space="preserve"><value>重新整理</value></data>
   <data name="GUICrashLooking" xml:space="preserve"><value>正在尋找崩潰…</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>檔案已與模組清單一致，不需重建。</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>遊戲檔案已重建。</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>正在啟動 Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>正在監視遊戲。正常遊戲即可；遊戲關閉或 {0} 分鐘未崩潰後 AIM 會回報。</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>遊戲未啟動，因此未進行檢查。</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>停用 {0} 後相同崩潰仍出現，因此它不是原因。AIM 已排除並重新啟用它。</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>停用 {0} 後相同崩潰仍出現，因此它不是原因。AIM 已排除它，但沒有重新啟用。</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>停用 {0} 後沒有崩潰，它很可能是原因。請保持停用或等待更新。</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>已測試的模組都沒有導致這次崩潰。</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>檢查結果無法確定原因。</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>遊戲再次崩潰，但這次是不同的崩潰，因此結果無法確定。</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>已測試 {0} / {1} 個候選模組</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>這些檢查不會保留；完成後會恢復原本的模組狀態。</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>測試下一個：{0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>停用這個模組並再次啟動遊戲。</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>沒有更多候選模組可測試。</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>重新開始</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>清除檢查結果並從第一個候選模組重新開始。</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>已重新開始崩潰調查。</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>已確定的結果</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>顯示已完成的檢查</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>AIM 正在調查可能的崩潰原因。</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>不是原因</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>將此模組標記為已排除的原因。</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>標記為崩潰原因</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>將此模組標記為崩潰原因。</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>撤銷我的標記</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>移除你對此模組的手動標記。</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>此結果由你手動標記。</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>手動排除</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>手動標記</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>你已將此模組標記為崩潰原因。</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>已標記為崩潰原因。</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>已標記為崩潰原因，且目前已停用。</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>已標記為不是原因。</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>已標記為不是原因，且目前已啟用。</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>已移除手動標記。</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>沒有可用的崩潰結果，無法手動標記。</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>重新啟用</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>重新啟用此模組並重建遊戲檔案。</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>已重新啟用此模組。</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>無法重新啟用此模組。</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>已排除</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>已知崩潰原因</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>此模組很可能是崩潰原因。</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>已測試</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>AIM 可以自行套用的修復</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>這些是 AIM 根據檢查發現的機械修復，用於修正檔案中明確錯誤的內容，而不是猜測作者意圖。模組會先儲存到版本歷史並暫停更新。</value></data>
 </root>
