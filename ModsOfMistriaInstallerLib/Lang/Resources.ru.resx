@@ -596,4 +596,62 @@
   <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Обновление заменяет папку мода, поэтому изменение AIM исчезнет. Если новая версия не исправила проблему, сбой вернётся, и исправление можно применить снова. Предыдущая версия останется в списке восстановления.</value></data>
   <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Обнаружен внешний архив</value></data>
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM обнаружил изменённый извне assets.zip.&#xA;&#xA;Если продолжить, AIM:&#xA;• сохранит его как файл assets.foreign-...zip&#xA;• восстановит проверенную резервную копию&#xA;• повторит эту установку&#xA;&#xA;Моды, существующие только во внешнем архиве, будут неактивны. Продолжить?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Найти исправление</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Читаю страницы этих модов…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Подключите аккаунт Nexus в меню с шестерёнкой, и AIM сможет читать страницы этих модов. Пока что быстрее всего воспользоваться ссылками ниже.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>В описаниях, readme, changelog, отчётах об ошибках и комментариях этих модов нет ответа. AIM проверил всю ветку комментариев по названию другого мода и свежие отчёты, так что это действительно «никто не сказал», а не «никто не искал». Это не означает «проблемы нет».</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>На страницах этих модов найдено связанных с этой парой сведений: {0}.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM не смог прочитать страницы модов: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Что говорят страницы модов</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Проверьте сами</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM читает комментарии, выполняя поиск по всей ветке, а трекер ошибок — на несколько страниц вглубь, но только как вышедший из аккаунта посетитель. Эти ссылки открывают настоящие страницы.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Открыть страницу мода</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Открыть исправление</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Что вы нашли?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Запись результата сохраняет ответ вместе с проблемой, чтобы в следующий раз не разбираться заново.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Ссылка на исправление (необязательно):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Это не настоящий конфликт</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Моды используют общие файлы, но на практике это не мешает. Помечает проблему решённой и скрывает её до обновления одного из модов.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Есть исправление</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Кто-то опубликовал исправление совместимости. Нажмите один раз, чтобы добавить ссылку, и ещё раз, чтобы записать её. Помечает проблему решённой.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Моды несовместимы</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Записывает результат, но оставляет проблему видимой: один из модов всё ещё нужно отключить.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Решение ещё не принято</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Записать исправление</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Это не похоже на ссылку https. Вставьте веб-адрес исправления или оставьте поле пустым.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Анализ файлов AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM прочитал все файлы, общие для этих модов.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM не смог прочитать все файлы, поэтому считайте это анализом, а не фактом.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>Общий файл: {0}</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>Общих файлов: {0}</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Не удалось построить часть этого окна: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Моды в этом конфликте</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Откройте страницу, чтобы оценить мод самостоятельно, или удалите его из списка, если уже решили отказаться от него.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Открыть страницу</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM не знает, откуда взят этот мод, поэтому страницу открыть нельзя.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Удалить</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Удаляет мод из папки модов. AIM сначала спросит, а файлы отправит в Корзину.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} удалён, поэтому конфликта больше нет.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Что уже установлено</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Моды из вашего списка, связанные с этой парой. AIM проверил их до предложения загрузки.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Что может сделать AIM</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Ничего не произойдёт, пока вы не выберете действие, и всё это можно отменить.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Уже существующие исправления</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Одобрить и применить</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Готово: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Не сработало: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Говорит, что всё нормально</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Говорит, что это проблема</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Работает при условии</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Упоминает тему, но не отвечает</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>НОРМАЛЬНО</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>ПРОБЛЕМА</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>УСЛОВИЕ</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>КОНТЕКСТ</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Показать цитату полностью</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Показать меньше</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Найти на странице</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Копирует «{0}» и открывает страницу-источник. Нажмите там Ctrl+F и вставьте текст. Если это комментарий, используйте поиск самой ветки.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Скопировано. Нажмите Ctrl+F на открытой странице и вставьте текст.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Это изменит файлы мода, который написали не вы. AIM сначала скопирует весь мод в список версий и отметит строку как изменённую. Продолжить?</value></data>
 </root>
