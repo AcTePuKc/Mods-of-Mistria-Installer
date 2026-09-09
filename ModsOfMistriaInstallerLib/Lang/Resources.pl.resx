@@ -644,6 +644,54 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Gra uległa awarii z innego powodu, więc {0} zostaje wykluczony tylko dla pierwotnej awarii. AIM wczytał nową awarię, a wcześniejsze wyniki zachował.</value></data>
   <data name="GUICrashTrialProgress" xml:space="preserve"><value>Przetestowano {0} z {1} podejrzanych dla tej awarii.</value></data>
   <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM nie może zapisać tych wyników, więc pozostaną dostępne tylko do czasu zamknięcia tego okna.</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM odczytał każdy plik współdzielony przez te mody.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM nie mógł odczytać wszystkich plików, więc potraktuj to jako analizę, a nie pewnik.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} współdzielony plik</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} współdzielonych plików</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Nie udało się zbudować części tego okna: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Mody w tym konflikcie</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Otwórz stronę, aby samodzielnie ocenić mod, albo usuń go z listy modów, jeśli już go wykluczyłeś.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Otwórz stronę</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM nie wie, skąd pochodzi ten mod, więc nie ma strony do otwarcia.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Usuń</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Usuwa ten mod z folderu modów. AIM najpierw zapyta, a pliki trafią do Kosza.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>Usunięto {0}, więc konflikt już nie występuje.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>To już masz</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mody z Twojej listy, które mają znaczenie dla tej pary. AIM sprawdził je przed zaproponowaniem pobierania.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Co AIM może z tym zrobić</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Nic tutaj nie dzieje się bez Twojego wyboru, a każdą z tych czynności można cofnąć.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Istniejące poprawki</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Zatwierdź i zastosuj</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Gotowe: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>To nie zadziałało: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Mówi, że wszystko jest w porządku</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Mówi, że to problem</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Działa pod pewnym warunkiem</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Wspomina temat, ale nie odpowiada</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>W PORZĄDKU</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLEM</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>WARUNEK</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>KONTEKST</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Pokaż cały cytat</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Pokaż mniej</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Znajdź na stronie</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Kopiuje „{0}” i otwiera stronę, z której pochodzi. Naciśnij tam Ctrl+F i wklej, aby od razu do tego przejść. Jeśli to komentarz, może być kilka stron wcześniej, więc wklej go do wyszukiwarki samego wątku.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Skopiowano. Naciśnij Ctrl+F na właśnie otwartej stronie i wklej.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Zmieni to pliki moda, którego nie napisałeś. AIM najpierw skopiuje cały mod do listy Wersje i oznaczy wiersz jako zmieniony. Kontynuować?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Sprawdzenie awarii</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Awaria</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Pliki awarii</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Otwiera folder, w którym AIM przechowuje kopię każdej wykrytej awarii. Sama gra zachowuje tylko najnowszą.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Wnioski AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM nie znalazł pliku wykonywalnego gry, więc nie może jej uruchomić i obserwować.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria jest już uruchomione. Najpierw zamknij grę, aby AIM obserwował sesję uruchomioną przez siebie.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM nie mógł uruchomić gry: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Gra uległa awarii, ale AIM nie mógł odczytać pozostawionego dziennika. Ta sesja niczego więc nie dowodzi na temat moda. Warto uruchomić sprawdzenie ponownie.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Gra ponownie uległa awarii podczas sprawdzania.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Gra nadal działa po zakończeniu okna sprawdzania i nie uległa awarii. To oczekiwany wynik — graj dalej.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Po {0} powróciła ta sama awaria.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Po {0} gra ponownie uległa awarii, ale z innym błędem.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Gra zakończyła się kodem {0} po {1} i nie pozostawiła dziennika awarii. Zwykle oznacza to zamknięcie przez coś spoza gry — błąd sterownika albo zakończenie procesu — a nie przez mod, więc ta sesja również niczego nie dowodzi.</value></data>
   <data name="GUIResearchTitle" xml:space="preserve"><value>Znajdź poprawkę</value></data>
   <data name="GUIResearchWorking" xml:space="preserve"><value>Odczytywanie informacji ze stron tych modów…</value></data>
   <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Połącz konto Nexus w menu koła zębatego, a AIM będzie mógł czytać strony tych modów. Do tego czasu najszybsze pozostają poniższe linki.</value></data>
