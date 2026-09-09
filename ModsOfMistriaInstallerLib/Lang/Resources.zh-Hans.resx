@@ -564,4 +564,28 @@
   <data name="GUINexusApiRateLimited" xml:space="preserve"><value>你已达到 Nexus API 的速率限制。请稍等片刻再下载。</value></data>
   <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus 返回了错误（{0}）。</value></data>
   <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>尚未连接 Nexus 帐户。</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>此模组来源的文件已不在 Nexus 页面上，页面上剩余的文件也没有比它更新的版本。该页面托管多个独立模组，因此 AIM 不会将其他模组提供为更新。如果你认为有更新版本，请手动检查该页面。</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>该模组页面没有可用于比较的主文件。</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM 不知道此模组来自页面上的哪个文件，因此无法判断页面版本是否更新。通过 AIM 下载一次，或右键点击模组并将其关联到特定文件，之后更新检查就会可靠。</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>更新检查提前停止。</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>此模组的更新检查未完成。</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>尚未连接 Nexus 帐户。</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>该下载属于另一款游戏（{0}），因此此安装器无法处理。</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>该下载链接已过期。请再次点击模组页面上的“Vortex download”按钮。</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>找不到模组文件夹。</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>正在向 Nexus 查询文件...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>正在下载 {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>正在解压 {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>安装已取消</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>已安装 {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>已安装 {0} 个模组</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>下载已取消</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>下载链接为空。</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>这不是 nxm:// 链接。</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>链接没有指定游戏。</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus 收藏集尚不受支持，请单独下载模组。</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>该链接不是模组文件下载链接。</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>链接包含无效的模组 ID 或文件 ID。</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>无法确定安装器的运行位置。</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>仅 Windows 和 Linux 支持注册 nxm:// 链接。</value></data>
 </root>
