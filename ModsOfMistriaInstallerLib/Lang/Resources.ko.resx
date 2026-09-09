@@ -562,4 +562,28 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Nexus의 응답을 읽지 못했습니다.</value></data>
   <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus가 계정 세션을 거부했습니다. Nexus 계정을 다시 연결하세요.</value></data>
   <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus가 요청을 거부했습니다. 다운로드 링크가 만료되었을 수 있으니 다시 클릭하세요.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>해당 모드 또는 파일은 더 이상 Nexus에 존재하지 않습니다.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Nexus API 요청 한도에 도달했습니다. 잠시 기다린 후 다시 다운로드하세요.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus에서 오류를 반환했습니다 ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>아직 연결된 Nexus 계정이 없습니다.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>이 모드의 원본 파일은 Nexus 페이지에서 사라졌고, 현재 있는 파일에도 더 새로운 버전이 없습니다. 이 페이지에는 여러 모드가 있으므로 AIM은 다른 모드를 업데이트로 제안하지 않습니다. 새 릴리스가 있다고 생각되면 직접 페이지를 확인하세요.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>이 모드 페이지에는 비교할 메인 파일이 없습니다.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM은 이 모드가 페이지의 어느 파일에서 왔는지 몰라 페이지의 버전이 더 새로운지 판단할 수 없습니다. AIM으로 한 번 다운로드하거나 모드를 마우스 오른쪽 버튼으로 클릭하여 특정 파일과 연결하면 업데이트 확인이 정확해집니다.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>업데이트 확인이 일찍 중지되었습니다.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>이 모드의 업데이트 확인이 완료되지 않았습니다.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>아직 연결된 Nexus 계정이 없습니다.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>이 다운로드는 다른 게임 ({0})용이므로 이 설치 프로그램이 처리할 수 없습니다.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>다운로드 링크가 만료되었습니다. 모드 페이지에서 「Vortex download」 버튼을 다시 클릭하세요.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>모드 폴더를 찾지 못했습니다.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Nexus에 파일을 문의하는 중...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>{0} 다운로드 중</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>{0} 압축 해제 중</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>설치가 취소되었습니다</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} 설치됨</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0}개 모드 설치됨</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>다운로드가 취소되었습니다</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>다운로드 링크가 비어 있습니다.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>nxm:// 링크가 아닙니다.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>링크에 게임 이름이 없습니다.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus 컬렉션은 아직 지원되지 않습니다. 모드를 개별적으로 다운로드하세요.</value></data>
 </root>

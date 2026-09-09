@@ -466,4 +466,28 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIKeybindsDefault" xml:space="preserve"><value>domyślne moda; AIM nie może go zmienić, dopóki mod nie zapisze ustawień</value></data>
   <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Ten mod nie zapisał jeszcze ustawień, więc używa domyślnej wartości wbudowanej w mod. Uruchom grę raz albo zmień ustawienie w samym modzie, aby AIM mógł edytować je tutaj.</value></data>
   <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(nieprzypisany)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>gra tego nie zaakceptuje</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>„{0}” nie jest nazwą rozpoznawaną przez grę, więc ten mod wraca do wartości domyślnej. Ustaw coś z listy, aby to naprawić.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM nie może zapisać do {0}. Plik może być otwarty w innym programie albo gra mogła się uruchomić.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Wybierz klawisz lub przycisk</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Klawisz lub przycisk kontrolera</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Naciśnij klawisz, aby go przechwycić</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Naciśnij teraz klawisz... (Escape, aby zatrzymać)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Zostanie zapisane jako: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Przyciski kontrolera wybiera się z listy, ponieważ AIM nie może odczytać kontrolera. Lista zawiera każdą nazwę akceptowaną przez grę; ALT, klawisze blokad i klawiatura numeryczna nie są na niej dostępne, a mod ustawiony na jeden z nich po cichu wraca do wartości domyślnej.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Zapisz</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Usuń przypisanie</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Czyści ustawienie. Większość modów traktuje to jako „wyłączone”, a niektóre wracają zamiast tego do wartości domyślnej.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (domyślne moda, jeszcze nieskonfigurowane)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Zmieniono skróty klawiszowe</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Wybrane przez Ciebie przypisania ({0}) zostały zmienione przez same mody, zwykle po aktualizacji, która zresetowała ich ustawienia.&#xA;&#xA;{1}&#xA;&#xA;Przywrócić Twoje wybory? Ustawienia całkowicie usunięte przez aktualizację nie zostaną przywrócone.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... i jeszcze {0}</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Przywrócono {0} przypisań. Uruchom grę, aby zaczęły działać.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Sprawdź aktualizacje</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Sprawdza zaznaczone mody na ich stronach Nexus. Strzałka służy do sprawdzenia wszystkich modów lub zainstalowania wszystkiego, co ma aktualizację.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Sprawdzono {0} modów: {1} ma aktualizację, a {2} nie udało się sprawdzić.&#xA;&#xA;Pobrać i zainstalować te aktualizacje teraz? Bieżąca wersja każdego moda zostanie zachowana jako kopia zapasowa, którą można przywrócić.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Aktualizuj wszystko, co ma aktualizację</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Pobiera i instaluje po kolei wszystkie oczekujące aktualizacje, zachowując bieżącą wersję każdego moda jako kopię zapasową do przywrócenia.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Aktualizuj mody</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Brak oczekujących aktualizacji. Najpierw sprawdź aktualizacje.</value></data>
 </root>
