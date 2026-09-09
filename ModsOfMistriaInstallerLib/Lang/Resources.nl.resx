@@ -863,4 +863,28 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Het gedownloade archief overschrijdt de ondersteunde grootte na uitpakken.</value></data>
   <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Archiefitem „{0}” overschrijdt de ondersteunde grootte na uitpakken.</value></data>
   <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Het gedownloade bestand is geen archief dat deze installer kan lezen. zip, rar en 7z worden ondersteund.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Het archief bevat een onveilig pad: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Inloggen bij Nexus is geannuleerd omdat de callbackstatus niet overeenkwam.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus heeft geen autorisatiecode teruggestuurd.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>De sessie van het Nexus-account moet opnieuw worden verbonden.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>De Nexus OAuth-registratie voor AIM wacht nog op voltooiing.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus kon het inloggen op het account niet voltooien.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus heeft een onvolledige accountsessie teruggestuurd.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Kon het antwoord van het Nexus-account niet lezen.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM wacht op de callback van de Nexus-aanmelding.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Het antwoord van de Nexus-aanmelding past niet bij deze AIM-sessie.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Inloggen bij Nexus is geannuleerd. Je kunt teruggaan naar AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Inloggen bij Nexus is geannuleerd of door de browser geweigerd.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Inloggen bij Nexus voltooid. Je kunt teruggaan naar AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus gaf geen downloadservers voor dat bestand terug.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>De Nexus-API reageerde niet op tijd.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Kon de Nexus-API niet bereiken: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus gaf een onverwacht antwoord terug.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Kon het antwoord van Nexus niet lezen.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus heeft de accountsessie geweigerd. Verbind je Nexus-account opnieuw.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus heeft het verzoek geweigerd. De downloadlink kan verlopen zijn; klik er opnieuw op.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Die mod of dat bestand bestaat niet meer op Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Je hebt de limiet van de Nexus-API bereikt. Wacht even voordat je opnieuw downloadt.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus gaf een fout terug ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Er is nog geen Nexus-account verbonden.</value></data>
 </root>

@@ -768,4 +768,28 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIVersionsHeader" xml:space="preserve"><value>Reverter para:</value></data>
   <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Clique para baixar e instalar. Sua versão atual será mantida como backup.</value></data>
   <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Clique para abrir a página de download. O AIM não sabe qual arquivo do Nexus é este. Clique com o botão direito no mod e use "Associar ao Nexus..." para permitir que ele seja instalado automaticamente.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>O Nexus informa que sua conta ({0}) é Premium, então esta recusa não está relacionada ao nível da conta. Normalmente, a sessão expirou ou foi revogada. Entre novamente pelo menu da engrenagem.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>O Nexus informa que sua conta ({0}) é gratuita. Downloads diretos são um recurso Premium, então use o botão do site.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Nenhuma conta do Nexus está conectada, então o AIM não pode baixar nada diretamente.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>O AIM não conseguiu verificar sua conta do Nexus: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Atalhos</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Todas as teclas e botões de controle usados pelos seus mods em uma lista, com conflitos em vermelho e edição no local.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Atalhos dos mods</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>As teclas às quais seus mods estão associados agora. Os mods mantêm isso na pasta de configuração do próprio jogo, não na pasta de mods, então uma atualização não perde essas configurações. Um mod ainda pode redefinir suas próprias configurações, e o AIM oferecerá restaurar sua escolha quando isso acontecer.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} configurações, {1} em conflito.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Mostrar apenas conflitos</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Atualizar</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>O AIM não conseguiu ler os atalhos dos seus mods: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Lendo as configurações dos seus mods...</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Nenhum dos mods selecionados tem um atalho que o AIM consiga ver. Mods que criam atalhos durante a execução não os exibem até o jogo ser executado.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Nenhum conflito.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>O AIM não encontrou a pasta de configuração do jogo, então está mostrando os padrões enviados pelos seus mods. Execute o jogo uma vez para que eles se tornem suas configurações reais.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria está em execução. A edição está desativada porque, ao fechar, o jogo reescreve as configurações de todos os mods e sobrescreveria qualquer alteração feita aqui. Feche o jogo e pressione Atualizar.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>também usado por {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>A mesma entrada está configurada em:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Marcar ou desmarcar os mods na tela</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Aplica-se às linhas exibidas atualmente pela sua busca e pelos filtros, e a nada que esteja oculto por eles. Sem filtro, aplica-se a todos os mods. Mods que o AIM não consegue instalar ficam inalterados.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>padrão do mod; o AIM não pode alterá-lo até o mod salvar suas configurações</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Este mod ainda não salvou suas configurações, então este é o padrão compilado nele. Execute o jogo uma vez ou altere nas configurações do próprio mod para que o AIM possa editá-lo aqui.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(não configurado)</value></data>
 </root>
