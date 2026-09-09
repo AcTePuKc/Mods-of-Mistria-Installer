@@ -939,7 +939,7 @@ Open download page(s) in browser?</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} keybind(s) you chose have been changed by the mods themselves - usually after an update reset their settings.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Put your choices back? Settings the update removed altogether are not restored.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…and {0} more.</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Restored {0} keybind(s). Start the game for them to take effect.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Check Updates</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Checks the selected mods against their Nexus pages. Use the arrow for all mods, or to install everything that has an update.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Checked {0} mod(s): {1} have an update, {2} could not be checked.&#xD;&#xA;&#xD;&#xA;Download and install those updates now? Each mod's current version is kept as a backup you can restore.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Update everything that has an update</value></data>

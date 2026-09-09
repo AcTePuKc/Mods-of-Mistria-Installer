@@ -483,7 +483,7 @@
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Выбранные вами привязки ({0}) были изменены самими модами, обычно после сброса настроек обновлением.&#xA;&#xA;{1}&#xA;&#xA;Вернуть ваши значения? Настройки, полностью удалённые обновлением, не восстанавливаются.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... и ещё {0}</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Восстановлено привязок: {0}. Запустите игру, чтобы они начали действовать.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Проверить обновления</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Обновления</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Проверяет выбранные моды по их страницам на Nexus. Используйте стрелку для проверки всех модов или установки всего, что имеет обновление.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Проверено модов: {0}; обновление есть у {1}, проверить не удалось: {2}.&#xA;&#xA;Скачать и установить эти обновления сейчас? Текущая версия каждого мода будет сохранена как резервная копия.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Обновить всё доступное</value></data>

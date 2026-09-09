@@ -483,7 +483,7 @@
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>你选择的 {0} 个绑定已被模组自行更改，通常是更新重置设置后发生的。&#xA;&#xA;{1}&#xA;&#xA;要恢复你的选择吗？更新完全移除的设置不会恢复。</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... 以及另外 {0} 个</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>已恢复 {0} 个按键绑定。启动游戏后即可生效。</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>检查更新</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>更新</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>将选中的模组与其 Nexus 页面进行比较。使用箭头检查所有模组，或安装所有有更新的模组。</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>已检查 {0} 个模组：{1} 个有更新，{2} 个无法检查。&#xA;&#xA;现在下载并安装这些更新吗？每个模组的当前版本都会作为备份保留。</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>更新所有可更新项目</value></data>

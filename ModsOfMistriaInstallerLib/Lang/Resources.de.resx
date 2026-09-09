@@ -805,7 +805,7 @@ An AIM übergeben?</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Die von dir gewählten {0} Belegung(en) wurden von den Mods selbst geändert, meist nachdem ein Update ihre Einstellungen zurückgesetzt hat.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Deine Auswahl wiederherstellen? Einstellungen, die das Update vollständig entfernt hat, werden nicht wiederhergestellt.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… und {0} weitere.</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} Tastenbelegung(en) wiederhergestellt. Starte das Spiel, damit sie wirksam werden.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates prüfen</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Prüft die ausgewählten Mods anhand ihrer Nexus-Seiten. Verwende den Pfeil für alle Mods oder um alle verfügbaren Updates zu installieren.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} Mod(s) geprüft: Für {1} gibt es ein Update, {2} konnten nicht geprüft werden.&#xD;&#xA;&#xD;&#xA;Diese Updates jetzt herunterladen und installieren? Die aktuelle Version jedes Mods wird als wiederherstellbare Sicherung aufbewahrt.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Alle verfügbaren Updates installieren</value></data>

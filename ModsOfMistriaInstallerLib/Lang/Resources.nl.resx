@@ -806,7 +806,7 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>De {0} binding(en) die je koos zijn door de mods zelf gewijzigd, meestal nadat een update hun instellingen heeft gereset.&#xA;&#xA;{1}&#xA;&#xA;Je keuzes terugzetten? Instellingen die de update volledig heeft verwijderd worden niet hersteld.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... en nog {0}</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} toetsenbinding(en) hersteld. Start het spel om ze toe te passen.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates controleren</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Updates</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Controleert de geselecteerde mods tegen hun Nexus-pagina's. Gebruik de pijl voor alle mods of om alles met een update te installeren.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) gecontroleerd: {1} hebben een update, {2} konden niet worden gecontroleerd.&#xA;&#xA;Deze updates nu downloaden en installeren? De huidige versie van elke mod wordt als back-up bewaard.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Alles met een update bijwerken</value></data>
