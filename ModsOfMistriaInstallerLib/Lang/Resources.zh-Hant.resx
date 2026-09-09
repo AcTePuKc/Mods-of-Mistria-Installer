@@ -537,4 +537,28 @@
   <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>下載的壓縮檔超過支援的解壓縮後大小。</value></data>
   <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>壓縮檔項目「{0}」超過支援的解壓縮後大小。</value></data>
   <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>下載的檔案不是此安裝程式可以讀取的壓縮檔（支援 zip、rar 和 7z）。</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>壓縮檔包含不安全的路徑：{0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>由於回呼狀態不相符，Nexus 登入已取消。</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus 沒有回傳授權碼。</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus 帳戶工作階段需要重新連線。</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>AIM 的 Nexus OAuth 註冊仍在等待處理。</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus 無法完成帳戶登入。</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus 回傳的帳戶工作階段不完整。</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>無法讀取 Nexus 帳戶回應。</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM 正在等待 Nexus 登入回呼。</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Nexus 登入回應與此 AIM 工作階段不相符。</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Nexus 登入已取消。你可以返回 AIM。</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Nexus 登入已取消，或遭瀏覽器拒絕。</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Nexus 登入已完成。你可以返回 AIM。</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus 沒有為該檔案回傳下載伺服器。</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus API 未及時回應。</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>無法連線到 Nexus API：{0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus 回傳了意外的回應。</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>無法讀取 Nexus 的回應。</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus 拒絕了帳戶工作階段。請重新連線 Nexus 帳戶。</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus 拒絕了要求。下載連結可能已過期，請再次點選。</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>該模組或檔案已不再存在於 Nexus。</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>你已達到 Nexus API 的速率限制。請稍候再下載。</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus 回傳了錯誤（{0}）。</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>尚未連線 Nexus 帳戶。</value></data>
 </root>
