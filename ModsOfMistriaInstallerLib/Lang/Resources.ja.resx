@@ -428,4 +428,24 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIModEditedTooltip" xml:space="preserve"><value>競合を解決するため、AIM はこの Mod 内のファイルを変更しました。ディスク上のファイルは、作成者が公開したものと完全には同じではありません。</value></data>
   <data name="GUIModEditedUndoHint" xml:space="preserve"><value>変更前の Mod はバージョンのドロップダウンにあります。そこで復元するか、Mod を右クリックして「AIM の編集を元に戻す」を選んでください。</value></data>
   <data name="GUIModUndoAimEdits" xml:space="preserve"><value>AIM の編集を元に戻す</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Nexus Mods で追跡</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>この Mod を Nexus の追跡対象に追加し、サイトから更新や作成者の投稿を知らせてもらいます。Nexus アカウントへの接続が必要です。</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Nexus Mods で「{0}」の追跡を開始しました。</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Nexus Mods ではすでに「{0}」を追跡しています。</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Nexus Mods で「{0}」を追跡できませんでした：{1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM は、この Mod のページから Nexus Mod ID を読み取れませんでした。</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>更新時に AIM が保存した、この Mod の以前のコピーです。選択するとその状態に戻せます。</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>復元先：</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>クリックしてダウンロードとインストールを行います。現在のバージョンはバックアップとして保持されます。</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>クリックしてダウンロードページを開きます。AIM はどの Nexus ファイルか把握していません。Mod を右クリックして「Nexus に関連付け…」を使うと自動でインストールできます。</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus はアカウント（{0}）を Premium と報告しているため、この拒否はアカウントの種類が原因ではありません。多くの場合、サインインの期限切れまたは取り消しを意味します。歯車メニューからもう一度サインインしてください。</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus はアカウント（{0}）を無料アカウントと報告しています。直接ダウンロードは Premium 機能のため、Web サイトのボタンを使用してください。</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Nexus アカウントに接続されていないため、AIM は直接ダウンロードできません。</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM は Nexus アカウントを確認できませんでした：{0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>キー設定</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Mod が割り当てているすべてのキーとコントローラーのボタンを1つの一覧で表示します。競合は赤で表示され、その場で編集できます。</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Mod のキー設定</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>現在 Mod が使っているキー設定です。Mod は Mod フォルダーではなくゲーム自身の設定フォルダーに保存するため、更新しても失われません。ただし Mod が設定をリセットすることはあり、その場合 AIM は選択を戻すことを提案します。</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} 件の設定、うち {1} 件が競合</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>競合のみ表示</value></data>
 </root>
