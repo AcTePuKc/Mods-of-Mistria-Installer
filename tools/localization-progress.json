@@ -1,32 +1,16 @@
 {
-  "generatedAt": "2026-09-09T09:43:34.4345937Z",
+  "generatedAt": "2026-09-09T09:44:57.4957257Z",
   "coreKeyCount": 465,
   "nextLanguage": "zh-Hant",
   "nextBatch": [
-    "GUIModArchiveUnsafePath",
-    "GUINexusOAuthStateMismatch",
-    "GUINexusOAuthMissingCode",
-    "GUINexusOAuthReconnectRequired",
-    "GUINexusOAuthRegistrationPending",
-    "GUINexusOAuthSignInFailed",
-    "GUINexusOAuthIncompleteSession",
-    "GUINexusOAuthUnreadableResponse",
-    "GUINexusOAuthWaiting",
-    "GUINexusOAuthStateMismatchBrowser",
-    "GUINexusOAuthCancelledBrowser",
-    "GUINexusOAuthCancelled",
-    "GUINexusOAuthCompleted",
-    "GUINexusApiNoDownloadServers",
-    "GUINexusApiTimedOut",
-    "GUINexusApiUnreachable",
-    "GUINexusApiUnexpectedResponse",
-    "GUINexusApiUnreadableResponse",
-    "GUINexusApiUnauthorized",
-    "GUINexusApiForbidden",
-    "GUINexusApiNotFound",
-    "GUINexusApiRateLimited",
-    "GUINexusApiUnexpectedStatus",
-    "GUINexusUpdateNoAccount"
+    "GUINxmRegistrationMayBeOverridden",
+    "GUINxmRegistrationNotVerified",
+    "GUIUpdateMayFixHeader",
+    "GUIUpdateMayFix",
+    "GUIUpdateMayFixAction",
+    "GUIUpdateMayFixTooltip",
+    "GUIForeignArchiveRecoveryTitle",
+    "GUIForeignArchiveRecoveryMessage"
   ],
   "languages": [
     {
@@ -96,7 +80,7 @@
     },
     {
       "language": "zh-Hant",
-      "coreMissing": 56,
+      "coreMissing": 8,
       "coreComplete": false
     }
   ]

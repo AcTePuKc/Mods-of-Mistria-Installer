@@ -561,4 +561,36 @@
   <data name="GUINexusApiRateLimited" xml:space="preserve"><value>你已達到 Nexus API 的速率限制。請稍候再下載。</value></data>
   <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus 回傳了錯誤（{0}）。</value></data>
   <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>尚未連線 Nexus 帳戶。</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>此模組來源的檔案已不在 Nexus 頁面上，頁面上剩餘的檔案也沒有比它更新的版本。該頁面託管多個獨立模組，因此 AIM 不會將其他模組提供為更新。如果你認為有更新版本，請手動檢查該頁面。</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>該模組頁面沒有可用於比較的主檔案。</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM 不知道此模組來自頁面上的哪個檔案，因此無法判斷頁面版本是否更新。透過 AIM 下載一次，或右鍵按一下模組並將其關聯到特定檔案，之後更新檢查就會可靠。</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>更新檢查提前停止。</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>此模組的更新檢查未完成。</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>尚未連線 Nexus 帳戶。</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>該下載屬於另一款遊戲（{0}），因此此安裝程式無法處理。</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>該下載連結已過期。請再次點選模組頁面上的「Vortex download」按鈕。</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>找不到模組資料夾。</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>正在向 Nexus 查詢檔案...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>正在下載 {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>正在解壓 {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>安裝已取消</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>已安裝 {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>已安裝 {0} 個模組</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>下載已取消</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>下載連結為空。</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>這不是 nxm:// 連結。</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>連結沒有指定遊戲。</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus 收藏集尚不受支援，請個別下載模組。</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>該連結不是模組檔案下載連結。</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>連結包含無效的模組 ID 或檔案 ID。</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>無法判斷安裝程式的執行位置。</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>只有 Windows 和 Linux 支援註冊 nxm:// 連結。</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM 已註冊，但 Windows 可能仍使用 {0} 處理 nxm:// 連結。&#xD;&#xA;&#xD;&#xA;請在 Windows 預設應用程式中將 AIM 選為 nxm:// 預設應用程式。</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>寫入後無法驗證 nxm:// 註冊。</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>更新可能會修正你套用的修補</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} 已發佈。你目前使用 {2}，並套用了 AIM 的修正：{3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>更新並移除 AIM 修正</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>更新會取代模組資料夾，因此 AIM 的編輯也會隨之移除。如果新版本沒有修正問題，崩潰會再次出現，你可以重新套用修正。之前的版本仍在還原清單中。</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>偵測到外部壓縮檔</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM 找到了外部的 assets.zip。&#xD;&#xA;&#xD;&#xA;如果繼續，AIM 將：&#xD;&#xA;• 將其保留為 assets.foreign-…zip 檔案&#xD;&#xA;• 還原已驗證的備份&#xD;&#xA;• 重試此次安裝&#xD;&#xA;&#xD;&#xA;僅存在於外部壓縮檔中的模組將保持未啟用。要繼續嗎？</value></data>
 </root>
