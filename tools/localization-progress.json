@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-09-09T09:38:59.6801740Z",
+  "generatedAt": "2026-09-09T09:40:24.2768915Z",
   "coreKeyCount": 465,
   "nextLanguage": "zh-Hant",
   "nextBatch": [
-    "GUIKeybindsUnrecognised",
-    "GUIKeybindsUnrecognisedTooltip",
-    "GUIKeybindsWriteFailed",
-    "GUIBindingEditorTitle",
-    "GUIBindingEditorTrigger",
-    "GUIBindingEditorCapture",
-    "GUIBindingEditorCapturing",
-    "GUIBindingEditorPreview",
-    "GUIBindingEditorNote",
-    "GUIBindingEditorSave",
-    "GUIBindingEditorClear",
-    "GUIBindingEditorClearTooltip",
-    "GUIBindingIsDefault",
-    "GUIBindingRestoreTitle",
-    "GUIBindingRestorePrompt",
-    "GUIBindingRestoreMore",
-    "GUIBindingRestoreDone",
-    "GUICheckUpdatesButton",
-    "GUICheckUpdatesButtonTooltip",
-    "GUICheckForUpdatesResultWithOffer",
-    "GUIUpdateAllNow",
-    "GUIUpdateAllNowTooltip",
-    "GUIUpdateAllTitle",
-    "GUIUpdateAllNothing"
+    "GUIUpdateAllConfirm",
+    "GUIUpdateAllProgress",
+    "GUIUpdateAllDone",
+    "GUIUpdateAllFailed",
+    "GUIConflictReportNothing",
+    "GUIVerdictNotAnIssue",
+    "GUIVerdictPatchExists",
+    "GUIVerdictIncompatible",
+    "GUIVerdictRebound",
+    "GUIDropFolderMenu",
+    "GUIDropFolderExplain",
+    "GUIDropFolderLink",
+    "GUIDropFolderPickTitle",
+    "GUIDropFolderScanNow",
+    "GUIDropFolderNone",
+    "GUIDropFolderUnlinkTooltip",
+    "GUIDropFolderTitle",
+    "GUIDropFolderNothingFound",
+    "GUIDropFolderImported",
+    "GUIDropFolderImportedDetail",
+    "GUIDropFolderAlreadyInstalled",
+    "GUIDropFolderSkippedDetail",
+    "GUIDropFolderNoModsFolder",
+    "GUIDropFolderCannotOpen"
   ],
   "languages": [
     {
@@ -91,12 +91,12 @@
     },
     {
       "language": "zh-Hans",
-      "coreMissing": 32,
+      "coreMissing": 8,
       "coreComplete": false
     },
     {
       "language": "zh-Hant",
-      "coreMissing": 128,
+      "coreMissing": 104,
       "coreComplete": false
     }
   ]

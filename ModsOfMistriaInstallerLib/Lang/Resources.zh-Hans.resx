@@ -588,4 +588,12 @@
   <data name="GUINxmInvalidIds" xml:space="preserve"><value>链接包含无效的模组 ID 或文件 ID。</value></data>
   <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>无法确定安装器的运行位置。</value></data>
   <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>仅 Windows 和 Linux 支持注册 nxm:// 链接。</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM 已注册，但 Windows 仍可能使用 {0} 处理 nxm:// 链接。&#xD;&#xA;&#xD;&#xA;请在 Windows 默认应用中将 AIM 选为 nxm:// 默认应用。</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>写入后无法验证 nxm:// 注册。</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>更新可能会修复你应用的补丁</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} 已发布。你当前使用 {2}，并应用了 AIM 的修复：{3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>更新并移除 AIM 修复</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>更新会替换模组文件夹，因此 AIM 的编辑也会随之移除。如果新版本没有修复问题，崩溃会再次出现，你可以重新应用修复。之前的版本仍在恢复列表中。</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>检测到外部压缩包</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM 找到了外部的 assets.zip。&#xD;&#xA;&#xD;&#xA;如果继续，AIM 将：&#xD;&#xA;• 将其保留为 assets.foreign-…zip 文件&#xD;&#xA;• 恢复已验证的备份&#xD;&#xA;• 重试此次安装&#xD;&#xA;&#xD;&#xA;仅存在于外部压缩包中的模组将保持未启用。要继续吗？</value></data>
 </root>

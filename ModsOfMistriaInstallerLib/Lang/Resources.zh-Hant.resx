@@ -489,4 +489,28 @@
   <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>依序下載並安裝所有待處理的更新，並將每個模組的目前版本保留為可還原的備份。</value></data>
   <data name="GUIUpdateAllTitle" xml:space="preserve"><value>更新模組</value></data>
   <data name="GUIUpdateAllNothing" xml:space="preserve"><value>沒有待處理的更新。請先檢查更新。</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>要更新 {0} 個模組嗎？&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;每個模組的目前版本都會保留為備份，可從右鍵選單還原。</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>正在更新 {0}/{1}：{2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>已更新 {1} 個模組中的 {0} 個。</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>以下內容無法直接下載，需要開啟其 Nexus 頁面：{0}&#xD;&#xA;&#xD;&#xA;Nexus 只會向 Premium 帳戶提供直接下載連結。免費帳戶請開啟模組頁面並使用「Mod Manager Download」按鈕。如果 AIM 已註冊處理這些連結，就會接收它。</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>沒有可報告的內容。AIM 在你選取的模組之間沒有發現共用檔案、快捷鍵衝突、缺少需求或相容性警告。</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>你已標記這不是真正的衝突。</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>你找到了此問題的修補程式。</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>你認為這些模組不相容，請關閉其中一個。</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>透過重新綁定解決：{0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>受監控的下載資料夾</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>你手動下載到受監控資料夾的模組會移入模組資料夾，並自動出現在清單中。</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>監控資料夾…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>選擇要監控已下載模組的資料夾</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>立即檢查受監控資料夾</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>目前沒有監控中的資料夾</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>停止監控此資料夾</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>受監控的資料夾</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>沒有發現新的內容。AIM 只會移動包含 manifest 的壓縮檔和資料夾，其他內容會留在原處。</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>已從受監控資料夾匯入 {0} 個模組。</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>已移入你的模組資料夾：&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - 你已將此模組安裝為「{1}」。請更新該副本，或先將其移除：同一模組的兩個副本會爭用相同檔案。</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>留在受監控資料夾中：&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>找不到模組資料夾，因此沒有可開啟的內容。</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>無法開啟模組資料夾：{0}</value></data>
 </root>
