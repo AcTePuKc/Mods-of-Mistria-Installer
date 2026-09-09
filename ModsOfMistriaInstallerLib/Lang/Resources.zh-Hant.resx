@@ -641,6 +641,21 @@
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>表示這是一個問題</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>符合條件時有效</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>提到主題但沒有回答</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>沒有記錄的崩潰。</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>正在根據已安裝模組讀取呼叫堆疊…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM 無法查看模組清單，因此只能顯示崩潰，無法指出原因。</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM 無法完成對此崩潰的讀取：{0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>此崩潰早於目前模組。請在修改前執行一次遊戲，並把下面的模組視為線索而非結論。</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>你尚未登入 Nexus，因此 AIM 無法讀取模組錯誤追蹤器。</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>正在讀取錯誤追蹤器和留言…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>沒有模組被明確指出，暫不值得讀取其頁面。</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM 無法讀取模組頁面：{0}</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>模組頁面沒有提到這次崩潰。</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>與此問題有關的頁面內容：{0}。</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>確定</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>很可能</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>可能</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>不太可能</value></data>
   <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>正常</value></data>
   <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>問題</value></data>
   <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>條件</value></data>
