@@ -479,7 +479,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} pengaturan tombol yang Anda pilih telah diubah oleh mod itu sendiri, biasanya setelah pembaruan mengatur ulang pengaturannya.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Kembalikan pilihan Anda? Pengaturan yang sepenuhnya dihapus oleh pembaruan tidak akan dipulihkan.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… dan {0} lainnya.</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} pengaturan tombol dipulihkan. Jalankan game agar perubahan berlaku.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Periksa pembaruan</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Periksa</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Memeriksa mod yang dipilih pada halaman Nexus-nya. Gunakan panah untuk semua mod, atau untuk memasang semua yang memiliki pembaruan.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Memeriksa {0} mod: {1} memiliki pembaruan, {2} tidak dapat diperiksa.&#xD;&#xA;&#xD;&#xA;Unduh dan pasang pembaruan tersebut sekarang? Versi saat ini dari setiap mod disimpan sebagai cadangan yang dapat dipulihkan.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Perbarui semua yang memiliki pembaruan</value></data>

@@ -805,7 +805,7 @@ Les confier à AIM ?</value></data>
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Les {0} raccourci(s) que vous aviez choisis ont été modifiés par les mods eux-mêmes, généralement après qu'une mise à jour a réinitialisé leurs paramètres.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Rétablir vos choix ? Les paramètres entièrement supprimés par la mise à jour ne seront pas restaurés.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… et {0} autre(s).</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} raccourci(s) restauré(s). Lancez le jeu pour les appliquer.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Vérifier les mises à jour</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Vérifier</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Vérifie les mods sélectionnés sur leurs pages Nexus. Utilisez la flèche pour tous les mods ou pour installer tout ce qui possède une mise à jour.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) vérifié(s) : {1} ont une mise à jour et {2} n'ont pas pu être vérifiés.&#xD;&#xA;&#xD;&#xA;Télécharger et installer ces mises à jour maintenant ? La version actuelle de chaque mod est conservée comme sauvegarde restaurable.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Mettre à jour tous les mods concernés</value></data>

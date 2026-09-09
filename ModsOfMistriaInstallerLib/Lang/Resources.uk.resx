@@ -475,7 +475,7 @@
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Вибрані вами прив’язки ({0}) було змінено самими модами, зазвичай після оновлення, яке скинуло їхні налаштування.&#xA;&#xA;{1}&#xA;&#xA;Повернути ваш вибір? Налаштування, які оновлення повністю видалило, не відновлюються.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... і ще {0}</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Відновлено прив’язок клавіш: {0}. Запустіть гру, щоб вони почали діяти.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Перевірити оновлення</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Перевірити</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Перевіряє вибрані моди за їхніми сторінками на Nexus. Скористайтеся стрілкою для всіх модів або щоб встановити все, що має оновлення.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Перевірено модів: {0}; оновлення мають {1}, не вдалося перевірити: {2}.&#xA;&#xA;Завантажити й встановити ці оновлення зараз? Поточну версію кожного моду буде збережено як резервну копію.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Оновити все, що має оновлення</value></data>

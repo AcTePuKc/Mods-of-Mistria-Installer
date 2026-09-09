@@ -479,7 +479,7 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Los {0} cambios que elegiste fueron modificados por los propios mods, normalmente después de que una actualización restableciera sus ajustes.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;¿Quieres recuperar tus elecciones? Los ajustes que la actualización eliminó por completo no se restaurarán.</value></data>
   <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… y {0} más.</value></data>
   <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Se restauraron {0} asignación(es). Inicia el juego para que surtan efecto.</value></data>
-  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Comprobar actualizaciones</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Comprobar</value></data>
   <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Comprueba los mods seleccionados en sus páginas de Nexus. Usa la flecha para comprobarlos todos o para instalar todo lo que tenga una actualización.</value></data>
   <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Se comprobaron {0} mod(s): {1} tienen una actualización y no se pudieron comprobar {2}.&#xD;&#xA;&#xD;&#xA;¿Descargar e instalar esas actualizaciones ahora? La versión actual de cada mod se conserva como copia de seguridad que podrás restaurar.</value></data>
   <data name="GUIUpdateAllNow" xml:space="preserve"><value>Actualizar todo lo que tenga una actualización</value></data>
