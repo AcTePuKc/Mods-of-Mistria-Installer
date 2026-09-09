@@ -472,4 +472,28 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIBindingEditorPreview" xml:space="preserve"><value>次の値として保存されます：{0}</value></data>
   <data name="GUIBindingEditorNote" xml:space="preserve"><value>コントローラーのボタンはリストから選びます。AIM はコントローラーを読み取れません。リストにはゲームが受け付けるすべての名前がありますが、ALT、ロックキー、テンキーは含まれません。これらを設定した Mod は自動的に初期値へ戻ります。</value></data>
   <data name="GUIBindingEditorSave" xml:space="preserve"><value>保存</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>割り当てを解除</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>設定を空にします。ほとんどの Mod は「オフ」として扱いますが、一部は初期値に戻ります。</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0}（Mod の初期値 - 未設定）</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>キー設定が変更されました</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>選択した {0} 件のキー設定が Mod 自身によって変更されています。通常は更新によって設定がリセットされたためです。&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;選択を戻しますか？更新によって完全に削除された設定は復元されません。</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…ほか {0} 件</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} 件のキー設定を復元しました。ゲームを起動すると反映されます。</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>更新を確認</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>選択した Mod を Nexus ページと照合します。矢印からすべての Mod を確認するか、更新があるものをすべてインストールできます。</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} 個の Mod を確認しました：{1} 個に更新があり、{2} 個は確認できませんでした。&#xD;&#xA;&#xD;&#xA;これらの更新を今すぐダウンロードしてインストールしますか？各 Mod の現在のバージョンは復元可能なバックアップとして保持されます。</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>更新があるものをすべて更新</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>保留中の更新を順にダウンロードしてインストールし、各 Mod の現在のバージョンを復元可能なバックアップとして保持します。</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Mod を更新</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>保留中の更新はありません。先に更新を確認してください。</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>{0} 個の Mod を更新しますか？&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;各 Mod の現在のバージョンは、右クリックメニューから復元できるバックアップとして保持されます。</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>{1} 個中 {0} 個を更新中：{2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{1} 個中 {0} 個の Mod を更新しました。</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>次の Mod は直接ダウンロードできないため、Nexus ページが必要です：{0}&#xD;&#xA;&#xD;&#xA;Nexus が直接ダウンロードリンクを発行するのは Premium アカウントだけです。無料アカウントの場合は Mod のページを開き、「Mod Manager Download」ボタンを使ってください。AIM がそのリンクを扱うよう登録されていれば、自動的に取得します。</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>報告する内容はありません。選択した Mod の間に、共有ファイル、ショートカットの競合、不足している要件、互換性の警告は見つかりませんでした。</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>実際の競合ではないと記録しました。</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>この問題のパッチを見つけました。</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>これらの Mod は互換性がないと記録しました。どちらか一方を無効にしてください。</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>キーの再割り当てで解決：{0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>監視中のダウンロードフォルダー</value></data>
 </root>
