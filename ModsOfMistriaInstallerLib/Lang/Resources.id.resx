@@ -638,4 +638,52 @@ Alihkan ke AIM?</value></data>
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Mengatakan ini masalah</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Berfungsi dengan satu syarat</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Menyebutkan topik tanpa menjawabnya</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>AMAN</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>MASALAH</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>SYARAT</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>KONTEKS</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Tampilkan seluruh kutipan</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Tampilkan lebih sedikit</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Cari di halaman</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Menyalin "{0}" dan membuka halaman asalnya. Tekan Ctrl+F di sana lalu tempel untuk langsung menuju kutipan. Jika ini komentar, letaknya mungkin beberapa halaman ke belakang; tempelkan ke kotak pencarian utas tersebut.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Disalin. Tekan Ctrl+F di halaman yang baru dibuka lalu tempel.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Ini mengubah file di dalam mod yang bukan kamu buat. AIM akan menyalin seluruh mod ke daftar Versi terlebih dahulu dan menandai baris sebagai diedit. Lanjutkan?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Periksa crash</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Crash</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>File crash</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Membuka folder tempat AIM menyimpan salinan setiap crash yang pernah ditemukan. Game sendiri hanya menyimpan yang terbaru.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Kesimpulan AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM tidak menemukan executable game, jadi tidak dapat menjalankan dan mengawasinya.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria sedang berjalan. Tutup dulu agar AIM dapat mengawasi sesi yang dimulainya.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM tidak dapat menjalankan game: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Game mengalami crash, tetapi AIM tidak dapat membaca log crash yang ditinggalkan. Sesi ini tidak membuktikan apa pun tentang mod. Sebaiknya jalankan pemeriksaan lagi.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Game kembali mengalami crash saat pemeriksaan.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Game masih berjalan setelah waktu pemeriksaan dan tidak mengalami crash. Itulah hasil yang diharapkan, lanjutkan bermain.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Crash yang sama muncul lagi setelah {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Game mengalami crash lagi setelah {0}, dengan kesalahan yang berbeda.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Game keluar dengan kode {0} setelah {1} dan tidak meninggalkan log crash. Biasanya ini berarti game ditutup oleh sesuatu di luar game, seperti masalah driver atau proses dihentikan, bukan oleh mod. Sesi ini juga tidak membuktikan apa pun.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Game berjalan selama {0} lalu ditutup normal, tanpa crash baru.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Game gagal di dalam kode mod ini sendiri, pada {0} baris {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Kode mod ini ada di call stack, pada {0} baris {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Mod ini disebutkan dalam pesan crash itu sendiri.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Game mengalami crash saat membaca data "{0}", yang ditambahkan oleh {1} mod terpasang.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Game mengalami crash saat membaca data "{0}", yang ditambahkan oleh {1} mod terpasang.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Mod ini menambahkan data "{0}" yang sedang dibaca game ketika crash.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Data "{0}" di arsip game pada disk tidak memiliki entri tanpa {1}. Penyebabnya sudah diselesaikan, mungkin oleh update, instalasi ulang, atau mod yang kemudian kamu nonaktifkan. Jika terjadi lagi, lihat mod di bawah.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Data "{0}" yang sedang dimuat game masih memiliki satu entri tanpa {2}. Crash ini akan terjadi lagi saat peluncuran berikutnya.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Data "{0}" yang sedang dimuat game masih memiliki {1} entri tanpa {2}. Crash ini akan terjadi lagi saat peluncuran berikutnya.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Mod ini memerlukan engine hook, dan crash berupa pemanggilan sesuatu yang ternyata bukan fungsi. Dari dalam game, hook yang gagal dipasang terlihat seperti ini.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Crash ini lebih lama daripada mod yang sedang terpasang, tetapi masalah yang dijelaskannya masih ada di arsip game pada disk. Jadi ini bukan laporan lama yang tidak relevan. Perkirakan akan terjadi lagi saat peluncuran berikutnya.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Crash ini lebih lama daripada mod yang sedang terpasang. AIM membangun ulang arsip game setelahnya, jadi game yang crash bukan lagi game yang sekarang ada di disk. Anggap semuanya di bawah sebagai petunjuk, bukan keputusan, dan mainkan sekali sebelum mengubah apa pun.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Gagal di dalam {0}(), pada: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Data game sendiri "{0}" memiliki entri tanpa {1} pada baris {2}, berisi "{3}", yang tidak didefinisikan mod terpasang lain. Entri tanpa {1} tepat menjadi tempat game berhenti.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Data game sendiri "{0}" memiliki entri tanpa {1} pada baris {2}, berisi "{3}", yang tidak didefinisikan mod terpasang lain. Entri ini masih memiliki blok MOMIidentify, berarti penggabungan yang ditunggu tidak menemukan pasangan. Entri baru tanpa {1} ditambahkan, bukan memperbarui entri yang sudah memiliki {1}.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Data game "{0}" memiliki entri tanpa {1} pada baris {2}, dan mod ini adalah salah satu yang mungkin menulisnya.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Crash ini terjadi sebelum instalasi saat ini, dan tidak ada isinya yang cocok dengan mod yang sekarang kamu miliki.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} yang menyebabkan game crash.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mod masing-masing menambahkan sesuatu ke data game yang tidak dapat dimuat. Salah satu saja sudah cukup menjadi penyebab.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} adalah penyebab yang paling mungkin.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} adalah satu-satunya mod terpasang yang menyentuh data yang sedang dibaca game.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mod terpasang menambahkan data tempat game crash. Salah satunya sangat mungkin menjadi penyebab.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Tidak ada yang jelas menunjuk ke mod tertentu, tetapi beberapa layak disingkirkan.</value></data>
 </root>
