@@ -876,4 +876,26 @@ Les confier à AIM ?</value></data>
   <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus n'a renvoyé aucun serveur de téléchargement pour ce fichier.</value></data>
   <data name="GUINexusApiTimedOut" xml:space="preserve"><value>L'API Nexus n'a pas répondu à temps.</value></data>
   <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Impossible d'atteindre l'API Nexus : {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus a renvoyé une réponse inattendue.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Impossible de lire la réponse de Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus a refusé la session du compte. Reconnectez votre compte Nexus.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus a refusé la requête. Le lien de téléchargement a peut-être expiré ; cliquez à nouveau dessus.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Ce mod ou ce fichier n'existe plus sur Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Vous avez atteint la limite de l'API Nexus. Attendez un moment avant de télécharger à nouveau.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus a renvoyé une erreur ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Aucun compte Nexus n'est encore connecté.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Le fichier d'origine de ce mod n'est plus sur sa page Nexus et aucun des fichiers restants n'en est une version plus récente. Cette page héberge plusieurs mods distincts, AIM ne proposera donc pas les autres comme mise à jour. Consultez la page manuellement si vous pensez qu'une version plus récente existe.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>La page de ce mod ne possède aucun fichier principal avec lequel comparer.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM ne sait pas de quel fichier de cette page provient ce mod et ne peut donc pas déterminer si la version de la page est plus récente. Téléchargez-le une fois via AIM ou associez-le à un fichier précis depuis son menu contextuel pour fiabiliser les vérifications.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>La vérification des mises à jour s'est arrêtée prématurément.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>La vérification des mises à jour n'est pas terminée pour ce mod.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Aucun compte Nexus n'est encore connecté.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Ce téléchargement concerne un autre jeu ({0}), cet installeur ne peut donc pas le gérer.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Ce lien de téléchargement a expiré. Cliquez à nouveau sur le bouton « Vortex download » de la page du mod.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Le dossier des mods est introuvable.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Demande du fichier à Nexus…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Téléchargement de {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Extraction de {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Installation annulée</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} installé</value></data>
 </root>
