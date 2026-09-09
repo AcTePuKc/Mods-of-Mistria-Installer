@@ -426,4 +426,26 @@ Alihkan ke AIM?</value></data>
   <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Patch tersebut tidak memiliki file utama yang dapat dipasang AIM sendiri. File-nya terbuka di browser; pilih yang Anda inginkan dan gunakan «Mod Manager Download».</value></data>
   <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Unduhan patch dibatalkan.</value></data>
   <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM mengubah file di dalam mod ini untuk menyelesaikan konflik. File di disk sekarang tidak lagi persis sama dengan yang diterbitkan penulis.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>Versi mod sebelum perubahan ada di menu tarik-turun Versi. Pulihkan dari sana, atau klik kanan mod dan pilih «Batalkan perubahan AIM».</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Batalkan perubahan AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Ikuti di Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Menambahkan mod ini ke pelacakan Nexus agar situs memberi tahu Anda tentang pembaruan dan kiriman penulis. Akun Nexus harus terhubung.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Sekarang mengikuti {0} di Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Anda sudah mengikuti {0} di Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Tidak dapat mengikuti {0} di Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM tidak dapat membaca ID mod Nexus dari halaman yang dimilikinya untuk mod ini.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Salinan sebelumnya dari mod ini yang disimpan AIM saat pembaruan. Pilih salah satu untuk kembali ke versi tersebut.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Kembali ke:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Klik untuk mengunduh dan memasangnya. Versi Anda saat ini disimpan sebagai cadangan.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Klik untuk membuka halaman unduhan. AIM tidak tahu file Nexus yang mana. Klik kanan mod dan gunakan «Hubungkan dengan Nexus…» agar AIM dapat memasang pembaruan ini secara otomatis.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus melaporkan akun Anda ({0}) sebagai Premium, jadi penolakan ini bukan karena tingkat akun. Biasanya berarti sesi masuk telah kedaluwarsa atau dicabut. Masuk lagi dari menu roda gigi.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus melaporkan akun Anda ({0}) sebagai akun gratis. Unduhan langsung adalah fitur Premium, jadi gunakan tombol di situs web.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Tidak ada akun Nexus yang terhubung, jadi AIM tidak dapat mengunduh apa pun secara langsung.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM tidak dapat memeriksa akun Nexus Anda: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Pengaturan tombol</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Semua tombol keyboard dan pengendali yang digunakan mod Anda dalam satu daftar, dengan konflik berwarna merah dan pengeditan langsung.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Pengaturan tombol mod</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Pengaturan tombol yang digunakan mod Anda saat ini. Mod menyimpannya di folder konfigurasi milik game, bukan di folder mod, jadi pembaruan mod tidak akan menghapusnya. Namun mod tetap dapat mengatur ulang pengaturannya sendiri, dan AIM akan menawarkan untuk mengembalikan pilihan Anda.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} pengaturan tombol, {1} di antaranya berkonflik.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Hanya tampilkan konflik</value></data>
 </root>
