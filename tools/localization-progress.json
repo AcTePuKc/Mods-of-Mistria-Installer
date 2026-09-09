@@ -1,24 +1,9 @@
 {
-  "generatedAt": "2026-09-09T12:28:33.7779349Z",
+  "generatedAt": "2026-09-09T12:30:20.5450911Z",
   "scope": "deferred",
   "coreKeyCount": 232,
   "nextLanguage": "zh-Hans",
   "nextBatch": [
-    "GUICrashNone",
-    "GUICrashReading",
-    "GUICrashNoModList",
-    "GUICrashFailed",
-    "GUICrashStale",
-    "GUICrashNoApiKey",
-    "GUICrashWorking",
-    "GUICrashNothingToResearch",
-    "GUICrashResearchFailed",
-    "GUICrashNothingFound",
-    "GUICrashFoundCount",
-    "GUICrashBadgeCertain",
-    "GUICrashBadgeStrong",
-    "GUICrashBadgeLikely",
-    "GUICrashBadgePossible",
     "GUICrashOpenModPage",
     "GUICrashOpenPage",
     "GUICrashReportBug",
@@ -51,7 +36,22 @@
     "GUICrashNoModsFolder",
     "GUICrashModGone",
     "GUICrashEvidenceFor",
-    "GUICrashEvidenceAgainst"
+    "GUICrashEvidenceAgainst",
+    "GUICrashEvidenceCaution",
+    "GUICrashEvidenceOther",
+    "GUICrashEditHeader",
+    "GUICrashEditHint",
+    "GUICrashEditFile",
+    "GUICrashEditLine",
+    "GUICrashEditText",
+    "GUICrashEditApply",
+    "GUICrashEditSetAside",
+    "GUICrashEditSetAsideTooltip",
+    "GUICrashEditNeedFile",
+    "GUICrashEditSummary",
+    "GUICrashEditAsideSummary",
+    "GUICrashEditConfirm",
+    "GUICrashStepNothingChanged"
   ],
   "languages": [
     {
@@ -142,7 +142,7 @@
       "language": "zh-Hans",
       "coreMissing": null,
       "coreComplete": null,
-      "deferredMissing": 116,
+      "deferredMissing": 101,
       "deferredComplete": false
     },
     {

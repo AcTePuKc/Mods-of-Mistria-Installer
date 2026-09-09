@@ -644,6 +644,21 @@
   <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>表示这是一个问题</value></data>
   <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>满足条件时有效</value></data>
   <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>提到主题但没有回答</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>没有记录崩溃。</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>正在根据已安装模组读取调用堆栈…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM 无法查看模组列表，因此只能显示崩溃，无法指出原因。</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM 无法完成对此崩溃的读取：{0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>此崩溃早于当前模组。请在修改前运行一次游戏，并把下面的模组视为线索而非结论。</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>你尚未登录 Nexus，因此 AIM 无法读取模组错误追踪器。</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>正在读取错误追踪器和评论…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>没有模组被明确指出，暂不值得读取其页面。</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM 无法读取模组页面：{0}</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>模组页面没有提到这次崩溃。</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>与此问题有关的页面内容：{0}。</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>确定</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>很可能</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>可能</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>不太可能</value></data>
   <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>正常</value></data>
   <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>问题</value></data>
   <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>条件</value></data>
