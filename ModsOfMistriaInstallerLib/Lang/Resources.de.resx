@@ -1084,4 +1084,52 @@ An AIM übergeben?</value></data>
   <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Weitere Aussagen auf den Seiten</value></data>
   <data name="GUICrashEditHeader" xml:space="preserve"><value>Eine Korrektur manuell anwenden</value></data>
   <data name="GUICrashEditHint" xml:space="preserve"><value>Wenn ein Fehlerthread oder die Beschreibung der Mod genau angibt, was geändert werden muss, trage es hier ein. AIM kopiert zuerst die gesamte Mod in deinen Versionsverlauf, daher enthält die obige Wiederherstellungsliste immer die Version vor dieser Änderung.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Datei relativ zum Mod-Ordner</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Zeile</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Neuer Text für diese Zeile. Leer lassen, um sie zu leeren</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Diese Änderung anwenden</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Diese Datei beiseitelegen</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Entfernt die gesamte Datei aus dem Spiel und lässt den Rest der Mod installiert. Nützlich, wenn eine Datendatei den Absturz verursacht und du den Rest der Mod behalten möchtest, bis der Autor sie aktualisiert.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Gib zuerst eine Datei innerhalb der Mod und eine zu ändernde Zeilennummer an.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Absturzkorrektur: Zeile {0} von {1} in {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Absturzkorrektur: {0} in {1} beiseitegelegt</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM kopiert zuerst die gesamte Mod in deinen Versionsverlauf, sodass du sie jederzeit über die Wiederherstellungsliste zurückholen kannst. Nur diese Mod wird geändert.&#xD;&#xA;&#xD;&#xA;Fortfahren?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Es wird nichts geändert. Das Spiel wird wie vorhanden gestartet.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Das Archiv entspricht bereits der Mod-Liste, daher war kein Neuerstellen erforderlich.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Das Spielarchiv wurde neu erstellt.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Fields of Mistria wird gestartet…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Der Lauf wird überwacht. Spiele wie gewohnt. AIM meldet sich, wenn das Spiel geschlossen wird, oder nach {0} Minuten, falls es nicht abgestürzt ist.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Das Spiel wurde nicht gestartet, daher wurde nichts getestet.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Der gleiche Absturz trat erneut auf, obwohl {0} deaktiviert war. {0} ist daher nicht die Ursache. AIM hat die Mod ausgeschlossen und wieder aktiviert.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Der gleiche Absturz trat erneut auf, obwohl {0} deaktiviert war. {0} ist daher nicht die Ursache. AIM hat die Mod ausgeschlossen, konnte sie aber nicht wieder aktivieren. Verwende vor der nächsten Prüfung „Wieder aktivieren“ auf ihrer Karte unter „Bereits geprüft“.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Kein Absturz, während {0} deaktiviert war. Das macht sie zur wahrscheinlichen Ursache. Lass sie deaktiviert, warte auf ein Update oder versuche eine der unten aufgeführten Korrekturen.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Das Spiel lief ohne Absturz und nichts wurde geändert. Für den Absturz waren möglicherweise ein Spielstand oder eine Aktion nötig, die du nicht wiederholt hast. Versuche es erneut und mache, was du beim letzten Mal getan hast.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Dieser Lauf hat nichts geklärt, daher bleibt {0} verdächtig. AIM bietet die Mod erneut an.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Das Spiel ist abgestürzt, aber wegen etwas anderem. {0} ist daher für den ursprünglichen Absturz ausgeschlossen. AIM hat den neuen Absturz geladen; die bereits gesammelten Ergebnisse bleiben erhalten.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} von {1} Verdächtigen wurden für diesen Absturz getestet.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM kann diese Ergebnisse nicht speichern, daher gelten sie nur, solange dieses Fenster geöffnet ist.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Als Nächstes testen: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Führt dieselbe Prüfung für den nächsten ungetesteten Verdächtigen aus: deaktivieren, neu erstellen, starten und überwachen. Bereits ausgeschlossene Mods bleiben aktiviert.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Jeder Verdächtige wurde getestet und keiner war allein die Ursache. Zwei Mods können dies gemeinsam verursachen. Deaktiviere die gesamte Auswahlliste gleichzeitig oder melde den Absturz mit der unten aufgeführten Liste.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Neu beginnen</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Verwirft alle von AIM für diesen Absturz gespeicherten Ergebnisse und bietet alle Verdächtigen erneut an. Sinnvoll, nachdem du Mods hinzugefügt, entfernt oder neu angeordnet hast, weil ein Ergebnis nur für die dabei getestete Liste gilt.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Alle Ergebnisse für diesen Absturz wurden gelöscht.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Ausgeschlossen: {0} von {1} Verdächtigen</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Beweise dieser Prüfungen anzeigen</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Die Seiten von {0} werden auf eine Lösung geprüft…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Nicht die Ursache</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Speichert, dass du weißt, dass diese Mod nicht hinter dem Absturz steckt, ohne einen Lauf dafür zu verwenden. Sie wird in die ausgeschlossene Liste verschoben, nicht mehr zum Testen angeboten und wieder aktiviert, falls AIM sie deaktiviert hatte. Die Markierung gilt als deine Einschätzung, nicht als Beweis von AIM, und kann rückgängig gemacht werden.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Als Absturzverursacher markieren</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Speichert, dass du weißt, dass diese Mod den Absturz verursacht. AIM deaktiviert sie, markiert sie in deiner Mod-Liste und behandelt sie als Ursache, wie bei einem erfolgreichen Testlauf. Die Markierung gilt als deine Einschätzung und kann rückgängig gemacht werden.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Meine Markierung zurücknehmen</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Nimmt das von dir eingetragene Ergebnis zurück und setzt diese Mod wieder als ungetestet auf die Auswahlliste. Die Mod bleibt so aktiviert oder deaktiviert, wie sie jetzt ist.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Manuell markiert, nicht von AIM getestet.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>NICHT ALS URSACHE MARKIERT</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>ALS ABSTURZVERURSACHER MARKIERT</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Du hast dies als Ursache markiert. AIM hat es nicht getestet, sondern die Mod nach deiner Angabe deaktiviert und in deiner Mod-Liste markiert. Alles, was AIM selbst beheben kann, steht unten; im Fehlerthread der Mod gibt es möglicherweise bereits eine Antwort.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} ist als Absturzverursacher markiert und deaktiviert. Installiere, um das Spiel ohne diese Mod neu zu erstellen.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} ist als Absturzverursacher markiert und war bereits deaktiviert.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} ist als nicht ursächlich markiert und wird für diesen Absturz nicht erneut angeboten.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} ist als nicht ursächlich markiert und wurde wieder aktiviert. Installiere, um sie wieder ins Spiel zu übernehmen.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Deine Markierung für {0} wurde zurückgenommen. Die Mod steht wieder als ungetestet auf der Auswahlliste.</value></data>
 </root>
