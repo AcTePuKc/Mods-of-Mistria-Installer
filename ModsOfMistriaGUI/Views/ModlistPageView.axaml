@@ -16,7 +16,7 @@
              a second line and a fixed 44 would cut that line off. These are the buttons that
              install and launch, so they are the last thing that may go missing. -->
         <Grid DockPanel.Dock="Bottom" MinHeight="44" Margin="0 8 0 0"
-              ColumnDefinitions="Auto,Auto,Auto,Auto,*">
+              ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*">
             <Menu Grid.Column="0" Margin="-7 0 0 0">
                 <MenuItem>
                     <MenuItem.Header>
@@ -127,13 +127,29 @@
                     <MenuItem x:Name="ThemeLightMenuItem" Header="{Binding Texts.GUIThemeLight}" Tag="light" Click="ThemeMenuClick" />
                     <MenuItem x:Name="ThemeDarkMenuItem" Header="{Binding Texts.GUIThemeDark}" Tag="dark" Click="ThemeMenuClick" />
                     <Separator />
-                    <MenuItem x:Name="ThemeMeadowMenuItem" Header="{Binding Texts.GUIThemeMeadow}" Tag="meadow" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeHarvestMenuItem" Header="{Binding Texts.GUIThemeMeadow}" Tag="harvest" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeMeadowMenuItem" Header="{Binding Texts.GUIThemeGreenMeadow}" Tag="meadow-green" Click="ThemeMenuClick" />
                     <MenuItem x:Name="ThemeNightMenuItem" Header="{Binding Texts.GUIThemeNight}" Tag="night" Click="ThemeMenuClick" />
                     <MenuItem x:Name="ThemeRoseMenuItem" Header="{Binding Texts.GUIThemeRoseGarden}" Tag="rose" Click="ThemeMenuClick" />
                 </MenuItem>
             </Menu>
 
-            <TextBlock Grid.Column="3"
+            <!-- Text size is a direct accessibility control, not another modal setting. It stays
+                 beside language and theme because all three are global display preferences. -->
+            <Button Grid.Column="3"
+                    Content="A−"
+                    Margin="4 0 0 0"
+                    Padding="7 0"
+                    ToolTip.Tip="{Binding Texts.GUIDecreaseFontSize}"
+                    Command="{Binding DecreaseFontSizeCommand}" />
+            <Button Grid.Column="4"
+                    Content="A+"
+                    Margin="2 0 0 0"
+                    Padding="7 0"
+                    ToolTip.Tip="{Binding Texts.GUIIncreaseFontSize}"
+                    Command="{Binding IncreaseFontSizeCommand}" />
+
+            <TextBlock Grid.Column="5"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        Text="{Binding InstallStatus}"
@@ -149,7 +165,7 @@
                  It takes the star column, not an Auto one: a Grid measures an Auto column with
                  infinite width, so a WrapPanel in one reports its single-line size and never wraps.
                  The status line above is capped instead, since it is the part that can be trimmed. -->
-            <WrapPanel Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <WrapPanel Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Margin="0 2 0 2"
                         Command="{Binding LaunchGameCommand}"
                         Content="{Binding Texts.GUIPlayButtonText}" />
@@ -308,7 +324,9 @@
                                 ToolTip.Tip="{Binding Texts.GUIOpenModsFolderButtonTooltip}"
                                 Command="{Binding OpenModsFolderCommand}" />
                         <SplitButton Margin="8 2 0 2"
-                                     Padding="8 2"
+                                     Height="34"
+                                     MinHeight="0"
+                                     Padding="8 0"
                                      Content="{Binding Texts.GUICheckUpdatesButton}"
                                      ToolTip.Tip="{Binding Texts.GUICheckUpdatesButtonTooltip}"
                                      IsEnabled="{Binding !IsInstalling}"

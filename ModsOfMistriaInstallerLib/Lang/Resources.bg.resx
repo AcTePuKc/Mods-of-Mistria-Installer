@@ -831,7 +831,10 @@
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системна по подразбиране</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Светла</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Тъмна</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>Мистрийска ливада</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Мистрийска жътва</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Мистрийска ливада</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>Мистрийска нощ</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Розова градина</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Намали размера на текста</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Увеличи размера на текста</value></data>
 </root>

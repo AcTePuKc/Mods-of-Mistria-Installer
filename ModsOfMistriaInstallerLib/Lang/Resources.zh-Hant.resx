@@ -673,7 +673,7 @@
   <data name="GUICrashHandedToVerify" xml:space="preserve"><value>正在重建沒有此模組的遊戲，完成後會自動啟動。</value></data><data name="GUICrashRemoveMod" xml:space="preserve"><value>移除模組</value></data><data name="GUICrashRemoved" xml:space="preserve"><value>{0} 已移除。</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>版本與 AIM 的變更</value></data><data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM 修改了此模組：</value></data><data name="GUICrashUndoEdits" xml:space="preserve"><value>復原 AIM 變更</value></data>
   <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>復原 AIM 為此模組暫存的檔案，不影響資料夾其他內容。</value></data><data name="GUICrashRestoreVersion" xml:space="preserve"><value>復原</value></data><data name="GUICrashRestored" xml:space="preserve"><value>{0} 已復原到 {1}。</value></data>
-  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — AIM 修改前</value></data><data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM 將停用 {0}、重建遊戲檔案並啟動遊戲。&#xD;&#xA;&#xD;&#xA;重建約需一分鐘。正常遊戲即可，AIM 會報告崩潰是否再次出現。</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - AIM 修改前</value></data><data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM 將停用 {0}、重建遊戲檔案並啟動遊戲。&#xD;&#xA;&#xD;&#xA;重建約需一分鐘。正常遊戲即可，AIM 會報告崩潰是否再次出現。</value></data>
   <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM 將啟動遊戲並觀察崩潰，不做任何修改。正常遊戲即可，AIM 會報告結果。</value></data><data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM 無法在此修改模組清單。</value></data>
   <data name="GUICrashDisableFailed" xml:space="preserve"><value>無法停用 {0}。它可能已停用或不在清單中。</value></data><data name="GUICrashDisabled" xml:space="preserve"><value>{0} 已停用。</value></data><data name="GUICrashRebuilding" xml:space="preserve"><value>正在重建遊戲檔案以套用變更…</value></data>
   <data name="GUICrashRebuildFailed" xml:space="preserve"><value>無法重建遊戲，因此未進行檢查：{0}</value></data><data name="GUICrashLaunching" xml:space="preserve"><value>正在啟動並觀察遊戲。正常遊戲即可。</value></data><data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM 已在安裝。請先等待完成。</value></data>
@@ -733,7 +733,7 @@
   <data name="GUICrashVerifyHint" xml:space="preserve"><value>停用所選模組、重建遊戲、啟動並觀察。正常遊戲即可；遊戲關閉或幾分鐘未崩潰後 AIM 會報告結果。</value></data>
   <data name="GUICrashVerifyButton" xml:space="preserve"><value>停用、重建並執行</value></data>
   <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>停用模組後，只有重建檔案遊戲才能看到變化，所以 AIM 會完成全部步驟。</value></data>
-  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>不變更任何內容—直接執行並觀察</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>不變更任何內容-直接執行並觀察</value></data>
   <data name="GUICrashLinksHeader" xml:space="preserve"><value>值得查看</value></data>
   <data name="GUICrashRawHeader" xml:space="preserve"><value>遊戲寫入的崩潰檔案</value></data>
   <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>崩潰位置</value></data>
@@ -800,7 +800,10 @@
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>系統預設</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>淺色</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>深色</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>米斯特里亞草地</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>米斯特里亞豐收</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>米斯特里亞草地</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>米斯特里亞之夜</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>玫瑰花園</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>減小文字大小</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>增大文字大小</value></data>
 </root>

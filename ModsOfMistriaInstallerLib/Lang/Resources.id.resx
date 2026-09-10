@@ -827,7 +827,10 @@ Alihkan ke AIM?</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Default sistem</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Terang</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Gelap</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>Padang Mistria</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Panen Mistria</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Padang Mistria</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>Malam Mistria</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Taman Mawar</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Perkecil ukuran teks</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Perbesar ukuran teks</value></data>
 </root>

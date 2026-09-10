@@ -78,6 +78,10 @@ Write-Host 'Restoring packages...' -ForegroundColor Cyan
 dotnet restore ModsOfMistriaInstaller.sln
 if ($LASTEXITCODE -ne 0) { throw "Restore failed (exit code $LASTEXITCODE)." }
 
+Write-Host 'Checking localization and UI punctuation...' -ForegroundColor Cyan
+& (Join-Path $PSScriptRoot 'tools/check-localization.ps1') -FailOnMissing -FailOnEmDash
+if ($LASTEXITCODE -ne 0) { throw "Localization or UI punctuation checks failed (exit code $LASTEXITCODE)." }
+
 if (-not $SkipTests) {
     Write-Host 'Running tests...' -ForegroundColor Cyan
     dotnet test ModsOfMistriaInstaller.sln --configuration $Configuration

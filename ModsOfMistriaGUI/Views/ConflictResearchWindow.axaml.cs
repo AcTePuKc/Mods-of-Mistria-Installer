@@ -60,6 +60,7 @@ public partial class ConflictResearchWindow : Window
         ResearchContext? context)
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
 
         _subjects = subjects;
         _client = client;

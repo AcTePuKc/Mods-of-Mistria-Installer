@@ -590,13 +590,13 @@
   <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM виявив зовні змінений assets.zip.&#xA;&#xA;Якщо продовжити, AIM:&#xA;• збереже його як файл assets.foreign-...zip&#xA;• відновить перевірену резервну копію&#xA;• повторить це встановлення&#xA;&#xA;Моди, що існують лише у зовнішньому архіві, будуть неактивними. Продовжити?</value></data>
   <data name="GUIResearchTitle" xml:space="preserve"><value>Знайти виправлення</value></data>
   <data name="GUIResearchWorking" xml:space="preserve"><value>Читаю сторінки цих модів…</value></data>
-  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Підключіть обліковий запис Nexus у меню з шестернею, і AIM зможе читати сторінки цих модів. Поки що найшвидші — посилання нижче.</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Підключіть обліковий запис Nexus у меню з шестернею, і AIM зможе читати сторінки цих модів. Поки що найшвидші - посилання нижче.</value></data>
   <data name="GUIResearchNothingFound" xml:space="preserve"><value>В описах, readme, changelog, звітах про помилки та коментарях цих модів немає відповіді. AIM перевірив усю гілку коментарів за назвою іншого мода та свіжі звіти, тож це справді «ніхто не сказав», а не «ніхто не шукав». Це не означає «проблеми немає».</value></data>
   <data name="GUIResearchFoundCount" xml:space="preserve"><value>На сторінках цих модів знайдено пов’язаних із цією парою відомостей: {0}.</value></data>
   <data name="GUIResearchFailed" xml:space="preserve"><value>AIM не зміг прочитати сторінки модів: {0}</value></data>
   <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Що кажуть сторінки модів</value></data>
   <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Перевірте самі</value></data>
-  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM читає коментарі, шукаючи по всій гілці, а трекер помилок — на кілька сторінок углиб, але лише як відвідувач без входу. Ці посилання відкривають справжні сторінки.</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM читає коментарі, шукаючи по всій гілці, а трекер помилок - на кілька сторінок углиб, але лише як відвідувач без входу. Ці посилання відкривають справжні сторінки.</value></data>
   <data name="GUIResearchOpenPage" xml:space="preserve"><value>Відкрити сторінку мода</value></data>
   <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Відкрити виправлення</value></data>
   <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Що ви знайшли?</value></data>
@@ -664,7 +664,7 @@
   <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Відновлює файли, відкладені AIM для цього мода, не змінюючи решту папки.</value></data>
   <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Відновити</value></data>
   <data name="GUICrashRestored" xml:space="preserve"><value>{0} відновлено до {1}.</value></data>
-  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — до зміни AIM</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - до зміни AIM</value></data>
   <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM вимкне {0}, перебудує архів гри та запустить гру.&#xD;&#xA;&#xD;&#xA;Перебудова триватиме близько хвилини. Грайте як завжди; AIM повідомить, чи повернувся збій.</value></data>
   <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM запустить гру й спостерігатиме за збоями без змін. Грайте як завжди; AIM повідомить результат.</value></data>
   <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM не може змінити список модів тут.</value></data>
@@ -713,7 +713,7 @@
   <data name="GUICrashRestartHunt" xml:space="preserve"><value>Почати спочатку</value></data>
   <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Видаляє всі результати для цього збою та знову пропонує всіх підозрюваних.</value></data>
   <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Усі результати цього збою очищено.</value></data>
-  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Виключено — {0} із {1} підозрюваних</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Виключено - {0} із {1} підозрюваних</value></data>
   <data name="GUICrashSettledExpander" xml:space="preserve"><value>Показати докази</value></data>
   <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Читаю сторінки {0} у пошуках виправлення…</value></data>
   <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Не винен</value></data>
@@ -757,10 +757,10 @@
   <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM не зміг запустити гру: {0}</value></data>
   <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Гра завершилася зі збоєм, але AIM не зміг прочитати залишений журнал. Цей запуск нічого не доводить щодо мода. Варто повторити перевірку.</value></data>
   <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Під час перевірки гра знову завершилася зі збоєм.</value></data>
-  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Після перевірки гра все ще працює й не завершилася зі збоєм. Це бажаний результат — продовжуйте грати.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Після перевірки гра все ще працює й не завершилася зі збоєм. Це бажаний результат - продовжуйте грати.</value></data>
   <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Після {0} повторився той самий збій.</value></data>
   <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Після {0} гра знову завершилася зі збоєм, але з іншою помилкою.</value></data>
-  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Гра завершилася з кодом {0} після {1} і не залишила журналу збою. Зазвичай це означає, що її закрило щось поза грою — помилка драйвера або завершення процесу, а не мод. Цей запуск нічого не доводить.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Гра завершилася з кодом {0} після {1} і не залишила журналу збою. Зазвичай це означає, що її закрило щось поза грою - помилка драйвера або завершення процесу, а не мод. Цей запуск нічого не доводить.</value></data>
   <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Гра працювала {0} і нормально закрилася без нового збою.</value></data>
   <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Гра зламалася у власному коді цього мода, у {0}, рядок {1}.</value></data>
   <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Код цього мода є у стеку викликів, у {0}, рядок {1}.</value></data>
@@ -771,7 +771,7 @@
   <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>У даних «{0}» ігрового архіву на диску більше немає запису без {1}, тож причину вже усунуто оновленням, перевстановленням або модом, який ви вимкнули. Якщо проблема повернеться, перевірте моди нижче.</value></data>
   <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>У даних «{0}», які гра зараз завантажує, досі є один запис без {2}. Наступного запуску збій повториться.</value></data>
   <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>У даних «{0}», які гра зараз завантажує, досі є {1} записів без {2}. Наступного запуску збій повториться.</value></data>
-  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Потрібно встановити хуки рушія, а збій — це виклик чогось, що виявилося не функцією. Так гра бачить невстановлений хук.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Потрібно встановити хуки рушія, а збій - це виклик чогось, що виявилося не функцією. Так гра бачить невстановлений хук.</value></data>
   <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Цей збій старіший за встановлені зараз моди, але описана проблема досі є в ігровому архіві. Звіт не застарів; очікуйте повторення під час наступного запуску.</value></data>
   <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Цей збій старіший за встановлені зараз моди. Після нього AIM перебудував архів гри, тому гра, що аварійно завершилася, не та, що зараз на диску. Вважайте наведене нижче підказкою, а не вироком, і зіграйте один раз до внесення змін.</value></data>
   <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Помилка всередині {0}(), у: {1}</value></data>
@@ -781,22 +781,22 @@
   <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Цей збій стався до поточного встановлення, і в ньому немає збігу з теперішніми модами.</value></data>
   <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>Саме {0} спричинив збій гри.</value></data>
   <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} модів додали до даних гри те, чого вона не може завантажити. Будь-якого одного достатньо для збою.</value></data>
-  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} — найімовірніша причина.</value></data>
-  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} — єдиний встановлений мод, що змінює дані, які читала гра.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} - найімовірніша причина.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} - єдиний встановлений мод, що змінює дані, які читала гра.</value></data>
   <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} встановлених модів додають дані, на яких гра завершилася зі збоєм. Один із них дуже ймовірно є причиною.</value></data>
   <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Ніщо чітко не вказує на мод, але кілька варто виключити.</value></data>
   <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>У завантажених грою даних бракувало поля «{0}», і жоден встановлений мод явно ним не володіє.</value></data>
   <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Гра прочитала «{0}», перш ніж щось його встановило. Зазвичай це код мода.</value></data>
   <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Гра викликала щось, що не було функцією. Зазвичай це невстановлений хук.</value></data>
-  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Гра не знайшла ресурс «{0}» — зазвичай спрайт, на який посилається мод, але не містить його.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Гра не знайшла ресурс «{0}» - зазвичай спрайт, на який посилається мод, але не містить його.</value></data>
   <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM не зміг пов’язати цей збій із модом лише за стеком викликів.</value></data>
   <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Моди, на які це вказує</value></data>
-  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Спочатку наведено найсильніші ознаки. Мод, названий через збій у його коді, — не здогадка; мод, що записує дані, які читала гра, — кандидат.</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Спочатку наведено найсильніші ознаки. Мод, названий через збій у його коді, - не здогадка; мод, що записує дані, які читала гра, - кандидат.</value></data>
   <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Перевірити, чи це допоможе</value></data>
-  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Вимикає вибраний мод, перебудовує гру, запускає її та спостерігає. Грайте як завжди — AIM повідомить після закриття гри або через кілька хвилин без збою.</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Вимикає вибраний мод, перебудовує гру, запускає її та спостерігає. Грайте як завжди - AIM повідомить після закриття гри або через кілька хвилин без збою.</value></data>
   <data name="GUICrashVerifyButton" xml:space="preserve"><value>Вимкнути, перебудувати й запустити</value></data>
   <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Вимкнення мода нічого не змінює для гри, доки не перебудовано архів. AIM виконує весь процес сам.</value></data>
-  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Нічого не змінювати — лише запустити й спостерігати</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Нічого не змінювати - лише запустити й спостерігати</value></data>
   <data name="GUICrashLinksHeader" xml:space="preserve"><value>Варто переглянути</value></data>
   <data name="GUICrashRawHeader" xml:space="preserve"><value>Файл збою, записаний грою</value></data>
   <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Де стався збій</value></data>
@@ -825,7 +825,10 @@
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системна за замовчуванням</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Світла</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Темна</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>Лука Містрії</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Жнива Містрії</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Лука Містрії</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>Ніч Містрії</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Трояндовий сад</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Зменшити розмір тексту</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Збільшити розмір тексту</value></data>
 </root>

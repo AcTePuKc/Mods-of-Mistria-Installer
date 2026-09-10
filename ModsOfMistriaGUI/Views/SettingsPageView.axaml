@@ -7,12 +7,12 @@
         <Button Content="{Binding Texts.GUISettingsBack}" Command="{Binding BackCommand}" HorizontalAlignment="Left" />
 
         <Grid Grid.Row="1" ColumnDefinitions="170,*" Margin="0 12 0 0">
-            <Border Grid.Column="0" Background="#202020" Padding="8" CornerRadius="4">
+            <Border Grid.Column="0" Background="{DynamicResource AIMSettingsNavigationBrush}" Padding="8" CornerRadius="4">
                 <ListBox ItemsSource="{Binding Sections}"
                          SelectedItem="{Binding SelectedSection, Mode=TwoWay}" />
             </Border>
 
-            <Border Grid.Column="1" Margin="12 0 0 0" Padding="16" Background="#171717" CornerRadius="4">
+            <Border Grid.Column="1" Margin="12 0 0 0" Padding="16" Background="{DynamicResource AIMSettingsContentBrush}" CornerRadius="4">
                 <ScrollViewer>
                     <StackPanel Spacing="12">
                         <StackPanel IsVisible="{Binding IsGeneralSelected}" Spacing="8">
@@ -25,7 +25,7 @@
                                 <TextBox Text="{Binding Settings.ModsLocation, Mode=TwoWay}" />
                                 <Button Grid.Column="1" Content="{Binding Texts.GUISettingsChooseModsFolder}" Margin="8 0 0 0" Command="{Binding SelectModsLocationCommand}" />
                             </Grid>
-                            <TextBlock Text="{Binding Texts.GUISettingsModsFolderNote}" TextWrapping="Wrap" Foreground="Gray" />
+                            <TextBlock Text="{Binding Texts.GUISettingsModsFolderNote}" TextWrapping="Wrap" Foreground="{DynamicResource AIMMutedForegroundBrush}" />
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding IsNexusSelected}" Spacing="8">
@@ -35,7 +35,7 @@
                             <Button Content="{Binding Nexus.NexusAccountActionText}"
                                     Command="{Binding ManageNexusAccountCommand}"
                                     HorizontalAlignment="Left" />
-                            <TextBlock Text="{Binding Texts.GUISettingsNexusNote}" TextWrapping="Wrap" Foreground="Gray" />
+                            <TextBlock Text="{Binding Texts.GUISettingsNexusNote}" TextWrapping="Wrap" Foreground="{DynamicResource AIMMutedForegroundBrush}" />
                         </StackPanel>
 
                     </StackPanel>

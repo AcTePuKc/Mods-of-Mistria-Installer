@@ -88,6 +88,8 @@ public partial class ModlistPageViewModel : PageViewBase
 
         SetLanguageCommand = new RelayCommand<string?>(SetLanguage);
         SetThemeCommand = new RelayCommand<string?>(SetTheme);
+        DecreaseFontSizeCommand = new RelayCommand(() => ChangeFontSize(-1));
+        IncreaseFontSizeCommand = new RelayCommand(() => ChangeFontSize(1));
         Localization.LanguageChanged += OnLocalizationChanged;
         _settings.PropertyChanged += (_, e) =>
         {
@@ -109,6 +111,8 @@ public partial class ModlistPageViewModel : PageViewBase
 
     public IRelayCommand<string?> SetLanguageCommand { get; }
     public IRelayCommand<string?> SetThemeCommand { get; }
+    public IRelayCommand DecreaseFontSizeCommand { get; }
+    public IRelayCommand IncreaseFontSizeCommand { get; }
 
     private void SetLanguage(string? languageCode)
     {
@@ -120,6 +124,12 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         _settings.UiTheme = Settings.NormalizeTheme(theme);
         App.SetTheme(_settings.UiTheme);
+    }
+
+    private void ChangeFontSize(double delta)
+    {
+        _settings.UiFontSize = Settings.NormalizeUiFontSize(_settings.UiFontSize + delta);
+        App.SetFontSize(_settings.UiFontSize);
     }
 
     private void OnLocalizationChanged(object? sender, EventArgs e)
@@ -1433,7 +1443,7 @@ public partial class ModlistPageViewModel : PageViewBase
             // something, and telling them twice is the same joke.
             if (!reportedDuplicates.Add(id)) continue;
 
-            var paths = string.Join("\r\n", group.Select(copy => $"• {copy.GetVersion()} — {copy.GetSourcePath()}"));
+            var paths = string.Join("\r\n", group.Select(copy => $"• {copy.GetVersion()} - {copy.GetSourcePath()}"));
 
             notes.Add(new LoadOrderNote(
                 LoadOrderNoteKind.CompatibilityWarning,
@@ -2954,7 +2964,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         var summary = string.Join("\r\n", drift
             .Take(8)
-            .Select(item => $"• {item.ModName} — {item.Field}: {item.Now} → {item.Remembered}"));
+            .Select(item => $"• {item.ModName} - {item.Field}: {item.Now} → {item.Remembered}"));
         if (drift.Count > 8)
             summary += "\r\n" + string.Format(Texts.GUIBindingRestoreMore, drift.Count - 8);
 

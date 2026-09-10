@@ -38,7 +38,7 @@ This guide covers installation, Nexus integration, mod list tools, localized met
 5. Start the game with **Play**.
 
 > [!IMPORTANT]
-> Keep only one copy of each mod in the active folder. When updating a mod, remove its old copy first and leave only the new version. Do not keep the same mod both as a folder and as a ZIP/RAR archive.
+> Keep only one copy of each mod in the active folder. AIM now recognises the same mod by its manifest identity and asks before replacing it, but one deliberate copy remains the clearest setup. Do not keep the same mod both as a folder and as a ZIP/RAR archive.
 
 > [!WARNING]
 > Close AIM before moving, replacing, or deleting mod files. An open mod archive may be locked while AIM is running.
@@ -63,9 +63,10 @@ mods, or check for mod updates.
 
 ### Setting it up
 
-Open the gear menu → **Nexus downloads**, sign in through the browser, and choose **Handle Vortex
-download links**. The line under that option shows whether AIM currently owns `nxm://` links. The
-browser may ask once for permission to open AIM.
+Open the gear menu → **Nexus downloads**, sign in through the browser, and choose **Use AIM for
+NXM**. Registering AIM makes it available for `nxm://` links; on Windows, the actual default remains
+your choice in Windows Default Apps. AIM explains when another program is still the selected Windows
+default and can open that picker for you. The browser may ask once for permission to open AIM.
 
 ### What happens on a download
 
@@ -84,8 +85,9 @@ browser may ask once for permission to open AIM.
 - Registration is per-user and never needs administrator rights: `HKCU\Software\Classes\nxm` on
   Windows, a `~/.local/share/applications/aim-nxm-handler.desktop` entry plus `mimeapps.list` on
   Linux and the Steam Deck.
-- If another mod manager already owns `nxm://`, AIM says so and asks before taking over. Turning the
-  option off again only removes AIM's own registration.
+- If another mod manager already owns `nxm://`, AIM says so and asks before registering. On Windows,
+  registration does not silently change the default: choose AIM under Default Apps if Windows still
+  selects another program. Turning the option off again removes AIM's own registration only.
 - A browser installed as a Flatpak or Snap may not be able to launch a handler outside its sandbox.
   In that case, right-click the **Vortex download button**, copy the link address, and use gear menu →
   **Nexus downloads** → **Install from a copied nxm:// link**.
@@ -153,9 +155,9 @@ so the installer's own scan of the mods folder ignores it.
   search naming both mods. Whatever you work out gets recorded on the issue: not a real conflict, a
   patch exists (paste its link), or genuinely incompatible.
 
-  The page reading is best-effort and says so: AIM sees only the first page of each tab as a
-  signed-out visitor would, and if Nexus changes its layout the result is no quotes rather than
-  wrong ones. The links are always shown, so nothing depends on the scrape working.
+  The page reading is best-effort and searches matching public pages as a signed-out visitor would.
+  If Nexus changes its layout, the result is no quotes rather than wrong ones. The links are always
+  shown, so nothing depends on the scrape working.
 - **Rebinding a clashing shortcut.** Shortcut clashes list the mod names, with the install path on
   hover. **Rebind…** moves one mod onto a key nothing else is using by editing its own binding —
   AIM backs the mod up first, and you can undo it from right-click → **Restore the previous
@@ -178,7 +180,7 @@ so the installer's own scan of the mods folder ignores it.
 - **Release notes.** The document icon after a mod's version opens what its author wrote about each
   release. Hover it for the newest version's notes; click it for the full history, every version
   under its own heading, newest first. It only appears for mods AIM knows the Nexus page for, since
-  that is where the notes come from — and only mods with a Nexus API key set can fetch them.
+  that is where the notes come from, and is fetched through AIM's OAuth Nexus sign-in.
 
   Notes load the first time you hover or click rather than for every mod at startup, which would be
   one Nexus request per mod on every launch. They are then cached in `aim_changelogs.json` in the
@@ -233,14 +235,26 @@ so the installer's own scan of the mods folder ignores it.
 
   Nexus only issues direct download links to Premium accounts. On a free account AIM opens the
   mod's page so you can use its **Mod Manager Download** button, which AIM picks up automatically
-  when registered to handle those links (gear menu → Nexus downloads). If you have Premium and are
-  still being sent to the page, AIM now checks the account and says so — that combination almost
-  always means the API key has been revoked or regenerated.
+  when registered to handle those links (gear menu → Nexus downloads). If a signed-in Premium
+  account is still sent to the page, AIM reports the account or download error rather than asking
+  for a personal API key; reconnect the account if its Nexus sign-in has expired.
 - **Versions.** A mod AIM has updated keeps its earlier copies, and the **Versions** dropdown on its
   row rolls back to any one of them — not just the newest, which matters when the version you want
   is the one before whichever update broke things.
 - **Automatic refresh.** The mods folder is watched while AIM is open, so a mod folder or archive
   copied in appears in the list a couple of seconds later.
+- **Watched download folders.** Gear menu → **Watched download folders** → **Watch a folder...** can
+  monitor one or more folders where you download mods by hand. AIM moves only recognised mod archives
+  or manifest folders into the selected Mods folder, leaves unrelated files alone, and updates the
+  list. Across drives it uses a hidden staging copy first, so an interrupted transfer never leaves a
+  half-written mod in the Mods folder.
+
+## Appearance and text size
+
+AIM follows the system Light/Dark theme by default. From the bottom menu you can explicitly select
+Light or Dark, or choose Mistria Harvest, Mistria Meadow, Mistria Night, or Rose Garden. The nearby
+**A-** and **A+** buttons decrease or increase only the application text size; the choice is remembered
+and does not change your operating system's DPI or display scaling.
 
 ## Optional localized mod metadata
 
@@ -297,9 +311,10 @@ Nexus downloads and updates:
   its name or row, choose **Associate with Nexus...**, and provide its Nexus page URL or an exact
   `nxm://` link.
 - If clicking the **Vortex download button** does nothing after signing in,
-  check gear menu → **Nexus downloads**: the line under **Handle Vortex download links** says who
-  currently owns them. A browser installed as a Flatpak or Snap may be unable to launch any handler,
-  in which case copy the link address and use **Install from a copied nxm:// link**.
+  check gear menu → **Nexus downloads** → **Use AIM for NXM**. On Windows, confirm AIM under
+  Default Apps if another registered program remains the selected default. A browser installed as a
+  Flatpak or Snap may be unable to launch any handler, in which case copy the link address and use
+  **Install from a copied nxm:// link**.
 - If an update check says AIM cannot tell which Nexus mod something is, that mod was not downloaded through AIM and its manifest has no Nexus link. Downloading it once through AIM records the connection.
 - If an update refuses to download and offers the mod's page instead, the account is not premium. Nexus only issues download links to free accounts through the website button; the page it opens is the supported route.
 - Previous versions live in `.aim-backups` inside the mods folder. If a rollback is not offered, no backup exists yet — they start being kept the first time a mod is updated through AIM.

@@ -53,6 +53,47 @@ foreach ($file in Get-ChildItem -LiteralPath $languageDirectory -Filter 'Resourc
     }
 }
 
+# User-facing text can also be constructed in C# (for window titles, crash reports, research
+# results, and CLI output). Inspect string literals, rather than every source character: comments
+# and parser rules may legitimately mention or recognise an em dash without displaying one.
+function Test-EmDashInStringLiteral([string] $path) {
+    $inBlockComment = $false
+
+    foreach ($line in Get-Content -LiteralPath $path) {
+        $trimmed = $line.TrimStart()
+        if ($inBlockComment) {
+            if ($trimmed.Contains('*/')) { $inBlockComment = $false }
+            continue
+        }
+        if ($trimmed.StartsWith('/*')) {
+            if (-not $trimmed.Contains('*/')) { $inBlockComment = $true }
+            continue
+        }
+        if ($trimmed.StartsWith('//')) { continue }
+
+        # This intentionally targets ordinary and interpolated one-line string literals. The
+        # project does not use multi-line UI strings, and this avoids false positives in comments
+        # or character literals such as parser delimiters.
+        if ($line -match '"[^"\r\n]*—[^"\r\n]*"') { return $true }
+    }
+
+    return $false
+}
+
+$sourceRoots = @(
+    (Join-Path $PSScriptRoot '..\ModsOfMistriaGUI'),
+    (Join-Path $PSScriptRoot '..\ModsOfMistriaInstallerLib'),
+    (Join-Path $PSScriptRoot '..\ModsOfMistriaCommandLine')
+)
+$sourceEmDashFiles = foreach ($sourceRoot in $sourceRoots) {
+    Get-ChildItem -LiteralPath $sourceRoot -Recurse -File -Include '*.cs', '*.axaml' |
+        Where-Object { Test-EmDashInStringLiteral $_.FullName }
+}
+foreach ($file in $sourceEmDashFiles) {
+    $hasEmDash = $true
+    Write-Output ("Source string: em dash in {0}" -f $file.FullName)
+}
+
 if ($FailOnMissing -and $hasMissing) {
     exit 1
 }

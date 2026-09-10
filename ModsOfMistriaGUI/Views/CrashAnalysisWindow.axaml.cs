@@ -75,6 +75,7 @@ public partial class CrashAnalysisWindow : Window
     private CrashAnalysisWindow(CrashContext? context, NexusApiClient? client)
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
 
         _context = context;
         _client = client;
@@ -181,10 +182,10 @@ public partial class CrashAnalysisWindow : Window
     private static string Describe(GameCrashLog crash)
     {
         var mods = crash.ModsAtLaunch is { Count: > 0 }
-            ? $" — {crash.ModsAtLaunch.Count} mods"
+            ? $" - {crash.ModsAtLaunch.Count} mods"
             : "";
 
-        return $"{crash.When.LocalDateTime:g}{mods} — {Shorten(crash.Tidied)}";
+        return $"{crash.When.LocalDateTime:g}{mods} - {Shorten(crash.Tidied)}";
     }
 
     private static string Shorten(string text) =>
@@ -1293,15 +1294,15 @@ public partial class CrashAnalysisWindow : Window
             .Select(suspect => (Verdict: VerdictFor(suspect), Manual: IsManual(suspect)) switch
             {
                 (CrashTrialVerdict.Cleared, true) =>
-                    $"{suspect.Name} — {LocalizedTexts.Instance.GUICrashTagMarkedInnocent}",
+                    $"{suspect.Name} - {LocalizedTexts.Instance.GUICrashTagMarkedInnocent}",
                 (CrashTrialVerdict.Guilty, true) =>
-                    $"{suspect.Name} — {LocalizedTexts.Instance.GUICrashTagMarkedCulprit}",
+                    $"{suspect.Name} - {LocalizedTexts.Instance.GUICrashTagMarkedCulprit}",
                 (CrashTrialVerdict.Cleared, _) =>
-                    $"{suspect.Name} — {LocalizedTexts.Instance.GUICrashTagRuledOut}",
+                    $"{suspect.Name} - {LocalizedTexts.Instance.GUICrashTagRuledOut}",
                 (CrashTrialVerdict.Guilty, _) =>
-                    $"{suspect.Name} — {LocalizedTexts.Instance.GUICrashTagLikelyCause}",
+                    $"{suspect.Name} - {LocalizedTexts.Instance.GUICrashTagLikelyCause}",
                 (CrashTrialVerdict.Inconclusive, _) =>
-                    $"{suspect.Name} — {LocalizedTexts.Instance.GUICrashTagTested}",
+                    $"{suspect.Name} - {LocalizedTexts.Instance.GUICrashTagTested}",
                 _ => suspect.Name
             })
             .Prepend(LocalizedTexts.Instance.GUICrashVerifyNothing)
@@ -2027,7 +2028,7 @@ public partial class CrashAnalysisWindow : Window
         {
             Content = new TextBlock
             {
-                Text = $"{finding.ModName} — {finding.Reason}{where}  ↗",
+                Text = $"{finding.ModName} - {finding.Reason}{where}  ↗",
                 TextWrapping = TextWrapping.Wrap,
                 FontSize = 11,
                 Opacity = 0.7

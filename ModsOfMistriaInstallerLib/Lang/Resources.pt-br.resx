@@ -927,7 +927,7 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Restaura todos os arquivos que o AIM separou neste mod e deixa o restante da pasta como está. Uma linha alterada pelo AIM é desfeita restaurando a versão abaixo.</value></data>
   <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Restaurar</value></data>
   <data name="GUICrashRestored" xml:space="preserve"><value>{0} foi restaurado para {1}.</value></data>
-  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — antes da alteração do AIM</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - antes da alteração do AIM</value></data>
   <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>O AIM desativará {0}, reconstruirá o arquivo do jogo e iniciará o jogo.&#xD;&#xA;&#xD;&#xA;A reconstrução leva cerca de um minuto. Jogue normalmente; o AIM informará se o crash voltar.</value></data>
   <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>O AIM iniciará o jogo e observará crashes sem alterar nada.&#xD;&#xA;&#xD;&#xA;Jogue normalmente; o AIM informará o resultado.</value></data>
   <data name="GUICrashCannotDisable" xml:space="preserve"><value>O AIM não pode alterar a lista de mods aqui.</value></data>
@@ -1038,10 +1038,10 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashRunStartFailed" xml:space="preserve"><value>O AIM não conseguiu iniciar o jogo: {0}</value></data>
   <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>O jogo travou, mas o AIM não conseguiu ler o log de crash deixado por ele. Esta sessão não prova nada sobre o mod. Vale a pena executar a verificação novamente.</value></data>
   <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>O jogo travou novamente durante a verificação.</value></data>
-  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>O jogo ainda está em execução após o período de verificação e não travou. Esse é o resultado desejado — continue jogando.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>O jogo ainda está em execução após o período de verificação e não travou. Esse é o resultado desejado - continue jogando.</value></data>
   <data name="GUICrashRunSameCrash" xml:space="preserve"><value>O mesmo crash voltou após {0}.</value></data>
   <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>O jogo travou novamente após {0}, mas com um erro diferente.</value></data>
-  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>O jogo foi encerrado com o código {0} após {1} e não deixou um log de crash. Isso geralmente significa que algo fora do jogo o fechou — falha de driver ou processo encerrado — e não um mod. Portanto, esta sessão também não prova nada.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>O jogo foi encerrado com o código {0} após {1} e não deixou um log de crash. Isso geralmente significa que algo fora do jogo o fechou - falha de driver ou processo encerrado - e não um mod. Portanto, esta sessão também não prova nada.</value></data>
   <data name="GUICrashRunNormalExit" xml:space="preserve"><value>O jogo funcionou por {0} e fechou normalmente, sem um novo crash.</value></data>
   <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>O jogo falhou dentro do código próprio deste mod, em {0}, linha {1}.</value></data>
   <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>O código deste mod está na pilha de chamadas, em {0}, linha {1}.</value></data>
@@ -1049,10 +1049,10 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>O jogo travou ao ler os dados “{0}”, aos quais {1} mod instalado adiciona conteúdo.</value></data>
   <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>O jogo travou ao ler os dados “{0}”, aos quais {1} mods instalados adicionam conteúdo.</value></data>
   <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Este mod adiciona conteúdo aos dados “{0}” que o jogo estava lendo quando travou.</value></data>
-  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Os dados “{0}” no arquivo do jogo não têm uma entrada sem {1}, então a causa já foi resolvida — por uma atualização, reinstalação ou mod que você desativou. Se acontecer novamente, volte aqui: os mods abaixo são onde procurar.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Os dados “{0}” no arquivo do jogo não têm uma entrada sem {1}, então a causa já foi resolvida - por uma atualização, reinstalação ou mod que você desativou. Se acontecer novamente, volte aqui: os mods abaixo são onde procurar.</value></data>
   <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Os dados “{0}” carregados agora ainda têm uma entrada sem {2}. Este crash voltará na próxima inicialização.</value></data>
   <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Os dados “{0}” carregados agora ainda têm {1} entradas sem {2}. Este crash voltará na próxima inicialização.</value></data>
-  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>É necessário instalar hooks do mecanismo, e o crash é uma chamada para algo que não era uma função — exatamente como um hook não instalado aparece dentro do jogo.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>É necessário instalar hooks do mecanismo, e o crash é uma chamada para algo que não era uma função - exatamente como um hook não instalado aparece dentro do jogo.</value></data>
   <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Este crash é mais antigo que os mods instalados atualmente, mas o problema descrito ainda está no arquivo do jogo. Portanto, o relatório não está desatualizado; espere vê-lo novamente na próxima inicialização.</value></data>
   <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Este crash é mais antigo que os mods instalados atualmente. O AIM reconstruiu o arquivo do jogo depois, então o jogo que travou não é o que está no disco agora. Trate tudo abaixo como uma pista, não como um veredito, e jogue uma vez antes de alterar qualquer coisa.</value></data>
   <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Falha dentro de {0}(), em: {1}</value></data>
@@ -1068,16 +1068,16 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Nada aponta claramente para um mod, mas vale a pena descartar alguns.</value></data>
   <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Algo carregado pelo jogo não tinha o campo “{0}”, e nenhum mod instalado parece ser o dono dele.</value></data>
   <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>O jogo leu “{0}” antes que qualquer coisa o definisse. Isso geralmente é código de mod.</value></data>
-  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>O jogo chamou algo que não era uma função — geralmente um hook que não foi instalado.</value></data>
-  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>O jogo não encontrou o recurso “{0}” — geralmente um sprite referenciado pelo mod, mas não incluído nele.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>O jogo chamou algo que não era uma função - geralmente um hook que não foi instalado.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>O jogo não encontrou o recurso “{0}” - geralmente um sprite referenciado pelo mod, mas não incluído nele.</value></data>
   <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>O AIM não conseguiu relacionar este crash a um mod apenas pela pilha de chamadas.</value></data>
   <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mods indicados por isso</value></data>
   <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Os indícios mais fortes vêm primeiro. Um mod citado porque o crash ocorreu dentro do próprio código não é um palpite; um mod citado porque escreve os dados lidos pelo jogo é um candidato.</value></data>
   <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Verificar se isso resolve</value></data>
-  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Desativa o mod escolhido, reconstrói o jogo para a alteração surtir efeito, inicia-o e observa. Jogue normalmente — o AIM informará quando o jogo fechar ou após alguns minutos sem crash.</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Desativa o mod escolhido, reconstrói o jogo para a alteração surtir efeito, inicia-o e observa. Jogue normalmente - o AIM informará quando o jogo fechar ou após alguns minutos sem crash.</value></data>
   <data name="GUICrashVerifyButton" xml:space="preserve"><value>Desativar, reconstruir e executar</value></data>
   <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Desativar um mod não muda nada que o jogo consiga ver até o arquivo ser reconstruído, então o AIM faz tudo em vez de deixar você lembrar da etapa intermediária.</value></data>
-  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Não alterar nada — apenas executar e observar</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Não alterar nada - apenas executar e observar</value></data>
   <data name="GUICrashLinksHeader" xml:space="preserve"><value>Vale a pena conferir</value></data>
   <data name="GUICrashRawHeader" xml:space="preserve"><value>O arquivo de crash como o jogo o escreveu</value></data>
   <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Onde ocorreu</value></data>
@@ -1104,23 +1104,23 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashOpenModPage" xml:space="preserve"><value>Abrir página do mod</value></data>
   <data name="GUICrashOpenPage" xml:space="preserve"><value>Abrir esta página</value></data>
   <data name="GUICrashReportBug" xml:space="preserve"><value>Relatar este bug</value></data>
-  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Cria o relatório que o autor precisa — erro, pilha de chamadas, versão do jogo e outros mods instalados — coloca-o na área de transferência e abre o rastreador de bugs do mod. Você lê e publica; o AIM não faz isso.</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Cria o relatório que o autor precisa - erro, pilha de chamadas, versão do jogo e outros mods instalados - coloca-o na área de transferência e abre o rastreador de bugs do mod. Você lê e publica; o AIM não faz isso.</value></data>
   <data name="GUICrashReportReady" xml:space="preserve"><value>O relatório está na área de transferência e o rastreador de bugs está aberto. Leia-o e publique.</value></data>
   <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>O relatório está na área de transferência. O AIM não sabe de onde veio este mod, então você terá que encontrar o rastreador ou Discord do autor.</value></data>
   <data name="GUICrashCopied" xml:space="preserve"><value>Copiado.</value></data>
   <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Desativar e verificar</value></data>
   <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Desativa este mod, reconstrói o jogo e o executa, para descobrir se ele era a causa em vez de adivinhar.</value></data>
-  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Reconstruindo o jogo sem este mod — ele iniciará sozinho quando terminar. O progresso está abaixo.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Reconstruindo o jogo sem este mod - ele iniciará sozinho quando terminar. O progresso está abaixo.</value></data>
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>Remover mod</value></data>
   <data name="GUICrashRemoved" xml:space="preserve"><value>{0} foi removido.</value></data>
   <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versões e alterações do AIM</value></data>
   <data name="GUICrashNextCandidate" xml:space="preserve"><value>Testar o próximo: {0}</value></data>
   <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Executa a mesma verificação no próximo suspeito não testado: desativa, reconstrói, inicia e observa. Os mods já descartados permanecem ativados.</value></data>
-  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Todos os suspeitos foram testados e nenhum foi a causa sozinho. Dois mods podem causar isso juntos — tente desativar toda a lista ou relate o crash com a lista abaixo.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Todos os suspeitos foram testados e nenhum foi a causa sozinho. Dois mods podem causar isso juntos - tente desativar toda a lista ou relate o crash com a lista abaixo.</value></data>
   <data name="GUICrashRestartHunt" xml:space="preserve"><value>Recomeçar</value></data>
   <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Descarta todos os vereditos que o AIM registrou para este crash e oferece todos os suspeitos novamente. É útil depois de adicionar, remover ou reordenar mods.</value></data>
   <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Todos os vereditos deste crash foram apagados.</value></data>
-  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Descartados — {0} de {1} suspeitos</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Descartados - {0} de {1} suspeitos</value></data>
   <data name="GUICrashSettledExpander" xml:space="preserve"><value>Mostrar o que esses testes provaram</value></data>
   <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Lendo as próprias páginas de {0} em busca de uma correção…</value></data>
   <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Não é a causa</value></data>
@@ -1132,7 +1132,7 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Marcado manualmente, não testado pelo AIM.</value></data>
   <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>MARCADO COMO NÃO SENDO A CAUSA</value></data>
   <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>MARCADO COMO CAUSADOR DO CRASH</value></data>
-  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Você marcou isto como a causa. O AIM não o testou — desativou o mod e o marcou na sua lista por sua decisão. Correções que o AIM pode aplicar sozinho estão abaixo; a discussão do bug talvez já tenha uma resposta.</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Você marcou isto como a causa. O AIM não o testou - desativou o mod e o marcou na sua lista por sua decisão. Correções que o AIM pode aplicar sozinho estão abaixo; a discussão do bug talvez já tenha uma resposta.</value></data>
   <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} foi marcado como causador do crash e desativado. Instale para reconstruir o jogo sem ele.</value></data>
   <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} foi marcado como causador do crash. Ele já estava desativado.</value></data>
   <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} foi marcado como não sendo a causa e não será oferecido novamente para este crash.</value></data>
@@ -1148,7 +1148,7 @@ Clique para ler todas as versões.</value></data>
   <data name="GUICrashCulpritNote" xml:space="preserve"><value>Um teste provou isto: com o mod desativado, o jogo não travou. O AIM o deixou desativado e o marcou na sua lista. Correções que o AIM pode aplicar sozinho estão abaixo; a discussão do bug talvez já tenha uma resposta.</value></data>
   <data name="GUICrashTagTested" xml:space="preserve"><value>TESTADO, SEM RESPOSTA</value></data>
   <data name="GUICrashRepairHeader" xml:space="preserve"><value>Correções que o AIM pode aplicar sozinho</value></data>
-  <data name="GUICrashRepairHint" xml:space="preserve"><value>Estas correções foram descobertas pelo AIM em suas próprias verificações, não em uma discussão de bug. São correções mecânicas de algo comprovadamente errado no arquivo — nunca um palpite sobre o que o autor quis dizer. O mod inteiro é copiado primeiro para o histórico de versões, marcado como alterado e protegido contra atualizações até surgir uma atualização que corrija isso corretamente.</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Estas correções foram descobertas pelo AIM em suas próprias verificações, não em uma discussão de bug. São correções mecânicas de algo comprovadamente errado no arquivo - nunca um palpite sobre o que o autor quis dizer. O mod inteiro é copiado primeiro para o histórico de versões, marcado como alterado e protegido contra atualizações até surgir uma atualização que corrija isso corretamente.</value></data>
   <data name="GUICrashRepairApply" xml:space="preserve"><value>Aplicar esta correção</value></data>
   <data name="GUICrashRepairApplied" xml:space="preserve"><value>Aplicado a {0}. O mod foi marcado como alterado e protegido contra atualizações; a versão anterior está na lista de restauração acima.</value></data>
   <data name="GUICrashRepairNone" xml:space="preserve"><value>Nada aqui está quebrado de uma forma que o AIM possa reparar sozinho.</value></data>
@@ -1159,7 +1159,10 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Padrão do sistema</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Claro</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Escuro</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>Prado de Mistria</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Colheita de Mistria</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Prado de Mistria</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>Noite de Mistria</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardim de rosas</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Diminuir tamanho do texto</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Aumentar tamanho do texto</value></data>
 </root>

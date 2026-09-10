@@ -677,7 +677,7 @@
   <data name="GUICrashRemoveMod" xml:space="preserve"><value>移除模组</value></data><data name="GUICrashRemoved" xml:space="preserve"><value>{0} 已移除。</value></data><data name="GUICrashVersionsHeader" xml:space="preserve"><value>版本与 AIM 的更改</value></data>
   <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM 修改了此模组：</value></data><data name="GUICrashUndoEdits" xml:space="preserve"><value>撤销 AIM 更改</value></data>
   <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>恢复 AIM 为此模组暂存的文件，不影响文件夹其他内容。</value></data><data name="GUICrashRestoreVersion" xml:space="preserve"><value>恢复</value></data>
-  <data name="GUICrashRestored" xml:space="preserve"><value>{0} 已恢复到 {1}。</value></data><data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} — AIM 修改前</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} 已恢复到 {1}。</value></data><data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - AIM 修改前</value></data>
   <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM 将禁用 {0}、重建游戏档案并启动游戏。&#xD;&#xA;&#xD;&#xA;重建约需一分钟。正常游戏即可，AIM 会报告崩溃是否再次出现。</value></data>
   <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM 将启动游戏并观察崩溃，不做任何修改。正常游戏即可，AIM 会报告结果。</value></data>
   <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM 无法在此修改模组列表。</value></data><data name="GUICrashDisableFailed" xml:space="preserve"><value>无法禁用 {0}。它可能已禁用或不在列表中。</value></data>
@@ -703,7 +703,7 @@
   <data name="GUICrashNextCandidate" xml:space="preserve"><value>测试下一个：{0}</value></data><data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>对下一个未测试的可疑模组执行相同检查：禁用、重建、启动并观察。已排除的模组保持启用。</value></data>
   <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>所有可疑模组都已测试，但没有一个单独导致问题。两个模组可能共同造成问题。</value></data><data name="GUICrashRestartHunt" xml:space="preserve"><value>重新开始</value></data>
   <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>删除 AIM 为此崩溃记录的所有结论，并再次提供所有可疑模组。</value></data><data name="GUICrashRestartedHunt" xml:space="preserve"><value>此崩溃的所有结论已清除。</value></data>
-  <data name="GUICrashSettledHeader" xml:space="preserve"><value>已排除 — {0}/{1} 个可疑对象</value></data><data name="GUICrashSettledExpander" xml:space="preserve"><value>显示测试证明的内容</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>已排除 - {0}/{1} 个可疑对象</value></data><data name="GUICrashSettledExpander" xml:space="preserve"><value>显示测试证明的内容</value></data>
   <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>正在读取 {0} 的页面以寻找修复…</value></data><data name="GUICrashMarkInnocent" xml:space="preserve"><value>不是原因</value></data>
   <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>无需运行测试即可记录此模组不是原因。它会移到排除列表，不再提供测试，并在 AIM 曾禁用它时重新启用。</value></data><data name="GUICrashMarkCulprit" xml:space="preserve"><value>标记为崩溃原因</value></data>
   <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>记录此模组会导致崩溃。AIM 会禁用并标记它，但这是你的判断而非 AIM 的测试结论。</value></data><data name="GUICrashUnmark" xml:space="preserve"><value>撤销我的标记</value></data>
@@ -767,7 +767,7 @@
   <data name="GUICrashVerifyHint" xml:space="preserve"><value>禁用所选模组，重建游戏，启动并观察。正常游戏即可；游戏关闭或几分钟未崩溃后 AIM 会报告结果。</value></data>
   <data name="GUICrashVerifyButton" xml:space="preserve"><value>禁用、重建并运行</value></data>
   <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>禁用模组后，只有重建档案游戏才能看到变化，所以 AIM 会完成全部步骤。</value></data>
-  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>不改变任何内容—直接运行并观察</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>不改变任何内容-直接运行并观察</value></data>
   <data name="GUICrashLinksHeader" xml:space="preserve"><value>值得查看</value></data>
   <data name="GUICrashRawHeader" xml:space="preserve"><value>游戏写入的崩溃文件</value></data>
   <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>崩溃位置</value></data>
@@ -786,7 +786,10 @@
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>系统默认</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>浅色</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>深色</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>米斯特里亚草甸</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>米斯特里亚丰收</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>米斯特里亚草甸</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>米斯特里亚之夜</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>玫瑰花园</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>减小文字大小</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>增大文字大小</value></data>
 </root>

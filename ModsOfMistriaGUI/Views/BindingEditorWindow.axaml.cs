@@ -29,6 +29,7 @@ public partial class BindingEditorWindow : Window
     private BindingEditorWindow(string what, MmapiBinding? current)
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
 
         var texts = LocalizedTexts.Instance;
         Title = texts.GUIBindingEditorTitle;

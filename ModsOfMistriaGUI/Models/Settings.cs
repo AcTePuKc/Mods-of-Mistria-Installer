@@ -5,6 +5,10 @@ namespace Garethp.ModsOfMistriaGUI.Models;
 
 public partial class Settings : ObservableObject
 {
+    public const double DefaultUiFontSize = 12;
+    public const double MinimumUiFontSize = 11;
+    public const double MaximumUiFontSize = 16;
+
     public Settings()
     {
     }
@@ -26,6 +30,10 @@ public partial class Settings : ObservableObject
     // "system" deliberately remains the default: a first launch follows the operating system
     // exactly as AIM always has. Explicit choices are remembered independently of language.
     [ObservableProperty] private string _uiTheme = "system";
+
+    // This is text size in Avalonia's device-independent pixels, not display/DPI scaling. The
+    // window value is inherited by its controls, so it remains a readable preference on every OS.
+    [ObservableProperty] private double _uiFontSize = DefaultUiFontSize;
 
     // A dismissed update is remembered only for that exact version. A later
     // release remains visible instead of being hidden permanently.
@@ -71,6 +79,9 @@ public partial class Settings : ObservableObject
     partial void OnUiThemeChanged(string value)
         => SavePreferences();
 
+    partial void OnUiFontSizeChanged(double value)
+        => SavePreferences();
+
     partial void OnDismissedUpdateVersionChanged(string? value)
         => SavePreferences();
 
@@ -81,7 +92,7 @@ public partial class Settings : ObservableObject
             var directory = Path.GetDirectoryName(PreferencesPath);
             if (!string.IsNullOrEmpty(directory)) Directory.CreateDirectory(directory);
             File.WriteAllText(PreferencesPath, JsonSerializer.Serialize(
-                new LaunchPreferences(LaunchGameDirectly, UiLanguage, DismissedUpdateVersion, DropFolders, UiTheme)));
+                new LaunchPreferences(LaunchGameDirectly, UiLanguage, DismissedUpdateVersion, DropFolders, UiTheme, UiFontSize)));
         }
         catch
         {
@@ -101,6 +112,7 @@ public partial class Settings : ObservableObject
                 LaunchGameDirectly = preferences.LaunchGameDirectly;
                 UiLanguage = string.IsNullOrWhiteSpace(preferences.UiLanguage) ? "system" : preferences.UiLanguage;
                 UiTheme = NormalizeTheme(preferences.UiTheme);
+                UiFontSize = NormalizeUiFontSize(preferences.UiFontSize);
                 DismissedUpdateVersion = preferences.DismissedUpdateVersion;
                 DropFolders = preferences.DropFolders ?? [];
             }
@@ -135,22 +147,45 @@ public partial class Settings : ObservableObject
         catch { return "system"; }
     }
 
+    public static double LoadSavedUiFontSize()
+    {
+        try
+        {
+            var path = File.Exists(PreferencesPath) ? PreferencesPath : LegacyPreferencesPath;
+            if (!File.Exists(path)) return DefaultUiFontSize;
+            var preferences = JsonSerializer.Deserialize<LaunchPreferences>(File.ReadAllText(path));
+            return NormalizeUiFontSize(preferences?.UiFontSize ?? DefaultUiFontSize);
+        }
+        catch { return DefaultUiFontSize; }
+    }
+
     public static string NormalizeTheme(string? value) => value?.ToLowerInvariant() switch
     {
         "light" => "light",
         "dark" => "dark",
-        "meadow" => "meadow",
+        // 0.2.0-preview called the warm parchment preset "meadow". Preserve that user's
+        // choice when it is renamed to Harvest; the new green Meadow has its own stable value.
+        "meadow" => "harvest",
+        "harvest" => "harvest",
+        "meadow-green" => "meadow-green",
         "night" => "night",
         "rose" => "rose",
         _ => "system"
     };
+
+    public static double NormalizeUiFontSize(double value)
+    {
+        if (double.IsNaN(value) || double.IsInfinity(value)) return DefaultUiFontSize;
+        return Math.Clamp(Math.Round(value), MinimumUiFontSize, MaximumUiFontSize);
+    }
 
     private sealed record LaunchPreferences(
         bool LaunchGameDirectly,
         string UiLanguage = "system",
         string? DismissedUpdateVersion = null,
         List<string>? DropFolders = null,
-        string UiTheme = "system");
+        string UiTheme = "system",
+        double UiFontSize = DefaultUiFontSize);
 
     public bool ValidMistriaLocation() => !string.IsNullOrEmpty(MistriaLocation) &&
                                           Directory.Exists(MistriaLocation) &&

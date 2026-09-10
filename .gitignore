@@ -5,6 +5,9 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea
 Release/
+# Named local release builds are for manual verification only; published artifacts belong in a
+# GitHub Release, not in the repository history.
+Release-*/
 ModsOfMistriaInstaller.sln.DotSettings.user
 **/*.DotSettings.user
 .vs/

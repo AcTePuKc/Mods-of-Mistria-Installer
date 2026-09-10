@@ -169,7 +169,7 @@ public partial class ModlistPageView : UserControl
 
     // Route ComboBox SelectionChanged to SwitchProfileCommand.
     // The ComboBox binding is Mode=OneWay so the ViewModel's CurrentProfile is
-    // NOT updated by user selection — we must explicitly call the command and let
+    // NOT updated by user selection - we must explicitly call the command and let
     // it update CurrentProfile on success (or restore ComboBox on cancel).
     private async void OnProfileSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
@@ -429,7 +429,7 @@ public partial class ModlistPageView : UserControl
         foreach (var item in new[]
                  {
                      ThemeSystemMenuItem, ThemeLightMenuItem, ThemeDarkMenuItem,
-                     ThemeMeadowMenuItem, ThemeNightMenuItem, ThemeRoseMenuItem
+                     ThemeHarvestMenuItem, ThemeMeadowMenuItem, ThemeNightMenuItem, ThemeRoseMenuItem
                  })
         {
             item.Icon = string.Equals(item.Tag as string, selected, StringComparison.OrdinalIgnoreCase)

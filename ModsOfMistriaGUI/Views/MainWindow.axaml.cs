@@ -10,6 +10,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
         Opened += (_, _) => FitToWorkingArea();
     }
 

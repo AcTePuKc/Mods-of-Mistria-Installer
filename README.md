@@ -12,7 +12,7 @@ The current AIM development line is `0.2.0`.
 
 ## Preview
 
-![AIM preview](aim-preview.gif)
+[![AIM preview](aim-preview-poster.jpg)](aim-preview-small.mp4)
 
 <sub>Visual preview of AIM: language switching, mod installation and removal, load-order management, mod selection, and installation status messages.</sub>
 
@@ -23,7 +23,7 @@ Compared with the upstream 0.15.10 line, this fork focuses on Fields of Mistria 
 - Rebuilds are staged from a verified pristine archive and validated before the live `assets.zip` is replaced.
 - Failed installations keep the previous working archive and provide a mod-specific diagnostic log where possible.
 - TOML validation, custom font installation and manual-load animation content are supported for current 1.0.x mods.
-- The UI remembers profiles and load order, behaves better on high-DPI displays, and includes a guarded **Play** button.
+- The UI remembers profiles, load order, theme and text-size preferences; behaves better on high-DPI displays; and includes a guarded **Play** button.
 - Update checks, release uploads and the GitHub link belong to this fork rather than the upstream repository.
 
 ## Nexus integration and mod list tools
@@ -50,6 +50,7 @@ client; AIM does not accept or fall back to personal Nexus API keys.
 | Install one mod's update in place, keeping the old version | Green **Update** badge on the mod's row |
 | Roll a mod back to any earlier copy AIM kept, not just the newest | **Versions** dropdown on the mod's row |
 | Read what changed in a mod, this version or any earlier one | Document icon after the mod's version |
+| Move recognised hand-downloaded mods from any watched folder into the selected Mods folder | Gear menu → **Watched download folders** → **Watch a folder…** |
 | Decide which mod wins a shared file, from inside the conflict report | **Check issues** → expand a finding → **Make this one win** |
 | Look up whether a conflict is known, patched, or harmless | **Check issues** → expand a finding → **Find a fix…** |
 | Move a mod off a clashing keyboard shortcut | **Check issues** → expand a shortcut clash → **Rebind…** |
@@ -57,8 +58,8 @@ client; AIM does not accept or fall back to personal Nexus API keys.
 | **Suggest order** — order mods so each loads after what it requires, and report what it cannot decide | Button above the mod list |
 | Mods copied into the mods folder appear without reopening AIM | Automatic |
 
-Full details are in [Downloading mods from Nexus](#downloading-mods-from-nexus-vortex-download-button)
-and [Mod list tools](#mod-list-tools) below.
+Full details are in the [Nexus download guide](docs/USER_GUIDE.md#downloading-mods-from-nexus-vortex-download-button),
+[mod list tools](docs/USER_GUIDE.md#mod-list-tools), and [appearance guide](docs/USER_GUIDE.md#appearance-and-text-size).
 
 ### What it does not change
 

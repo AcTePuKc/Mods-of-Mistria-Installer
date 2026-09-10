@@ -1,6 +1,43 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 - 2026-09-10
+
+### The whole interface now speaks the language you selected
+
+- Every shipped language pack now contains every current AIM message, including crash diagnosis,
+  conflict research, Nexus flows, watched folders, updates, and the newer settings windows. A
+  player no longer drops back into English halfway through an action just because it is uncommon.
+- The localization check now rejects missing or surplus keys and visible em dashes in GUI, library,
+  and CLI string literals before a Windows release is built.
+
+### The mod list gets the window space
+
+- The large game-detection banner has gone. Search, filters, list actions, and status now share a
+  responsive toolbar that wraps only on a small window, leaving substantially more vertical room
+  for actual mods at ordinary high-DPI sizes.
+- Long status and load-order text uses the space available on a wide window and truncates only
+  where a compact layout genuinely needs it; its full wording remains available on hover.
+- Every substantial prompt now uses the same bounded dialog layout, so translated paths and
+  explanatory text wrap instead of making a window wider than the screen.
+
+### Use the system colours, or make AIM feel like Mistria
+
+- AIM follows the system theme by default and remembers an explicit Light or Dark choice when one
+  is wanted.
+- Four optional palettes are available from the menu: **Mistria Harvest**, **Mistria Meadow**,
+  **Mistria Night**, and **Rose Garden**. They carry through the main window and AIM's secondary
+  windows rather than recolouring only a checkbox or two.
+- **A−** and **A+** beside Language and Theme adjust the interface text size immediately. The
+  preference is remembered, applies to existing and new AIM windows, and changes text rather than
+  scaling the entire layout or second-guessing the operating system's DPI setting.
+
+### NXM ownership is reported honestly
+
+- Registering AIM for `nxm://` no longer pretends that it can override the Windows default silently.
+  When another registered program remains selected, AIM says so and offers the Windows Default Apps
+  picker on Windows; other platforms keep their existing protocol behaviour.
+- The Nexus menu has one stateful **Use/Stop using AIM for NXM** action instead of separate or
+  empty menu slots, and disabled submenu text no longer makes the menu flicker.
 
 ### A failed update no longer takes the version you had with it
 

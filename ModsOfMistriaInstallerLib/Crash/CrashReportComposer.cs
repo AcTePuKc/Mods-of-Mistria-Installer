@@ -161,7 +161,7 @@ public static class CrashReportComposer
     {
         var text = new StringBuilder();
 
-        text.AppendLine($"AIM crash report — {crash.When.LocalDateTime:g}");
+        text.AppendLine($"AIM crash report - {crash.When.LocalDateTime:g}");
         text.AppendLine();
         text.AppendLine(diagnosis.Headline);
         text.AppendLine();
@@ -180,7 +180,7 @@ public static class CrashReportComposer
 
             foreach (var suspect in diagnosis.Suspects)
             {
-                text.AppendLine($"  {suspect.Name} — {suspect.Confidence}");
+                text.AppendLine($"  {suspect.Name} - {suspect.Confidence}");
                 foreach (var evidence in suspect.Evidence) text.AppendLine("     " + evidence);
             }
         }

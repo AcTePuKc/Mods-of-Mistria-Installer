@@ -33,6 +33,7 @@ public partial class KeybindManagerWindow : Window
     private KeybindManagerWindow(IReadOnlyList<IMod> mods, ModDataStore? store, BindingVault? vault)
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
 
         _mods = mods;
         _store = store;
@@ -252,14 +253,14 @@ public partial class KeybindManagerWindow : Window
 
     private string DescribeRow(ModBindingEntry entry, IReadOnlyList<ModBindingEntry> clashes)
     {
-        var lines = new List<string> { $"{entry.ModName} — {entry.FieldLabel}" };
+        var lines = new List<string> { $"{entry.ModName} - {entry.FieldLabel}" };
 
         if (clashes.Count > 0)
         {
             lines.Add("");
             lines.Add(Texts.GUIKeybindsClashHeader);
             lines.AddRange(clashes.Select(other =>
-                $"  • {other.ModName} — {other.FieldLabel} ({other.Value})"));
+                $"  • {other.ModName} - {other.FieldLabel} ({other.Value})"));
         }
 
         if (entry.Source == BindingSource.ModDefault)
@@ -287,7 +288,7 @@ public partial class KeybindManagerWindow : Window
         if (entry.File is null || _locked) return;
 
         var chosen = await BindingEditorWindow.ShowAsync(
-            this, $"{entry.ModName} — {entry.FieldLabel}", entry.Binding);
+            this, $"{entry.ModName} - {entry.FieldLabel}", entry.Binding);
         if (chosen is null) return;
 
         if (!ModDataStore.WriteField(entry.File, entry.Field, chosen))

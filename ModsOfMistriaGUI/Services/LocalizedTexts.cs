@@ -63,6 +63,7 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIThemeLight => T("GUIThemeLight");
     public string GUIThemeDark => T("GUIThemeDark");
     public string GUIThemeMeadow => T("GUIThemeMeadow");
+    public string GUIThemeGreenMeadow => T("GUIThemeGreenMeadow");
     public string GUIThemeNight => T("GUIThemeNight");
     public string GUIThemeRoseGarden => T("GUIThemeRoseGarden");
     public string GUINewProfile => T("GUINewProfile");

@@ -1153,7 +1153,10 @@ Les confier à AIM ?</value></data>
   <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Par défaut du système</value></data>
   <data name="GUIThemeLight" xml:space="preserve"><value>Clair</value></data>
   <data name="GUIThemeDark" xml:space="preserve"><value>Sombre</value></data>
-  <data name="GUIThemeMeadow" xml:space="preserve"><value>Prairie de Mistria</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Récolte de Mistria</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Prairie de Mistria</value></data>
   <data name="GUIThemeNight" xml:space="preserve"><value>Nuit de Mistria</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardin de roses</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Réduire la taille du texte</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Augmenter la taille du texte</value></data>
 </root>

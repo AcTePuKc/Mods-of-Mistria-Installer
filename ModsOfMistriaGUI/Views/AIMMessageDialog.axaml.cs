@@ -22,6 +22,7 @@ public partial class AIMMessageDialog : Window
     private AIMMessageDialog(string title, string message, ButtonEnum buttons)
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
         Title = title;
         MessageText.Text = message;
         Closed += (_, _) => _result.TrySetResult(ButtonResult.Cancel);
