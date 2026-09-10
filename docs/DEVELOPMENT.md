@@ -55,7 +55,8 @@ GitHub prereleases are deliberate test candidates, not an artifact for every `de
 tag such as `v0.3.0-rc.1` from `develop` and publish it as a GitHub prerelease when testers need a
 downloadable build. The normal release workflow produces its platform binaries, while Nexus publishing
 remains a separate manual decision. Stable tags are created from `main` and use the normal GitHub then
-Nexus release sequence.
+Nexus release sequence. When manually re-running either release workflow, supply the existing
+`v<version>` tag: both workflows build that exact tagged source rather than the current branch tip.
 
 ### Versioning before 1.0
 
