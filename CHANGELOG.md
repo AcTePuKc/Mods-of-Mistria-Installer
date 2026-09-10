@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.1 - 2026-09-10
+
+### Two critical release fixes
+
+- **Use AIM for NXM now really uses the AIM you opened.** When you explicitly confirm a
+  takeover on Windows, AIM refreshes its Default Apps candidate and updates the `nxm://`
+  fallback to that exact executable. An existing Windows `UserChoice` is still respected;
+  AIM never writes it behind your back.
+- **Release update checks are back.** AIM again checks the GitHub releases asynchronously,
+  chooses the newest valid stable semantic-version tag, ignores drafts and prereleases, and
+  keeps the existing dismissible update banner.
+
 ## 0.2.0 - 2026-09-10
 
 ### The whole interface now speaks the language you selected

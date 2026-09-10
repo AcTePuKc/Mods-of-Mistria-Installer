@@ -1,4 +1,4 @@
-# AIM — Alternative Installer for Mistria 0.2.0
+# AIM — Alternative Installer for Mistria 0.2.1
 
 This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
 
@@ -6,7 +6,7 @@ AIM is a fork of MOMI. It was renamed to avoid confusion between the two applica
 
 AIM is not intended to replace MOMI. It exists to provide capabilities that are currently needed by this fork while remaining compatible with the upstream project. If MOMI later adopts at least the capabilities that motivated this fork and fully meets the project's needs, AIM may be retired in favour of the upstream project.
 
-The current AIM development line is `0.2.0`.
+The current AIM development line is `0.2.1`.
 
 [![Lifetime tracked clones](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/clones.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Lifetime tracked views](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/views.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Clones in the last 30 days](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/clones-30d.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Views in the last 30 days](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/views-30d.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![Repository stars](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/stars.svg)](https://github.com/AcTePuKc/repo-metrics/blob/main/PORTFOLIO.md) [![AI assisted](https://raw.githubusercontent.com/AcTePuKc/repo-metrics/main/badges/Mods-of-Mistria-Installer/ai-assisted.svg)](https://github.com/AcTePuKc/Mods-of-Mistria-Installer)
 
