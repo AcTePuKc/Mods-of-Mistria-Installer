@@ -22,7 +22,7 @@ public class Tests
         // Open window:
         window.Show();
 
-        Assert.That(window.Title, Is.EqualTo($"AIM — Alternative Installer for Mistria — {AppInfo.DisplayVersion}"));
+        Assert.That(window.Title, Is.EqualTo($"AIM - Alternative Installer for Mistria - {AppInfo.DisplayVersion}"));
     }
 
     [AvaloniaTest]

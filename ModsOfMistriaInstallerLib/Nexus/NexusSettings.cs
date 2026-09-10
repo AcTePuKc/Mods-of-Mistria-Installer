@@ -1,6 +1,7 @@
 using System.Runtime.Versioning;
 using System.Security.Cryptography;
 using System.Text;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Newtonsoft.Json.Linq;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -205,7 +206,9 @@ public class NexusSettings
         catch (Exception e)
         {
             Logger.Log($"Could not save the Nexus OAuth session: {e.Message}");
-            throw new IOException("Could not save the Nexus account session. Check disk access and try again.", e);
+            throw new IOException(
+                Resources.ResourceManager.GetString("GUINexusSettingsSaveSessionFailed", Resources.Culture)
+                ?? "GUINexusSettingsSaveSessionFailed", e);
         }
         finally
         {

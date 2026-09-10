@@ -1,6 +1,7 @@
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Newtonsoft.Json.Linq;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -64,6 +65,9 @@ public sealed record NexusOAuthTokens(string AccessToken, string RefreshToken, D
 /// </summary>
 public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistration registration, HttpClient? http = null)
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private static readonly Uri TokenEndpoint = new("https://users.nexusmods.com/oauth/token");
     private readonly HttpClient _http = http ?? new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
 
@@ -127,9 +131,9 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
         NexusOAuthAuthorizationRequest request, string callbackState, string authorizationCode, CancellationToken ct = default)
     {
         if (!string.Equals(request.State, callbackState, StringComparison.Ordinal))
-            throw new NexusApiException("Nexus sign-in was cancelled because the callback state did not match.");
+            throw new NexusApiException(Text("GUINexusOAuthStateMismatch"));
         if (string.IsNullOrWhiteSpace(authorizationCode))
-            throw new NexusApiException("Nexus did not return an authorization code.");
+            throw new NexusApiException(Text("GUINexusOAuthMissingCode"));
 
         var tokens = await RequestTokensAsync(new Dictionary<string, string>
         {
@@ -148,7 +152,7 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
     private async Task<NexusOAuthTokens> RefreshAsync(NexusOAuthTokens current, CancellationToken ct)
     {
         if (!IsRegistered || string.IsNullOrWhiteSpace(current.RefreshToken))
-            throw new NexusApiException("The Nexus account session needs to be connected again.");
+            throw new NexusApiException(Text("GUINexusOAuthReconnectRequired"));
 
         var refreshed = await RequestTokensAsync(new Dictionary<string, string>
         {
@@ -163,7 +167,7 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
     private async Task<NexusOAuthTokens> RequestTokensAsync(Dictionary<string, string> values, CancellationToken ct)
     {
         if (!IsRegistered)
-            throw new NexusApiException("Nexus OAuth registration for AIM is still pending.");
+            throw new NexusApiException(Text("GUINexusOAuthRegistrationPending"));
 
         using var request = new HttpRequestMessage(HttpMethod.Post, TokenEndpoint)
         {
@@ -172,7 +176,7 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
         using var response = await _http.SendAsync(request, ct);
         var body = await response.Content.ReadAsStringAsync(ct);
         if (!response.IsSuccessStatusCode)
-            throw new NexusApiException("Nexus could not complete account sign-in.", response.StatusCode);
+            throw new NexusApiException(Text("GUINexusOAuthSignInFailed"), response.StatusCode);
 
         try
         {
@@ -181,7 +185,7 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
             var refreshToken = json.Value<string>("refresh_token");
             var expiresIn = json.Value<long?>("expires_in") ?? 3600;
             if (string.IsNullOrWhiteSpace(accessToken) || string.IsNullOrWhiteSpace(refreshToken))
-                throw new NexusApiException("Nexus returned an incomplete account session.");
+                throw new NexusApiException(Text("GUINexusOAuthIncompleteSession"));
 
             return new NexusOAuthTokens(accessToken, refreshToken,
                 DateTimeOffset.UtcNow.AddSeconds(Math.Max(1, expiresIn)));
@@ -192,7 +196,7 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
         }
         catch (Exception e)
         {
-            throw new NexusApiException("Could not read the Nexus account response.", response.StatusCode, e);
+            throw new NexusApiException(Text("GUINexusOAuthUnreadableResponse"), response.StatusCode, e);
         }
     }
 }
@@ -203,6 +207,9 @@ public sealed class NexusOAuthService(NexusSettings settings, NexusOAuthRegistra
 /// </summary>
 public sealed class NexusOAuthLoopbackListener : IDisposable
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private readonly Uri _redirectUri;
     private readonly HttpListener _listener = new();
     private bool _started;
@@ -246,7 +253,7 @@ public sealed class NexusOAuthLoopbackListener : IDisposable
 
             if (!string.Equals(context.Request.Url?.AbsolutePath, _redirectUri.AbsolutePath, StringComparison.Ordinal))
             {
-                await RespondAsync(context.Response, HttpStatusCode.NotFound, "AIM is waiting for its Nexus sign-in callback.");
+                await RespondAsync(context.Response, HttpStatusCode.NotFound, Text("GUINexusOAuthWaiting"));
                 continue;
             }
 
@@ -256,7 +263,7 @@ public sealed class NexusOAuthLoopbackListener : IDisposable
 
             if (!FixedTimeEquals(expectedState, state))
             {
-                await RespondAsync(context.Response, HttpStatusCode.BadRequest, "The Nexus sign-in response did not match this AIM session.");
+                await RespondAsync(context.Response, HttpStatusCode.BadRequest, Text("GUINexusOAuthStateMismatchBrowser"));
                 // A different local process can reach the loopback listener too. Reject its
                 // callback, but keep waiting: it must not be able to cancel the real browser
                 // response merely by sending a request with a random state value.
@@ -265,17 +272,17 @@ public sealed class NexusOAuthLoopbackListener : IDisposable
 
             if (!string.IsNullOrWhiteSpace(error))
             {
-                await RespondAsync(context.Response, HttpStatusCode.BadRequest, "Nexus sign-in was cancelled. You can return to AIM.");
-                throw new NexusApiException("Nexus sign-in was cancelled or denied by the browser.");
+                await RespondAsync(context.Response, HttpStatusCode.BadRequest, Text("GUINexusOAuthCancelledBrowser"));
+                throw new NexusApiException(Text("GUINexusOAuthCancelled"));
             }
 
             if (string.IsNullOrWhiteSpace(code))
             {
-                await RespondAsync(context.Response, HttpStatusCode.BadRequest, "Nexus did not return an authorization code.");
-                throw new NexusApiException("Nexus did not return an authorization code.");
+                await RespondAsync(context.Response, HttpStatusCode.BadRequest, Text("GUINexusOAuthMissingCode"));
+                throw new NexusApiException(Text("GUINexusOAuthMissingCode"));
             }
 
-            await RespondAsync(context.Response, HttpStatusCode.OK, "Nexus sign-in completed. You can return to AIM.");
+            await RespondAsync(context.Response, HttpStatusCode.OK, Text("GUINexusOAuthCompleted"));
             return new NexusOAuthCallback(state!, code);
         }
     }
@@ -323,6 +330,9 @@ public sealed class NexusOAuthLoopbackListener : IDisposable
 /// </summary>
 public static class NexusOAuthPkce
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private const string AuthorizeEndpoint = "https://users.nexusmods.com/oauth/authorize";
 
     public static NexusOAuthAuthorizationRequest CreateAuthorizationRequest(NexusOAuthRegistration registration)

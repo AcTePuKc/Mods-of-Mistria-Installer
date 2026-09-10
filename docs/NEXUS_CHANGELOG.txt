@@ -1,12 +1,13 @@
-Implemented OAuth 2.0 Authorization Code + PKCE using AIM's registered public Nexus client. AIM does not include or request a personal Nexus API key or OAuth client secret.
-Added account connect, disconnect, token refresh, secure loopback callback validation, and opt-in nxm:// handler takeover.
-Nexus links can be forwarded to an already-running AIM instance instead of opening a second AIM process.
-Nexus update badges now start AIM's update flow directly.
-Free Nexus accounts may need to use the website's Mod Manager Download or Vortex button because it supplies the short-lived download token required by Nexus.
-Added recoverable assets.zip state publication, bounded archive extraction, cancellation, and all-or-nothing rollback for multi-mod Nexus bundles.
-Fixed nested TOML tables and inline-array merging for current content mods and improved null-safe asset metadata handling.
-Updated MOMI manifest compatibility to 0.15.10 while retaining support for older compatible mods.
-Reconciled the stable MMAPI catalog for the current 1.0.4 assets with 129 hooks and 141 seams.
-Added current cosmetic compatibility for legs_top, corrected back_gear mappings, and refreshed cosmetic frame-count handling.
-Included MMAPI attribution and license notices in the release artifacts.
-Verified old-GML, MMAPI/GML, content-mod, and NXM workflows with the release test suite.
+- Completed every shipped AIM translation, including Nexus, update, watched-folder, crash, conflict, and settings flows.
+- Redesigned the mod-list toolbar to use wide windows efficiently while still wrapping cleanly on compact screens.
+- Added system Light/Dark following, four optional Mistria-inspired colour palettes, and remembered A-/A+ text-size controls.
+- Made dialogs consistently wrap long paths and translated text instead of growing past the screen.
+- Made NXM ownership reporting honest: AIM explains when Windows still has another default and can open Default Apps on Windows.
+- Restores the previous mod automatically when an update or multi-mod Nexus download fails partway through.
+- Watch any download folder: AIM moves recognised mod archives or folders into the selected Mods folder, skips unrelated files, and imports safely so a half-copied mod is never installed.
+- Prevents duplicate installs of the same mod by manifest identity rather than only its folder name.
+- Keeps dismissed issues dismissed across ordinary mod updates, and makes Nexus update matching more reliable.
+- Improved update questions, warning badges, load-order suggestions, conflict reports, keybind management, and config editing.
+- Expanded crash diagnosis and its guided fixes, including clearer results for large mod lists.
+- Added mod-author tooling: edit TOML or JSON manifests and mod config files from AIM, plus CLI lint, dry-run, doctor, seam validation, JSON/TOML reports, and the opt-in MMAPI debug agent.
+- Refreshed Fields of Mistria 1.0.x/MMAPI compatibility data and release validation across old-GML, MMAPI/GML, content mods, and NXM workflows.

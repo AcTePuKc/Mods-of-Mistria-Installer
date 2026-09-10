@@ -1,8 +1,12 @@
+using Garethp.ModsOfMistriaInstallerLib.Utils;
+using Tomlyn.Model;
+
 namespace Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 public enum ModFileConflictKind
 {
     HardReplacement,
+    FontAsset,
     MergeableMetadata,
     SharedLocalization,
     SharedDestination
@@ -21,8 +25,9 @@ public static class ModFileConflictDetector
 {
     public static IReadOnlyList<ModFileConflict> Find(IEnumerable<IMod> mods)
     {
+        var selectedMods = mods.ToList();
         var paths = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
-        foreach (var mod in mods)
+        foreach (var mod in selectedMods)
         {
             foreach (var file in mod.GetAllFiles(""))
             {
@@ -35,13 +40,61 @@ public static class ModFileConflictDetector
             }
         }
 
-        return paths
+        var conflicts = paths
             .Where(entry => entry.Value.Count > 1)
             .OrderBy(entry => entry.Key, StringComparer.OrdinalIgnoreCase)
             .Select(entry => new ModFileConflict(
                 entry.Key,
                 entry.Value.Order(StringComparer.OrdinalIgnoreCase).ToList(),
                 Classify(entry.Key)))
+            .ToList();
+
+        // Font metadata carries the engine identity. Two different source
+        // filenames can still describe the same runtime font, so destination
+        // path checks alone would miss this collision.
+        var fontIds = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var mod in selectedMods)
+        {
+            foreach (var file in mod.GetAllFiles(".meta.toml"))
+            {
+                var relative = RelativePath(mod, file);
+                if (!IsFontMetadata(relative)) continue;
+
+                string? fontId;
+                try
+                {
+                    var table = Toml.ParseToml(mod.ReadFile(file));
+                    fontId = ReadFontId(table);
+                }
+                catch
+                {
+                    // TOML validation reports malformed metadata separately.
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(fontId)) continue;
+                if (!fontIds.TryGetValue(fontId, out var owners))
+                    fontIds[fontId] = owners = new(StringComparer.OrdinalIgnoreCase);
+                owners.Add(mod.GetId());
+            }
+        }
+
+        foreach (var (fontId, owners) in fontIds.Where(entry => entry.Value.Count > 1))
+        {
+            var key = $"fonts/@id/{fontId}";
+            if (conflicts.Any(conflict =>
+                    conflict.Kind == ModFileConflictKind.FontAsset &&
+                    conflict.Path.Equals(key, StringComparison.OrdinalIgnoreCase)))
+                continue;
+
+            conflicts.Add(new ModFileConflict(
+                key,
+                owners.Order(StringComparer.OrdinalIgnoreCase).ToList(),
+                ModFileConflictKind.FontAsset));
+        }
+
+        return conflicts
+            .OrderBy(conflict => conflict.Path, StringComparer.OrdinalIgnoreCase)
             .ToList();
     }
 
@@ -54,6 +107,9 @@ public static class ModFileConflictDetector
              normalized.EndsWith(".png", StringComparison.OrdinalIgnoreCase)))
             return ModFileConflictKind.HardReplacement;
 
+        if (IsFontPath(normalized))
+            return ModFileConflictKind.FontAsset;
+
         if (normalized.Equals("localization/l10n.meta.toml", StringComparison.OrdinalIgnoreCase) ||
             normalized.Equals("fiddle/ui/text_styles.toml", StringComparison.OrdinalIgnoreCase))
             return ModFileConflictKind.SharedLocalization;
@@ -63,6 +119,25 @@ public static class ModFileConflictDetector
             return ModFileConflictKind.MergeableMetadata;
 
         return ModFileConflictKind.SharedDestination;
+    }
+
+    private static bool IsFontPath(string path) =>
+        path.StartsWith("fonts/", StringComparison.OrdinalIgnoreCase) &&
+        (path.EndsWith(".ttf", StringComparison.OrdinalIgnoreCase) ||
+         path.EndsWith(".meta.toml", StringComparison.OrdinalIgnoreCase));
+
+    private static bool IsFontMetadata(string path) =>
+        path.StartsWith("fonts/", StringComparison.OrdinalIgnoreCase) &&
+        path.EndsWith(".meta.toml", StringComparison.OrdinalIgnoreCase);
+
+    private static string? ReadFontId(TomlTable table)
+    {
+        if (!table.TryGetValue("meta_properties", out var metaObject) || metaObject is not TomlTable meta)
+            return null;
+        if (!meta.TryGetValue("asset_kind", out var kind) ||
+            !string.Equals(kind as string, "Font", StringComparison.OrdinalIgnoreCase))
+            return null;
+        return meta.TryGetValue("id", out var id) ? id as string : null;
     }
 
     private static string RelativePath(IMod mod, string path)

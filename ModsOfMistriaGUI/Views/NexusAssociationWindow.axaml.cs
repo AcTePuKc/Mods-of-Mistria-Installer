@@ -10,6 +10,7 @@ public partial class NexusAssociationWindow : Window
     public NexusAssociationWindow()
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
         Title = Text("GUINexusAssociateTitle");
         HeadingText.Text = Text("GUINexusAssociateTitle");
         ExplanationText.Text = Text("GUINexusAssociateExplanation");

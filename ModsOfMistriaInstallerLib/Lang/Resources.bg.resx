@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Алтернативен инсталатор за Мистрия</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Алтернативен инсталатор за Мистрия</value></data>
   <data name="GUIReloadModlist" xml:space="preserve"><value>Обнови списъка с модове</value></data>
   <data name="GUISaveLogFile" xml:space="preserve"><value>Запази лог файла</value></data>
   <data name="GUIEnableAllMods" xml:space="preserve"><value>Избери всички модове</value></data>
@@ -254,7 +254,7 @@
   <data name="GUINexusClearFinished" xml:space="preserve"><value>Изчистване на завършените</value></data>
   <data name="GUINexusDownloadTitle" xml:space="preserve"><value>Nexus мод {0}</value></data>
  <data name="GUINexusDownloadFailedTitle" xml:space="preserve"><value>Nexus изтегляне</value></data>
-  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus отказа да генерира връзка за изтегляне. Безплатните акаунти могат да изтеглят само чрез бутона „Mod Manager Download“ в сайта — ръчно отворена връзка няма токен за изтегляне.</value></data>
+  <data name="GUINexusFreeAccountDownloadNeedsVortex" xml:space="preserve"><value>Nexus отказа да генерира връзка за изтегляне. Безплатните акаунти могат да изтеглят само чрез бутона „Mod Manager Download“ в сайта - ръчно отворена връзка няма токен за изтегляне.</value></data>
   <data name="GUINexusWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова AIM не може да го инсталира.</value></data>
   <data name="GUINexusNoModsFolder" xml:space="preserve"><value>Настройте папките за Fields of Mistria и модовете, преди да изтегляте модове.</value></data>
   <data name="GUINexusHandlerTitle" xml:space="preserve"><value>Връзки „Vortex“</value></data>
@@ -265,6 +265,11 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM вече ще отваря връзките „Vortex“ от сайта на Nexus.
 
 Браузърът може да поиска разрешение при първото натискане на такава връзка.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM беше регистриран успешно, но Windows може все още да използва {0} за nxm:// връзките.
+
+Да отворя ли Windows Default apps, за да изберете AIM като приложение за nxm://?
+
+Изберете „Да“, за да се отворят настройките, или „Не“, за да ги оставите без промяна.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM вече няма да отваря връзките „Vortex“ от сайта на Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM не можа да се регистрира за тези връзки: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM не можа да спре обработването на тези връзки: {0}</value></data>
@@ -275,7 +280,10 @@
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>В клипборда няма nxm:// връзка. В страницата на мода щракнете с десния бутон върху „Vortex“ и първо копирайте адреса на връзката.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Запази</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Отказ</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода — {2} вече са в играта, {3} ще бъдат добавени</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Да</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Не</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>Избрани са {0} от {1} мода - {2} вече са в играта, {3} ще бъдат добавени</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Търси модове…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Изчисти търсенето</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Избери или изчисти всички модове</value></data>
@@ -284,7 +292,7 @@
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ред на зареждане</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Модовете са подредени така, че всеки да се зарежда след модовете, от които зависи.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Няма какво да се променя: всеки мод се зарежда след необходимите му модове.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Провери проблеми</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Проблеми</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Проверка за проблеми</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Покажи подробности</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Затвори</value></data>
@@ -333,4 +341,500 @@
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Архивът с ресурсите беше заменен, но AIM не успя да запише състоянието на инсталацията. Рестартирайте AIM, за да възстанови завършената операция.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Файлът на AIM за възстановяване на чакащото състояние на инсталацията е невалиден: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM възстанови assets.zip, но не успя да възстанови състоянието на инсталацията. Затворете програма, която използва файла със състоянието, и опитайте отново.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>А–Я</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Скорошни</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Включени</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Обновления</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Предложи</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Открит е външен архив</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM откри външен assets.zip.&#xD;&#xA;&#xD;&#xA;Ако продължиш, AIM ще:&#xD;&#xA;• запази архива като assets.foreign-…zip&#xD;&#xA;• възстанови проверения backup&#xD;&#xA;• повтори тази инсталация&#xD;&#xA;&#xD;&#xA;Модовете, които съществуват само във външния архив, няма да са активни. Да продължа ли?</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Този мод изисква инсталатор {0}, а AIM поддържа {1}. Вероятно ще работи - опитай, а ако има проблем, провери страницата на мода за бележка за съвместимост.</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} от {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Влез в Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Излез от Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus акаунтът е свързан.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus акаунтът не е свързан. Влез, за да използваш функциите на Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus акаунтът е разкачен.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Редактирай манифеста на мода</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Отваря manifest.json или manifest.toml в обичайния ти текстов редактор. Достъпно е само за модове, които са папки - ZIP или RAR архивът няма файл за редактиране.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Редактирай конфигурацията на мода</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Отваря конфигурационния файл на мода в обичайния ти текстов редактор. Бутонът е неактивен, ако AIM не открие конфигурационен файл.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Файлът {0} не може да бъде отворен: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Премахни мода…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Премахва мода от папката с модове. AIM първо пита за потвърждение и изпраща файловете в кошчето, вместо да ги изтрие.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Премахване на мод</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows не премести мода в кошчето</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>„{0}“ вече не е в папката с модове. Списъкът е обновен.</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Да преместя ли „{0}“ v{1} в кошчето?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Модът ще бъде премахнат от папката с модове. Ако промениш решението си, можеш да го върнеш от кошчето. Файловете, които вече са инсталирани в играта, ще останат до следващото инсталиране или деинсталиране.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Да изтрия ли „{0}“ v{1} окончателно?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Тази система няма кошче, което AIM може да използва, затова файловете на мода ще бъдат изтрити. Това действие не може да бъде отменено.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>„{0}“ не можа да бъде премахнат: {1}&#xD;&#xA;&#xD;&#xA;Възможно е да е отворен в друга програма или играта все още да работи.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Премахни избраните…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Премахва всички избрани модове наведнъж чрез кошчето, след като покаже списъка.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Няма избрани модове за премахване.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>…и още {0}.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>Премахнати са {0} от {1} мода.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Следните модове не можаха да бъдат премахнати: {0}&#xD;&#xA;&#xD;&#xA;Възможно е да са отворени в друга програма или играта все още да работи.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Маркира това като проверено и приемливо. AIM ще го скрие, докато някой от засегнатите модове не промени версията си, след което ще попита отново.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Покажи проблемите, които съм маркирал като приемливи ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Маркирано като приемливо</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[маркирано като приемливо]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Файлове, които и двата мода променят</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>печели в момента</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Направи този мод победител</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>„{0}“ вече се зарежда последен от модовете, които споделят тези файлове, така че неговите копия печелят.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Намери решение…</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Смени клавиша…</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Смяна на клавишна комбинация</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>„{0}“ вече използва {1} вместо {2}. Инсталирай отново, за да се приложи промяната.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Този мод все още е ZIP или RAR архив. Първо го разархивирай в папката с модове и AIM ще може да редактира клавиша му.</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Премества този мод под останалите, с които споделя файлове, така че неговите версии на тези файлове да бъдат инсталирани. Редът на зареждане в списъка се променя веднага.</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Прочита какво казват страниците на тези модове в Nexus един за друг и отваря докладите за грешки, коментарите и уеб търсене, за да прецениш дали проблемът е реален.</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Премества този мод към клавиш, който не се използва от нищо друго, като редактира собствената му настройка в {0}. Модът първо се архивира, а промяната влиза в играта при следващото инсталиране.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Решено - „{0}“ е преместен на {1}, така че вече няма друг мод със същата клавишна комбинация. Инсталирай отново, за да се приложи промяната.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Този мод не обявява клавиша като именувана клавишна комбинация, затова AIM не може да го промени безопасно. Провери собствените настройки в играта или конфигурационния му файл.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Всеки функционален клавиш вече се използва от избран мод, така че няма свободен клавиш, на който този да бъде преместен.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM не можа да прочете файловете на този мод.</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Намери решение</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Прочитане на информацията от страниците на тези модове…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Свържи Nexus акаунта си от менюто със зъбното колело и AIM ще може да прочете страниците на тези модове. Дотогава връзките по-долу са най-бързият начин да ги провериш.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM не можа да прочете страниците на модовете: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Какво казват страниците на модовете</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Провери сам</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Отвори страницата на този мод</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Отвори поправката</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Какво откри?</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Връзка към поправката (по избор):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Не е реален конфликт</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Модовете споделят файлове, но това няма практическо значение. Маркира проблема като приемлив и го скрива, докато някой от модовете не се обнови.</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Да преместя ли „{0}“ от {1} на {2}?&#xD;&#xA;&#xD;&#xA;AIM редактира собствената клавишна комбинация на мода и запазва backup, който можеш да възстановиш от менюто с десен бутон. Промяната влиза в играта при следващото инсталиране.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>„{0}“ вече използва {1}; обновени са {2} файла.&#xD;&#xA;&#xD;&#xA;Инсталирай отново, за да се приложи промяната.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Клавишната комбинация на „{0}“ не можа да бъде сменена: {1}</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} резултата от страниците на тези модове са свързани с тази двойка.</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Записването на заключението го запазва към проблема, така че следващия път няма да се налага да го преценяваш отново.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Има публикувана поправка</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Модовете са несъвместими</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Още не е решено</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Запиши поправката</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Това не изглежда като HTTPS връзка. Постави уеб адреса на поправката или остави полето празно.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Сортирай А-Я</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Сортирай по скорошна промяна</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Премести най-отгоре в реда на зареждане</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Премести най-отдолу в реда на зареждане</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Само включените модове</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Само модовете, изискващи внимание</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Само преглед - редът на зареждане не е променен, влаченето е спряно</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Към началото на списъка</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Към края на списъка</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) се използва и от {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Бележки към изданията</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Бележки към изданията - посочи, за да се заредят, и кликни, за да прочетеш цялата история.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Какво ново във версия {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Кликни, за да прочетеш всички версии.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Авторът на този мод не е публикувал бележки към изданията.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM не можа да прочете бележките към изданията на този мод. Необходим е свързан Nexus акаунт и AIM трябва да знае страницата на мода в Nexus.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} версии с бележки, от най-новата към най-старата.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Версия {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Версии</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Причинява срив на играта</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Маркиран като причинител на срив</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Редактиран от AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Тази поправка няма основен файл, който AIM може да инсталира сам. Файловете са отворени в браузъра ти - избери желания файл и използвай „Mod Manager Download“.</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Изтеглянето на поправката беше отменено.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM промени файл в този мод, за да разреши конфликт. Файловете на диска вече не са напълно същите като публикуваните от автора.</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Отмени промените на AIM</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Прочитане на файловете от AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM прочете всеки файл, който тези модове споделят.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM не можа да прочете всеки файл, затова приеми това като резултат от прочитането, а не като сигурен факт.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} споделен файл</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} споделени файла</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Част от този прозорец не можа да бъде създадена: {0}</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Наблюдавано стартиране доказа, че този мод причинява срив на играта: когато беше изключен, играта работеше и сривът не се повтори. AIM го остави изключен.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Ти сам маркира този мод като причинител на срив в проверката за сривове. AIM не го тества - прие думата ти и го изключи.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Версия {0}, проверена на {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Отвори „Провери сривове“, за да видиш поправките, които AIM може да приложи, и какво казват страниците на мода. Маркировката е свързана с тази версия и ще бъде изчистена при обновяване от автора.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>Версията на мода отпреди промяната е в падащото меню „Версии“. Възстанови я оттам или кликни с десния бутон върху мода и избери „Отмени промените на AIM“.</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Модовете в този конфликт</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Отвори страница, за да прецениш мода сам, или го премахни от списъка, ако вече си решил да не го използваш.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Отвори страницата</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM не знае откъде е този мод, затова няма страница за отваряне.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Премахни</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Премахва този мод от папката с модове. AIM първо пита за потвърждение, а файловете се изпращат в кошчето.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} беше премахнат, така че конфликтът вече не съществува.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Какво вече имаш</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Модове в списъка ти, които имат отношение към тази двойка. AIM ги провери, преди да предложи нещо за изтегляне.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Какво може да направи AIM</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Нищо тук няма да се случи, докато не го избереш, и всяко действие може да бъде отменено.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Съществуващи поправки</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Одобри и приложи</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Готово: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Това не проработи: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Казва, че няма проблем</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Казва, че има проблем</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Работи, но с условие</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Споменава темата, без да отговаря на въпроса</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>ПРИЕМЛИВО</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>ПРОБЛЕМ</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>УСЛОВИЕ</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>КОНТЕКСТ</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Следи в Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Добавя този мод в центъра ти за проследяване в Nexus, за да получаваш известия за обновления и публикации от автора. Необходим е свързан Nexus акаунт.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>„{0}“ вече се следи в Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Вече следиш „{0}“ в Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>„{0}“ не можа да бъде добавен за проследяване в Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM не можа да прочете Nexus ID на мод от страницата, която има за този мод.</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Покажи целия цитат</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Покажи по-малко</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Намери го на страницата</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Копирано. Натисни Ctrl+F на току-що отворената страница и постави текста.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Това ще промени файлове в мод, който не си писал ти. AIM първо копира целия мод в падащото меню „Версии“ и маркира реда като редактиран. Да продължа ли?</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>По-стари копия на този мод, които AIM е запазил при обновяване. Избери едно, за да се върнеш към него.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Върни се към:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Кликни, за да го изтеглиш и инсталираш. Текущата ти версия ще бъде запазена като backup.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Кликни, за да отвориш страницата за изтегляне - AIM не знае кой Nexus файл е това. Кликни с десния бутон върху мода и избери „Свържи с Nexus…“, за да може AIM да го инсталира автоматично.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus съобщава, че акаунтът ти ({0}) е Premium, така че отказът не е свързан с нивото на акаунта - най-често входът е изтекъл или е бил оттеглен. Влез отново от менюто със зъбното колело.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus съобщава, че акаунтът ти ({0}) е безплатен. Директните изтегляния са Premium функция, затова използвай бутона на уебсайта.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Няма свързан Nexus акаунт, затова AIM не може да изтегля нищо директно.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM не можа да провери Nexus акаунта ти: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Клавиши</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Всички клавиши и бутони на контролери, към които модовете ти са привързани, в един списък - конфликтите са в червено и могат да се редактират на място.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Клавишни комбинации на модовете</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Какво използват модовете ти в момента. Те пазят тези настройки в собствената конфигурационна папка на играта, а не в папката с модове, така че обновяването на мод не ги губи - но модът може да нулира собствените си настройки и AIM ще предложи да върне избора ти, когато това се случи.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} клавишни комбинации, от които {1} са в конфликт.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Показвай само конфликтите</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Обнови</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM не можа да прочете клавишните комбинации на модовете ти: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Прочитане на клавишните комбинации на модовете…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Нито един от избраните модове няма клавишна комбинация, която AIM да вижда. Модовете, които създават комбинациите си по време на работа, не ги показват, преди играта да е стартирала.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Няма конфликти.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM не откри конфигурационната папка на играта, затова показва началните комбинации от модовете. Стартирай играта веднъж, за да се появят действителните ти комбинации.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria работи. Редактирането е изключено, защото при затваряне играта презаписва настройките на всички модове и ще заличи промените тук. Затвори играта и натисни „Обнови“.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>използва се и от {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Същият вход е зададен на:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Избери или премахни избора на модовете на екрана</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Прилага се само към редовете, които текущо се виждат според търсенето и филтрите, и към нищо скрито от тях. Без включен филтър това са всички модове. Модовете, които AIM не може да инсталира, остават непроменени.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>началната комбинация на мода - AIM не може да я промени, докато модът не запише настройките си</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(няма зададен клавиш)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>играта няма да го приеме</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>„{0}“ не е име, което играта разпознава, затова този мод използва началната си стойност. Избери нещо от списъка, за да го поправиш.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM не можа да запише в {0}. Възможно е файлът да е отворен в друга програма или играта да е стартирала.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Избери клавиш или бутон</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Този мод още не е записал настройките си, затова това е началната стойност, вградена в него. Стартирай играта веднъж или промени настройката в самия мод и AIM ще може да я редактира тук.</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Клавиш или бутон на контролер</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Натисни клавиш, за да го зададеш</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Натисни клавиш сега… (Escape за спиране)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Това ще бъде запазено като: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Бутоните на контролер се избират от списъка - AIM не може да прочете контролер. Списъкът съдържа всички имена, които играта приема; ALT, клавишите за заключване и цифровият блок не са сред тях, а мод, зададен с някой от тях, тихо се връща към началната си стойност.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Запази</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Премахни клавиша</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Изчиства настройката. Повечето модове приемат това като „изключено“, а някои се връщат към началната си стойност.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (началната стойност на мода - още не е конфигурирана)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Клавишните комбинации са променени</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} избрани от теб клавишни комбинации са променени от самите модове - обикновено след като обновяване е нулирало настройките им.&#xD;&#xA;&#xD;&#xA;Да върна ли избора ти? Настройки, които обновяването е премахнало напълно, няма да бъдат възстановени.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…и още {0}.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>Възстановени са {0} клавишни комбинации. Стартирай играта, за да влязат в сила.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Провери</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Проверява избраните модове спрямо страниците им в Nexus. Използвай стрелката за всички модове или за инсталиране на всичко, което има обновление.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Проверени са {0} мода: за {1} има обновление, а {2} не можаха да бъдат проверени.&#xD;&#xA;&#xD;&#xA;Да изтегля и инсталирам ли тези обновления сега? Текущата версия на всеки мод ще бъде запазена като backup за възстановяване.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Обнови всичко, което има обновление</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Изтегля и инсталира всички чакащи обновления едно по едно, като запазва текущата версия на всеки мод като backup за възстановяване.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Обновяване на модове</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Няма чакащи обновления. Първо провери за обновления.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Да обновя ли {0} мода?&#xD;&#xA;&#xD;&#xA;Текущата версия на всеки мод ще бъде запазена като backup, който можеш да възстановиш от менюто с десен бутон.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Обновяване на {0} от {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>Обновени са {0} от {1} мода.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Следните модове не можаха да бъдат изтеглени директно и изискват страницата си в Nexus: {0}&#xD;&#xA;&#xD;&#xA;Nexus издава директни връзки за изтегляне само на Premium акаунти. При безплатен акаунт отвори страницата на мода и използвай бутона „Mod Manager Download“ - AIM ще го поеме, ако е регистриран да обработва тези връзки.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Няма какво да се докладва. AIM не откри споделени файлове, конфликти на клавишни комбинации, липсващи зависимости или предупреждения за съвместимост сред избраните модове.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Маркира това като нереален конфликт.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Откри поправка за това.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Установи, че тези модове са несъвместими - изключи единия.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Решено чрез смяна на клавишната комбинация: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Следени папки за изтегляния</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Модовете, които изтеглиш ръчно в следена папка, се преместват в папката с модове и се появяват сами в списъка.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Следи папка…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Избери папка, в която да се следят изтеглени модове</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Провери следените папки сега</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Няма следени папки</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Спри следенето на тази папка</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Следени папки</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Няма нищо ново за добавяне. AIM премества само архиви и папки, които съдържат манифест, затова всичко останало се оставя на място.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>Добавени са {0} мода от следена папка.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Преместени в папката ти с модове:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - този мод вече е инсталиран като „{1}“. Обнови това копие или го премахни първо: две копия на един мод се борят за едни и същи файлове.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Оставени в следената папка:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Папката с модове не беше намерена, затова няма какво да се отвори.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Папката с модове не можа да бъде отворена: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Папка с модове</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Отвори папката с модове на Fields of Mistria във файловия мениджър</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Сривове</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Прочита собствения crash log на играта, установява към кой мод сочи и предлага да изключи мода, за да провери дали сривът ще изчезне.</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Проверка за срив</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Срив</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Crash файлове</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Отваря папката, в която AIM пази копие на всеки видян срив. Самата игра пази само най-новия.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Какво установи AIM</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>В папката с модове няма място за подготовка на {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>В папката с модове вече има твърде много копия на {0}.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Файлът не можа да бъде изтеглен от Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>няма отговор от сървър за изтегляне</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Няма към какво да се обнови.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nexus сесията на акаунта не можа да бъде запазена. Провери достъпа до диска и опитай отново.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Backup-ът на {0} липсва.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Изтегленият файл липсва.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Папката с модове не беше намерена.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Това изтегляне не съдържа manifest.toml, затова не е мод, който този инсталатор може да обработи. Възможно е да е по-стар мод или файл, който трябва да се инсталира ръчно.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Изтегленият мод не можа да бъде завършен. Първоначалната грешка при инсталиране беше: {0}&#xD;&#xA;&#xD;&#xA;Предишно копие на мода не можа да бъде възстановено. Backup-ът му е запазен за ръчно възстановяване:&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Копието, което беше оставено настрана, вече не се намира в {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>До папката с модове вече има твърде много запазени копия на {0}.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Модът не можа да бъде разархивиран: {0} Предишното копие не можа да бъде възстановено; backup-ът му е запазен за ръчно възстановяване{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Модът не можа да бъде разархивиран: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Изтегленият архив съдържа твърде много файлове.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Изтегленият архив съдържа файл, който е твърде голям.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Изтегленият архив надхвърля поддържания размер след разархивиране.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Записът „{0}“ в архива надхвърля поддържания размер след разархивиране.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Изтегленият файл не е архив, който този инсталатор може да прочете. Поддържат се ZIP, RAR и 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Архивът съдържа опасен път: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Входът в Nexus беше отменен, защото състоянието на обратната връзка не съвпадна.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus не върна код за оторизация.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus сесията на акаунта трябва да бъде свързана отново.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>OAuth регистрацията на AIM в Nexus все още се обработва.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus не можа да завърши влизането в акаунта.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus върна непълна сесия на акаунта.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Отговорът от Nexus акаунта не можа да бъде прочетен.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM изчаква обратната връзка от входа в Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Отговорът от входа в Nexus не съвпадна с тази AIM сесия.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Входът в Nexus беше отменен. Можеш да се върнеш в AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Входът в Nexus беше отменен или отказан от браузъра.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Входът в Nexus завърши. Можеш да се върнеш в AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus не върна сървъри за изтегляне за този файл.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus API не отговори навреме.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Nexus API не може да бъде достигнат: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus върна неочакван отговор.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Отговорът от Nexus не можа да бъде прочетен.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus отхвърли сесията на акаунта. Свържи Nexus акаунта си отново.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus отказа заявката. Връзката за изтегляне може да е изтекла - опитай да кликнеш върху нея отново.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Този мод или файл вече не съществува в Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Достигна ограничението на Nexus API. Изчакай малко, преди да изтегляш отново.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus върна грешка ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Все още няма свързан Nexus акаунт.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Файлът, от който произлиза този мод, вече не е на страницата му в Nexus и нито един от останалите файлове там не е по-нова версия. На тази страница се хостват няколко отделни мода, затова AIM няма да предложи друг като обновление - провери страницата ръчно, ако смяташ, че има по-нова версия.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Страницата на този мод няма основен файл, с който да се направи сравнение.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM не знае от кой файл на тази страница произлиза този мод, затова не може да определи дали версията на страницата е по-нова. Изтегли го веднъж през AIM или кликни с десен бутон върху мода и го свържи с конкретен файл, за да станат проверките за обновления надеждни.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Проверката за обновления спря преждевременно.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Проверката за обновления на този мод не завърши.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Все още няма свързан Nexus акаунт.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Това изтегляне е за друга игра ({0}), затова този инсталатор не може да го обработи.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Тази връзка за изтегляне е изтекла. Кликни отново върху бутона „Vortex download“ на страницата на мода.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Папката с модове не беше намерена.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Заявка към Nexus за информация за файла…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Изтегляне на {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Разархивиране на {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Инсталирането беше отменено</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>Инсталиран е {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>Инсталирани са {0} мода</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Изтеглянето беше отменено</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Празна връзка за изтегляне.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Това не е nxm:// връзка.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Връзката не посочва игра.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Колекциите на Nexus все още не се поддържат - изтегли модовете поотделно.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Връзката не е за изтегляне на файл с мод.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Връзката съдържа невалиден ID на мод или файл.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Не можа да се определи откъде се изпълнява инсталаторът.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Регистрацията на nxm:// връзки се поддържа само в Windows и Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM беше регистриран, но Windows може все още да използва {0} за nxm:// връзки.&#xD;&#xA;&#xD;&#xA;Избери AIM като приложение по подразбиране за nxm:// в настройките за приложения по подразбиране на Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Регистрацията на nxm:// не можа да бъде потвърдена след записването.</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM не откри изпълнимия файл на играта, затова не може да я стартира и наблюдава.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria вече работи. Затвори я първо, за да може AIM да наблюдава стартирането, което сам е започнал.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM не можа да стартира играта: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Играта се срина, но AIM не можа да прочете оставения crash log, затова това стартиране не доказа нищо за мода. Струва си да пуснеш проверката отново.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Играта отново се срина по време на проверката.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Играта все още работи след прозореца за проверка и не се е сринала. Това е резултатът, който искаше - продължи да играеш.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Същият срив се повтори след {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Играта отново се срина след {0}, но с друга грешка.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Играта приключи с код {0} след {1} и не остави crash log. Обикновено това означава, че е била затворена от нещо извън играта - грешка в драйвер или принудително прекратен процес - а не от мод, така че тази проверка не доказа нищо.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Играта работи {0} и приключи нормално, без нов срив.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Играта се е повредила в собствения код на този мод, на {0}, ред {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Кодът на този мод е в стека на извикванията, на {0}, ред {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Този мод е посочен в самото съобщение за срива.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Играта се срина при прочитане на данните „{0}“, към които добавя {1} инсталиран мод.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Играта се срина при прочитане на данните „{0}“, към които добавят {1} инсталирани мода.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Този мод добавя към данните „{0}“, които играта е прочитала при срива.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Данните „{0}“ в архива на играта на диска нямат липсващ запис {1}, така че причината вече е отстранена - от обновление, преинсталиране или мод, който оттогава си изключил. Ако се повтори, върни се тук: потърси сред модовете по-долу.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Данните „{0}“, които играта зарежда в момента, все още имат един запис без {2}. Този срив ще се повтори при следващото стартиране.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Данните „{0}“, които играта зарежда в момента, все още имат {1} записа без {2}. Този срив ще се повтори при следващото стартиране.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Този мод изисква инсталирани engine hooks, а сривът е извикване към нещо, което се е оказало, че не е функция - така изглежда в играта hook, който не е бил инсталиран.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Този срив е по-стар от текущо инсталираните модове - но описаната грешка все още е в архива на играта на диска, така че това не е остарял доклад. Очаквай да се повтори при следващото стартиране.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Този срив е по-стар от текущо инсталираните модове. AIM е възстановил архива на играта след него, така че сега играта на диска не е същата, която се е сринала - приеми всичко по-долу като насока, а не като заключение, и изиграй веднъж, преди да променяш нещо.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Повредата е вътре във функцията {0}(), на: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Собствените данни на играта „{0}“ имат запис без {1} на ред {2} и съдържат „{3}“ - нещо, което никой друг инсталиран мод не дефинира. Запис без {1} е точно това, на което играта е спряла.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Собствените данни на играта „{0}“ имат запис без {1} на ред {2} и съдържат „{3}“ - нещо, което никой друг инсталиран мод не дефинира. Записът все още съдържа своя MOMIidentify блок, което означава, че очакваното сливане не е намерило съвпадение: вместо да обнови запис, който вече има {1}, е добавен нов без него.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Данните на играта „{0}“ имат запис без {1} на ред {2}, а този мод е един от тези, които е възможно да са го записали.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Този срив е преди текущата ти инсталация и нищо в него не съвпада с мод, който имаш сега.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} е причинил срива на играта.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>Всеки от {0}-те мода е добавил нещо в данните на играта, което тя не може да зареди. Всеки един от тях е достатъчен, за да причини това.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} е най-вероятната причина.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} е единственият инсталиран мод, който засяга това, което играта е прочитала.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} инсталирани мода добавят към данните, при които играта се е сринала. Много вероятно е един от тях да е причината.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Нищо не сочи ясно към мод, но има няколко, които си струва да бъдат изключени за проверка.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>На нещо, което играта е заредила, му липсва „{0}“, а нито един инсталиран мод не изглежда очевидно да го притежава.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Играта е прочела „{0}“, преди нещо да му зададе стойност. Обикновено това е код на мод.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Играта е извикала нещо, което не е функция - обикновено hook, който не е бил инсталиран.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Играта не можа да намери ресурса „{0}“ - обикновено спрайт, към който модът се позовава, но не включва.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM не можа да свърже този срив с мод само по backtrace-а.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Модове, към които това сочи</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Първо са най-силните кандидати. Мод, посочен тук, защото сривът е станал в собствения му код, не е предположение; мод, посочен защото записва данните, които играта е прочитала, е кандидат за проверка.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Провери дали това го поправя</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Изключва избрания мод, възстановява играта, за да влезе промяната в сила, стартира я и наблюдава. Играй както обикновено - AIM ще покаже резултата, когато играта се затвори, или след няколко минути, ако не се е сринала.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Изключи, възстанови и стартирай</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Изключването на мод не променя нищо, което играта вижда, докато архивът не бъде възстановен, затова AIM прави всичко наведнъж, вместо да те кара да помниш междинната стъпка.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Не променяй нищо - само стартирай и наблюдавай</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Струва си да провериш</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>Crash файлът, така както играта го е записала</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Къде се е повредила</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Къде се е повредила ({0} кадъра)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Копирай доклада</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Поставя целия доклад в clipboard-а: грешката, backtrace-а, заключението на AIM и инсталираните модове.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Обнови</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Търсене на сривове…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Няма записани сривове. Играта не се е сривала, откакто си я инсталирал, или никога не е стартирана на тази машина.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Сравняване на backtrace-а с инсталираните ти модове…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM не вижда списъка ти с модове оттук, затова може да покаже срива, но не и да каже кой мод го е причинил.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM не можа да завърши прочитането на този срив: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Този срив е по-стар от модовете, които имаш сега. AIM е възстановил играта след него, така че причината за срива вече не е същата като файловете на диска - изиграй веднъж, преди да променяш нещо, и приеми модовете по-долу като насоки, а не като заключение.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Не си влязъл в Nexus, затова AIM не може да прочете bug tracker-ите на модовете. Всичко по-горе е установено само от собствените ти файлове.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Прочитане на bug tracker-ите и коментарите за модовете, към които това сочи…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Нищо не сочи достатъчно ясно към мод, за да си струва да се прочете страницата му.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM не можа да прочете страниците на модовете: {0}. Изводът от собствените ти файлове остава валиден.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>На страниците на модовете няма нищо за този срив.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} резултата от страниците на модовете имат отношение към това.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>СИГУРНО</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>ВЕРОЯТНО</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>ВЪЗМОЖНО</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>МАЛКО ВЕРОЯТНО</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Отвори страницата на мода</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Отвори тази страница</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Докладвай тази грешка</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Създава доклада, който авторът има нужда да види - грешката, backtrace-а, версията на играта и останалите инсталирани модове - поставя го в clipboard-а и отваря bug tracker-а на мода. Ти го прочиташ и публикуваш; AIM не го прави.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Докладът е в clipboard-а ти, а bug tracker-ът е отворен. Прочети го, после го публикувай.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Докладът е в clipboard-а ти. AIM не знае откъде е този мод, затова сам трябва да намериш tracker-а или Discord-а на автора.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Копирано.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Изключи и провери</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Изключва този мод, възстановява играта и я стартира, за да разбереш дали той е причината, вместо да гадаеш.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Възстановяване на играта без този мод - след завършването му тя ще стартира сама. Напредъкът е показан по-долу.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Премахни мода</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} беше премахнат.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Версии и промени на AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM промени този мод:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Отмени промените на AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Връща всеки файл, който AIM е оставил настрана в този мод, без да променя останалото в папката. Ред, променен от AIM, се отменя чрез възстановяване на версията по-долу.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Възстанови</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} беше върнат към {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - преди промяната на AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM ще изключи {0}, ще възстанови архива на играта и ще я стартира.&#xD;&#xA;&#xD;&#xA;Възстановяването отнема около минута. Играй както обикновено; AIM ще ти каже дали сривът се е повторил.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM ще стартира играта и ще наблюдава за срив, без да променя нищо.&#xD;&#xA;&#xD;&#xA;Играй както обикновено; AIM ще ти каже какво се е случило.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM не може да промени списъка с модове оттук.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} не можа да бъде изключен - възможно е вече да е изключен или да не е в списъка.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} е изключен.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Възстановяване на архива на играта, за да влезе промяната в сила…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Архивът на играта не можа да бъде възстановен, затова нищо не беше тествано: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Стартиране и наблюдение на играта. Играй както обикновено.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Преместване на {0} мод(а) в кошчето?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Те ще бъдат извадени от папката с модове и могат да бъдат върнати от кошчето. Файловете, които вече са инсталирали в играта, ще останат там до следващото инсталиране или деинсталиране.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Безвъзвратно изтриване на {0} мод(а)?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;На тази система няма кошче, което AIM може да използва, затова файловете ще бъдат изтрити. Това не може да бъде отменено.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Нищо в описанията, readme файловете, changelog-ите, докладите за грешки или коментарите на тези модове не отговаря на въпроса. AIM претърси цялата нишка с коментари за името на другия мод и последните доклади за грешки. Това е истинско „никой не е казал“, а не „никой не е проверил“, но не означава „няма проблем“, а връзките по-долу все пак водят към самите страници.</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM ги прочита сам: коментарите чрез претърсване на цялата нишка, а тракера за грешки до няколко страници навътре. Страниците се отварят като посетител без вход в профил.</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Някой е публикувал пач за съвместимост. Натиснете веднъж, за да добавите връзката, и втори път, за да я запишете. Проблемът ще бъде отбелязан като решен.</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Записва находката, но оставя проблема видим, защото все още трябва да изключите единия мод.</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Подрежда списъка по име, за да намирате модовете бързо. Това е само изглед - редът на зареждане не се променя, а при изключване се показва истинският ред. Влаченето е временно спряно.</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Показва най-новите първо според последната промяна на папката на диска, така че току-що инсталираните или обновените модове да са най-отгоре. Това е само изглед - редът на зареждане не се променя и влаченето е временно спряно.</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Зарежда този мод първи, за да могат останалите да се надграждат върху него и да го заменят. Тук обикновено се поставя framework или мод, от който други модове зависят. Това променя истинския ред на зареждане, а не само текущия изглед.</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Зарежда този мод последен, така че когато споделя файл с друг мод, този мод да има предимство. Тук обикновено се поставят recolor модове и лични замени. Това променя истинския ред на зареждане, а не само текущия изглед.</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Скрива всичко, което е изключено. Важен е редът на модовете, които действително влизат в играта, а в дълъг списък е трудно да го разчетете сред изключените модове.</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Показва само модове с налично обновление и модове, до които последната проверка не е успяла да достигне - без Nexus връзка, поради мрежов проблем или защото страницата вече не съществува.</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Копира „{0}“ и отваря страницата, от която идва. Натиснете Ctrl+F там и го поставете, за да стигнете директно до него. Ако е коментар, може да е на няколко страници назад, затова го поставете в собственото поле за търсене на нишката.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM вече инсталира. Първо изчакайте това да завърши.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Няма какво да се инсталира: липсва папка на играта или няма включени модове.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM не знае къде се намира папката ви с модове.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Този мод вече не е в списъка.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Показва, че това е известен проблем</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Показва, че този мод е изправен</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Работи, но само ако направите нещо</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Други неща, споменати на страниците</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Ръчно прилагане на поправка</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Ако нишката за грешката или описанието на мода казва точно какво да промените, въведете го тук. AIM първо копира целия мод в историята на версиите ви, така че списъкът за възстановяване винаги ще съдържа версията отпреди промяната.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Файл, относителен спрямо папката на мода</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Ред</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Новият текст за този ред - оставете празно, за да го изтриете</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Приложи промяната</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Извади този файл от играта</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Изважда целия файл от употреба и оставя останалата част от мода инсталирана. Полезно е, когато играта се затруднява с един файл с данни, а искате да запазите останалата част от мода, докато авторът го обнови.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Първо посочете файл в мода и номер на реда за промяна.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Поправка на срив: ред {0} от {1} в {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Поправка на срив: {0} е изваден от {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM първо ще копира целия мод в историята на версиите ви, така че можете да го върнете от списъка за възстановяване по всяко време. Променя се само този мод.&#xD;&#xA;&#xD;&#xA;Да продължа ли?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Нищо не се променя - играта се стартира в текущото ѝ състояние.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Архивът вече съответства на списъка с модове, затова не беше нужно възстановяване.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Архивът на играта беше възстановен.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Стартиране на Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Наблюдение на стартирането. Играйте както обикновено - AIM ще съобщи, когато играта се затвори, или след {0} минути, ако не е претърпяла срив.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Играта не стартира, затова нищо не беше тествано.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Същият срив се появи отново при изключен {0}, затова {0} не е причината. AIM го изключи от списъка със заподозрени и го включи отново.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Същият срив се появи отново при изключен {0}, затова {0} не е причината. AIM го изключи от списъка със заподозрени, но не успя да го включи отново - използвайте „Включи отново“ върху неговата карта, в „Вече проверени“, преди следващата проверка.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Без срив при изключен {0}. Това го прави вероятната причина. Оставете го изключен, изчакайте обновление или опитайте поправка по-долу.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Играта работи без срив и нищо не беше променено. Сривът може да е изисквал запис или действие, което не сте повторили - опитайте отново и направете това, което сте направили последния път.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Това стартиране не даде отговор, затова {0} все още е заподозрян. AIM ще го предложи отново.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Играта се срина, но заради нещо друго, затова {0} е изключен като причина за първоначалния срив. AIM зареди новия срив, а вече събраните резултати са запазени.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>Тествани са {0} от {1} заподозрени за този срив.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM няма къде да запише тези резултати, затова те ще останат само докато този прозорец е отворен.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Следващ тест: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Изпълнява същата проверка върху следващия непроверен заподозрян: изключва го, възстановява архива, стартира играта и я наблюдава. Модовете, които вече са изключени като причина, остават включени.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Всеки заподозрян е тестван и никой не е бил причината сам по себе си. Възможно е два мода заедно да причиняват това - опитайте да изключите целия кратък списък наведнъж или докладвайте срива със списъка по-долу.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Започни отначало</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Изтрива всички резултати, които AIM е записал за този срив, и предлага отново всички заподозрени. Полезно е след добавяне, премахване или пренареждане на модове, защото резултатът има смисъл само спрямо списъка, с който е направен тестът.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Всички резултати за този срив бяха изчистени.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Изключени като причина - {0} от {1} заподозрени</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Покажи какво доказаха тестовете</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Четене на собствените страници на {0} за поправка…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Не е причината</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Записва, че знаете, че този мод не е причината за срива, без да губите стартиране за тест. Модът се премества в списъка с изключени причини, спира да се предлага за тест и се включва отново, ако AIM го е изключил. Отбелязва се като ваше решение, а не като доказано от AIM, и можете да го отмените.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Отбележи като причина за срива</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Записва, че знаете, че този мод причинява срива. AIM го изключва, отбелязва го в списъка с модове и го третира като причината - както когато тест установи това, но с етикет, че е ваше решение. Можете да го отмените.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Отмени моето отбелязване</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Отменя резултата, който сте записали ръчно, и връща този мод в краткия списък като непроверен. Състоянието му на включен или изключен не се променя.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Отбелязан ръчно, не е тестван от AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>ОТБЕЛЯЗАН КАТО НЕВИНЕН</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>ОТБЕЛЯЗАН КАТО ПРИЧИНА ЗА СРИВА</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Вие отбелязахте този мод като причина. AIM не го е тествал - изключил го е и го е отбелязал в списъка с модове по ваше решение. Всичко, което AIM може да поправи сам, е по-долу; в нишката за грешки на мода може вече да има отговор.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} е отбелязан като причина за срива и е изключен. Инсталирайте, за да възстановите играта без него.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} е отбелязан като причина за срива. Той вече е изключен.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} е отбелязан като невинен и повече няма да бъде предлаган за този срив.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} е отбелязан като невинен и е включен отново. Инсталирайте, за да го върнете в играта.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Вашето отбелязване за {0} е отменено. Модът отново е в краткия списък като непроверен.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM няма зареден срив, към който да запише това.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Включи отново</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Този мод е изключен като причина, но все още е изключен. Обикновено AIM включва изключения мод отново автоматично, но този път не е успял, затова направете това тук.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} е включен отново. Инсталирайте, за да го върнете в играта.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM не успя да включи {0} отново - възможно е вече да не е в списъка ви с модове или да не е успял да се зареди.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>ИЗКЛЮЧЕН КАТО ПРИЧИНА</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>ИЗВЕСТНА ПРИЧИНА ЗА СРИВ</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Тестът го доказа: при изключен мод играта не се срина. AIM го остави изключен и го отбеляза в списъка ви с модове. Всичко, което AIM може да поправи сам, е по-долу; в нишката за грешки на мода може вече да има отговор.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>ТЕСТВАН, БЕЗ ОТГОВОР</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Поправки, които AIM може да приложи сам</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Това са поправки, които AIM е извел от собствените си проверки, а не от нишка за грешки, затова всяка е механична корекция на доказано неправилно нещо във файла, а не предположение какво е имал предвид авторът. Целият мод първо се копира в историята на версиите ви, отбелязва се като редактиран и се задържа от обновления, докато не излезе версия, която може да поправи проблема правилно.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Приложи тази поправка</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Приложено към {0}. Модът е отбелязан като редактиран и е задържан от обновления; предишната версия е в списъка за възстановяване по-горе.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Тук няма проблем, който AIM да може да поправи сам.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;В {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM първо ще копира целия мод в историята на версиите ви и ще го задържи от обновления, за да не бъде тази поправка тихомълком презаписана. Да продължа ли?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Задържан от обновления, защото AIM го поправи: {0}</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Обновление може да поправи промененото</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>Излезе {0} {1}. Вие сте на {2} с приложена поправка от AIM: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Обнови и премахни поправката на AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Обновяването заменя папката на мода, затова редакцията на AIM ще бъде премахната заедно с нея. Ако новата версия не е поправила проблема, сривът ще се появи отново и можете да приложите поправката пак - предишната версия все още е в списъка за възстановяване.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Тема</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Системна по подразбиране</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Светла</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Тъмна</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Мистрийска жътва</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Мистрийска ливада</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>Мистрийска нощ</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Розова градина</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Намали размера на текста</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Увеличи размера на текста</value></data>
 </root>

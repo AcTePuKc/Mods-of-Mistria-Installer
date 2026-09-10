@@ -1,4 +1,5 @@
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.Nexus;
 using SharpCompress.Archives;
 
@@ -40,6 +41,9 @@ public record DropFolderImport(List<ImportedMod> Imported, List<SkippedImport> A
 /// </summary>
 public static class ModDropFolders
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private static readonly string[] ManifestNames = ["manifest.toml", "manifest.json"];
 
     /// <summary>
@@ -405,7 +409,7 @@ public static class ModDropFolders
             if (!File.Exists(candidate) && !Directory.Exists(candidate)) return candidate;
         }
 
-        throw new IOException($"There is nowhere left in the mods folder to assemble {name}.");
+        throw new IOException(string.Format(Text("GUIModDropStagingFull"), name));
     }
 
     /// <summary>
@@ -475,7 +479,7 @@ public static class ModDropFolders
             if (!File.Exists(candidate) && !Directory.Exists(candidate)) return candidate;
         }
 
-        throw new IOException($"There are already too many copies of {name} in the mods folder.");
+        throw new IOException(string.Format(Text("GUIModDropTooManyCopies"), name));
     }
 
     private static void CopyDirectory(string source, string destination)

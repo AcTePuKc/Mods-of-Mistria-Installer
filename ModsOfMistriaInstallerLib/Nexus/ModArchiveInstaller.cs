@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using SharpCompress.Archives;
 
@@ -39,6 +40,9 @@ public enum ArchiveConflictBehaviour
 /// </summary>
 public static class ModArchiveInstaller
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private static readonly string[] ManifestNames = ["manifest.toml", "manifest.json"];
 
     public static bool LooksLikeArchive(string path) =>
@@ -110,8 +114,10 @@ public static class ModArchiveInstaller
         Func<string, string?, Exception?>? forceRestoreFailure,
         IReadOnlyList<InstalledModIdentity>? installedMods = null)
     {
-        if (!File.Exists(archivePath)) throw new ModArchiveException("The downloaded file is missing.");
-        if (!Directory.Exists(modsLocation)) throw new ModArchiveException("The mods folder could not be found.");
+        if (!File.Exists(archivePath))
+            throw new ModArchiveException(Text("GUIModArchiveMissing"));
+        if (!Directory.Exists(modsLocation))
+            throw new ModArchiveException(Text("GUIModArchiveModsFolderMissing"));
 
         using var archive = OpenArchive(archivePath);
 
@@ -129,8 +135,7 @@ public static class ModArchiveInstaller
 
         if (manifestRoots.Count == 0)
             throw new ModArchiveException(
-                "That download does not contain a manifest.toml, so it is not a mod this installer can " +
-                "handle. It may be an older mod, or a file that has to be installed by hand.");
+                Text("GUIModArchiveManifestMissing"));
 
         // A manifest nested under another mod's folder belongs to that mod (an example or a
         // bundled dependency copy); only the outermost roots are separate installs.
@@ -209,9 +214,8 @@ public static class ModArchiveInstaller
                     var details = string.Join(Environment.NewLine, rollbackFailures.Select(failure =>
                         $"• {Path.GetFileName(failure.Target)}: {failure.Error.Message}{DescribeBackup(failure.BackupPath)}"));
                     throw new ModArchiveException(
-                        $"Could not complete the downloaded mod. The original install error was: {installError.Message}" +
-                        $"{Environment.NewLine}A previous mod copy could not be restored. Its backup was kept for manual recovery:{Environment.NewLine}{details}",
-                        installError);
+                        string.Format(Text("GUIModArchiveRollbackFailed"),
+                            installError.Message, details), installError);
                 }
                 throw;
             }
@@ -423,8 +427,8 @@ public static class ModArchiveInstaller
             if (File.Exists(parked.OriginalPath)) return null;
 
             if (!File.Exists(parked.CurrentPath))
-                throw new FileNotFoundException(
-                    $"The copy that was put aside is no longer at {parked.CurrentPath}.");
+                throw new FileNotFoundException(string.Format(
+                    Text("GUIModArchiveParkedCopyMissing"), parked.CurrentPath));
 
             File.Move(parked.CurrentPath, parked.OriginalPath);
 
@@ -456,8 +460,8 @@ public static class ModArchiveInstaller
             candidate = $"{path}.aim-old-{attempt}";
         }
 
-        throw new ModArchiveException(
-            $"There are already too many kept copies of {Path.GetFileName(path)} beside the mods folder.");
+        throw new ModArchiveException(string.Format(
+            Text("GUIModArchiveTooManyBackups"), Path.GetFileName(path)));
     }
 
     // ── Extraction ───────────────────────────────────────────────────────────────
@@ -532,10 +536,11 @@ public static class ModArchiveInstaller
         {
             var rollbackFailure = Restore(target, backup, forceRestoreFailure);
             if (rollbackFailure is not null)
-                throw new ModArchiveException(
-                    $"Could not unpack the mod: {e.Message} The previous copy could not be restored; " +
-                    $"its backup was kept for manual recovery{DescribeBackup(rollbackFailure.BackupPath)}.", e);
-            throw new ModArchiveException($"Could not unpack the mod: {e.Message}", e);
+                throw new ModArchiveException(string.Format(
+                    Text("GUIModArchiveUnpackRollbackFailed"),
+                    e.Message, DescribeBackup(rollbackFailure.BackupPath)), e);
+            throw new ModArchiveException(
+                string.Format(Text("GUIModArchiveUnpackFailed"), e.Message), e);
         }
     }
 
@@ -553,11 +558,11 @@ public static class ModArchiveInstaller
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (++count > limits.MaxEntries)
-                throw new ModArchiveException("The downloaded archive contains too many files.");
+                throw new ModArchiveException(Text("GUIModArchiveTooManyFiles"));
             if (entry.Size < 0 || entry.Size > limits.MaxEntryBytes)
-                throw new ModArchiveException("The downloaded archive contains a file that is too large.");
+                throw new ModArchiveException(Text("GUIModArchiveFileTooLarge"));
             if (declaredTotal > limits.MaxTotalBytes - entry.Size)
-                throw new ModArchiveException("The downloaded archive exceeds the supported extracted size.");
+                throw new ModArchiveException(Text("GUIModArchiveTotalTooLarge"));
             declaredTotal += entry.Size;
         }
     }
@@ -579,7 +584,8 @@ public static class ModArchiveInstaller
             if (read == 0) break;
 
             if (entryBytes > limits.MaxEntryBytes - read)
-                throw new ModArchiveException($"Archive entry '{entryName}' exceeds the supported extracted size.");
+                throw new ModArchiveException(string.Format(
+                    Text("GUIModArchiveEntryTooLarge"), entryName));
             budget.Consume(read);
             output.Write(buffer, 0, read);
             entryBytes += read;
@@ -637,8 +643,7 @@ public static class ModArchiveInstaller
         }
         catch (Exception e)
         {
-            throw new ModArchiveException(
-                "The downloaded file is not an archive this installer can read (zip, rar and 7z are supported).", e);
+            throw new ModArchiveException(Text("GUIModArchiveUnsupportedFormat"), e);
         }
     }
 
@@ -655,7 +660,8 @@ public static class ModArchiveInstaller
         var root = Path.GetFullPath(target) + Path.DirectorySeparatorChar;
 
         if (!combined.StartsWith(root, StringComparison.OrdinalIgnoreCase))
-            throw new ModArchiveException($"The archive contains an unsafe path: {relative}");
+            throw new ModArchiveException(string.Format(
+                Text("GUIModArchiveUnsafePath"), relative));
 
         return combined;
     }
@@ -720,7 +726,7 @@ public static class ModArchiveInstaller
         public void Consume(int count)
         {
             if (count < 0 || _remaining < count)
-                throw new ModArchiveException("The downloaded archive exceeds the supported extracted size.");
+            throw new ModArchiveException(Text("GUIModArchiveTotalTooLarge"));
             _remaining -= count;
         }
     }

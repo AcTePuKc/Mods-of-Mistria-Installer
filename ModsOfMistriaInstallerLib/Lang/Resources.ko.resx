@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -16,7 +16,7 @@
   <data name="GUILanguageTraditionalChinese" xml:space="preserve"><value>번체 중국어</value></data>
   <data name="GUILanguageRussian" xml:space="preserve"><value>러시아어</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>인도네시아어</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Fields of Mistria 대체 설치 관리자</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Fields of Mistria 대체 설치 관리자</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>언어</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>게임 시작</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>프로필:</value></data>
@@ -159,7 +159,7 @@
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>새 오브젝트가 다른 모드의 오브젝트를 덮어쓰지 않습니다.</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>새 아이템이 다른 모드의 아이템을 덮어쓰지 않습니다.</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>AIM에 오신 것을 환영합니다</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} — 제작자 {1} — 버전 {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} - 제작자 {1} - 버전 {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Fields of Mistria 설치를 찾을 수 없습니다.</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>모드 폴더를 찾을 수 없습니다. 폴더를 선택하거나 자동으로 만드세요.</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>설치할 모드가 선택되지 않았습니다.</value></data>
@@ -265,6 +265,7 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>이제 AIM이 Nexus 웹사이트의 “Vortex” 링크를 엽니다.
 
 처음 클릭할 때 브라우저에서 권한을 요청할 수 있습니다.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM이 성공적으로 등록되었지만 Windows에서 nxm:// 링크에 {0}을(를) 계속 사용하고 있을 수 있습니다.&#xD;&#xA;&#xD;&#xA;Windows 기본 앱을 열고 nxm:// 프로토콜에 AIM을 선택하시겠습니까?&#xD;&#xA;&#xD;&#xA;“예”를 선택하면 기본 앱이 열리고, “아니요”를 선택하면 설정을 변경하지 않습니다.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM이 더 이상 Nexus 웹사이트의 “Vortex” 링크를 열지 않습니다.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>이 링크에 AIM을 등록하지 못했습니다: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM의 링크 처리를 중지하지 못했습니다: {0}</value></data>
@@ -275,7 +276,10 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>클립보드에 nxm:// 링크가 없습니다. 모드 페이지에서 “Vortex”를 마우스 오른쪽 버튼으로 클릭하고 먼저 링크 주소를 복사하세요.</value></data>
   <data name="GUISave" xml:space="preserve"><value>저장</value></data>
   <data name="GUICancel" xml:space="preserve"><value>취소</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0}개 중 {1}개 선택 — {2}개는 이미 게임에 있고 {3}개가 추가됩니다</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>확인</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>예</value></data>
+  <data name="GUINo" xml:space="preserve"><value>아니요</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0}개 중 {1}개 선택 - {2}개는 이미 게임에 있고 {3}개가 추가됩니다</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>모드 검색…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>검색 지우기</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>모든 모드 선택 또는 선택 해제</value></data>
@@ -333,4 +337,508 @@ AIM이 처리하도록 할까요?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>에셋 아카이브는 교체되었지만 AIM이 설치 상태를 저장하지 못했습니다. 완료된 트랜잭션을 복구하려면 AIM을 다시 시작하세요.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM의 보류 중인 설치 상태 복구 파일이 올바르지 않습니다: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM이 assets.zip을 복원했지만 설치 상태를 복원하지 못했습니다. 상태 파일을 사용하는 프로그램을 닫고 다시 시도하세요.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>최근</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>활성</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>업데이트 필요</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>순서 제안</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} 제작: {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Nexus 로그인</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Nexus 로그아웃</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus 계정이 연결되었습니다.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus 계정이 연결되지 않았습니다. Nexus 기능을 사용하려면 로그인하세요.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus 계정 연결이 해제되었습니다.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>모드 manifest 편집</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>manifest.json(또는 manifest.toml)을 기본 텍스트 편집기에서 엽니다. 폴더 형태의 모드에서만 사용할 수 있습니다. .zip 또는 .rar 안에 있는 모드는 편집할 파일이 없습니다.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>모드 설정 편집</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>모드의 설정 파일을 기본 텍스트 편집기에서 엽니다. AIM이 설정 파일을 찾을 수 없으면 비활성화됩니다.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>{0}을(를) 열 수 없습니다: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>모드 제거…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>모드를 모드 폴더에서 제거합니다. AIM은 먼저 확인한 뒤 파일을 삭제하지 않고 휴지통으로 보냅니다.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>모드 제거</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>“{0}” v{1}을(를) 휴지통으로 이동할까요?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;모드 폴더에서 제거됩니다. 마음이 바뀌면 휴지통에서 되돌릴 수 있습니다. 게임에 이미 설치된 파일은 다음 설치 또는 제거 때까지 남아 있습니다.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>“{0}” v{1}을(를) 영구적으로 삭제할까요?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;이 시스템에는 AIM이 사용할 수 있는 휴지통이 없으므로 모드 파일이 삭제됩니다. 되돌릴 수 없습니다.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>“{0}”을(를) 제거할 수 없습니다: {1}&#xD;&#xA;&#xD;&#xA;다른 프로그램에서 열려 있거나 게임이 아직 실행 중일 수 있습니다.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>선택 항목 제거…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>목록을 표시한 뒤 선택된 모든 모드를 휴지통을 통해 한 번에 제거합니다.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>선택된 모드가 없으므로 제거할 것이 없습니다.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>{0}개의 모드를 휴지통으로 이동할까요?&#xA;&#xA;{1}&#xA;&#xA;모드는 모드 폴더에서 제거되며, 마음이 바뀌면 휴지통에서 복원할 수 있습니다. 게임에 이미 설치된 파일은 다음 설치 또는 제거 작업 전까지 남아 있습니다.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>{0}개의 모드를 영구적으로 삭제할까요?&#xA;&#xA;{1}&#xA;&#xA;이 시스템에는 AIM이 사용할 수 있는 휴지통이 없으므로 파일이 바로 삭제됩니다. 실행 취소할 수 없습니다.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... 외 {0}개</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{1}개 중 {0}개의 모드를 제거했습니다.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>다음 모드를 제거할 수 없습니다: {0}&#xA;&#xA;다른 프로그램에서 사용 중이거나 게임이 아직 실행 중일 수 있습니다.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows에서 이 항목을 휴지통으로 이동하지 못했습니다</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>「{0}」은(는) 더 이상 모드 폴더에 없습니다. 목록을 새로 고쳤습니다.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>확인했고 문제없다고 표시합니다. 관련 모드 중 하나의 버전이 바뀔 때까지 AIM이 숨겨 둡니다.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>문제없다고 표시한 문제 표시 ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>문제없음으로 표시됨</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[문제없음으로 표시됨]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>두 모드가 모두 변경하는 파일</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>현재 우선 적용됨</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>이 모드를 우선 적용</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>이 모드를 공유 파일이 있는 다른 모드보다 아래로 이동하여 이 모드의 파일이 설치되게 합니다. 뒤의 목록에서 로드 순서가 즉시 바뀝니다.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>이제 「{0}」이(가) 해당 파일을 공유하는 모드 중 마지막에 로드되므로 이 모드의 파일이 우선 적용됩니다.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>해결 방법 찾기...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>두 모드의 Nexus 페이지에서 서로에 대한 정보를 읽고, 버그 보고서와 댓글 및 웹 검색을 열어 이 문제가 실제로 중요한지 판단할 수 있게 합니다.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>다시 지정...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>{0}에서 이 모드의 키 설정을 편집하여 다른 모드가 사용하지 않는 키로 변경합니다. 먼저 모드를 백업하며, 다음 설치부터 게임에 적용됩니다.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>단축키 다시 지정</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>「{0}」을(를) {1}에서 {2}(으)로 변경할까요?&#xA;&#xA;AIM은 모드 자체의 키 설정을 편집하고 오른쪽 클릭 메뉴에서 복원할 수 있도록 백업을 보관합니다. 다음 설치 때 게임에 적용됩니다.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>「{0}」이(가) 이제 {1}을(를) 사용합니다. {2}개 파일을 업데이트했습니다.&#xA;&#xA;변경 사항을 적용하려면 다시 설치하세요.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>「{0}」의 키를 다시 지정하지 못했습니다: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>「{0}」이(가) 이제 {2} 대신 {1}을(를) 사용합니다. 변경 사항을 적용하려면 다시 설치하세요.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>해결됨 - 「{0}」을(를) {1}(으)로 옮겨 이 단축키를 공유하는 모드가 없어졌습니다. 변경 사항을 적용하려면 다시 설치하세요.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>이 모드는 아직 .zip 또는 .rar 파일입니다. 먼저 모드 폴더에 압축을 풀면 AIM이 키 설정을 편집할 수 있습니다.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>이 모드는 키를 이름이 있는 바인딩으로 선언하지 않아 AIM이 안전하게 변경할 수 없습니다. 모드의 게임 내 설정이나 설정 파일을 확인하세요.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>선택한 모드가 모든 기능 키를 사용하고 있어 이 모드를 옮길 빈 키가 없습니다.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM이 이 모드의 파일을 읽지 못했습니다.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>A-Z순 정렬</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>이름순으로 목록을 정렬하여 모드를 빠르게 찾습니다. 보기만 바뀌며 실제 로드 순서는 변경되지 않습니다. 끄면 실제 순서가 다시 표시되고, 켜져 있는 동안에는 끌어 놓기가 일시 중지됩니다.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>최근 업데이트순 정렬</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>디스크에서 각 모드 폴더가 마지막으로 변경된 시점을 기준으로 최신 항목부터 표시합니다. 보기만 바뀌며 실제 로드 순서는 변경되지 않고, 켜져 있는 동안에는 끌어 놓기가 일시 중지됩니다.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>로드 순서 맨 위로 이동</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>이 모드를 가장 먼저 로드하여 다른 모드가 이를 기반으로 만들고 덮어쓸 수 있게 합니다. 프레임워크나 다른 모드가 의존하는 모드에 사용합니다. 현재 보이는 목록이 아니라 실제 로드 순서를 변경합니다.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>로드 순서 맨 아래로 이동</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>이 모드를 마지막에 로드하여 다른 모드와 파일이 겹칠 때 이 모드가 우선 적용되게 합니다. 리컬러나 개인 오버라이드에 사용합니다. 현재 보이는 목록이 아니라 실제 로드 순서를 변경합니다.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>활성화된 모드만</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>꺼진 모드를 모두 숨깁니다. 실제로 중요한 로드 순서는 게임에 들어가는 모드의 순서이며, 긴 목록에서는 사용하지 않는 모드 때문에 읽기 어렵습니다.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>확인이 필요한 모드만</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>업데이트가 있는 모드와 마지막 확인에 접근하지 못한 모드만 표시합니다. Nexus 연결 없음, 네트워크 문제 또는 더 이상 존재하지 않는 페이지가 해당됩니다.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>보기 전용 - 로드 순서는 변경되지 않으며 끌어 놓기가 일시 중지됩니다</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>목록 맨 위로 이동</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>목록 맨 아래로 이동</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1})도 {2}에서 사용 중</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>릴리스 노트</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>릴리스 노트 - 불러오려면 마우스를 올리고, 전체 기록을 읽으려면 클릭하세요.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>{0}의 새로운 내용:
+{1}
+
+모든 버전을 읽으려면 클릭하세요.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>이 모드의 제작자가 릴리스 노트를 게시하지 않았습니다.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM이 이 모드의 릴리스 노트를 읽지 못했습니다. 연결된 Nexus 계정이 필요하며, AIM이 이 모드의 Nexus 페이지를 알고 있어야 합니다.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>릴리스 노트가 있는 버전 {0}개. 최신 버전부터 표시됩니다.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>버전 {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>버전</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>게임 충돌 유발</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>충돌 유발로 표시됨</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>감독된 실행에서 이 모드가 게임 충돌을 일으키는 것이 확인되었습니다. 모드를 끄면 게임이 실행되고 충돌이 다시 발생하지 않았습니다. AIM은 모드를 꺼 둔 상태입니다.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>충돌 확인에서 직접 이 모드를 충돌 원인으로 표시했습니다. AIM이 테스트한 것이 아니라 사용자의 판단을 따랐으며 모드를 꺼 둔 상태입니다.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>버전 {0}, 확인일 {1}.
+{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>충돌 확인을 열어 AIM이 적용할 수 있는 해결 방법과 모드 페이지의 안내를 확인하세요. 표시는 이 버전에 연결되므로 제작자가 업데이트하면 사라집니다.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>AIM이 편집함</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>이 패치에는 AIM이 직접 설치할 수 있는 메인 파일이 없습니다. 파일이 브라우저에서 열려 있으니 원하는 파일을 선택하고 「Mod Manager Download」를 사용하세요.</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>패치 다운로드가 취소되었습니다.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM이 충돌을 해결하기 위해 이 모드 안의 파일을 변경했습니다. 디스크의 파일은 제작자가 게시한 파일과 더 이상 완전히 같지 않습니다.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>변경 전 모드는 버전 드롭다운에 있습니다. 거기서 복원하거나 모드를 마우스 오른쪽 버튼으로 클릭하고 「AIM 편집 취소」를 선택하세요.</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>AIM 편집 취소</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Nexus Mods에서 추적</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>이 모드를 Nexus 추적 센터에 추가하여 사이트에서 업데이트와 제작자 게시물을 알려 주도록 합니다. Nexus 계정 연결이 필요합니다.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>이제 Nexus Mods에서 {0}을(를) 추적합니다.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Nexus Mods에서 이미 {0}을(를) 추적하고 있습니다.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Nexus Mods에서 {0}을(를) 추적하지 못했습니다: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM이 이 모드에 연결된 페이지에서 Nexus 모드 ID를 읽지 못했습니다.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>업데이트할 때 AIM이 보관한 이 모드의 이전 버전입니다. 하나를 선택하여 되돌리세요.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>되돌릴 버전:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>클릭하면 다운로드하여 설치합니다. 현재 버전은 백업으로 보관됩니다.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>클릭하면 다운로드 페이지를 엽니다. AIM은 이것이 Nexus의 어느 파일인지 모릅니다. 모드를 마우스 오른쪽 버튼으로 클릭하고 「Nexus에 연결」을 사용하면 자동 설치할 수 있습니다.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus에서 계정 ({0})을(를) Premium으로 확인했으므로 이 거부는 계정 등급 때문이 아닙니다. 대부분 로그인 만료 또는 취소가 원인입니다. 톱니바퀴 메뉴에서 다시 로그인하세요.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus에서 계정 ({0})을(를) 무료 계정으로 확인했습니다. 직접 다운로드는 Premium 기능이므로 웹사이트 버튼을 사용하세요.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Nexus 계정이 연결되지 않아 AIM이 직접 다운로드할 수 없습니다.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM이 Nexus 계정을 확인하지 못했습니다: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>키 설정</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>모드가 지정한 모든 키와 컨트롤러 버튼을 한 목록에서 확인합니다. 충돌은 빨간색으로 표시되며 바로 편집할 수 있습니다.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>모드 키 설정</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>현재 모드에 지정된 키입니다. 모드는 모드 폴더가 아닌 게임의 설정 폴더에 이를 저장하므로 업데이트해도 사라지지 않습니다. 단, 모드가 자체 설정을 초기화할 수 있으며 AIM은 그때 사용자의 선택을 다시 적용할 수 있습니다.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0}개 키 설정, 그중 {1}개 충돌</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>충돌만 표시</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>새로 고침</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM이 모드의 키 설정을 읽지 못했습니다: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>모드의 키 설정을 읽는 중...</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>선택한 모드에서 AIM이 확인할 수 있는 키 설정이 없습니다. 실행 중에 키를 만드는 모드는 게임을 실행하기 전까지 이를 공개하지 않습니다.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>충돌이 없습니다.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM이 게임 설정 폴더를 찾지 못해 모드가 제공한 기본값을 표시하고 있습니다. 게임을 한 번 실행하면 실제 키 설정이 됩니다.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria가 실행 중입니다. 게임이 종료될 때 모든 모드 설정을 다시 써서 여기서 변경한 내용을 덮어쓰므로 편집이 꺼져 있습니다. 게임을 닫고 새로 고침을 누르세요.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>{0}에서도 사용됨</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>같은 입력이 지정된 위치:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>화면에 표시된 모드 선택 또는 선택 해제</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>현재 검색과 필터로 표시되는 행에만 적용되며 숨겨진 항목에는 적용되지 않습니다. 필터가 없으면 모든 모드에 적용됩니다. AIM이 설치할 수 없는 모드는 그대로 둡니다.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>모드 기본값. 모드가 설정을 저장하기 전에는 AIM이 변경할 수 없습니다</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>이 모드는 아직 설정을 저장하지 않아 내부에 포함된 기본값을 사용합니다. 게임을 한 번 실행하거나 모드 자체 설정에서 변경하면 AIM이 여기서 편집할 수 있습니다.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(지정되지 않음)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>게임에서 허용하지 않음</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>「{0}」은(는) 게임이 인식하는 이름이 아니므로 이 모드는 기본값으로 돌아갑니다. 목록에 있는 항목으로 설정하면 해결됩니다.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM이 {0}에 기록하지 못했습니다. 다른 프로그램에서 열려 있거나 게임이 시작되었을 수 있습니다.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>키 또는 버튼 선택</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>키 또는 컨트롤러 버튼</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>키를 눌러 입력하기</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>지금 키를 누르세요... (Escape로 중지)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>다음으로 저장됩니다: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>컨트롤러 버튼은 목록에서 선택합니다. AIM은 컨트롤러를 읽을 수 없습니다. 목록에는 게임이 허용하는 모든 이름이 있으며 ALT, 잠금 키와 숫자 키패드는 포함되지 않습니다. 모드에서 이 중 하나를 사용하면 조용히 기본값으로 돌아갑니다.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>저장</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>지정 해제</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>설정 값을 비웁니다. 대부분의 모드는 이를 「끔」으로 처리하지만 일부는 기본값으로 돌아갑니다.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (모드 기본값. 아직 설정되지 않음)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>키 설정이 변경됨</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>선택한 키 설정 중 {0}개가 모드 자체에서 변경되었습니다. 보통 업데이트로 설정이 초기화된 경우입니다.&#xA;&#xA;{1}&#xA;&#xA;선택 사항을 다시 적용할까요? 업데이트로 완전히 삭제된 설정은 복원하지 않습니다.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>... 외 {0}개</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>키 설정 {0}개를 복원했습니다. 적용하려면 게임을 시작하세요.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>확인</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>선택한 모드를 Nexus 페이지와 비교합니다. 화살표를 사용하면 모든 모드를 확인하거나 업데이트가 있는 항목을 모두 설치할 수 있습니다.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0}개 모드 확인: {1}개에 업데이트가 있고 {2}개는 확인할 수 없습니다.&#xA;&#xA;지금 해당 업데이트를 다운로드하여 설치할까요? 각 모드의 현재 버전은 복원할 수 있도록 백업됩니다.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>업데이트가 있는 항목 모두 업데이트</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>대기 중인 모든 업데이트를 차례로 다운로드하고 설치하며, 각 모드의 현재 버전을 복원 가능한 백업으로 보관합니다.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>모드 업데이트</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>대기 중인 업데이트가 없습니다. 먼저 업데이트를 확인하세요.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>{0}개의 모드를 업데이트할까요?&#xA;&#xA;{1}&#xA;&#xA;각 모드의 현재 버전은 오른쪽 클릭 메뉴에서 복원할 수 있도록 백업됩니다.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>{1}개 중 {0}개 업데이트 중: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{1}개 중 {0}개의 모드를 업데이트했습니다.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>다음 모드는 직접 다운로드할 수 없어 Nexus 페이지가 필요합니다: {0}&#xA;&#xA;Nexus는 Premium 계정에만 직접 다운로드 링크를 제공합니다. 무료 계정이라면 모드 페이지를 열고 「Mod Manager Download」 버튼을 사용하세요. AIM이 해당 링크를 처리하도록 등록되어 있으면 자동으로 받습니다.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>보고할 내용이 없습니다. 선택한 모드 사이에서 공유 파일, 단축키 충돌, 누락된 요구 사항 또는 호환성 경고를 찾지 못했습니다.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>실제 충돌이 아니라고 표시했습니다.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>이 문제의 패치를 찾았습니다.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>호환되지 않는 것으로 판단했습니다. 둘 중 하나를 끄세요.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>키를 다시 지정하여 해결됨: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>감시 중인 다운로드 폴더</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>감시 중인 폴더에 수동으로 다운로드한 모드는 모드 폴더로 이동되고 자동으로 목록에 표시됩니다.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>폴더 감시...</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>다운로드한 모드를 감시할 폴더 선택</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>감시 중인 폴더 지금 확인</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>감시 중인 폴더가 없습니다</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>이 폴더 감시 중지</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>감시 중인 폴더</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>가져올 새 항목이 없습니다. AIM은 manifest가 포함된 압축 파일과 폴더만 이동하며, 나머지는 그대로 둡니다.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>감시 중인 폴더에서 {0}개의 모드를 가져왔습니다.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>모드 폴더로 이동됨:
+{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - 이미 「{1}」(으)로 설치되어 있습니다. 이 복사본을 업데이트하거나 먼저 제거하세요. 같은 모드의 두 복사본은 같은 파일을 두고 충돌합니다.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>감시 중인 폴더에 남겨 둠:
+{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>모드 폴더를 찾지 못해 열 수 없습니다.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>모드 폴더를 열지 못했습니다: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>모드 폴더</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>파일 관리자에서 Fields of Mistria 모드 폴더 열기</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>충돌 확인</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>게임의 충돌 로그를 읽고 어떤 모드가 원인인지 판단한 다음, 해당 모드를 끄고 충돌이 사라지는지 확인하도록 합니다.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>모드 폴더에 {0}을(를) 준비할 공간이 더 이상 없습니다.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>모드 폴더에 이미 {0}의 복사본이 너무 많습니다.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Nexus에서 파일을 다운로드하지 못했습니다: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>다운로드 서버가 응답하지 않음</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>업데이트할 항목이 없습니다.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Nexus 계정 세션을 저장하지 못했습니다. 디스크 접근 권한을 확인하고 다시 시도하세요.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>{0}의 백업이 없습니다.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>다운로드한 파일이 없습니다.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>모드 폴더를 찾지 못했습니다.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>이 다운로드에는 manifest.toml이 없어 이 설치 프로그램이 처리할 수 있는 모드가 아닙니다. 오래된 모드이거나 수동 설치가 필요한 파일일 수 있습니다.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>다운로드한 모드를 완료하지 못했습니다. 원래 설치 오류: {0}
+이전 모드 복사본을 복원하지 못했습니다. 수동 복구를 위해 백업을 보관했습니다:
+{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>따로 보관한 복사본이 더 이상 {0}에 없습니다.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>모드 폴더 옆에 이미 {0}의 보관된 복사본이 너무 많습니다.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>모드 압축을 풀지 못했습니다: {0} 이전 복사본을 복원하지 못했으며 백업을 수동 복구용으로 보관했습니다{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>모드 압축을 풀지 못했습니다: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>다운로드한 압축 파일에 파일이 너무 많습니다.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>다운로드한 압축 파일에 너무 큰 파일이 들어 있습니다.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>다운로드한 압축 파일의 압축 해제 크기가 지원 한도를 초과합니다.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>압축 파일 항목 「{0}」의 압축 해제 크기가 지원 한도를 초과합니다.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>다운로드한 파일은 이 설치 프로그램이 읽을 수 있는 압축 형식이 아닙니다. zip, rar, 7z를 지원합니다.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>압축 파일에 안전하지 않은 경로가 있습니다: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>콜백 상태가 일치하지 않아 Nexus 로그인이 취소되었습니다.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus가 인증 코드를 반환하지 않았습니다.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus 계정 세션을 다시 연결해야 합니다.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>AIM의 Nexus OAuth 등록이 아직 처리 중입니다.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus가 계정 로그인을 완료하지 못했습니다.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus가 불완전한 계정 세션을 반환했습니다.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Nexus 계정 응답을 읽지 못했습니다.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM이 Nexus 로그인 콜백을 기다리는 중입니다.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Nexus 로그인 응답이 이 AIM 세션과 일치하지 않습니다.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Nexus 로그인이 취소되었습니다. AIM으로 돌아갈 수 있습니다.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Nexus 로그인이 취소되었거나 브라우저에서 거부되었습니다.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Nexus 로그인이 완료되었습니다. AIM으로 돌아갈 수 있습니다.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus가 해당 파일의 다운로드 서버를 반환하지 않았습니다.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus API가 제시간에 응답하지 않았습니다.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Nexus API에 연결하지 못했습니다: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus에서 예상하지 못한 응답을 반환했습니다.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Nexus의 응답을 읽지 못했습니다.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus가 계정 세션을 거부했습니다. Nexus 계정을 다시 연결하세요.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus가 요청을 거부했습니다. 다운로드 링크가 만료되었을 수 있으니 다시 클릭하세요.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>해당 모드 또는 파일은 더 이상 Nexus에 존재하지 않습니다.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Nexus API 요청 한도에 도달했습니다. 잠시 기다린 후 다시 다운로드하세요.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus에서 오류를 반환했습니다 ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>아직 연결된 Nexus 계정이 없습니다.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>이 모드의 원본 파일은 Nexus 페이지에서 사라졌고, 현재 있는 파일에도 더 새로운 버전이 없습니다. 이 페이지에는 여러 모드가 있으므로 AIM은 다른 모드를 업데이트로 제안하지 않습니다. 새 릴리스가 있다고 생각되면 직접 페이지를 확인하세요.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>이 모드 페이지에는 비교할 메인 파일이 없습니다.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM은 이 모드가 페이지의 어느 파일에서 왔는지 몰라 페이지의 버전이 더 새로운지 판단할 수 없습니다. AIM으로 한 번 다운로드하거나 모드를 마우스 오른쪽 버튼으로 클릭하여 특정 파일과 연결하면 업데이트 확인이 정확해집니다.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>업데이트 확인이 일찍 중지되었습니다.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>이 모드의 업데이트 확인이 완료되지 않았습니다.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>아직 연결된 Nexus 계정이 없습니다.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>이 다운로드는 다른 게임 ({0})용이므로 이 설치 프로그램이 처리할 수 없습니다.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>다운로드 링크가 만료되었습니다. 모드 페이지에서 「Vortex download」 버튼을 다시 클릭하세요.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>모드 폴더를 찾지 못했습니다.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Nexus에 파일을 문의하는 중...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>{0} 다운로드 중</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>{0} 압축 해제 중</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>설치가 취소되었습니다</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} 설치됨</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0}개 모드 설치됨</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>다운로드가 취소되었습니다</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>다운로드 링크가 비어 있습니다.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>nxm:// 링크가 아닙니다.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>링크에 게임 이름이 없습니다.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus 컬렉션은 아직 지원되지 않습니다. 모드를 개별적으로 다운로드하세요.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>이 링크는 모드 파일 다운로드가 아닙니다.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>링크의 모드 ID 또는 파일 ID가 잘못되었습니다.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>설치 프로그램이 실행 중인 위치를 확인하지 못했습니다.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>nxm:// 링크 등록은 Windows와 Linux에서만 지원됩니다.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM이 등록되었지만 Windows가 nxm:// 링크에 아직 {0}을(를) 사용하고 있을 수 있습니다.&#xA;&#xA;Windows 기본 앱에서 nxm:// 기본 앱으로 AIM을 선택하세요.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>등록을 기록한 후 nxm:// 등록을 확인하지 못했습니다.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>업데이트로 패치한 문제가 해결될 수 있음</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1}이(가) 출시되었습니다. 현재 {2}이며 AIM의 수정이 적용되어 있습니다: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>업데이트하고 AIM 수정 제거</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>업데이트하면 모드 폴더가 교체되어 AIM의 편집 내용이 사라집니다. 새 버전에서 문제가 해결되지 않았다면 충돌이 다시 발생할 수 있으며 수정 사항을 다시 적용할 수 있습니다. 이전 버전은 복원 목록에 남아 있습니다.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>외부 압축 파일 감지</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM이 외부에서 변경된 assets.zip을 찾았습니다.&#xA;&#xA;계속하면 AIM이 다음을 수행합니다:&#xA;• assets.foreign-...zip으로 보존&#xA;• 확인된 백업 복원&#xA;• 이 설치 다시 시도&#xA;&#xA;외부 압축 파일에만 있는 모드는 비활성화됩니다. 계속할까요?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>해결 방법 찾기</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>이 모드들의 페이지를 읽는 중…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>톱니바퀴 메뉴에서 Nexus 계정을 연결하면 AIM이 모드 페이지를 읽어 줍니다. 그때까지는 아래 링크로 확인하는 것이 가장 빠릅니다.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>모드 설명, readme, 변경 기록, 버그 보고서 또는 댓글 어디에도 이 조합에 대한 답이 없습니다. AIM은 전체 댓글 스레드에서 다른 모드의 이름을 검색하고 최근 버그 보고서도 읽었습니다. 이는 정말로 "아무도 말하지 않았다"는 뜻이지 "아무도 찾아보지 않았다"는 뜻은 아닙니다. 하지만 "문제가 없다"는 뜻도 아니며, 아래 링크는 실제 페이지로 연결됩니다.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>이 조합과 관련된 항목이 모드 페이지에서 {0}개 발견되었습니다.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM이 모드 페이지를 읽지 못했습니다: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>모드 페이지의 내용</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>직접 확인하기</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM은 댓글 전체를 검색하고 버그 추적기의 여러 페이지를 읽지만, 항상 로그아웃한 방문자로만 확인합니다. 이 링크에서 실제 페이지를 열 수 있습니다.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>이 모드의 페이지 열기</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>패치 열기</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>무엇을 찾았나요?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>이 내용을 저장하면 답이 문제와 함께 보관되므로 다음에 다시 알아낼 필요가 없습니다.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>패치 링크(선택 사항):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>실제 충돌 아님</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>파일을 공유하지만 실제로는 문제가 없습니다. 문제를 해결됨으로 표시하고 어느 모드가 업데이트될 때까지 숨깁니다.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>패치가 있음</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>호환성 패치가 공개되어 있습니다. 한 번 클릭해 링크를 추가하고, 다시 클릭해 기록합니다. 문제는 해결됨으로 표시됩니다.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>호환되지 않음</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>결과를 기록하지만 둘 중 하나를 꺼야 하므로 문제는 계속 표시합니다.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>아직 판단 중</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>패치 기록</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>https 링크처럼 보이지 않습니다. 패치의 웹 주소를 붙여 넣거나 비워 두세요.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIM의 파일 분석</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM이 이 모드들이 공유하는 모든 파일을 읽었습니다.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM이 모든 파일을 읽지는 못했으므로 이것을 사실이 아닌 분석 결과로 취급하세요.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>공유 파일 {0}개</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>공유 파일 {0}개</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>이 창의 일부를 만들 수 없습니다: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>이 충돌에 관련된 모드</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>페이지를 열어 직접 판단하거나, 사용하지 않기로 했다면 모드 목록에서 제거하세요.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>페이지 열기</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM이 이 모드의 출처를 알 수 없어 열 페이지가 없습니다.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>제거</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>이 모드를 모드 폴더에서 제거합니다. AIM은 먼저 확인하고 파일을 휴지통으로 보냅니다.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0}을(를) 제거했으므로 충돌이 더 이상 없습니다.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>이미 설치된 항목</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>이 조합과 관련되어 목록에 이미 있는 모드입니다. AIM은 다운로드를 제안하기 전에 확인했습니다.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>AIM이 할 수 있는 일</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>선택하기 전에는 아무 작업도 실행되지 않으며, 모든 작업을 되돌릴 수 있습니다.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>이미 존재하는 패치</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>승인하고 적용</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>완료: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>실행하지 못했습니다: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>문제없다고 함</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>문제라고 함</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>조건부로 작동</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>답하지 않고 주제만 언급</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>문제없음</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>문제</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>조건</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>맥락</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>전체 인용 표시</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>간단히 표시</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>페이지에서 찾기</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>"{0}"을(를) 복사하고 출처 페이지를 엽니다. 거기서 Ctrl+F를 누르고 붙여 넣으면 바로 이동할 수 있습니다. 댓글이라면 여러 페이지 뒤에 있을 수 있으므로 스레드 검색창에 붙여 넣으세요.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>복사했습니다. 방금 열린 페이지에서 Ctrl+F를 누르고 붙여 넣으세요.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>직접 만든 모드가 아닌 모드의 파일을 변경합니다. AIM은 먼저 전체 모드를 버전 목록에 복사하고 행을 편집됨으로 표시합니다. 계속할까요?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>충돌 확인</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>충돌</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>충돌 파일</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>AIM이 확인한 모든 충돌의 사본을 보관하는 폴더를 엽니다. 게임 자체에는 최신 파일만 남습니다.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>AIM의 분석</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>게임 실행 파일을 찾지 못해 AIM이 게임을 실행하고 감시할 수 없습니다.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria가 이미 실행 중입니다. AIM이 시작한 실행을 감시할 수 있도록 먼저 종료하세요.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM이 게임을 시작하지 못했습니다: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>게임이 충돌했지만 AIM이 남은 충돌 로그를 읽지 못했습니다. 따라서 이 실행은 모드에 대해 아무것도 증명하지 못합니다. 다시 확인하는 것이 좋습니다.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>확인 중 게임이 다시 충돌했습니다.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>확인 시간이 지난 뒤에도 게임이 실행 중이며 충돌하지 않았습니다. 원하는 결과입니다. 계속 플레이하세요.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>{0} 후 같은 충돌이 다시 발생했습니다.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>{0} 후 다른 오류로 게임이 다시 충돌했습니다.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>게임이 {1} 후 코드 {0}(으)로 종료되었고 충돌 로그를 남기지 않았습니다. 보통 모드가 아니라 드라이버 오류나 프로세스 종료처럼 게임 외부의 원인으로 닫혔다는 뜻입니다. 이 실행도 아무것도 증명하지 못합니다.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>게임이 {0} 동안 실행된 뒤 새 충돌 없이 정상 종료되었습니다.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>게임이 이 모드의 자체 코드 {0} {1}행에서 실패했습니다.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>이 모드의 코드가 호출 스택의 {0} {1}행에 있습니다.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>충돌 메시지 자체에 이 모드가 언급되어 있습니다.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>게임이 "{0}" 데이터를 읽는 중 충돌했습니다. 이 데이터에는 설치된 모드 {1}개가 추가합니다.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>게임이 "{0}" 데이터를 읽는 중 충돌했습니다. 이 데이터에는 설치된 모드 {1}개가 추가합니다.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>충돌 당시 게임이 읽던 "{0}" 데이터에 이 모드가 추가합니다.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>디스크의 게임 아카이브에 있는 "{0}" 데이터에는 {1}이(가) 없는 항목이 없습니다. 업데이트, 재설치 또는 이후 비활성화한 모드로 이미 해결된 것입니다. 다시 발생하면 아래 모드를 확인하세요.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>현재 게임이 불러오는 "{0}" 데이터에 아직 {2}이(가) 없는 항목이 하나 있습니다. 다음 실행에서도 이 충돌이 발생합니다.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>현재 게임이 불러오는 "{0}" 데이터에 아직 {2}이(가) 없는 항목이 {1}개 있습니다. 다음 실행에서도 이 충돌이 발생합니다.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>엔진 훅이 설치되어야 하며, 충돌은 함수가 아닌 것으로 밝혀진 항목을 호출해서 발생했습니다. 게임 안에서는 설치되지 않은 훅이 이렇게 보입니다.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>이 충돌은 현재 설치된 모드보다 오래되었지만, 설명된 문제가 디스크의 게임 아카이브에 아직 있습니다. 오래된 보고가 아니므로 다음 실행에서도 다시 발생할 수 있습니다.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>이 충돌은 현재 설치된 모드보다 오래되었습니다. AIM은 충돌 후 게임을 다시 만들었으므로 충돌한 게임과 현재 디스크의 게임은 다릅니다. 아래 내용을 결론이 아닌 단서로 보고, 변경하기 전에 한 번 플레이하세요.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>{0}() 내부의 {1}에서 실패했습니다</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>게임 자체의 "{0}" 데이터에 {2}행에서 {1}이(가) 없는 항목이 있으며 "{3}"을(를) 포함합니다. 다른 설치 모드에는 정의되지 않은 값입니다. 게임이 멈춘 곳이 바로 {1}이(가) 없는 항목입니다.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>게임 자체의 "{0}" 데이터에 {2}행에서 {1}이(가) 없는 항목이 있으며 "{3}"을(를) 포함합니다. 다른 설치 모드에는 정의되지 않은 값입니다. 항목에 MOMIidentify 블록이 남아 있으므로 기다리던 병합이 일치하지 않았습니다. {1}이(가) 있는 항목을 갱신하지 않고 {1}이(가) 없는 새 항목으로 추가되었습니다.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>게임의 "{0}" 데이터에 {2}행에서 {1}이(가) 없는 항목이 있으며, 이 모드는 이를 작성했을 수 있는 모드 중 하나입니다.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>이 충돌은 현재 설치보다 오래되었으며, 현재 가지고 있는 모드와 일치하는 내용이 없습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0}이(가) 게임을 충돌시켰습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>모드 {0}개가 각각 게임이 불러올 수 없는 데이터를 추가했습니다. 하나만으로도 원인이 될 수 있습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0}이(가) 가장 가능성 높은 원인입니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0}은(는) 게임이 읽던 내용을 건드리는 유일한 설치 모드입니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>설치된 모드 {0}개가 게임이 충돌한 데이터에 추가합니다. 그중 하나가 원인일 가능성이 높습니다.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>특정 모드를 명확히 가리키는 것은 없지만, 몇 가지를 제외해 볼 가치가 있습니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>게임이 불러온 항목에 "{0}"이(가) 없으며, 설치된 모드 중 명확한 소유자도 없습니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>아무것도 설정하지 않았는데 게임이 "{0}"을(를) 읽었습니다. 보통 모드 코드입니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>게임이 함수가 아닌 항목을 호출했습니다. 보통 설치되지 않은 훅입니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>게임이 "{0}" 에셋을 찾지 못했습니다. 보통 모드가 참조하지만 제공하지 않은 스프라이트입니다.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM이 백트레이스만으로 이 충돌을 모드와 연결하지 못했습니다.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>원인으로 지목된 모드</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>가능성이 높은 순서입니다. 충돌이 자체 코드에서 발생해 언급된 모드는 추측이 아니며, 게임이 읽던 데이터를 작성하는 모드는 후보 목록입니다.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>이 방법으로 해결되는지 확인</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>선택한 모드를 끄고, 변경을 적용하도록 게임을 다시 빌드한 뒤 실행하여 감시합니다. 평소처럼 플레이하세요. 게임이 닫히거나 몇 분 동안 충돌하지 않으면 AIM이 알려 줍니다.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>끄고 다시 빌드하여 실행</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>아카이브를 다시 빌드하기 전에는 모드를 꺼도 게임에서 보이는 내용이 바뀌지 않습니다. AIM이 중간 단계까지 모두 처리합니다.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>아무것도 바꾸지 않고 실행 및 감시</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>확인할 만한 내용</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>게임이 작성한 그대로의 충돌 파일</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>충돌이 발생한 위치</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>충돌이 발생한 위치({0} 프레임)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>보고서 복사</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>오류, 백트레이스, AIM의 결론, 설치된 모드를 모두 클립보드에 복사합니다.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>새로 고침</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>충돌을 찾는 중…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>기록된 충돌이 없습니다. 설치 후 게임이 충돌하지 않았거나 이 컴퓨터에서 실행된 적이 없습니다.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>설치된 모드와 백트레이스를 비교하는 중…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>여기서는 모드 목록을 볼 수 없어 충돌은 표시할 수 있지만 원인 모드는 말할 수 없습니다.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM이 이 충돌을 끝까지 읽지 못했습니다: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>이 충돌은 현재 설치된 모드보다 오래되었습니다. AIM이 이후 게임을 다시 빌드했으므로 충돌한 게임과 현재 디스크의 게임은 다릅니다. 변경하기 전에 한 번 플레이하고, 아래 모드는 결론이 아닌 단서로 취급하세요.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Nexus에 로그인하지 않아 AIM이 모드의 버그 추적기를 읽을 수 없습니다. 위 내용은 모두 내 파일에서 확인한 결과입니다.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>지목된 모드의 버그 추적기와 댓글을 읽는 중…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>페이지를 읽을 만큼 명확하게 지목된 모드가 없습니다.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM이 모드 페이지를 읽지 못했습니다: {0}. 내 파일에서 분석한 결과는 그대로 유효합니다.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>모드 페이지 어디에도 이 충돌에 대한 언급이 없습니다.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>이 내용과 관련된 항목이 모드 페이지에서 {0}개 발견되었습니다.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>확실함</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>가능성 높음</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>가능성 있음</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>가능성 낮음</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>모드 페이지 열기</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>이 페이지 열기</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>이 버그 보고</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>오류, 백트레이스, 게임 버전, 설치된 다른 모드를 포함한 작성자용 보고서를 만들고 클립보드에 복사한 뒤 모드의 버그 추적기를 엽니다. 읽고 게시하는 것은 사용자이며 AIM이 대신하지 않습니다.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>보고서가 클립보드에 있고 버그 추적기가 열려 있습니다. 내용을 확인한 뒤 게시하세요.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>보고서가 클립보드에 있습니다. AIM이 이 모드의 출처를 알 수 없으므로 작성자의 추적기나 Discord를 직접 찾아야 합니다.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>복사했습니다.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>끄고 확인</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>이 모드를 끄고 게임을 다시 빌드한 다음 실행하여 추측하지 않고 원인인지 확인합니다.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>이 모드 없이 게임을 다시 빌드하는 중입니다. 완료되면 자동으로 시작됩니다. 진행 상황은 아래에 표시됩니다.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>모드 제거</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0}을(를) 제거했습니다.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>버전 및 AIM 변경 사항</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM이 이 모드를 변경했습니다:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>AIM 변경 취소</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>AIM이 이 모드에서 따로 보관한 모든 파일을 되돌리고 폴더의 다른 내용은 그대로 둡니다. AIM이 변경한 줄은 아래 버전을 복원하면 취소됩니다.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>복원</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0}을(를) {1}(으)로 되돌렸습니다.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - AIM 변경 전</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM이 {0}을(를) 끄고 게임 아카이브를 다시 빌드한 뒤 게임을 시작합니다.&#xD;&#xA;&#xD;&#xA;다시 빌드하는 데 1분 정도 걸립니다. 평소처럼 플레이하세요. 충돌이 다시 발생하는지 AIM이 알려 줍니다.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM이 아무것도 변경하지 않고 게임을 시작해 충돌을 감시합니다.&#xD;&#xA;&#xD;&#xA;평소처럼 플레이하세요. 결과를 AIM이 알려 줍니다.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>여기서 모드 목록을 변경할 수 없습니다.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0}을(를) 끄지 못했습니다. 이미 꺼져 있거나 목록에 없을 수 있습니다.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0}을(를) 껐습니다.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>변경을 적용하도록 게임 아카이브를 다시 빌드하는 중…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>게임을 다시 빌드하지 못해 아무것도 테스트하지 않았습니다: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>게임을 시작하고 감시합니다. 평소처럼 플레이하세요.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM이 이미 설치 중입니다. 먼저 완료될 때까지 기다리세요.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>설치할 것이 없습니다. 게임 폴더가 없거나 켜진 모드가 없습니다.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM이 모드 폴더 위치를 알 수 없습니다.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>이 모드는 목록에 더 이상 없습니다.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>알려진 문제라고 함</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>이 모드는 정상이라고 함</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>무언가를 하면 작동</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>페이지에 적힌 다른 내용</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>수동으로 수정 적용</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>버그 스레드나 모드 설명에 변경할 내용이 정확히 적혀 있다면 여기에 입력하세요. AIM은 먼저 전체 모드를 버전 기록에 복사하므로 위 복원 목록에는 항상 변경 전 버전이 있습니다.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>모드 폴더 기준 상대 파일</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>줄</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>해당 줄의 새 텍스트(비워 두면 내용을 지움)</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>이 변경 적용</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>이 파일 따로 보관</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>파일 전체를 게임에서 제외하고 모드의 나머지는 설치된 상태로 둡니다. 하나의 데이터 파일 때문에 게임이 충돌하지만 작성자가 업데이트할 때까지 나머지를 사용하고 싶을 때 유용합니다.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>먼저 모드 안의 파일과 변경할 줄 번호를 지정하세요.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>충돌 수정: {2}의 {1}번째 줄 {0}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>충돌 수정: {1}에서 {0} 따로 보관</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM은 먼저 전체 모드를 버전 기록에 복사하므로 언제든 복원 목록에서 되돌릴 수 있습니다. 이 모드만 변경됩니다.&#xD;&#xA;&#xD;&#xA;계속할까요?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>변경하지 않고 현재 상태로 게임을 실행합니다.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>아카이브가 이미 모드 목록과 일치하므로 다시 빌드할 필요가 없습니다.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>게임 아카이브를 다시 빌드했습니다.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Fields of Mistria 시작 중…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>실행을 감시하는 중입니다. 평소처럼 플레이하세요. 게임이 닫힐 때 또는 {0}분 동안 충돌하지 않으면 AIM이 알려 줍니다.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>게임이 시작되지 않아 아무것도 테스트하지 않았습니다.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>{0}을(를) 껐는데도 같은 충돌이 다시 발생했으므로 {0}은(는) 원인이 아닙니다. AIM이 제외하고 다시 켰습니다.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>{0}을(를) 껐는데도 같은 충돌이 다시 발생했으므로 원인이 아닙니다. AIM이 제외했지만 다시 켜지 못했습니다. 다음 확인 전에 "이미 확인됨" 카드에서 "다시 켜기"를 사용하세요.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>{0}을(를) 끄자 충돌하지 않았습니다. 원인일 가능성이 높습니다. 끈 상태로 두거나 업데이트를 기다리거나 아래 수정 방법을 시도하세요.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>게임이 충돌 없이 실행되었고 아무것도 바뀌지 않았습니다. 저장 데이터나 지난번에 하지 않은 동작이 필요했을 수 있습니다. 다시 시도하고 지난번과 같은 일을 해 보세요.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>이번 실행으로는 알 수 없으므로 {0}은(는) 여전히 의심 대상입니다. AIM이 다시 제안합니다.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>게임이 다른 원인으로 충돌했으므로 원래 충돌에 대해서는 {0}을(를) 제외합니다. AIM이 새 충돌을 불러오고 기존 결과는 보존합니다.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>이 충돌에 대해 {1}개 중 {0}개의 의심 대상을 테스트했습니다.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM이 이 결과를 저장할 수 없어 이 창이 열려 있는 동안만 유지됩니다.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>다음 테스트: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>아직 테스트하지 않은 다음 의심 대상을 같은 방식으로 확인합니다. 끄고, 다시 빌드하고, 시작한 뒤 감시합니다. 이미 배제된 모드는 켜진 상태로 둡니다.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>모든 의심 대상을 테스트했지만 단독 원인은 없었습니다. 두 모드가 함께 문제를 일으킬 수 있으니, 의심 목록 전체를 한꺼번에 꺼 보거나 아래 목록과 함께 충돌을 신고하세요.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>처음부터 다시</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>이 충돌에 대해 AIM이 기록한 모든 판정을 버리고 모든 의심 대상을 다시 제안합니다. 모드를 추가, 제거 또는 순서 변경한 뒤에 유용합니다. 판정은 테스트한 목록에 대해서만 의미가 있기 때문입니다.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>이 충돌에 대한 모든 판정을 지웠습니다.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>배제됨 - {1}개 중 {0}개 의심 대상</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>테스트 결과 보기</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>{0}의 페이지에서 해결 방법을 읽는 중…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>원인 아님으로 표시</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>실행을 소모하지 않고 이 모드가 이 충돌의 원인이 아님을 기록합니다. 배제 목록으로 이동하고 테스트 대상에서 제외되며, AIM이 껐던 경우 다시 켭니다. AIM이 입증한 것이 아니라 사용자의 판단으로 표시되며 취소할 수 있습니다.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>충돌 원인으로 표시</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>이 모드가 이 충돌을 일으킨다는 것을 기록합니다. AIM이 모드를 끄고 모드 목록에 표시하며 원인으로 취급합니다. 테스트에서 원인을 찾은 경우와 같지만 사용자의 판단으로 표시됩니다. 취소할 수 있습니다.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>내 표시 취소</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>직접 기록한 판정을 취소하고 이 모드를 미테스트 상태로 후보 목록에 되돌립니다. 모드는 현재 상태 그대로 둡니다.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>직접 표시됨, AIM이 테스트하지 않음.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>원인 아님으로 표시됨</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>충돌 원인으로 표시됨</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>사용자가 원인으로 표시했습니다. AIM은 테스트하지 않았으며, 사용자의 판단에 따라 모드를 끄고 모드 목록에 표시했습니다. AIM이 직접 고칠 수 있는 항목은 아래에 있고, 버그 스레드에 이미 해결 방법이 있을 수 있습니다.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0}이(가) 충돌 원인으로 표시되어 꺼졌습니다. 설치하면 이 모드 없이 게임을 다시 빌드합니다.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0}이(가) 충돌 원인으로 표시되었습니다. 이미 꺼져 있습니다.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0}이(가) 원인이 아님으로 표시되어 이 충돌의 테스트 대상에서 제외됩니다.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0}이(가) 원인이 아님으로 표시되고 다시 켜졌습니다. 설치하면 게임에 다시 넣습니다.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>{0}에 대한 표시를 취소했습니다. 다시 미테스트 후보 목록에 있습니다.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>기록할 충돌이 AIM에 없습니다.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>다시 켜기</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>이 모드는 배제되었지만 아직 꺼져 있습니다. AIM은 보통 배제된 모드를 자동으로 다시 켜지만 이번에는 실패했습니다. 이 버튼으로 다시 켭니다.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0}이(가) 다시 켜졌습니다. 설치하면 게임에 넣습니다.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>{0}을(를) 다시 켜지 못했습니다. 모드 목록에 없거나 불러오기에 실패했을 수 있습니다.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>배제됨</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>충돌 원인 확인됨</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>테스트로 입증되었습니다. 이 모드를 끄자 게임이 충돌하지 않았습니다. AIM은 모드를 끈 상태로 두고 모드 목록에 표시했습니다. AIM이 직접 고칠 수 있는 항목은 아래에 있고, 버그 스레드에 이미 해결 방법이 있을 수 있습니다.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>테스트됨, 결론 없음</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>AIM이 직접 적용할 수 있는 수정</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>이 수정은 버그 스레드가 아니라 AIM의 자체 검사에서 알아낸 것입니다. 따라서 작성자의 의도를 추측하지 않고 파일에서 명백히 잘못된 부분을 기계적으로 고칩니다. 먼저 전체 모드를 버전 기록에 복사하고, 모드를 수정됨으로 표시하며, 제대로 고칠 수 있는 업데이트가 나올 때까지 업데이트 대상에서 제외합니다.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>이 수정 적용</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>{0}에 적용했습니다. 수정됨으로 표시하고 업데이트 대상에서 제외했습니다. 이전 버전은 위의 복원 목록에 있습니다.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>AIM이 직접 고칠 수 있는 문제가 없습니다.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;{1}에서:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM은 먼저 전체 모드를 버전 기록에 복사하고, 이 수정이 조용히 덮어써지지 않도록 업데이트 대상에서 제외합니다. 계속할까요?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>AIM이 수정했으므로 업데이트 대상에서 제외됨: {0}</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>이 모드는 인스톨러 {0}을(를) 요청하지만 AIM은 {1}을(를) 구현합니다. 그래도 작동할 가능성이 있으니 시도해 보세요. 문제가 있으면 모드 페이지에서 버전 안내를 확인하세요.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>테마</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>시스템 기본값</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>라이트</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>다크</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>미스트리아의 수확</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>미스트리아 초원</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>미스트리아의 밤</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>장미 정원</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>텍스트 크기 줄이기</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>텍스트 크기 키우기</value></data>
 </root>

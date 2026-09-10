@@ -37,12 +37,16 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     private readonly NexusOAuthService _oauth;
     private readonly NxmDownloadService _service;
     private bool _handlerIsActive;
+    private bool _handlerCanBeRemoved;
 
     /// <summary>Action shown in the Nexus submenu; it reflects the current handler state.</summary>
     public string HandlerActionText =>
         _handlerIsActive
             ? Localization["GUINexusHandlerDisableMenuItem"]
             : Localization["GUINexusHandlerEnableMenuItem"];
+
+    /// <summary>Whether AIM has a registered NXM entry that can be removed without touching another manager.</summary>
+    public bool HandlerCanBeRemoved => _handlerCanBeRemoved;
 
     /// <summary>Shows the account action that is valid for the current OAuth session.</summary>
     public string NexusAccountActionText =>
@@ -91,16 +95,17 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Start-up work that touches the machine: restoring the protocol registration. Kept out of the
-    /// constructor so that constructing the view model - as the headless UI tests do - cannot
-    /// change the user's nxm:// handler.
+    /// Start-up work for the Nexus integration. Startup may offer registration, but never silently
+    /// takes the protocol away from another manager.
     /// </summary>
     public void Initialise()
     {
-        RestoreHandlerRegistration();
         RefreshHandlerStatus();
         _ = OfferToHandleLinksAsync();
     }
+
+    /// <summary>Refreshes the displayed handler after another manager changed Windows' selection.</summary>
+    public void RefreshHandlerStatusFromUi() => RefreshHandlerStatus();
 
     /// <summary>
     /// Asks once whether AIM should take over Vortex download links, the way Vortex and
@@ -127,16 +132,37 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         _nexusSettings.HandlerPromptedFor = claimant;
         if (answer != ButtonResult.Yes) return;
 
+        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
+        {
+            NxmProtocolHandler.OpenWindowsDefaultApps();
+            RefreshHandlerStatus();
+            return;
+        }
+
         if (NxmProtocolHandler.Register(out var error))
         {
             _nexusSettings.HandlerRegistered = true;
-            if (status.IsClaimedByAnother) _nexusSettings.HandlerAlwaysClaim = true;
             await ShowMessage(Localization["GUINexusHandlerTitle"], Localization["GUINexusHandlerRegistered"]);
         }
         else
         {
-            await ShowMessage(Localization["GUINexusHandlerTitle"],
-                string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            var registrationStatus = NxmProtocolHandler.GetStatus();
+            if (registrationStatus.IsThisApplicationRegistered && registrationStatus.IsClaimedByAnother)
+            {
+                var openDefaults = await ShowBoxAsync(
+                    Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerRegisteredNotDefault"],
+                        registrationStatus.HandlerName ?? registrationStatus.CurrentHandler ?? "another program"),
+                    ButtonEnum.YesNo);
+
+                if (openDefaults == ButtonResult.Yes)
+                    NxmProtocolHandler.OpenWindowsDefaultApps();
+            }
+            else
+            {
+                await ShowMessage(Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            }
         }
 
         RefreshHandlerStatus();
@@ -614,7 +640,8 @@ public partial class NexusDownloadsViewModel : ViewModelBase
     {
         var status = NxmProtocolHandler.GetStatus();
 
-        if (status is { IsRegistered: true, IsThisExecutable: true })
+        // If AIM is the handler Windows currently uses, this button means "stop using AIM".
+        if (status.IsThisExecutable)
         {
             if (NxmProtocolHandler.Unregister(out var unregisterError))
             {
@@ -635,26 +662,73 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
         if (status.IsClaimedByAnother)
         {
-            var confirm = await MessageBoxManager.GetMessageBoxStandard(
+            var confirm = await AIMMessageDialog.GetMessageBoxStandard(
                 Localization["GUINexusHandlerTitle"],
                 string.Format(Localization["GUINexusHandlerTakeOver"], status.HandlerName ?? status.CurrentHandler),
                 ButtonEnum.YesNo).ShowAsync();
 
             if (confirm != ButtonResult.Yes) return;
+
+            // AIM may already be registered as an available application while another manager
+            // owns Windows' UserChoice entry. After the user confirms the takeover, open the
+            // Default apps page so Windows can make AIM the actual default; do not unregister AIM's
+            // registration, because that would remove the very choice the user is trying to make.
+            if (status.IsThisApplicationRegistered)
+            {
+                NxmProtocolHandler.OpenWindowsDefaultApps();
+                RefreshHandlerStatus();
+                return;
+            }
+        }
+
+        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
+        {
+            NxmProtocolHandler.OpenWindowsDefaultApps();
+            RefreshHandlerStatus();
+            return;
         }
 
         if (NxmProtocolHandler.Register(out var error))
         {
             _nexusSettings.HandlerRegistered = true;
-            if (status.IsClaimedByAnother) _nexusSettings.HandlerAlwaysClaim = true;
             await ShowMessage(Localization["GUINexusHandlerTitle"], Localization["GUINexusHandlerRegistered"]);
         }
         else
         {
-            await ShowMessage(Localization["GUINexusHandlerTitle"],
-                string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            var registrationStatus = NxmProtocolHandler.GetStatus();
+            if (registrationStatus.IsThisApplicationRegistered && registrationStatus.IsClaimedByAnother)
+            {
+                var openDefaults = await ShowBoxAsync(
+                    Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerRegisteredNotDefault"],
+                        registrationStatus.HandlerName ?? registrationStatus.CurrentHandler ?? "another program"),
+                    ButtonEnum.YesNo);
+
+                if (openDefaults == ButtonResult.Yes)
+                    NxmProtocolHandler.OpenWindowsDefaultApps();
+            }
+            else
+            {
+                await ShowMessage(Localization["GUINexusHandlerTitle"],
+                    string.Format(Localization["GUINexusHandlerFailed"], error ?? ""));
+            }
         }
 
+        RefreshHandlerStatus();
+    }
+
+    [RelayCommand]
+    private async Task RemoveHandlerRegistration()
+    {
+        if (!NxmProtocolHandler.Unregister(out var error))
+        {
+            await ShowMessage(Localization["GUINexusHandlerTitle"],
+                string.Format(Localization["GUINexusHandlerUnregisterFailed"], error ?? ""));
+            return;
+        }
+
+        _nexusSettings.HandlerRegistered = false;
+        _nexusSettings.HandlerAlwaysClaim = false;
         RefreshHandlerStatus();
     }
 
@@ -713,39 +787,16 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
     // ── Handler status ───────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Re-registers silently when the user has opted in but the registration has gone missing -
-    /// which happens whenever a portable copy of AIM is moved or replaced. Another manager
-    /// deliberately holding the protocol is left alone and reported instead.
-    /// </summary>
-    private void RestoreHandlerRegistration()
-    {
-        if (!_nexusSettings.HandlerRegistered || !NxmProtocolHandler.IsSupported()) return;
-
-        var status = NxmProtocolHandler.GetStatus();
-        if (status.IsThisExecutable) return;
-
-        // A new local/released AIM build has a different executable path. Keep the user's
-        // previous opt-in and silently move the registration to this build, but never take over
-        // Vortex, ModDrop, or another unrelated manager without asking first.
-        var isOlderAim = status.IsClaimedByAnother &&
-                         status.HandlerName?.Contains("aim", StringComparison.OrdinalIgnoreCase) == true;
-        if (status.IsClaimedByAnother && !isOlderAim && !_nexusSettings.HandlerAlwaysClaim) return;
-
-        if (!NxmProtocolHandler.Register(out var error))
-            Logger.Log($"Could not restore the nxm:// registration: {error}");
-        else
-            Logger.Log($"Updated the nxm:// registration from {status.CurrentHandler ?? "an older handler"} to {NxmProtocolHandler.GetExecutablePath()}");
-    }
-
     private void RefreshHandlerStatus()
     {
         if (!NxmProtocolHandler.IsSupported())
         {
             _handlerIsActive = false;
+            _handlerCanBeRemoved = false;
             HandlerStatus = Localization["GUINexusHandlerUnsupported"];
             HandlerNeedsAttention = false;
             OnPropertyChanged(nameof(HandlerActionText));
+            OnPropertyChanged(nameof(HandlerCanBeRemoved));
             return;
         }
 
@@ -770,7 +821,10 @@ public partial class NexusDownloadsViewModel : ViewModelBase
             HandlerNeedsAttention = true;
         }
 
+        _handlerCanBeRemoved = status.IsThisApplicationRegistered && !_handlerIsActive;
+
         OnPropertyChanged(nameof(HandlerActionText));
+        OnPropertyChanged(nameof(HandlerCanBeRemoved));
     }
 
     private static Task ShowMessage(string title, string message) =>
@@ -792,21 +846,9 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         {
             try
             {
-                var box = MessageBoxManager.GetMessageBoxStandard(title, message, buttons);
+                var box = AIMMessageDialog.GetMessageBoxStandard(title, message, buttons);
 
-                // Shown as a dialog of the main window rather than as a loose top-level.
-                //
-                // ShowAsync opens an unowned window, and a download is exactly when AIM is not the
-                // application the user is looking at - they started it and alt-tabbed away. The
-                // question then opens behind whatever is in front, and comes up as an empty
-                // transparent frame with a title bar and no buttons in it: nothing to read, nothing
-                // to click, and a download that sits at "Unpacking" until AIM is killed.
-                //
-                // An owner fixes both halves: the dialog is laid out and composited against a real
-                // parent, and it comes to the front with it.
-                completion.TrySetResult(App.TopLevel is Window owner
-                    ? await box.ShowWindowDialogAsync(owner)
-                    : await box.ShowWindowAsync());
+                completion.TrySetResult(await box.ShowAsync());
             }
             catch (Exception e)
             {

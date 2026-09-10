@@ -1,4 +1,5 @@
 using System.Net.Http;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -48,6 +49,9 @@ public class NxmDownloadService(
     HttpClient? downloadClient = null,
     HttpClient? apiClient = null)
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     // Mod archives are large and CDN throughput varies wildly, so the download client has no
     // per-request timeout and relies on cancellation instead. The API client keeps a short one:
     // a metadata call that hangs should fail quickly rather than stall the whole download.
@@ -80,20 +84,20 @@ public class NxmDownloadService(
         {
             var accessToken = await accessTokenProvider(ct);
             if (string.IsNullOrEmpty(accessToken))
-                return Failure(fileName, "No Nexus account is connected yet.", progress);
+                return Failure(fileName, Text("GUINxmDownloadNoAccount"), progress);
 
             if (!link.IsForMistria())
                 return Failure(fileName,
-                    $"That download is for another game ({link.Game}), so this installer cannot handle it.", progress);
+                    string.Format(Text("GUINxmDownloadWrongGame"), link.Game), progress);
 
             if (link.IsExpired)
-                return Failure(fileName,
-                    "That download link has expired. Click the \"Vortex download\" button on the mod page again.", progress);
+                return Failure(fileName, Text("GUINxmDownloadExpired"), progress);
 
             if (!Directory.Exists(modsLocation))
-                return Failure(fileName, "The mods folder could not be found.", progress);
+                return Failure(fileName, Text("GUINxmDownloadModsFolderMissing"), progress);
 
-            progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Resolving, "Asking Nexus about the file..."));
+            progress?.Report(new NxmDownloadProgress(
+                NxmDownloadStage.Resolving, Text("GUINxmDownloadResolving")));
 
             var client = new NexusApiClient(accessToken, _api);
             var fileInfo = await client.GetFileInfoAsync(link, ct);
@@ -102,18 +106,22 @@ public class NxmDownloadService(
             var urls = await client.GetDownloadUrlsAsync(link, ct);
 
             progress?.Report(new NxmDownloadProgress(
-                NxmDownloadStage.Downloading, $"Downloading {fileInfo.Name}", 0, fileInfo.SizeInBytes));
+                NxmDownloadStage.Downloading,
+                string.Format(Text("GUINxmDownloadDownloading"), fileInfo.Name), 0, fileInfo.SizeInBytes));
 
             temporaryFile = await DownloadAsync(urls, fileName, fileInfo.Name, progress, ct);
 
-            progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Installing, $"Unpacking {fileInfo.Name}"));
+            progress?.Report(new NxmDownloadProgress(
+                NxmDownloadStage.Installing,
+                string.Format(Text("GUINxmDownloadUnpacking"), fileInfo.Name)));
 
             var (installed, abandoned) = await InstallAsync(
                 temporaryFile, modsLocation, fileName, confirmOverwrite, ct,
                 new ModBackupStore(modsLocation), previousVersion, replacePath, installedMods);
             if (abandoned)
             {
-                progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Cancelled, "Install cancelled"));
+                progress?.Report(new NxmDownloadProgress(
+                    NxmDownloadStage.Cancelled, Text("GUINxmDownloadInstallCancelled")));
                 return new NxmDownloadResult(false, fileName, [], null, true);
             }
 
@@ -122,8 +130,8 @@ public class NxmDownloadService(
             RecordProvenance(modsLocation, link, fileInfo, installed, replacePath);
 
             var summary = installed.Count == 1
-                ? $"Installed {installed[0].Name}"
-                : $"Installed {installed.Count} mods";
+                ? string.Format(Text("GUINxmDownloadInstalledOne"), installed[0].Name)
+                : string.Format(Text("GUINxmDownloadInstalledMany"), installed.Count);
 
             progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Completed, summary));
             Logger.Log($"{summary} from Nexus ({fileName})");
@@ -132,7 +140,8 @@ public class NxmDownloadService(
         }
         catch (OperationCanceledException)
         {
-            progress?.Report(new NxmDownloadProgress(NxmDownloadStage.Cancelled, "Download cancelled"));
+            progress?.Report(new NxmDownloadProgress(
+                NxmDownloadStage.Cancelled, Text("GUINxmDownloadCancelled")));
             return new NxmDownloadResult(false, fileName, [], null, true);
         }
         catch (Exception e) when (e is NexusApiException or ModArchiveException)
@@ -199,7 +208,9 @@ public class NxmDownloadService(
 
                         lastReport = received;
                         progress?.Report(new NxmDownloadProgress(
-                            NxmDownloadStage.Downloading, $"Downloading {displayName}", received, total));
+                            NxmDownloadStage.Downloading,
+                            string.Format(Text("GUINxmDownloadDownloading"), displayName),
+                            received, total));
                     }
                 }
 
@@ -218,8 +229,9 @@ public class NxmDownloadService(
             }
         }
 
-        throw new NexusApiException(
-            $"Could not download the file from Nexus: {lastFailure?.Message ?? "no download server responded"}");
+        throw new NexusApiException(string.Format(
+            Text("GUINxmDownloadFailed"),
+            lastFailure?.Message ?? Text("GUINxmDownloadNoServerResponse")));
     }
 
     private static void RecordProvenance(

@@ -2,6 +2,8 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using System.Diagnostics;
 using Garethp.ModsOfMistriaGUI.Models;
@@ -41,7 +43,137 @@ public class App : Application
     {
         var stopwatch = Stopwatch.StartNew();
         AvaloniaXamlLoader.Load(this);
+        SetTheme(Settings.LoadSavedUiTheme());
+        SetFontSize(Settings.LoadSavedUiFontSize());
         PerformanceDiagnostics.Log($"Startup: Avalonia resources={stopwatch.ElapsedMilliseconds} ms");
+    }
+
+    public static void SetTheme(string? preference)
+    {
+        if (Current is null) return;
+
+        var theme = Settings.NormalizeTheme(preference);
+        Current.RequestedThemeVariant = theme switch
+        {
+            "light" => ThemeVariant.Light,
+            "harvest" => ThemeVariant.Light,
+            "meadow-green" => ThemeVariant.Light,
+            "dark" => ThemeVariant.Dark,
+            "night" => ThemeVariant.Dark,
+            "rose" => ThemeVariant.Dark,
+            _ => ThemeVariant.Default
+        };
+
+        // Fluent supplies the stable Light/Dark control templates. AIM's custom palettes are
+        // applied through dynamic application resources so they can change live.
+        const string accentKey = "SystemAccentColor";
+        switch (theme)
+        {
+            case "harvest":
+                Current.Resources[accentKey] = Color.Parse("#4F8058");
+                SetAIMPalette("#F7F1E2", "#FDF9EF", "#E6DAC3", "#D8C7A9", "#B09A72", "#2B3029", "#687066", "#EFE4D1", "#E9DCC4", "#FDF9EF",
+                    "#F8F3E8", "#2D352D", "#FAE7E8", "#721F2C", "#12000000");
+                break;
+            case "meadow-green":
+                Current.Resources[accentKey] = Color.Parse("#4F8058");
+                SetAIMPalette("#E7F1E2", "#F6FBF3", "#AA8255", "#C09769", "#9BAF8B", "#243523", "#5B7058", "#DCEAD5", "#D4E5CB", "#F6FBF3",
+                    "#EAF4E5", "#243523", "#FBE4E7", "#742238", "#10000000");
+                break;
+            case "night":
+                Current.Resources[accentKey] = Color.Parse("#9A8BE5");
+                SetAIMPalette("#181622", "#252039", "#362F4C", "#474063", "#645A85", "#F6F1FF", "#C1B9D3", "#211C32", "#201A31", "#252039",
+                    "#29253C", "#F6F1FF", "#5B2637", "#FFF4F7", "#16FFFFFF");
+                break;
+            case "rose":
+                Current.Resources[accentKey] = Color.Parse("#E69AB5");
+                SetAIMPalette("#21111D", "#321A2B", "#4A2940", "#623754", "#8A5A72", "#FFF2F7", "#DDBCCA", "#2C1725", "#2D1827", "#321A2B",
+                    "#321B2B", "#FFF2F7", "#66253D", "#FFF5F8", "#16FFFFFF");
+                break;
+            default:
+                // Return to the operating system accent rather than retaining an old preset.
+                Current.Resources.Remove(accentKey);
+                RestoreAIMBrushes();
+                break;
+        }
+
+        ApplyPaletteClass(theme);
+    }
+
+    private static readonly string[] AIMPaletteBrushKeys =
+    [
+        "ModStatusBackgroundBrush", "ModStatusForegroundBrush", "ModFailureBackgroundBrush",
+        "ModFailureForegroundBrush", "ModAlternateRowBrush"
+    ];
+
+    private static void SetAIMPalette(string windowBackground, string surface, string button,
+        string buttonHover, string border, string foreground, string mutedForeground, string menu,
+        string settingsNavigation, string settingsContent,
+        string statusBackground, string statusForeground, string failureBackground,
+        string failureForeground, string alternateRow)
+    {
+        if (Current is null) return;
+        Current.Resources["AIMWindowBackgroundBrush"] = new SolidColorBrush(Color.Parse(windowBackground));
+        Current.Resources["AIMSurfaceBrush"] = new SolidColorBrush(Color.Parse(surface));
+        Current.Resources["AIMButtonBrush"] = new SolidColorBrush(Color.Parse(button));
+        Current.Resources["AIMButtonHoverBrush"] = new SolidColorBrush(Color.Parse(buttonHover));
+        Current.Resources["AIMBorderBrush"] = new SolidColorBrush(Color.Parse(border));
+        Current.Resources["AIMForegroundBrush"] = new SolidColorBrush(Color.Parse(foreground));
+        Current.Resources["AIMMutedForegroundBrush"] = new SolidColorBrush(Color.Parse(mutedForeground));
+        Current.Resources["AIMMenuBrush"] = new SolidColorBrush(Color.Parse(menu));
+        Current.Resources["AIMSettingsNavigationBrush"] = new SolidColorBrush(Color.Parse(settingsNavigation));
+        Current.Resources["AIMSettingsContentBrush"] = new SolidColorBrush(Color.Parse(settingsContent));
+        Current.Resources["ModStatusBackgroundBrush"] = new SolidColorBrush(Color.Parse(statusBackground));
+        Current.Resources["ModStatusForegroundBrush"] = new SolidColorBrush(Color.Parse(statusForeground));
+        Current.Resources["ModFailureBackgroundBrush"] = new SolidColorBrush(Color.Parse(failureBackground));
+        Current.Resources["ModFailureForegroundBrush"] = new SolidColorBrush(Color.Parse(failureForeground));
+        Current.Resources["ModAlternateRowBrush"] = new SolidColorBrush(Color.Parse(alternateRow));
+    }
+
+    private static void RestoreAIMBrushes()
+    {
+        if (Current is null) return;
+        foreach (var key in AIMPaletteBrushKeys)
+            Current.Resources.Remove(key);
+
+        foreach (var key in new[]
+                 {
+                     "AIMWindowBackgroundBrush", "AIMSurfaceBrush", "AIMButtonBrush", "AIMButtonHoverBrush",
+                     "AIMBorderBrush", "AIMForegroundBrush", "AIMMutedForegroundBrush", "AIMMenuBrush",
+                     "AIMSettingsNavigationBrush", "AIMSettingsContentBrush"
+                 })
+            Current.Resources.Remove(key);
+    }
+
+    public static void ApplyThemeClass(Window window)
+    {
+        window.FontSize = Settings.LoadSavedUiFontSize();
+        var theme = Settings.LoadSavedUiTheme();
+        window.Classes.Remove("aim-palette");
+        if (theme is "harvest" or "meadow-green" or "night" or "rose")
+            window.Classes.Add("aim-palette");
+    }
+
+    private static void ApplyPaletteClass(string theme)
+    {
+        if (Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
+            return;
+
+        foreach (var window in desktop.Windows)
+        {
+            window.Classes.Remove("aim-palette");
+            if (theme is "harvest" or "meadow-green" or "night" or "rose")
+                window.Classes.Add("aim-palette");
+        }
+    }
+
+    public static void SetFontSize(double preference)
+    {
+        if (Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
+            return;
+
+        var fontSize = Settings.NormalizeUiFontSize(preference);
+        foreach (var window in desktop.Windows)
+            window.FontSize = fontSize;
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -52,6 +184,7 @@ public class App : Application
             var mainWindow = new MainWindow { DataContext = _mainViewModel };
             desktop.MainWindow = mainWindow;
             TopLevel = TopLevel.GetTopLevel(mainWindow);
+            ApplyThemeClass(mainWindow);
 
             _updateCheckCancellation = new CancellationTokenSource();
 
@@ -87,7 +220,7 @@ public class App : Application
             {
                 Dispatcher.UIThread.InvokeAsync(() =>
                 {
-                    MessageBoxManager.GetMessageBoxStandard(
+                    _ = AIMMessageDialog.GetMessageBoxStandard(
                         ModsOfMistriaInstallerLib.Lang.Resources.GUIWarning32BitTitle,
                         ModsOfMistriaInstallerLib.Lang.Resources.GUIWarning32Bit
                     ).ShowAsync();

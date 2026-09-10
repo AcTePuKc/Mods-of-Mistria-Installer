@@ -120,8 +120,20 @@ public sealed class CrashSourceIndex : IDisposable
 
             if (_unpacked is not null)
             {
-                var full = Path.Combine(_unpacked, path.Replace('/', Path.DirectorySeparatorChar));
-                if (File.Exists(full)) text = File.ReadAllText(full);
+                var relative = path.Replace('/', Path.DirectorySeparatorChar);
+                var root = Path.GetFullPath(_unpacked);
+                var full = Path.GetFullPath(Path.Combine(root, relative));
+                var rootWithSeparator = root.EndsWith(Path.DirectorySeparatorChar)
+                    ? root
+                    : root + Path.DirectorySeparatorChar;
+
+                // Crash reports are local input, not trusted archive member names. Keep the
+                // unpacked lookup inside the game directory just as the archive lookup is limited
+                // to ZIP entries. A rooted path or .. traversal must not turn diagnostics into a
+                // read of an arbitrary file on the user's machine.
+                if (full.StartsWith(rootWithSeparator, StringComparison.OrdinalIgnoreCase) &&
+                    File.Exists(full))
+                    text = File.ReadAllText(full);
             }
             else if (_archive is not null)
             {

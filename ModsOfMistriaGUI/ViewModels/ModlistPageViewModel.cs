@@ -38,6 +38,7 @@ public partial class ModlistPageViewModel : PageViewBase
     private int _localizationRefreshVersion;
     private int _conflictRefreshVersion;
     private int _bulkSelectionChangeDepth;
+    private bool _foreignRecoveryAttempted;
     private LoadOrderResultWindow? _issueReportWindow;
     private IReadOnlyList<ModModel> _filteredMods = [];
 
@@ -86,6 +87,9 @@ public partial class ModlistPageViewModel : PageViewBase
         }
 
         SetLanguageCommand = new RelayCommand<string?>(SetLanguage);
+        SetThemeCommand = new RelayCommand<string?>(SetTheme);
+        DecreaseFontSizeCommand = new RelayCommand(() => ChangeFontSize(-1));
+        IncreaseFontSizeCommand = new RelayCommand(() => ChangeFontSize(1));
         Localization.LanguageChanged += OnLocalizationChanged;
         _settings.PropertyChanged += (_, e) =>
         {
@@ -106,11 +110,26 @@ public partial class ModlistPageViewModel : PageViewBase
     public NexusDownloadsViewModel? Nexus { get; }
 
     public IRelayCommand<string?> SetLanguageCommand { get; }
+    public IRelayCommand<string?> SetThemeCommand { get; }
+    public IRelayCommand DecreaseFontSizeCommand { get; }
+    public IRelayCommand IncreaseFontSizeCommand { get; }
 
     private void SetLanguage(string? languageCode)
     {
         _settings.UiLanguage = string.IsNullOrWhiteSpace(languageCode) ? "system" : languageCode;
         Localization.SetLanguage(_settings.UiLanguage);
+    }
+
+    private void SetTheme(string? theme)
+    {
+        _settings.UiTheme = Settings.NormalizeTheme(theme);
+        App.SetTheme(_settings.UiTheme);
+    }
+
+    private void ChangeFontSize(double delta)
+    {
+        _settings.UiFontSize = Settings.NormalizeUiFontSize(_settings.UiFontSize + delta);
+        App.SetFontSize(_settings.UiFontSize);
     }
 
     private void OnLocalizationChanged(object? sender, EventArgs e)
@@ -196,7 +215,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         if (_isDirty && _profileManager is not null)
         {
-            var box = MessageBoxManager.GetMessageBoxStandard(
+            var box = AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIConfirmSaveProfileTitle,
                 string.Format(Texts.GUIConfirmSaveProfileMessage, CurrentProfile),
                 ButtonEnum.YesNoCancel);
@@ -228,7 +247,7 @@ public partial class ModlistPageViewModel : PageViewBase
     {
         if (CurrentProfile == "Default") return;
 
-        var box = MessageBoxManager.GetMessageBoxStandard(
+        var box = AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIConfirmDeleteProfileTitle,
             string.Format(Texts.GUIConfirmDeleteProfileMessage, CurrentProfile),
             ButtonEnum.YesNo);
@@ -510,7 +529,7 @@ public partial class ModlistPageViewModel : PageViewBase
                             Path.GetFileName(mod.From.TrimEnd('/', '\\')),
                             Path.GetFileName(mod.InstalledAs.TrimEnd('/', '\\')))))));
 
-                await MessageBoxManager.GetMessageBoxStandard(
+                await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUIDropFolderTitle,
                     sections.Count == 0
                         ? Texts.GUIDropFolderNothingFound
@@ -1081,14 +1100,14 @@ public partial class ModlistPageViewModel : PageViewBase
 
             if (urls.Count > 0)
             {
-                var ask = await MessageBoxManager.GetMessageBoxStandard(
+                var ask = await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUIMissingRequirementsTitle,
                     string.Format(Texts.GUIMissingRequirementsMessage, lines),
                     ButtonEnum.YesNo).ShowAsync();
                 if (ask == ButtonResult.Yes)
                 {
                     var urlList = string.Join("\n", urls.Select(u => $"• {u}"));
-                    var confirm = await MessageBoxManager.GetMessageBoxStandard(
+                    var confirm = await AIMMessageDialog.GetMessageBoxStandard(
                         Texts.GUIOpenExternalLinksTitle,
                         string.Format(Texts.GUIOpenExternalLinksMessage, urlList),
                         ButtonEnum.YesNo).ShowAsync();
@@ -1103,7 +1122,7 @@ public partial class ModlistPageViewModel : PageViewBase
             }
             else
             {
-                await MessageBoxManager.GetMessageBoxStandard(
+                await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUIMissingRequirementsTitle,
                     string.Format(Texts.GUIMissingRequirementsManual, lines),
                     ButtonEnum.Ok).ShowAsync();
@@ -1424,7 +1443,7 @@ public partial class ModlistPageViewModel : PageViewBase
             // something, and telling them twice is the same joke.
             if (!reportedDuplicates.Add(id)) continue;
 
-            var paths = string.Join("\r\n", group.Select(copy => $"• {copy.GetVersion()} — {copy.GetSourcePath()}"));
+            var paths = string.Join("\r\n", group.Select(copy => $"• {copy.GetVersion()} - {copy.GetSourcePath()}"));
 
             notes.Add(new LoadOrderNote(
                 LoadOrderNoteKind.CompatibilityWarning,
@@ -2002,6 +2021,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         // Auto-save profile state before installing so load order is persisted
         SaveCurrentProfileState();
+        _foreignRecoveryAttempted = false;
 
         // The icons describe the install that is about to run, not the last one
         foreach (var mod in Mods) mod.SetInstallOutcome(ModInstallState.None);
@@ -2242,7 +2262,7 @@ public partial class ModlistPageViewModel : PageViewBase
             if (App.TopLevel is Window owner)
                 await LoadOrderResultWindow.ShowAsync(owner, summary, orderNotes, compact: true);
             else
-                await MessageBoxManager.GetMessageBoxStandard(
+                await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUILoadOrderTitle,
                     summary,
                     ButtonEnum.Ok).ShowAsync();
@@ -2294,7 +2314,7 @@ public partial class ModlistPageViewModel : PageViewBase
                 };
             }
             else
-                await MessageBoxManager.GetMessageBoxStandard(
+                await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUIConflictReportTitle,
                     report.Summary.Length > 0 ? report.Summary : string.Join("\r\n\r\n", report.Notes.Select(note => $"• {note.Message}")),
                     ButtonEnum.Ok).ShowAsync();
@@ -2944,11 +2964,11 @@ public partial class ModlistPageViewModel : PageViewBase
 
         var summary = string.Join("\r\n", drift
             .Take(8)
-            .Select(item => $"• {item.ModName} — {item.Field}: {item.Now} → {item.Remembered}"));
+            .Select(item => $"• {item.ModName} - {item.Field}: {item.Now} → {item.Remembered}"));
         if (drift.Count > 8)
             summary += "\r\n" + string.Format(Texts.GUIBindingRestoreMore, drift.Count - 8);
 
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIBindingRestoreTitle,
             string.Format(Texts.GUIBindingRestorePrompt, drift.Count, summary),
             ButtonEnum.YesNo).ShowAsync();
@@ -3320,13 +3340,13 @@ public partial class ModlistPageViewModel : PageViewBase
         var free = _freeHotkeys;
         if (free.Count == 0)
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIHotkeyRebindTitle, Texts.GUIHotkeyBlockedNoFreeKeys, ButtonEnum.Ok).ShowAsync();
             return null;
         }
 
         var target = free[0];
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIHotkeyRebindTitle,
             string.Format(Texts.GUIHotkeyRebindConfirm, participant.Display, key, target),
             ButtonEnum.YesNo).ShowAsync();
@@ -3341,7 +3361,7 @@ public partial class ModlistPageViewModel : PageViewBase
         catch (Exception exception)
         {
             Logger.Log($"Rebinding {participant.Display} failed: {exception}");
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIHotkeyRebindTitle,
                 string.Format(Texts.GUIHotkeyRebindFailed, participant.Display, exception.Message),
                 ButtonEnum.Ok).ShowAsync();
@@ -3350,7 +3370,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         if (changed == 0)
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIHotkeyRebindTitle,
                 string.Format(Texts.GUIHotkeyRebindFailed, participant.Display, Texts.GUIHotkeyBlockedNotDeclared),
                 ButtonEnum.Ok).ShowAsync();
@@ -3371,7 +3391,7 @@ public partial class ModlistPageViewModel : PageViewBase
                     new RebindCapability(RebindBlocker.NoFreeKeys, cached.Value.Bindings);
         }
 
-        await MessageBoxManager.GetMessageBoxStandard(
+        await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIHotkeyRebindTitle,
             string.Format(Texts.GUIHotkeyRebindDone, participant.Display, target, changed),
             ButtonEnum.Ok).ShowAsync();
@@ -3448,7 +3468,7 @@ public partial class ModlistPageViewModel : PageViewBase
         {
             if (!nxm!.IsForMistria())
             {
-                await MessageBoxManager.GetMessageBoxStandard(Texts.GUINexusAssociateTitle,
+                await AIMMessageDialog.GetMessageBoxStandard(Texts.GUINexusAssociateTitle,
                     Texts.GUINexusAssociateWrongGame, ButtonEnum.Ok).ShowAsync();
                 return;
             }
@@ -3463,7 +3483,7 @@ public partial class ModlistPageViewModel : PageViewBase
         }
         else if (!NexusInstallIndex.TryReadNexusUrl(input, out game, out modId))
         {
-            await MessageBoxManager.GetMessageBoxStandard(Texts.GUINexusAssociateTitle,
+            await AIMMessageDialog.GetMessageBoxStandard(Texts.GUINexusAssociateTitle,
                 string.Format(Texts.GUINexusAssociateInvalid, linkError ?? ""), ButtonEnum.Ok).ShowAsync();
             return;
         }
@@ -3555,7 +3575,7 @@ public partial class ModlistPageViewModel : PageViewBase
         var source = model.Mod.GetSourcePath();
         if (string.IsNullOrEmpty(source) || (!Directory.Exists(source) && !File.Exists(source)))
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIRemoveModTitle,
                 string.Format(Texts.GUIRemoveModMissing, model.Mod.GetName()),
                 ButtonEnum.Ok).ShowAsync();
@@ -3567,7 +3587,7 @@ public partial class ModlistPageViewModel : PageViewBase
             ? string.Format(Texts.GUIRemoveModConfirm, model.Mod.GetName(), model.Mod.GetVersion(), source)
             : string.Format(Texts.GUIRemoveModConfirmPermanent, model.Mod.GetName(), model.Mod.GetVersion(), source);
 
-        var confirm = await MessageBoxManager
+        var confirm = await AIMMessageDialog
             .GetMessageBoxStandard(Texts.GUIRemoveModTitle, prompt, ButtonEnum.YesNo)
             .ShowAsync();
         if (confirm != ButtonResult.Yes) return;
@@ -3582,7 +3602,7 @@ public partial class ModlistPageViewModel : PageViewBase
             var removed = await Task.Run(() => RemoveFromDisk(source));
             if (!removed)
             {
-                await MessageBoxManager.GetMessageBoxStandard(
+                await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUIRemoveModTitle,
                     string.Format(Texts.GUIRemoveModFailed, model.Mod.GetName(), Texts.GUIRemoveModRefused),
                     ButtonEnum.Ok).ShowAsync();
@@ -3598,7 +3618,7 @@ public partial class ModlistPageViewModel : PageViewBase
         catch (Exception e)
         {
             Logger.Log($"Removing {source} failed: {e}");
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIRemoveModTitle,
                 string.Format(Texts.GUIRemoveModFailed, model.Mod.GetName(), e.Message),
                 ButtonEnum.Ok).ShowAsync();
@@ -3629,7 +3649,7 @@ public partial class ModlistPageViewModel : PageViewBase
 
         if (selected.Count == 0)
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIRemoveModTitle, Texts.GUIRemoveSelectedNone, ButtonEnum.Ok).ShowAsync();
             return;
         }
@@ -3642,7 +3662,7 @@ public partial class ModlistPageViewModel : PageViewBase
             ? string.Format(Texts.GUIRemoveSelectedConfirm, selected.Count, names)
             : string.Format(Texts.GUIRemoveSelectedConfirmPermanent, selected.Count, names);
 
-        var confirm = await MessageBoxManager
+        var confirm = await AIMMessageDialog
             .GetMessageBoxStandard(Texts.GUIRemoveModTitle, prompt, ButtonEnum.YesNo)
             .ShowAsync();
         if (confirm != ButtonResult.Yes) return;
@@ -3678,7 +3698,7 @@ public partial class ModlistPageViewModel : PageViewBase
         if (failed.Count > 0)
             report += "\r\n\r\n" + string.Format(Texts.GUIRemoveSelectedFailed, string.Join(", ", failed));
 
-        await MessageBoxManager.GetMessageBoxStandard(
+        await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIRemoveModTitle, report, ButtonEnum.Ok).ShowAsync();
     }
 
@@ -3754,7 +3774,7 @@ public partial class ModlistPageViewModel : PageViewBase
             return;
         }
 
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIUpdateModTitle,
             string.Format(Texts.GUIUpdateModConfirm, model.Mod.GetName(),
                 model.Mod.GetVersion(), status.LatestVersion ?? "?"),
@@ -3773,7 +3793,7 @@ public partial class ModlistPageViewModel : PageViewBase
         var backups = BackupStore.List(ModBackupStore.ModNameFor(model.Mod.GetSourcePath()));
         if (backups.Count == 0)
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIRestoreVersionTitle, Texts.GUIRestoreVersionNone, ButtonEnum.Ok).ShowAsync();
             return;
         }
@@ -3808,7 +3828,7 @@ public partial class ModlistPageViewModel : PageViewBase
         var modName = ModBackupStore.ModNameFor(source);
         var newest = backup;
 
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIRestoreVersionTitle,
             string.Format(Texts.GUIRestoreVersionConfirm, model.Mod.GetName(), newest.Describe()),
             ButtonEnum.YesNo).ShowAsync();
@@ -3837,7 +3857,7 @@ public partial class ModlistPageViewModel : PageViewBase
         }
         catch (Exception e)
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIRestoreVersionTitle, e.Message, ButtonEnum.Ok).ShowAsync();
             return false;
         }
@@ -3911,7 +3931,7 @@ public partial class ModlistPageViewModel : PageViewBase
             // can simply do for them, so the result offers the next step rather than only reporting.
             if (withUpdates > 0)
             {
-                var updateNow = await MessageBoxManager.GetMessageBoxStandard(
+                var updateNow = await AIMMessageDialog.GetMessageBoxStandard(
                     Texts.GUICheckForUpdatesTitle,
                     string.Format(Texts.GUICheckForUpdatesResultWithOffer,
                         checkable.Count, withUpdates, unavailable),
@@ -3926,7 +3946,7 @@ public partial class ModlistPageViewModel : PageViewBase
                 return;
             }
 
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUICheckForUpdatesTitle,
                 string.Format(Texts.GUICheckForUpdatesResult, checkable.Count, withUpdates, unavailable),
                 ButtonEnum.Ok).ShowAsync();
@@ -3971,12 +3991,12 @@ public partial class ModlistPageViewModel : PageViewBase
         var pending = Mods.Where(model => model.CanUpdateFromNexus).ToList();
         if (pending.Count == 0)
         {
-            await MessageBoxManager.GetMessageBoxStandard(
+            await AIMMessageDialog.GetMessageBoxStandard(
                 Texts.GUIUpdateAllTitle, Texts.GUIUpdateAllNothing, ButtonEnum.Ok).ShowAsync();
             return;
         }
 
-        var confirm = await MessageBoxManager.GetMessageBoxStandard(
+        var confirm = await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIUpdateAllTitle,
             string.Format(Texts.GUIUpdateAllConfirm, pending.Count,
                 string.Join("\r\n", pending.Take(10).Select(model =>
@@ -4023,7 +4043,7 @@ public partial class ModlistPageViewModel : PageViewBase
         if (failed.Count > 0)
             report += "\r\n\r\n" + string.Format(Texts.GUIUpdateAllFailed, string.Join(", ", failed));
 
-        await MessageBoxManager.GetMessageBoxStandard(
+        await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIUpdateAllTitle, report, ButtonEnum.Ok).ShowAsync();
     }
 
@@ -4108,7 +4128,7 @@ public partial class ModlistPageViewModel : PageViewBase
             pair.Model.Mod.GetVersion(),
             pair.Status.Message ?? ""));
 
-        await MessageBoxManager.GetMessageBoxStandard(
+        await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUIUpdateMayFixHeader,
             string.Join("\r\n\r\n", lines) + "\r\n\r\n" + Texts.GUIUpdateMayFixTooltip,
             ButtonEnum.Ok).ShowAsync();
@@ -4129,7 +4149,7 @@ public partial class ModlistPageViewModel : PageViewBase
             _ => status.Message ?? Texts.GUICheckForUpdatesFailed
         };
 
-        await MessageBoxManager.GetMessageBoxStandard(
+        await AIMMessageDialog.GetMessageBoxStandard(
             Texts.GUICheckForUpdatesTitle, message, ButtonEnum.Ok).ShowAsync();
     }
 
@@ -4292,6 +4312,12 @@ public partial class ModlistPageViewModel : PageViewBase
         }
         catch (Exception e)
         {
+            if (!_foreignRecoveryAttempted && await TryRecoverForeignArchiveAsync())
+            {
+                _foreignRecoveryAttempted = true;
+                return await BackgroundInstall();
+            }
+
             // Write the diagnostic first so its Recent AIM log contains only
             // the progress leading up to the failure, not a second copy of the
             // same full exception.
@@ -4322,6 +4348,47 @@ public partial class ModlistPageViewModel : PageViewBase
             });
 
             return GetRootCauseMessage(e);
+        }
+    }
+
+    private async Task<bool> TryRecoverForeignArchiveAsync()
+    {
+        ForeignArchiveRecoveryAssessment assessment;
+        try
+        {
+            assessment = await Task.Run(() =>
+                new AssetsStore(MistriaLocation).AssessForeignArchiveRecovery());
+        }
+        catch
+        {
+            return false;
+        }
+
+        if (assessment.Status != ForeignArchiveRecoveryStatus.Recoverable)
+            return false;
+
+        var prompt = Localized("GUIForeignArchiveRecoveryMessage");
+        var answer = await Dispatcher.UIThread.InvokeAsync(() =>
+            AIMMessageDialog.GetMessageBoxStandard(
+                Localized("GUIForeignArchiveRecoveryTitle"), prompt, ButtonEnum.YesNo).ShowAsync());
+        if (answer != ButtonResult.Yes)
+            return false;
+
+        try
+        {
+            await new ArchiveWorkerClient().RunAsync(
+                new ArchiveWorkerRequest(
+                    "recover", MistriaLocation, ModsLocation, [], "", GateMode: "off"),
+                status =>
+                {
+                    if (IsInstalling) InstallStatus = status;
+                },
+                CancellationToken.None);
+            return true;
+        }
+        catch
+        {
+            return false;
         }
     }
 

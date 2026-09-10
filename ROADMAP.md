@@ -4,7 +4,7 @@ This roadmap describes current work for AIM — Alternative Installer for Mistri
 Completed historical work is summarized below; detailed implementation history is
 recorded in the changelog and git history.
 
-## Current release: 0.1.9
+## Current release: 0.2.0
 
 ### Completed
 
@@ -15,11 +15,11 @@ recorded in the changelog and git history.
 - [x] Replace the description tooltip with a pointer-driven description popup.
 - [x] Make the detailed Issues window non-modal.
 - [x] Import and reconcile the relevant MMAPI updates for the current 1.0.x game build.
-- [x] Adapt upstream issue #173's entity-creation hooks to the current 0.1.9
+- [x] Adapt upstream issue #173's entity-creation hooks to the current 0.2.0
       catalog: `npc.created`, `pet.created`, and `animal.created` now fire from
       fully wired spawn paths. They are documented and verified against the
       current pristine 1.0.4 assets; Wheedle remains out of scope.
-- [x] Ship 129 MMAPI hooks and 141 seams with source headers, documentation, and license notices.
+- [x] Ship 133 MMAPI hooks and 146 seams with source headers, documentation, and license notices.
 - [x] Validate every seam against the current game's pristine `assets.bak.zip`.
 - [x] Run disposable real-tree install/uninstall regression tests with the GML compile checker.
 - [x] Verify old-GML, MMAPI/GML, content-mod, and NXM behavior manually.
@@ -30,7 +30,7 @@ recorded in the changelog and git history.
 - [x] Receive Nexus' public OAuth `client_id` and enable the registered client.
 - [x] Run the OAuth connected-account test after Nexus registration.
 - [ ] Review the final release archive and Nexus description once more before publishing.
-- [ ] Push the completed 0.1.9 branch and create the release package.
+- [ ] Push the completed 0.2.0 branch and create the release package.
 
 The NXM handler remains opt-in and independent from account sign-in. Free Nexus
 accounts may still need to start direct update downloads from the website's
@@ -50,11 +50,11 @@ Vortex button when Nexus requires its short-lived website token.
       script replacements; and the current catalog has no stable custom-item/chest
       use contract for a clean port. The author has been asked to publish an
       MMAPI-native package. Do not include the original package in release tests.
-- [ ] Decide whether a future MMAPI extension is justified for custom chest-item
+- [x] Decide whether a future MMAPI extension is justified for custom chest-item
       use. Wheedle needs three narrow engine edits (`gacha_march_chest` handling,
-      custom-item chest use, and the chest-opening branch), but 0.1.9's catalog
-      should remain unchanged until that hook has a stable contract and focused
-      tests.
+      custom-item chest use, and the chest-opening branch). AIM now ships the
+      narrow `items.chest_opened` contract and focused engine fixes; the original
+      Wheedle package remains out of scope because it still replaces full scripts.
 - [x] Preflight `Animals Produce Every Day` v2.0.0. It is content-only, has no
       GML tree, and passes strict lint against the current pristine assets.
 - [x] Manually verify `Animals Produce Every Day` in-game: existing animals
@@ -69,7 +69,7 @@ Vortex button when Nexus requires its short-lived website token.
 
 ## MMAPI policy and candidate queue
 
-The shipped catalog should remain stable during 0.1.9. New hooks or seams should
+The shipped catalog should remain stable during 0.2.0. New hooks or seams should
 be added only when there is a demonstrated mod use case, a stable event boundary,
 focused tests, and documentation.
 
@@ -97,4 +97,4 @@ archive-transaction, duplicate-source, drag/drop, cosmetic-validation, and
 MMAPI compatibility work previously listed under the old 0.1.x and 0.15.x
 sections. Those sections were intentionally consolidated here so the roadmap
 does not present completed work as active tasks or mix obsolete release numbers
-with the current 0.1.9 line.
+with the current 0.2.0 line.

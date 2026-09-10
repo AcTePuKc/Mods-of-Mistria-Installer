@@ -64,4 +64,48 @@ public class ModFileConflictDetectorTest
 
         Assert.That(ModFileConflictDetector.Find([alpha, beta]), Is.Empty);
     }
+
+    [Test]
+    public void FindsFontPathConflict()
+    {
+        var alpha = new MockMod(new Dictionary<string, object>
+        {
+            ["fonts/shared.ttf"] = new byte[] { 1 },
+            ["fonts/shared.meta.toml"] = FontMetadata("font-a")
+        }) { Id = "alpha" };
+        var beta = new MockMod(new Dictionary<string, object>
+        {
+            ["fonts/shared.ttf"] = new byte[] { 2 },
+            ["fonts/shared.meta.toml"] = FontMetadata("font-b")
+        }) { Id = "beta" };
+
+        var conflict = ModFileConflictDetector.Find([alpha, beta])
+            .Single(item => item.Path == "fonts/shared.ttf");
+
+        Assert.That(conflict.Kind, Is.EqualTo(ModFileConflictKind.FontAsset));
+    }
+
+    [Test]
+    public void FindsFontIdConflictWhenSourcePathsDiffer()
+    {
+        var alpha = new MockMod(new Dictionary<string, object>
+        {
+            ["fonts/alpha.ttf"] = new byte[] { 1 },
+            ["fonts/alpha.meta.toml"] = FontMetadata("shared-font")
+        }) { Id = "alpha" };
+        var beta = new MockMod(new Dictionary<string, object>
+        {
+            ["fonts/beta.ttf"] = new byte[] { 2 },
+            ["fonts/beta.meta.toml"] = FontMetadata("shared-font")
+        }) { Id = "beta" };
+
+        var conflict = ModFileConflictDetector.Find([alpha, beta])
+            .Single(item => item.Path == "fonts/@id/shared-font");
+
+        Assert.That(conflict.Kind, Is.EqualTo(ModFileConflictKind.FontAsset));
+        Assert.That(conflict.ModIds, Is.EquivalentTo(new[] { "alpha", "beta" }));
+    }
+
+    private static string FontMetadata(string id) =>
+        $"[meta_properties]\nasset_kind = \"Font\"\nid = \"{id}\"\n";
 }

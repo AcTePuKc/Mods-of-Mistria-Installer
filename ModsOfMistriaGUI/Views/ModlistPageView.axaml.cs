@@ -12,6 +12,7 @@ using Garethp.ModsOfMistriaGUI.Controls;
 using Garethp.ModsOfMistriaGUI.Models;
 using Garethp.ModsOfMistriaGUI.Services;
 using Garethp.ModsOfMistriaGUI.ViewModels;
+using System.ComponentModel;
 
 namespace Garethp.ModsOfMistriaGUI.Views;
 
@@ -24,17 +25,37 @@ public partial class ModlistPageView : UserControl
     private Grid? _activeDropTarget;
     private int _dragAutoScrollDirection;
     private readonly DispatcherTimer _dragAutoScrollTimer;
+    private ModlistPageViewModel? _observedModlist;
+    private MenuItem? _scanDropFoldersMenuItem;
+    private Separator? _dropFoldersSeparator;
 
     public ModlistPageView()
     {
         InitializeComponent();
+        var nexusMenu = NexusMenuItem;
+        if (nexusMenu is not null)
+            nexusMenu.PropertyChanged += (_, e) =>
+            {
+                // Another mod manager can reclaim nxm:// while AIM remains open. Refresh when
+                // the submenu is opened so the displayed owner is the current Windows owner.
+                if (e.Property.Name == "IsSubMenuOpen" && e.NewValue is true &&
+                    DataContext is ModlistPageViewModel vm)
+                {
+                    vm.Nexus?.RefreshHandlerStatusFromUi();
+                }
+            };
         _dragAutoScrollTimer = new DispatcherTimer
         {
             Interval = TimeSpan.FromMilliseconds(50)
         };
         _dragAutoScrollTimer.Tick += OnDragAutoScrollTick;
-        AttachedToVisualTree += (_, _) => UpdateLanguageCheckmark();
-
+        AttachedToVisualTree += (_, _) =>
+        {
+            UpdateLanguageCheckmark();
+            UpdateThemeCheckmark();
+            OnDataContextChanged(this, EventArgs.Empty);
+        };
+        DataContextChanged += OnDataContextChanged;
         // A hover card is placed against the badge that opened it, so a scroll would leave it
         // hanging over whatever row moved into that spot.
         ModListScrollViewer.ScrollChanged += (_, _) => HoverCard.Hide();
@@ -44,6 +65,59 @@ public partial class ModlistPageView : UserControl
         // handler would never be reached for Ctrl+F while a button had focus, which is most of the
         // time on a page that is mostly buttons.
         AddHandler(KeyDownEvent, OnPageKeyDown, RoutingStrategies.Tunnel);
+    }
+
+    private void OnDataContextChanged(object? sender, EventArgs e)
+    {
+        if (_observedModlist is not null)
+            _observedModlist.PropertyChanged -= OnModlistPropertyChanged;
+
+        _observedModlist = DataContext as ModlistPageViewModel;
+        if (_observedModlist is not null)
+            _observedModlist.PropertyChanged += OnModlistPropertyChanged;
+
+        UpdateDropFolderMenu();
+    }
+
+    private void OnModlistPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ModlistPageViewModel.HasDropFolders))
+            UpdateDropFolderMenu();
+    }
+
+    /// <summary>
+    /// Disabled conditional MenuItems make Avalonia recalculate a submenu while the pointer is
+    /// over them. Keep the empty state out of the visual tree and create the scan action only
+    /// when it can actually be used. This is the same pattern used by the NXM submenu.
+    /// </summary>
+    private void UpdateDropFolderMenu()
+    {
+        if (_observedModlist is null || DropFolderMenuItem is null || WatchedFoldersMenuItem is null)
+            return;
+
+        var shouldShowScan = _observedModlist.HasDropFolders;
+        if (shouldShowScan && _scanDropFoldersMenuItem is null)
+        {
+            _dropFoldersSeparator = new Separator();
+            _scanDropFoldersMenuItem = new MenuItem
+            {
+                [!MenuItem.HeaderProperty] = new Avalonia.Data.Binding("Texts.GUIDropFolderScanNow"),
+                [!MenuItem.CommandProperty] = new Avalonia.Data.Binding("ImportDropFoldersNowCommand")
+            };
+
+            var folderIndex = DropFolderMenuItem.Items.IndexOf(WatchedFoldersMenuItem);
+            if (folderIndex < 0) folderIndex = DropFolderMenuItem.Items.Count;
+            DropFolderMenuItem.Items.Insert(folderIndex, _dropFoldersSeparator);
+            DropFolderMenuItem.Items.Insert(folderIndex + 1, _scanDropFoldersMenuItem);
+        }
+        else if (!shouldShowScan && _scanDropFoldersMenuItem is not null)
+        {
+            DropFolderMenuItem.Items.Remove(_scanDropFoldersMenuItem);
+            if (_dropFoldersSeparator is not null)
+                DropFolderMenuItem.Items.Remove(_dropFoldersSeparator);
+            _scanDropFoldersMenuItem = null;
+            _dropFoldersSeparator = null;
+        }
     }
 
     /// <summary>
@@ -95,7 +169,7 @@ public partial class ModlistPageView : UserControl
 
     // Route ComboBox SelectionChanged to SwitchProfileCommand.
     // The ComboBox binding is Mode=OneWay so the ViewModel's CurrentProfile is
-    // NOT updated by user selection — we must explicitly call the command and let
+    // NOT updated by user selection - we must explicitly call the command and let
     // it update CurrentProfile on success (or restore ComboBox on cancel).
     private async void OnProfileSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
@@ -313,6 +387,15 @@ public partial class ModlistPageView : UserControl
             viewModel.ShowSettings();
     }
 
+    private void ThemeMenuClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not MenuItem { Tag: string theme }) return;
+        if (DataContext is not ModlistPageViewModel viewModel) return;
+
+        viewModel.SetThemeCommand.Execute(theme);
+        UpdateThemeCheckmark();
+    }
+
     private void UpdateLanguageCheckmark()
     {
         var selected = LocalizationService.Instance.LanguageCode;
@@ -336,6 +419,21 @@ public partial class ModlistPageView : UserControl
                     FontWeight = FontWeight.Bold,
                     VerticalAlignment = VerticalAlignment.Center
                 }
+                : null;
+        }
+    }
+
+    private void UpdateThemeCheckmark()
+    {
+        var selected = Settings.LoadSavedUiTheme();
+        foreach (var item in new[]
+                 {
+                     ThemeSystemMenuItem, ThemeLightMenuItem, ThemeDarkMenuItem,
+                     ThemeHarvestMenuItem, ThemeMeadowMenuItem, ThemeNightMenuItem, ThemeRoseMenuItem
+                 })
+        {
+            item.Icon = string.Equals(item.Tag as string, selected, StringComparison.OrdinalIgnoreCase)
+                ? new TextBlock { Text = "✓", FontWeight = FontWeight.Bold, VerticalAlignment = VerticalAlignment.Center }
                 : null;
         }
     }

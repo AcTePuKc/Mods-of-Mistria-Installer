@@ -4,6 +4,8 @@ using Garethp.ModsOfMistriaInstallerLib.Models.SDK;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using Garethp.ModsOfMistriaInstallerLib.Utils;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.ImageSharp.PixelFormats;
 using Tomlyn;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Installer;
@@ -147,6 +149,12 @@ public class ImageInstaller(
                 pngBytes = buffer.ToArray();
             }
 
+            if (baseName.EndsWith("_lut", StringComparison.OrdinalIgnoreCase) &&
+                TryMergeLut(spriteName, baseName, pngBytes, gameMeta, gameMetaPath, reportStatus))
+            {
+                continue;
+            }
+
             var pngInfo = Image.Identify(new MemoryStream(pngBytes));
             if (pngInfo.Width != gameMeta.Asset.FrameWidth * gameMeta.Asset.FrameCount || pngInfo.Height != gameMeta.Asset.FrameHeight)
             {
@@ -170,7 +178,22 @@ public class ImageInstaller(
             IDManager.RegisterId(gameMeta.Meta.ReplaceId ?? gameMeta.Meta.Id);
             atlasUtils.RemoveById(gameMeta.Meta.ReplaceId ?? gameMeta.Meta.Id);
 
-            if (gameMeta.Asset.Atlas is null)
+            // Assets tagged manual-load are read straight from their own PNG while the game
+            // boots, before any atlas has been built.
+            var isManualLoad = false;
+            if (gameMeta.Asset.Tags is not null)
+            {
+                foreach (var tag in gameMeta.Asset.Tags)
+                {
+                    if (string.Equals(tag, "manual-load", StringComparison.OrdinalIgnoreCase))
+                    {
+                        isManualLoad = true;
+                        break;
+                    }
+                }
+            }
+
+            if (gameMeta.Asset.Atlas is null || isManualLoad)
             {
                 // Atlas-less animations (wrapping textures, tiled layer assets) render from
                 // their standalone PNG, so overwrite that file in place. The meta rewrite
@@ -178,8 +201,13 @@ public class ImageInstaller(
                 var gamePngPath = gameMetaPath[..^".meta.toml".Length] + ".png";
                 fileModifier.Write(gamePngPath, pngBytes);
 
-                reportStatus($"Replaced {spriteName} → standalone PNG (id {gameMeta.Meta.ReplaceId ?? gameMeta.Meta.Id})", "");
-                continue;
+                if (gameMeta.Asset.Atlas is null)
+                {
+                    reportStatus($"Replaced {spriteName} → standalone PNG (id {gameMeta.Meta.ReplaceId ?? gameMeta.Meta.Id})", "");
+                    continue;
+                }
+
+                reportStatus($"Replaced {spriteName} → standalone PNG (manual-load)", "");
             }
 
             using var pngStream = new MemoryStream(pngBytes);
@@ -195,6 +223,48 @@ public class ImageInstaller(
 
             reportStatus($"Replaced {spriteName} → {gameMeta.Asset.Atlas} atlas (id {id})", "");
         }
+    }
+
+    // Gets the current LUT in the atlas and merge the incoming LUT into it (if possible).
+    private bool TryMergeLut(
+        string spriteName, string baseName, byte[] pngBytes,
+        SpriteMetaFile gameMeta, string gameMetaPath,
+        Action<string, string> reportStatus)
+    {
+        if (gameMeta.Asset?.Atlas is null || gameMeta.Meta is null) return false;
+
+        var id = gameMeta.Meta.ReplaceId ?? gameMeta.Meta.Id;
+        if (string.IsNullOrEmpty(id)) return false;
+
+        using var incoming = Image.Load<Rgba32>(new MemoryStream(pngBytes));
+        using var existing = atlasUtils.ExtractFrame(id);
+        using var merged   = LutMerger.Merge(existing, incoming);
+
+        if (merged is null)
+        {
+            reportStatus($"LUT {spriteName}: couldn't merge (size mismatch), replacing instead.", "");
+            return false;
+        }
+
+        gameMeta.Asset.FrameWidth  = merged.Width;
+        gameMeta.Asset.FrameHeight = merged.Height;
+        gameMeta.Asset.FrameCount  = 1;
+        gameMeta.Asset.Dimensions  = [merged.Width, merged.Height];
+        fileModifier.Write(gameMetaPath, TomlSerializer.Serialize(gameMeta));
+
+        FileNameUIDMapping[baseName] = id;
+        IDManager.RegisterId(id);
+        atlasUtils.RemoveById(id);
+
+        using var mergedStream = new MemoryStream();
+        merged.Save(mergedStream, new PngEncoder());
+        mergedStream.Position = 0;
+
+        var packed = atlasUtils.AddStrip(gameMeta.Asset.Atlas!, merged.Width, merged.Height, 1,
+            mergedStream, FileNameUIDMapping, baseName);
+
+        reportStatus($"Merged LUT {spriteName} → {merged.Width} colour columns (id {packed})", "");
+        return true;
     }
 
     // Recursively searches assets/animations/ for a meta.toml matching the sprite name.

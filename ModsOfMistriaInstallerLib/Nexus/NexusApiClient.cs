@@ -72,6 +72,9 @@ public class NexusApiException(string message, HttpStatusCode? statusCode = null
 /// </summary>
 public class NexusApiClient
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private const string BaseUrl = "https://api.nexusmods.com/v1";
 
     private readonly string _accessToken;
@@ -305,7 +308,7 @@ public class NexusApiClient
             .ToList();
 
         if (urls.Count == 0)
-            throw new NexusApiException("Nexus returned no download servers for that file.");
+            throw new NexusApiException(Text("GUINexusApiNoDownloadServers"));
 
         return urls;
     }
@@ -357,11 +360,12 @@ public class NexusApiClient
         }
         catch (TaskCanceledException) when (!ct.IsCancellationRequested)
         {
-            throw new NexusApiException("The Nexus API did not respond in time.");
+            throw new NexusApiException(Text("GUINexusApiTimedOut"));
         }
         catch (HttpRequestException e)
         {
-            throw new NexusApiException($"Could not reach the Nexus API: {e.Message}", null, e);
+            throw new NexusApiException(
+                string.Format(Text("GUINexusApiUnreachable"), e.Message), null, e);
         }
 
         using (response)
@@ -379,7 +383,7 @@ public class NexusApiClient
     {
         var token = await GetTokenAsync(url, ct);
         if (token is JObject obj) return obj;
-        throw new NexusApiException("Nexus returned an unexpected response.");
+        throw new NexusApiException(Text("GUINexusApiUnexpectedResponse"));
     }
 
     private async Task<JToken> GetTokenAsync(string url, CancellationToken ct)
@@ -397,11 +401,12 @@ public class NexusApiClient
         }
         catch (TaskCanceledException) when (!ct.IsCancellationRequested)
         {
-            throw new NexusApiException("The Nexus API did not respond in time.");
+            throw new NexusApiException(Text("GUINexusApiTimedOut"));
         }
         catch (HttpRequestException e)
         {
-            throw new NexusApiException($"Could not reach the Nexus API: {e.Message}", null, e);
+            throw new NexusApiException(
+                string.Format(Text("GUINexusApiUnreachable"), e.Message), null, e);
         }
 
         using (response)
@@ -418,7 +423,8 @@ public class NexusApiClient
             }
             catch (Exception e)
             {
-                throw new NexusApiException("Could not read the response from Nexus.", response.StatusCode, e);
+                throw new NexusApiException(
+                    Text("GUINexusApiUnreadableResponse"), response.StatusCode, e);
             }
         }
     }
@@ -443,14 +449,14 @@ public class NexusApiClient
         return status switch
         {
             HttpStatusCode.Unauthorized =>
-                "Nexus rejected the account session. Connect your Nexus account again.",
+                Text("GUINexusApiUnauthorized"),
             HttpStatusCode.Forbidden =>
-                message ?? "Nexus refused the request. The download link may have expired - try clicking it again.",
+                message ?? Text("GUINexusApiForbidden"),
             HttpStatusCode.NotFound =>
-                "That mod or file no longer exists on Nexus.",
+                Text("GUINexusApiNotFound"),
             HttpStatusCode.TooManyRequests =>
-                "You have hit the Nexus API rate limit. Wait a while before downloading again.",
-            _ => message ?? $"Nexus returned an error ({(int)status})."
+                Text("GUINexusApiRateLimited"),
+            _ => message ?? string.Format(Text("GUINexusApiUnexpectedStatus"), (int)status)
         };
     }
 

@@ -16,7 +16,7 @@
              a second line and a fixed 44 would cut that line off. These are the buttons that
              install and launch, so they are the last thing that may go missing. -->
         <Grid DockPanel.Dock="Bottom" MinHeight="44" Margin="0 8 0 0"
-              ColumnDefinitions="Auto,Auto,Auto,*">
+              ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*">
             <Menu Grid.Column="0" Margin="-7 0 0 0">
                 <MenuItem>
                     <MenuItem.Header>
@@ -47,22 +47,17 @@
                     <Separator />
                     <!-- Mods downloaded by hand. A free Nexus account cannot use "Mod Manager
                          Download" at all, so for a lot of users this is how every mod arrives. -->
-                    <MenuItem Header="{Binding Texts.GUIDropFolderMenu}"
+                    <MenuItem x:Name="DropFolderMenuItem"
+                              Header="{Binding Texts.GUIDropFolderMenu}"
                               ToolTip.Tip="{Binding Texts.GUIDropFolderExplain}"
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Texts.GUIDropFolderLink}"
                                   Command="{Binding LinkDropFolderCommand}" />
-                        <MenuItem Header="{Binding Texts.GUIDropFolderScanNow}"
-                                  IsEnabled="{Binding HasDropFolders}"
-                                  Command="{Binding ImportDropFoldersNowCommand}" />
-                        <Separator />
-                        <MenuItem Header="{Binding Texts.GUIDropFolderNone}"
-                                  IsEnabled="False"
-                                  IsVisible="{Binding !HasDropFolders}" />
                         <!-- Each watched folder is its own item, and clicking it stops watching -
                              there is nothing else a linked folder can be asked to do. The command
                              comes from the item, because a menu item's DataContext is the item. -->
-                        <MenuItem Header="{Binding Texts.GUIDropFolderTitle}"
+                        <MenuItem x:Name="WatchedFoldersMenuItem"
+                                  Header="{Binding Texts.GUIDropFolderTitle}"
                                   ItemsSource="{Binding DropFolders}"
                                   IsVisible="{Binding HasDropFolders}">
                             <MenuItem.ItemContainerTheme>
@@ -82,12 +77,11 @@
                               IsChecked="{Binding LaunchGameDirectly, Mode=TwoWay}" />
                     <Separator />
                     <!-- Nexus Vortex download-link support -->
-                    <MenuItem Header="{Binding Texts.GUINexusMenu}"
+                    <MenuItem x:Name="NexusMenuItem"
+                              Header="{Binding Texts.GUINexusMenu}"
                               IsEnabled="{Binding !IsInstalling}">
                         <MenuItem Header="{Binding Nexus.HandlerActionText}"
                                   Command="{Binding Nexus.ToggleHandlerCommand}" />
-                        <MenuItem Header="{Binding Nexus.HandlerStatus}" IsEnabled="False" />
-                        <Separator />
                         <MenuItem Header="{Binding Nexus.NexusAccountActionText}"
                                   Command="{Binding Nexus.ManageNexusAccountCommand}" />
                         <MenuItem Header="{Binding Texts.GUINexusPasteLinkMenuItem}"
@@ -125,7 +119,37 @@
                 </MenuItem>
             </Menu>
 
-            <TextBlock Grid.Column="2"
+            <!-- Appearance is a global preference like language, so it belongs in the bottom
+                 toolbar rather than competing with the mod-list controls. -->
+            <Menu Grid.Column="2" Margin="-1 0 0 0">
+                <MenuItem Header="{Binding Texts.GUIThemeMenu}" IsEnabled="{Binding !IsInstalling}">
+                    <MenuItem x:Name="ThemeSystemMenuItem" Header="{Binding Texts.GUIThemeSystemDefault}" Tag="system" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeLightMenuItem" Header="{Binding Texts.GUIThemeLight}" Tag="light" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeDarkMenuItem" Header="{Binding Texts.GUIThemeDark}" Tag="dark" Click="ThemeMenuClick" />
+                    <Separator />
+                    <MenuItem x:Name="ThemeHarvestMenuItem" Header="{Binding Texts.GUIThemeMeadow}" Tag="harvest" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeMeadowMenuItem" Header="{Binding Texts.GUIThemeGreenMeadow}" Tag="meadow-green" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeNightMenuItem" Header="{Binding Texts.GUIThemeNight}" Tag="night" Click="ThemeMenuClick" />
+                    <MenuItem x:Name="ThemeRoseMenuItem" Header="{Binding Texts.GUIThemeRoseGarden}" Tag="rose" Click="ThemeMenuClick" />
+                </MenuItem>
+            </Menu>
+
+            <!-- Text size is a direct accessibility control, not another modal setting. It stays
+                 beside language and theme because all three are global display preferences. -->
+            <Button Grid.Column="3"
+                    Content="A−"
+                    Margin="4 0 0 0"
+                    Padding="7 0"
+                    ToolTip.Tip="{Binding Texts.GUIDecreaseFontSize}"
+                    Command="{Binding DecreaseFontSizeCommand}" />
+            <Button Grid.Column="4"
+                    Content="A+"
+                    Margin="2 0 0 0"
+                    Padding="7 0"
+                    ToolTip.Tip="{Binding Texts.GUIIncreaseFontSize}"
+                    Command="{Binding IncreaseFontSizeCommand}" />
+
+            <TextBlock Grid.Column="5"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        Text="{Binding InstallStatus}"
@@ -141,7 +165,7 @@
                  It takes the star column, not an Auto one: a Grid measures an Auto column with
                  infinite width, so a WrapPanel in one reports its single-line size and never wraps.
                  The status line above is capped instead, since it is the part that can be trimmed. -->
-            <WrapPanel Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <WrapPanel Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Margin="0 2 0 2"
                         Command="{Binding LaunchGameCommand}"
                         Content="{Binding Texts.GUIPlayButtonText}" />
@@ -156,20 +180,8 @@
 
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top">
-                <!-- Greeting / location info -->
-                <WrapPanel>
-                    <TextBlock Margin="0 0 5 0"
-                               Text="{Binding Texts.GUIFieldsOfMistriaDetectedLocation}" />
-                    <TextBlock Text="{Binding MistriaLocation}" />
-                </WrapPanel>
-                <TextBlock Text="{Binding ModsWillBeInstalledText}" />
-                <TextBlock Text="{Binding ArchiveStatus}"
-                           TextWrapping="Wrap"
-                           Foreground="Gray"
-                           Margin="0 4 0 0" />
-
                 <!-- Profile selector -->
-                <WrapPanel Margin="0 8 0 0" VerticalAlignment="Center">
+                <WrapPanel Margin="0 0 0 0" VerticalAlignment="Center">
                     <TextBlock VerticalAlignment="Center" Margin="0 0 6 0" Text="{Binding Texts.GUIProfileLabel}" />
                     <ComboBox ItemsSource="{Binding Profiles}"
                               SelectedItem="{Binding CurrentProfile, Mode=OneWay}"
@@ -179,6 +191,25 @@
                             Command="{Binding CreateProfileCommand}">+</Button>
                     <Button Margin="4 0 0 0" ToolTip.Tip="{Binding Texts.GUIDeleteCurrentProfile}"
                             Command="{Binding DeleteCurrentProfileCommand}">-</Button>
+
+                    <!-- Search is a primary list action, so it stays beside the profile rather
+                         than in the global bottom toolbar. A bounded width leaves the profile and
+                         the list controls readable at 150% DPI; the row can still wrap on a very
+                         narrow window. -->
+                    <Grid Width="260" ColumnDefinitions="*,Auto" Margin="20 0 0 0">
+                        <TextBox Grid.Column="0"
+                                 x:Name="ModSearchBox"
+                                 Text="{Binding ModSearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Watermark="{Binding Texts.GUIModSearch}"
+                                 IsEnabled="{Binding !IsInstalling}" />
+                        <Button Grid.Column="1"
+                                Margin="6 0 0 0"
+                                Padding="8 2"
+                                Content="×"
+                                IsVisible="{Binding HasModSearch}"
+                                ToolTip.Tip="{Binding Texts.GUIClearModSearch}"
+                                Command="{Binding ClearModSearchCommand}" />
+                    </Grid>
                 </WrapPanel>
                 <!-- Nexus downloads in progress. Hidden entirely when nothing is
                      downloading so the page looks exactly as it did before. -->
@@ -236,134 +267,66 @@
                         </ItemsControl>
                     </StackPanel>
                 </Border>
-                <!-- Local filtering only: it searches already discovered metadata and
-                     deliberately never performs archive or Nexus work while typing. -->
-                <Grid ColumnDefinitions="*,Auto" Margin="0 10 0 0">
-                    <TextBox Grid.Column="0"
-                             x:Name="ModSearchBox"
-                             Text="{Binding ModSearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Watermark="{Binding Texts.GUIModSearch}"
-                             IsEnabled="{Binding !IsInstalling}" />
-                    <Button Grid.Column="1"
-                            Margin="6 0 0 0"
-                            Padding="8 2"
-                            Content="×"
-                            IsVisible="{Binding HasModSearch}"
-                            ToolTip.Tip="{Binding Texts.GUIClearModSearch}"
-                            Command="{Binding ClearModSearchCommand}" />
-                </Grid>
+                <!-- Three stable toolbar rows keep a wide screen from looking like a staircase:
+                     profile/search above, filters and mod tools together, then a list header.
+                     The middle row wraps individual controls only when it genuinely has to, rather
+                     than letting an independent right-hand toolbar drift down the page. -->
+                <Grid Margin="0 8 0 0" RowDefinitions="Auto,Auto">
+                    <!-- Filters and list tools all belong to the current mod-list view. Keeping
+                         them in one WrapPanel gives a narrow window a controlled continuation
+                         onto the next line while a wide window reads as one deliberate toolbar. -->
+                    <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                        <!-- These change only the view, never the stored load order. -->
+                        <CheckBox Margin="0 2 14 2"
+                                  IsChecked="{Binding SortAlphabetically}"
+                                  IsEnabled="{Binding !IsInstalling}"
+                                  Content="{Binding Texts.GUISortAlphabeticallyShort}"
+                                  ToolTip.Tip="{Binding Texts.GUISortAlphabeticallyTooltip}" />
+                        <CheckBox Margin="0 2 14 2"
+                                  IsChecked="{Binding SortByRecentlyUpdated}"
+                                  IsEnabled="{Binding !IsInstalling}"
+                                  Content="{Binding Texts.GUISortRecentlyUpdatedShort}"
+                                  ToolTip.Tip="{Binding Texts.GUISortRecentlyUpdatedTooltip}" />
+                        <CheckBox Margin="0 2 14 2"
+                                  IsChecked="{Binding ShowOnlyEnabled}"
+                                  IsEnabled="{Binding !IsInstalling}"
+                                  Content="{Binding Texts.GUIShowOnlyEnabledShort}"
+                                  ToolTip.Tip="{Binding Texts.GUIShowOnlyEnabledTooltip}" />
+                        <CheckBox Margin="0 2 14 2"
+                                  IsChecked="{Binding ShowOnlyUpdatable}"
+                                  IsEnabled="{Binding !IsInstalling}"
+                                  Content="{Binding Texts.GUIShowOnlyUpdatableShort}"
+                                  ToolTip.Tip="{Binding Texts.GUIShowOnlyUpdatableTooltip}" />
+                        <Button Padding="8 2"
+                                Margin="0 2 14 2"
+                                Content="{Binding Texts.GUISuggestLoadOrderShort}"
+                                ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
+                                Command="{Binding SuggestLoadOrderCommand}" />
 
-                <!-- View options. None of these touches the load order: they change which rows are
-                     shown and in what order they are shown, nothing else. Dragging is paused while
-                     any of them is on, because reordering a filtered or re-sorted list would have
-                     no obvious meaning for the real order underneath. -->
-                <WrapPanel Margin="0 8 0 0">
-                    <CheckBox Margin="0 2 14 2"
-                              IsChecked="{Binding SortAlphabetically}"
-                              IsEnabled="{Binding !IsInstalling}"
-                              Content="{Binding Texts.GUISortAlphabetically}"
-                              ToolTip.Tip="{Binding Texts.GUISortAlphabeticallyTooltip}" />
-                    <CheckBox Margin="0 2 14 2"
-                              IsChecked="{Binding SortByRecentlyUpdated}"
-                              IsEnabled="{Binding !IsInstalling}"
-                              Content="{Binding Texts.GUISortRecentlyUpdated}"
-                              ToolTip.Tip="{Binding Texts.GUISortRecentlyUpdatedTooltip}" />
-                    <CheckBox Margin="0 2 14 2"
-                              IsChecked="{Binding ShowOnlyEnabled}"
-                              IsEnabled="{Binding !IsInstalling}"
-                              Content="{Binding Texts.GUIShowOnlyEnabled}"
-                              ToolTip.Tip="{Binding Texts.GUIShowOnlyEnabledTooltip}" />
-                    <CheckBox Margin="0 2 14 2"
-                              IsChecked="{Binding ShowOnlyUpdatable}"
-                              IsEnabled="{Binding !IsInstalling}"
-                              Content="{Binding Texts.GUIShowOnlyUpdatable}"
-                              ToolTip.Tip="{Binding Texts.GUIShowOnlyUpdatableTooltip}" />
-                    <Button Padding="8 2"
-                            Margin="0 2 14 2"
-                            Content="{Binding Texts.GUISuggestLoadOrder}"
-                            ToolTip.Tip="{Binding Texts.GUISuggestLoadOrderTooltip}"
-                            Command="{Binding SuggestLoadOrderCommand}" />
-                    <TextBlock VerticalAlignment="Center"
-                               Margin="0 2 0 2"
-                               MaxWidth="420"
-                               Foreground="Gray"
-                               TextWrapping="Wrap"
-                               IsVisible="{Binding IsListReordered}"
-                               Text="{Binding Texts.GUIListReorderedNote}" />
-                </WrapPanel>
-                <!-- List header: select everything at once, see what the selection means, and ask
-                     for a load order that satisfies the mods' declared requirements. -->
-                <Grid ColumnDefinitions="Auto,Auto,*" Margin="0 12 0 2">
-                    <CheckBox Grid.Column="0"
-                              Margin="0 0 4 0"
-                              VerticalAlignment="Center"
-                              IsThreeState="True"
-                              IsChecked="{Binding AllModsSelected, Mode=OneWay}"
-                              IsEnabled="{Binding CanChangeModSelection}"
-                              Click="ToggleAllModsClick"
-                              ToolTip.Tip="{Binding Texts.GUIToggleAllMods}" />
-
-                    <!-- Capped, because the buttons beside it need the width more than the count
-                         does, and this is the one thing here that reads fine trimmed - but only
-                         because hovering it gives the sentence back in full. A line that ends in an
-                         ellipsis and has no way to be read is just a missing line. -->
-                    <TextBlock Grid.Column="1"
-                               VerticalAlignment="Center"
-                               Foreground="Gray"
-                               MaxWidth="420"
-                               TextTrimming="CharacterEllipsis"
-                               Text="{Binding SelectionSummary}"
-                               Tag="{Binding SelectionSummary}"
-                               PointerEntered="OnBadgePointerEntered"
-                               PointerExited="OnBadgePointerExited" />
-
-                    <!-- One wrapping row rather than seven fixed columns. Every one of these is a
-                         feature with no other way in - the crash check, the conflict report, the
-                         keybind manager - and in a fixed grid a window narrower than their combined
-                         width simply cut the last of them off the right-hand edge. They flow onto a
-                         second line now instead, which costs a few pixels of height and loses
-                         nothing.
-
-                         In the star column rather than an Auto one: a Grid measures an Auto column
-                         with infinite width, so a WrapPanel there would report its single-line size
-                         and never wrap - which is the bug this replaced. -->
-                    <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
-                        <!-- The issue report answers "what might break"; this answers "what did
-                             break". They sit together because a user arriving from a crash does not
-                             yet know which of the two questions they have, and the crash is the
-                             more urgent one to be able to reach without hunting through a menu. -->
-                        <Button Margin="8 2 0 2"
+                        <Button Margin="0 2 0 2"
                                 Padding="8 2"
                                 Content="{Binding Texts.GUICheckCrashes}"
                                 ToolTip.Tip="{Binding Texts.GUICheckCrashesTooltip}"
                                 Command="{Binding CheckCrashesCommand}" />
-
                         <Button Margin="8 2 0 2"
                                 Padding="8 2"
                                 Content="{Binding Texts.GUIReportConflicts}"
                                 ToolTip.Tip="{Binding Texts.GUIReportConflicts}"
                                 Command="{Binding ReportConflictsCommand}" />
-
-                        <!-- Keybinds and update checking were reachable only from the gear menu,
-                             which is where settings live rather than where work happens. Both are
-                             things a user does while looking at the list, so they belong beside it. -->
                         <Button Margin="8 2 0 2"
                                 Padding="8 2"
                                 Content="{Binding Texts.GUIKeybindsButton}"
                                 ToolTip.Tip="{Binding Texts.GUIKeybindsButtonTooltip}"
                                 Command="{Binding ShowKeybindsCommand}" />
-
-                        <!-- Anything AIM cannot do to a mod - editing a file by hand, dropping one
-                             in, checking what actually landed - starts with opening this folder,
-                             and until now that meant right-clicking some other mod to get there. -->
                         <Button Margin="8 2 0 2"
                                 Padding="8 2"
                                 Content="{Binding Texts.GUIOpenModsFolderButton}"
                                 ToolTip.Tip="{Binding Texts.GUIOpenModsFolderButtonTooltip}"
                                 Command="{Binding OpenModsFolderCommand}" />
-
                         <SplitButton Margin="8 2 0 2"
-                                     Padding="8 2"
+                                     Height="34"
+                                     MinHeight="0"
+                                     Padding="8 0"
                                      Content="{Binding Texts.GUICheckUpdatesButton}"
                                      ToolTip.Tip="{Binding Texts.GUICheckUpdatesButtonTooltip}"
                                      IsEnabled="{Binding !IsInstalling}"
@@ -382,20 +345,55 @@
                                 </MenuFlyout>
                             </SplitButton.Flyout>
                         </SplitButton>
-
-                        <!-- 150 mods is a long way to drag a scrollbar. These jump the list; they
-                             do not select or reorder anything. -->
-                        <Button Margin="8 2 0 2"
-                                Padding="8 2"
-                                Content="↑"
-                                Click="ScrollModsToTopClick"
-                                ToolTip.Tip="{Binding Texts.GUIScrollToTop}" />
-                        <Button Margin="4 2 0 2"
-                                Padding="8 2"
-                                Content="↓"
-                                Click="ScrollModsToBottomClick"
-                                ToolTip.Tip="{Binding Texts.GUIScrollToBottom}" />
                     </WrapPanel>
+
+                    <!-- This row is permanent, even when there are no mods yet, so the list
+                         never jumps when selection or filtering state changes. -->
+                    <Grid Grid.Row="1" Margin="0 8 0 0" MinHeight="36" ColumnDefinitions="Auto,*,*,Auto,Auto">
+                    <CheckBox Grid.Column="0"
+                              Margin="0 0 4 0"
+                              VerticalAlignment="Center"
+                              IsThreeState="True"
+                              IsChecked="{Binding AllModsSelected, Mode=OneWay}"
+                              IsEnabled="{Binding CanChangeModSelection}"
+                              Click="ToggleAllModsClick"
+                              ToolTip.Tip="{Binding Texts.GUIToggleAllMods}" />
+
+                    <!-- Capped, because the buttons beside it need the width more than the count
+                         does, and this is the one thing here that reads fine trimmed - but only
+                         because hovering it gives the sentence back in full. A line that ends in an
+                         ellipsis and has no way to be read is just a missing line. -->
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Foreground="Gray"
+                               TextTrimming="CharacterEllipsis"
+                               Text="{Binding SelectionSummary}"
+                               Tag="{Binding SelectionSummary}"
+                               PointerEntered="OnBadgePointerEntered"
+                               PointerExited="OnBadgePointerExited" />
+
+                    <TextBlock Grid.Column="2"
+                               VerticalAlignment="Center"
+                               Margin="12 0"
+                               Foreground="Gray"
+                               TextTrimming="CharacterEllipsis"
+                               IsVisible="{Binding IsListReordered}"
+                               Text="{Binding Texts.GUIListReorderedNote}"
+                               Tag="{Binding Texts.GUIListReorderedNote}"
+                               PointerEntered="OnBadgePointerEntered"
+                               PointerExited="OnBadgePointerExited" />
+
+                    <!-- The list-navigation buttons describe the list itself, so they live in
+                         its header instead of forming an orphaned row below the mod tools. -->
+                    <Button Grid.Column="3" Margin="8 2 0 2"
+                            Padding="8 2" Content="↑"
+                            Click="ScrollModsToTopClick"
+                            ToolTip.Tip="{Binding Texts.GUIScrollToTop}" />
+                    <Button Grid.Column="4" Margin="4 2 0 2"
+                            Padding="8 2" Content="↓"
+                            Click="ScrollModsToBottomClick"
+                            ToolTip.Tip="{Binding Texts.GUIScrollToBottom}" />
+                </Grid>
                 </Grid>
             </StackPanel>
 

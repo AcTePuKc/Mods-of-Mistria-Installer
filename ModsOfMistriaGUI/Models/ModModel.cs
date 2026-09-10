@@ -40,7 +40,7 @@ public partial class ModModel : ObservableObject
     partial void OnPositionChanged(int value)
         => OnPropertyChanged(nameof(IsAlternateRow));
 
-    // Set by UpdateChecker after startup — true when a newer release is available
+    // Set by UpdateChecker after startup - true when a newer release is available
     [NotifyPropertyChangedFor(nameof(CanUpdateFromNexus))]
     [NotifyPropertyChangedFor(nameof(HasNexusUpdate))]
     [NotifyPropertyChangedFor(nameof(HasGenericUpdate))]
@@ -415,7 +415,7 @@ public partial class ModModel : ObservableObject
                     .Select(copy =>
                     {
                         var marker = ReferenceEquals(copy, Mod) ? "[selected] " : "";
-                        return $"• {marker}{copy.GetVersion()} — {copy.GetSourcePath()}";
+                        return $"• {marker}{copy.GetVersion()} - {copy.GetSourcePath()}";
                     }));
                 warnings.Add(string.Format(Texts.GUIModDuplicateCopies, copies));
             }

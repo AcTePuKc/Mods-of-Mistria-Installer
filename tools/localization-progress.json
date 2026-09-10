@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-09-09T12:52:44.7379737Z",
+  "scope": "remaining",
+  "coreKeyCount": 106,
+  "nextLanguage": null,
+  "languages": [
+    {
+      "language": "bg",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "de",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "es",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "fr",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "id",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "ja",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "ko",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "nl",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "pl",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "pt-br",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "ru",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "uk",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "zh-Hans",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    },
+    {
+      "language": "zh-Hant",
+      "coreMissing": 0,
+      "coreComplete": true,
+      "deferredMissing": null,
+      "deferredComplete": null,
+      "remainingMissing": 0,
+      "remainingComplete": true
+    }
+  ]
+}

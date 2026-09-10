@@ -353,7 +353,7 @@ public static class ConflictResearch
                                others.Any(other => ModNameMatcher.Mentions(file.Name, other)))
                 .Select(file => new PatchCandidate(
                     mod.ModId!.Value,
-                    $"{mod.Name} — {file.Name}",
+                    $"{mod.Name} - {file.Name}",
                     $"{page}?tab=files",
                     WhyThisFile(mod, file, others),
                     PatchConfidence.OptionalFile) { FileId = file.FileId })
@@ -638,7 +638,7 @@ public static class ConflictResearch
             $"bug report marked \"{Describe(bug.State)}\""
         }.Where(part => part is not null));
 
-        var who = string.IsNullOrWhiteSpace(author) ? mod.Name : $"{mod.Name} — {author}";
+        var who = string.IsNullOrWhiteSpace(author) ? mod.Name : $"{mod.Name} - {author}";
 
         return new ResearchFinding(who, Trim(text), reason, source)
         {
@@ -685,7 +685,7 @@ public static class ConflictResearch
 
             if (!CompatibilityLanguage.BearsOnThePairing(signal, named is not null)) continue;
 
-            var who = string.IsNullOrWhiteSpace(post.Author) ? mod.Name : $"{mod.Name} — {post.Author}";
+            var who = string.IsNullOrWhiteSpace(post.Author) ? mod.Name : $"{mod.Name} - {post.Author}";
 
             // Shortened for display like every other quote - a comment runs to six hundred
             // characters - but the whole post travels with it, so the window can show all of it
@@ -897,11 +897,11 @@ public static class ConflictResearch
             var page = mod.PageUrl ?? (mod.ModId is null ? null : $"https://www.nexusmods.com/{Game}/mods/{mod.ModId}");
             if (page is null) continue;
 
-            links.Add(new ResearchLink($"{mod.Name} — bugs", $"{page}?tab=bugs",
+            links.Add(new ResearchLink($"{mod.Name} - bugs", $"{page}?tab=bugs",
                 "Reported problems, where an incompatibility usually surfaces first."));
-            links.Add(new ResearchLink($"{mod.Name} — posts", $"{page}?tab=posts",
+            links.Add(new ResearchLink($"{mod.Name} - posts", $"{page}?tab=posts",
                 "The comment thread, where authors answer \"does this work with…\" questions."));
-            links.Add(new ResearchLink($"{mod.Name} — files", $"{page}?tab=files",
+            links.Add(new ResearchLink($"{mod.Name} - files", $"{page}?tab=files",
                 "Optional files, where a compatibility patch would be published."));
         }
 

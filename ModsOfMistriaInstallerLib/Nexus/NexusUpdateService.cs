@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
@@ -71,6 +72,9 @@ public record NexusUpdateCheck(IMod Mod, NexusUpdateStatus Status);
 /// </summary>
 public class NexusUpdateService
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private const int MaxParallelChecks = 4;
 
     private readonly Func<CancellationToken, Task<string?>> _accessTokenProvider;
@@ -128,7 +132,7 @@ public class NexusUpdateService
         var accessToken = await _accessTokenProvider(ct);
         if (string.IsNullOrEmpty(accessToken))
             return new NexusUpdateStatus(NexusUpdateState.Unavailable, record,
-                Message: "No Nexus account is connected yet.");
+                Message: Text("GUINexusUpdateNoAccount"));
 
         try
         {
@@ -141,11 +145,8 @@ public class NexusUpdateService
             if (latest is null)
                 return new NexusUpdateStatus(NexusUpdateState.Unavailable, record,
                     Message: installed is null && LineageOf(record.FileName).Length > 0
-                        ? "The file this mod came from is no longer on its Nexus page, and none of " +
-                          "the files still there is a newer version of it. That page hosts several " +
-                          "separate mods, so AIM will not offer one of the others as an update - " +
-                          "check the page by hand if you think there is a newer release."
-                        : "That mod page has no main file to compare against.");
+                        ? Text("GUINexusUpdateSourceFileMissing")
+                        : Text("GUINexusUpdateNoMainFile"));
 
             var newer = IsNewer(record, mod, latest, installed);
 
@@ -160,10 +161,7 @@ public class NexusUpdateService
             if (newer && record.FileId <= 0)
                 return new NexusUpdateStatus(NexusUpdateState.Unavailable, record,
                     latest.Version, latest.FileId, latest.FileName,
-                    "AIM does not know which file on this page this mod came from, so it cannot " +
-                    "tell whether the version on the page is newer. Download it once through AIM, " +
-                    "or right-click the mod and associate it with a specific file, and update " +
-                    "checks become reliable.");
+                    Text("GUINexusUpdateUnknownSourceFile"));
 
             if (!newer) return new NexusUpdateStatus(
                 NexusUpdateState.UpToDate, record, latest.Version, latest.FileId, latest.FileName);
@@ -267,7 +265,7 @@ public class NexusUpdateService
             {
                 results[index] = new NexusUpdateCheck(mod, new NexusUpdateStatus(
                     NexusUpdateState.Unavailable, Resolve(mod),
-                    Message: "The update check stopped early."));
+                    Message: Text("GUINexusUpdateStoppedEarly")));
             }
             catch (Exception e)
             {
@@ -293,7 +291,7 @@ public class NexusUpdateService
         return results
             .Select((check, index) => check ?? new NexusUpdateCheck(mods[index],
                 new NexusUpdateStatus(NexusUpdateState.Unavailable,
-                    Message: "The update check did not finish for this mod.")))
+                    Message: Text("GUINexusUpdateDidNotFinish"))))
             .ToList();
     }
 
@@ -310,7 +308,7 @@ public class NexusUpdateService
         CancellationToken ct = default)
     {
         if (status.Record is null || status.LatestFileId is null)
-            throw new NexusApiException("There is nothing to update to.");
+            throw new NexusApiException(Text("GUINexusUpdateNothingToDo"));
 
         var link = new NxmLink(status.Record.Game, status.Record.ModId, status.LatestFileId.Value, null, null, null);
 

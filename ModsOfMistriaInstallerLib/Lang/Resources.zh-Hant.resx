@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -15,7 +15,7 @@
   <data name="GUILanguagePortugueseBrazil" xml:space="preserve"><value>巴西葡萄牙語</value></data>
   <data name="GUILanguageRussian" xml:space="preserve"><value>俄語</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>印度尼西亞語</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Fields of Mistria 替代安裝器</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Fields of Mistria 替代安裝器</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>語言</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>開始遊戲</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>設定檔：</value></data>
@@ -159,7 +159,7 @@
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>新物件不會覆寫其他模組的物件。</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>新物品不會覆寫其他模組的物品。</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>歡迎使用 AIM</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} — 作者：{1} — 版本 {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} - 作者：{1} - 版本 {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>找不到 Fields of Mistria 安裝。</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>找不到模組資料夾。請選擇資料夾，或自動建立。</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>未選擇要安裝的模組。</value></data>
@@ -265,6 +265,7 @@
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>現在 AIM 將開啟 Nexus 網站上的「Vortex」連結。
 
 第一次點選時，瀏覽器可能會要求權限。</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM 已成功註冊，但 Windows 可能仍在使用 {0} 處理 nxm:// 連結。&#xD;&#xA;&#xD;&#xA;開啟 Windows 預設應用程式，並為 nxm:// 通訊協定選擇 AIM？&#xD;&#xA;&#xD;&#xA;選擇「是」開啟預設應用程式，選擇「否」維持目前設定。</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM 將不再開啟 Nexus 網站上的「Vortex」連結。</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>無法為這些連結註冊 AIM：{0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>無法停止 AIM 處理這些連結：{0}</value></data>
@@ -275,7 +276,10 @@
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>剪貼簿中沒有 nxm:// 連結。請在模組頁面上以滑鼠右鍵點選「Vortex」，然後先複製連結位址。</value></data>
   <data name="GUISave" xml:space="preserve"><value>儲存</value></data>
   <data name="GUICancel" xml:space="preserve"><value>取消</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 — {2} 個已在遊戲中，{3} 個將被加入</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>確定</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>是</value></data>
+  <data name="GUINo" xml:space="preserve"><value>否</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>已選取 {0}/{1} 個 - {2} 個已在遊戲中，{3} 個將被加入</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>搜尋模組…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>清除搜尋</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>選取或清除所有模組</value></data>
@@ -333,4 +337,473 @@
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>資源封存已被取代，但 AIM 無法儲存安裝狀態。請重新啟動 AIM 以復原已完成的交易。</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>AIM 的待處理安裝狀態復原檔案無效：{0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM 已復原 assets.zip，但無法復原安裝狀態。請關閉正在使用狀態檔案的程式後再試一次。</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>最近更新</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>已啟用</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>需更新</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>建議順序</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0}，作者 {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>登入 Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>登出 Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Nexus 帳戶已連線。</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Nexus 帳戶未連線。登入後才能使用 Nexus 功能。</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Nexus 帳戶已中斷連線。</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>編輯模組資訊清單</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>使用慣用的文字編輯器開啟 manifest.json（或 manifest.toml）。僅適用於資料夾形式的模組；.zip 或 .rar 中的模組沒有可編輯的檔案。</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>編輯模組設定</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>使用慣用的文字編輯器開啟模組設定檔。找不到 AIM 可識別的設定檔時，此選項會停用。</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>無法開啟 {0}：{1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>移除模組...</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>從模組資料夾移除模組。AIM 會先詢問，並將檔案移至資源回收筒而不是直接刪除。</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>移除模組</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>要將模組「{0}」v{1}移至資源回收筒嗎？&#xA;&#xA;{2}&#xA;&#xA;它會從模組資料夾移除。如果改變心意，可以從資源回收筒還原。已安裝到遊戲中的檔案會保留，直到下次安裝或解除安裝。</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>要永久刪除模組「{0}」v{1}嗎？&#xA;&#xA;{2}&#xA;&#xA;此系統沒有 AIM 可使用的資源回收筒，因此模組檔案會被刪除。此操作無法復原。</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>無法移除「{0}」：{1}&#xA;&#xA;它可能在其他程式中開啟，或者遊戲仍在執行。</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>移除選取項目...</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>顯示清單後，透過資源回收筒一次移除所有勾選的模組。</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>沒有勾選模組，因此沒有可移除的內容。</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>要將 {0} 個模組移至資源回收筒嗎？&#xA;&#xA;{1}&#xA;&#xA;它們會從模組資料夾移除，並可從資源回收筒還原。已安裝到遊戲中的檔案會保留，直到下次安裝或解除安裝。</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>要永久刪除 {0} 個模組嗎？&#xA;&#xA;{1}&#xA;&#xA;此系統沒有 AIM 可使用的資源回收筒，因此檔案會被刪除。此操作無法復原。</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>... 以及另外 {0} 個</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>已移除 {1} 個模組中的 {0} 個。</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>無法移除以下模組：{0}&#xA;&#xA;它們可能在其他程式中開啟，或者遊戲仍在執行。</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows 無法將項目移至資源回收筒</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>「{0}」已不在模組資料夾中。清單已重新整理。</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>標記為已檢查且沒有問題。AIM 會將它隱藏，直到相關模組之一變更版本，然後再次詢問。</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>顯示我標記為正常的問題（{0}）</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>已標記為正常</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[已標記為正常]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>兩個模組都寫入的檔案</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>目前生效</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>讓此模組生效</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>將此模組移到與它共用檔案的其他模組下方，使其檔案版本被安裝。清單中的載入順序會立即變更。</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>「{0}」現在會在共用這些檔案的模組中最後載入，因此其副本會生效。</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>尋找解決方案...</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>讀取這些模組的 Nexus 頁面如何描述彼此，並開啟錯誤報告、留言和網頁搜尋，協助你判斷這是否真的重要。</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>重新繫結...</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>透過編輯 {0} 中模組自己的繫結，將此模組移到其他模組未使用的按鍵上。模組會先備份，變更將在下次安裝時套用到遊戲。</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>重新繫結快速鍵</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>要將「{0}」從 {1} 移到 {2} 嗎？&#xA;&#xA;AIM 會編輯模組自己的繫結，並保留可從右鍵選單還原的備份。變更將在下次安裝時套用到遊戲。</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>「{0}」現在使用 {1}，已更新 {2} 個檔案。&#xA;&#xA;請重新安裝，讓變更套用到遊戲。</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>無法重新繫結「{0}」：{1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>「{0}」現在使用 {1} 而不是 {2}。請重新安裝，讓變更套用到遊戲。</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>已解決：「{0}」已移至 {1}，因此沒有其他模組共用此快速鍵。請重新安裝，讓變更套用到遊戲。</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>此模組仍是 .zip 或 .rar 檔案。請先將它解壓縮到模組資料夾，AIM 才能編輯其繫結。</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>此模組沒有將按鍵宣告為具名繫結，因此 AIM 無法安全地變更它。請檢查模組自己的遊戲內設定或設定檔。</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>選取的模組已使用所有功能鍵，因此沒有可移動到的空閒按鍵。</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM 無法讀取此模組的檔案。</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>依字母排序</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>依名稱排序清單，方便快速找到模組。這只是檢視方式，不會改變載入順序；關閉後會再次顯示實際順序，啟用時無法拖曳。</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>依最近更新排序</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>依每個模組資料夾在磁碟上的最後變更時間，從最新開始顯示。剛安裝或更新的模組會出現在頂端。這只是檢視方式，不會改變載入順序，啟用時無法拖曳。</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>移至載入順序頂端</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>最先載入此模組，讓其他模組可以以它為基礎並覆寫它。框架或其他模組所依賴的模組應放在這裡。這會改變實際載入順序，而不只是目前的清單檢視。</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>移至載入順序底端</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>最後載入此模組，因此與其他模組共用檔案時，此模組會生效。重新著色或個人覆寫應放在這裡。這會改變實際載入順序，而不只是目前的清單檢視。</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>僅顯示已啟用模組</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>隱藏所有已關閉的內容。重要的是實際進入遊戲的模組順序，而在長清單中，不使用的模組會讓順序難以閱讀。</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>僅顯示需要注意的模組</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>僅顯示有待更新的模組，以及上次檢查無法存取的模組：未關聯 Nexus、網路問題或頁面已不存在。</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>僅供檢視 - 載入順序未變更，拖曳已暫停</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>跳至清單頂端</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>跳至清單底端</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0}（{1}）也被 {2} 使用</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>版本資訊</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>版本資訊 - 懸停以載入，按一下以閱讀完整記錄。</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>{0} 的更新內容：
+{1}
+
+按一下以閱讀所有版本。</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>此模組的作者沒有發佈版本資訊。</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM 無法讀取此模組的版本資訊。需要已連線的 Nexus 帳戶，且 AIM 必須知道此模組的 Nexus 頁面。</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>有版本資訊的版本數：{0}，從最新開始。</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>版本 {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>版本</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>會使遊戲崩潰</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>已標記為會崩潰</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>監督式測試證實此模組會使遊戲崩潰：關閉它後遊戲正常執行，崩潰也沒有再次出現。AIM 已將它保持關閉。</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>你在崩潰檢查器中親自標記此模組會造成崩潰。AIM 沒有測試它，而是採信你的判斷並將模組關閉。</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>版本 {0}，檢查於 {1}。&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>開啟「檢查崩潰」查看 AIM 可以套用的修正，以及模組頁面對此問題的說明。標記與此版本相關，因此作者更新後會清除標記。</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>由 AIM 編輯</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>此修補程式沒有 AIM 可以自行安裝的主檔案。檔案已在瀏覽器中開啟，請選擇需要的檔案並使用「Mod Manager Download」。</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>修補程式下載已取消。</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM 已變更此模組中的檔案以解決衝突。磁碟上的檔案已不完全是作者發佈的版本。</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>變更前的模組位於「版本」下拉選單中。請在那裡還原，或右鍵按一下模組並選擇「復原 AIM 的編輯」。</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>復原 AIM 的編輯</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>在 Nexus Mods 上追蹤</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>將此模組加入 Nexus 追蹤中心，讓網站通知你更新和作者貼文。需要連線你的 Nexus 帳戶。</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>現在已在 Nexus Mods 上追蹤 {0}。</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>你已經在 Nexus Mods 上追蹤 {0}。</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>無法在 Nexus Mods 上追蹤 {0}：{1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM 無法從此模組的頁面讀取 Nexus 模組 ID。</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>AIM 在更新時保留的此模組舊版本。選擇其中一個即可還原。</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>還原至：</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>按一下即可下載並安裝。你目前的版本會保留為備份。</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>按一下即可開啟下載頁面 - AIM 不知道這是哪個 Nexus 檔案。右鍵按一下模組並使用「與 Nexus 建立關聯…」，即可讓它自動安裝。</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus 顯示你的帳戶（{0}）是 Premium，因此拒絕原因不是帳戶等級。通常是登入已過期或遭撤銷。請從齒輪選單再次登入。</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus 顯示你的帳戶（{0}）是免費帳戶。直接下載是 Premium 功能，因此請使用網站按鈕。</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>尚未連線 Nexus 帳戶，因此 AIM 無法直接下載任何內容。</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM 無法檢查你的 Nexus 帳戶：{0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>按鍵綁定</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>在一份清單中顯示模組使用的所有按鍵和控制器按鈕，衝突以紅色標示並可直接編輯。</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>模組按鍵綁定</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>目前模組所使用的按鍵綁定。模組會將這些設定放在遊戲自己的設定資料夾，而不是模組資料夾，因此更新模組不會遺失設定。不過模組仍可能重設自己的設定，發生時 AIM 會提供還原你選擇的選項。</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} 個按鍵綁定，其中 {1} 個有衝突。</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>只顯示衝突</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>重新整理</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM 無法讀取你的模組按鍵綁定：{0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>正在讀取模組的按鍵綁定…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>你選取的模組沒有 AIM 能讀取的按鍵綁定。在遊戲執行時建立綁定的模組，必須先執行遊戲才會顯示。</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>沒有衝突。</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM 找不到遊戲的設定資料夾，因此目前顯示模組附帶的預設值。執行遊戲一次後，這些才會變成你的實際按鍵綁定。</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria 正在執行。編輯功能已關閉，因為遊戲結束時會重寫每個模組的設定，可能覆寫你在這裡所做的變更。請關閉遊戲後按「重新整理」。</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>也由 {0} 使用</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>相同輸入綁定於：</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>勾選或取消勾選畫面上的模組</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>套用於目前由搜尋和篩選器顯示的列，不會套用到被隱藏的內容。未使用篩選器時，這會套用於所有模組。AIM 無法安裝的模組會保持不變。</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>模組預設值，模組寫入設定前 AIM 無法變更</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>此模組尚未寫入設定，因此這是編譯在模組中的預設值。執行遊戲一次，或在模組自己的設定中變更後，AIM 就能在此編輯。</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>（未綁定）</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>遊戲不會接受此設定</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>「{0}」不是遊戲可辨識的名稱，因此此模組會退回預設值。請從清單中選取項目即可修正。</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM 無法寫入 {0}。它可能正由其他程式開啟，或遊戲可能已經啟動。</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>選擇按鍵或按鈕</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>按鍵或控制器按鈕</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>按下按鍵以擷取</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>現在按下按鍵…（按 Escape 停止）</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>將儲存為：{0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>控制器按鈕必須從清單中選擇，AIM 無法讀取控制器。清單包含遊戲接受的所有名稱；ALT、鎖定鍵和數字鍵盤不在其中，使用這些按鍵的模組會無聲地退回預設值。</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>儲存</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>取消綁定</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>清空此設定。大多數模組會將其視為「關閉」，少數模組則會退回預設值。</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0}（模組預設值，尚未設定）</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>按鍵綁定已變更</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>你選擇的 {0} 個按鍵綁定已被模組自行變更，通常是更新重設了設定。&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;要還原你的選擇嗎？更新完全移除的設定不會還原。</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>…以及另外 {0} 個。</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>已還原 {0} 個按鍵綁定。啟動遊戲後才會生效。</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>檢查</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>檢查選取的模組是否與其 Nexus 頁面一致。使用箭頭可檢查所有模組，或安裝所有有更新的模組。</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>已檢查 {0} 個模組：{1} 個有更新，{2} 個無法檢查。&#xD;&#xA;&#xD;&#xA;要現在下載並安裝這些更新嗎？每個模組的目前版本都會保留為可還原的備份。</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>更新所有有更新的模組</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>依序下載並安裝所有待處理的更新，並將每個模組的目前版本保留為可還原的備份。</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>更新模組</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>沒有待處理的更新。請先檢查更新。</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>要更新 {0} 個模組嗎？&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;每個模組的目前版本都會保留為備份，可從右鍵選單還原。</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>正在更新 {0}/{1}：{2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>已更新 {1} 個模組中的 {0} 個。</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>以下內容無法直接下載，需要開啟其 Nexus 頁面：{0}&#xD;&#xA;&#xD;&#xA;Nexus 只會向 Premium 帳戶提供直接下載連結。免費帳戶請開啟模組頁面並使用「Mod Manager Download」按鈕。如果 AIM 已註冊處理這些連結，就會接收它。</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>沒有可報告的內容。AIM 在你選取的模組之間沒有發現共用檔案、快捷鍵衝突、缺少需求或相容性警告。</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>你已標記這不是真正的衝突。</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>你找到了此問題的修補程式。</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>你認為這些模組不相容，請關閉其中一個。</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>透過重新綁定解決：{0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>受監控的下載資料夾</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>你手動下載到受監控資料夾的模組會移入模組資料夾，並自動出現在清單中。</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>監控資料夾…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>選擇要監控已下載模組的資料夾</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>立即檢查受監控資料夾</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>目前沒有監控中的資料夾</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>停止監控此資料夾</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>受監控的資料夾</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>沒有發現新的內容。AIM 只會移動包含 manifest 的壓縮檔和資料夾，其他內容會留在原處。</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>已從受監控資料夾匯入 {0} 個模組。</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>已移入你的模組資料夾：&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - 你已將此模組安裝為「{1}」。請更新該副本，或先將其移除：同一模組的兩個副本會爭用相同檔案。</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>留在受監控資料夾中：&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>找不到模組資料夾，因此沒有可開啟的內容。</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>無法開啟模組資料夾：{0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>模組資料夾</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>在檔案管理員中開啟 Fields of Mistria 模組資料夾</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>檢查崩潰</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>讀取遊戲自己的崩潰記錄，判斷它指向哪個模組，並提供關閉該模組及檢查崩潰是否消失的選項。</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>模組資料夾中沒有空間整理 {0}。</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>模組資料夾中已經有太多份 {0}。</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>無法從 Nexus 下載檔案：{0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>沒有下載伺服器回應</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>沒有可更新的版本。</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>無法儲存 Nexus 帳戶工作階段。請檢查磁碟存取權限後重試。</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>{0} 的備份不存在。</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>下載的檔案不存在。</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>找不到模組資料夾。</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>此下載不包含 manifest.toml，因此不是此安裝程式可以處理的模組。它可能是舊版模組，或必須手動安裝的檔案。</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>無法完成下載的模組。原始安裝錯誤為：{0}&#xD;&#xA;無法還原先前的模組副本。其備份已保留，可手動復原：&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>暫存的副本已不在 {0}。</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>模組資料夾旁已經保留了太多份 {0} 的副本。</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>無法解壓模組：{0} 無法還原先前的副本；其備份已保留，可手動復原{1}。</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>無法解壓模組：{0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>下載的壓縮檔包含太多檔案。</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>下載的壓縮檔包含過大的檔案。</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>下載的壓縮檔超過支援的解壓縮後大小。</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>壓縮檔項目「{0}」超過支援的解壓縮後大小。</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>下載的檔案不是此安裝程式可以讀取的壓縮檔（支援 zip、rar 和 7z）。</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>壓縮檔包含不安全的路徑：{0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>由於回呼狀態不相符，Nexus 登入已取消。</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus 沒有回傳授權碼。</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Nexus 帳戶工作階段需要重新連線。</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>AIM 的 Nexus OAuth 註冊仍在等待處理。</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus 無法完成帳戶登入。</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus 回傳的帳戶工作階段不完整。</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>無法讀取 Nexus 帳戶回應。</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM 正在等待 Nexus 登入回呼。</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Nexus 登入回應與此 AIM 工作階段不相符。</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Nexus 登入已取消。你可以返回 AIM。</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Nexus 登入已取消，或遭瀏覽器拒絕。</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Nexus 登入已完成。你可以返回 AIM。</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus 沒有為該檔案回傳下載伺服器。</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>Nexus API 未及時回應。</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>無法連線到 Nexus API：{0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus 回傳了意外的回應。</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>無法讀取 Nexus 的回應。</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus 拒絕了帳戶工作階段。請重新連線 Nexus 帳戶。</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus 拒絕了要求。下載連結可能已過期，請再次點選。</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>該模組或檔案已不再存在於 Nexus。</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>你已達到 Nexus API 的速率限制。請稍候再下載。</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus 回傳了錯誤（{0}）。</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>尚未連線 Nexus 帳戶。</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>此模組來源的檔案已不在 Nexus 頁面上，頁面上剩餘的檔案也沒有比它更新的版本。該頁面託管多個獨立模組，因此 AIM 不會將其他模組提供為更新。如果你認為有更新版本，請手動檢查該頁面。</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>該模組頁面沒有可用於比較的主檔案。</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM 不知道此模組來自頁面上的哪個檔案，因此無法判斷頁面版本是否更新。透過 AIM 下載一次，或右鍵按一下模組並將其關聯到特定檔案，之後更新檢查就會可靠。</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>更新檢查提前停止。</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>此模組的更新檢查未完成。</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>尚未連線 Nexus 帳戶。</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>該下載屬於另一款遊戲（{0}），因此此安裝程式無法處理。</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>該下載連結已過期。請再次點選模組頁面上的「Vortex download」按鈕。</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>找不到模組資料夾。</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>正在向 Nexus 查詢檔案...</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>正在下載 {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>正在解壓 {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>安裝已取消</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>已安裝 {0}</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>已安裝 {0} 個模組</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>下載已取消</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>下載連結為空。</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>這不是 nxm:// 連結。</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>連結沒有指定遊戲。</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Nexus 收藏集尚不受支援，請個別下載模組。</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>該連結不是模組檔案下載連結。</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>連結包含無效的模組 ID 或檔案 ID。</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>無法判斷安裝程式的執行位置。</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>只有 Windows 和 Linux 支援註冊 nxm:// 連結。</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM 已註冊，但 Windows 可能仍使用 {0} 處理 nxm:// 連結。&#xD;&#xA;&#xD;&#xA;請在 Windows 預設應用程式中將 AIM 選為 nxm:// 預設應用程式。</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>寫入後無法驗證 nxm:// 註冊。</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>更新可能會修正你套用的修補</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} 已發佈。你目前使用 {2}，並套用了 AIM 的修正：{3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>更新並移除 AIM 修正</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>更新會取代模組資料夾，因此 AIM 的編輯也會隨之移除。如果新版本沒有修正問題，崩潰會再次出現，你可以重新套用修正。之前的版本仍在還原清單中。</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>偵測到外部壓縮檔</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM 找到了外部的 assets.zip。&#xD;&#xA;&#xD;&#xA;如果繼續，AIM 將：&#xD;&#xA;• 將其保留為 assets.foreign-…zip 檔案&#xD;&#xA;• 還原已驗證的備份&#xD;&#xA;• 重試此次安裝&#xD;&#xA;&#xD;&#xA;僅存在於外部壓縮檔中的模組將保持未啟用。要繼續嗎？</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>尋找修復</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>正在讀取這些模組的頁面…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>在齒輪選單中連接 Nexus 帳戶，AIM 就能為你讀取模組頁面。在此之前，下面的連結仍是最快的檢查方式。</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>這些模組的說明、readme、更新日誌、錯誤報告和留言都沒有回答這個問題。AIM 搜尋了整個留言串和最近的錯誤報告，所以這是「沒人提到」，而不是「沒人查過」。這不等於「沒有問題」。</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>這些模組頁面中與此組合有關的內容：{0}。</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM 無法讀取模組頁面：{0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>模組頁面上的說法</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>自行查看</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM 會搜尋完整留言串並深入讀取錯誤追蹤器，但始終只是未登入訪客。這些連結會開啟真實頁面。</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>開啟此模組頁面</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>開啟修補程式</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>你找到了什麼？</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>記錄結果後，答案會與問題一起保存，下次無需重新判斷。</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>修補程式連結（選填）：</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>不是真正的衝突</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>模組共用檔案，但實際使用沒有影響。將問題標記為正常，並隱藏到任一模組更新為止。</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>已有修補程式</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>有人發布了相容性修補程式。按一下新增連結，再按一下記錄連結。將問題標記為正常。</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>兩者不相容</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>記錄這個結果，但繼續顯示問題，因為你仍需停用其中一個模組。</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>仍在判斷</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>記錄修補程式</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>這不像是 https 連結。貼上修補程式網址，或將輸入框留空。</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>AIM 的檔案分析</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM 已讀取這些模組共用的所有檔案。</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM 無法讀取所有檔案，請將其視為分析而非事實。</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} 個共用檔案</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} 個共用檔案</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>無法建立此視窗的一部分：{0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>衝突中的模組</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>開啟頁面自行判斷模組，或在決定不使用它後將其從模組清單中移除。</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>開啟頁面</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM 不知道此模組的來源，因此沒有可開啟的頁面。</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>移除</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>從模組資料夾中移除該模組。AIM 會先詢問，並將檔案移到資源回收筒。</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} 已移除，因此衝突不再存在。</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>你已經擁有的內容</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>清單中與此組合有關的模組。AIM 在提供下載前已檢查它們。</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>AIM 可以做什麼</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>只有在你選擇後才會執行操作，而且這些操作都可以復原。</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>已有的修補程式</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>核准並套用</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>完成：{0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>操作失敗：{0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>表示它沒有問題</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>表示這是一個問題</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>符合條件時有效</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>提到主題但沒有回答</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>沒有記錄的崩潰。</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>正在根據已安裝模組讀取呼叫堆疊…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM 無法查看模組清單，因此只能顯示崩潰，無法指出原因。</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM 無法完成對此崩潰的讀取：{0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>此崩潰早於目前模組。請在修改前執行一次遊戲，並把下面的模組視為線索而非結論。</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>你尚未登入 Nexus，因此 AIM 無法讀取模組錯誤追蹤器。</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>正在讀取錯誤追蹤器和留言…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>沒有模組被明確指出，暫不值得讀取其頁面。</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM 無法讀取模組頁面：{0}</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>模組頁面沒有提到這次崩潰。</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>與此問題有關的頁面內容：{0}。</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>確定</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>很可能</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>可能</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>不太可能</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>正常</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>問題</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>條件</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>背景</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>顯示完整引用</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>顯示較少</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>在頁面中尋找</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>複製「{0}」並開啟來源頁面。按 Ctrl+F 後貼上即可跳轉。</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>已複製。在剛開啟的頁面按 Ctrl+F 並貼上。</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>這會修改並非由你編寫的模組檔案。AIM 會先將整個模組複製到版本清單，並標記為已修改。繼續嗎？</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>開啟模組頁面</value></data><data name="GUICrashOpenPage" xml:space="preserve"><value>開啟此頁面</value></data><data name="GUICrashReportBug" xml:space="preserve"><value>回報此錯誤</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>建立作者需要的報告，複製到剪貼簿並開啟模組錯誤追蹤器。請你自行閱讀並發布。</value></data><data name="GUICrashReportReady" xml:space="preserve"><value>報告已複製，錯誤追蹤器已開啟。請閱讀並發布。</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>報告已複製。請自行尋找作者的追蹤器或 Discord。</value></data><data name="GUICrashCopied" xml:space="preserve"><value>已複製。</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>停用並檢查</value></data><data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>停用此模組、重建並執行遊戲，以確認它是否是原因。</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>正在重建沒有此模組的遊戲，完成後會自動啟動。</value></data><data name="GUICrashRemoveMod" xml:space="preserve"><value>移除模組</value></data><data name="GUICrashRemoved" xml:space="preserve"><value>{0} 已移除。</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>版本與 AIM 的變更</value></data><data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM 修改了此模組：</value></data><data name="GUICrashUndoEdits" xml:space="preserve"><value>復原 AIM 變更</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>復原 AIM 為此模組暫存的檔案，不影響資料夾其他內容。</value></data><data name="GUICrashRestoreVersion" xml:space="preserve"><value>復原</value></data><data name="GUICrashRestored" xml:space="preserve"><value>{0} 已復原到 {1}。</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - AIM 修改前</value></data><data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM 將停用 {0}、重建遊戲檔案並啟動遊戲。&#xD;&#xA;&#xD;&#xA;重建約需一分鐘。正常遊戲即可，AIM 會報告崩潰是否再次出現。</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM 將啟動遊戲並觀察崩潰，不做任何修改。正常遊戲即可，AIM 會報告結果。</value></data><data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM 無法在此修改模組清單。</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>無法停用 {0}。它可能已停用或不在清單中。</value></data><data name="GUICrashDisabled" xml:space="preserve"><value>{0} 已停用。</value></data><data name="GUICrashRebuilding" xml:space="preserve"><value>正在重建遊戲檔案以套用變更…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>無法重建遊戲，因此未進行檢查：{0}</value></data><data name="GUICrashLaunching" xml:space="preserve"><value>正在啟動並觀察遊戲。正常遊戲即可。</value></data><data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM 已在安裝。請先等待完成。</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>沒有可安裝內容：沒有遊戲資料夾或已啟用的模組。</value></data><data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM 不知道模組資料夾的位置。</value></data><data name="GUICrashModGone" xml:space="preserve"><value>此模組已不在清單中。</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>表示這是已知問題</value></data><data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>表示此模組運作正常</value></data><data name="GUICrashEvidenceCaution" xml:space="preserve"><value>符合條件時有效</value></data><data name="GUICrashEvidenceOther" xml:space="preserve"><value>提到主題但沒有回答</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>手動套用修復</value></data><data name="GUICrashEditHint" xml:space="preserve"><value>如果錯誤討論或模組說明準確說明了要改什麼，請在此填寫。AIM 會先將整個模組複製到版本歷史。</value></data><data name="GUICrashEditFile" xml:space="preserve"><value>相對於模組資料夾的檔案</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>行</value></data><data name="GUICrashEditText" xml:space="preserve"><value>該行的新文字；留空可清除內容</value></data><data name="GUICrashEditApply" xml:space="preserve"><value>套用此變更</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>暫存此檔案</value></data><data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>從遊戲中排除整個檔案，同時保留模組其他部分。</value></data><data name="GUICrashEditNeedFile" xml:space="preserve"><value>請先指定模組中的檔案和要修改的行號。</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>崩潰修復：{2} 中的第 {1} 行 {0}</value></data><data name="GUICrashEditAsideSummary" xml:space="preserve"><value>崩潰修復：在 {1} 中暫存 {0}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM 會先保存整個模組，之後可以從復原清單還原。只會修改此模組。&#xD;&#xA;&#xD;&#xA;繼續嗎？</value></data><data name="GUICrashStepNothingChanged" xml:space="preserve"><value>未修改任何內容；按目前狀態執行遊戲。</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>檢查崩潰</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>崩潰</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>崩潰檔案</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>開啟 AIM 保存所有崩潰副本的資料夾。遊戲本身只保留最近一次。</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>AIM 的判斷</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM 找不到遊戲執行檔，因此無法啟動並監視遊戲。</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria 已在執行。請先關閉它，讓 AIM 監視由自己啟動的工作階段。</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM 無法啟動遊戲：{0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>遊戲崩潰了，但 AIM 無法讀取留下的崩潰記錄，因此這次執行無法證明模組有問題。建議再次檢查。</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>檢查期間遊戲再次崩潰。</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>檢查視窗結束後遊戲仍在執行，沒有崩潰。這正是預期結果，請繼續遊戲。</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>{0} 後再次出現相同崩潰。</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>{0} 後遊戲再次崩潰，但錯誤不同。</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>遊戲在 {1} 後以代碼 {0} 結束，且沒有留下崩潰記錄。這通常表示遊戲被外部因素關閉，而不是模組造成的。</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>遊戲執行了 {0} 後正常關閉，沒有新的崩潰。</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>遊戲在此模組自己的程式碼中崩潰，位置為 {0} 第 {1} 行。</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>此模組的程式碼出現在呼叫堆疊中，位置為 {0} 第 {1} 行。</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>崩潰訊息本身提到了此模組。</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>遊戲讀取「{0}」資料時崩潰，該資料由 {1} 個已安裝模組新增內容。</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>遊戲讀取「{0}」資料時崩潰，該資料由 {1} 個已安裝模組新增內容。</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>此模組向遊戲崩潰時正在讀取的「{0}」資料中新增內容。</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>磁碟上的遊戲檔案中，「{0}」資料已沒有缺少 {1} 的項目，因此原因已透過更新、重裝或停用模組解決。</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>遊戲目前載入的「{0}」資料仍有一個項目缺少 {2}。下次啟動時會再次崩潰。</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>遊戲目前載入的「{0}」資料仍有 {1} 個項目缺少 {2}。下次啟動時會再次崩潰。</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>需要安裝引擎 hook，而崩潰是呼叫一個實際並非函式的物件，這正是不完整 hook 在遊戲中的表現。</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>此崩潰早於目前模組，但描述的問題仍在磁碟上的遊戲檔案中，因此報告並不過時。下次啟動可能再次發生。</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>此崩潰早於目前安裝的模組。AIM 之後重建了遊戲檔案，因此崩潰時的遊戲與現在磁碟上的版本不同。請把下面內容當作線索而非結論。</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>在 {0}() 中出錯，位置：{1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>遊戲自己的「{0}」資料在第 {2} 行有一個缺少 {1} 的項目，其中包含「{3}」，而其他模組都沒有定義它。</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>遊戲自己的「{0}」資料在第 {2} 行有一個缺少 {1} 的項目，其中包含「{3}」。它仍帶有 MOMIidentify 區塊，但預期的合併沒有匹配到內容。</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>遊戲的「{0}」資料在第 {2} 行有一個缺少 {1} 的項目，此模組可能寫入了它。</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>此崩潰早於目前安裝，且沒有內容匹配你現在擁有的模組。</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} 導致了遊戲崩潰。</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} 個模組分別向遊戲新增了無法載入的內容，其中任一個都足以導致崩潰。</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} 最可能是原因。</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} 是唯一影響遊戲正在讀取內容的已安裝模組。</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} 個已安裝模組新增了導致遊戲崩潰的資料，其中一個很可能是原因。</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>沒有模組被明確指出，但有幾個值得排除。</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>遊戲載入的內容缺少「{0}」欄位，且沒有明顯由某個已安裝模組負責。</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>遊戲讀取「{0}」時還沒有任何內容設定它。這通常是模組程式碼。</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>遊戲呼叫了並非函式的物件，通常是未安裝的 hook。</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>遊戲找不到資源「{0}」，通常是模組參照但沒有提供的精靈圖。</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM 僅憑呼叫堆疊無法將此崩潰關聯到某個模組。</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>分析指向的模組</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>最強的線索在前面。因崩潰發生在其程式碼中而被列出的模組不是猜測；因寫入遊戲正在讀取的資料而被列出的模組是候選者。</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>檢查這是否能解決問題</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>停用所選模組、重建遊戲、啟動並觀察。正常遊戲即可；遊戲關閉或幾分鐘未崩潰後 AIM 會報告結果。</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>停用、重建並執行</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>停用模組後，只有重建檔案遊戲才能看到變化，所以 AIM 會完成全部步驟。</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>不變更任何內容-直接執行並觀察</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>值得查看</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>遊戲寫入的崩潰檔案</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>崩潰位置</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>崩潰位置（{0} 個框架）</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>複製報告</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>將錯誤、呼叫堆疊、AIM 結論和已安裝模組全部複製到剪貼簿。</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>重新整理</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>正在尋找崩潰…</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>檔案已與模組清單一致，不需重建。</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>遊戲檔案已重建。</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>正在啟動 Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>正在監視遊戲。正常遊戲即可；遊戲關閉或 {0} 分鐘未崩潰後 AIM 會回報。</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>遊戲未啟動，因此未進行檢查。</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>停用 {0} 後相同崩潰仍出現，因此它不是原因。AIM 已排除並重新啟用它。</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>停用 {0} 後相同崩潰仍出現，因此它不是原因。AIM 已排除它，但沒有重新啟用。</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>停用 {0} 後沒有崩潰，它很可能是原因。請保持停用或等待更新。</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>已測試的模組都沒有導致這次崩潰。</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>檢查結果無法確定原因。</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>遊戲再次崩潰，但這次是不同的崩潰，因此結果無法確定。</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>已測試 {0} / {1} 個候選模組</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>這些檢查不會保留；完成後會恢復原本的模組狀態。</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>測試下一個：{0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>停用這個模組並再次啟動遊戲。</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>沒有更多候選模組可測試。</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>重新開始</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>清除檢查結果並從第一個候選模組重新開始。</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>已重新開始崩潰調查。</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>已確定的結果</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>顯示已完成的檢查</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>AIM 正在調查可能的崩潰原因。</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>不是原因</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>將此模組標記為已排除的原因。</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>標記為崩潰原因</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>將此模組標記為崩潰原因。</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>撤銷我的標記</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>移除你對此模組的手動標記。</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>此結果由你手動標記。</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>手動排除</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>手動標記</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>你已將此模組標記為崩潰原因。</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>已標記為崩潰原因。</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>已標記為崩潰原因，且目前已停用。</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>已標記為不是原因。</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>已標記為不是原因，且目前已啟用。</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>已移除手動標記。</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>沒有可用的崩潰結果，無法手動標記。</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>重新啟用</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>重新啟用此模組並重建遊戲檔案。</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>已重新啟用此模組。</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>無法重新啟用此模組。</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>已排除</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>已知崩潰原因</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>此模組很可能是崩潰原因。</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>已測試</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>AIM 可以自行套用的修復</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>這些是 AIM 根據檢查發現的機械修復，用於修正檔案中明確錯誤的內容，而不是猜測作者意圖。模組會先儲存到版本歷史並暫停更新。</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>套用修復</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>修復已套用。</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>沒有可套用的修復。</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>要套用此修復嗎？</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>此模組已暫停更新，直到修復完成。</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>此模組要求安裝器 {0}，而 AIM 實作的是 {1}。它可能仍然可以正常運作 - 請嘗試使用；如果出現問題，請查看模組頁面上的版本說明。</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>佈景主題</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>系統預設</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>淺色</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>深色</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>米斯特里亞豐收</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>米斯特里亞草地</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>米斯特里亞之夜</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>玫瑰花園</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>減小文字大小</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>增大文字大小</value></data>
 </root>

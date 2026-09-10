@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text;
+using Garethp.ModsOfMistriaInstallerLib.Lang;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Crash;
 
@@ -47,6 +48,9 @@ public sealed record GameRunOutcome(
 /// </summary>
 public static class GameRunRecorder
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     private static string LogFolder => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AIM", "game-runs");
 
@@ -77,11 +81,11 @@ public static class GameRunRecorder
 
         if (executable is null)
             return new GameRunOutcome(false, false, null, TimeSpan.Zero, null, null,
-                "AIM could not find the game's executable, so it cannot run it and watch.");
+                Text("GUICrashRunExecutableMissing"));
 
         if (GameProcess.IsRunning())
             return new GameRunOutcome(false, false, null, TimeSpan.Zero, null, null,
-                "Fields of Mistria is already running. Close it first, so AIM watches the run it started.");
+                Text("GUICrashRunAlreadyRunning"));
 
         var started = DateTimeOffset.Now;
         var logPath = Path.Combine(LogFolder, $"run-{started.UtcDateTime:yyyyMMdd-HHmmss}.log");
@@ -134,7 +138,7 @@ public static class GameRunRecorder
         {
             Logger.Log($"Could not start the game for a supervised run: {exception}");
             return new GameRunOutcome(false, false, null, TimeSpan.Zero, null, logPath,
-                $"AIM could not start the game: {exception.Message}");
+                string.Format(Text("GUICrashRunStartFailed"), exception.Message));
         }
 
         int? exitCode = null;
@@ -186,8 +190,7 @@ public static class GameRunRecorder
         // to pass as "the same crash came back" - which is a clearance for the mod on trial.
         if (isNew && after is null)
             return new GameRunOutcome(true, true, exitCode, duration, null, logPath,
-                "The game crashed, but AIM could not read the crash log it left, so this run proved " +
-                "nothing about the mod. Worth running the check again.")
+                Text("GUICrashRunUnreadableCrash"))
             {
                 Inconclusive = true
             };
@@ -195,9 +198,8 @@ public static class GameRunRecorder
         if (timedOut)
             return new GameRunOutcome(true, isNew, null, duration, isNew ? after : null, logPath,
                 isNew
-                    ? "The game crashed again during the check."
-                    : "The game is still running after the check window, and has not crashed. " +
-                      "That is the result you wanted - carry on playing.");
+                    ? Text("GUICrashRunCrashedDuringCheck")
+                    : Text("GUICrashRunStillRunning"));
 
         if (isNew)
         {
@@ -210,15 +212,13 @@ public static class GameRunRecorder
 
             return new GameRunOutcome(true, true, exitCode, duration, after, logPath,
                 repeat
-                    ? $"The same crash came back after {Describe(duration)}."
-                    : $"The game crashed again after {Describe(duration)}, with a different fault.");
+                    ? string.Format(Text("GUICrashRunSameCrash"), Describe(duration))
+                    : string.Format(Text("GUICrashRunDifferentCrash"), Describe(duration)));
         }
 
         if (exitCode is not null and not 0)
             return new GameRunOutcome(true, true, exitCode, duration, null, logPath,
-                $"The game exited with code {exitCode} after {Describe(duration)} and left no crash log. " +
-                "That usually means it was closed by something outside the game - a driver fault, or " +
-                "the process being killed - rather than by a mod, so this run proved nothing either way.")
+                string.Format(Text("GUICrashRunAbnormalExit"), exitCode, Describe(duration)))
             {
                 // Not a clearance. The crash being hunted did not happen, but neither did a clean
                 // run: something else ended the game, and the mod on trial is no more or less
@@ -227,7 +227,7 @@ public static class GameRunRecorder
             };
 
         return new GameRunOutcome(true, false, exitCode, duration, null, logPath,
-            $"The game ran for {Describe(duration)} and closed normally, with no new crash.");
+            string.Format(Text("GUICrashRunNormalExit"), Describe(duration)));
     }
 
     private static void Write(string? path, StringBuilder output, int? exitCode, TimeSpan duration, bool timedOut)

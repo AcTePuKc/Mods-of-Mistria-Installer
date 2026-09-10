@@ -58,6 +58,14 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUILanguageJapanese => T("GUILanguageJapanese");
     public string GUILanguageSpanish => T("GUILanguageSpanish");
     public string GUILanguageUkrainian => T("GUILanguageUkrainian");
+    public string GUIThemeMenu => T("GUIThemeMenu");
+    public string GUIThemeSystemDefault => T("GUIThemeSystemDefault");
+    public string GUIThemeLight => T("GUIThemeLight");
+    public string GUIThemeDark => T("GUIThemeDark");
+    public string GUIThemeMeadow => T("GUIThemeMeadow");
+    public string GUIThemeGreenMeadow => T("GUIThemeGreenMeadow");
+    public string GUIThemeNight => T("GUIThemeNight");
+    public string GUIThemeRoseGarden => T("GUIThemeRoseGarden");
     public string GUINewProfile => T("GUINewProfile");
     public string GUIDeleteCurrentProfile => T("GUIDeleteCurrentProfile");
     public string GUIMoveUp => T("GUIMoveUp");
@@ -137,6 +145,7 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIClearModSearch => T("GUIClearModSearch");
     public string GUIToggleAllMods => T("GUIToggleAllMods");
     public string GUISuggestLoadOrder => T("GUISuggestLoadOrder");
+    public string GUISuggestLoadOrderShort => T("GUISuggestLoadOrderShort");
     public string GUISuggestLoadOrderTooltip => T("GUISuggestLoadOrderTooltip");
     public string GUIReportConflicts => T("GUIReportConflicts");
     public string GUIConflictReportTitle => T("GUIConflictReportTitle");
@@ -145,12 +154,16 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUILoadOrderAlreadyGood => T("GUILoadOrderAlreadyGood");
     public string GUIShowDetails => T("GUIShowDetails");
     public string GUIClose => T("GUIClose");
+    public string GUIOk => T("GUIOk");
+    public string GUIYes => T("GUIYes");
+    public string GUINo => T("GUINo");
     public string GUIConflictDetailsHint => T("GUIConflictDetailsHint");
     public string GUICopyReport => T("GUICopyReport");
 
     // Nexus Vortex download-link support
     public string GUINexusMenu => T("GUINexusMenu");
     public string GUINexusHandlerMenuItem => T("GUINexusHandlerMenuItem");
+    public string GUINexusHandlerDisableMenuItem => T("GUINexusHandlerDisableMenuItem");
     public string GUINexusPasteLinkMenuItem => T("GUINexusPasteLinkMenuItem");
     public string GUINexusDownloadsHeader => T("GUINexusDownloadsHeader");
     public string GUINexusClearFinished => T("GUINexusClearFinished");
@@ -252,16 +265,20 @@ public sealed class LocalizedTexts : ObservableObject
 
     // Viewing the list: sorting, filtering and jumping. None of these touches the load order.
     public string GUISortAlphabetically => T("GUISortAlphabetically");
+    public string GUISortAlphabeticallyShort => T("GUISortAlphabeticallyShort");
     public string GUISortAlphabeticallyTooltip => T("GUISortAlphabeticallyTooltip");
     public string GUISortRecentlyUpdated => T("GUISortRecentlyUpdated");
+    public string GUISortRecentlyUpdatedShort => T("GUISortRecentlyUpdatedShort");
     public string GUISortRecentlyUpdatedTooltip => T("GUISortRecentlyUpdatedTooltip");
     public string GUIMoveModToTop => T("GUIMoveModToTop");
     public string GUIMoveModToTopTooltip => T("GUIMoveModToTopTooltip");
     public string GUIMoveModToBottom => T("GUIMoveModToBottom");
     public string GUIMoveModToBottomTooltip => T("GUIMoveModToBottomTooltip");
     public string GUIShowOnlyEnabled => T("GUIShowOnlyEnabled");
+    public string GUIShowOnlyEnabledShort => T("GUIShowOnlyEnabledShort");
     public string GUIShowOnlyEnabledTooltip => T("GUIShowOnlyEnabledTooltip");
     public string GUIShowOnlyUpdatable => T("GUIShowOnlyUpdatable");
+    public string GUIShowOnlyUpdatableShort => T("GUIShowOnlyUpdatableShort");
     public string GUIShowOnlyUpdatableTooltip => T("GUIShowOnlyUpdatableTooltip");
     public string GUIListReorderedNote => T("GUIListReorderedNote");
     public string GUIScrollToTop => T("GUIScrollToTop");
@@ -293,6 +310,8 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUIResearchDiagnosisHeader => T("GUIResearchDiagnosisHeader");
     public string GUIResearchDiagnosisCertain => T("GUIResearchDiagnosisCertain");
     public string GUIResearchDiagnosisUncertain => T("GUIResearchDiagnosisUncertain");
+    public string GUIResearchDiagnosisFilesOne => T("GUIResearchDiagnosisFilesOne");
+    public string GUIResearchDiagnosisFilesMany => T("GUIResearchDiagnosisFilesMany");
     public string GUIResearchWindowFailed => T("GUIResearchWindowFailed");
     public string GUIResearchModsHeader => T("GUIResearchModsHeader");
     public string GUIResearchModsHint => T("GUIResearchModsHint");

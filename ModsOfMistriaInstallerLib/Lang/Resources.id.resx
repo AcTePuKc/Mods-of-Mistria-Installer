@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -13,7 +13,7 @@
   <data name="GUILanguageDutch" xml:space="preserve"><value>Belanda</value></data>
   <data name="GUILanguagePortugueseBrazil" xml:space="preserve"><value>Portugis (Brasil)</value></data>
   <data name="GUILanguageIndonesian" xml:space="preserve"><value>Indonesia</value></data>
-  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM — Penginstal Alternatif untuk Fields of Mistria</value></data>
+  <data name="GUIApplicationTitle" xml:space="preserve"><value>AIM - Penginstal Alternatif untuk Fields of Mistria</value></data>
   <data name="GUILanguageMenu" xml:space="preserve"><value>Bahasa</value></data>
   <data name="GUIPlayButtonText" xml:space="preserve"><value>Mainkan</value></data>
   <data name="GUIProfileLabel" xml:space="preserve"><value>Profil:</value></data>
@@ -159,7 +159,7 @@ Buka halaman unduhan di browser?</value></data>
   <data name="CoreErrorNewObjectHasNoOverwritesOtherMod" xml:space="preserve"><value>Objek baru tidak menimpa objek dari mod lain.</value></data>
   <data name="CoreErrorNewItemHasNoOverwritesOtherMod" xml:space="preserve"><value>Item baru tidak menimpa item dari mod lain.</value></data>
   <data name="GUIGreetingText" xml:space="preserve"><value>Selamat datang di AIM</value></data>
-  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} oleh {1} — Versi {2}</value></data>
+  <data name="GUIModByAuthorWithVersion" xml:space="preserve"><value>{0} oleh {1} - Versi {2}</value></data>
   <data name="GUICouldNotFindMistria" xml:space="preserve"><value>Instalasi Fields of Mistria tidak ditemukan.</value></data>
   <data name="GUICouldNotFindMods" xml:space="preserve"><value>Folder mod tidak ditemukan. Pilih folder atau buat folder secara otomatis.</value></data>
   <data name="GUINoModsToInstall" xml:space="preserve"><value>Tidak ada mod yang dipilih untuk dipasang.</value></data>
@@ -265,6 +265,7 @@ Buka halaman unduhan di browser?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>Sekarang AIM akan membuka tautan “Vortex” dari situs Nexus.
 
 Browser mungkin meminta izin saat pertama kali kamu mengekliknya.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM berhasil didaftarkan, tetapi Windows mungkin masih menggunakan {0} untuk tautan nxm://.&#xD;&#xA;&#xD;&#xA;Buka aplikasi default Windows dan pilih AIM untuk protokol nxm://?&#xD;&#xA;&#xD;&#xA;“Ya” akan membuka aplikasi default; “Tidak” akan membiarkan pengaturan apa adanya.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM tidak akan lagi membuka tautan “Vortex” dari situs Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>AIM tidak dapat didaftarkan untuk tautan ini: {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>AIM tidak dapat berhenti mengelola tautan ini: {0}</value></data>
@@ -275,7 +276,10 @@ Alihkan ke AIM?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Clipboard tidak berisi tautan nxm://. Di halaman mod, klik kanan “Vortex”, lalu salin alamat tautannya terlebih dahulu.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Simpan</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Batal</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih — {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Ya</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Tidak</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} dari {1} dipilih - {2} sudah ada di dalam game, {3} akan ditambahkan</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Cari mod…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Hapus pencarian</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Pilih atau hapus pilihan semua mod</value></data>
@@ -284,7 +288,7 @@ Alihkan ke AIM?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Urutan pemuatan</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Mod telah diurutkan ulang agar setiap mod dimuat setelah mod yang dibutuhkannya.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Tidak ada yang perlu diubah: setiap mod sudah dimuat setelah dependensinya.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Periksa masalah</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Masalah</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Pemeriksaan masalah</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Tampilkan detail</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Tutup</value></data>
@@ -333,4 +337,500 @@ Alihkan ke AIM?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>Arsip aset telah diganti, tetapi AIM tidak dapat menyimpan status pemasangan. Mulai ulang AIM untuk memulihkan transaksi yang selesai.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Berkas pemulihan status pemasangan tertunda AIM tidak valid: {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM memulihkan assets.zip, tetapi tidak dapat memulihkan status pemasangan. Tutup program apa pun yang menggunakan berkas status, lalu coba lagi.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Terbaru</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Aktif</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>Perlu diperbarui</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Sarankan</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} oleh {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Masuk ke Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Keluar dari Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Akun Nexus terhubung.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Akun Nexus belum terhubung. Masuk untuk menggunakan fitur Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Akun Nexus terputus.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Edit manifest mod</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Membuka manifest.json (atau manifest.toml) di editor teks biasa. Hanya tersedia untuk mod yang berupa folder; mod di dalam .zip atau .rar tidak memiliki file yang dapat diedit.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Edit konfigurasi mod</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Membuka file konfigurasi mod di editor teks biasa. Dinonaktifkan jika AIM tidak menemukan file konfigurasi.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Tidak dapat membuka {0}: {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Hapus mod…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Mengeluarkan mod dari folder mod. AIM akan bertanya terlebih dahulu dan mengirim file ke Recycle Bin, bukan menghapusnya.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Hapus mod</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Pindahkan "{0}" v{1} ke Recycle Bin?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Mod akan dikeluarkan dari folder mod. Jika berubah pikiran, Anda dapat mengembalikannya dari Recycle Bin. File yang sudah dipasang ke dalam game akan tetap ada sampai instalasi atau penghapusan berikutnya.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Hapus "{0}" v{1} secara permanen?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Sistem ini tidak memiliki Recycle Bin yang dapat digunakan AIM, jadi file mod akan dihapus. Tindakan ini tidak dapat dibatalkan.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>"{0}" tidak dapat dihapus: {1}&#xD;&#xA;&#xD;&#xA;Mod mungkin sedang dibuka di program lain, atau game masih berjalan.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Hapus yang dipilih…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Menghapus semua mod yang dicentang sekaligus melalui Recycle Bin setelah menampilkan daftarnya.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Tidak ada mod yang dicentang, jadi tidak ada yang dapat dihapus.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Pindahkan {0} mod ke Recycle Bin?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Mod akan dikeluarkan dari folder mod dan dapat dikembalikan dari Recycle Bin. File yang sudah dipasang ke dalam game akan tetap ada sampai instalasi atau penghapusan berikutnya.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Hapus {0} mod secara permanen?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Sistem ini tidak memiliki Recycle Bin yang dapat digunakan AIM, jadi file akan dihapus. Tindakan ini tidak dapat dibatalkan.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>… dan {0} lainnya.</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} dari {1} mod dihapus.</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Mod berikut tidak dapat dihapus: {0}&#xD;&#xA;&#xD;&#xA;Mod mungkin sedang dibuka di program lain, atau game masih berjalan.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows tidak dapat memindahkannya ke Recycle Bin</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>"{0}" tidak lagi berada di folder mod. Daftar telah dimuat ulang.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Menandai masalah ini sebagai sudah diperiksa dan tidak bermasalah. AIM akan menyembunyikannya sampai versi salah satu mod yang terlibat berubah, lalu akan bertanya lagi.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Tampilkan masalah yang ditandai baik-baik saja ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Ditandai baik-baik saja</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[ditandai baik-baik saja]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>File yang ditulis oleh keduanya</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>menang sekarang</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Jadikan ini pemenang</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Memindahkan mod ini ke bawah mod lain yang berbagi file dengannya, sehingga versi file miliknya yang dipasang. Urutan pemuatan di daftar akan langsung berubah.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>"{0}" sekarang dimuat paling akhir di antara mod yang berbagi file ini, sehingga salinannya menang.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Cari solusi…</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Membaca apa yang dikatakan halaman Nexus mod-mod ini tentang satu sama lain, lalu membuka laporan bug, komentar, dan pencarian web agar Anda dapat menentukan apakah ini benar-benar penting.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Ubah…</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Memindahkan mod ini ke tombol yang belum digunakan siapa pun dengan mengedit pengaturannya sendiri di {0}. Mod dicadangkan terlebih dahulu, dan perubahan diterapkan ke game pada instalasi berikutnya.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Ubah pintasan</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Pindahkan "{0}" dari {1} ke {2}?&#xD;&#xA;&#xD;&#xA;AIM mengedit pengaturan milik mod tersebut dan menyimpan cadangan yang dapat dipulihkan dari menu klik kanan. Perubahan akan diterapkan ke game pada instalasi berikutnya.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>"{0}" sekarang menggunakan {1}, diperbarui dalam {2} file.&#xD;&#xA;&#xD;&#xA;Pasang ulang agar perubahan diterapkan ke game.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>"{0}" tidak dapat diubah: {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>"{0}" sekarang menggunakan {1}, bukan {2}. Pasang ulang agar perubahan diterapkan ke game.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Selesai - "{0}" dipindahkan ke {1}, jadi tidak ada lagi yang menggunakan pintasan ini. Pasang ulang agar perubahan diterapkan ke game.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Mod ini masih berupa .zip atau .rar. Ekstrak terlebih dahulu ke folder mod agar AIM dapat mengedit pengaturannya.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Mod ini tidak mendeklarasikan tombol sebagai pengaturan bernama, jadi AIM tidak dapat mengubahnya dengan aman. Periksa pengaturan mod di dalam game atau file konfigurasinya.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Semua tombol fungsi sudah digunakan oleh mod yang dipilih, jadi tidak ada tombol kosong untuk memindahkan yang ini.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM tidak dapat membaca file mod ini.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Urutkan A-Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Mengurutkan daftar berdasarkan nama agar Anda dapat menemukan mod dengan cepat. Ini hanya tampilan; urutan pemuatan tidak berubah. Mematikannya menampilkan urutan sebenarnya lagi dan fitur seret ditangguhkan saat aktif.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Urutkan berdasarkan pembaruan terbaru</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Menampilkan yang terbaru terlebih dahulu berdasarkan perubahan terakhir folder mod di disk. Mod yang baru dipasang atau diperbarui akan muncul di atas. Ini hanya tampilan; urutan pemuatan tidak berubah dan fitur seret ditangguhkan.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Pindahkan ke atas urutan pemuatan</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Memuat mod ini terlebih dahulu agar mod lain dapat dibangun di atasnya dan menimpanya. Framework dan mod yang menjadi dependensi mod lain sebaiknya berada di sini. Ini mengubah urutan pemuatan sebenarnya, bukan hanya tampilan.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Pindahkan ke bawah urutan pemuatan</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Memuat mod ini terakhir. Jika berbagi file dengan mod lain, versi file milik mod ini akan menang. Recolor dan penggantian pribadi sebaiknya berada di sini. Ini mengubah urutan pemuatan sebenarnya, bukan hanya tampilan.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Hanya mod yang aktif</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Menyembunyikan semua yang dinonaktifkan. Yang penting adalah urutan mod yang benar-benar masuk ke game; pada daftar panjang, urutan itu lebih mudah dibaca tanpa mod yang dinonaktifkan.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Hanya mod yang memerlukan perhatian</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Menampilkan hanya mod yang memiliki pembaruan dan mod yang tidak dapat dijangkau saat pemeriksaan terakhir, misalnya karena tidak terhubung ke Nexus, masalah jaringan, atau halaman yang sudah tidak ada.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Hanya tampilan - urutan pemuatan tidak berubah, fitur seret ditangguhkan</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Lompat ke bagian atas daftar</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Lompat ke bagian bawah daftar</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) juga digunakan oleh {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Catatan rilis</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Catatan rilis - arahkan kursor untuk memuat, klik untuk membaca riwayat lengkap.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Yang baru di {0}:&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Klik untuk membaca setiap versi.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>Penulis mod ini belum memublikasikan catatan rilis.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM tidak dapat membaca catatan rilis mod ini. Akun Nexus harus terhubung dan AIM harus mengetahui halaman Nexus mod tersebut.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} versi dengan catatan, dimulai dari yang terbaru.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Versi {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versi</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Membuat game crash</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Ditandai sebagai penyebab crash</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Uji coba yang diawasi membuktikan bahwa mod ini membuat game crash: saat dinonaktifkan, game berjalan dan crash tidak muncul lagi. AIM membiarkannya tetap dinonaktifkan.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Anda sendiri menandai mod ini sebagai penyebab crash di pemeriksa crash. AIM tidak mengujinya, tetapi mempercayai Anda dan menonaktifkan mod tersebut.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Versi {0}, diperiksa {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Buka «Periksa Crash» untuk melihat perbaikan yang dapat diterapkan AIM dan keterangan di halaman mod. Tanda ini terkait dengan versi tersebut dan akan dihapus saat penulis merilis pembaruan.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Diedit oleh AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Patch tersebut tidak memiliki file utama yang dapat dipasang AIM sendiri. File-nya terbuka di browser; pilih yang Anda inginkan dan gunakan «Mod Manager Download».</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Unduhan patch dibatalkan.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM mengubah file di dalam mod ini untuk menyelesaikan konflik. File di disk sekarang tidak lagi persis sama dengan yang diterbitkan penulis.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>Versi mod sebelum perubahan ada di menu tarik-turun Versi. Pulihkan dari sana, atau klik kanan mod dan pilih «Batalkan perubahan AIM».</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Batalkan perubahan AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Ikuti di Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Menambahkan mod ini ke pelacakan Nexus agar situs memberi tahu Anda tentang pembaruan dan kiriman penulis. Akun Nexus harus terhubung.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Sekarang mengikuti {0} di Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Anda sudah mengikuti {0} di Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Tidak dapat mengikuti {0} di Nexus Mods: {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM tidak dapat membaca ID mod Nexus dari halaman yang dimilikinya untuk mod ini.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Salinan sebelumnya dari mod ini yang disimpan AIM saat pembaruan. Pilih salah satu untuk kembali ke versi tersebut.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Kembali ke:</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Klik untuk mengunduh dan memasangnya. Versi Anda saat ini disimpan sebagai cadangan.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Klik untuk membuka halaman unduhan. AIM tidak tahu file Nexus yang mana. Klik kanan mod dan gunakan «Hubungkan dengan Nexus…» agar AIM dapat memasang pembaruan ini secara otomatis.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus melaporkan akun Anda ({0}) sebagai Premium, jadi penolakan ini bukan karena tingkat akun. Biasanya berarti sesi masuk telah kedaluwarsa atau dicabut. Masuk lagi dari menu roda gigi.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus melaporkan akun Anda ({0}) sebagai akun gratis. Unduhan langsung adalah fitur Premium, jadi gunakan tombol di situs web.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Tidak ada akun Nexus yang terhubung, jadi AIM tidak dapat mengunduh apa pun secara langsung.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM tidak dapat memeriksa akun Nexus Anda: {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Tombol</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Semua tombol keyboard dan pengendali yang digunakan mod Anda dalam satu daftar, dengan konflik berwarna merah dan pengeditan langsung.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Pengaturan tombol mod</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Pengaturan tombol yang digunakan mod Anda saat ini. Mod menyimpannya di folder konfigurasi milik game, bukan di folder mod, jadi pembaruan mod tidak akan menghapusnya. Namun mod tetap dapat mengatur ulang pengaturannya sendiri, dan AIM akan menawarkan untuk mengembalikan pilihan Anda.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} pengaturan tombol, {1} di antaranya berkonflik.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Hanya tampilkan konflik</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Muat ulang</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM tidak dapat membaca pengaturan tombol mod Anda: {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Membaca pengaturan tombol mod Anda…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Tidak ada mod yang dipilih memiliki pengaturan tombol yang dapat dilihat AIM. Mod yang membuat pengaturan saat berjalan tidak akan menampilkannya sampai game dijalankan.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Tidak ada konflik.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM tidak dapat menemukan folder konfigurasi game, jadi yang ditampilkan adalah nilai bawaan dari mod Anda. Jalankan game sekali agar nilai tersebut menjadi pengaturan tombol sebenarnya.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria sedang berjalan. Pengeditan dimatikan karena game menulis ulang pengaturan semua mod saat ditutup dan akan menimpa perubahan di sini. Tutup game lalu tekan Muat ulang.</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>juga digunakan oleh {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>Input yang sama digunakan di:</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Centang atau hapus centang mod di layar</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>Berlaku untuk baris yang sedang ditampilkan oleh pencarian dan filter Anda, bukan yang tersembunyi. Tanpa filter, berlaku untuk semua mod. Mod yang tidak dapat dipasang AIM dibiarkan.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>bawaan mod - AIM tidak dapat mengubahnya sampai mod menulis pengaturannya</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Mod ini belum menulis pengaturannya, jadi ini adalah nilai bawaan yang tertanam di dalamnya. Jalankan game sekali atau ubah dari pengaturan mod, lalu AIM dapat mengeditnya di sini.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(tidak ditetapkan)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>tidak akan diterima game</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>"{0}" bukan nama yang dikenali game, jadi mod ini kembali ke nilai bawaannya. Pilih sesuatu dari daftar untuk memperbaikinya.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM tidak dapat menulis ke {0}. File mungkin sedang dibuka di program lain, atau game mungkin sudah dimulai.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Pilih tombol atau button</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Tombol keyboard atau pengendali</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Tekan tombol untuk menangkapnya</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Tekan tombol sekarang… (Escape untuk berhenti)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Ini akan disimpan sebagai: {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Button pengendali dipilih dari daftar - AIM tidak dapat membaca pengendali. Daftar ini berisi semua nama yang diterima game; ALT, tombol kunci, dan numpad tidak termasuk, dan mod yang menggunakan salah satunya akan diam-diam kembali ke nilai bawaan.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Simpan</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Hapus penetapan</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Mengosongkan pengaturan. Sebagian besar mod menganggapnya sebagai «mati»; beberapa mod justru kembali ke nilai bawaan.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (bawaan mod - belum dikonfigurasi)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Pengaturan tombol berubah</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>{0} pengaturan tombol yang Anda pilih telah diubah oleh mod itu sendiri, biasanya setelah pembaruan mengatur ulang pengaturannya.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Kembalikan pilihan Anda? Pengaturan yang sepenuhnya dihapus oleh pembaruan tidak akan dipulihkan.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… dan {0} lainnya.</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} pengaturan tombol dipulihkan. Jalankan game agar perubahan berlaku.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Periksa</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Memeriksa mod yang dipilih pada halaman Nexus-nya. Gunakan panah untuk semua mod, atau untuk memasang semua yang memiliki pembaruan.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>Memeriksa {0} mod: {1} memiliki pembaruan, {2} tidak dapat diperiksa.&#xD;&#xA;&#xD;&#xA;Unduh dan pasang pembaruan tersebut sekarang? Versi saat ini dari setiap mod disimpan sebagai cadangan yang dapat dipulihkan.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Perbarui semua yang memiliki pembaruan</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Mengunduh dan memasang semua pembaruan yang tertunda satu per satu, sambil menyimpan versi saat ini dari setiap mod sebagai cadangan yang dapat dipulihkan.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Perbarui mod</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Tidak ada pembaruan yang tertunda. Periksa pembaruan terlebih dahulu.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Perbarui {0} mod?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Versi saat ini dari setiap mod disimpan sebagai cadangan yang dapat dipulihkan dari menu klik kanannya.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Memperbarui {0} dari {1}: {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} dari {1} mod diperbarui.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Mod berikut tidak dapat diunduh langsung dan memerlukan halaman Nexus-nya: {0}&#xD;&#xA;&#xD;&#xA;Nexus hanya memberikan tautan unduhan langsung kepada akun Premium. Untuk akun gratis, buka halaman mod dan gunakan tombol «Mod Manager Download». AIM akan mengambilnya jika terdaftar untuk menangani tautan tersebut.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Tidak ada yang dilaporkan. AIM tidak menemukan file bersama, konflik pintasan, persyaratan yang hilang, atau peringatan kompatibilitas di antara mod yang Anda pilih.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Anda menandai ini bukan sebagai konflik yang sebenarnya.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Anda menemukan patch untuk ini.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Anda menandai mod ini tidak kompatibel - matikan salah satunya.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Diselesaikan dengan mengubah tombol: {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Folder unduhan yang dipantau</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Mod yang Anda unduh secara manual ke folder yang dipantau akan dipindahkan ke folder mod dan muncul sendiri dalam daftar.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Pantau folder…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Pilih folder untuk memantau mod yang diunduh</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Periksa folder yang dipantau sekarang</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Tidak ada folder yang dipantau</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Berhenti memantau folder ini</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Folder yang dipantau</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Tidak ada yang baru untuk diimpor. AIM hanya memindahkan arsip dan folder yang berisi manifest; yang lain dibiarkan di tempatnya.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod dibawa dari folder yang dipantau.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Dipindahkan ke folder mod Anda:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - Anda sudah memasang mod ini sebagai "{1}". Perbarui salinan itu atau hapus terlebih dahulu; dua salinan dari satu mod akan saling berebut file.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Dibiarkan di folder yang dipantau:&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Folder mod tidak ditemukan, jadi tidak ada yang dapat dibuka.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Tidak dapat membuka folder mod: {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Folder mod</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Buka folder mod Fields of Mistria di pengelola file Anda</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Crash</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Membaca log crash game, mencari tahu mod yang ditunjuk, lalu menawarkan untuk mematikannya dan memeriksa apakah crash berhenti.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Tidak ada tempat tersisa di folder mod untuk menyiapkan {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Sudah terlalu banyak salinan {0} di folder mod.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Tidak dapat mengunduh file dari Nexus: {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>tidak ada server unduhan yang merespons</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Tidak ada yang perlu diperbarui.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Tidak dapat menyimpan sesi akun Nexus. Periksa akses disk dan coba lagi.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>Cadangan {0} tidak ditemukan.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>File yang diunduh tidak ditemukan.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Folder mod tidak ditemukan.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Unduhan tersebut tidak berisi manifest.toml, jadi bukan mod yang dapat ditangani installer ini. Mungkin itu mod lama atau file yang harus dipasang secara manual.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Tidak dapat menyelesaikan mod yang diunduh. Kesalahan instalasi awal: {0}&#xD;&#xA;Salinan mod sebelumnya tidak dapat dipulihkan. Cadangannya disimpan untuk pemulihan manual:&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>Salinan yang disisihkan tidak lagi berada di {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Sudah terlalu banyak salinan {0} yang disimpan di samping folder mod.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Tidak dapat mengekstrak mod: {0} Salinan sebelumnya tidak dapat dipulihkan; cadangannya disimpan untuk pemulihan manual{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Tidak dapat mengekstrak mod: {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>Arsip yang diunduh berisi terlalu banyak file.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>Arsip yang diunduh berisi file yang terlalu besar.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>Arsip yang diunduh melebihi ukuran hasil ekstrak yang didukung.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>Entri arsip «{0}» melebihi ukuran hasil ekstrak yang didukung.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>File yang diunduh bukan arsip yang dapat dibaca installer ini. Format yang didukung: zip, rar, dan 7z.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>Arsip berisi jalur yang tidak aman: {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>Masuk ke Nexus dibatalkan karena status callback tidak cocok.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus tidak mengembalikan kode otorisasi.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>Sesi akun Nexus perlu dihubungkan kembali.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>Pendaftaran OAuth Nexus untuk AIM masih menunggu.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus tidak dapat menyelesaikan proses masuk akun.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus mengembalikan sesi akun yang tidak lengkap.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Tidak dapat membaca respons akun Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM sedang menunggu callback masuk dari Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>Respons masuk Nexus tidak cocok dengan sesi AIM ini.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>Masuk ke Nexus dibatalkan. Anda dapat kembali ke AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>Masuk ke Nexus dibatalkan atau ditolak oleh browser.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>Masuk ke Nexus selesai. Anda dapat kembali ke AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus tidak mengembalikan server unduhan untuk file tersebut.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>API Nexus tidak merespons tepat waktu.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Tidak dapat menghubungi API Nexus: {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus mengembalikan respons yang tidak terduga.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Tidak dapat membaca respons dari Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus menolak sesi akun. Hubungkan kembali akun Nexus Anda.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus menolak permintaan. Tautan unduhan mungkin sudah kedaluwarsa - coba klik lagi.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Mod atau file tersebut sudah tidak ada di Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Anda telah mencapai batas API Nexus. Tunggu sebentar sebelum mengunduh lagi.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus mengembalikan kesalahan ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Belum ada akun Nexus yang terhubung.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>File asal mod ini sudah tidak ada di halaman Nexus-nya, dan tidak ada file yang tersisa yang merupakan versi lebih baru. Halaman tersebut memuat beberapa mod terpisah, jadi AIM tidak akan menawarkan mod lain sebagai pembaruan. Periksa halaman itu secara manual jika Anda merasa ada rilis yang lebih baru.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>Halaman mod tersebut tidak memiliki file utama untuk dibandingkan.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM tidak tahu dari file mana di halaman ini mod tersebut berasal, jadi tidak dapat menentukan apakah versi di halaman lebih baru. Unduh sekali melalui AIM, atau klik kanan mod dan hubungkan dengan file tertentu agar pemeriksaan pembaruan dapat dipercaya.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>Pemeriksaan pembaruan berhenti lebih awal.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>Pemeriksaan pembaruan tidak selesai untuk mod ini.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Belum ada akun Nexus yang terhubung.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Unduhan ini untuk game lain ({0}), jadi installer ini tidak dapat menanganinya.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Tautan unduhan telah kedaluwarsa. Klik tombol «Vortex download» di halaman mod lagi.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Folder mod tidak ditemukan.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Menanyakan file kepada Nexus…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Mengunduh {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Mengekstrak {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Pemasangan dibatalkan</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} dipasang</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} mod dipasang</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Unduhan dibatalkan</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Tautan unduhan kosong.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Itu bukan tautan nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Tautan tersebut tidak menyebutkan game.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Koleksi Nexus belum didukung - unduh mod satu per satu.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Tautan tersebut bukan unduhan file mod.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Tautan tersebut memiliki ID mod atau file yang tidak valid.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Tidak dapat menentukan lokasi installer dijalankan.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>Pendaftaran tautan nxm:// hanya didukung di Windows dan Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM telah didaftarkan, tetapi Windows mungkin masih menggunakan {0} untuk tautan nxm://.&#xD;&#xA;&#xD;&#xA;Pilih AIM sebagai default untuk tautan nxm:// di Aplikasi default Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>Pendaftaran nxm:// tidak dapat diverifikasi setelah ditulis.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Pembaruan mungkin memperbaiki yang Anda tambal</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} tersedia. Anda menggunakan {2} dengan perbaikan AIM diterapkan: {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Perbarui dan hapus perbaikan AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>Pembaruan mengganti folder mod, sehingga edit AIM ikut terhapus. Jika versi baru belum memperbaiki masalah, crash akan muncul lagi dan Anda dapat menerapkan perbaikan kembali. Versi sebelumnya masih ada di daftar Pemulihan.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Arsip eksternal terdeteksi</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM menemukan assets.zip eksternal.&#xD;&#xA;&#xD;&#xA;Jika Anda melanjutkan, AIM akan:&#xD;&#xA;• menyimpannya sebagai file assets.foreign-…zip&#xD;&#xA;• memulihkan cadangan terverifikasi&#xD;&#xA;• mencoba kembali instalasi ini&#xD;&#xA;&#xD;&#xA;Mod yang hanya ada di arsip eksternal akan dinonaktifkan. Lanjutkan?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Cari perbaikan</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Membaca halaman mod ini…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Hubungkan akun Nexus dari menu roda gigi agar AIM dapat membacakan halaman mod ini. Sementara itu, tautan di bawah adalah cara tercepat untuk memeriksanya.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Tidak ada jawaban di deskripsi, readme, changelog, laporan bug, atau komentar mod ini. AIM mencari nama mod lain di seluruh utas komentar dan membaca laporan bug terbaru. Jadi benar-benar berarti "belum ada yang mengatakan", bukan "belum ada yang mencari", tetapi bukan berarti "tidak ada masalah". Tautan di bawah tetap menuju halaman aslinya.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} hal dari halaman mod ini berkaitan dengan pasangan ini.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM tidak dapat membaca halaman mod: {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Isi halaman mod</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Periksa sendiri</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM membaca komentar dengan mencari seluruh utas dan membaca beberapa halaman pelacak bug, tetapi selalu sebagai pengunjung yang belum masuk. Tautan ini membuka halaman aslinya.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Buka halaman mod ini</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Buka patch</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Apa yang kamu temukan?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Menyimpan ini membuat jawabannya tetap bersama masalah, jadi kamu tidak perlu mencarinya lagi nanti.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Tautan patch (opsional):</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Bukan konflik nyata</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Mod berbagi file, tetapi dalam praktiknya tidak masalah. Tandai masalah sebagai selesai dan sembunyikan sampai salah satu mod diperbarui.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Ada patch</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Seseorang telah menerbitkan patch kompatibilitas. Klik sekali untuk menambahkan tautannya, lalu sekali lagi untuk menyimpannya. Masalah akan ditandai selesai.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Keduanya tidak kompatibel</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Menyimpan hasilnya, tetapi masalah tetap ditampilkan karena kamu masih perlu menonaktifkan salah satunya.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Masih memutuskan</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Simpan patch</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Itu tidak terlihat seperti tautan https. Tempelkan alamat web patch atau biarkan kotaknya kosong.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Hasil pembacaan file oleh AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM membaca semua file yang dibagikan mod ini.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM tidak dapat membaca semua file, jadi anggap ini sebagai hasil pembacaan, bukan fakta.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} file bersama</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} file bersama</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Sebagian jendela ini tidak dapat dibuat: {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Mod dalam konflik ini</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Buka halaman untuk menilai mod sendiri, atau keluarkan dari daftar jika kamu sudah memutuskan untuk tidak menggunakannya.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Buka halaman</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM tidak tahu asal mod ini, jadi tidak ada halaman yang dapat dibuka.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Hapus</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Mengeluarkan mod ini dari folder mod. AIM akan bertanya dulu, lalu memindahkan file ke Recycle Bin.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} telah dihapus, jadi konflik tidak ada lagi.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Yang sudah kamu punya</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mod yang sudah ada di daftarmu dan berkaitan dengan pasangan ini. AIM memeriksanya sebelum menawarkan apa pun untuk diunduh.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Yang dapat dilakukan AIM</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Tidak ada yang terjadi di sini sebelum kamu memilihnya, dan semua tindakan ini dapat dibatalkan.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Patch yang sudah tersedia</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Setujui dan terapkan</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Selesai: {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Tidak berhasil: {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Mengatakan ini baik-baik saja</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Mengatakan ini masalah</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Berfungsi dengan satu syarat</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Menyebutkan topik tanpa menjawabnya</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>AMAN</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>MASALAH</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>SYARAT</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>KONTEKS</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Tampilkan seluruh kutipan</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Tampilkan lebih sedikit</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Cari di halaman</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Menyalin "{0}" dan membuka halaman asalnya. Tekan Ctrl+F di sana lalu tempel untuk langsung menuju kutipan. Jika ini komentar, letaknya mungkin beberapa halaman ke belakang; tempelkan ke kotak pencarian utas tersebut.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Disalin. Tekan Ctrl+F di halaman yang baru dibuka lalu tempel.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Ini mengubah file di dalam mod yang bukan kamu buat. AIM akan menyalin seluruh mod ke daftar Versi terlebih dahulu dan menandai baris sebagai diedit. Lanjutkan?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Periksa crash</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Crash</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>File crash</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Membuka folder tempat AIM menyimpan salinan setiap crash yang pernah ditemukan. Game sendiri hanya menyimpan yang terbaru.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Kesimpulan AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM tidak menemukan executable game, jadi tidak dapat menjalankan dan mengawasinya.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria sedang berjalan. Tutup dulu agar AIM dapat mengawasi sesi yang dimulainya.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM tidak dapat menjalankan game: {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Game mengalami crash, tetapi AIM tidak dapat membaca log crash yang ditinggalkan. Sesi ini tidak membuktikan apa pun tentang mod. Sebaiknya jalankan pemeriksaan lagi.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Game kembali mengalami crash saat pemeriksaan.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Game masih berjalan setelah waktu pemeriksaan dan tidak mengalami crash. Itulah hasil yang diharapkan, lanjutkan bermain.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Crash yang sama muncul lagi setelah {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Game mengalami crash lagi setelah {0}, dengan kesalahan yang berbeda.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Game keluar dengan kode {0} setelah {1} dan tidak meninggalkan log crash. Biasanya ini berarti game ditutup oleh sesuatu di luar game, seperti masalah driver atau proses dihentikan, bukan oleh mod. Sesi ini juga tidak membuktikan apa pun.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Game berjalan selama {0} lalu ditutup normal, tanpa crash baru.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Game gagal di dalam kode mod ini sendiri, pada {0} baris {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Kode mod ini ada di call stack, pada {0} baris {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Mod ini disebutkan dalam pesan crash itu sendiri.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Game mengalami crash saat membaca data "{0}", yang ditambahkan oleh {1} mod terpasang.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Game mengalami crash saat membaca data "{0}", yang ditambahkan oleh {1} mod terpasang.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Mod ini menambahkan data "{0}" yang sedang dibaca game ketika crash.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Data "{0}" di arsip game pada disk tidak memiliki entri tanpa {1}. Penyebabnya sudah diselesaikan, mungkin oleh update, instalasi ulang, atau mod yang kemudian kamu nonaktifkan. Jika terjadi lagi, lihat mod di bawah.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Data "{0}" yang sedang dimuat game masih memiliki satu entri tanpa {2}. Crash ini akan terjadi lagi saat peluncuran berikutnya.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Data "{0}" yang sedang dimuat game masih memiliki {1} entri tanpa {2}. Crash ini akan terjadi lagi saat peluncuran berikutnya.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Mod ini memerlukan engine hook, dan crash berupa pemanggilan sesuatu yang ternyata bukan fungsi. Dari dalam game, hook yang gagal dipasang terlihat seperti ini.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Crash ini lebih lama daripada mod yang sedang terpasang, tetapi masalah yang dijelaskannya masih ada di arsip game pada disk. Jadi ini bukan laporan lama yang tidak relevan. Perkirakan akan terjadi lagi saat peluncuran berikutnya.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Crash ini lebih lama daripada mod yang sedang terpasang. AIM membangun ulang arsip game setelahnya, jadi game yang crash bukan lagi game yang sekarang ada di disk. Anggap semuanya di bawah sebagai petunjuk, bukan keputusan, dan mainkan sekali sebelum mengubah apa pun.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Gagal di dalam {0}(), pada: {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Data game sendiri "{0}" memiliki entri tanpa {1} pada baris {2}, berisi "{3}", yang tidak didefinisikan mod terpasang lain. Entri tanpa {1} tepat menjadi tempat game berhenti.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Data game sendiri "{0}" memiliki entri tanpa {1} pada baris {2}, berisi "{3}", yang tidak didefinisikan mod terpasang lain. Entri ini masih memiliki blok MOMIidentify, berarti penggabungan yang ditunggu tidak menemukan pasangan. Entri baru tanpa {1} ditambahkan, bukan memperbarui entri yang sudah memiliki {1}.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Data game "{0}" memiliki entri tanpa {1} pada baris {2}, dan mod ini adalah salah satu yang mungkin menulisnya.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Crash ini terjadi sebelum instalasi saat ini, dan tidak ada isinya yang cocok dengan mod yang sekarang kamu miliki.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} yang menyebabkan game crash.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mod masing-masing menambahkan sesuatu ke data game yang tidak dapat dimuat. Salah satu saja sudah cukup menjadi penyebab.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} adalah penyebab yang paling mungkin.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} adalah satu-satunya mod terpasang yang menyentuh data yang sedang dibaca game.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mod terpasang menambahkan data tempat game crash. Salah satunya sangat mungkin menjadi penyebab.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Tidak ada yang jelas menunjuk ke mod tertentu, tetapi beberapa layak disingkirkan.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Sesuatu yang dimuat game tidak memiliki "{0}", dan tidak ada mod terpasang yang jelas memilikinya.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Game membaca "{0}" sebelum ada yang mengisinya. Biasanya ini adalah kode mod.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Game memanggil sesuatu yang bukan fungsi, biasanya hook yang gagal dipasang.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Game tidak menemukan asset "{0}", biasanya sprite yang dirujuk mod tetapi tidak disertakan.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM tidak dapat menghubungkan crash ini ke mod hanya dari backtrace.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mod yang ditunjuk</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Yang paling kuat ditampilkan lebih dulu. Mod yang disebut karena crash terjadi di kodenya sendiri bukan tebakan; mod yang menulis data yang sedang dibaca game adalah daftar kandidat.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Periksa apakah ini memperbaikinya</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Menonaktifkan mod yang dipilih, membangun ulang game agar perubahan berlaku, menjalankannya, lalu mengawasi. Bermainlah seperti biasa. AIM akan melapor saat game ditutup, atau setelah beberapa menit jika tidak crash.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Nonaktifkan, bangun ulang, dan jalankan</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Menonaktifkan mod tidak mengubah apa yang dapat dilihat game sampai arsip dibangun ulang. AIM melakukan semuanya agar kamu tidak perlu mengingat langkah tengah.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Jangan ubah apa pun, cukup jalankan dan awasi</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>Layak dilihat</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>File crash seperti yang ditulis game</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Tempat crash terjadi</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Tempat crash terjadi ({0} frame)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Salin laporan</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Menyalin semuanya ke clipboard: error, backtrace, kesimpulan AIM, dan mod yang terpasang.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Segarkan</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Mencari crash…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Tidak ada crash yang tersimpan. Game belum crash sejak dipasang, atau belum pernah dijalankan di komputer ini.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Membandingkan backtrace dengan mod yang terpasang…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM tidak dapat melihat daftar mod dari sini, jadi dapat menampilkan crash tetapi tidak dapat mengatakan mod mana penyebabnya.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM tidak dapat selesai membaca crash ini: {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Crash ini lebih lama daripada mod yang sekarang terpasang. AIM membangun ulang game setelahnya, jadi game yang crash bukan game yang sekarang ada di disk. Mainkan sekali sebelum mengubah apa pun, dan anggap mod di bawah sebagai petunjuk, bukan kesimpulan.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Kamu belum masuk ke Nexus, jadi AIM tidak dapat membaca pelacak bug mod. Semua hasil di atas berasal dari file milikmu sendiri.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Membaca pelacak bug dan komentar mod yang ditunjuk…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Tidak ada mod yang cukup jelas untuk diteliti halamannya.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM tidak dapat membaca halaman mod: {0}. Kesimpulan dari file milikmu tetap berlaku.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Tidak ada halaman mod yang menyebutkan crash ini.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} hal dari halaman mod berkaitan dengan ini.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>PASTI</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>MUNGKIN</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>MUNGKIN SAJA</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>KECIL KEMUNGKINANNYA</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Buka halaman mod</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Buka halaman ini</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Laporkan bug ini</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Menulis laporan yang dibutuhkan penulis, berisi error, backtrace, versi game, dan mod lain yang terpasang, menyalinnya ke clipboard, lalu membuka pelacak bug mod. Kamu yang membaca dan mengirimkannya; AIM tidak melakukannya.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Laporan ada di clipboard dan pelacak bug sudah terbuka. Baca lalu kirimkan.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Laporan ada di clipboard. AIM tidak tahu asal mod ini, jadi kamu harus mencari pelacak atau Discord penulisnya sendiri.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Disalin.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Nonaktifkan dan periksa</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Menonaktifkan mod ini, membangun ulang game, lalu menjalankannya agar kamu tahu apakah mod ini penyebabnya, bukan sekadar menebak.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Membangun ulang game tanpa mod ini. Game akan dimulai sendiri setelah selesai. Progres ada di bawah.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Hapus mod</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} telah dihapus.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versi dan perubahan AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM mengubah mod ini:</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Batalkan perubahan AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Mengembalikan setiap file yang disisihkan AIM di mod ini dan membiarkan file lain tetap apa adanya. Baris yang diubah AIM dibatalkan dengan memulihkan versi di bawah.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Pulihkan</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} dikembalikan ke {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - sebelum perubahan AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM akan menonaktifkan {0}, membangun ulang arsip game, lalu menjalankan game.&#xD;&#xA;&#xD;&#xA;Pembangunan ulang memerlukan sekitar satu menit. Bermainlah seperti biasa; AIM akan memberi tahu jika crash muncul lagi.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM akan menjalankan game dan mengawasi crash tanpa mengubah apa pun.&#xD;&#xA;&#xD;&#xA;Bermainlah seperti biasa; AIM akan memberi tahu hasilnya.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM tidak dapat mengubah daftar mod dari sini.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} tidak dapat dinonaktifkan. Mungkin sudah nonaktif atau tidak lagi ada di daftar.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} dinonaktifkan.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Membangun ulang arsip game agar perubahan berlaku…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Game tidak dapat dibangun ulang, jadi tidak ada yang diuji: {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Menjalankan dan mengawasi game. Bermainlah seperti biasa.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM sedang menginstal. Tunggu sampai selesai terlebih dahulu.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Tidak ada yang perlu diinstal: folder game tidak ada atau tidak ada mod yang aktif.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM tidak tahu lokasi folder modmu.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Mod itu tidak lagi ada di daftar.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Mengatakan ini masalah yang dikenal</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Mengatakan mod ini baik-baik saja</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Berfungsi, tetapi hanya jika kamu melakukan sesuatu</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Hal lain yang dikatakan halaman</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Terapkan perbaikan secara manual</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Jika utas bug atau deskripsi mod menyebutkan tepat apa yang harus diubah, masukkan di sini. AIM terlebih dahulu menyalin seluruh mod ke riwayat versi, jadi daftar Pemulihan di atas selalu memiliki versi sebelum perubahan ini.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>File relatif terhadap folder mod</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Baris</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Teks baru untuk baris itu; kosongkan untuk mengosongkannya</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Terapkan perubahan ini</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Sisihkan file ini</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Mengeluarkan seluruh file dari permainan dan membiarkan bagian mod lainnya terpasang. Berguna ketika satu file data membuat game crash dan kamu ingin menyimpan bagian mod lainnya sampai penulis memperbaruinya.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Sebutkan file di dalam mod dan nomor baris yang akan diubah terlebih dahulu.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Perbaikan crash: baris {0} dari {1} di {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Perbaikan crash: sisihkan {0} di {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM akan menyalin seluruh mod ke riwayat versi terlebih dahulu agar dapat dikembalikan kapan saja dari daftar Pemulihan. Hanya mod ini yang disentuh.&#xD;&#xA;&#xD;&#xA;Lanjutkan?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Tidak ada yang diubah, menjalankan game apa adanya.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>Arsip sudah sesuai dengan daftar mod, jadi tidak perlu dibangun ulang.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>Arsip game telah dibangun ulang.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Menjalankan Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Mengawasi sesi. Bermainlah seperti biasa. AIM akan melapor saat game ditutup, atau setelah {0} menit jika tidak crash.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Game tidak dimulai, jadi tidak ada yang diuji.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Crash yang sama muncul saat {0} nonaktif, jadi {0} bukan penyebabnya. AIM telah menyingkirkannya dan mengaktifkannya kembali.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Crash yang sama muncul saat {0} nonaktif, jadi {0} bukan penyebabnya. AIM telah menyingkirkannya, tetapi tidak dapat mengaktifkannya kembali. Gunakan "Aktifkan kembali" pada kartunya di bawah "Sudah diperiksa" sebelum pemeriksaan berikutnya.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Tidak ada crash saat {0} nonaktif. Itu menjadikannya penyebab yang mungkin. Biarkan nonaktif, tunggu update, atau coba perbaikan di bawah.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Game berjalan tanpa crash dan tidak ada yang diubah. Crash mungkin memerlukan save atau tindakan yang belum kamu ulangi. Coba lagi dan lakukan apa yang kamu lakukan sebelumnya.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Sesi ini tidak memberi jawaban, jadi {0} masih dicurigai. AIM akan menawarkannya lagi.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Game crash karena hal lain, jadi {0} disingkirkan untuk crash awal. AIM memuat crash baru dan tetap menyimpan hasil yang sudah dikumpulkan.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} dari {1} tersangka telah diuji untuk crash ini.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM tidak memiliki tempat untuk menulis hasil ini, jadi hasilnya hanya bertahan selama jendela ini terbuka.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Uji berikutnya: {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Menjalankan pemeriksaan yang sama pada tersangka berikutnya yang belum diuji: menonaktifkan, membangun ulang, menjalankan, lalu mengawasi. Mod yang sudah disingkirkan tetap aktif.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Semua tersangka sudah diuji dan tidak ada yang menjadi penyebab sendirian. Dua mod dapat menyebabkan ini bersama-sama. Coba nonaktifkan seluruh daftar sekaligus atau laporkan crash dengan daftar di bawah.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Mulai lagi</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Membuang semua hasil yang dicatat AIM untuk crash ini dan menawarkan semua tersangka lagi. Sebaiknya lakukan setelah menambah, menghapus, atau mengurutkan ulang mod, karena hasil hanya berlaku untuk daftar yang diuji.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Semua hasil untuk crash ini telah dihapus.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Disingkirkan: {0} dari {1} tersangka</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Tampilkan bukti dari sesi-sesi itu</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Membaca halaman {0} untuk mencari perbaikan…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Bukan penyebab</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Mencatat bahwa kamu tahu mod ini bukan penyebab crash tanpa mengujinya. Mod dipindahkan ke daftar yang disingkirkan, tidak lagi ditawarkan untuk diuji, dan diaktifkan kembali jika AIM sebelumnya menonaktifkannya. Ini ditandai sebagai keputusanmu, bukan bukti AIM, dan dapat dibatalkan.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Tandai sebagai penyebab crash</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Mencatat bahwa kamu tahu mod ini menyebabkan crash. AIM menonaktifkannya, menandainya di daftar mod, dan menganggapnya sebagai penyebab seperti hasil pengujian, tetapi diberi label sebagai keputusanmu. Dapat dibatalkan.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Batalkan tandaku</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Membatalkan hasil yang kamu catat sendiri dan mengembalikan mod ini ke daftar tersangka sebagai belum diuji. Mod dibiarkan dalam keadaan aktif atau nonaktif seperti sekarang.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Ditandai manual, tidak diuji oleh AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>DITANDAI BUKAN PENYEBAB</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>DITANDAI SEBAGAI PENYEBAB</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Kamu menandainya sebagai penyebab. AIM tidak mengujinya, tetapi menonaktifkan dan menandainya di daftar mod berdasarkan keputusanmu. Hal yang dapat diperbaiki AIM ada di bawah; utas bug-nya mungkin sudah memiliki jawaban.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} ditandai sebagai penyebab crash dan telah dinonaktifkan. Instal untuk membangun ulang game tanpanya.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} ditandai sebagai penyebab crash. Mod itu sudah nonaktif.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} ditandai bukan penyebab dan tidak akan ditawarkan lagi untuk crash ini.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} ditandai bukan penyebab dan telah diaktifkan kembali. Instal untuk memasukkannya lagi ke game.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Tandamu pada {0} telah dibatalkan. Mod kembali ada di daftar sebagai belum diuji.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM tidak memiliki crash yang dimuat untuk mencatat ini.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Aktifkan kembali</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Mod ini sudah disingkirkan tetapi masih nonaktif. Biasanya AIM mengaktifkan kembali mod yang disingkirkan, tetapi kali ini gagal, jadi tombol ini melakukannya.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} kembali aktif. Instal untuk memasukkannya ke game.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM tidak dapat mengaktifkan kembali {0}. Mungkin mod sudah tidak ada di daftar atau gagal dimuat.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>DISINGKIRKAN</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>PENYEBAB CRASH YANG DIKENAL</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Pengujian membuktikannya: game tidak crash saat mod dinonaktifkan. AIM membiarkannya nonaktif dan menandainya di daftar mod. Hal yang dapat diperbaiki AIM ada di bawah; utas bug-nya mungkin sudah memiliki jawaban.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>DIUJI, TIDAK ADA JAWABAN</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Perbaikan yang dapat diterapkan AIM sendiri</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Perbaikan ini ditemukan AIM dari pemeriksaannya sendiri, bukan dari utas bug. Setiap perbaikan adalah koreksi mekanis terhadap sesuatu yang terbukti salah di file, bukan tebakan tentang maksud penulis. Seluruh mod disalin ke riwayat versi terlebih dahulu, ditandai diedit, dan ditahan dari update sampai ada versi yang mungkin memperbaikinya dengan benar.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Terapkan perbaikan ini</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Diterapkan pada {0}. Mod ditandai diedit dan ditahan dari update; versi sebelumnya ada di daftar Pemulihan.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Tidak ada yang rusak dengan cara yang dapat diperbaiki AIM sendiri.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Di {1}:&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM akan menyalin seluruh mod ke riwayat versi terlebih dahulu dan menahan update agar perbaikan ini tidak tertimpa diam-diam. Lanjutkan?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Ditahan dari update karena telah diperbaiki AIM: {0}</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Mod ini meminta installer {0}, sedangkan AIM mengimplementasikan {1}. Mod ini kemungkinan tetap akan berfungsi - coba saja, dan jika ada masalah, periksa halaman mod untuk catatan versi.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Tema</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Default sistem</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Terang</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Gelap</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Panen Mistria</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Padang Mistria</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>Malam Mistria</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Taman Mawar</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Perkecil ukuran teks</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Perbesar ukuran teks</value></data>
 </root>

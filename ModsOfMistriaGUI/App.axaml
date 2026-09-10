@@ -17,6 +17,9 @@
                     <SolidColorBrush x:Key="ModFailureBackgroundBrush" Color="#FDE7E7" />
                     <SolidColorBrush x:Key="ModFailureForegroundBrush" Color="#7A1F1F" />
                     <SolidColorBrush x:Key="ModAlternateRowBrush" Color="#08000000" />
+                    <SolidColorBrush x:Key="AIMSettingsNavigationBrush" Color="#F0F0F0" />
+                    <SolidColorBrush x:Key="AIMSettingsContentBrush" Color="#FAFAFA" />
+                    <SolidColorBrush x:Key="AIMMutedForegroundBrush" Color="#606060" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="ModStatusBackgroundBrush" Color="#2A2A2A" />
@@ -24,6 +27,9 @@
                     <SolidColorBrush x:Key="ModFailureBackgroundBrush" Color="#5C1F1F" />
                     <SolidColorBrush x:Key="ModFailureForegroundBrush" Color="#FFFFFF" />
                     <SolidColorBrush x:Key="ModAlternateRowBrush" Color="#10FFFFFF" />
+                    <SolidColorBrush x:Key="AIMSettingsNavigationBrush" Color="#202020" />
+                    <SolidColorBrush x:Key="AIMSettingsContentBrush" Color="#171717" />
+                    <SolidColorBrush x:Key="AIMMutedForegroundBrush" Color="#A0A0A0" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
@@ -31,5 +37,36 @@
     
     <Application.Styles>
         <FluentTheme />
+        <!-- Custom palettes opt in through the window class. Standard Fluent Light/Dark/System
+             never see these setters, so their original appearance remains untouched. -->
+        <Style Selector="Window.aim-palette">
+            <Setter Property="Background" Value="{DynamicResource AIMWindowBackgroundBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource AIMForegroundBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette Button, Window.aim-palette ToggleButton">
+            <Setter Property="Background" Value="{DynamicResource AIMButtonBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource AIMForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AIMBorderBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette Button:pointerover, Window.aim-palette ToggleButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource AIMButtonHoverBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette TextBox, Window.aim-palette ComboBox">
+            <Setter Property="Background" Value="{DynamicResource AIMSurfaceBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource AIMForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AIMBorderBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette CheckBox">
+            <Setter Property="Foreground" Value="{DynamicResource AIMForegroundBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette Menu, Window.aim-palette MenuItem">
+            <Setter Property="Background" Value="{DynamicResource AIMMenuBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource AIMForegroundBrush}" />
+        </Style>
+        <Style Selector="Window.aim-palette MenuItem:pointerover">
+            <Setter Property="Background" Value="{DynamicResource AIMButtonHoverBrush}" />
+        </Style>
     </Application.Styles>
 </Application>

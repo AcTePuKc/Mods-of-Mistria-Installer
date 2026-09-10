@@ -34,7 +34,7 @@
             <SelectableTextBlock x:Name="DiagnosisHeadline" TextWrapping="Wrap" FontSize="15" />
             <StackPanel x:Name="DiagnosisReasons" Spacing="4" />
             <TextBlock x:Name="DiagnosisCertainty" TextWrapping="Wrap" Opacity="0.75" FontStyle="Italic" />
-            <Expander x:Name="DiagnosisFilesExpander" Header="Files" IsExpanded="False">
+            <Expander x:Name="DiagnosisFilesExpander" IsExpanded="False">
               <StackPanel x:Name="DiagnosisFiles" Spacing="6" Margin="0 6 0 0" />
             </Expander>
           </StackPanel>

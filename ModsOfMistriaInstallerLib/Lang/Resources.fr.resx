@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -313,7 +313,7 @@
     <value>L'objet {0} ne précise pas s'il écrase un autre mod.</value>
   </data>
   <data name="GUIApplicationTitle" xml:space="preserve">
-    <value>AIM — Installateur alternatif pour Mistria</value>
+    <value>AIM - Installateur alternatif pour Mistria</value>
   </data>
   <data name="GUIGreetingText" xml:space="preserve">
     <value>Bienvenue dans Mods of Mistria Installer!</value>
@@ -591,6 +591,7 @@ Ouvrir les pages de téléchargement dans le navigateur ?</value></data>
   <data name="GUINexusHandlerRegistered" xml:space="preserve"><value>AIM ouvrira désormais les liens « Vortex » du site Nexus.
 
 Votre navigateur peut demander une autorisation lors du premier clic.</value></data>
+  <data name="GUINexusHandlerRegisteredNotDefault" xml:space="preserve"><value>AIM a été enregistré, mais Windows utilise peut-être encore {0} pour les liens nxm://.&#xD;&#xA;&#xD;&#xA;Ouvrir les applications par défaut de Windows et choisir AIM pour le protocole nxm:// ?&#xD;&#xA;&#xD;&#xA;« Oui » ouvrira les applications par défaut ; « Non » laissera la configuration inchangée.</value></data>
   <data name="GUINexusHandlerUnregistered" xml:space="preserve"><value>AIM n’ouvrira plus les liens « Vortex » du site Nexus.</value></data>
   <data name="GUINexusHandlerFailed" xml:space="preserve"><value>Impossible d’enregistrer AIM pour ces liens : {0}</value></data>
   <data name="GUINexusHandlerUnregisterFailed" xml:space="preserve"><value>Impossible d’arrêter la gestion de ces liens par AIM : {0}</value></data>
@@ -601,7 +602,10 @@ Les confier à AIM ?</value></data>
   <data name="GUINexusPasteLinkEmpty" xml:space="preserve"><value>Le presse-papiers ne contient aucun lien nxm://. Sur la page du mod, faites un clic droit sur « Vortex » et copiez d’abord l’adresse du lien.</value></data>
   <data name="GUISave" xml:space="preserve"><value>Enregistrer</value></data>
   <data name="GUICancel" xml:space="preserve"><value>Annuler</value></data>
-  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} sur {1} sélectionnés — {2} déjà dans le jeu, {3} seront ajoutés</value></data>
+  <data name="GUIOk" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIYes" xml:space="preserve"><value>Oui</value></data>
+  <data name="GUINo" xml:space="preserve"><value>Non</value></data>
+  <data name="GUIModSelectionSummary" xml:space="preserve"><value>{0} sur {1} sélectionnés - {2} déjà dans le jeu, {3} seront ajoutés</value></data>
   <data name="GUIModSearch" xml:space="preserve"><value>Rechercher des mods…</value></data>
   <data name="GUIClearModSearch" xml:space="preserve"><value>Effacer la recherche</value></data>
   <data name="GUIToggleAllMods" xml:space="preserve"><value>Sélectionner ou désélectionner tous les mods</value></data>
@@ -610,7 +614,7 @@ Les confier à AIM ?</value></data>
   <data name="GUILoadOrderTitle" xml:space="preserve"><value>Ordre de chargement</value></data>
   <data name="GUILoadOrderChanged" xml:space="preserve"><value>Les mods ont été réordonnés afin que chacun soit chargé après ceux dont il dépend.</value></data>
   <data name="GUILoadOrderAlreadyGood" xml:space="preserve"><value>Rien à modifier : chaque mod est chargé après ses dépendances.</value></data>
-  <data name="GUIReportConflicts" xml:space="preserve"><value>Vérifier les problèmes</value></data>
+  <data name="GUIReportConflicts" xml:space="preserve"><value>Problèmes</value></data>
   <data name="GUIConflictReportTitle" xml:space="preserve"><value>Vérification des problèmes</value></data>
   <data name="GUIShowDetails" xml:space="preserve"><value>Afficher les détails</value></data>
   <data name="GUIClose" xml:space="preserve"><value>Fermer</value></data>
@@ -659,4 +663,500 @@ Les confier à AIM ?</value></data>
   <data name="CoreStoreStatePublicationFailed" xml:space="preserve"><value>L'archive de ressources a été remplacée, mais AIM n'a pas pu enregistrer l'état de l'installation. Redémarrez AIM pour récupérer la transaction terminée.</value></data>
   <data name="CoreStorePendingStateRecoveryInvalid" xml:space="preserve"><value>Le fichier de récupération de l'état d'installation en attente d'AIM n'est pas valide : {0}</value></data>
   <data name="CoreStoreStateRecoveryFailed" xml:space="preserve"><value>AIM a restauré assets.zip, mais n'a pas pu restaurer l'état de l'installation. Fermez tout programme utilisant le fichier d'état et réessayez.</value></data>
+  <data name="GUISortAlphabeticallyShort" xml:space="preserve"><value>A–Z</value></data>
+  <data name="GUISortRecentlyUpdatedShort" xml:space="preserve"><value>Récents</value></data>
+  <data name="GUIShowOnlyEnabledShort" xml:space="preserve"><value>Activés</value></data>
+  <data name="GUIShowOnlyUpdatableShort" xml:space="preserve"><value>À mettre à jour</value></data>
+  <data name="GUISuggestLoadOrderShort" xml:space="preserve"><value>Suggérer</value></data>
+  <data name="GUIModByAuthor" xml:space="preserve"><value>{0} par {1}</value></data>
+  <data name="GUINexusAccountSignIn" xml:space="preserve"><value>Se connecter à Nexus</value></data>
+  <data name="GUINexusAccountSignOut" xml:space="preserve"><value>Se déconnecter de Nexus</value></data>
+  <data name="GUINexusAccountConnected" xml:space="preserve"><value>Compte Nexus connecté.</value></data>
+  <data name="GUINexusAccountNotConnected" xml:space="preserve"><value>Compte Nexus non connecté. Connectez-vous pour utiliser les fonctions de Nexus.</value></data>
+  <data name="GUINexusAccountDisconnected" xml:space="preserve"><value>Compte Nexus déconnecté.</value></data>
+  <data name="GUIEditManifest" xml:space="preserve"><value>Modifier le manifeste du mod</value></data>
+  <data name="GUIEditManifestTooltip" xml:space="preserve"><value>Ouvre manifest.json (ou manifest.toml) dans votre éditeur de texte habituel. Disponible uniquement pour les mods sous forme de dossiers. Un mod encore dans une archive .zip ou .rar n'a aucun fichier à modifier.</value></data>
+  <data name="GUIEditConfig" xml:space="preserve"><value>Modifier la configuration du mod</value></data>
+  <data name="GUIEditConfigTooltip" xml:space="preserve"><value>Ouvre le fichier de configuration du mod dans votre éditeur de texte habituel. Désactivé lorsqu'AIM ne trouve aucun fichier de configuration.</value></data>
+  <data name="GUIEditFileFailed" xml:space="preserve"><value>Impossible d'ouvrir {0} : {1}</value></data>
+  <data name="GUIRemoveMod" xml:space="preserve"><value>Supprimer le mod…</value></data>
+  <data name="GUIRemoveModTooltip" xml:space="preserve"><value>Retire le mod de votre dossier de mods. AIM demande d'abord confirmation et envoie les fichiers dans la Corbeille au lieu de les effacer.</value></data>
+  <data name="GUIRemoveModTitle" xml:space="preserve"><value>Supprimer le mod</value></data>
+  <data name="GUIRemoveModConfirm" xml:space="preserve"><value>Déplacer « {0} » v{1} dans la Corbeille ?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Le mod sera retiré de votre dossier de mods. Vous pourrez le restaurer depuis la Corbeille si vous changez d'avis. Les fichiers qu'il a déjà installés dans le jeu resteront jusqu'à la prochaine installation ou désinstallation.</value></data>
+  <data name="GUIRemoveModConfirmPermanent" xml:space="preserve"><value>Supprimer définitivement « {0} » v{1} ?&#xD;&#xA;&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;Ce système ne possède pas de Corbeille utilisable par AIM. Les fichiers du mod seront donc effacés définitivement.</value></data>
+  <data name="GUIRemoveModFailed" xml:space="preserve"><value>Impossible de supprimer « {0} » : {1}&#xD;&#xA;&#xD;&#xA;Le mod est peut-être ouvert dans un autre programme ou le jeu est peut-être encore en cours d'exécution.</value></data>
+  <data name="GUIRemoveSelected" xml:space="preserve"><value>Supprimer la sélection…</value></data>
+  <data name="GUIRemoveSelectedTooltip" xml:space="preserve"><value>Supprime tous les mods cochés en une fois via la Corbeille, après vous avoir montré la liste.</value></data>
+  <data name="GUIRemoveSelectedNone" xml:space="preserve"><value>Aucun mod n'est coché, il n'y a donc rien à supprimer.</value></data>
+  <data name="GUIRemoveSelectedConfirm" xml:space="preserve"><value>Déplacer {0} mod(s) dans la Corbeille ?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Ils seront retirés de votre dossier de mods et pourront être restaurés depuis la Corbeille. Les fichiers déjà installés dans le jeu resteront jusqu'à la prochaine installation ou désinstallation.</value></data>
+  <data name="GUIRemoveSelectedConfirmPermanent" xml:space="preserve"><value>Supprimer définitivement {0} mod(s) ?&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Ce système ne possède pas de Corbeille utilisable par AIM. Les fichiers seront donc effacés définitivement.</value></data>
+  <data name="GUIRemoveSelectedMore" xml:space="preserve"><value>… et {0} autre(s).</value></data>
+  <data name="GUIRemoveSelectedDone" xml:space="preserve"><value>{0} mod(s) sur {1} supprimé(s).</value></data>
+  <data name="GUIRemoveSelectedFailed" xml:space="preserve"><value>Impossible de supprimer ces mods : {0}&#xD;&#xA;&#xD;&#xA;Ils sont peut-être ouverts dans un autre programme ou le jeu est peut-être encore en cours d'exécution.</value></data>
+  <data name="GUIRemoveModRefused" xml:space="preserve"><value>Windows n'a pas pu déplacer le mod dans la Corbeille</value></data>
+  <data name="GUIRemoveModMissing" xml:space="preserve"><value>« {0} » ne se trouve plus dans votre dossier de mods. La liste a été actualisée.</value></data>
+  <data name="GUIIssueDismissTooltip" xml:space="preserve"><value>Marque ce problème comme vérifié et accepté. AIM le masque jusqu'à ce que la version de l'un des mods concernés change, puis vous le proposera à nouveau.</value></data>
+  <data name="GUIIssueShowDismissed" xml:space="preserve"><value>Afficher les problèmes marqués comme résolus ({0})</value></data>
+  <data name="GUIIssueDismissedHeader" xml:space="preserve"><value>Marqué comme résolu</value></data>
+  <data name="GUIIssueDismissedMarker" xml:space="preserve"><value>[marqué comme résolu]</value></data>
+  <data name="GUIConflictSharedFilesHeader" xml:space="preserve"><value>Fichiers écrits par les deux mods</value></data>
+  <data name="GUIConflictCurrentWinner" xml:space="preserve"><value>gagne maintenant</value></data>
+  <data name="GUIConflictMakeThisWin" xml:space="preserve"><value>Faire gagner celui-ci</value></data>
+  <data name="GUIConflictMakeThisWinTooltip" xml:space="preserve"><value>Place ce mod après les autres avec lesquels il partage des fichiers, afin que ses versions de ces fichiers soient installées. L'ordre de chargement de la liste change immédiatement.</value></data>
+  <data name="GUIConflictWinnerNow" xml:space="preserve"><value>« {0} » est maintenant chargé en dernier parmi les mods qui partagent ces fichiers, ses copies l'emportent donc.</value></data>
+  <data name="GUIConflictFindAFix" xml:space="preserve"><value>Chercher une solution…</value></data>
+  <data name="GUIConflictFindAFixTooltip" xml:space="preserve"><value>Lit ce que les pages Nexus de ces mods disent l'une de l'autre et ouvre leurs rapports de bugs, commentaires et une recherche Web afin que vous puissiez déterminer si le problème est réel.</value></data>
+  <data name="GUIHotkeyRebindButton" xml:space="preserve"><value>Réattribuer…</value></data>
+  <data name="GUIHotkeyRebindTooltip" xml:space="preserve"><value>Déplace ce mod vers une touche utilisée par personne d'autre en modifiant sa propre configuration dans {0}. Le mod est sauvegardé avant la modification, qui sera appliquée au jeu lors de la prochaine installation.</value></data>
+  <data name="GUIHotkeyRebindTitle" xml:space="preserve"><value>Réattribuer un raccourci</value></data>
+  <data name="GUIHotkeyRebindConfirm" xml:space="preserve"><value>Déplacer « {0} » de {1} vers {2} ?&#xD;&#xA;&#xD;&#xA;AIM modifie la configuration du mod et conserve une sauvegarde que vous pourrez restaurer depuis le menu contextuel. La modification sera appliquée au jeu lors de la prochaine installation.</value></data>
+  <data name="GUIHotkeyRebindDone" xml:space="preserve"><value>« {0} » utilise maintenant {1}, dans {2} fichier(s) mis à jour.&#xD;&#xA;&#xD;&#xA;Réinstallez pour appliquer la modification au jeu.</value></data>
+  <data name="GUIHotkeyRebindFailed" xml:space="preserve"><value>Impossible de réattribuer « {0} » : {1}</value></data>
+  <data name="GUIHotkeyRebound" xml:space="preserve"><value>« {0} » utilise maintenant {1} au lieu de {2}. Réinstallez pour appliquer la modification au jeu.</value></data>
+  <data name="GUIHotkeyReboundResolved" xml:space="preserve"><value>Résolu : « {0} » a été déplacé vers {1}, plus aucun mod ne partage donc ce raccourci. Réinstallez pour appliquer la modification au jeu.</value></data>
+  <data name="GUIHotkeyBlockedArchive" xml:space="preserve"><value>Ce mod est encore une archive .zip ou .rar. Extrayez-le d'abord dans le dossier des mods pour qu'AIM puisse modifier sa configuration.</value></data>
+  <data name="GUIHotkeyBlockedNotDeclared" xml:space="preserve"><value>Ce mod ne déclare pas cette touche comme une configuration nommée. AIM ne peut donc pas la modifier en toute sécurité. Vérifiez les paramètres du mod dans le jeu ou son fichier de configuration.</value></data>
+  <data name="GUIHotkeyBlockedNoFreeKeys" xml:space="preserve"><value>Toutes les touches de fonction sont déjà utilisées par un mod sélectionné. Il n'y a aucune touche libre vers laquelle déplacer celle-ci.</value></data>
+  <data name="GUIHotkeyBlockedUnreadable" xml:space="preserve"><value>AIM n'a pas pu lire les fichiers de ce mod.</value></data>
+  <data name="GUISortAlphabetically" xml:space="preserve"><value>Trier de A à Z</value></data>
+  <data name="GUISortAlphabeticallyTooltip" xml:space="preserve"><value>Trie la liste par nom pour trouver rapidement un mod. Cela ne modifie que l'affichage : l'ordre de chargement reste inchangé et l'ordre réel réapparaît lorsque l'option est désactivée. Le glisser-déposer est suspendu pendant le tri.</value></data>
+  <data name="GUISortRecentlyUpdated" xml:space="preserve"><value>Trier par mise à jour récente</value></data>
+  <data name="GUISortRecentlyUpdatedTooltip" xml:space="preserve"><value>Affiche les plus récents en premier, selon la dernière modification du dossier de chaque mod sur le disque. Les mods que vous venez d'installer ou de mettre à jour apparaissent ainsi en haut. Cela ne modifie que l'affichage : l'ordre de chargement reste inchangé et le glisser-déposer est suspendu.</value></data>
+  <data name="GUIMoveModToTop" xml:space="preserve"><value>Déplacer au début de l'ordre de chargement</value></data>
+  <data name="GUIMoveModToTopTooltip" xml:space="preserve"><value>Charge ce mod en premier afin que les autres puissent s'appuyer dessus et le remplacer. C'est ici que doivent se trouver les frameworks et les mods dont d'autres dépendent. Cela modifie l'ordre de chargement réel, pas seulement l'affichage.</value></data>
+  <data name="GUIMoveModToBottom" xml:space="preserve"><value>Déplacer à la fin de l'ordre de chargement</value></data>
+  <data name="GUIMoveModToBottomTooltip" xml:space="preserve"><value>Charge ce mod en dernier. Lorsqu'il partage un fichier avec un autre mod, ses fichiers ont ainsi la priorité. C'est ici que doivent se trouver les recolorations et remplacements personnels. Cela modifie l'ordre de chargement réel, pas seulement l'affichage.</value></data>
+  <data name="GUIShowOnlyEnabled" xml:space="preserve"><value>Mods activés uniquement</value></data>
+  <data name="GUIShowOnlyEnabledTooltip" xml:space="preserve"><value>Masque tout ce qui est désactivé. L'ordre important est celui des mods réellement chargés dans le jeu et, dans une longue liste, il est plus facile à lire sans les mods désactivés.</value></data>
+  <data name="GUIShowOnlyUpdatable" xml:space="preserve"><value>Mods nécessitant une action uniquement</value></data>
+  <data name="GUIShowOnlyUpdatableTooltip" xml:space="preserve"><value>Affiche uniquement les mods pour lesquels une mise à jour est disponible et ceux que la dernière vérification n'a pas pu atteindre, par exemple faute d'association Nexus, à cause d'un problème réseau ou parce que la page n'existe plus.</value></data>
+  <data name="GUIListReorderedNote" xml:space="preserve"><value>Affichage uniquement : ordre de chargement inchangé, glisser-déposer suspendu</value></data>
+  <data name="GUIScrollToTop" xml:space="preserve"><value>Aller en haut de la liste</value></data>
+  <data name="GUIScrollToBottom" xml:space="preserve"><value>Aller en bas de la liste</value></data>
+  <data name="GUIRowBindingClash" xml:space="preserve"><value>• {0} ({1}) est également utilisé par {2}</value></data>
+  <data name="GUIChangelogTitle" xml:space="preserve"><value>Notes de version</value></data>
+  <data name="GUIChangelogLoading" xml:space="preserve"><value>Notes de version : survolez pour charger, cliquez pour lire l'historique complet.</value></data>
+  <data name="GUIChangelogPreview" xml:space="preserve"><value>Nouveautés de {0} :&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Cliquez pour lire chaque version.</value></data>
+  <data name="GUIChangelogNone" xml:space="preserve"><value>L'auteur de ce mod n'a publié aucune note de version.</value></data>
+  <data name="GUIChangelogUnavailable" xml:space="preserve"><value>AIM n'a pas pu lire les notes de version de ce mod. Un compte Nexus connecté est nécessaire et AIM doit connaître la page Nexus du mod.</value></data>
+  <data name="GUIChangelogVersionCount" xml:space="preserve"><value>{0} version(s) avec des notes, de la plus récente à la plus ancienne.</value></data>
+  <data name="GUIChangelogVersionHeading" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="GUIVersionsBadge" xml:space="preserve"><value>Versions</value></data>
+  <data name="GUIModCrasherBadge" xml:space="preserve"><value>Fait planter le jeu</value></data>
+  <data name="GUIModCrasherBadgeManual" xml:space="preserve"><value>Marqué comme responsable d'un plantage</value></data>
+  <data name="GUIModCrasherTooltip" xml:space="preserve"><value>Un test supervisé a prouvé que ce mod fait planter le jeu : lorsqu'il était désactivé, le jeu fonctionnait et le plantage ne s'est pas reproduit. AIM l'a laissé désactivé.</value></data>
+  <data name="GUIModCrasherTooltipManual" xml:space="preserve"><value>Vous avez vous-même marqué ce mod comme responsable du plantage dans le vérificateur. AIM ne l'a pas testé : il s'est fié à votre indication et l'a désactivé.</value></data>
+  <data name="GUIModCrasherSummary" xml:space="preserve"><value>Version {0}, vérifiée le {1}.&#xD;&#xA;{2}</value></data>
+  <data name="GUIModCrasherHint" xml:space="preserve"><value>Ouvrez « Vérifier les plantages » pour voir les corrections qu'AIM peut appliquer et ce qu'en disent les pages du mod. La marque est liée à cette version et sera supprimée lors d'une mise à jour de l'auteur.</value></data>
+  <data name="GUIModEditedBadge" xml:space="preserve"><value>Modifié par AIM</value></data>
+  <data name="GUINexusPatchNoMainFile" xml:space="preserve"><value>Ce correctif n'a pas de fichier principal qu'AIM puisse installer seul. Ses fichiers sont ouverts dans votre navigateur : choisissez celui qui vous convient et utilisez « Mod Manager Download ».</value></data>
+  <data name="GUINexusPatchCancelled" xml:space="preserve"><value>Le téléchargement du correctif a été annulé.</value></data>
+  <data name="GUIModEditedTooltip" xml:space="preserve"><value>AIM a modifié un fichier de ce mod pour résoudre un conflit. Les fichiers sur le disque ne sont donc plus exactement ceux publiés par l'auteur.</value></data>
+  <data name="GUIModEditedUndoHint" xml:space="preserve"><value>La version de ce mod avant la modification se trouve dans la liste déroulante des versions. Restaurez-la ici ou faites un clic droit sur le mod et choisissez « Annuler les modifications d'AIM ».</value></data>
+  <data name="GUIModUndoAimEdits" xml:space="preserve"><value>Annuler les modifications d'AIM</value></data>
+  <data name="GUINexusTrack" xml:space="preserve"><value>Suivre sur Nexus Mods</value></data>
+  <data name="GUINexusTrackTooltip" xml:space="preserve"><value>Ajoute ce mod à votre suivi Nexus afin que le site vous informe des mises à jour et des publications de l'auteur. Votre compte Nexus doit être connecté.</value></data>
+  <data name="GUINexusTracked" xml:space="preserve"><value>Vous suivez maintenant {0} sur Nexus Mods.</value></data>
+  <data name="GUINexusAlreadyTracked" xml:space="preserve"><value>Vous suiviez déjà {0} sur Nexus Mods.</value></data>
+  <data name="GUINexusTrackFailed" xml:space="preserve"><value>Impossible de suivre {0} sur Nexus Mods : {1}</value></data>
+  <data name="GUINexusTrackNoModId" xml:space="preserve"><value>AIM n'a pas pu lire l'identifiant du mod Nexus depuis la page qu'il connaît pour ce mod.</value></data>
+  <data name="GUIVersionsTooltip" xml:space="preserve"><value>Copies précédentes de ce mod conservées par AIM lors de ses mises à jour. Choisissez-en une pour revenir à cette version.</value></data>
+  <data name="GUIVersionsHeader" xml:space="preserve"><value>Revenir à :</value></data>
+  <data name="GUIUpdateBadgeInstalls" xml:space="preserve"><value>Cliquez pour télécharger et installer. Votre version actuelle est conservée comme sauvegarde.</value></data>
+  <data name="GUIUpdateBadgeOpensPage" xml:space="preserve"><value>Cliquez pour ouvrir la page de téléchargement. AIM ne sait pas de quel fichier Nexus il s'agit. Faites un clic droit sur le mod et utilisez « Associer à Nexus… » pour permettre son installation automatique.</value></data>
+  <data name="GUINexusAccountPremium" xml:space="preserve"><value>Nexus indique que votre compte ({0}) est Premium. Ce refus ne vient donc pas de votre niveau de compte, mais signifie le plus souvent que la connexion a expiré ou a été révoquée. Reconnectez-vous depuis le menu de la roue dentée.</value></data>
+  <data name="GUINexusAccountFree" xml:space="preserve"><value>Nexus indique que votre compte ({0}) est un compte gratuit. Les téléchargements directs sont une fonction Premium ; utilisez donc le bouton du site Web.</value></data>
+  <data name="GUINexusAccountNoKey" xml:space="preserve"><value>Aucun compte Nexus n'est connecté, AIM ne peut donc rien télécharger directement.</value></data>
+  <data name="GUINexusAccountUnknown" xml:space="preserve"><value>AIM n'a pas pu vérifier votre compte Nexus : {0}</value></data>
+  <data name="GUIKeybindsButton" xml:space="preserve"><value>Raccourcis</value></data>
+  <data name="GUIKeybindsButtonTooltip" xml:space="preserve"><value>Toutes les touches et tous les boutons de manette utilisés par vos mods, dans une seule liste, avec les conflits en rouge et la modification sur place.</value></data>
+  <data name="GUIKeybindsTitle" xml:space="preserve"><value>Raccourcis des mods</value></data>
+  <data name="GUIKeybindsIntro" xml:space="preserve"><value>Les touches actuellement utilisées par vos mods. Ils les conservent dans le dossier de configuration du jeu plutôt que dans le dossier des mods, donc une mise à jour ne les fait pas perdre. Un mod peut toutefois réinitialiser ses paramètres ; AIM proposera alors de rétablir votre choix.</value></data>
+  <data name="GUIKeybindsSummary" xml:space="preserve"><value>{0} raccourci(s), dont {1} en conflit.</value></data>
+  <data name="GUIKeybindsOnlyOverlaps" xml:space="preserve"><value>Afficher uniquement les conflits</value></data>
+  <data name="GUIKeybindsRefresh" xml:space="preserve"><value>Actualiser</value></data>
+  <data name="GUIKeybindsScanFailed" xml:space="preserve"><value>AIM n'a pas pu lire les raccourcis de vos mods : {0}</value></data>
+  <data name="GUIKeybindsScanning" xml:space="preserve"><value>Lecture des raccourcis de vos mods…</value></data>
+  <data name="GUIKeybindsNone" xml:space="preserve"><value>Aucun de vos mods sélectionnés ne possède de raccourci visible par AIM. Les mods qui créent leurs raccourcis à l'exécution ne les exposent qu'après le lancement du jeu.</value></data>
+  <data name="GUIKeybindsNoOverlaps" xml:space="preserve"><value>Aucun conflit.</value></data>
+  <data name="GUIKeybindsNoConfigDirectory" xml:space="preserve"><value>AIM n'a pas trouvé le dossier de configuration du jeu et affiche donc les valeurs par défaut fournies par vos mods. Lancez le jeu une fois pour obtenir vos vrais raccourcis.</value></data>
+  <data name="GUIKeybindsGameRunning" xml:space="preserve"><value>Fields of Mistria est en cours d'exécution. La modification est désactivée, car le jeu réécrit les paramètres de tous les mods en se fermant et écraserait tout changement effectué ici. Fermez le jeu et appuyez sur « Actualiser ».</value></data>
+  <data name="GUIKeybindsAlsoUsedBy" xml:space="preserve"><value>également utilisé par {0}</value></data>
+  <data name="GUIKeybindsClashHeader" xml:space="preserve"><value>La même entrée est attribuée dans :</value></data>
+  <data name="GUIToggleVisibleMods" xml:space="preserve"><value>Cocher ou décocher les mods affichés</value></data>
+  <data name="GUIToggleVisibleModsTooltip" xml:space="preserve"><value>S'applique aux lignes actuellement affichées par votre recherche et vos filtres, et à aucune ligne masquée. Sans filtre, cela concerne tous les mods. Les mods qu'AIM ne peut pas installer restent inchangés.</value></data>
+  <data name="GUIKeybindsDefault" xml:space="preserve"><value>valeur par défaut du mod - AIM ne peut pas la modifier avant que le mod n'enregistre ses paramètres</value></data>
+  <data name="GUIKeybindsDefaultTooltip" xml:space="preserve"><value>Ce mod n'a pas encore enregistré ses paramètres : cette valeur est donc celle compilée par défaut. Lancez le jeu une fois ou modifiez-la dans les paramètres du mod, puis AIM pourra la modifier ici.</value></data>
+  <data name="GUIKeybindsUnbound" xml:space="preserve"><value>(non attribué)</value></data>
+  <data name="GUIKeybindsUnrecognised" xml:space="preserve"><value>le jeu ne l'acceptera pas</value></data>
+  <data name="GUIKeybindsUnrecognisedTooltip" xml:space="preserve"><value>« {0} » n'est pas un nom reconnu par le jeu, ce mod revient donc à sa valeur par défaut. Choisissez une valeur dans la liste pour corriger cela.</value></data>
+  <data name="GUIKeybindsWriteFailed" xml:space="preserve"><value>AIM n'a pas pu écrire dans {0}. Le fichier est peut-être ouvert dans un autre programme ou le jeu a peut-être été lancé.</value></data>
+  <data name="GUIBindingEditorTitle" xml:space="preserve"><value>Choisir une touche ou un bouton</value></data>
+  <data name="GUIBindingEditorTrigger" xml:space="preserve"><value>Touche ou bouton de manette</value></data>
+  <data name="GUIBindingEditorCapture" xml:space="preserve"><value>Appuyez sur une touche pour la capturer</value></data>
+  <data name="GUIBindingEditorCapturing" xml:space="preserve"><value>Appuyez maintenant sur une touche… (Échap pour arrêter)</value></data>
+  <data name="GUIBindingEditorPreview" xml:space="preserve"><value>Cette valeur sera enregistrée : {0}</value></data>
+  <data name="GUIBindingEditorNote" xml:space="preserve"><value>Les boutons de manette sont choisis dans la liste : AIM ne peut pas lire une manette. La liste contient tous les noms acceptés par le jeu ; ALT, les touches de verrouillage et le pavé numérique n'en font pas partie. Un mod configuré avec l'une de ces touches revient silencieusement à sa valeur par défaut.</value></data>
+  <data name="GUIBindingEditorSave" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="GUIBindingEditorClear" xml:space="preserve"><value>Supprimer l'attribution</value></data>
+  <data name="GUIBindingEditorClearTooltip" xml:space="preserve"><value>Vide ce paramètre. La plupart des mods l'interprètent comme « désactivé » ; certains reviennent plutôt à leur valeur par défaut.</value></data>
+  <data name="GUIBindingIsDefault" xml:space="preserve"><value>{0} (valeur par défaut du mod - pas encore configuré)</value></data>
+  <data name="GUIBindingRestoreTitle" xml:space="preserve"><value>Les raccourcis ont été modifiés</value></data>
+  <data name="GUIBindingRestorePrompt" xml:space="preserve"><value>Les {0} raccourci(s) que vous aviez choisis ont été modifiés par les mods eux-mêmes, généralement après qu'une mise à jour a réinitialisé leurs paramètres.&#xD;&#xA;&#xD;&#xA;{1}&#xD;&#xA;&#xD;&#xA;Rétablir vos choix ? Les paramètres entièrement supprimés par la mise à jour ne seront pas restaurés.</value></data>
+  <data name="GUIBindingRestoreMore" xml:space="preserve"><value>… et {0} autre(s).</value></data>
+  <data name="GUIBindingRestoreDone" xml:space="preserve"><value>{0} raccourci(s) restauré(s). Lancez le jeu pour les appliquer.</value></data>
+  <data name="GUICheckUpdatesButton" xml:space="preserve"><value>Vérifier</value></data>
+  <data name="GUICheckUpdatesButtonTooltip" xml:space="preserve"><value>Vérifie les mods sélectionnés sur leurs pages Nexus. Utilisez la flèche pour tous les mods ou pour installer tout ce qui possède une mise à jour.</value></data>
+  <data name="GUICheckForUpdatesResultWithOffer" xml:space="preserve"><value>{0} mod(s) vérifié(s) : {1} ont une mise à jour et {2} n'ont pas pu être vérifiés.&#xD;&#xA;&#xD;&#xA;Télécharger et installer ces mises à jour maintenant ? La version actuelle de chaque mod est conservée comme sauvegarde restaurable.</value></data>
+  <data name="GUIUpdateAllNow" xml:space="preserve"><value>Mettre à jour tous les mods concernés</value></data>
+  <data name="GUIUpdateAllNowTooltip" xml:space="preserve"><value>Télécharge et installe chaque mise à jour en attente à tour de rôle, en conservant la version actuelle de chaque mod comme sauvegarde restaurable.</value></data>
+  <data name="GUIUpdateAllTitle" xml:space="preserve"><value>Mettre à jour les mods</value></data>
+  <data name="GUIUpdateAllNothing" xml:space="preserve"><value>Aucune mise à jour en attente. Vérifiez d'abord les mises à jour.</value></data>
+  <data name="GUIUpdateAllConfirm" xml:space="preserve"><value>Mettre à jour {0} mod(s) ?&#xD;&#xA;&#xD;&#xA;La version actuelle de chaque mod sera conservée comme sauvegarde restaurable depuis son menu contextuel.</value></data>
+  <data name="GUIUpdateAllProgress" xml:space="preserve"><value>Mise à jour de {0} sur {1} : {2}</value></data>
+  <data name="GUIUpdateAllDone" xml:space="preserve"><value>{0} mod(s) sur {1} mis à jour.</value></data>
+  <data name="GUIUpdateAllFailed" xml:space="preserve"><value>Ces mods n'ont pas pu être téléchargés directement et nécessitent leur page Nexus : {0}&#xD;&#xA;&#xD;&#xA;Nexus ne fournit des liens de téléchargement direct qu'aux comptes Premium. Avec un compte gratuit, ouvrez la page du mod et utilisez le bouton « Mod Manager Download ». AIM le récupérera s'il est enregistré pour gérer ces liens.</value></data>
+  <data name="GUIConflictReportNothing" xml:space="preserve"><value>Rien à signaler. AIM n'a trouvé aucun fichier partagé, conflit de raccourcis, prérequis manquant ni avertissement de compatibilité parmi les mods sélectionnés.</value></data>
+  <data name="GUIVerdictNotAnIssue" xml:space="preserve"><value>Vous avez indiqué qu'il ne s'agissait pas d'un vrai conflit.</value></data>
+  <data name="GUIVerdictPatchExists" xml:space="preserve"><value>Vous avez trouvé un correctif pour ce problème.</value></data>
+  <data name="GUIVerdictIncompatible" xml:space="preserve"><value>Vous avez jugé ces mods incompatibles. Désactivez l'un d'eux.</value></data>
+  <data name="GUIVerdictRebound" xml:space="preserve"><value>Résolu en réattribuant la touche : {0}</value></data>
+  <data name="GUIDropFolderMenu" xml:space="preserve"><value>Dossiers de téléchargement surveillés</value></data>
+  <data name="GUIDropFolderExplain" xml:space="preserve"><value>Les mods téléchargés manuellement dans un dossier surveillé sont déplacés vers votre dossier de mods et apparaissent automatiquement dans la liste.</value></data>
+  <data name="GUIDropFolderLink" xml:space="preserve"><value>Surveiller un dossier…</value></data>
+  <data name="GUIDropFolderPickTitle" xml:space="preserve"><value>Choisir un dossier où rechercher les mods téléchargés</value></data>
+  <data name="GUIDropFolderScanNow" xml:space="preserve"><value>Vérifier les dossiers surveillés maintenant</value></data>
+  <data name="GUIDropFolderNone" xml:space="preserve"><value>Aucun dossier n'est surveillé</value></data>
+  <data name="GUIDropFolderUnlinkTooltip" xml:space="preserve"><value>Ne plus surveiller ce dossier</value></data>
+  <data name="GUIDropFolderTitle" xml:space="preserve"><value>Dossiers surveillés</value></data>
+  <data name="GUIDropFolderNothingFound" xml:space="preserve"><value>Rien de nouveau à importer. AIM ne déplace que les archives et les dossiers contenant un manifeste ; le reste est laissé sur place.</value></data>
+  <data name="GUIDropFolderImported" xml:space="preserve"><value>{0} mod(s) importé(s) depuis un dossier surveillé.</value></data>
+  <data name="GUIDropFolderImportedDetail" xml:space="preserve"><value>Déplacé(s) dans votre dossier de mods :&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderAlreadyInstalled" xml:space="preserve"><value>• {0} - vous avez déjà installé ce mod sous le nom « {1} ». Mettez cette copie à jour ou supprimez-la d'abord : deux copies d'un même mod se disputent les mêmes fichiers.</value></data>
+  <data name="GUIDropFolderSkippedDetail" xml:space="preserve"><value>Laissé dans le dossier surveillé :&#xD;&#xA;{0}</value></data>
+  <data name="GUIDropFolderNoModsFolder" xml:space="preserve"><value>Le dossier des mods est introuvable, il n'y a donc rien à ouvrir.</value></data>
+  <data name="GUIDropFolderCannotOpen" xml:space="preserve"><value>Impossible d'ouvrir le dossier des mods : {0}</value></data>
+  <data name="GUIOpenModsFolderButton" xml:space="preserve"><value>Dossier des mods</value></data>
+  <data name="GUIOpenModsFolderButtonTooltip" xml:space="preserve"><value>Ouvre le dossier des mods de Fields of Mistria dans votre gestionnaire de fichiers</value></data>
+  <data name="GUICheckCrashes" xml:space="preserve"><value>Plantages</value></data>
+  <data name="GUICheckCrashesTooltip" xml:space="preserve"><value>Lit le journal de plantage du jeu, détermine vers quel mod il pointe et propose de désactiver ce mod pour vérifier si le plantage disparaît.</value></data>
+  <data name="GUIModDropStagingFull" xml:space="preserve"><value>Il n'y a plus de place dans le dossier des mods pour préparer {0}.</value></data>
+  <data name="GUIModDropTooManyCopies" xml:space="preserve"><value>Il y a déjà trop de copies de {0} dans le dossier des mods.</value></data>
+  <data name="GUINxmDownloadFailed" xml:space="preserve"><value>Impossible de télécharger le fichier depuis Nexus : {0}</value></data>
+  <data name="GUINxmDownloadNoServerResponse" xml:space="preserve"><value>aucun serveur de téléchargement n'a répondu</value></data>
+  <data name="GUINexusUpdateNothingToDo" xml:space="preserve"><value>Il n'y a rien à mettre à jour.</value></data>
+  <data name="GUINexusSettingsSaveSessionFailed" xml:space="preserve"><value>Impossible d'enregistrer la session du compte Nexus. Vérifiez l'accès au disque et réessayez.</value></data>
+  <data name="GUINexusBackupMissing" xml:space="preserve"><value>La sauvegarde de {0} est manquante.</value></data>
+  <data name="GUIModArchiveMissing" xml:space="preserve"><value>Le fichier téléchargé est manquant.</value></data>
+  <data name="GUIModArchiveModsFolderMissing" xml:space="preserve"><value>Le dossier des mods est introuvable.</value></data>
+  <data name="GUIModArchiveManifestMissing" xml:space="preserve"><value>Ce téléchargement ne contient pas de manifest.toml et n'est donc pas un mod géré par cet installeur. Il peut s'agir d'un ancien mod ou d'un fichier à installer manuellement.</value></data>
+  <data name="GUIModArchiveRollbackFailed" xml:space="preserve"><value>Impossible de terminer le mod téléchargé. L'erreur d'installation d'origine était : {0}&#xD;&#xA;Impossible de restaurer une ancienne copie du mod. Sa sauvegarde a été conservée pour une récupération manuelle :&#xD;&#xA;{1}</value></data>
+  <data name="GUIModArchiveParkedCopyMissing" xml:space="preserve"><value>La copie mise de côté ne se trouve plus à l'emplacement {0}.</value></data>
+  <data name="GUIModArchiveTooManyBackups" xml:space="preserve"><value>Il y a déjà trop de copies conservées de {0} à côté du dossier des mods.</value></data>
+  <data name="GUIModArchiveUnpackRollbackFailed" xml:space="preserve"><value>Impossible d'extraire le mod : {0} La copie précédente n'a pas pu être restaurée ; sa sauvegarde a été conservée pour une récupération manuelle{1}.</value></data>
+  <data name="GUIModArchiveUnpackFailed" xml:space="preserve"><value>Impossible d'extraire le mod : {0}</value></data>
+  <data name="GUIModArchiveTooManyFiles" xml:space="preserve"><value>L'archive téléchargée contient trop de fichiers.</value></data>
+  <data name="GUIModArchiveFileTooLarge" xml:space="preserve"><value>L'archive téléchargée contient un fichier trop volumineux.</value></data>
+  <data name="GUIModArchiveTotalTooLarge" xml:space="preserve"><value>L'archive téléchargée dépasse la taille extraite prise en charge.</value></data>
+  <data name="GUIModArchiveEntryTooLarge" xml:space="preserve"><value>L'entrée « {0} » de l'archive dépasse la taille extraite prise en charge.</value></data>
+  <data name="GUIModArchiveUnsupportedFormat" xml:space="preserve"><value>Le fichier téléchargé n'est pas une archive lisible par cet installeur. Les formats zip, rar et 7z sont pris en charge.</value></data>
+  <data name="GUIModArchiveUnsafePath" xml:space="preserve"><value>L'archive contient un chemin dangereux : {0}</value></data>
+  <data name="GUINexusOAuthStateMismatch" xml:space="preserve"><value>La connexion à Nexus a été annulée, car l'état de retour ne correspondait pas.</value></data>
+  <data name="GUINexusOAuthMissingCode" xml:space="preserve"><value>Nexus n'a pas renvoyé de code d'autorisation.</value></data>
+  <data name="GUINexusOAuthReconnectRequired" xml:space="preserve"><value>La session du compte Nexus doit être reconnectée.</value></data>
+  <data name="GUINexusOAuthRegistrationPending" xml:space="preserve"><value>L'enregistrement OAuth de Nexus pour AIM est toujours en attente.</value></data>
+  <data name="GUINexusOAuthSignInFailed" xml:space="preserve"><value>Nexus n'a pas pu terminer la connexion au compte.</value></data>
+  <data name="GUINexusOAuthIncompleteSession" xml:space="preserve"><value>Nexus a renvoyé une session de compte incomplète.</value></data>
+  <data name="GUINexusOAuthUnreadableResponse" xml:space="preserve"><value>Impossible de lire la réponse du compte Nexus.</value></data>
+  <data name="GUINexusOAuthWaiting" xml:space="preserve"><value>AIM attend le retour de la connexion à Nexus.</value></data>
+  <data name="GUINexusOAuthStateMismatchBrowser" xml:space="preserve"><value>La réponse de connexion à Nexus ne correspond pas à cette session AIM.</value></data>
+  <data name="GUINexusOAuthCancelledBrowser" xml:space="preserve"><value>La connexion à Nexus a été annulée. Vous pouvez revenir à AIM.</value></data>
+  <data name="GUINexusOAuthCancelled" xml:space="preserve"><value>La connexion à Nexus a été annulée ou refusée par le navigateur.</value></data>
+  <data name="GUINexusOAuthCompleted" xml:space="preserve"><value>La connexion à Nexus est terminée. Vous pouvez revenir à AIM.</value></data>
+  <data name="GUINexusApiNoDownloadServers" xml:space="preserve"><value>Nexus n'a renvoyé aucun serveur de téléchargement pour ce fichier.</value></data>
+  <data name="GUINexusApiTimedOut" xml:space="preserve"><value>L'API Nexus n'a pas répondu à temps.</value></data>
+  <data name="GUINexusApiUnreachable" xml:space="preserve"><value>Impossible d'atteindre l'API Nexus : {0}</value></data>
+  <data name="GUINexusApiUnexpectedResponse" xml:space="preserve"><value>Nexus a renvoyé une réponse inattendue.</value></data>
+  <data name="GUINexusApiUnreadableResponse" xml:space="preserve"><value>Impossible de lire la réponse de Nexus.</value></data>
+  <data name="GUINexusApiUnauthorized" xml:space="preserve"><value>Nexus a refusé la session du compte. Reconnectez votre compte Nexus.</value></data>
+  <data name="GUINexusApiForbidden" xml:space="preserve"><value>Nexus a refusé la requête. Le lien de téléchargement a peut-être expiré ; cliquez à nouveau dessus.</value></data>
+  <data name="GUINexusApiNotFound" xml:space="preserve"><value>Ce mod ou ce fichier n'existe plus sur Nexus.</value></data>
+  <data name="GUINexusApiRateLimited" xml:space="preserve"><value>Vous avez atteint la limite de l'API Nexus. Attendez un moment avant de télécharger à nouveau.</value></data>
+  <data name="GUINexusApiUnexpectedStatus" xml:space="preserve"><value>Nexus a renvoyé une erreur ({0}).</value></data>
+  <data name="GUINexusUpdateNoAccount" xml:space="preserve"><value>Aucun compte Nexus n'est encore connecté.</value></data>
+  <data name="GUINexusUpdateSourceFileMissing" xml:space="preserve"><value>Le fichier d'origine de ce mod n'est plus sur sa page Nexus et aucun des fichiers restants n'en est une version plus récente. Cette page héberge plusieurs mods distincts, AIM ne proposera donc pas les autres comme mise à jour. Consultez la page manuellement si vous pensez qu'une version plus récente existe.</value></data>
+  <data name="GUINexusUpdateNoMainFile" xml:space="preserve"><value>La page de ce mod ne possède aucun fichier principal avec lequel comparer.</value></data>
+  <data name="GUINexusUpdateUnknownSourceFile" xml:space="preserve"><value>AIM ne sait pas de quel fichier de cette page provient ce mod et ne peut donc pas déterminer si la version de la page est plus récente. Téléchargez-le une fois via AIM ou associez-le à un fichier précis depuis son menu contextuel pour fiabiliser les vérifications.</value></data>
+  <data name="GUINexusUpdateStoppedEarly" xml:space="preserve"><value>La vérification des mises à jour s'est arrêtée prématurément.</value></data>
+  <data name="GUINexusUpdateDidNotFinish" xml:space="preserve"><value>La vérification des mises à jour n'est pas terminée pour ce mod.</value></data>
+  <data name="GUINxmDownloadNoAccount" xml:space="preserve"><value>Aucun compte Nexus n'est encore connecté.</value></data>
+  <data name="GUINxmDownloadWrongGame" xml:space="preserve"><value>Ce téléchargement concerne un autre jeu ({0}), cet installeur ne peut donc pas le gérer.</value></data>
+  <data name="GUINxmDownloadExpired" xml:space="preserve"><value>Ce lien de téléchargement a expiré. Cliquez à nouveau sur le bouton « Vortex download » de la page du mod.</value></data>
+  <data name="GUINxmDownloadModsFolderMissing" xml:space="preserve"><value>Le dossier des mods est introuvable.</value></data>
+  <data name="GUINxmDownloadResolving" xml:space="preserve"><value>Demande du fichier à Nexus…</value></data>
+  <data name="GUINxmDownloadDownloading" xml:space="preserve"><value>Téléchargement de {0}</value></data>
+  <data name="GUINxmDownloadUnpacking" xml:space="preserve"><value>Extraction de {0}</value></data>
+  <data name="GUINxmDownloadInstallCancelled" xml:space="preserve"><value>Installation annulée</value></data>
+  <data name="GUINxmDownloadInstalledOne" xml:space="preserve"><value>{0} installé</value></data>
+  <data name="GUINxmDownloadInstalledMany" xml:space="preserve"><value>{0} mods installés</value></data>
+  <data name="GUINxmDownloadCancelled" xml:space="preserve"><value>Téléchargement annulé</value></data>
+  <data name="GUINxmEmptyLink" xml:space="preserve"><value>Lien de téléchargement vide.</value></data>
+  <data name="GUINxmInvalidScheme" xml:space="preserve"><value>Ce n'est pas un lien nxm://.</value></data>
+  <data name="GUINxmMissingGame" xml:space="preserve"><value>Le lien ne précise aucun jeu.</value></data>
+  <data name="GUINxmCollectionsUnsupported" xml:space="preserve"><value>Les collections Nexus ne sont pas encore prises en charge. Téléchargez les mods individuellement.</value></data>
+  <data name="GUINxmNotModDownload" xml:space="preserve"><value>Le lien n'est pas un téléchargement de fichier de mod.</value></data>
+  <data name="GUINxmInvalidIds" xml:space="preserve"><value>Le lien contient un identifiant de mod ou de fichier invalide.</value></data>
+  <data name="GUINxmExecutablePathUnknown" xml:space="preserve"><value>Impossible de déterminer depuis quel emplacement l'installeur est exécuté.</value></data>
+  <data name="GUINxmRegistrationUnsupported" xml:space="preserve"><value>L'enregistrement des liens nxm:// n'est pris en charge que sous Windows et Linux.</value></data>
+  <data name="GUINxmRegistrationMayBeOverridden" xml:space="preserve"><value>AIM a été enregistré, mais Windows utilise peut-être encore {0} pour les liens nxm://.&#xD;&#xA;&#xD;&#xA;Choisissez AIM comme application par défaut pour les liens nxm:// dans les applications par défaut de Windows.</value></data>
+  <data name="GUINxmRegistrationNotVerified" xml:space="preserve"><value>L'enregistrement nxm:// n'a pas pu être vérifié après son écriture.</value></data>
+  <data name="GUIUpdateMayFixHeader" xml:space="preserve"><value>Une mise à jour pourrait corriger votre modification</value></data>
+  <data name="GUIUpdateMayFix" xml:space="preserve"><value>{0} {1} est disponible. Vous utilisez {2} avec la correction d'AIM appliquée : {3}</value></data>
+  <data name="GUIUpdateMayFixAction" xml:space="preserve"><value>Mettre à jour et supprimer la correction d'AIM</value></data>
+  <data name="GUIUpdateMayFixTooltip" xml:space="preserve"><value>La mise à jour remplace le dossier du mod et supprime donc la modification d'AIM. Si la nouvelle version n'a pas corrigé le problème, le plantage réapparaîtra et vous pourrez réappliquer la correction. La version précédente se trouve toujours dans la liste de restauration.</value></data>
+  <data name="GUIForeignArchiveRecoveryTitle" xml:space="preserve"><value>Archive externe détectée</value></data>
+  <data name="GUIForeignArchiveRecoveryMessage" xml:space="preserve"><value>AIM a trouvé un assets.zip externe.&#xD;&#xA;&#xD;&#xA;Si vous continuez, AIM va :&#xD;&#xA;• le conserver sous le nom assets.foreign-…zip&#xD;&#xA;• restaurer la sauvegarde vérifiée&#xD;&#xA;• réessayer cette installation&#xD;&#xA;&#xD;&#xA;Les mods présents uniquement dans l'archive externe seront inactifs. Continuer ?</value></data>
+  <data name="GUIResearchTitle" xml:space="preserve"><value>Trouver une solution</value></data>
+  <data name="GUIResearchWorking" xml:space="preserve"><value>Lecture des pages de ces mods…</value></data>
+  <data name="GUIResearchNoApiKey" xml:space="preserve"><value>Connectez votre compte Nexus depuis le menu en forme d’engrenage pour qu’AIM puisse lire ces pages à votre place. En attendant, les liens ci-dessous sont le moyen le plus rapide de vérifier.</value></data>
+  <data name="GUIResearchNothingFound" xml:space="preserve"><value>Rien dans les descriptions, readme, journaux des modifications, rapports de bugs ou commentaires de ces mods ne répond à la question. AIM a recherché le nom de l’autre mod dans tout le fil de commentaires et lu les rapports de bugs récents. Cela signifie vraiment « personne ne l’a dit », et non « personne n’a cherché », mais ce n’est pas la même chose que « aucun problème ». Les liens ci-dessous mènent toujours aux pages elles-mêmes.</value></data>
+  <data name="GUIResearchFoundCount" xml:space="preserve"><value>{0} élément(s) des pages de ces mods concernent cette association.</value></data>
+  <data name="GUIResearchFailed" xml:space="preserve"><value>AIM n’a pas pu lire les pages des mods : {0}</value></data>
+  <data name="GUIResearchFindingsHeader" xml:space="preserve"><value>Ce que disent les pages des mods</value></data>
+  <data name="GUIResearchLinksHeader" xml:space="preserve"><value>Vérifiez vous-même</value></data>
+  <data name="GUIResearchLinksHint" xml:space="preserve"><value>AIM lit ces contenus lui-même : les commentaires en recherchant dans tout le fil, et le suivi des bugs sur quelques pages, mais toujours en tant que visiteur déconnecté. Ces liens ouvrent les vraies pages.</value></data>
+  <data name="GUIResearchOpenPage" xml:space="preserve"><value>Ouvrir la page de ce mod</value></data>
+  <data name="GUIResearchOpenPatch" xml:space="preserve"><value>Ouvrir le patch</value></data>
+  <data name="GUIResearchVerdictHeader" xml:space="preserve"><value>Qu’avez-vous trouvé ?</value></data>
+  <data name="GUIResearchVerdictHint" xml:space="preserve"><value>Enregistrer ceci conserve la réponse avec le problème, pour ne pas avoir à la retrouver la prochaine fois.</value></data>
+  <data name="GUIResearchPatchLinkLabel" xml:space="preserve"><value>Lien vers le patch (facultatif) :</value></data>
+  <data name="GUIResearchNotAnIssue" xml:space="preserve"><value>Pas un vrai conflit</value></data>
+  <data name="GUIResearchNotAnIssueTooltip" xml:space="preserve"><value>Les mods partagent des fichiers, mais cela n’a pas d’importance en pratique. Marque le problème comme réglé et masque-le jusqu’à la mise à jour de l’un des mods.</value></data>
+  <data name="GUIResearchPatchExists" xml:space="preserve"><value>Un patch existe</value></data>
+  <data name="GUIResearchPatchExistsTooltip" xml:space="preserve"><value>Quelqu’un a publié un patch de compatibilité. Cliquez une fois pour ajouter son lien, puis une seconde fois pour l’enregistrer. Le problème est marqué comme réglé.</value></data>
+  <data name="GUIResearchIncompatible" xml:space="preserve"><value>Ils sont incompatibles</value></data>
+  <data name="GUIResearchIncompatibleTooltip" xml:space="preserve"><value>Enregistre le résultat mais laisse le problème visible, car vous devez encore désactiver l’un des deux.</value></data>
+  <data name="GUIResearchUndecided" xml:space="preserve"><value>Encore indécis</value></data>
+  <data name="GUIResearchPatchConfirm" xml:space="preserve"><value>Enregistrer le patch</value></data>
+  <data name="GUIResearchPatchLinkInvalid" xml:space="preserve"><value>Cela ne ressemble pas à un lien https. Collez l’adresse web du patch ou laissez le champ vide.</value></data>
+  <data name="GUIResearchDiagnosisHeader" xml:space="preserve"><value>Lecture des fichiers par AIM</value></data>
+  <data name="GUIResearchDiagnosisCertain" xml:space="preserve"><value>AIM a lu tous les fichiers partagés par ces mods.</value></data>
+  <data name="GUIResearchDiagnosisUncertain" xml:space="preserve"><value>AIM n’a pas pu lire tous les fichiers ; considérez donc ceci comme une interprétation et non comme un fait.</value></data>
+  <data name="GUIResearchDiagnosisFilesOne" xml:space="preserve"><value>{0} fichier partagé</value></data>
+  <data name="GUIResearchDiagnosisFilesMany" xml:space="preserve"><value>{0} fichiers partagés</value></data>
+  <data name="GUIResearchWindowFailed" xml:space="preserve"><value>Une partie de cette fenêtre n’a pas pu être créée : {0}</value></data>
+  <data name="GUIResearchModsHeader" xml:space="preserve"><value>Les mods de ce conflit</value></data>
+  <data name="GUIResearchModsHint" xml:space="preserve"><value>Ouvrez une page pour juger le mod vous-même, ou retirez-le de la liste si vous avez décidé de ne pas le garder.</value></data>
+  <data name="GUIResearchOpenModPage" xml:space="preserve"><value>Ouvrir la page</value></data>
+  <data name="GUIResearchOpenPageMissing" xml:space="preserve"><value>AIM ne sait pas d’où vient ce mod et n’a donc aucune page à ouvrir.</value></data>
+  <data name="GUIResearchRemoveMod" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="GUIResearchRemoveModTooltip" xml:space="preserve"><value>Retire ce mod du dossier des mods. AIM demande confirmation et envoie les fichiers dans la Corbeille.</value></data>
+  <data name="GUIResearchRemovedNote" xml:space="preserve"><value>{0} a été supprimé, le conflit n’existe donc plus.</value></data>
+  <data name="GUIResearchInstalledHeader" xml:space="preserve"><value>Ce que vous avez déjà</value></data>
+  <data name="GUIResearchInstalledHint" xml:space="preserve"><value>Mods déjà présents dans votre liste et liés à cette association. AIM les a vérifiés avant de proposer quoi que ce soit à télécharger.</value></data>
+  <data name="GUIResearchFixesHeader" xml:space="preserve"><value>Ce qu’AIM peut faire</value></data>
+  <data name="GUIResearchFixesHint" xml:space="preserve"><value>Rien ici ne se produit avant votre choix, et chacune de ces actions peut être annulée.</value></data>
+  <data name="GUIResearchPatchesHeader" xml:space="preserve"><value>Patchs déjà disponibles</value></data>
+  <data name="GUIResearchApply" xml:space="preserve"><value>Approuver et appliquer</value></data>
+  <data name="GUIResearchApplied" xml:space="preserve"><value>Terminé : {0}</value></data>
+  <data name="GUIResearchApplyFailed" xml:space="preserve"><value>Échec de l’opération : {0}</value></data>
+  <data name="GUIResearchEvidenceAgainst" xml:space="preserve"><value>Dit que tout va bien</value></data>
+  <data name="GUIResearchEvidenceFor" xml:space="preserve"><value>Dit que c’est un problème</value></data>
+  <data name="GUIResearchEvidenceCaution" xml:space="preserve"><value>Fonctionne, sous réserve d’une condition</value></data>
+  <data name="GUIResearchEvidenceOther" xml:space="preserve"><value>Mentionne le sujet sans y répondre</value></data>
+  <data name="GUIResearchBadgeClearance" xml:space="preserve"><value>OK</value></data>
+  <data name="GUIResearchBadgeBlocker" xml:space="preserve"><value>PROBLÈME</value></data>
+  <data name="GUIResearchBadgeCaution" xml:space="preserve"><value>CONDITION</value></data>
+  <data name="GUIResearchBadgeContext" xml:space="preserve"><value>CONTEXTE</value></data>
+  <data name="GUIResearchQuoteMore" xml:space="preserve"><value>Afficher toute la citation</value></data>
+  <data name="GUIResearchQuoteLess" xml:space="preserve"><value>Afficher moins</value></data>
+  <data name="GUIResearchFindOnPage" xml:space="preserve"><value>Le trouver sur la page</value></data>
+  <data name="GUIResearchFindOnPageTooltip" xml:space="preserve"><value>Copie « {0} » et ouvre la page d’origine. Appuyez sur Ctrl+F et collez le texte pour y accéder directement. S’il s’agissait d’un commentaire, il peut être plusieurs pages plus loin ; collez-le plutôt dans le champ de recherche du fil.</value></data>
+  <data name="GUIResearchFindCopied" xml:space="preserve"><value>Copié. Appuyez sur Ctrl+F dans la page qui vient de s’ouvrir, puis collez.</value></data>
+  <data name="GUIResearchSetAsideWarning" xml:space="preserve"><value>Cela modifie des fichiers d’un mod que vous n’avez pas créé. AIM copiera d’abord le mod complet dans son historique des versions et marquera la ligne comme modifiée. Continuer ?</value></data>
+  <data name="GUICrashTitle" xml:space="preserve"><value>Vérification des plantages</value></data>
+  <data name="GUICrashPickerLabel" xml:space="preserve"><value>Plantage</value></data>
+  <data name="GUICrashOpenFolder" xml:space="preserve"><value>Fichiers de plantage</value></data>
+  <data name="GUICrashOpenFolderTooltip" xml:space="preserve"><value>Ouvre le dossier où AIM conserve une copie de chaque plantage rencontré. Le jeu lui-même ne garde que le plus récent.</value></data>
+  <data name="GUICrashDiagnosisHeader" xml:space="preserve"><value>Ce qu’en déduit AIM</value></data>
+  <data name="GUICrashRunExecutableMissing" xml:space="preserve"><value>AIM n’a pas trouvé l’exécutable du jeu et ne peut donc pas le lancer ni le surveiller.</value></data>
+  <data name="GUICrashRunAlreadyRunning" xml:space="preserve"><value>Fields of Mistria est déjà en cours d’exécution. Fermez-le d’abord pour qu’AIM surveille la session qu’il lancera.</value></data>
+  <data name="GUICrashRunStartFailed" xml:space="preserve"><value>AIM n’a pas pu démarrer le jeu : {0}</value></data>
+  <data name="GUICrashRunUnreadableCrash" xml:space="preserve"><value>Le jeu a planté, mais AIM n’a pas pu lire le journal laissé par le jeu. Cette session ne prouve donc rien sur le mod. Il vaut mieux relancer la vérification.</value></data>
+  <data name="GUICrashRunCrashedDuringCheck" xml:space="preserve"><value>Le jeu a de nouveau planté pendant la vérification.</value></data>
+  <data name="GUICrashRunStillRunning" xml:space="preserve"><value>Le jeu fonctionne encore après la fenêtre de vérification et n’a pas planté. C’est le résultat attendu : continuez à jouer.</value></data>
+  <data name="GUICrashRunSameCrash" xml:space="preserve"><value>Le même plantage est revenu après {0}.</value></data>
+  <data name="GUICrashRunDifferentCrash" xml:space="preserve"><value>Le jeu a de nouveau planté après {0}, avec une erreur différente.</value></data>
+  <data name="GUICrashRunAbnormalExit" xml:space="preserve"><value>Le jeu s’est arrêté avec le code {0} après {1} sans laisser de journal de plantage. Cela signifie généralement qu’il a été fermé par un élément extérieur au jeu, comme un problème de pilote ou l’arrêt du processus, plutôt que par un mod. Cette session ne prouve donc rien non plus.</value></data>
+  <data name="GUICrashRunNormalExit" xml:space="preserve"><value>Le jeu a fonctionné pendant {0} puis s’est fermé normalement, sans nouveau plantage.</value></data>
+  <data name="GUICrashDiagnosisFrameFault" xml:space="preserve"><value>Le jeu a rencontré une erreur dans le code propre de ce mod, à {0}, ligne {1}.</value></data>
+  <data name="GUICrashDiagnosisFrameCallStack" xml:space="preserve"><value>Le code de ce mod figure dans la pile d’appels, à {0}, ligne {1}.</value></data>
+  <data name="GUICrashDiagnosisModNamed" xml:space="preserve"><value>Ce mod est nommé dans le message de plantage lui-même.</value></data>
+  <data name="GUICrashDiagnosisDomainOneWriter" xml:space="preserve"><value>Le jeu a planté en lisant ses données « {0} », auxquelles contribue {1} mod installé.</value></data>
+  <data name="GUICrashDiagnosisDomainManyWriters" xml:space="preserve"><value>Le jeu a planté en lisant ses données « {0} », auxquelles contribuent {1} mods installés.</value></data>
+  <data name="GUICrashDiagnosisModAddsToDomain" xml:space="preserve"><value>Il contribue aux données « {0} » que le jeu lisait au moment du plantage.</value></data>
+  <data name="GUICrashDiagnosisFaultResolved" xml:space="preserve"><value>Les données « {0} » de l’archive du jeu sur le disque ne contiennent plus d’entrée sans {1}. La cause a donc déjà été résolue, par une mise à jour, une réinstallation ou un mod désactivé depuis. Si cela recommence, regardez les mods ci-dessous.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentOne" xml:space="preserve"><value>Les données « {0} » actuellement chargées par le jeu contiennent encore une entrée sans {2}. Ce plantage reviendra au prochain lancement.</value></data>
+  <data name="GUICrashDiagnosisFaultStillPresentMany" xml:space="preserve"><value>Les données « {0} » actuellement chargées par le jeu contiennent encore {1} entrées sans {2}. Ce plantage reviendra au prochain lancement.</value></data>
+  <data name="GUICrashDiagnosisMissingHook" xml:space="preserve"><value>Des hooks du moteur doivent être installés, et le plantage est un appel vers quelque chose qui n’est finalement pas une fonction. C’est ainsi qu’un hook non installé apparaît depuis le jeu.</value></data>
+  <data name="GUICrashDiagnosisStaleButPresent" xml:space="preserve"><value>Ce plantage est plus ancien que les mods actuellement installés, mais le problème qu’il décrit est toujours présent dans l’archive du jeu. Ce n’est donc pas un rapport obsolète : attendez-vous à le revoir au prochain lancement.</value></data>
+  <data name="GUICrashDiagnosisStale" xml:space="preserve"><value>Ce plantage est plus ancien que les mods actuellement installés. AIM a reconstruit l’archive du jeu ensuite : le jeu qui a planté n’est donc pas celui qui se trouve maintenant sur le disque. Considérez ce qui suit comme une piste et non comme une conclusion, et jouez une fois avant de modifier quoi que ce soit.</value></data>
+  <data name="GUICrashDiagnosisFunction" xml:space="preserve"><value>Erreur dans {0}(), sur : {1}</value></data>
+  <data name="GUICrashDiagnosisUniqueFault" xml:space="preserve"><value>Les données « {0} » du jeu contiennent à la ligne {2} une entrée sans {1}, qui contient « {3} », une valeur définie par aucun autre mod installé. Une entrée sans {1} est exactement l’endroit où le jeu s’est arrêté.</value></data>
+  <data name="GUICrashDiagnosisUniqueFaultWithIdentity" xml:space="preserve"><value>Les données « {0} » du jeu contiennent à la ligne {2} une entrée sans {1}, qui contient « {3} », une valeur définie par aucun autre mod installé. L’entrée conserve son bloc MOMIidentify : la fusion attendue n’a rien trouvé. Une nouvelle entrée sans {1} a donc été ajoutée au lieu de mettre à jour une entrée existante.</value></data>
+  <data name="GUICrashDiagnosisSharedFault" xml:space="preserve"><value>Les données « {0} » du jeu contiennent à la ligne {2} une entrée sans {1}, et ce mod pourrait être l’un de ceux qui l’ont écrite.</value></data>
+  <data name="GUICrashDiagnosisNoCurrentMatch" xml:space="preserve"><value>Ce plantage précède votre installation actuelle et rien ne correspond à un mod que vous avez maintenant.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainOne" xml:space="preserve"><value>{0} a fait planter le jeu.</value></data>
+  <data name="GUICrashDiagnosisHeadlineCertainMany" xml:space="preserve"><value>{0} mods ont chacun ajouté aux données du jeu quelque chose qu’il ne peut pas charger. N’importe lequel suffit à provoquer ce plantage.</value></data>
+  <data name="GUICrashDiagnosisHeadlineStrong" xml:space="preserve"><value>{0} est la cause la plus probable.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyOne" xml:space="preserve"><value>{0} est le seul mod installé qui touche à ce que le jeu lisait.</value></data>
+  <data name="GUICrashDiagnosisHeadlineLikelyMany" xml:space="preserve"><value>{0} mods installés contribuent aux données sur lesquelles le jeu a planté. L’un d’eux est très probablement la cause.</value></data>
+  <data name="GUICrashDiagnosisHeadlineUnclear" xml:space="preserve"><value>Rien ne désigne clairement un mod, mais quelques-uns méritent d’être écartés.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingField" xml:space="preserve"><value>Quelque chose chargé par le jeu ne contenait pas « {0} », et aucun mod installé ne semble en être propriétaire.</value></data>
+  <data name="GUICrashDiagnosisDescribeUndefinedVariable" xml:space="preserve"><value>Le jeu a lu « {0} » avant que quoi que ce soit ne lui attribue une valeur. Il s’agit généralement de code de mod.</value></data>
+  <data name="GUICrashDiagnosisDescribeNotAFunction" xml:space="preserve"><value>Le jeu a appelé quelque chose qui n’était pas une fonction, généralement un hook qui ne s’est pas installé.</value></data>
+  <data name="GUICrashDiagnosisDescribeMissingAsset" xml:space="preserve"><value>Le jeu n’a pas trouvé la ressource « {0} », généralement un sprite référencé par un mod mais non fourni.</value></data>
+  <data name="GUICrashDiagnosisDescribeUnknown" xml:space="preserve"><value>AIM n’a pas pu relier ce plantage à un mod à partir de la seule trace.</value></data>
+  <data name="GUICrashSuspectsHeader" xml:space="preserve"><value>Mods concernés</value></data>
+  <data name="GUICrashSuspectsHint" xml:space="preserve"><value>Les plus probables en premier. Un mod cité parce que le plantage s’est produit dans son propre code n’est pas une supposition ; un mod cité parce qu’il écrit les données lues par le jeu est un candidat à vérifier.</value></data>
+  <data name="GUICrashVerifyHeader" xml:space="preserve"><value>Vérifier si cela règle le problème</value></data>
+  <data name="GUICrashVerifyHint" xml:space="preserve"><value>Désactive le mod choisi, reconstruit le jeu pour que le changement prenne effet, le démarre et le surveille. Jouez normalement. AIM vous répondra à la fermeture du jeu, ou après quelques minutes s’il n’a pas planté.</value></data>
+  <data name="GUICrashVerifyButton" xml:space="preserve"><value>Désactiver, reconstruire et lancer</value></data>
+  <data name="GUICrashVerifyTooltip" xml:space="preserve"><value>Désactiver un mod ne change rien de visible pour le jeu avant la reconstruction de l’archive. AIM s’occupe donc de tout au lieu de vous laisser vous souvenir de l’étape intermédiaire.</value></data>
+  <data name="GUICrashVerifyNothing" xml:space="preserve"><value>Ne rien changer, seulement lancer et observer</value></data>
+  <data name="GUICrashLinksHeader" xml:space="preserve"><value>À consulter</value></data>
+  <data name="GUICrashRawHeader" xml:space="preserve"><value>Le fichier de plantage, tel que le jeu l’a écrit</value></data>
+  <data name="GUICrashBacktraceHeader" xml:space="preserve"><value>Lieu du plantage</value></data>
+  <data name="GUICrashBacktraceCount" xml:space="preserve"><value>Lieu du plantage ({0} trames)</value></data>
+  <data name="GUICrashCopy" xml:space="preserve"><value>Copier le rapport</value></data>
+  <data name="GUICrashCopyTooltip" xml:space="preserve"><value>Place tout dans le presse-papiers : l’erreur, la trace, la conclusion d’AIM et les mods installés.</value></data>
+  <data name="GUICrashRefresh" xml:space="preserve"><value>Actualiser</value></data>
+  <data name="GUICrashLooking" xml:space="preserve"><value>Recherche de plantages…</value></data>
+  <data name="GUICrashNone" xml:space="preserve"><value>Aucun plantage enregistré. Le jeu n’a pas planté depuis son installation, ou n’a jamais été lancé sur cette machine.</value></data>
+  <data name="GUICrashReading" xml:space="preserve"><value>Comparaison de la trace avec vos mods installés…</value></data>
+  <data name="GUICrashNoModList" xml:space="preserve"><value>AIM ne peut pas voir votre liste de mods depuis cette fenêtre. Il peut afficher le plantage, mais pas dire quel mod l’a provoqué.</value></data>
+  <data name="GUICrashFailed" xml:space="preserve"><value>AIM n’a pas pu terminer la lecture de ce plantage : {0}</value></data>
+  <data name="GUICrashStale" xml:space="preserve"><value>Ce plantage est antérieur aux mods actuellement installés. AIM a reconstruit le jeu ensuite : ce qui a planté n’est donc pas ce qui se trouve maintenant sur le disque. Jouez une fois avant de modifier quoi que ce soit et considérez les mods ci-dessous comme des pistes, pas comme des conclusions.</value></data>
+  <data name="GUICrashNoApiKey" xml:space="preserve"><value>Vous n’êtes pas connecté à Nexus, donc AIM ne peut pas lire les suivis de bugs des mods. Tout ce qui précède a été déduit de vos propres fichiers.</value></data>
+  <data name="GUICrashWorking" xml:space="preserve"><value>Lecture des suivis de bugs et des commentaires des mods concernés…</value></data>
+  <data name="GUICrashNothingToResearch" xml:space="preserve"><value>Rien ne désigne assez clairement un mod pour que sa page mérite d’être consultée.</value></data>
+  <data name="GUICrashResearchFailed" xml:space="preserve"><value>AIM n’a pas pu lire les pages des mods : {0}. L’analyse de vos propres fichiers reste valable.</value></data>
+  <data name="GUICrashNothingFound" xml:space="preserve"><value>Rien sur les pages des mods ne mentionne ce plantage.</value></data>
+  <data name="GUICrashFoundCount" xml:space="preserve"><value>{0} élément(s) des pages des mods concernent ce problème.</value></data>
+  <data name="GUICrashBadgeCertain" xml:space="preserve"><value>CERTAIN</value></data>
+  <data name="GUICrashBadgeStrong" xml:space="preserve"><value>PROBABLE</value></data>
+  <data name="GUICrashBadgeLikely" xml:space="preserve"><value>POSSIBLE</value></data>
+  <data name="GUICrashBadgePossible" xml:space="preserve"><value>PEU PROBABLE</value></data>
+  <data name="GUICrashOpenModPage" xml:space="preserve"><value>Ouvrir la page du mod</value></data>
+  <data name="GUICrashOpenPage" xml:space="preserve"><value>Ouvrir cette page</value></data>
+  <data name="GUICrashReportBug" xml:space="preserve"><value>Signaler ce bug</value></data>
+  <data name="GUICrashReportBugTooltip" xml:space="preserve"><value>Rédige le rapport dont l’auteur a besoin, avec l’erreur, la trace, la version du jeu et vos autres mods installés, le copie dans le presse-papiers et ouvre le suivi de bugs du mod. Vous le lisez et le publiez ; AIM ne le fait pas.</value></data>
+  <data name="GUICrashReportReady" xml:space="preserve"><value>Le rapport est dans le presse-papiers et le suivi de bugs est ouvert. Lisez-le, puis publiez-le.</value></data>
+  <data name="GUICrashReportCopiedOnly" xml:space="preserve"><value>Le rapport est dans le presse-papiers. AIM ne sait pas d’où vient ce mod : vous devrez trouver vous-même le suivi ou le Discord de l’auteur.</value></data>
+  <data name="GUICrashCopied" xml:space="preserve"><value>Copié.</value></data>
+  <data name="GUICrashDisableAndCheck" xml:space="preserve"><value>Désactiver et vérifier</value></data>
+  <data name="GUICrashDisableAndCheckTooltip" xml:space="preserve"><value>Désactive ce mod, reconstruit le jeu et le lance afin de vérifier s’il était la cause au lieu de deviner.</value></data>
+  <data name="GUICrashHandedToVerify" xml:space="preserve"><value>Reconstruction du jeu sans ce mod. Il démarrera automatiquement une fois terminé. La progression est indiquée ci-dessous.</value></data>
+  <data name="GUICrashRemoveMod" xml:space="preserve"><value>Supprimer le mod</value></data>
+  <data name="GUICrashRemoved" xml:space="preserve"><value>{0} a été supprimé.</value></data>
+  <data name="GUICrashVersionsHeader" xml:space="preserve"><value>Versions et modifications d’AIM</value></data>
+  <data name="GUICrashEditedByAim" xml:space="preserve"><value>AIM a modifié ce mod :</value></data>
+  <data name="GUICrashUndoEdits" xml:space="preserve"><value>Annuler les modifications d’AIM</value></data>
+  <data name="GUICrashUndoEditsTooltip" xml:space="preserve"><value>Remet en place chaque fichier mis de côté par AIM dans ce mod et laisse les autres fichiers du dossier intacts. Une ligne modifiée par AIM est annulée en restaurant la version ci-dessous.</value></data>
+  <data name="GUICrashRestoreVersion" xml:space="preserve"><value>Restaurer</value></data>
+  <data name="GUICrashRestored" xml:space="preserve"><value>{0} a été restauré à la version {1}.</value></data>
+  <data name="GUICrashVersionBeforeEdit" xml:space="preserve"><value>{0} - avant la modification d’AIM</value></data>
+  <data name="GUICrashVerifyConfirm" xml:space="preserve"><value>AIM va désactiver {0}, reconstruire l’archive du jeu et le démarrer.&#xD;&#xA;&#xD;&#xA;La reconstruction prend environ une minute. Jouez normalement ; AIM vous dira si le plantage revient.</value></data>
+  <data name="GUICrashVerifyConfirmNothing" xml:space="preserve"><value>AIM va démarrer le jeu et surveiller un éventuel plantage sans rien modifier.&#xD;&#xA;&#xD;&#xA;Jouez normalement ; AIM vous dira ce qui s’est passé.</value></data>
+  <data name="GUICrashCannotDisable" xml:space="preserve"><value>AIM ne peut pas modifier la liste des mods depuis cette fenêtre.</value></data>
+  <data name="GUICrashDisableFailed" xml:space="preserve"><value>{0} n’a pas pu être désactivé. Il est peut-être déjà désactivé ou ne figure plus dans la liste.</value></data>
+  <data name="GUICrashDisabled" xml:space="preserve"><value>{0} est désactivé.</value></data>
+  <data name="GUICrashRebuilding" xml:space="preserve"><value>Reconstruction de l’archive du jeu pour appliquer le changement…</value></data>
+  <data name="GUICrashRebuildFailed" xml:space="preserve"><value>Le jeu n’a pas pu être reconstruit, rien n’a donc été testé : {0}</value></data>
+  <data name="GUICrashLaunching" xml:space="preserve"><value>Démarrage et surveillance du jeu. Jouez normalement.</value></data>
+  <data name="GUICrashAlreadyInstalling" xml:space="preserve"><value>AIM est déjà en train d’installer. Attendez la fin de cette opération.</value></data>
+  <data name="GUICrashNothingToInstall" xml:space="preserve"><value>Rien à installer : le dossier du jeu est absent ou aucun mod n’est activé.</value></data>
+  <data name="GUICrashNoModsFolder" xml:space="preserve"><value>AIM ne sait pas où se trouve votre dossier de mods.</value></data>
+  <data name="GUICrashModGone" xml:space="preserve"><value>Ce mod ne figure plus dans la liste.</value></data>
+  <data name="GUICrashEvidenceFor" xml:space="preserve"><value>Dit qu’il s’agit d’un problème connu</value></data>
+  <data name="GUICrashEvidenceAgainst" xml:space="preserve"><value>Dit que ce mod fonctionne correctement</value></data>
+  <data name="GUICrashEvidenceCaution" xml:space="preserve"><value>Fonctionne, mais seulement si vous faites quelque chose</value></data>
+  <data name="GUICrashEvidenceOther" xml:space="preserve"><value>Autres informations des pages</value></data>
+  <data name="GUICrashEditHeader" xml:space="preserve"><value>Appliquer une correction manuellement</value></data>
+  <data name="GUICrashEditHint" xml:space="preserve"><value>Si un fil de bugs ou la description du mod indique exactement quoi modifier, saisissez-le ici. AIM copie d’abord le mod complet dans votre historique des versions : la liste de restauration ci-dessus contiendra donc toujours la version précédente.</value></data>
+  <data name="GUICrashEditFile" xml:space="preserve"><value>Fichier relatif au dossier du mod</value></data>
+  <data name="GUICrashEditLine" xml:space="preserve"><value>Ligne</value></data>
+  <data name="GUICrashEditText" xml:space="preserve"><value>Nouveau texte pour cette ligne ; laissez vide pour la vider</value></data>
+  <data name="GUICrashEditApply" xml:space="preserve"><value>Appliquer cette modification</value></data>
+  <data name="GUICrashEditSetAside" xml:space="preserve"><value>Mettre ce fichier de côté</value></data>
+  <data name="GUICrashEditSetAsideTooltip" xml:space="preserve"><value>Retire tout le fichier du jeu et laisse le reste du mod installé. Utile lorsqu’un fichier de données fait planter le jeu et que vous souhaitez conserver le reste du mod en attendant une mise à jour de l’auteur.</value></data>
+  <data name="GUICrashEditNeedFile" xml:space="preserve"><value>Indiquez d’abord un fichier du mod et le numéro de la ligne à modifier.</value></data>
+  <data name="GUICrashEditSummary" xml:space="preserve"><value>Correction de plantage : ligne {0} de {1} dans {2}</value></data>
+  <data name="GUICrashEditAsideSummary" xml:space="preserve"><value>Correction de plantage : {0} mis de côté dans {1}</value></data>
+  <data name="GUICrashEditConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;AIM copiera d’abord le mod complet dans votre historique des versions pour que vous puissiez le remettre à tout moment depuis la liste de restauration. Seul ce mod sera modifié.&#xD;&#xA;&#xD;&#xA;Continuer ?</value></data>
+  <data name="GUICrashStepNothingChanged" xml:space="preserve"><value>Aucune modification : lancement du jeu tel quel.</value></data>
+  <data name="GUICrashStepRebuildSkipped" xml:space="preserve"><value>L’archive correspond déjà à la liste des mods, aucune reconstruction n’était donc nécessaire.</value></data>
+  <data name="GUICrashStepRebuilt" xml:space="preserve"><value>L’archive du jeu a été reconstruite.</value></data>
+  <data name="GUICrashStepStarting" xml:space="preserve"><value>Démarrage de Fields of Mistria…</value></data>
+  <data name="GUICrashStepWatching" xml:space="preserve"><value>Session surveillée. Jouez normalement ; AIM vous répondra à la fermeture du jeu ou après {0} minutes s’il n’a pas planté.</value></data>
+  <data name="GUICrashStepNotStarted" xml:space="preserve"><value>Le jeu n’a pas démarré, rien n’a donc été testé.</value></data>
+  <data name="GUICrashVerdictCleared" xml:space="preserve"><value>Le même plantage est revenu avec {0} désactivé : {0} n’est donc pas la cause. AIM l’a écarté et l’a réactivé.</value></data>
+  <data name="GUICrashVerdictClearedNoReenable" xml:space="preserve"><value>Le même plantage est revenu avec {0} désactivé : {0} n’est donc pas la cause. AIM l’a écarté mais n’a pas pu le réactiver. Utilisez « Réactiver » sur sa carte, dans « Déjà vérifiés », avant la prochaine vérification.</value></data>
+  <data name="GUICrashVerdictGuilty" xml:space="preserve"><value>Aucun plantage avec {0} désactivé. C’est donc la cause probable. Laissez-le désactivé, attendez une mise à jour ou essayez une correction ci-dessous.</value></data>
+  <data name="GUICrashVerdictNothingGuilty" xml:space="preserve"><value>Le jeu a fonctionné sans planter et rien n’a été modifié. Le plantage nécessitait peut-être une sauvegarde ou une action que vous n’avez pas répétée. Réessayez en reproduisant ce que vous aviez fait.</value></data>
+  <data name="GUICrashVerdictInconclusive" xml:space="preserve"><value>Cette session n’a rien permis de conclure, {0} reste donc suspect. AIM le proposera à nouveau.</value></data>
+  <data name="GUICrashVerdictDifferentCrash" xml:space="preserve"><value>Le jeu a planté pour une autre raison : {0} est donc écarté pour le plantage d’origine. AIM a chargé le nouveau plantage et conserve les conclusions déjà obtenues.</value></data>
+  <data name="GUICrashTrialProgress" xml:space="preserve"><value>{0} suspects sur {1} ont été testés pour ce plantage.</value></data>
+  <data name="GUICrashTrialsNotKept" xml:space="preserve"><value>AIM ne peut pas enregistrer ces résultats : ils ne durent que tant que cette fenêtre est ouverte.</value></data>
+  <data name="GUICrashNextCandidate" xml:space="preserve"><value>Tester ensuite : {0}</value></data>
+  <data name="GUICrashNextCandidateTooltip" xml:space="preserve"><value>Effectue la même vérification sur le prochain suspect non testé : le désactive, reconstruit, lance et surveille le jeu. Les mods déjà écartés restent activés.</value></data>
+  <data name="GUICrashNoMoreCandidates" xml:space="preserve"><value>Tous les suspects ont été testés et aucun n’était la cause à lui seul. Deux mods peuvent provoquer cela ensemble : désactivez toute la liste à la fois ou signalez le plantage avec la liste ci-dessous.</value></data>
+  <data name="GUICrashRestartHunt" xml:space="preserve"><value>Recommencer</value></data>
+  <data name="GUICrashRestartHuntTooltip" xml:space="preserve"><value>Supprime toutes les conclusions enregistrées par AIM pour ce plantage et propose à nouveau tous les suspects. À faire après avoir ajouté, supprimé ou réordonné des mods, car une conclusion ne vaut que pour la liste avec laquelle elle a été testée.</value></data>
+  <data name="GUICrashRestartedHunt" xml:space="preserve"><value>Toutes les conclusions de ce plantage ont été supprimées.</value></data>
+  <data name="GUICrashSettledHeader" xml:space="preserve"><value>Écartés : {0} suspects sur {1}</value></data>
+  <data name="GUICrashSettledExpander" xml:space="preserve"><value>Afficher ce que ces sessions ont prouvé</value></data>
+  <data name="GUICrashResearchingCulprit" xml:space="preserve"><value>Lecture des pages de {0} à la recherche d’une solution…</value></data>
+  <data name="GUICrashMarkInnocent" xml:space="preserve"><value>Pas la cause</value></data>
+  <data name="GUICrashMarkInnocentTooltip" xml:space="preserve"><value>Enregistre que vous savez que ce mod n’est pas responsable du plantage sans lui consacrer une session. Il passe dans la liste des écartés, ne sera plus proposé aux tests et sera réactivé si AIM l’avait désactivé. Il est marqué comme votre propre jugement, pas comme une preuve d’AIM, et vous pouvez l’annuler.</value></data>
+  <data name="GUICrashMarkCulprit" xml:space="preserve"><value>Marquer comme cause du plantage</value></data>
+  <data name="GUICrashMarkCulpritTooltip" xml:space="preserve"><value>Enregistre que vous savez que ce mod provoque ce plantage. AIM le désactive, le marque dans votre liste et le traite comme la cause, comme après un test concluant, mais en indiquant qu’il s’agit de votre jugement. Vous pouvez l’annuler.</value></data>
+  <data name="GUICrashUnmark" xml:space="preserve"><value>Annuler ma marque</value></data>
+  <data name="GUICrashUnmarkTooltip" xml:space="preserve"><value>Retire la conclusion enregistrée manuellement et remet ce mod dans la liste des suspects non testés. Le mod reste dans son état actuel, activé ou désactivé.</value></data>
+  <data name="GUICrashMarkedByHandNote" xml:space="preserve"><value>Marqué manuellement, non testé par AIM.</value></data>
+  <data name="GUICrashTagMarkedInnocent" xml:space="preserve"><value>MARQUÉ COMME NON RESPONSABLE</value></data>
+  <data name="GUICrashTagMarkedCulprit" xml:space="preserve"><value>MARQUÉ COMME CAUSE DU PLANTAGE</value></data>
+  <data name="GUICrashMarkedCulpritNote" xml:space="preserve"><value>Vous l’avez marqué comme cause. AIM ne l’a pas testé : il l’a désactivé et marqué dans votre liste sur la base de votre jugement. Les corrections qu’AIM peut appliquer sont ci-dessous ; son fil de bugs contient peut-être déjà une réponse.</value></data>
+  <data name="GUICrashMarkedCulprit" xml:space="preserve"><value>{0} est marqué comme cause du plantage et a été désactivé. Installez pour reconstruire le jeu sans lui.</value></data>
+  <data name="GUICrashMarkedCulpritAlreadyOff" xml:space="preserve"><value>{0} est marqué comme cause du plantage. Il était déjà désactivé.</value></data>
+  <data name="GUICrashMarkedInnocent" xml:space="preserve"><value>{0} est marqué comme non responsable et ne sera plus proposé pour ce plantage.</value></data>
+  <data name="GUICrashMarkedInnocentAndOn" xml:space="preserve"><value>{0} est marqué comme non responsable et a été réactivé. Installez pour le remettre dans le jeu.</value></data>
+  <data name="GUICrashUnmarked" xml:space="preserve"><value>Votre marque sur {0} a été retirée. Il figure à nouveau parmi les suspects non testés.</value></data>
+  <data name="GUICrashCannotMarkWithoutCrash" xml:space="preserve"><value>AIM n’a aucun plantage chargé auquel associer cela.</value></data>
+  <data name="GUICrashSwitchBackOn" xml:space="preserve"><value>Réactiver</value></data>
+  <data name="GUICrashSwitchBackOnTooltip" xml:space="preserve"><value>Ce mod est écarté mais toujours désactivé. AIM réactive normalement lui-même un mod écarté ; il n’a pas pu le faire cette fois, ce bouton s’en charge.</value></data>
+  <data name="GUICrashSwitchedBackOn" xml:space="preserve"><value>{0} est réactivé. Installez pour le remettre dans le jeu.</value></data>
+  <data name="GUICrashCannotSwitchBackOn" xml:space="preserve"><value>AIM n’a pas pu réactiver {0}. Il ne figure peut-être plus dans votre liste ou n’a peut-être pas pu être chargé.</value></data>
+  <data name="GUICrashTagRuledOut" xml:space="preserve"><value>ÉCARTÉ</value></data>
+  <data name="GUICrashTagLikelyCause" xml:space="preserve"><value>CAUSE DE PLANTAGE CONNUE</value></data>
+  <data name="GUICrashCulpritNote" xml:space="preserve"><value>Un test l’a prouvé : avec ce mod désactivé, le jeu n’a pas planté. AIM l’a laissé désactivé et l’a marqué dans votre liste. Les corrections qu’AIM peut appliquer sont ci-dessous ; son fil de bugs contient peut-être déjà une réponse.</value></data>
+  <data name="GUICrashTagTested" xml:space="preserve"><value>TESTÉ, AUCUNE RÉPONSE</value></data>
+  <data name="GUICrashRepairHeader" xml:space="preserve"><value>Corrections qu’AIM peut appliquer seul</value></data>
+  <data name="GUICrashRepairHint" xml:space="preserve"><value>Ces réparations ont été déduites par AIM de ses propres vérifications, et non d’un fil de bugs. Chacune corrige mécaniquement quelque chose de manifestement incorrect dans le fichier, sans jamais deviner l’intention de l’auteur. Le mod complet est d’abord copié dans votre historique, marqué comme modifié et exclu des mises à jour jusqu’à l’arrivée d’une version susceptible de corriger réellement le problème.</value></data>
+  <data name="GUICrashRepairApply" xml:space="preserve"><value>Appliquer cette correction</value></data>
+  <data name="GUICrashRepairApplied" xml:space="preserve"><value>Appliqué à {0}. Le mod est marqué comme modifié et exclu des mises à jour ; la version précédente se trouve dans la liste de restauration.</value></data>
+  <data name="GUICrashRepairNone" xml:space="preserve"><value>Rien ici n’est endommagé d’une manière qu’AIM puisse réparer seul.</value></data>
+  <data name="GUICrashRepairConfirm" xml:space="preserve"><value>{0}&#xD;&#xA;&#xD;&#xA;Dans {1} :&#xD;&#xA;{2}&#xD;&#xA;&#xD;&#xA;AIM copiera d’abord le mod complet dans votre historique et empêchera ses mises à jour afin que cette correction ne soit pas écrasée silencieusement. Continuer ?</value></data>
+  <data name="GUICrashRepairFrozen" xml:space="preserve"><value>Exclu des mises à jour car AIM l’a corrigé : {0}</value></data>
+  <data name="CoreModRequiresNewerInstaller" xml:space="preserve"><value>Ce mod demande l'installateur {0}, tandis qu'AIM implémente {1}. Il fonctionnera probablement quand même : essaie-le et, si quelque chose ne va pas, consulte la page du mod pour connaître la version requise.</value></data>
+  <data name="GUIThemeMenu" xml:space="preserve"><value>Thème</value></data>
+  <data name="GUIThemeSystemDefault" xml:space="preserve"><value>Par défaut du système</value></data>
+  <data name="GUIThemeLight" xml:space="preserve"><value>Clair</value></data>
+  <data name="GUIThemeDark" xml:space="preserve"><value>Sombre</value></data>
+  <data name="GUIThemeMeadow" xml:space="preserve"><value>Récolte de Mistria</value></data>
+  <data name="GUIThemeGreenMeadow" xml:space="preserve"><value>Prairie de Mistria</value></data>
+  <data name="GUIThemeNight" xml:space="preserve"><value>Nuit de Mistria</value></data>
+  <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardin de roses</value></data>
+  <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Réduire la taille du texte</value></data>
+  <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Augmenter la taille du texte</value></data>
 </root>

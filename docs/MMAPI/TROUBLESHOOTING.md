@@ -54,21 +54,16 @@ A throwing handler never breaks the game or another mod. The framework skips it 
 - A missing primary means genuinely fresh data. MMAPI does not resurrect a leftover backup in that case.
 - Config IO at top-level boot throws. Load from a handler or the first `mmapi_register` drain.
 
-## Preflight One Mod
+## CLI preflight
 
-The CLI can run manifest validation, seam staging, skip checks, lints, and the compile gate without writing the game:
+The complete non-interactive CLI reference, including `--lint`, `--seam-check`, read-only
+inspection, dry-run preflight, JSON/TOML output, and exit codes, is in [`docs/CLI.md`](../CLI.md).
+
+For a one-mod preflight from this document, use:
 
 ```powershell
 dotnet run --project ModsOfMistriaCommandLine -- --lint "C:\path\to\mod-folder" "C:\path\to\pristine-assets.zip" --strict-lints --compile-check require
 ```
-
-The pristine zip is optional when AIM CLI can locate the installed game's backup. `--strict-lints` is optional. `--compile-check on` uses a checker when one resolves, `off` disables the pass, and `require` fails when no checker is available.
-
-| Exit | Meaning |
-| ---- | ------- |
-| `0` | The mod would install. |
-| `1` | The mod would be skipped. |
-| `2` | The lint could not run, such as a bad path, missing pristine source, or stale seam catalog. |
 
 ## It Worked, Then A Game Update Broke It
 

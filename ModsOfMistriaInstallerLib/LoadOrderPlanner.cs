@@ -509,7 +509,8 @@ public static class LoadOrderPlanner
         // "one of these is replacing the other's sprite".
         var overrides = Describe(
             conflicts.Where(conflict =>
-                conflict.Kind is ModFileConflictKind.HardReplacement or ModFileConflictKind.SharedDestination),
+                conflict.Kind is ModFileConflictKind.HardReplacement or
+                ModFileConflictKind.FontAsset or ModFileConflictKind.SharedDestination),
             combining: false);
 
         var merges = Describe(

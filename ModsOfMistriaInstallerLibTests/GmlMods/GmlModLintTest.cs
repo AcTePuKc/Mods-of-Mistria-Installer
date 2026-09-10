@@ -12,6 +12,7 @@ public class GmlModLintTest
     private static readonly Dictionary<string, string> Exports = new()
     {
         { "mmapi_emit", "the mmapi framework (mmapi_hooks.gml)" },
+        { "mmapi_apply_monotonic_filters", "the mmapi framework (mmapi_hooks.gml)" },
         { "mmapi_on", "the mmapi framework (mmapi_hooks.gml)" },
         { "mmapi_hook_catalog", "the mmapi framework (mmapi_hook_catalog.gml)" },
         { "__mmapi_guarded_call", "the mmapi framework (mmapi.gml)" },
@@ -94,6 +95,7 @@ public class GmlModLintTest
     {
         var findings = LintCalls(Mod("a", "function a_boot() {\n"
                                           + "    mmapi_emit(\"x.y\", undefined);\n"
+                                          + "    mmapi_apply_monotonic_filters(\"x.y\", false, undefined);\n"
                                           + "    mmapi_on(\"x.y\", a_h);\n"
                                           + "    __mmapi_guarded_call();\n}\n"));
 

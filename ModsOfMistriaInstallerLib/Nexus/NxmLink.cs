@@ -1,5 +1,7 @@
 namespace Garethp.ModsOfMistriaInstallerLib.Nexus;
 
+using Garethp.ModsOfMistriaInstallerLib.Lang;
+
 /// <summary>
 /// A parsed <c>nxm://</c> link, the URI the Nexus Mods website hands to a mod manager
 /// when the user clicks "Mod Manager Download".
@@ -19,6 +21,9 @@ public record NxmLink(
     long? Expires,
     int? UserId)
 {
+    private static string Text(string key) =>
+        Resources.ResourceManager.GetString(key, Resources.Culture) ?? key;
+
     /// <summary>The game domain AIM cares about. Links for other games are rejected.</summary>
     public const string MistriaGameDomain = "fieldsofmistria";
 
@@ -47,21 +52,21 @@ public record NxmLink(
 
         if (string.IsNullOrWhiteSpace(input))
         {
-            error = "Empty download link.";
+            error = Text("GUINxmEmptyLink");
             return false;
         }
 
         if (!Uri.TryCreate(input.Trim(), UriKind.Absolute, out var uri) ||
             !uri.Scheme.Equals("nxm", StringComparison.OrdinalIgnoreCase))
         {
-            error = "That is not an nxm:// link.";
+            error = Text("GUINxmInvalidScheme");
             return false;
         }
 
         var game = uri.Host;
         if (string.IsNullOrEmpty(game))
         {
-            error = "The link does not name a game.";
+            error = Text("GUINxmMissingGame");
             return false;
         }
 
@@ -74,7 +79,7 @@ public record NxmLink(
         // install flow entirely, so they get their own message instead of "malformed link".
         if (segments.Length > 0 && segments[0].Equals("collections", StringComparison.OrdinalIgnoreCase))
         {
-            error = "Nexus collections are not supported yet - download the mods individually.";
+            error = Text("GUINxmCollectionsUnsupported");
             return false;
         }
 
@@ -82,14 +87,14 @@ public record NxmLink(
             !segments[0].Equals("mods", StringComparison.OrdinalIgnoreCase) ||
             !segments[2].Equals("files", StringComparison.OrdinalIgnoreCase))
         {
-            error = "The link is not a mod file download.";
+            error = Text("GUINxmNotModDownload");
             return false;
         }
 
         if (!int.TryParse(segments[1], out var modId) || modId <= 0 ||
             !int.TryParse(segments[3], out var fileId) || fileId <= 0)
         {
-            error = "The link has an invalid mod or file id.";
+            error = Text("GUINxmInvalidIds");
             return false;
         }
 

@@ -2,7 +2,8 @@
 
 [← MMAPI](MMAPI.md)
 
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **129 hooks**, fed by **141 seams**, **3 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+<!-- merge: keep both catalog entries -->
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **133 hooks**, fed by **146 seams**, **7 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -123,6 +124,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | ---- | ---- | ----------- |
 | [items.give](hooks/items.give.md) | filter | Rewrite any item the player is about to receive. |
 | [items.use_guard](hooks/items.use_guard.md) | guard | Block an item from being used. |
+| [items.chest_opened](hooks/items.chest_opened.md) | event | Know the moment any chest item finishes opening. |
 | [items.consumed](hooks/items.consumed.md) | event | Know every item the player eats. |
 | [items.dropped](hooks/items.dropped.md) | event | Know what is about to drop into the world. |
 | [items.trashed](hooks/items.trashed.md) | event | Know the moment the player trashes an item. |
@@ -141,6 +143,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | Name | Kind | Description |
 | ---- | ---- | ----------- |
 | [ui.menu_opened](hooks/ui.menu_opened.md) | event | Know the moment a menu opens. |
+| [font.styles_loaded](hooks/font.styles_loaded.md) | filter | Customize the resolved text-style mapping after the engine loads font assets. |
 | [ui.menu_closed](hooks/ui.menu_closed.md) | event | Know when a menu closes. |
 | [ui.menu_refreshed](hooks/ui.menu_refreshed.md) | event | React when a menu rebuilds its content. |
 | [ui.toolbar_tick](hooks/ui.toolbar_tick.md) | event | React on every toolbar tick. |
@@ -151,10 +154,13 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [ui.button_sprites](hooks/ui.button_sprites.md) | filter | Swap the sprite set a UI button is built from. |
 | [ui.spawn_tutorial_guard](hooks/ui.spawn_tutorial_guard.md) | guard | Block a tutorial popup before it spawns. |
 | [ui.backplate_sprite](hooks/ui.backplate_sprite.md) | filter | Swap the backplate sprites behind the mines menu and spell cards. |
-| [ui.preset_popup_layout](hooks/ui.preset_popup_layout.md) | filter | Adjust the customization preset popup grid layout. |
+<!-- merge: keep both seam entries -->
+| [ui.preset_popup_layout](hooks/ui.preset_popup_layout.md) | filter | Resize the customization menu's preset popup frames and grid. |
+| [ui.relationship_row_built](hooks/ui.relationship_row_built.md) | event | Add custom nodes to each NPC row in the relationships journal. |
 | [dialogue.play_guard](hooks/dialogue.play_guard.md) | guard | Block a conversation before it starts. |
 | [dialogue.path](hooks/dialogue.path.md) | filter | Change which conversation plays before it starts. |
 | [dialogue.line](hooks/dialogue.line.md) | filter | Reword any dialogue line before the textbox shows it. |
+| [dialogue.prompt_lock](hooks/dialogue.prompt_lock.md) | filter | Add an additive soft-lock to a dialogue prompt option. |
 | [dialogue.speaker](hooks/dialogue.speaker.md) | filter | Swap the speaker a textbox shows. |
 | [dialogue.npc_blip](hooks/dialogue.npc_blip.md) | filter | Swap the blip sound an NPC speaks with. |
 | [audio.play_guard](hooks/audio.play_guard.md) | guard | Block any sound effect before it plays. |
@@ -287,6 +293,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [archaeology_dig_artifact](seams/archaeology_dig_artifact.md) | Wraps the artifact roll so every dig spot's yield passes through a filter. |
 | [items_treasure_distribution_none](seams/items_treasure_distribution_none.md) | Filters the treasure roll's empty exit so mods can inject a drop where there was none. |
 | [items_treasure_distribution_result](seams/items_treasure_distribution_result.md) | Filters the treasure roll's rolled result on its way out. |
+| [fish_chest_table_lookup](seams/fish_chest_table_lookup.md) | Resolves an opened chest's loot table, and announces the open before the drops. |
 | [items_infusion_generate](seams/items_infusion_generate.md) | Puts a veto check in front of a recipe's infusion generation. |
 | [items_infusion_chance](seams/items_infusion_chance.md) | Filters the infusion roll chance in `craft_into()`, hoisted out of the roll condition before `chance_percent` consumes it. |
 | [item_display_description](seams/item_display_description.md) | Wraps the item-description getter, the string the tooltip body actually renders. |
@@ -316,11 +323,14 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [ui_spawn_tutorial_guard](seams/ui_spawn_tutorial_guard.md) | Puts a veto check at the head of `spawn_tutorial()`. |
 | [ui_backplate_sprite_mines](seams/ui_backplate_sprite_mines.md) | Routes the mines menu backplate sprite through a filter on dungeon room start. |
 | [ui_backplate_sprite_spell_card](seams/ui_backplate_sprite_spell_card.md) | Routes each spell card's backplate sprite through a filter. |
-| [ui_preset_popup_layout](seams/ui_preset_popup_layout.md) | Filters the customization preset popup grid layout. |
 | [ui_crafting_refreshed](seams/ui_crafting_refreshed.md) | Emits when the crafting menu rebuilds its right page. |
+| [ui_preset_popup_layout](seams/ui_preset_popup_layout.md) | Rebuilds the preset popup's layout constants through a filter each time the popup body is generated. |
+| [ui_relationship_row_built](seams/ui_relationship_row_built.md) | Hands each finished NPC row to mods as the relationships journal builds its list. |
 | [dialogue_play_guard](seams/dialogue_play_guard.md) | Puts a veto check at the head of `play_conversation()`. |
 | [dialogue_path](seams/dialogue_path.md) | Rebuilds `play_conversation()`'s four arguments through the `dialogue.path` filter. |
 | [dialogue_line](seams/dialogue_line.md) | Filters each localized dialogue line before the textbox shows it. |
+| [dialogue_prompt_metadata](seams/dialogue_prompt_metadata.md) | Carries each prompt's original index and raw key into its prompt box. |
+| [dialogue_prompt_lock](seams/dialogue_prompt_lock.md) | Applies the monotonic prompt-lock decision before the prompt becomes interactive. |
 | [dialogue_speaker](seams/dialogue_speaker.md) | Filters the just-built textbox speaker before it is assigned. |
 | [dialogue_speaker_ctx_arg](seams/dialogue_speaker_ctx_arg.md) | Threads the ConversationDriver into the initial Speaker action so `dialogue.speaker`'s ctx is filled from line one. |
 | [dialogue_npc_blip](seams/dialogue_npc_blip.md) | Filters an NPC speaker's blip sound right after the default lookup. |
@@ -338,6 +348,10 @@ Hook-less edits the catalog also carries:
 | [game_step_begin_installs](seams/game_step_begin_installs.md) | engine fix | Installs the MMAPI per-frame drain at the top of the game's `step_begin`, the framework's lifecycle root. |
 | [tarball_chop_burn_flag](seams/tarball_chop_burn_flag.md) | engine fix | Passes the tarball's real fire flag to its grid chop, so non-fire chops stop being burn-throttled by stump/fruit-tree iframes. |
 | [max_crafts_zero_component](seams/max_crafts_zero_component.md) | engine fix | Skips zero-cost components in the craft-ceiling loop, mirroring the zero guard the duration branch already has. |
+| [customization_color_popup_scrollable](seams/customization_color_popup_scrollable.md) | engine fix | Wraps the customization colour popup's swatch grid in a capped-height scroller when it exceeds 7 rows, so LUTs widened past the vanilla colour count stay on-screen. |
+| [pet_appearance_popup_scrollable](seams/pet_appearance_popup_scrollable.md) | engine fix | Wraps the pet "Select an Appearance" variant grid in the same capped-height scroller when it exceeds 7 rows, so pet-skin mods that add many variants stay on-screen. |
+| [fish_chest_item_use](seams/fish_chest_item_use.md) | engine fix | Lets a fiddle item declaring `fish_chest` take `ItemUse.OpenChest`, carrying its loot-table key on the prototype. |
+| [fish_chest_custom_rarity](seams/fish_chest_custom_rarity.md) | engine fix | Makes an unknown chest rarity a no-op in the fishing distribution build instead of a Setup crash. |
 | [local_get_dispatch](seams/local_get_dispatch.md) | call rewrite | Reroutes every direct GML `local_get()` call through the framework's localisation waist, feeding [local.get](hooks/local.get.md) and [local.missing](hooks/local.missing.md). |
 
 ## Growing The Catalog

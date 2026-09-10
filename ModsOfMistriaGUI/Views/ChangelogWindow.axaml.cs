@@ -25,6 +25,7 @@ public partial class ChangelogWindow : Window
     private ChangelogWindow(string modName, IReadOnlyList<ModChangelogEntry>? entries)
     {
         InitializeComponent();
+        App.ApplyThemeClass(this);
 
         // A dialog taller than the screen's working area is centred with its top edge off
         // the display, which puts the title bar out of reach. See DialogBounds.

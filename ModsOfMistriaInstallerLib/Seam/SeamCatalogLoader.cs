@@ -23,18 +23,19 @@ public static class SeamCatalogLoader
     private static readonly Regex HookNameRegex = new(@"\A[a-z0-9_]+(?:\.[a-z0-9_]+)*\z");
     private static readonly Regex GmlIdentRegex = new(@"\A[A-Za-z_][A-Za-z0-9_]*\z");
 
-    // The four dispatchers a replace body may call → the hook kind each one
+    // The dispatchers a replace body may call → the hook kind each one
     // implies. Every hand-written replace is linted against this table.
     private static readonly Dictionary<string, HookKind> Dispatchers = new()
     {
         ["mmapi_emit"] = HookKind.Event,
         ["mmapi_apply_filters"] = HookKind.Filter,
+        ["mmapi_apply_monotonic_filters"] = HookKind.Filter,
         ["mmapi_check_guards"] = HookKind.Guard,
         ["mmapi_run_override"] = HookKind.Override,
     };
 
     private static readonly Regex DispatchRegex =
-        new(@"\b(mmapi_emit|mmapi_apply_filters|mmapi_check_guards|mmapi_run_override)\(\s*""([^""]+)""");
+        new(@"\b(mmapi_emit|mmapi_apply_filters|mmapi_apply_monotonic_filters|mmapi_check_guards|mmapi_run_override)\(\s*""([^""]+)""");
 
     private static readonly UTF8Encoding Utf8Strict = new(false, true);
 

@@ -133,6 +133,42 @@ public class ModBackupStoreTest
     }
 
     [Test]
+    public void ShouldSnapshotAnArchiveWithoutMovingIt()
+    {
+        var store = new ModBackupStore(_modsFolder);
+        var archive = Path.Combine(_modsFolder, "Some Mod.zip");
+        File.WriteAllText(archive, "archive bytes");
+
+        var backup = store.Snapshot(archive, "1.0 before an edit");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(backup, Is.Not.Null);
+            Assert.That(File.Exists(archive), Is.True, "a snapshot must leave the live archive in place");
+            Assert.That(File.ReadAllText(Path.Combine(backup!.Path, "Some Mod.zip")),
+                Is.EqualTo("archive bytes"));
+        });
+    }
+
+    [Test]
+    public void ShouldRoundTripAnArchivedArchiveAsAnArchive()
+    {
+        var store = new ModBackupStore(_modsFolder);
+        var archive = Path.Combine(_modsFolder, "Some Mod.zip");
+        File.WriteAllText(archive, "version one");
+
+        var backup = store.Archive(archive, "1.0");
+        store.Restore(backup!, archive);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(archive), Is.True);
+            Assert.That(File.ReadAllText(archive), Is.EqualTo("version one"));
+            Assert.That(Directory.Exists(Path.Combine(_modsFolder, ModBackupStore.DirectoryName)), Is.True);
+        });
+    }
+
+    [Test]
     public void ShouldReportNothingForAModThatWasNeverBackedUp()
     {
         var store = new ModBackupStore(_modsFolder);

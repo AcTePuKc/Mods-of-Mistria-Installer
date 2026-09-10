@@ -42,7 +42,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _ => false
     };
 
-    public string WindowTitle => $"{Localization["GUIApplicationTitle"]} — {AppInfo.DisplayVersion}";
+    public string WindowTitle => $"{Localization["GUIApplicationTitle"]} - {AppInfo.DisplayVersion}";
 
     [RelayCommand]
     private void SetLanguage(string? languageCode)
