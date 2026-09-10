@@ -282,7 +282,6 @@ public static class NxmProtocolHandler
     {
         var commandLine = $"\"{executable}\" \"%1\"";
         var iconPath = $"\"{executable}\",0";
-        var foreignManagerHasNxmCapability = HasForeignNxmCapability();
 
         // Register a dedicated ProgID as well as the bare protocol fallback. The ProgID is what
         // Windows exposes in Default apps and what lets it distinguish AIM from Stardrop, ModDrop,
@@ -299,13 +298,11 @@ public static class NxmProtocolHandler
             command.SetValue("", commandLine);
         }
 
-        // If another manager has a structured registration, do not overwrite its bare fallback.
-        // Managers such as Stardrop use that mismatch as a signal to repair their registration,
-        // which would otherwise create a registry tug-of-war. The user can choose AIM explicitly
-        // from Windows' Default apps picker using the AIM.nxm capability registered above.
-        if (!foreignManagerHasNxmCapability)
+        // This method is reached only after the user explicitly chose "Use AIM". The bare
+        // protocol fallback is therefore updated even when another manager is registered as a
+        // Default apps candidate. A real Windows UserChoice still wins and is never written here.
+        using (var protocol = Registry.CurrentUser.CreateSubKey(WindowsProtocolKeyPath))
         {
-            using var protocol = Registry.CurrentUser.CreateSubKey(WindowsProtocolKeyPath);
             protocol.SetValue("", "URL:Nexus Mods Protocol");
             protocol.SetValue("URL Protocol", "");
 
@@ -407,27 +404,6 @@ public static class NxmProtocolHandler
         return WindowsCapabilitiesPath.Equals(
             registeredApplications?.GetValue(WindowsRegisteredApplicationName) as string,
             StringComparison.OrdinalIgnoreCase);
-    }
-
-    [SupportedOSPlatform("windows")]
-    private static bool HasForeignNxmCapability()
-    {
-        using var registeredApplications = Registry.CurrentUser.OpenSubKey(WindowsRegisteredApplicationsPath);
-        if (registeredApplications is null) return false;
-
-        foreach (var applicationName in registeredApplications.GetValueNames())
-        {
-            if (applicationName.Equals(WindowsRegisteredApplicationName, StringComparison.OrdinalIgnoreCase))
-                continue;
-
-            var capabilitiesPath = registeredApplications.GetValue(applicationName) as string;
-            if (string.IsNullOrWhiteSpace(capabilitiesPath)) continue;
-
-            using var associations = Registry.CurrentUser.OpenSubKey($@"{capabilitiesPath}\UrlAssociations");
-            if (!string.IsNullOrWhiteSpace(associations?.GetValue(Scheme) as string)) return true;
-        }
-
-        return false;
     }
 
     // ── Linux ────────────────────────────────────────────────────────────────────
