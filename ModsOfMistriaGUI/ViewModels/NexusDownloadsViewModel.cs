@@ -132,13 +132,6 @@ public partial class NexusDownloadsViewModel : ViewModelBase
         _nexusSettings.HandlerPromptedFor = claimant;
         if (answer != ButtonResult.Yes) return;
 
-        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
-        {
-            NxmProtocolHandler.OpenWindowsDefaultApps();
-            RefreshHandlerStatus();
-            return;
-        }
-
         if (NxmProtocolHandler.Register(out var error))
         {
             _nexusSettings.HandlerRegistered = true;
@@ -669,23 +662,6 @@ public partial class NexusDownloadsViewModel : ViewModelBase
 
             if (confirm != ButtonResult.Yes) return;
 
-            // AIM may already be registered as an available application while another manager
-            // owns Windows' UserChoice entry. After the user confirms the takeover, open the
-            // Default apps page so Windows can make AIM the actual default; do not unregister AIM's
-            // registration, because that would remove the very choice the user is trying to make.
-            if (status.IsThisApplicationRegistered)
-            {
-                NxmProtocolHandler.OpenWindowsDefaultApps();
-                RefreshHandlerStatus();
-                return;
-            }
-        }
-
-        if (status.IsThisApplicationRegistered && status.IsClaimedByAnother)
-        {
-            NxmProtocolHandler.OpenWindowsDefaultApps();
-            RefreshHandlerStatus();
-            return;
         }
 
         if (NxmProtocolHandler.Register(out var error))
