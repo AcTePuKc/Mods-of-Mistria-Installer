@@ -1,6 +1,12 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  # Feature branches are checked by their pull request. Limit push builds to
+  # the two protected integration branches so GitHub does not run the same
+  # three platform jobs twice for every PR.
+  push:
+    branches: [main, develop]
+  pull_request:
 
 jobs:
   test:
@@ -44,3 +50,17 @@ jobs:
         env:
           MOMI_GML_CHECKER: ${{ github.workspace }}/tools/checker/target/release/momi-gml-check${{ runner.os == 'Windows' && '.exe' || '' }}
           MOMI_GML_PROBE: ${{ github.workspace }}/tools/checker/target/release/momi-gml-probe${{ runner.os == 'Windows' && '.exe' || '' }}
+      - name: Audit localization resources
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./tools/check-localization.ps1 -FailOnMissing -FailOnEmDash
+      - name: Verify release metadata
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./tools/check-release-metadata.ps1
+      - name: Smoke-test the CLI
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          ./tools/cli-smoke-tests.ps1 -CliPath `
+            (Join-Path $env:GITHUB_WORKSPACE 'ModsOfMistriaCommandLine\bin\Debug\net10.0\win-x64\AIM-cli.exe')

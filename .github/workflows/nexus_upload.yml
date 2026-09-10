@@ -3,6 +3,10 @@ name: Upload To Nexus
 on:
   workflow_dispatch:
     inputs:
+      release_tag:
+        description: "Existing GitHub release tag to build and publish (for example, v0.2.1)"
+        required: true
+        type: string
       upload_to_nexus:
         description: "Upload to Nexus only when explicitly enabled"
         required: true
@@ -57,6 +61,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.release_tag }}
       - name: Add the Rust target
         run: rustup target add ${{ matrix.target }}
       - name: Build momi-gml-check
@@ -83,6 +89,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: ${{ inputs.release_tag }}
           submodules: true
       - name: Configure ImageSharp license
         shell: bash
@@ -123,6 +130,17 @@ jobs:
         run: |
           VERSION=$(dotnet msbuild -nologo -verbosity:quiet -getProperty:AssemblyVersion ModsOfMistriaGUI)
           echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Verify tag and built version agree
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          set -euo pipefail
+          if [ "$RELEASE_TAG" != "v$APP_VERSION" ]; then
+            echo "::error::Release tag $RELEASE_TAG does not match Directory.Build.props version $APP_VERSION."
+            exit 1
+          fi
 
       - name: Load Nexus changelog
         shell: bash
