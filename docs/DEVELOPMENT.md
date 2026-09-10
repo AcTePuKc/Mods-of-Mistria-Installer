@@ -42,6 +42,12 @@ The repository does not include game archives or copyrighted game localization d
 next version. Start each change on a short-lived `aim/<topic>` branch and open its pull request against
 `develop`. When a release is ready, open one release pull request from `develop` to `main`.
 
+`Directory.Build.props` owns the public AIM version used by the GUI, CLI, and release packages.
+Feature and fix pull requests do **not** bump it. The release pull request changes that one value,
+updates the release-facing documentation, and creates the matching `v<version>` tag only after it is
+merged. CI verifies that the visible release metadata agrees with the central version, and the release
+workflow rejects a tag that does not match the built version.
+
 The three-platform CI runs once for every pull request and again after merges to `develop` or `main`.
 Windows CI also enforces complete localization resources, the no-em-dash rule, and CLI smoke tests.
 

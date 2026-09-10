@@ -54,6 +54,10 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: ./tools/check-localization.ps1 -FailOnMissing -FailOnEmDash
+      - name: Verify release metadata
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./tools/check-release-metadata.ps1
       - name: Smoke-test the CLI
         if: runner.os == 'Windows'
         shell: pwsh

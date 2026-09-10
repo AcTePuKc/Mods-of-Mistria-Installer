@@ -51,8 +51,26 @@ jobs:
           path: tools/checker/target/${{ matrix.target }}/release/momi-gml-check*
           if-no-files-found: error
 
+  validate-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Verify tag and built version agree
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: |
+          set -euo pipefail
+          APP_VERSION=$(sed -n 's:.*<Version>\([^<]*\)</Version>.*:\1:p' Directory.Build.props | head -n 1)
+          EXPECTED_TAG="v$APP_VERSION"
+          if [ "$RELEASE_TAG" != "$EXPECTED_TAG" ]; then
+            echo "::error::Release tag $RELEASE_TAG does not match Directory.Build.props version $APP_VERSION (expected $EXPECTED_TAG)."
+            exit 1
+          fi
+          echo "Release tag and built version agree: $RELEASE_TAG"
+
   compile:
-    needs: checker
+    needs: [checker, validate-release]
 
     strategy:
       fail-fast: false
