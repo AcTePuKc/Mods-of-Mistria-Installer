@@ -227,8 +227,9 @@ public class App : Application
                 });
             }
 
-            // Disabled in this isolated Nexus/sandbox test build. The normal
-            // AIM build keeps the GitHub Releases update check enabled.
+            // This runs after the window exists and never blocks startup. A stable build only
+            // considers stable GitHub releases, so a future RC cannot prompt ordinary users.
+            _ = CheckForUpdatesAsync(_updateCheckCancellation.Token);
         }
 
         PerformanceDiagnostics.Log($"Startup: framework initialization={stopwatch.ElapsedMilliseconds} ms");
@@ -255,18 +256,22 @@ public class App : Application
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync(cancellationToken);
             var releases = JArray.Parse(json);
-            var aimRelease = releases.FirstOrDefault(release =>
+            Version? latestVersion = null;
+            foreach (var release in releases)
             {
-                var name = release["name"]?.ToString() ?? "";
-                var tag = release["tag_name"]?.ToString() ?? "";
-                return name.StartsWith("AIM ", StringComparison.OrdinalIgnoreCase)
-                       || tag.StartsWith("aim-", StringComparison.OrdinalIgnoreCase);
-            });
-            var tagName = aimRelease?["tag_name"]?.ToString();
-            if (tagName is null) return;
+                if (release["draft"]?.Value<bool>() == true || release["prerelease"]?.Value<bool>() == true)
+                    continue;
 
-            var latestVersion = Version.Parse(tagName.TrimStart('v'));
-            if (latestVersion <= currentVersion || cancellationToken.IsCancellationRequested) return;
+                var tagName = release["tag_name"]?.ToString();
+                if (!Version.TryParse(tagName?.TrimStart('v'), out var candidate))
+                    continue;
+
+                if (latestVersion is null || candidate > latestVersion)
+                    latestVersion = candidate;
+            }
+
+            if (latestVersion is null || latestVersion <= currentVersion || cancellationToken.IsCancellationRequested)
+                return;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
