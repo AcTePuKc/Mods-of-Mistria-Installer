@@ -94,12 +94,51 @@ jobs:
         run: dotnet test
       - name: Publish ${{ matrix.project }} ${{ matrix.arch }}
         run: dotnet publish ${{ matrix.project }} -c ${{ matrix.configuration }} -r ${{ matrix.arch }} -o Release
-      - name: Upload binaries to this repository release
+      # Matrix jobs run concurrently. Keep their outputs separate here; a
+      # single job below publishes them so duplicate release metadata can
+      # never race through `gh release upload --clobber`.
+      - name: Store ${{ matrix.project }} ${{ matrix.arch }} release files
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-${{ matrix.project }}-${{ matrix.arch }}
+          path: Release/*
+          if-no-files-found: error
+
+  publish-release:
+    needs: compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect compiled release files
+        uses: actions/download-artifact@v8
+        with:
+          pattern: release-*
+          path: release-artifacts
+          merge-multiple: false
+      - name: Upload release files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
         shell: bash
         run: |
+          set -euo pipefail
+          mkdir Release
+
+          mapfile -t asset_paths < <(find release-artifacts -type f -printf '%p\n' | sort)
+          if [ "${#asset_paths[@]}" -eq 0 ]; then
+            echo "::error::No compiled release files were downloaded."
+            exit 1
+          fi
+
+          mapfile -t duplicate_names < <(printf '%s\n' "${asset_paths[@]##*/}" | sort | uniq -d)
+          if [ "${#duplicate_names[@]}" -ne 0 ]; then
+            printf '::error::Duplicate release asset names detected:\n%s\n' "${duplicate_names[*]}"
+            exit 1
+          fi
+
+          for asset_path in "${asset_paths[@]}"; do
+            cp "$asset_path" "Release/${asset_path##*/}"
+          done
+
           ls -l Release
           gh release upload "$RELEASE_TAG" Release/* \
             --repo "${{ github.repository }}" \
