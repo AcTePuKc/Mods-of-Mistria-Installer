@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 139
-seams = 153
+hooks = 140
+seams = 154
 engine_fixes = 17
 call_rewrites = 1
 
@@ -677,6 +677,11 @@ doc  = "Fires right after ANCHOR spawns a menu and pushes it onto open_menus. ct
 name = "store.item_added"
 kind = "event"
 doc  = "Fires in StoreMenu right after a shelf tap adds an item to the shopping basket (self.basket.add(item)), before the ghost and price update. ctx is { menu, item }: menu is the StoreMenu (menu.basket is the Inventory cart with .can_add(item)/.add(item), menu.update_prices() refreshes the totals), item is the LiveItem just added. Adding more from a handler via menu.basket.add does not re-fire this event (the emit is at the tap site, not at basket.add), so no re-entry guard is needed: a bulk-buy handler can add extra copies freely."
+
+[[hook]]
+name = "store.basket_cost"
+kind = "filter"
+doc  = "Fires in StoreMenu.update_prices(), after the native basket total is calculated and before it controls the total label, affordability colours, Buy button, and final gold deduction. The filtered value is the whole basket cost. ctx is { menu, basket, store, price_markup }. Return a numeric non-negative replacement cost; undefined, an error, or a non-numeric result keeps the native total. A zero cost is valid as a display value but vanilla still disables Buy for an empty-or-zero basket, so this hook cannot create a free purchase path."
 
 [[hook]]
 name = "ui.menu_refreshed"
@@ -3554,6 +3559,37 @@ replace = '''
                     try { mmapi_emit("store.item_added", { menu: self, item: item }); } catch (__mmapi_store_item_added) {} // mmapi_store_run_item_added'''
 marker  = "mmapi_store_run_item_added"
 provides = ["store.item_added"]
+
+[[seam]]
+id      = "store_basket_cost"
+file    = "gml/scripts/UI/Anchor/Menus/StoreMenu.gml"
+anchor  = '''
+    function update_prices() {
+        self.basket_total = self.basket.slots.sum_with(function(slot) {
+            if slot.count == 0 {
+                return 0;
+            } else {
+                return (slot.item.store_value() * self.price_markup) * slot.count;
+            }
+        });
+        self.total_count'''
+replace = '''
+    function update_prices() {
+        self.basket_total = self.basket.slots.sum_with(function(slot) {
+            if slot.count == 0 {
+                return 0;
+            } else {
+                return (slot.item.store_value() * self.price_markup) * slot.count;
+            }
+        });
+        var __mmapi_basket_cost = self.basket_total;
+        try { __mmapi_basket_cost = mmapi_apply_filters("store.basket_cost", __mmapi_basket_cost, { menu: self, basket: self.basket, store: self.store, price_markup: self.price_markup }); } catch (__mmapi_store_basket_cost) {} // mmapi_store_run_basket_cost_filters
+        if is_numeric(__mmapi_basket_cost) {
+            self.basket_total = max(0, __mmapi_basket_cost);
+        }
+        self.total_count'''
+marker  = "mmapi_store_run_basket_cost_filters"
+provides = ["store.basket_cost"]
 
 [[seam]]
 id      = "ui_menu_closed_drain"
