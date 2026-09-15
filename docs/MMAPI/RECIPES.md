@@ -71,6 +71,21 @@ if (TANGO.name_exists(_name)) { TANGO.play(_name); }
 
 Missing names are silent, so check first. Every `TANGO.play` still runs the `audio.play_guard` hook, so another mod can veto it.
 
+## Tag Crafting Components
+
+A tag recipe accepts **any** matching item, rather than one fixed ingredient. It must declare a representative icon and its own localized title and explanation, so the crafting menu never presents the representative item as the actual requirement:
+
+```toml
+recipe = [
+  { tag = "ore", count = 3,
+    display_item = "copper_ore",
+    display_name = "mods/my_mod/recipe_tags/ore_name",
+    display_description = "mods/my_mod/recipe_tags/ore_description" },
+]
+```
+
+`display_item` supplies only the icon. It is not the required ingredient. The hover tooltip uses `display_name` and `display_description`, which are localization keys supplied by the mod. AIM counts and consumes matching inventory first, then only chests with `use_in_crafting = true`; the same filtered cost and selected crafting quantity govern availability, max crafts, and payment.
+
 ## Read Your Config
 
 Load lazily and validate. See [The House Pattern](API_REFERENCE.md#the-house-pattern) for the full form.

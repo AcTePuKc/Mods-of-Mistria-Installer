@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **138 hooks**, fed by **152 seams**, **9 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **138 hooks**, fed by **152 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -365,6 +365,14 @@ Hook-less edits the catalog also carries:
 | [fish_chest_custom_rarity](seams/fish_chest_custom_rarity.md) | engine fix | Makes an unknown chest rarity a no-op in the fishing distribution build instead of a Setup crash. |
 | [store_pet_cosmetic_entry](seams/store_pet_cosmetic_entry.md) | engine fix | Lets a store entry declare a validated `pet_cosmetic` set, producing a `PetCosmetic` item. |
 | [recipe_component_schema_validation](seams/recipe_component_schema_validation.md) | engine fix | Rejects malformed recipe components instead of silently choosing the first selector in the vanilla parser. |
+| [recipe_tag_component_presentation](seams/tag_recipe_components.md) | engine fix | Requires explicit icon and localized text for a tag recipe, rather than presenting a category cost as one specific item. |
+| [recipe_tag_component_factory](seams/tag_recipe_components.md) | engine fix | Carries the tag component's presentation data into the runtime recipe struct. |
+| [crafting_tag_chest_availability](seams/tag_recipe_components.md) | engine fix | Includes opted-in crafting chests when checking a tag component's available quantity. |
+| [crafting_tag_symmetric_payment](seams/tag_recipe_components.md) | engine fix | Pays the filtered, bulk tag cost from backpack then opted-in crafting chests, with a final fulfilment assertion. |
+| [crafting_tag_display_item](seams/tag_recipe_components.md) | engine fix | Gives the crafting grid an explicit representative icon for a tag component. |
+| [crafting_tag_display_tooltip](seams/tag_recipe_components.md) | engine fix | Replaces representative-item tooltip text with the tag's own localized label and explanation. |
+| [crafting_tag_display_quantity](seams/tag_recipe_components.md) | engine fix | Shows tag availability and required quantity in the normal crafting-grid count UI. |
+| [recipe_tag_scroll_preview](seams/tag_recipe_components.md) | engine fix | Includes tag components in recipe-scroll previews using their declared representative icon. |
 | [local_get_dispatch](seams/local_get_dispatch.md) | call rewrite | Reroutes every direct GML `local_get()` call through the framework's localisation waist, feeding [local.get](hooks/local.get.md) and [local.missing](hooks/local.missing.md). |
 
 ## Growing The Catalog

@@ -176,7 +176,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(9));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
 
         var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
         Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
@@ -200,6 +200,34 @@ public class ShippedCatalogTest
         Assert.That(fix.Replace, Does.Contain("skill requires level"));
         Assert.That(fix.Replace, Does.Contain("count is only valid with item or tag"));
         Assert.That(fix.Marker, Is.EqualTo("mmapi_recipe_component_schema_validation"));
+    }
+
+    [Test]
+    public void ShouldSupportHonestTagRecipePresentationAndSymmetricFulfilment()
+    {
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+
+        var presentation = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_component_presentation");
+        Assert.That(presentation.Replace, Does.Contain("requires display_item"));
+        Assert.That(presentation.Replace, Does.Contain("requires display_name"));
+        Assert.That(presentation.Replace, Does.Contain("requires display_description"));
+
+        var availability = _catalog.EngineFixes.Single(f => f.Id == "crafting_tag_chest_availability");
+        Assert.That(availability.Replace, Does.Contain("node.use_in_crafting"));
+        Assert.That(availability.Replace, Does.Contain("node.inventory"));
+
+        var payment = _catalog.EngineFixes.Single(f => f.Id == "crafting_tag_symmetric_payment");
+        Assert.That(payment.Replace, Does.Not.Contain("get_modified_component_count"));
+        Assert.That(payment.Replace, Does.Contain("Failed to fulfill tag component costs"));
+        Assert.That(payment.Replace, Does.Contain("node.use_in_crafting"));
+
+        var tooltip = _catalog.EngineFixes.Single(f => f.Id == "crafting_tag_display_tooltip");
+        Assert.That(tooltip.Replace, Does.Contain("component.display_name"));
+        Assert.That(tooltip.Replace, Does.Contain("component.display_description"));
+        Assert.That(tooltip.Replace, Does.Contain("gold_icon.disable"));
+
+        var scroll = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_scroll_preview");
+        Assert.That(scroll.Replace, Does.Contain("comp.display_item_id"));
     }
 
     [Test]
