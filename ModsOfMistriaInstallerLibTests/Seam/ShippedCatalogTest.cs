@@ -174,6 +174,21 @@ public class ShippedCatalogTest
     }
 
     [Test]
+    public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
+    {
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(8));
+
+        var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
+        Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
+        Assert.That(fix.Anchor, Does.Contain("ItemId.AnimalCosmetic"));
+        Assert.That(fix.Anchor, Does.Contain("Failed to parse an item"));
+        Assert.That(fix.Replace, Does.Contain("entry[$ \"pet_cosmetic\"] != undefined"));
+        Assert.That(fix.Replace, Does.Contain("PET_PROTOTYPE.cosmetic_sets.contains_key"));
+        Assert.That(fix.Replace, Does.Contain("ItemId.PetCosmetic"));
+        Assert.That(fix.Marker, Is.EqualTo("mmapi_store_pet_cosmetic_entry"));
+    }
+
+    [Test]
     public void ShouldDeclareBothPetRewardSitesForOnePetRewardEvent()
     {
         var hook = _catalog.Hook("pet.reward_generated");
