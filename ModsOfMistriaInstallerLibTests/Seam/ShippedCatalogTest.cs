@@ -176,7 +176,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(8));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(9));
 
         var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
         Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
@@ -186,6 +186,20 @@ public class ShippedCatalogTest
         Assert.That(fix.Replace, Does.Contain("PET_PROTOTYPE.cosmetic_sets.contains_key"));
         Assert.That(fix.Replace, Does.Contain("ItemId.PetCosmetic"));
         Assert.That(fix.Marker, Is.EqualTo("mmapi_store_pet_cosmetic_entry"));
+    }
+
+    [Test]
+    public void ShouldRejectAmbiguousRecipeComponentSelectorsBeforeVanillaParsesThem()
+    {
+        var fix = _catalog.EngineFixes.Single(f => f.Id == "recipe_component_schema_validation");
+        Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Items/Items.gml"));
+        Assert.That(fix.Anchor, Does.Contain("if component[$ \"item\"] != undefined"));
+        Assert.That(fix.Replace, Does.Contain("expected exactly one selector key"));
+        Assert.That(fix.Replace, Does.Contain("minutes requires hours"));
+        Assert.That(fix.Replace, Does.Contain("level requires skill"));
+        Assert.That(fix.Replace, Does.Contain("skill requires level"));
+        Assert.That(fix.Replace, Does.Contain("count is only valid with item or tag"));
+        Assert.That(fix.Marker, Is.EqualTo("mmapi_recipe_component_schema_validation"));
     }
 
     [Test]
