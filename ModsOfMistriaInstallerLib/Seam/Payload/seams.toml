@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 138
-seams = 152
+hooks = 139
+seams = 153
 engine_fixes = 17
 call_rewrites = 1
 
@@ -175,6 +175,12 @@ doc  = "Fires in create_test_placement_furniture_draw_info() as the furniture pl
 name = "dialogue.line"
 kind = "filter"
 doc  = "Fires in ConversationDriver.deliver_line(), before the textbox shows the line. The filtered value is the localized line text. ctx is { driver, line, conversation_name, npc_id, speaker, is_info_line }. npc_id is the driver's npc_owner, the NPC the conversation belongs to. speaker is the textbox speaker the line's own Speaker action has already assigned, and it is undefined for info lines. Cutscene conversations rotate speakers independently of the owner, so read speaker for the character delivering the line. Return the replacement string, or undefined to keep the current value."
+
+[[hook]]
+name = "dialogue.finished"
+kind = "event"
+aliases = ["dialogue.finish"]
+doc  = "Fires in ConversationDriver.finish_conversation(), after all T2 conversation-end actions have run, the textbox has been told to close, and the driver state is Finished. ctx is { driver, conversation_name, npc_id }. This means engine conversation completion, not that the textbox close animation has already disappeared; use ui.menu_closed when the UI close itself is what matters. dialogue.finish is a compatibility alias."
 
 [[hook]]
 name = "dialogue.prompt_lock"
@@ -1573,6 +1579,16 @@ replace = '''
     }'''
 marker  = "mmapi_dialogue_run_local_filters"
 provides = ["dialogue.line"]
+
+[[seam]]
+id      = "dialogue_finished"
+file    = "gml/scripts/GameplaySystems/Dialogue/ConversationDriver.gml"
+target  = { fn = "finish_conversation", at = "after", anchor = "self.state = ConversationDriverState.Finished;" }
+op      = "emit"
+hook    = "dialogue.finished"
+ctx     = "{ driver: self, conversation_name: self.conversation_name, npc_id: self.npc_owner }"
+indent  = 8
+marker  = "mmapi_dialogue_finished"
 
 [[seam]]
 id      = "dialogue_prompt_metadata"
