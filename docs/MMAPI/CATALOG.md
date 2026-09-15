@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **135 hooks**, fed by **148 seams**, **8 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **136 hooks**, fed by **150 seams**, **8 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -148,6 +148,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [font.styles_loaded](hooks/font.styles_loaded.md) | filter | Customize the resolved text-style mapping after the engine loads font assets. |
 | [ui.menu_closed](hooks/ui.menu_closed.md) | event | Know when a menu closes. |
 | [ui.menu_refreshed](hooks/ui.menu_refreshed.md) | event | React when a menu rebuilds its content. |
+| [ui.eod_calendar_events](hooks/ui.eod_calendar_events.md) | filter | Customize tomorrow's end-of-day calendar events and add custom rows. |
 | [ui.toolbar_tick](hooks/ui.toolbar_tick.md) | event | React on every toolbar tick. |
 | [ui.draw_gui](hooks/ui.draw_gui.md) | event | React to every GUI draw with your own overlay. |
 | [ui.hud_should_show](hooks/ui.hud_should_show.md) | filter | Change whether the HUD shows. |
@@ -328,6 +329,8 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [ui_backplate_sprite_mines](seams/ui_backplate_sprite_mines.md) | Routes the mines menu backplate sprite through a filter on dungeon room start. |
 | [ui_backplate_sprite_spell_card](seams/ui_backplate_sprite_spell_card.md) | Routes each spell card's backplate sprite through a filter. |
 | [ui_crafting_refreshed](seams/ui_crafting_refreshed.md) | Emits when the crafting menu rebuilds its right page. |
+| [ui_eod_calendar_events](seams/ui_eod_calendar_events.md) | Filters tomorrow's event List before end-of-day notifications are built. |
+| [ui_eod_notification_custom_entry](seams/ui_eod_notification_custom_entry.md) | Renders custom calendar event rows in the notification switch fallback. |
 | [ui_preset_popup_layout](seams/ui_preset_popup_layout.md) | Rebuilds the preset popup's layout constants through a filter each time the popup body is generated. |
 | [ui_relationship_row_built](seams/ui_relationship_row_built.md) | Hands each finished NPC row to mods as the relationships journal builds its list. |
 | [dialogue_play_guard](seams/dialogue_play_guard.md) | Puts a veto check at the head of `play_conversation()`. |

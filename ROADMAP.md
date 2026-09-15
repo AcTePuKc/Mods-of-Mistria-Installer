@@ -19,7 +19,7 @@ recorded in the changelog and git history.
       catalog: `npc.created`, `pet.created`, and `animal.created` now fire from
       fully wired spawn paths. They are documented and verified against the
       current pristine 1.0.4 assets; Wheedle remains out of scope.
-- [x] Ship 135 MMAPI hooks and 148 seams with source headers, documentation, and license notices, plus 8 engine fixes.
+- [x] Ship 136 MMAPI hooks and 150 seams with source headers, documentation, and license notices, plus 8 engine fixes.
 - [x] Validate every seam against the current game's pristine `assets.bak.zip`.
 - [x] Run disposable real-tree install/uninstall regression tests with the GML compile checker.
 - [x] Verify old-GML, MMAPI/GML, content-mod, and NXM behavior manually.
