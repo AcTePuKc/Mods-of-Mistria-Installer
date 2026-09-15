@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(138));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(152));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(139));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(153));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -313,6 +313,28 @@ public class ShippedCatalogTest
         Assert.That(seam.Hooks, Is.EqualTo(new[] { "dialogue.prompt_lock", "dialogue.romance_prompt_guard" }));
         Assert.That(seam.Replace, Does.Contain("mmapi_check_guards(\"dialogue.romance_prompt_guard\""));
         Assert.That(seam.Replace, Does.Contain("self.blackboard.get(\"pink\") == true && __mmapi_prompt_vanilla_locked == false"));
+    }
+
+    [Test]
+    public void ShouldEmitDialogueFinishedAfterNativeEndActionsAndStateTransition()
+    {
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(139));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(153));
+
+        var hook = _catalog.Hook("dialogue.finished");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Aliases, Does.Contain("dialogue.finish"));
+        Assert.That(hook.Doc, Does.Contain("engine conversation completion"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "dialogue_finished");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Dialogue/ConversationDriver.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "dialogue.finished" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.TargetFn, Is.EqualTo("finish_conversation"));
+        Assert.That(seam.TargetAt, Is.EqualTo("after"));
+        Assert.That(seam.TargetAnchor, Is.EqualTo("self.state = ConversationDriverState.Finished;"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_dialogue_finished"));
     }
 
     [Test]
