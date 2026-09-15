@@ -17,7 +17,7 @@ Applies the additive `dialogue.prompt_lock` decision while each dialogue prompt 
 
 ## The Edit
 
-The seam preserves the existing pink-prompt logic and records whether that logic locked the option. It then passes that Boolean through `mmapi_apply_monotonic_filters`, whose `false -> true` contract allows every filter handler to add a lock but prevents any handler from clearing one. A failed handler is isolated by the dispatcher and the current state continues to the next handler.
+The seam preserves the existing pink-prompt logic and records whether that logic locked the option. It then passes that Boolean through `mmapi_apply_monotonic_filters`, whose `false -> true` contract allows every filter handler to add a lock but prevents any handler from clearing one. A failed handler is isolated by the dispatcher and the current state continues to the next handler. For older MMAPI 0.16 mods, the same seam also calls [dialogue.romance_prompt_guard](../hooks/dialogue.romance_prompt_guard.md) only for a pink prompt that vanilla left selectable; a legacy guard return of `false` becomes the same soft-lock.
 
 When the final state is locked, the engine applies the existing grey sprite, `stay_locked` marker, tab target/lock, and soft-lock path. Mods do not manipulate `TextboxMenu`, its blackboard, or its tab. With no handlers, the original vanilla decision and presentation remain unchanged.
 
@@ -27,3 +27,4 @@ The seam runs during prompt preparation, before `join_prompt_slide_in_to_chain()
 
 - [dialogue.prompt_lock](../hooks/dialogue.prompt_lock.md) - The public contract.
 - [dialogue_prompt_metadata](dialogue_prompt_metadata.md) - Supplies stable original option identity.
+- [dialogue.romance_prompt_guard](../hooks/dialogue.romance_prompt_guard.md) - The legacy compatibility contract.

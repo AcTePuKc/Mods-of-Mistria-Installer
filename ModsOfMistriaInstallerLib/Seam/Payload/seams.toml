@@ -39,7 +39,7 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 137
+hooks = 138
 seams = 152
 engine_fixes = 8
 call_rewrites = 1
@@ -180,6 +180,11 @@ doc  = "Fires in ConversationDriver.deliver_line(), before the textbox shows the
 name = "dialogue.prompt_lock"
 kind = "filter"
 doc  = "Fires while each dialogue prompt option is prepared for display, after the vanilla lock decision is known and before the option becomes interactive. The filtered value is the effective boolean lock state, seeded from vanilla. ctx is { driver, line, conversation_name, npc_id, prompt_index, prompt_key, vanilla_locked, is_pink }. prompt_index is the original zero-based T2 selection index and prompt_key is the raw localization key; conversation/NPC fields are best-effort and may be undefined for non-NPC or incomplete contexts. Return true to add a lock; undefined, false, or any other value leaves the current state unchanged. This hook is monotonic: a handler cannot clear a vanilla lock or a lock requested by another handler, and handler failures are isolated. The engine applies the grey sprite, stay_locked marker, tab state, and soft lock. It does not hide, add, rewrite, or semantically veto options."
+
+[[hook]]
+name = "dialogue.romance_prompt_guard"
+kind = "guard"
+doc  = "Legacy compatibility hook for MMAPI 0.16 mods. Fires only while a pink romance prompt is styled, after the vanilla spouse/fiance lock is evaluated and only when that vanilla rule leaves the prompt selectable. ctx is { npc_id, speaker, path }: npc_id is the live textbox speaker's NpcId (undefined for a cameo or absent speaker), speaker is the live Speaker struct or undefined, and path is the T2 conversation name or undefined. Return false to grey and soft-lock the prompt; undefined or true keeps it selectable. New mods should use dialogue.prompt_lock instead, which has stable option metadata and monotonic multi-mod composition."
 
 [[hook]]
 name = "dialogue.npc_blip"
@@ -1636,6 +1641,16 @@ replace = '''
                     is_pink: self.blackboard.get("pink") == true,
                 });
             } catch (__mmapi_dialogue_prompt_lock) {}
+            if self.blackboard.get("pink") == true && __mmapi_prompt_vanilla_locked == false {
+                try {
+                    var __mmapi_romance_speaker = self.requested_speaker ?? self.current_speaker;
+                    var __mmapi_romance_npc = (__mmapi_romance_speaker == undefined) ? undefined : try_string_to_npc_id(__mmapi_romance_speaker.identity);
+                    var __mmapi_romance_path = self.driver == undefined ? undefined : self.driver.conversation_name;
+                    if mmapi_check_guards("dialogue.romance_prompt_guard", { npc_id: __mmapi_romance_npc, speaker: __mmapi_romance_speaker, path: __mmapi_romance_path }) == false {
+                        __mmapi_prompt_locked = true;
+                    } // mmapi_dialogue_run_romance_prompt_guards
+                } catch (__mmapi_dialogue_romance_prompt_guard) {}
+            }
             if __mmapi_prompt_locked == true && __mmapi_prompt_vanilla_locked == false {
                 self.set_sprites_from_key("spr_ui_dialogue_box_grey");
                 self.blackboard.insert("stay_locked", true);
@@ -1646,7 +1661,7 @@ replace = '''
 
             self.locked_sprite = self.enabled_sprite;'''
 marker  = "mmapi_dialogue_prompt_lock"
-provides = ["dialogue.prompt_lock"]
+provides = ["dialogue.prompt_lock", "dialogue.romance_prompt_guard"]
 
 [[seam]]
 id      = "dialogue_speaker"
