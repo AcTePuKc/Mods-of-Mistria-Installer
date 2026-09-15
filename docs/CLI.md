@@ -54,12 +54,22 @@ interactions that only occur during the combined rebuild.
 AIM-cli --lint <mod-folder> [pristine-assets.zip] [--strict-lints] [--compile-check on|off|require]
 AIM-cli --seam-check [pristine-assets.zip]
 AIM-cli --seam-check-json [pristine-assets.zip]
+AIM-cli --seam-diff [old-pristine-assets.zip new-pristine-assets.zip]
+AIM-cli --seam-diff-json [old-pristine-assets.zip new-pristine-assets.zip]
 ```
 
 `--lint` checks one mod without writing the game. The pristine archive argument
 is optional when AIM can locate `assets.bak.zip`. `--seam-check` validates the
 embedded seam catalog against a pristine archive; the JSON variant is intended
 for scripts and CI.
+
+`--seam-diff` compares the engine region behind every catalog seam and engine
+fix across two pristine game archives. It reports changed or missing regions
+for review, while ignoring whitespace and comments. With no archive arguments,
+it compares AIM's verified backup with the live archive. That convenience mode
+refuses the result when either archive contains AIM markers: pass two pristine
+archives when investigating a game update. The JSON variant is intended for
+automation.
 
 ## Machine-readable output
 
