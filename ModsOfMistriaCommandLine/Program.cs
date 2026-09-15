@@ -69,6 +69,12 @@ if (args.Contains("--seam-check") || args.Contains("--seam-check-json"))
     Environment.Exit(RunSeamCheck(args));
 }
 
+// Like seam-check, seam-diff owns stdout so its human/JSON result is safe for scripts.
+if (args.Contains("--seam-diff") || args.Contains("--seam-diff-json"))
+{
+    Environment.Exit(RunSeamDiff(args));
+}
+
 // Lint likewise: the stage's own log lines stay internal and the report is
 // the only thing on stdout.
 if (args.Contains("--lint"))
@@ -191,6 +197,11 @@ static bool ValidateArguments(string[] args, out string error)
                 commands.Add(argument);
                 if (i + 1 < args.Length && !args[i + 1].StartsWith("--")) i++;
                 break;
+            case "--seam-diff":
+            case "--seam-diff-json":
+                commands.Add(argument);
+                for (var values = 0; values < 2 && i + 1 < args.Length && !args[i + 1].StartsWith("--"); values++) i++;
+                break;
             case "--list-mods":
             case "--status":
             case "--doctor":
@@ -256,6 +267,8 @@ Usage:
   AIM-cli --lint <mod-folder> [pristine-assets.zip] [--strict-lints] [--compile-check on|off|require]
   AIM-cli --seam-check [pristine-assets.zip]
   AIM-cli --seam-check-json [pristine-assets.zip]
+  AIM-cli --seam-diff [old-pristine-assets.zip new-pristine-assets.zip]
+  AIM-cli --seam-diff-json [old-pristine-assets.zip new-pristine-assets.zip]
   AIM-cli --list-mods [--json|--toml]
   AIM-cli --status [--json|--toml]
   AIM-cli --doctor [--json|--toml]
@@ -495,6 +508,74 @@ static int RunSeamCheck(string[] args)
         ? SeamVerifier.ToJson(result, zipPath!)
         : SeamVerifier.RenderText(result, zipPath!));
     return result.ExitCode;
+}
+
+// --seam-diff [old.zip new.zip] compares the engine regions that every catalog
+// entry relies on. With no arguments it compares the install's pristine backup
+// against live assets.zip, refusing the result if either side is modded.
+static int RunSeamDiff(string[] args)
+{
+    var flag = args.Contains("--seam-diff") ? "--seam-diff" : "--seam-diff-json";
+    var index = Array.IndexOf(args, flag);
+    List<string> archives = [];
+    for (var i = index + 1; i < args.Length && archives.Count < 2; i++)
+    {
+        if (args[i].StartsWith("--", StringComparison.Ordinal)) break;
+        archives.Add(args[i]);
+    }
+
+    string oldPath;
+    string newPath;
+    if (archives.Count == 2)
+    {
+        oldPath = archives[0];
+        newPath = archives[1];
+    }
+    else if (archives.Count == 0)
+    {
+        var mistriaLocation = MistriaLocator.GetMistriaLocation();
+        if (mistriaLocation is null)
+        {
+            Console.WriteLine(Resources.CoreMistriaNotFound);
+            return 2;
+        }
+
+        try
+        {
+            oldPath = SeamVerifier.LocateBackup(mistriaLocation);
+        }
+        catch (FileNotFoundException exception)
+        {
+            Console.WriteLine(exception.Message);
+            return 2;
+        }
+
+        newPath = new AssetsStore(mistriaLocation).LivePath;
+    }
+    else
+    {
+        Console.WriteLine("--seam-diff takes two pristine archives (old new), or none to compare the "
+                          + "located install's backup against live assets.zip.");
+        return 2;
+    }
+
+    SeamDiffResult result;
+    try
+    {
+        using var oldPristine = new ZipPristineSource(oldPath);
+        using var newPristine = new ZipPristineSource(newPath);
+        result = SeamDiffer.Diff(oldPristine, newPristine);
+    }
+    catch (FileNotFoundException exception)
+    {
+        Console.WriteLine(exception.Message);
+        return 2;
+    }
+
+    Console.WriteLine(args.Contains("--seam-diff-json")
+        ? SeamDiffer.ToJson(result, oldPath, newPath)
+        : SeamDiffer.RenderText(result, oldPath, newPath));
+    return result.ModdedMarkers.Count > 0 ? 2 : result.ExitCode;
 }
 
 // --lint <mod folder> [zip]: would the apply install this mod? Runs the
