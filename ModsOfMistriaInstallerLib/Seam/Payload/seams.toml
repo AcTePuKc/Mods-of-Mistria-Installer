@@ -41,7 +41,7 @@ version = 2
 [counts]
 hooks = 138
 seams = 152
-engine_fixes = 9
+engine_fixes = 17
 call_rewrites = 1
 
 # --- hook declarations -------------------------------------------------------------
@@ -3001,6 +3001,266 @@ replace = '''
 
                 if component[$ "item"] != undefined {'''
 marker  = "mmapi_recipe_component_schema_validation"
+
+[[engine_fix]]
+name    = "recipe_tag_component_presentation"
+file    = "gml/scripts/GameplaySystems/Items/Items.gml"
+anchor  = '''
+                } else if component[$ "tag"] != undefined {
+                    array_push(components, RecipeComponent.Tag(
+                        component.tag,
+                        component[$ "count"] ?? 1,
+                    ));
+'''
+replace = '''
+                } else if component[$ "tag"] != undefined {
+                    var __mmapi_tag_display_item = component[$ "display_item"];
+                    var __mmapi_tag_display_name = component[$ "display_name"];
+                    var __mmapi_tag_display_description = component[$ "display_description"];
+                    assert_neq(__mmapi_tag_display_item, undefined, "Tag recipe component in {ItemId} (recipe component number {}) requires display_item", item_id, j);
+                    assert_neq(__mmapi_tag_display_name, undefined, "Tag recipe component in {ItemId} (recipe component number {}) requires display_name", item_id, j);
+                    assert_neq(__mmapi_tag_display_description, undefined, "Tag recipe component in {ItemId} (recipe component number {}) requires display_description", item_id, j);
+                    array_push(components, RecipeComponent.Tag(
+                        component.tag,
+                        component[$ "count"] ?? 1,
+                        string_to_item_id(__mmapi_tag_display_item),
+                        __mmapi_tag_display_name,
+                        __mmapi_tag_display_description,
+                    )); // mmapi_recipe_tag_component_presentation
+'''
+marker  = "mmapi_recipe_tag_component_presentation"
+
+[[engine_fix]]
+name    = "recipe_tag_component_factory"
+file    = "gml/scripts/GameplaySystems/Recipe.gml"
+anchor  = '''
+    static Tag = function(tag, count) {
+        return {
+            type: RecipeComponentType.Tag,
+            tag: tag,
+            count: count,
+        }
+    }
+'''
+replace = '''
+    static Tag = function(tag, count, display_item_id, display_name, display_description) {
+        return {
+            type: RecipeComponentType.Tag,
+            tag: tag,
+            count: count,
+            display_item_id: display_item_id,
+            display_name: display_name,
+            display_description: display_description,
+        }
+    } // mmapi_recipe_tag_component_factory
+'''
+marker  = "mmapi_recipe_tag_component_factory"
+
+[[engine_fix]]
+name    = "crafting_tag_chest_availability"
+file    = "gml/scripts/GameplaySystems/Recipe.gml"
+anchor  = '''
+        case RecipeComponentType.Tag: return ARI.inventory
+            .slots_with_item_tag(component.tag)
+            .sum_with(function(x) {
+                return x.count();
+            });
+'''
+replace = '''
+        case RecipeComponentType.Tag:
+            var tag_count = ARI.inventory
+                .slots_with_item_tag(component.tag)
+                .sum_with(function(x) {
+                    return x.count();
+                });
+            if use_chests {
+                for (var i = 0; i < STORAGE_NODES.count(); i++) {
+                    var node = STORAGE_NODES.get(i);
+                    if node.use_in_crafting {
+                        tag_count += node.inventory
+                            .slots_with_item_tag(component.tag)
+                            .sum_with(function(x) {
+                                return x.count();
+                            });
+                    }
+                }
+            }
+            return tag_count; // mmapi_crafting_tag_chest_availability
+'''
+marker  = "mmapi_crafting_tag_chest_availability"
+
+[[engine_fix]]
+name    = "crafting_tag_symmetric_payment"
+file    = "gml/scripts/GameplaySystems/Recipe.gml"
+anchor  = '''
+            case RecipeComponentType.Tag:
+                var slots = ARI.inventory.slots_with_item_tag(component.tag);
+                var left_to_remove = component.count;
+                for (var j = 0; j < slots.count(); j++) {
+                    var slot = slots.get(j);
+                    var amount_to_remove = min(slot.count(), left_to_remove);
+                    slot.remove(amount_to_remove);
+                    left_to_remove -= amount_to_remove;
+                    if left_to_remove == 0 {
+                        break;
+                    }
+                }
+                break;
+'''
+replace = '''
+            case RecipeComponentType.Tag:
+                var slots = ARI.inventory.slots_with_item_tag(component.tag);
+                for (var j = 0; j < slots.count(); j++) {
+                    var slot = slots.get(j);
+                    var amount_to_remove = min(slot.count(), count);
+                    slot.remove(amount_to_remove);
+                    count -= amount_to_remove;
+                    if count == 0 {
+                        break;
+                    }
+                }
+                if count != 0 {
+                    for (var j = 0; j < STORAGE_NODES.count(); j++) {
+                        var node = STORAGE_NODES.get(j);
+                        if !node.use_in_crafting {
+                            continue;
+                        }
+                        var slots = node.inventory.slots_with_item_tag(component.tag);
+                        for (var k = 0; k < slots.count(); k++) {
+                            var slot = slots.get(k);
+                            var amount_to_remove = min(slot.count(), count);
+                            slot.remove(amount_to_remove);
+                            count -= amount_to_remove;
+                            if count == 0 {
+                                break;
+                            }
+                        }
+                        if count == 0 {
+                            break;
+                        }
+                    }
+                }
+                assert_eq(count, 0, "Failed to fulfill tag component costs!"); // mmapi_crafting_tag_symmetric_payment
+                break;
+'''
+marker  = "mmapi_crafting_tag_symmetric_payment"
+
+[[engine_fix]]
+name    = "crafting_tag_display_item"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+            var this_item = undefined;
+            switch component.type {
+                case RecipeComponentType.Item:
+                    this_item = new LiveItem(component.item_id);
+                    break;
+                case RecipeComponentType.Essence:
+                    this_item = new LiveItem(ItemId.FakeEssence);
+                    break;
+                default: break;
+            }
+'''
+replace = '''
+            var this_item = undefined;
+            switch component.type {
+                case RecipeComponentType.Item:
+                    this_item = new LiveItem(component.item_id);
+                    break;
+                case RecipeComponentType.Tag:
+                    this_item = new LiveItem(component.display_item_id);
+                    break;
+                case RecipeComponentType.Essence:
+                    this_item = new LiveItem(ItemId.FakeEssence);
+                    break;
+                default: break;
+            } // mmapi_crafting_tag_display_item
+'''
+marker  = "mmapi_crafting_tag_display_item"
+
+[[engine_fix]]
+name    = "crafting_tag_display_tooltip"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+            if this_item != undefined {
+                box.set_think_callback(function(this_item, box) {
+                    if box.hover_duration() >= 30 {
+                        if self.tooltip == undefined {
+                            self.tooltip = create_tooltip(this_item, box);
+                        }
+                    } else if self.tooltip != undefined && self.tooltip.source_node == box {
+                        self.tooltip.close();
+                        self.tooltip = undefined;
+                    }
+                }, [this_item, box])
+            }
+'''
+replace = '''
+            if this_item != undefined {
+                box.set_think_callback(function(this_item, box, component) {
+                    if box.hover_duration() >= 30 {
+                        if self.tooltip == undefined {
+                            self.tooltip = create_tooltip(this_item, box);
+                            if component.type == RecipeComponentType.Tag {
+                                self.tooltip.title
+                                    .set_ghost_key(component.display_name)
+                                    .set_text(local_get(component.display_name));
+                                self.tooltip.body_text
+                                    .set_ghost_key(component.display_description)
+                                    .set_text(local_get(component.display_description));
+                                var __mmapi_tag_old_body_height = self.tooltip.body.get_height();
+                                var __mmapi_tag_new_body_height = self.tooltip.body_text.measure().y + 12;
+                                self.tooltip.body.set_height(__mmapi_tag_new_body_height);
+                                self.tooltip.backplate.add_height(__mmapi_tag_new_body_height - __mmapi_tag_old_body_height);
+                                self.tooltip.refresh_title_height();
+                                if self.tooltip.gold_icon != undefined { self.tooltip.gold_icon.disable(); }
+                                if self.tooltip.gold_text != undefined { self.tooltip.gold_text.disable(); }
+                                if self.tooltip.stat_root != undefined { self.tooltip.stat_root.disable(); }
+                            }
+                        }
+                    } else if self.tooltip != undefined && self.tooltip.source_node == box {
+                        self.tooltip.close();
+                        self.tooltip = undefined;
+                    }
+                }, [this_item, box, component]) // mmapi_crafting_tag_display_tooltip
+            }
+'''
+marker  = "mmapi_crafting_tag_display_tooltip"
+
+[[engine_fix]]
+name    = "crafting_tag_display_quantity"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+            switch component.type {
+                case RecipeComponentType.Item:
+                    icon.set_sprite(this_item.get_ui_icon());
+'''
+replace = '''
+            switch component.type {
+                case RecipeComponentType.Item:
+                case RecipeComponentType.Tag:
+                    icon.set_sprite(this_item.get_ui_icon()); // mmapi_crafting_tag_display_quantity
+'''
+marker  = "mmapi_crafting_tag_display_quantity"
+
+[[engine_fix]]
+name    = "recipe_tag_scroll_preview"
+file    = "gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"
+anchor  = '''
+                switch comp.type {
+                    case RecipeComponentType.Item: return [comp.item_id, comp.count];
+                    case RecipeComponentType.Essence: return [ItemId.FakeEssence, comp.count];
+                    default: return undefined;
+                }
+'''
+replace = '''
+                switch comp.type {
+                    case RecipeComponentType.Item: return [comp.item_id, comp.count];
+                    case RecipeComponentType.Tag: return [comp.display_item_id, comp.count];
+                    case RecipeComponentType.Essence: return [ItemId.FakeEssence, comp.count];
+                    default: return undefined;
+                } // mmapi_recipe_tag_scroll_preview
+'''
+marker  = "mmapi_recipe_tag_scroll_preview"
 
 # The remaining entries are appended after the earlier ones on purpose. Catalog
 # order is apply order, and two of them stack onto files already seamed above
