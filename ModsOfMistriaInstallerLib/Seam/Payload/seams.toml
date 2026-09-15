@@ -41,7 +41,7 @@ version = 2
 [counts]
 hooks = 138
 seams = 152
-engine_fixes = 8
+engine_fixes = 9
 call_rewrites = 1
 
 # --- hook declarations -------------------------------------------------------------
@@ -2949,6 +2949,58 @@ replace = '''
     assert_neq(item, undefined, "Failed to parse an item out of '{}'", entry);
 '''
 marker  = "mmapi_store_pet_cosmetic_entry"
+
+# Recipe components are selected by an ordered vanilla if/else chain. Without
+# validation a malformed component such as { item = "wood", tag = "ore" }
+# silently becomes an Item component and drops the tag. Validate the selector
+# schema before that chain, while leaving every valid vanilla component byte
+# for byte on its original parse path.
+[[engine_fix]]
+name    = "recipe_component_schema_validation"
+file    = "gml/scripts/GameplaySystems/Items/Items.gml"
+anchor  = '''
+            var components = [];
+            for (var j = 0; j < array_length(fiddle_data.recipe); j++) {
+                var component = fiddle_data.recipe[j];
+                if component[$ "item"] != undefined {'''
+replace = '''
+            var components = [];
+            for (var j = 0; j < array_length(fiddle_data.recipe); j++) {
+                var component = fiddle_data.recipe[j];
+
+                var __mmapi_recipe_has_item = component[$ "item"] != undefined;
+                var __mmapi_recipe_has_tag = component[$ "tag"] != undefined;
+                var __mmapi_recipe_has_hours = component[$ "hours"] != undefined;
+                var __mmapi_recipe_has_gold = component[$ "gold"] != undefined;
+                var __mmapi_recipe_has_skill = component[$ "skill"] != undefined;
+                var __mmapi_recipe_has_essence = component[$ "essence"] != undefined;
+                var __mmapi_recipe_selector_count = 0;
+                var __mmapi_recipe_selector_names = "";
+                if __mmapi_recipe_has_item { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "item "; }
+                if __mmapi_recipe_has_tag { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "tag "; }
+                if __mmapi_recipe_has_hours { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "hours "; }
+                if __mmapi_recipe_has_gold { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "gold "; }
+                if __mmapi_recipe_has_skill { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "skill "; }
+                if __mmapi_recipe_has_essence { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "essence "; }
+
+                if __mmapi_recipe_selector_count != 1 {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): expected exactly one selector key (item, tag, hours, gold, skill, or essence); found {}", item_id, j, __mmapi_recipe_selector_names); // mmapi_recipe_component_schema_validation
+                }
+                if component[$ "minutes"] != undefined && !__mmapi_recipe_has_hours {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): minutes requires hours", item_id, j);
+                }
+                if component[$ "level"] != undefined && !__mmapi_recipe_has_skill {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): level requires skill", item_id, j);
+                }
+                if __mmapi_recipe_has_skill && component[$ "level"] == undefined {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): skill requires level", item_id, j);
+                }
+                if component[$ "count"] != undefined && !(__mmapi_recipe_has_item || __mmapi_recipe_has_tag) {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): count is only valid with item or tag", item_id, j);
+                }
+
+                if component[$ "item"] != undefined {'''
+marker  = "mmapi_recipe_component_schema_validation"
 
 # The remaining entries are appended after the earlier ones on purpose. Catalog
 # order is apply order, and two of them stack onto files already seamed above
