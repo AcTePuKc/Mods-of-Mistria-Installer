@@ -6,13 +6,13 @@ Know when an item is donated to the museum.
 
 ## Contract
 
-Fires at the top of `donate_item_to_museum()`, before the item is registered to the collection and before the pending renown entry is pushed. ctx is `{ item_id }`.
+Fires in `donate_item_to_museum()`, after the item is registered to the collection and before the pending renown entry is pushed. ctx is `{ item_id }`.
 
-This hook is observation only. The `DonationResult` the function goes on to compute (progress made, completed set, rewards) is decided after the emit, so a handler sees the donation before the museum knows what it amounts to. It fires once per donated item, from the museum donation menu (and the engine's test suite). Save load and the `ALL_UNLOCKS` new-game path write donations through `register_item_to_museum()` directly and never fire this hook, so handlers see genuine player donations only.
+This hook is observation only. The `DonationResult` the function goes on to compute (progress made, completed set, rewards) is decided after the emit, but a handler already sees the item's updated museum-progress state. It fires once per donated item, from the museum donation menu (and the engine's test suite). Save load and the `ALL_UNLOCKS` new-game path write donations through `register_item_to_museum()` directly and never fire this hook, so handlers see genuine player donations only. Use [museum.donation_attempted](museum.donation_attempted.md) for the distinct pre-registration event.
 
 | | |
 | --- | --- |
-| **Fires** | At the top of `donate_item_to_museum()`, before the item is registered or the renown entry is pushed. |
+| **Fires** | After `register_item_to_museum(item_id)`, before the renown entry is pushed. |
 | **ctx** | `{ item_id }` |
 | **Kind contract** | The callback observes the moment. Its return value is ignored. |
 
@@ -28,8 +28,8 @@ This hook is observation only. The `DonationResult` the function goes on to comp
 function curator_ledger_museum_donate_item(_ctx) {
     // _ctx is { item_id }.
     //   .item_id - the ItemId being donated.
-    // The donation has not been written yet: MUSEUM_PROGRESS[_ctx.item_id]
-    // still reads false here, and flips right after the emit.
+    // The donation is already written: MUSEUM_PROGRESS[_ctx.item_id]
+    // reflects the newly registered item here.
     // if (_ctx.item_id == <your tracked item>) { ... }
 }
 
@@ -39,7 +39,7 @@ mmapi_on("museum.donate_item", curator_ledger_museum_donate_item);
 
 ## Engine Wiring
 
-- Seam [`museum_donate_item`](../seams/museum_donate_item.md) dispatches from `gml/scripts/Museum.gml`, at the head of `donate_item_to_museum()`.
+- Seam [`museum_donate_item`](../seams/museum_donate_item.md) dispatches from `gml/scripts/Museum.gml`, after the item's registration in `donate_item_to_museum()`.
 
 ## See Also
 
