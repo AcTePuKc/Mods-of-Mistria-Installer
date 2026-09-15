@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 135
-seams = 148
+hooks = 136
+seams = 150
 engine_fixes = 8
 call_rewrites = 1
 
@@ -666,6 +666,11 @@ doc  = "Fires in StoreMenu right after a shelf tap adds an item to the shopping 
 name = "ui.menu_refreshed"
 kind = "event"
 doc  = "Fires after a menu rebuilds its content from game state, at the tail of the rebuild function. Emitting menus today: ToolbarMenu.update() (slot items re-resolved from the inventory: subscriber pull, page flips, tab taps, forced rebuilds, constructor) and VitalsMenu.refresh_statuses() (status icon strip rebuilt: register, cancel, and the expiry poll). ctx is { menu, kind }, with kind read from menu.type. Emits only on rebuild edges, never per idle frame, including during the menu's constructor before ui.menu_opened fires for it (ctx.menu is not yet in ANCHOR.open_menus then). Handlers must be idempotent and must not unconditionally force another rebuild from inside the handler."
+
+[[hook]]
+name = "ui.eod_calendar_events"
+kind = "filter"
+doc  = "Fires in EodMenu.play_calendar_sequence(), after the engine gathers tomorrow's calendar events and before build_notifications() renders them. The filtered value is menu.events, a List of event structs (count()/get()/push()/insert(), not an array). ctx is { menu, target_date }, where target_date is the calendar timestamp for the day about to begin. Mutate the List in place, return a replacement List, or return undefined to keep it; a non-List return is dropped. A custom entry is { type, key, icon, npcs }: type must not match a vanilla CalendarEvent case (CalendarEvent.LEN is the convention), key is a localization key or ANCHOR.wrap_for_local() literal, icon is the left sprite, and npcs is an optional Boolean array indexed by NpcId. The companion seam reads those fields only in the switch default branch, so vanilla entries retain their engine rendering. Fires once per end-of-day sequence."
 
 [[hook]]
 name = "ui.relationship_row_built"
@@ -3919,3 +3924,59 @@ replace = '''
 '''
 marker  = "mmapi_ui_relationship_row_built"
 provides = ["ui.relationship_row_built"]
+
+# EodMenu first collects the next day's vanilla event structs, then converts
+# each one to a notification row. The filter sits exactly between those two
+# phases. The fallback below is deliberately limited to the switch default:
+# every known CalendarEvent continues through its untouched vanilla case.
+[[seam]]
+id      = "ui_eod_calendar_events"
+file    = "gml/scripts/UI/Anchor/Menus/EodMenu.gml"
+anchor  = '''
+        self.set_calendar_time(CALENDAR.time);
+
+        self.build_notifications(target_date);
+'''
+replace = '''
+        self.set_calendar_time(CALENDAR.time);
+
+        var __mmapi_eod_events = self.events;
+        try {
+            __mmapi_eod_events = mmapi_apply_filters("ui.eod_calendar_events", __mmapi_eod_events, { menu: self, target_date: target_date }); // mmapi_ui_eod_calendar_events_filter
+        } catch (__mmapi_ui_eod_calendar_events) {}
+        var __mmapi_eod_events_ok = false;
+        try {
+            __mmapi_eod_events_ok = is_struct(__mmapi_eod_events) && is_numeric(__mmapi_eod_events.count());
+        } catch (__mmapi_ui_eod_calendar_events_count) {}
+        if (__mmapi_eod_events_ok) {
+            self.events = __mmapi_eod_events;
+        }
+        self.build_notifications(target_date);
+'''
+marker  = "mmapi_ui_eod_calendar_events_filter"
+provides = ["ui.eod_calendar_events"]
+
+[[seam]]
+id      = "ui_eod_notification_custom_entry"
+file    = "gml/scripts/UI/Anchor/Menus/EodMenu.gml"
+anchor  = '''
+                    break;
+            }
+
+
+            var text = ANCHOR.text(self.notification_root)
+'''
+replace = '''
+                    break;
+                default: // mmapi_ui_eod_notification_custom_entry
+                    icon = event[$ "icon"];
+                    key = event[$ "key"];
+                    npcs = event[$ "npcs"];
+                    break;
+            }
+
+
+            var text = ANCHOR.text(self.notification_root)
+'''
+marker  = "mmapi_ui_eod_notification_custom_entry"
+provides = ["ui.eod_calendar_events"]

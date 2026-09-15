@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(135));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(148));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(136));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(150));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -205,6 +205,30 @@ public class ShippedCatalogTest
         Assert.That(seam.Replace, Does.Contain("if (!is_array(__mmapi_factory_products))"));
         Assert.That(seam.Replace, Does.Contain("drop_item("));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_factory_run_product_drops_filters"));
+    }
+
+    [Test]
+    public void ShouldFilterEodCalendarEventsAndRenderCustomEntries()
+    {
+        var hook = _catalog.Hook("ui.eod_calendar_events");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("menu.events"));
+        Assert.That(hook.Doc, Does.Contain("custom entry"));
+
+        var filter = _catalog.Seams.Single(s => s.Id == "ui_eod_calendar_events");
+        Assert.That(filter.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/EodMenu.gml"));
+        Assert.That(filter.Hooks, Is.EqualTo(new[] { "ui.eod_calendar_events" }));
+        Assert.That(filter.Replace, Does.Contain("mmapi_apply_filters(\"ui.eod_calendar_events\""));
+        Assert.That(filter.Replace, Does.Contain("is_numeric(__mmapi_eod_events.count())"));
+        Assert.That(filter.Marker, Is.EqualTo("mmapi_ui_eod_calendar_events_filter"));
+
+        var fallback = _catalog.Seams.Single(s => s.Id == "ui_eod_notification_custom_entry");
+        Assert.That(fallback.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/EodMenu.gml"));
+        Assert.That(fallback.Hooks, Is.EqualTo(new[] { "ui.eod_calendar_events" }));
+        Assert.That(fallback.Replace, Does.Contain("default: // mmapi_ui_eod_notification_custom_entry"));
+        Assert.That(fallback.Replace, Does.Contain("icon = event[$ \"icon\"]"));
+        Assert.That(fallback.Marker, Is.EqualTo("mmapi_ui_eod_notification_custom_entry"));
     }
 
     [Test]
