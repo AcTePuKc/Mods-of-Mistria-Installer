@@ -432,7 +432,7 @@ doc  = "Fires every frame for every monster in par_monster's begin step, right a
 [[hook]]
 name = "museum.donate_item"
 kind = "event"
-doc  = "Fires at the top of donate_item_to_museum(), before the item is registered to the collection and before the pending renown entry is pushed. ctx is { item_id }. Observation only - the DonationResult the function goes on to compute (progress, completed set, rewards) is decided after the emit. Fires once per donated item, from the museum donation menu and the engine's test suite; save load and the ALL_UNLOCKS new-game path write donations through register_item_to_museum() directly and never fire this hook."
+doc  = "Fires in donate_item_to_museum(), after the item is registered to the collection and before the pending renown entry is pushed. ctx is { item_id }. Observation only - handlers see the updated museum progress, while the DonationResult the function goes on to compute (progress, completed set, rewards) is decided later. Fires once per donated item, from the museum donation menu and the engine's test suite; save load and the ALL_UNLOCKS new-game path write donations through register_item_to_museum() directly and never fire this hook. Use museum.donation_attempted for the distinct pre-registration event."
 
 [[hook]]
 name = "player.acquire_perk"
@@ -3351,10 +3351,11 @@ marker  = "mmapi_player_acquire_perk"
 [[seam]]
 id      = "museum_donate_item"
 file    = "gml/scripts/Museum.gml"
-target  = { fn = "donate_item_to_museum", at = "head" }
+target  = { fn = "donate_item_to_museum", at = "after", anchor = "register_item_to_museum(item_id);" }
 op      = "emit"
 hook    = "museum.donate_item"
 ctx     = "{ item_id: item_id }"
+indent  = 4
 marker  = "mmapi_museum_donate_item"
 
 [[seam]]

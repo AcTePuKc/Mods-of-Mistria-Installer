@@ -132,6 +132,25 @@ public class ShippedCatalogTest
     }
 
     [Test]
+    public void ShouldEmitMuseumDonationAfterRegistrationWhilePreservingTheAttemptEvent()
+    {
+        var hook = _catalog.Hook("museum.donate_item");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Doc, Does.Contain("after the item is registered"));
+        Assert.That(hook.Doc, Does.Contain("museum.donation_attempted"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "museum_donate_item");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/Museum.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "museum.donate_item" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.TargetFn, Is.EqualTo("donate_item_to_museum"));
+        Assert.That(seam.TargetAt, Is.EqualTo("after"));
+        Assert.That(seam.TargetAnchor, Is.EqualTo("register_item_to_museum(item_id);"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_museum_donate_item"));
+    }
+
+    [Test]
     public void ShouldDeclareBothPetRewardSitesForOnePetRewardEvent()
     {
         var hook = _catalog.Hook("pet.reward_generated");
