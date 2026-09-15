@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **133 hooks**, fed by **146 seams**, **7 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **134 hooks**, fed by **147 seams**, **7 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -76,6 +76,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [player.pass_out](hooks/player.pass_out.md) | event | Know when the player passes out at the end of the day. |
 | [player.died](hooks/player.died.md) | event | Know when the player dies. |
 | [player.acquire_perk](hooks/player.acquire_perk.md) | event | Know when the player acquires a perk. |
+| [player.perk_acquired](hooks/player.perk_acquired.md) | event | Know when a perk is fully acquired and active. |
 | [player.skill_leveled](hooks/player.skill_leveled.md) | event | Know the moment the player levels up a skill. |
 | [renown.level_gained](hooks/renown.level_gained.md) | event | Know the moment the player gains a renown level. |
 | [renown.rank_gained](hooks/renown.rank_gained.md) | event | Know the moment the player reaches a new renown rank. |
@@ -234,6 +235,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [player_pass_out](seams/player_pass_out.md) | Emits inside `pass_out()`, right after `end_day()`. |
 | [player_died](seams/player_died.md) | Emits on the final death path, right after the dying scene starts. |
 | [player_acquire_perk](seams/player_acquire_perk.md) | Emits at the head of `acquire_perk()`. |
+| [player_perk_acquired](seams/player_perk_acquired.md) | Emits at the end of `acquire_perk()`, after perk state and side effects. |
 | [renown_gains](seams/renown_gains.md) | Emits renown level and rank gains inside `set_renown()`, past its gains-only early return. |
 | [player_status_effect_register](seams/player_status_effect_register.md) | Filters every status effect's fields at the top of `register()`. |
 | [player_status_effect_cancel](seams/player_status_effect_cancel.md) | Emits at the head of `StatusEffectManager.cancel()`, before any lookup. |

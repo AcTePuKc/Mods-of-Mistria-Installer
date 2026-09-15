@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(133));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(146));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(134));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(147));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -148,6 +148,29 @@ public class ShippedCatalogTest
         Assert.That(seam.TargetAt, Is.EqualTo("after"));
         Assert.That(seam.TargetAnchor, Is.EqualTo("register_item_to_museum(item_id);"));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_museum_donate_item"));
+    }
+
+    [Test]
+    public void ShouldDeclarePostStatePerkAcquiredAlongsideTheExistingPreStateEvent()
+    {
+        var preState = _catalog.Hook("player.acquire_perk");
+        Assert.That(preState, Is.Not.Null);
+
+        var hook = _catalog.Hook("player.perk_acquired");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Doc, Does.Contain("after the perk is flagged owned and active"));
+        Assert.That(hook.Doc, Does.Contain("player.acquire_perk"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "player_perk_acquired");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Player/Ari.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "player.perk_acquired" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.TargetFn, Is.EqualTo("acquire_perk"));
+        Assert.That(seam.TargetAt, Is.EqualTo("after"));
+        Assert.That(seam.TargetAnchor, Is.EqualTo(
+            "refresh_achievements([Requirement.HasAtLeastOneTierFivePerkPerCategory]);"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_player_perk_acquired"));
     }
 
     [Test]

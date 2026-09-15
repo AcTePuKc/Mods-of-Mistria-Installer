@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 133
-seams = 146
+hooks = 134
+seams = 147
 engine_fixes = 7
 call_rewrites = 1
 
@@ -438,6 +438,11 @@ doc  = "Fires in donate_item_to_museum(), after the item is registered to the co
 name = "player.acquire_perk"
 kind = "event"
 doc  = "Fires at the top of Ari.acquire_perk(perk), before the perk is flagged owned and active and before its acquisition side effects (the Guardian's Shield extra invulnerable hit, the Ancient Inspiration timer reset) run. ctx is { perk }, the Perk enum id. Observation only. Fires on every acquisition path - the Dragonshrine purchase (the essence is already spent when the emit runs), the debug CLI grant, and the ALL_UNLOCKS new-game grant-all loop - but never on save load, which restores the perk arrays directly. Toggling an owned perk on or off never fires either: the shrine menu and the debug CLI flip perks_active directly, without entering acquire_perk."
+
+[[hook]]
+name = "player.perk_acquired"
+kind = "event"
+doc  = "Fires at the end of Ari.acquire_perk(perk), after the perk is flagged owned and active, its acquisition side effects run, the stats entry is pushed, and achievements refresh. ctx is { perk }, the Perk enum id. Observation only. Fires on every acquisition path - the Dragonshrine purchase, the debug CLI grant, and the ALL_UNLOCKS new-game grant-all loop - but never on save load, which restores the perk arrays directly. Toggling an owned perk on or off never fires either. Use player.acquire_perk for the distinct pre-state event."
 
 [[hook]]
 name = "player.died"
@@ -3347,6 +3352,16 @@ hook    = "player.acquire_perk"
 ctx     = "{ perk: perk }"
 indent  = 8
 marker  = "mmapi_player_acquire_perk"
+
+[[seam]]
+id      = "player_perk_acquired"
+file    = "gml/scripts/GameplaySystems/Player/Ari.gml"
+target  = { fn = "acquire_perk", at = "after", anchor = "refresh_achievements([Requirement.HasAtLeastOneTierFivePerkPerCategory]);" }
+op      = "emit"
+hook    = "player.perk_acquired"
+ctx     = "{ perk: perk }"
+indent  = 8
+marker  = "mmapi_player_perk_acquired"
 
 [[seam]]
 id      = "museum_donate_item"
