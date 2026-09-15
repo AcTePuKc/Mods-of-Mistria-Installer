@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(139));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(153));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -318,8 +318,8 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldEmitDialogueFinishedAfterNativeEndActionsAndStateTransition()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(139));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(153));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
 
         var hook = _catalog.Hook("dialogue.finished");
         Assert.That(hook, Is.Not.Null);
@@ -335,6 +335,29 @@ public class ShippedCatalogTest
         Assert.That(seam.TargetAt, Is.EqualTo("after"));
         Assert.That(seam.TargetAnchor, Is.EqualTo("self.state = ConversationDriverState.Finished;"));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_dialogue_finished"));
+    }
+
+    [Test]
+    public void ShouldFilterTheStoreBasketCostBeforeUiAndPaymentUseIt()
+    {
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+
+        var hook = _catalog.Hook("store.basket_cost");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("final gold deduction"));
+        Assert.That(hook.Doc, Does.Contain("non-negative"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "store_basket_cost");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/StoreMenu.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "store.basket_cost" }));
+        Assert.That(seam.Replace, Does.Contain("mmapi_apply_filters(\"store.basket_cost\""));
+        Assert.That(seam.Replace, Does.Contain("basket: self.basket"));
+        Assert.That(seam.Replace, Does.Contain("store: self.store"));
+        Assert.That(seam.Replace, Does.Contain("is_numeric(__mmapi_basket_cost)"));
+        Assert.That(seam.Replace, Does.Contain("max(0, __mmapi_basket_cost)"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_store_run_basket_cost_filters"));
     }
 
     [Test]

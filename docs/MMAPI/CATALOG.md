@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **139 hooks**, fed by **153 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **140 hooks**, fed by **154 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -166,6 +166,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [dialogue.line](hooks/dialogue.line.md) | filter | Reword any dialogue line before the textbox shows it. |
 | [dialogue.finished](hooks/dialogue.finished.md) | event | React once the engine has completed a conversation and marked its driver finished. |
 | [dialogue.prompt_lock](hooks/dialogue.prompt_lock.md) | filter | Add an additive soft-lock to a dialogue prompt option. |
+| [store.basket_cost](hooks/store.basket_cost.md) | filter | Adjust a store cart's one final cost before UI, affordability, and payment consume it. |
 | [dialogue.romance_prompt_guard](hooks/dialogue.romance_prompt_guard.md) | guard | Legacy compatibility guard for a pink romance prompt. |
 | [dialogue.speaker](hooks/dialogue.speaker.md) | filter | Swap the speaker a textbox shows. |
 | [dialogue.npc_blip](hooks/dialogue.npc_blip.md) | filter | Swap the blip sound an NPC speaks with. |
