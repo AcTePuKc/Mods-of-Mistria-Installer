@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 134
-seams = 147
+hooks = 135
+seams = 148
 engine_fixes = 8
 call_rewrites = 1
 
@@ -706,6 +706,11 @@ doc  = "Fires in Stable.on_new_day() for each breeding pair, after the engine ro
 name = "animal.product_drops"
 kind = "filter"
 doc  = "Fires in Stable.on_new_day()'s drop block, after the normal and golden product lists are rolled and the Eggstra perk may add its extra product, and before the production stats record and the drops land in the stable grid. The filtered value is the struct { normal_products, golden_products }, and both fields are Lists of LiveItem (count()/get()), not arrays. Mutate the Lists in place, return a replacement struct, or return undefined to keep the current lists. The seam re-reads both fields defensively, so a non-struct return or a partial struct keeps the engine lists. ctx is { animal, stable, production, production_tier }: production is the production struct for the animal's sex from its prototype, and production_tier is the tier entry the animal's heart level resolved. Emptying both lists suppresses the drops and their stats records, because the engine's push blocks test is_empty(). The CurrencyOfCareTwo bead roll and the bonus gather item roll sit outside this value and still run."
+
+[[hook]]
+name = "factory.product_drops"
+kind = "filter"
+doc  = "Fires when an apiary or terrarium completes a factory collection, after the requested item is removed from the player's hand and the tier reward and apiary honeycomb bonus are rolled, and before items drop. The filtered value is an array of item ids or LiveItems that drop_item() accepts. ctx is { node, production_request, production_tier }. Return a replacement array, mutate the array in place, or return undefined to keep the current products. A non-array return is dropped and the rolled list stands. An empty array suppresses item drops but leaves the completed collection's hand pop, bounce animation, reward sound, and request reset intact. Each final element drops through drop_item(), so items.dropped fires once per element."
 
 [[hook]]
 name = "animal.adoption_variant_unlocked"
@@ -3767,6 +3772,55 @@ replace = '''
                     var pos = trellis_point(self.building.prototype.stall_points.get(i));'''
 marker  = "mmapi_stable_run_product_drops_filters"
 provides = ["animal.product_drops"]
+
+[[seam]]
+id      = "factory_product_drops"
+file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
+anchor  = '''
+                    var arr = self.prototype.factory.rewards_map[self.production_tier];
+                    ARI.inventory.slot(ARI.held_item_index).pop();
+                    drop_item(
+                        arr[irandom(array_length(arr) - 1)],
+                        self.renderer.x,
+                        self.renderer.y
+                    );
+
+                    if self.prototype.object_id == ObjectId.Apiary && chance_percent(15) {
+                        drop_item(
+                            ItemId.Honeycomb,
+                            self.renderer.x,
+                            self.renderer.y
+                        );
+                    }
+
+                    TANGO.play("SoundEffects/Inventory/RewardDropAddition");
+'''
+replace = '''
+                    var arr = self.prototype.factory.rewards_map[self.production_tier];
+                    ARI.inventory.slot(ARI.held_item_index).pop();
+                    var __mmapi_factory_rolled = [arr[irandom(array_length(arr) - 1)]];
+                    if self.prototype.object_id == ObjectId.Apiary && chance_percent(15) {
+                        array_push(__mmapi_factory_rolled, ItemId.Honeycomb);
+                    }
+                    var __mmapi_factory_products = __mmapi_factory_rolled;
+                    try {
+                        __mmapi_factory_products = mmapi_apply_filters("factory.product_drops", __mmapi_factory_products, { node: self, production_request: self.production_request, production_tier: self.production_tier }); // mmapi_factory_run_product_drops_filters
+                    } catch (__mmapi_factory_product_drops) {}
+                    if (!is_array(__mmapi_factory_products)) {
+                        __mmapi_factory_products = __mmapi_factory_rolled;
+                    }
+                    for (var __mmapi_factory_i = 0; __mmapi_factory_i < array_length(__mmapi_factory_products); __mmapi_factory_i++) {
+                        drop_item(
+                            __mmapi_factory_products[__mmapi_factory_i],
+                            self.renderer.x,
+                            self.renderer.y
+                        );
+                    }
+
+                    TANGO.play("SoundEffects/Inventory/RewardDropAddition");
+'''
+marker  = "mmapi_factory_run_product_drops_filters"
+provides = ["factory.product_drops"]
 
 [[seam]]
 id      = "adoption_variant_unlocked"
