@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(136));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(150));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(137));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(152));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -229,6 +229,29 @@ public class ShippedCatalogTest
         Assert.That(fallback.Replace, Does.Contain("default: // mmapi_ui_eod_notification_custom_entry"));
         Assert.That(fallback.Replace, Does.Contain("icon = event[$ \"icon\"]"));
         Assert.That(fallback.Marker, Is.EqualTo("mmapi_ui_eod_notification_custom_entry"));
+    }
+
+    [Test]
+    public void ShouldFilterFurniturePreviewSpritesAtBothGhostSites()
+    {
+        var hook = _catalog.Hook("furniture.preview_sprite");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("every frame"));
+        Assert.That(hook.Doc, Does.Contain("source"));
+
+        var main = _catalog.Seams.Single(s => s.Id == "furniture_preview_sprite");
+        Assert.That(main.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"));
+        Assert.That(main.Hooks, Is.EqualTo(new[] { "furniture.preview_sprite" }));
+        Assert.That(main.Op, Is.EqualTo(DispatchOp.Filter));
+        Assert.That(main.Replace, Does.Contain("source: \"main_sprite\""));
+        Assert.That(main.Replace, Does.Contain("mmapi_apply_filters(\"furniture.preview_sprite\", spr"));
+
+        var floor = _catalog.Seams.Single(s => s.Id == "furniture_preview_floor_sprite");
+        Assert.That(floor.Hooks, Is.EqualTo(new[] { "furniture.preview_sprite" }));
+        Assert.That(floor.Replace, Does.Contain("source: \"floor_sprite\""));
+        Assert.That(floor.Replace, Does.Not.Contain("winter_floor_sprite"));
+        Assert.That(floor.Marker, Is.EqualTo("mmapi_furniture_preview_floor_sprite"));
     }
 
     [Test]

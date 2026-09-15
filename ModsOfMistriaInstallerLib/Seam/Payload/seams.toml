@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 136
-seams = 150
+hooks = 137
+seams = 152
 engine_fixes = 8
 call_rewrites = 1
 
@@ -165,6 +165,11 @@ doc  = "Fires at the top of write_furniture_to_location(grid, xx, yy, proto, sta
 name = "furniture.floor_sprite"
 kind = "filter"
 doc  = "Fires in create_furniture_renderer(node) as a furniture node's floor sprite is resolved, after the engine's native winter_floor_sprite override and before the floor renderer instance is created. The filtered value is the floor sprite. ctx is the furniture node (read ctx.object_id, ctx.prototype, ctx.cardinal_index). Return the replacement sprite, or undefined to keep the current value. Fires once per furniture render BUILD (placement, room/grid load), not per frame, so a changed decision (e.g. a season change) applies on the node's next build, not instantly on a live world. Furniture floor sprites never route through obj_node_renderer.set_sprite, so object.node_sprite cannot reach them."
+
+[[hook]]
+name = "furniture.preview_sprite"
+kind = "filter"
+doc  = "Fires in create_test_placement_furniture_draw_info() as the furniture placement preview resolves each sprite for its translucent ghost under the cursor. ctx.source is main_sprite (after the engine's {Season}_sprite override) or floor_sprite (read raw; the preview has no winter_floor_sprite override). The filtered value is that sprite. ctx is { object_id, prototype, cardinal_index, x, y, source }: object_id and prototype describe the piece after any house-stairs pairing swap, cardinal_index is the resolved rotation, and x/y are its centred anchor cell. There is no node because nothing is placed yet. Return a replacement sprite or undefined to keep it. Fires every frame while a placeable is held, once per available site, so handlers must cheaply return undefined for pieces they do not own."
 
 [[hook]]
 name = "dialogue.line"
@@ -3980,3 +3985,45 @@ replace = '''
 '''
 marker  = "mmapi_ui_eod_notification_custom_entry"
 provides = ["ui.eod_calendar_events"]
+
+# The placement ghost has no node yet, so it does not pass through the normal
+# furniture renderer or object-node sprite hooks. These two edits expose the
+# exact main and floor sprites it will draw. Preview generation runs every
+# frame while an item is held; handlers must remain a cheap lookup.
+[[seam]]
+id      = "furniture_preview_sprite"
+file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
+context_before = '''
+    if seasonal_override != undefined {
+        spr = seasonal_override;
+    }
+'''
+context_after = '''
+    furniture_renderer.sprite_index = spr;
+'''
+op      = "filter"
+hook    = "furniture.preview_sprite"
+ctx     = '{ object_id: object_id, prototype: proto, cardinal_index: calc_rot, x: xx, y: yy, source: "main_sprite" }'
+var     = "spr"
+indent  = 4
+try_catch = true
+catch_var = "__mmapi_preview_sprite"
+marker  = "mmapi_furniture_preview_sprite"
+
+[[seam]]
+id      = "furniture_preview_floor_sprite"
+file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
+anchor  = '''
+    if proto.cardinal_data[calc_rot].floor_sprite != undefined {
+        furniture_renderer.bottom_sprite = proto.cardinal_data[calc_rot].floor_sprite;
+    }
+'''
+replace = '''
+    if proto.cardinal_data[calc_rot].floor_sprite != undefined {
+        var __mmapi_preview_floor = proto.cardinal_data[calc_rot].floor_sprite; // mmapi_furniture_preview_floor_sprite
+        try { __mmapi_preview_floor = mmapi_apply_filters("furniture.preview_sprite", __mmapi_preview_floor, { object_id: object_id, prototype: proto, cardinal_index: calc_rot, x: xx, y: yy, source: "floor_sprite" }); } catch (__mmapi_preview_floor_filter) {}
+        furniture_renderer.bottom_sprite = __mmapi_preview_floor;
+    }
+'''
+marker  = "mmapi_furniture_preview_floor_sprite"
+provides = ["furniture.preview_sprite"]

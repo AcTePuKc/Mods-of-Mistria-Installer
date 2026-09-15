@@ -47,6 +47,7 @@ mmapi_filter("furniture.floor_sprite", fresh_coat_furniture_floor_sprite);
 
 ## See Also
 
+- [furniture.preview_sprite](furniture.preview_sprite.md) - The held-placement ghost complement for furniture appearance mods.
 - [object.node_sprite](object.node_sprite.md) - The world-node complement: crops, forage, and resource nodes.
 - [furniture.place_guard](furniture.place_guard.md) - Veto a furniture placement before it is written.
 - [object.interact](object.interact.md) - Take over grid-object interactions.
