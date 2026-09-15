@@ -33,7 +33,7 @@ has distinct engine context, while both dispatch the same hook.
 
 | Hook | Matching seam | Status | Reason |
 |---|---|---|---|
-| `dialogue.romance_prompt_guard` | `dialogue_romance_prompt_guard` | Deferred | Superseded by the existing, more general `dialogue.prompt_lock` hook; do not ship both. |
+| `dialogue.romance_prompt_guard` | `dialogue_prompt_lock` | Shipped compatibility | Kept as a narrow legacy guard bridge for existing 0.16 mods; new mods should use `dialogue.prompt_lock`. |
 | sprite TOML generator | `momi/sprites` generator | Deferred | The upstream implementation is incomplete and risks duplicate sprite installation; revisit with focused design and tests. |
 
 Branch-only or localization/future-work changes are intentionally not copied

@@ -77,7 +77,7 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(137));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(138));
         Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(152));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
@@ -252,6 +252,25 @@ public class ShippedCatalogTest
         Assert.That(floor.Replace, Does.Contain("source: \"floor_sprite\""));
         Assert.That(floor.Replace, Does.Not.Contain("winter_floor_sprite"));
         Assert.That(floor.Marker, Is.EqualTo("mmapi_furniture_preview_floor_sprite"));
+    }
+
+    [Test]
+    public void ShouldBridgeTheLegacyRomancePromptGuardWithoutChangingTheNewLockContract()
+    {
+        var legacy = _catalog.Hook("dialogue.romance_prompt_guard");
+        Assert.That(legacy, Is.Not.Null);
+        Assert.That(legacy!.Kind, Is.EqualTo(HookKind.Guard));
+        Assert.That(legacy.Doc, Does.Contain("Legacy compatibility"));
+        Assert.That(legacy.Doc, Does.Contain("dialogue.prompt_lock"));
+
+        var modern = _catalog.Hook("dialogue.prompt_lock");
+        Assert.That(modern, Is.Not.Null);
+        Assert.That(modern!.Kind, Is.EqualTo(HookKind.Filter));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "dialogue_prompt_lock");
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "dialogue.prompt_lock", "dialogue.romance_prompt_guard" }));
+        Assert.That(seam.Replace, Does.Contain("mmapi_check_guards(\"dialogue.romance_prompt_guard\""));
+        Assert.That(seam.Replace, Does.Contain("self.blackboard.get(\"pink\") == true && __mmapi_prompt_vanilla_locked == false"));
     }
 
     [Test]
