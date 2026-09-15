@@ -227,9 +227,9 @@ kind = "event"
 doc  = "Fires in the dungeon breakables logic when a treasure chest starts its drop chain. ctx is { node, object_id, x, y }, with x and y read from the node renderer."
 
 [[hook]]
-name = "dungeon.side_room_chance"
+name = "dungeon.side_room_range"
 kind = "filter"
-doc  = "Filters the spawn chance passed to try_create_side_room() at the head of that function, before the per-floor roll. ctx is { impl, is_ritual, max_flr }; is_ritual is true when impl == DungeonImpl.Ritual (the pre-computed convenience flag so consumers need not reference the DungeonImpl enum). Return an adjusted chance (0-100) to raise/lower the odds of a treasure/ritual side room; return the value unchanged (or undefined) to defer. Fires for every side-room impl the runner attempts."
+doc  = "Filters the floor range passed to try_create_side_room() at the head of that function, before the runner picks a side-room floor. ctx is { impl, is_ritual, start_floor }; is_ritual is true when impl == DungeonImpl.Ritual (the pre-computed convenience flag so consumers need not reference the DungeonImpl enum). Return an adjusted range to change how far ahead a treasure/ritual side room may be placed; return the value unchanged (or undefined) to defer. Fires for every side-room impl the runner attempts."
 
 [[hook]]
 name = "fishing.should_reel"
@@ -2322,15 +2322,15 @@ indent  = 8
 marker  = "mmapi_dungeon_run_ladder_spawn_guards"
 
 [[seam]]
-id      = "dungeon_side_room_chance"
+id      = "dungeon_side_room_range"
 file    = "gml/scripts/GameplaySystems/Dungeon/DungeonRunner.gml"
 target  = { fn = "try_create_side_room", at = "head" }
 op      = "filter"
-hook    = "dungeon.side_room_chance"
-ctx     = "{ impl: impl, is_ritual: impl == DungeonImpl.Ritual, max_flr: max_flr }"
-var     = "chance_val"
+hook    = "dungeon.side_room_range"
+ctx     = "{ impl: impl, is_ritual: impl == DungeonImpl.Ritual, start_floor: start_floor }"
+var     = "range"
 indent  = 4
-marker  = "mmapi_dungeon_run_side_room_chance_filters"
+marker  = "mmapi_dungeon_run_side_room_range_filters"
 
 [[seam]]
 id      = "dungeon_treasure_chest"
