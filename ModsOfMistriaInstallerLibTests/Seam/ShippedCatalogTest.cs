@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(134));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(147));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(135));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(148));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -186,6 +186,25 @@ public class ShippedCatalogTest
         Assert.That(fix.Replace, Does.Contain("PET_PROTOTYPE.cosmetic_sets.contains_key"));
         Assert.That(fix.Replace, Does.Contain("ItemId.PetCosmetic"));
         Assert.That(fix.Marker, Is.EqualTo("mmapi_store_pet_cosmetic_entry"));
+    }
+
+    [Test]
+    public void ShouldFilterFactoryProductsWithoutBypassingTheDropPipeline()
+    {
+        var hook = _catalog.Hook("factory.product_drops");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("apiary or terrarium"));
+        Assert.That(hook.Doc, Does.Contain("items.dropped"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "factory_product_drops");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "factory.product_drops" }));
+        Assert.That(seam.Op, Is.Null);
+        Assert.That(seam.Replace, Does.Contain("mmapi_apply_filters(\"factory.product_drops\""));
+        Assert.That(seam.Replace, Does.Contain("if (!is_array(__mmapi_factory_products))"));
+        Assert.That(seam.Replace, Does.Contain("drop_item("));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_factory_run_product_drops_filters"));
     }
 
     [Test]
