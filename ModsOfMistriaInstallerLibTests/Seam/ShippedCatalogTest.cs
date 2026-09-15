@@ -72,6 +72,36 @@ public class ShippedCatalogTest
     }
 
     [Test]
+    public void ShouldReplaceTheObsoleteSideRoomChanceLocatorWithTheRangeContract()
+    {
+        // This is a breaking 0.16.x migration. The old symbols named a
+        // chance decision in a previous engine implementation; the current
+        // function chooses a floor from start_floor + range instead.
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(133));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(146));
+        Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
+        Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
+
+        var hook = _catalog.Hook("dungeon.side_room_range");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("floor range"));
+        Assert.That(hook.Doc, Does.Contain("start_floor"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "dungeon_side_room_range");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Dungeon/DungeonRunner.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "dungeon.side_room_range" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Filter));
+        Assert.That(seam.TargetFn, Is.EqualTo("try_create_side_room"));
+        Assert.That(seam.TargetAt, Is.EqualTo("head"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_dungeon_run_side_room_range_filters"));
+        Assert.That(seam.Replace, Does.Contain(
+            "mmapi_apply_filters(\"dungeon.side_room_range\", range, { impl: impl, is_ritual: impl == DungeonImpl.Ritual, start_floor: start_floor })"));
+        Assert.That(seam.Replace, Does.Not.Contain("chance_val"));
+        Assert.That(seam.Replace, Does.Not.Contain("max_flr"));
+    }
+
+    [Test]
     public void ShouldDeclareTheFishSelectionEventAtTheFishingHubBoundary()
     {
         var hook = _catalog.Hook("fishing.fish_selected");

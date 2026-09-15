@@ -37,7 +37,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [dungeon.room_build_begin](hooks/dungeon.room_build_begin.md) | event | Know the last moment before a dungeon room is built. |
 | [dungeon.floor_built](hooks/dungeon.floor_built.md) | event | Know the moment a dungeon floor's room is fully built. |
 | [dungeon.ladder_spawn](hooks/dungeon.ladder_spawn.md) | guard | Block the descent ladder before it spawns. |
-| [dungeon.side_room_chance](hooks/dungeon.side_room_chance.md) | filter | Adjust the odds of dungeon side rooms. |
+| [dungeon.side_room_range](hooks/dungeon.side_room_range.md) | filter | Adjust how far ahead dungeon side rooms may be placed. |
 | [dungeon.treasure_chest](hooks/dungeon.treasure_chest.md) | event | Know the moment a treasure chest starts its drop chain. |
 | [interact.elevator_action](hooks/interact.elevator_action.md) | guard | Block the dungeon elevator before its menu opens. |
 | [interact.ladder_down_action](hooks/interact.ladder_down_action.md) | guard | Stop a dungeon ladder descent before it starts. |
@@ -191,7 +191,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [dungeon_runner_created](seams/dungeon_runner_created.md) | Emits the birth of a dungeon run, after `DUNGEON_RUNNER` is constructed and before the first floor loads. |
 | [dungeon_floor_bracket](seams/dungeon_floor_bracket.md) | Brackets dungeon floor entry with three emits: floor enter, room-build begin, and floor built. |
 | [dungeon_ladder_spawn](seams/dungeon_ladder_spawn.md) | Puts a veto check at the head of `spawn_ladder()`, before a floor's exit ladder appears. |
-| [dungeon_side_room_chance](seams/dungeon_side_room_chance.md) | Routes the side-room spawn chance through the filter chain before the per-floor roll. |
+| [dungeon_side_room_range](seams/dungeon_side_room_range.md) | Routes the side-room floor range through the filter chain before the runner picks a floor. |
 | [dungeon_treasure_chest](seams/dungeon_treasure_chest.md) | Emits the moment a dungeon treasure chest starts its drop chain. |
 | [interact_elevator_action](seams/interact_elevator_action.md) | Puts a veto check on the elevator's interaction action, the press that opens the lift menu. |
 | [interact_ladder_down_action](seams/interact_ladder_down_action.md) | Puts a veto check on the ladder's descend action, before the sound and the floor change. |
