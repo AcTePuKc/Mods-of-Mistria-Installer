@@ -35,6 +35,14 @@ public static class AppInfo
 
     public static string DisplayVersion => $"AIM {Version}";
 
+    /// <summary>
+    /// Distinguishes AIM releases from the historical MOMI releases that predate the fork in this
+    /// repository. Version numbers alone are not enough: MOMI 0.15.6 is newer than AIM 0.2.0 to a
+    /// semantic-version comparer, but is not an AIM update.
+    /// </summary>
+    public static bool IsAimRelease(string? releaseName) =>
+        releaseName?.StartsWith("AIM ", StringComparison.OrdinalIgnoreCase) == true;
+
     private static string TrimBuildSuffix(string value)
     {
         var plus = value.IndexOf('+');

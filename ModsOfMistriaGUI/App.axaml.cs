@@ -262,6 +262,12 @@ public class App : Application
                 if (release["draft"]?.Value<bool>() == true || release["prerelease"]?.Value<bool>() == true)
                     continue;
 
+                // This repository retains the pre-fork MOMI release history. Only AIM-branded
+                // releases belong to AIM's update channel; otherwise MOMI 0.15.x appears newer
+                // than every AIM 0.2.x build.
+                if (!AppInfo.IsAimRelease(release["name"]?.ToString()))
+                    continue;
+
                 var tagName = release["tag_name"]?.ToString();
                 if (!Version.TryParse(tagName?.TrimStart('v'), out var candidate))
                     continue;

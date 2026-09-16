@@ -71,4 +71,16 @@ public class Tests
             LocalizationService.Instance.LanguageChanged -= handler;
         }
     }
+
+    [Test]
+    public void Should_Only_Use_Aim_Branded_Releases_For_App_Updates()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(AppInfo.IsAimRelease("AIM 0.2.1"), Is.True);
+            Assert.That(AppInfo.IsAimRelease("aim 0.2.2"), Is.True);
+            Assert.That(AppInfo.IsAimRelease("MOMI 0.15.6 AI"), Is.False);
+            Assert.That(AppInfo.IsAimRelease(null), Is.False);
+        });
+    }
 }
