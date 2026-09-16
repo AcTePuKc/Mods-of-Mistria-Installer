@@ -49,25 +49,18 @@ public partial class GettingStartedPageViewModel : PageViewBase
         IsBusy = true;
         try
         {
-            var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+            var folders = await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
             {
-                Title = Texts.GUIOpenGameExecutable,
-                FileTypeFilter =
-                [
-                    new FilePickerFileType("FieldsOfMistria.exe")
-                    {
-                        Patterns = ["FieldsOfMistria.exe"]
-                    }
-                ],
+                Title = Texts.GUISetupMistriaLocation,
                 AllowMultiple = false
             });
 
-            if (files.Count == 1)
+            if (folders.Count == 1)
             {
-                var path = files[0].TryGetLocalPath();
+                var path = folders[0].TryGetLocalPath();
                 if (path is null) return;
             
-                Settings.MistriaLocation = Path.GetDirectoryName(Path.GetFullPath(path)) ?? "";
+                Settings.MistriaLocation = Path.GetFullPath(path);
 
                 if (Settings.ValidMistriaLocation() && !Settings.ValidModsLocation())
                 {
