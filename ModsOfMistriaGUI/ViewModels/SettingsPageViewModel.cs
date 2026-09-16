@@ -1,6 +1,8 @@
+using Avalonia;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Garethp.ModsOfMistriaGUI;
 using Garethp.ModsOfMistriaGUI.Models;
 
 namespace Garethp.ModsOfMistriaGUI.ViewModels;
@@ -11,6 +13,8 @@ public partial class SettingsPageViewModel : PageViewBase
     private readonly NexusDownloadsViewModel _nexus;
 
     [ObservableProperty] private Settings _settings;
+    [ObservableProperty] private bool _isCheckingForAimUpdates;
+    [ObservableProperty] private string _aimUpdateCheckStatus = "";
     private string _selectedSectionId = "general";
 
     public IReadOnlyList<string> Sections => [Texts.GUISettingsGeneral, Texts.GUISettingsUpdates, Texts.GUISettingsNexus];
@@ -69,6 +73,30 @@ public partial class SettingsPageViewModel : PageViewBase
 
     [RelayCommand]
     private async Task ManageNexusAccount() => await _nexus.ManageNexusAccountAsync();
+
+    [RelayCommand]
+    private async Task CheckForAimUpdates()
+    {
+        IsCheckingForAimUpdates = true;
+        AimUpdateCheckStatus = Texts.GUISettingsCheckingForUpdates;
+        try
+        {
+            var app = Application.Current as App;
+            var result = app is null
+                ? App.UpdateCheckResult.Failed
+                : await app.CheckForUpdatesNowAsync();
+            AimUpdateCheckStatus = result switch
+            {
+                App.UpdateCheckResult.Available => Texts.GUISettingsUpdateAvailable,
+                App.UpdateCheckResult.UpToDate => Texts.GUISettingsUpToDate,
+                _ => Texts.GUISettingsUpdateCheckFailed
+            };
+        }
+        finally
+        {
+            IsCheckingForAimUpdates = false;
+        }
+    }
 
     [RelayCommand]
     private async Task SelectModsLocation()

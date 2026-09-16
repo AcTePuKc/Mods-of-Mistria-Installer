@@ -1243,4 +1243,9 @@ Open download page(s) in browser?</value></data>
   <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Choose which AIM releases can appear in update checks.</value></data>
   <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Include preview releases</value></data>
   <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Preview releases may contain unfinished features. Leave this off to receive stable AIM releases only.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Check for AIM updates</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>Checking AIM updates...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM is up to date.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>An AIM update is available. Use the notice below to open its release page.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>AIM update check failed.</value></data>
 </root>

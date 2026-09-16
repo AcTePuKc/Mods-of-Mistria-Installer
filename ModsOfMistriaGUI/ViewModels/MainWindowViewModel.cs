@@ -57,9 +57,9 @@ public partial class MainWindowViewModel : ViewModelBase
         Localization.SetLanguage(_settings.UiLanguage);
     }
 
-    public void ShowUpdateAvailable(string version, string? releaseUrl = null)
+    public void ShowUpdateAvailable(string version, string? releaseUrl = null, bool ignoreDismissal = false)
     {
-        if (string.Equals(_settings.DismissedUpdateVersion, version, StringComparison.OrdinalIgnoreCase))
+        if (!ignoreDismissal && string.Equals(_settings.DismissedUpdateVersion, version, StringComparison.OrdinalIgnoreCase))
             return;
 
         _availableVersion = version;

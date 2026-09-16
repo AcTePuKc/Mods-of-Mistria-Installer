@@ -796,4 +796,9 @@
   <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>选择可在更新检查中显示的 AIM 版本。</value></data>
   <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>包含预览版本</value></data>
   <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>预览版本可能包含尚未完成的功能。请保持关闭此选项，以便只接收稳定的 AIM 版本。</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>检查 AIM 更新</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>正在检查 AIM 更新...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM 已是最新版本。</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>有可用的 AIM 更新。请使用下方通知打开其发布页面。</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>检查 AIM 更新失败。</value></data>
 </root>

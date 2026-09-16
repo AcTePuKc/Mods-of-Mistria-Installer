@@ -1169,4 +1169,9 @@ Clique para ler todas as versões.</value></data>
   <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Escolha quais lançamentos do AIM podem aparecer nas verificações de atualização.</value></data>
   <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Incluir versões de pré-lançamento</value></data>
   <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>As versões de pré-lançamento podem conter recursos inacabados. Deixe esta opção desativada para receber apenas lançamentos estáveis do AIM.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Verificar atualizações do AIM</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>Verificando atualizações do AIM...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>O AIM está atualizado.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>Há uma atualização do AIM disponível. Use o aviso abaixo para abrir a página do lançamento.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>Não foi possível verificar atualizações do AIM.</value></data>
 </root>

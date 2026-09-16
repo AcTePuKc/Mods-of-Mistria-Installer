@@ -843,4 +843,9 @@
   <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Выберите, какие выпуски AIM будут показываться при проверке обновлений.</value></data>
   <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Включать предварительные версии</value></data>
   <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Предварительные версии могут содержать незавершённые функции. Оставьте эту опцию выключенной, чтобы получать только стабильные выпуски AIM.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Проверить обновления AIM</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>Проверка обновлений AIM...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM обновлён.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>Доступно обновление AIM. Используйте уведомление ниже, чтобы открыть страницу выпуска.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>Не удалось проверить обновления AIM.</value></data>
 </root>

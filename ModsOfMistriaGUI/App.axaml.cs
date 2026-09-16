@@ -229,7 +229,7 @@ public class App : Application
 
             // This runs after the window exists and never blocks startup. A stable build only
             // considers stable GitHub releases, so a future RC cannot prompt ordinary users.
-            _ = CheckForUpdatesAsync(_updateCheckCancellation.Token);
+            _ = CheckForUpdatesAsync(_updateCheckCancellation.Token, manual: false);
         }
 
         PerformanceDiagnostics.Log($"Startup: framework initialization={stopwatch.ElapsedMilliseconds} ms");
@@ -245,7 +245,16 @@ public class App : Application
         _ = _mainViewModel.HandleNxmLinkAsync(link);
     }
 
-    private async Task CheckForUpdatesAsync(CancellationToken cancellationToken)
+    /// <summary>
+    /// Checks immediately, including a version the user previously dismissed. Dismissal only
+    /// suppresses the passive startup notice; it must never prevent a deliberate re-check.
+    /// </summary>
+    public Task<UpdateCheckResult> CheckForUpdatesNowAsync() =>
+        _updateCheckCancellation is null
+            ? Task.FromResult(UpdateCheckResult.Failed)
+            : CheckForUpdatesAsync(_updateCheckCancellation.Token, manual: true);
+
+    private async Task<UpdateCheckResult> CheckForUpdatesAsync(CancellationToken cancellationToken, bool manual)
     {
         try
         {
@@ -287,23 +296,28 @@ public class App : Application
             }
 
             if (latestRelease is null || latestRelease.Version <= currentVersion || cancellationToken.IsCancellationRequested)
-                return;
+                return UpdateCheckResult.UpToDate;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 if (!cancellationToken.IsCancellationRequested)
-                    _mainViewModel.ShowUpdateAvailable(latestRelease.DisplayVersion, latestRelease.Url);
+                    _mainViewModel.ShowUpdateAvailable(latestRelease.DisplayVersion, latestRelease.Url, ignoreDismissal: manual);
             });
+            return UpdateCheckResult.Available;
         }
         catch (OperationCanceledException)
         {
             // Expected when the main window closes during the request.
+            return UpdateCheckResult.Failed;
         }
         catch (Exception)
         {
             // Update checks are advisory and must never prevent startup.
+            return UpdateCheckResult.Failed;
         }
     }
+
+    public enum UpdateCheckResult { UpToDate, Available, Failed }
 
     private sealed record UpdateRelease(Version Version, string DisplayVersion, string Url, bool IsPrerelease);
 }

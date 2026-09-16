@@ -36,6 +36,13 @@
                             <TextBlock Text="{Binding Texts.GUISettingsIncludePrereleaseUpdatesNote}"
                                        TextWrapping="Wrap"
                                        Foreground="{DynamicResource AIMMutedForegroundBrush}" />
+                            <Button Content="{Binding Texts.GUISettingsCheckForUpdates}"
+                                    Command="{Binding CheckForAimUpdatesCommand}"
+                                    IsEnabled="{Binding !IsCheckingForAimUpdates}"
+                                    HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding AimUpdateCheckStatus}"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource AIMMutedForegroundBrush}" />
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding IsNexusSelected}" Spacing="8">
