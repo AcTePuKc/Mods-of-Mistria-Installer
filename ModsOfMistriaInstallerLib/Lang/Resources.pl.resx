@@ -839,4 +839,8 @@ Kliknij, aby przeczytać wszystkie wersje.</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Ogród różany</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Zmniejsz rozmiar tekstu</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Zwiększ rozmiar tekstu</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Aktualizacje</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Wybierz, które wydania AIM mogą pojawiać się podczas sprawdzania aktualizacji.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Uwzględniaj wersje testowe</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Wersje testowe mogą zawierać niedokończone funkcje. Pozostaw tę opcję wyłączoną, aby otrzymywać tylko stabilne wydania AIM.</value></data>
 </root>

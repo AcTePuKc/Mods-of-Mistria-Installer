@@ -1165,4 +1165,8 @@ Clique para ler todas as versões.</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardim de rosas</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Diminuir tamanho do texto</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Aumentar tamanho do texto</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Atualizações</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Escolha quais lançamentos do AIM podem aparecer nas verificações de atualização.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Incluir versões de pré-lançamento</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>As versões de pré-lançamento podem conter recursos inacabados. Deixe esta opção desativada para receber apenas lançamentos estáveis do AIM.</value></data>
 </root>

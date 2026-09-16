@@ -1159,4 +1159,8 @@ An AIM übergeben?</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rosengarten</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Textgröße verringern</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Textgröße erhöhen</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Aktualisierungen</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Wählen Sie, welche AIM-Versionen bei der Updateprüfung angezeigt werden.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Vorschauversionen einschließen</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Vorschauversionen können unfertige Funktionen enthalten. Lassen Sie dies deaktiviert, um nur stabile AIM-Versionen zu erhalten.</value></data>
 </root>

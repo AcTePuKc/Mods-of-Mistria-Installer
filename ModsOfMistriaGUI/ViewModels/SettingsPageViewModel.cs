@@ -13,22 +13,31 @@ public partial class SettingsPageViewModel : PageViewBase
     [ObservableProperty] private Settings _settings;
     private string _selectedSectionId = "general";
 
-    public IReadOnlyList<string> Sections => [Texts.GUISettingsGeneral, Texts.GUISettingsNexus];
+    public IReadOnlyList<string> Sections => [Texts.GUISettingsGeneral, Texts.GUISettingsUpdates, Texts.GUISettingsNexus];
     public string SelectedSection
     {
-        get => _selectedSectionId == "nexus" ? Texts.GUISettingsNexus : Texts.GUISettingsGeneral;
+        get => _selectedSectionId switch
+        {
+            "updates" => Texts.GUISettingsUpdates,
+            "nexus" => Texts.GUISettingsNexus,
+            _ => Texts.GUISettingsGeneral
+        };
         set
         {
-            var newId = value == Texts.GUISettingsNexus ? "nexus" : "general";
+            var newId = value == Texts.GUISettingsUpdates ? "updates"
+                : value == Texts.GUISettingsNexus ? "nexus"
+                : "general";
             if (_selectedSectionId == newId) return;
             _selectedSectionId = newId;
             OnPropertyChanged();
             OnPropertyChanged(nameof(IsGeneralSelected));
+            OnPropertyChanged(nameof(IsUpdatesSelected));
             OnPropertyChanged(nameof(IsNexusSelected));
         }
     }
 
     public bool IsGeneralSelected => _selectedSectionId == "general";
+    public bool IsUpdatesSelected => _selectedSectionId == "updates";
     public bool IsNexusSelected => _selectedSectionId == "nexus";
     public NexusDownloadsViewModel Nexus => _nexus;
     public string NexusAccountStatus => Nexus.NexusAccountStatusText;
@@ -43,6 +52,7 @@ public partial class SettingsPageViewModel : PageViewBase
             OnPropertyChanged(nameof(Sections));
             OnPropertyChanged(nameof(SelectedSection));
             OnPropertyChanged(nameof(IsGeneralSelected));
+            OnPropertyChanged(nameof(IsUpdatesSelected));
             OnPropertyChanged(nameof(IsNexusSelected));
             OnPropertyChanged(nameof(NexusAccountStatus));
         };

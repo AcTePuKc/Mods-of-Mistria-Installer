@@ -831,4 +831,8 @@
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Трояндовий сад</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Зменшити розмір тексту</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Збільшити розмір тексту</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Оновлення</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Виберіть, які випуски AIM показувати під час перевірки оновлень.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Включати попередні версії</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Попередні версії можуть містити незавершені функції. Залиште цю опцію вимкненою, щоб отримувати лише стабільні випуски AIM.</value></data>
 </root>

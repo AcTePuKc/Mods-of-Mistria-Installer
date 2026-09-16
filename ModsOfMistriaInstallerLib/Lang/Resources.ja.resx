@@ -833,4 +833,8 @@ AIMに引き継ぎますか？</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>バラ園</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>文字サイズを小さくする</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>文字サイズを大きくする</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>アップデート</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>更新確認に表示する AIM リリースを選択します。</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>プレビュー版を含める</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>プレビュー版には未完成の機能が含まれる場合があります。安定版の AIM リリースのみを受け取るには、この項目をオフのままにしてください。</value></data>
 </root>

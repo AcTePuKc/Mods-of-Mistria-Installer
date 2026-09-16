@@ -833,4 +833,8 @@ Alihkan ke AIM?</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Taman Mawar</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Perkecil ukuran teks</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Perbesar ukuran teks</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Pembaruan</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Pilih rilis AIM yang dapat muncul saat pemeriksaan pembaruan.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Sertakan rilis pratinjau</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Rilis pratinjau mungkin berisi fitur yang belum selesai. Biarkan ini nonaktif agar hanya menerima rilis AIM yang stabil.</value></data>
 </root>

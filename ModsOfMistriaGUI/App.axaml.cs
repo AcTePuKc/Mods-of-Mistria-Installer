@@ -250,16 +250,18 @@ public class App : Application
         try
         {
             var currentVersion = Version.Parse(AppInfo.Version);
+            var includePrereleases = _mainViewModel.Settings.IncludePrereleaseUpdates;
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "AIM");
             using var response = await client.GetAsync(AppInfo.ReleaseApiUrl, cancellationToken);
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync(cancellationToken);
             var releases = JArray.Parse(json);
-            Version? latestVersion = null;
+            UpdateRelease? latestRelease = null;
             foreach (var release in releases)
             {
-                if (release["draft"]?.Value<bool>() == true || release["prerelease"]?.Value<bool>() == true)
+                var isPrerelease = release["prerelease"]?.Value<bool>() == true;
+                if (release["draft"]?.Value<bool>() == true || (isPrerelease && !includePrereleases))
                     continue;
 
                 // This repository retains the pre-fork MOMI release history. Only AIM-branded
@@ -269,20 +271,28 @@ public class App : Application
                     continue;
 
                 var tagName = release["tag_name"]?.ToString();
-                if (!Version.TryParse(tagName?.TrimStart('v'), out var candidate))
+                if (!AppInfo.TryParseReleaseVersion(tagName, out var candidateVersion))
                     continue;
 
-                if (latestVersion is null || candidate > latestVersion)
-                    latestVersion = candidate;
+                var displayVersion = tagName!.TrimStart('v', 'V');
+                var releaseUrl = release["html_url"]?.ToString();
+                if (!Uri.TryCreate(releaseUrl, UriKind.Absolute, out _))
+                    releaseUrl = AppInfo.ReleaseUrlForTag(tagName);
+
+                var candidate = new UpdateRelease(candidateVersion, displayVersion, releaseUrl, isPrerelease);
+                if (latestRelease is null
+                    || candidate.Version > latestRelease.Version
+                    || (candidate.Version == latestRelease.Version && !candidate.IsPrerelease && latestRelease.IsPrerelease))
+                    latestRelease = candidate;
             }
 
-            if (latestVersion is null || latestVersion <= currentVersion || cancellationToken.IsCancellationRequested)
+            if (latestRelease is null || latestRelease.Version <= currentVersion || cancellationToken.IsCancellationRequested)
                 return;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 if (!cancellationToken.IsCancellationRequested)
-                    _mainViewModel.ShowUpdateAvailable(latestVersion.ToString(3));
+                    _mainViewModel.ShowUpdateAvailable(latestRelease.DisplayVersion, latestRelease.Url);
             });
         }
         catch (OperationCanceledException)
@@ -294,4 +304,6 @@ public class App : Application
             // Update checks are advisory and must never prevent startup.
         }
     }
+
+    private sealed record UpdateRelease(Version Version, string DisplayVersion, string Url, bool IsPrerelease);
 }

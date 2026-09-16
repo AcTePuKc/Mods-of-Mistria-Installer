@@ -34,6 +34,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty] private bool _updateAvailable;
     [ObservableProperty] private string _updateMessage = "";
     private string? _availableVersion;
+    [ObservableProperty] private string? _updateReleaseUrl;
+
+    public Settings Settings => _settings;
 
     public bool IsBusy => CurrentPage switch
     {
@@ -54,12 +57,13 @@ public partial class MainWindowViewModel : ViewModelBase
         Localization.SetLanguage(_settings.UiLanguage);
     }
 
-    public void ShowUpdateAvailable(string version)
+    public void ShowUpdateAvailable(string version, string? releaseUrl = null)
     {
         if (string.Equals(_settings.DismissedUpdateVersion, version, StringComparison.OrdinalIgnoreCase))
             return;
 
         _availableVersion = version;
+        UpdateReleaseUrl = releaseUrl ?? AppInfo.ReleasesUrl;
         UpdateMessage = string.Format(Localization["GUIUpdateAvailable"], _availableVersion);
         UpdateAvailable = true;
     }
@@ -70,6 +74,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (_availableVersion is not null)
             _settings.DismissedUpdateVersion = _availableVersion;
         UpdateAvailable = false;
+        UpdateReleaseUrl = null;
     }
 
     /// <summary>

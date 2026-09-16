@@ -806,4 +806,8 @@
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>玫瑰花園</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>減小文字大小</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>增大文字大小</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>更新</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>選擇可在更新檢查中顯示的 AIM 版本。</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>包含預覽版本</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>預覽版本可能包含尚未完成的功能。請保持關閉此選項，以便只接收穩定的 AIM 版本。</value></data>
 </root>

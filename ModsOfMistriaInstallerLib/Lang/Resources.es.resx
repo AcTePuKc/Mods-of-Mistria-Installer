@@ -833,4 +833,8 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardín de rosas</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Reducir el tamaño del texto</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Aumentar el tamaño del texto</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Actualizaciones</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Elige qué versiones de AIM pueden aparecer en las comprobaciones de actualizaciones.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Incluir versiones preliminares</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Las versiones preliminares pueden contener funciones sin terminar. Déjalo desactivado para recibir solo versiones estables de AIM.</value></data>
 </root>

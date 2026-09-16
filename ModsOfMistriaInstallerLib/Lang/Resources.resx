@@ -1239,4 +1239,8 @@ Open download page(s) in browser?</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rose Garden</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Decrease text size</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Increase text size</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Updates</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Choose which AIM releases can appear in update checks.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Include preview releases</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Preview releases may contain unfinished features. Leave this off to receive stable AIM releases only.</value></data>
 </root>

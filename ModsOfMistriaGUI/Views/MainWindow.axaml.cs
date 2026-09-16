@@ -38,7 +38,9 @@ public partial class MainWindow : Window
     {
         try
         {
-            await Launcher.LaunchUriAsync(new Uri(AppInfo.ReleasesUrl));
+            var releaseUrl = (DataContext as ViewModels.MainWindowViewModel)?.UpdateReleaseUrl
+                             ?? AppInfo.ReleasesUrl;
+            await Launcher.LaunchUriAsync(new Uri(releaseUrl));
         }
         catch
         {

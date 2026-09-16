@@ -83,4 +83,21 @@ public class Tests
             Assert.That(AppInfo.IsAimRelease(null), Is.False);
         });
     }
+
+    [TestCase("v0.3.0-rc.1", "0.3.0")]
+    [TestCase("0.2.1", "0.2.1")]
+    [TestCase("v0.3.0-preview+build.5", "0.3.0")]
+    public void Should_Parse_The_Numeric_Core_Of_Aim_Release_Tags(string tag, string expectedVersion)
+    {
+        Assert.That(AppInfo.TryParseReleaseVersion(tag, out var version), Is.True);
+        Assert.That(version, Is.EqualTo(Version.Parse(expectedVersion)));
+    }
+
+    [TestCase(null)]
+    [TestCase("v0.3")]
+    [TestCase("AIM 0.3.0")]
+    public void Should_Reject_Invalid_Aim_Release_Tags(string? tag)
+    {
+        Assert.That(AppInfo.TryParseReleaseVersion(tag, out _), Is.False);
+    }
 }

@@ -1162,4 +1162,8 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rozentuin</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Tekstgrootte verkleinen</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Tekstgrootte vergroten</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Updates</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Kies welke AIM-releases bij updatecontroles kunnen worden weergegeven.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Previewreleases opnemen</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Previewreleases kunnen onvoltooide functies bevatten. Laat dit uitgeschakeld om alleen stabiele AIM-releases te ontvangen.</value></data>
 </root>

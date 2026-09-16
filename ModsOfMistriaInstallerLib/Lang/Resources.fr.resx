@@ -1159,4 +1159,8 @@ Les confier à AIM ?</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardin de roses</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Réduire la taille du texte</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Augmenter la taille du texte</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Mises à jour</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Choisissez les versions d’AIM qui peuvent apparaître lors des vérifications de mises à jour.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Inclure les versions préliminaires</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Les versions préliminaires peuvent contenir des fonctions inachevées. Laissez cette option désactivée pour ne recevoir que les versions stables d’AIM.</value></data>
 </root>
