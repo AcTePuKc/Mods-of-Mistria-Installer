@@ -4,7 +4,10 @@ This roadmap describes current work for AIM — Alternative Installer for Mistri
 Completed historical work is summarized below; detailed implementation history is
 recorded in the changelog and git history.
 
-## Current release: 0.2.0
+## Current release: 0.2.2
+
+`0.2.2` is currently in development on the `develop` branch. The stable public release remains
+`0.2.1` until this work is reviewed, tested, and promoted to `main`.
 
 ### Completed
 
