@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.2.2 - Unreleased
+
+### AIM updates are now deliberate and useful
+
+- The application update check now ignores the historical MOMI releases retained in this repository;
+  a MOMI `0.15.x` tag can no longer be mistaken for a newer AIM update.
+- An available-update notice opens the exact AIM GitHub release page instead of making a player find
+  the version in the full release list.
+- **Settings → Updates** adds a manual AIM update check. Dismissing a passive notice hides only that
+  automatic reminder: a deliberate check can show the same version again if the player changed their mind.
+- Stable AIM releases remain the default channel. Players who explicitly opt in can also be offered
+  GitHub pre-releases such as `v0.3.0-rc.1`; preview tags retain their complete version in the notice.
+
+### Safer compatibility and game-location work
+
+- Linux users can select a native Fields of Mistria game folder when automatic discovery cannot find
+  one, with the same archive validation as other locations.
+- Restored the legacy romance-prompt hook as a compatibility bridge while keeping AIM's broader
+  monotonic prompt-lock contract.
+- Added a completed dialogue event and a filter for the final store basket cost, with contracts that
+  preserve the native transaction path.
+- Recipe component definitions now reject ambiguous selectors instead of silently choosing one, and
+  tag ingredients are presented and charged consistently across backpack, opted-in crafting chests,
+  bulk crafting, and filtered counts.
+
 ## 0.2.0 - 2026-09-10
 
 ### The whole interface now speaks the language you selected
