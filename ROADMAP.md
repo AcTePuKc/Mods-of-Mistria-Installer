@@ -4,10 +4,7 @@ This roadmap describes current work for AIM — Alternative Installer for Mistri
 Completed historical work is summarized below; detailed implementation history is
 recorded in the changelog and git history.
 
-## Current release: 0.2.2
-
-`0.2.2` is currently in development on the `develop` branch. The stable public release remains
-`0.2.1` until this work is reviewed, tested, and promoted to `main`.
+## Current release: 0.2.1
 
 ### Completed
 
@@ -22,7 +19,7 @@ recorded in the changelog and git history.
       catalog: `npc.created`, `pet.created`, and `animal.created` now fire from
       fully wired spawn paths. They are documented and verified against the
       current pristine 1.0.4 assets; Wheedle remains out of scope.
-- [x] Ship 138 MMAPI hooks and 152 seams with source headers, documentation, and license notices, plus 8 engine fixes.
+- [x] Ship 133 MMAPI hooks and 146 seams with source headers, documentation, and license notices.
 - [x] Validate every seam against the current game's pristine `assets.bak.zip`.
 - [x] Run disposable real-tree install/uninstall regression tests with the GML compile checker.
 - [x] Verify old-GML, MMAPI/GML, content-mod, and NXM behavior manually.
