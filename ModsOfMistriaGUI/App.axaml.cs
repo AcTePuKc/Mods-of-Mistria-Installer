@@ -258,7 +258,8 @@ public class App : Application
     {
         try
         {
-            var currentVersion = Version.Parse(AppInfo.Version);
+            if (!AppInfo.TryParseReleaseVersion(AppInfo.Version, out var currentVersion))
+                return UpdateCheckResult.Failed;
             var includePrereleases = _mainViewModel.Settings.IncludePrereleaseUpdates;
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "AIM");

@@ -23,11 +23,11 @@ public static class AppInfo
             // Use AIM's assembly rather than EntryAssembly. The latter is the
             // test host when this code runs under the headless UI test suite.
             var assembly = typeof(AppInfo).Assembly;
-            // InformationalVersion may be supplied by CI/source-control tooling
-            // (for example, a game/mod version). The project FileVersion is the
-            // authoritative AIM application version shown to users.
-            var value = assembly?.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version
-                        ?? assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
+            // The informational version preserves a SemVer prerelease suffix such as
+            // "0.2.2-rc.1". FileVersion is deliberately numeric for Windows, so using it first
+            // would turn a preview build into an indistinguishable stable-looking 0.2.2.
+            var value = assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
+                        ?? assembly?.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version
                         ?? assembly?.GetName().Version?.ToString();
             return value is null ? "unknown" : TrimBuildSuffix(value);
         }

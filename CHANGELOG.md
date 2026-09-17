@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.2-rc.1 - 2026-09-17
 
 ### AIM updates are now deliberate and useful
 
