@@ -302,6 +302,12 @@ read-only preflight checks, and JSON/TOML reports. See the full [AIM CLI referen
 - If installation fails, AIM keeps the previous live archive, shows the failing mod when available, and writes a diagnostic log under the AIM local data directory.
 - If the game was modified outside AIM or the pristine backup is missing, restore/verify the game files through Steam before trying again.
 
+### Send an AIM log
+
+If someone asks for an AIM log, reproduce the problem first if you can. Then open the gear menu in the bottom-left of AIM, choose **Save Log File**, and save the suggested `aim-log-YYYYMMDD-HHMMSS.txt` file somewhere convenient. Attach that text file to your Nexus comment, GitHub issue, or Discord message together with a short description of what you clicked and what happened.
+
+The saved file is the current AIM session log. It can include mod names, local file paths, and error messages, so quickly review it and redact personal paths if you prefer. Do not send AIM settings files or Nexus account data; the exported log is the useful file.
+
 Nexus downloads and updates:
 
 - OAuth PKCE is implemented for Nexus downloads and update checks. AIM does not use personal Nexus

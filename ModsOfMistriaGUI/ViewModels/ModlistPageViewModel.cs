@@ -4245,6 +4245,11 @@ public partial class ModlistPageViewModel : PageViewBase
         {
             var modsToInstall = Mods.Where(m => m.Enabled).Select(m => m.Mod).ToList();
 
+            // Installation happens in a separate worker so the UI stays responsive. Mirror its
+            // definitive response into the session log here; otherwise an exported log records
+            // discovery and failures but gives support no proof of what a successful rebuild put
+            // into assets.zip.
+            Logger.Log($"Install started: {modsToInstall.Count} selected mod(s).");
             PerformanceDiagnostics.Log($"Install worker requested: mods={modsToInstall.Count}");
             var request = new ArchiveWorkerRequest(
                 "install",
@@ -4275,6 +4280,11 @@ public partial class ModlistPageViewModel : PageViewBase
 
             totalStopwatch.Stop();
             PerformanceDiagnostics.Log($"Install completed: elapsed={totalStopwatch.ElapsedMilliseconds} ms, installed={result.Installed.Length}, skipped={result.Skipped.Length}");
+            Logger.Log($"Install completed: {result.Summary}");
+            foreach (var modId in result.Installed)
+                Logger.Log($"  Installed: {modId}");
+            foreach (var modId in result.Skipped)
+                Logger.Log($"  Skipped: {modId}");
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {

@@ -173,6 +173,15 @@ public sealed class LocalizedTexts : ObservableObject
     public string GUISettingsBack => T("GUISettingsBack");
     public string GUISettingsGeneral => T("GUISettingsGeneral");
     public string GUISettingsGeneralDescription => T("GUISettingsGeneralDescription");
+    public string GUISettingsUpdates => T("GUISettingsUpdates");
+    public string GUISettingsUpdatesDescription => T("GUISettingsUpdatesDescription");
+    public string GUISettingsIncludePrereleaseUpdates => T("GUISettingsIncludePrereleaseUpdates");
+    public string GUISettingsIncludePrereleaseUpdatesNote => T("GUISettingsIncludePrereleaseUpdatesNote");
+    public string GUISettingsCheckForUpdates => T("GUISettingsCheckForUpdates");
+    public string GUISettingsCheckingForUpdates => T("GUISettingsCheckingForUpdates");
+    public string GUISettingsUpToDate => T("GUISettingsUpToDate");
+    public string GUISettingsUpdateCheckFailed => T("GUISettingsUpdateCheckFailed");
+    public string GUISettingsUpdateAvailable => T("GUISettingsUpdateAvailable");
     public string GUISettingsGameFolder => T("GUISettingsGameFolder");
     public string GUISettingsModsFolder => T("GUISettingsModsFolder");
     public string GUISettingsChooseModsFolder => T("GUISettingsChooseModsFolder");

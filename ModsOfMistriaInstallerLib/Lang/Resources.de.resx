@@ -1159,4 +1159,13 @@ An AIM übergeben?</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rosengarten</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Textgröße verringern</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Textgröße erhöhen</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Aktualisierungen</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Wählen Sie, welche AIM-Versionen bei der Updateprüfung angezeigt werden.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Vorschauversionen einschließen</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Vorschauversionen können unfertige Funktionen enthalten. Lassen Sie dies deaktiviert, um nur stabile AIM-Versionen zu erhalten.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Auf AIM-Aktualisierungen prüfen</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>AIM-Aktualisierungen werden geprüft...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM ist aktuell.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>Ein AIM-Update ist verfügbar. Verwenden Sie den Hinweis unten, um die Release-Seite zu öffnen.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>Die Prüfung auf AIM-Aktualisierungen ist fehlgeschlagen.</value></data>
 </root>

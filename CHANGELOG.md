@@ -1,5 +1,37 @@
 # Changelog
 
+## Unreleased
+
+### AIM updates are now deliberate and useful
+
+- The application update check ignores the historical MOMI releases retained in this repository;
+  a MOMI `0.15.x` tag can no longer be mistaken for a newer AIM update.
+- An available-update notice opens the exact AIM GitHub release page. **Settings → Updates** also
+  adds a manual check: dismissing a passive notice hides only that automatic reminder, not a
+  deliberate re-check.
+- Stable releases remain the default channel. Players who explicitly opt in can also be offered
+  GitHub pre-releases such as `v0.3.0-rc.1`.
+
+### Safer compatibility and game-location work
+
+- Linux users can select a native Fields of Mistria game folder when automatic discovery cannot find one.
+- Restored the legacy romance-prompt hook as a compatibility bridge; added a completed dialogue event
+  and a filter for the final store basket cost.
+- Recipe component definitions now reject ambiguous selectors, and tag ingredients are presented and
+  charged consistently across backpack, opted-in crafting chests, bulk crafting, and filtered counts.
+
+## 0.2.1 - 2026-09-10
+
+### Two critical release fixes
+
+- **Use AIM for NXM now really uses the AIM you opened.** When you explicitly confirm a
+  takeover on Windows, AIM refreshes its Default Apps candidate and updates the `nxm://`
+  fallback to that exact executable. An existing Windows `UserChoice` is still respected;
+  AIM never writes it behind your back.
+- **Release update checks are back.** AIM again checks the GitHub releases asynchronously,
+  chooses the newest valid stable semantic-version tag, ignores drafts and prereleases, and
+  keeps the existing dismissible update banner.
+
 ## 0.2.0 - 2026-09-10
 
 ### The whole interface now speaks the language you selected

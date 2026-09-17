@@ -833,4 +833,13 @@ Es posible que el navegador pida permiso la primera vez que hagas clic.</value><
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Jardín de rosas</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Reducir el tamaño del texto</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Aumentar el tamaño del texto</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Actualizaciones</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Elige qué versiones de AIM pueden aparecer en las comprobaciones de actualizaciones.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Incluir versiones preliminares</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Las versiones preliminares pueden contener funciones sin terminar. Déjalo desactivado para recibir solo versiones estables de AIM.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Buscar actualizaciones de AIM</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>Buscando actualizaciones de AIM...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM está actualizado.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>Hay una actualización de AIM disponible. Usa el aviso de abajo para abrir su página de lanzamiento.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>La comprobación de actualizaciones de AIM falló.</value></data>
 </root>
