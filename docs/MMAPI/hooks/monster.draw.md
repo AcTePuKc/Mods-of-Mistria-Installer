@@ -6,13 +6,13 @@ React to every monster's draw with your own world-space visuals.
 
 ## Contract
 
-Fires at the end of `par_monster`'s `draw()` method, after the monster sprite and its status overlays (venom/frozen) are drawn, once per visible monster per frame in the world-draw pass. ctx is the monster instance: read `x`, `y`, `z`, `health`, and so on, and draw in world space (e.g. a health bar on top). This hook is observation only.
+Fires from each visible `par_monster`'s `draw_end` event, after the normal world-draw pass (including the monster sprite and its status renderables), once per visible monster per frame. ctx is the monster instance: read `x`, `y`, `z`, `health`, and so on, and draw in world space (e.g. a health bar on top). This hook is observation only.
 
-Because the emit sits after the sprite and status-overlay pass, anything you draw lands on top of the monster.
+Because the emit sits in the draw-end pass after the normal world draw, anything you draw lands on top of the monster and its status renderables.
 
 | | |
 | --- | --- |
-| **Fires** | At the end of `par_monster`'s `draw()`, after the sprite and the venom/frozen status overlays, once per visible monster per frame. |
+| **Fires** | From each visible `par_monster`'s `draw_end` event, after the normal world draw (including status renderables), once per frame. |
 | **ctx** | The monster instance. |
 | **Kind contract** | The callback observes the moment. Its return value is ignored. |
 
@@ -43,7 +43,7 @@ mmapi_on("monster.draw", health_bars_monster_draw);
 
 ## Engine Wiring
 
-- Seam [`monster_draw`](../seams/monster_draw.md) dispatches from `gml/objects/Combat/par_monster.gml`, at the end of the `draw()` method, after the status-overlay block.
+- Seam [`monster_draw`](../seams/monster_draw.md) dispatches from `gml/objects/Combat/par_monster.gml`, from its `draw_end` event after the normal world draw.
 
 ## See Also
 

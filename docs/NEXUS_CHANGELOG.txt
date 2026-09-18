@@ -1,3 +1,5 @@
+- Added verified Fields of Mistria 1.0.5 support: all AIM seams, engine fixes, and the localization rewrite stage against the pristine 1.0.5 archive, and a full disposable install, compile check, and uninstall passed.
+- Updated renderer-aware MMAPI wiring for furniture floors and previews, item outlines, and monster visual callbacks after the game's 1.0.5 rendering changes.
 - Completed every shipped AIM translation, including Nexus, update, watched-folder, crash, conflict, and settings flows.
 - Redesigned the mod-list toolbar to use wide windows efficiently while still wrapping cleanly on compact screens.
 - Added system Light/Dark following, four optional Mistria-inspired colour palettes, and remembered A-/A+ text-size controls.

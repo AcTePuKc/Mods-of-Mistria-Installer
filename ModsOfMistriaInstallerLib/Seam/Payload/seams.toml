@@ -423,7 +423,7 @@ doc  = "Fires when a monster dies, just before its instance is destroyed. ctx is
 [[hook]]
 name = "monster.draw"
 kind = "event"
-doc  = "Fires at the end of par_monster's draw() method, after the monster sprite and its status overlays (venom/frozen) are drawn, once per visible monster per frame in the world-draw pass. ctx is the monster instance: read x, y, z, health, and so on, and draw in world space (e.g. a health bar on top). Observation only. Hot path (every visible monster, every frame). Keep handlers cheap."
+doc  = "Fires from each visible par_monster's draw_end event, after the normal world-draw pass (including the monster sprite and status renderables), once per visible monster per frame. ctx is the monster instance: read x, y, z, health, and so on, and draw in world space (e.g. a health bar on top). Observation only. Hot path (every visible monster, every frame). Keep handlers cheap."
 
 [[hook]]
 name = "monster.shroom.should_hide"
@@ -1136,18 +1136,17 @@ provides = ["request_board.fetch_pool_ready"]
 [[seam]]
 id      = "monster_draw"
 file    = "gml/objects/Combat/par_monster.gml"
-context_before = '''
-                    gpu_reset_extra();
-                }
+anchor  = '''
+        animation_end: function() {
 '''
-context_after = '''
-            }
+replace = '''
+        draw_end: function() {
+            try { mmapi_emit("monster.draw", self); } catch (__mmapi_monster_draw) {} // mmapi_monster_run_draw_callbacks
+        },
+        animation_end: function() {
 '''
-op      = "emit"
-hook    = "monster.draw"
-ctx     = "self"
-indent  = 16
 marker  = "mmapi_monster_run_draw_callbacks"
+provides = ["monster.draw"]
 
 [[seam]]
 id      = "combat_tarball_grid"
@@ -1233,7 +1232,7 @@ context_before = '''
 '''
 context_after = '''
 
-        node.renderer.floor_renderer = instance_create_layer(node.renderer.x, node.renderer.y, "Instances", obj_node_renderer_top);
+        node.renderer.floor_renderer = node.renderer.create_renderable(sprite_to_use);
 '''
 op      = "filter"
 hook    = "furniture.floor_sprite"
@@ -1408,12 +1407,12 @@ marker  = "mmapi_ui_run_button_sprites_filters"
 id      = "obj_item_outline_sprite"
 file    = "gml/objects/objects/obj_item.gml"
 anchor  = '''
-                item_data.prototype.icon_sprite_outline,
-                image_index,
+            self.outline.animation = item_data.prototype.icon_sprite_outline;
+            self.outline.animation_frame = self.image_index;
 '''
 replace = '''
-                outline_sprite,
-                image_index,
+            self.outline.animation = outline_sprite;
+            self.outline.animation_frame = self.image_index;
 '''
 marker  = "outline_sprite"
 provides = ["ui.item_icon"]
@@ -4394,14 +4393,14 @@ id      = "furniture_preview_floor_sprite"
 file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
 anchor  = '''
     if proto.cardinal_data[calc_rot].floor_sprite != undefined {
-        furniture_renderer.bottom_sprite = proto.cardinal_data[calc_rot].floor_sprite;
+        furniture_renderer.bottom.animation = proto.cardinal_data[calc_rot].floor_sprite;
     }
 '''
 replace = '''
     if proto.cardinal_data[calc_rot].floor_sprite != undefined {
         var __mmapi_preview_floor = proto.cardinal_data[calc_rot].floor_sprite; // mmapi_furniture_preview_floor_sprite
         try { __mmapi_preview_floor = mmapi_apply_filters("furniture.preview_sprite", __mmapi_preview_floor, { object_id: object_id, prototype: proto, cardinal_index: calc_rot, x: xx, y: yy, source: "floor_sprite" }); } catch (__mmapi_preview_floor_filter) {}
-        furniture_renderer.bottom_sprite = __mmapi_preview_floor;
+        furniture_renderer.bottom.animation = __mmapi_preview_floor;
     }
 '''
 marker  = "mmapi_furniture_preview_floor_sprite"
