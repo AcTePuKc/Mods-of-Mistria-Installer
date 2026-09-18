@@ -1162,4 +1162,13 @@ Klik om elke versie te lezen.</value></data>
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Rozentuin</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Tekstgrootte verkleinen</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Tekstgrootte vergroten</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Updates</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Kies welke AIM-releases bij updatecontroles kunnen worden weergegeven.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Previewreleases opnemen</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Previewreleases kunnen onvoltooide functies bevatten. Laat dit uitgeschakeld om alleen stabiele AIM-releases te ontvangen.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Controleren op AIM-updates</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>AIM-updates worden gecontroleerd...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM is up-to-date.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>Er is een AIM-update beschikbaar. Gebruik de melding hieronder om de releasepagina te openen.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>De controle op AIM-updates is mislukt.</value></data>
 </root>

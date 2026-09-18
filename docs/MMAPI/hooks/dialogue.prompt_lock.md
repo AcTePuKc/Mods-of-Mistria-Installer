@@ -43,4 +43,5 @@ The engine owns the result: it applies the existing grey sprite, `stay_locked` m
 
 - [dialogue_prompt_lock](../seams/dialogue_prompt_lock.md) - Applies the monotonic lock decision in `TextboxMenu`.
 - [dialogue_prompt_metadata](../seams/dialogue_prompt_metadata.md) - Carries the original option index and key to the prompt box.
+- [dialogue.romance_prompt_guard](dialogue.romance_prompt_guard.md) - The legacy guard compatibility surface.
 - [dialogue.line](dialogue.line.md) - Rewrites the dialogue body text, not the prompt-option state.

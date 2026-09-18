@@ -1,6 +1,8 @@
+using Avalonia;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Garethp.ModsOfMistriaGUI;
 using Garethp.ModsOfMistriaGUI.Models;
 
 namespace Garethp.ModsOfMistriaGUI.ViewModels;
@@ -11,24 +13,35 @@ public partial class SettingsPageViewModel : PageViewBase
     private readonly NexusDownloadsViewModel _nexus;
 
     [ObservableProperty] private Settings _settings;
+    [ObservableProperty] private bool _isCheckingForAimUpdates;
+    [ObservableProperty] private string _aimUpdateCheckStatus = "";
     private string _selectedSectionId = "general";
 
-    public IReadOnlyList<string> Sections => [Texts.GUISettingsGeneral, Texts.GUISettingsNexus];
+    public IReadOnlyList<string> Sections => [Texts.GUISettingsGeneral, Texts.GUISettingsUpdates, Texts.GUISettingsNexus];
     public string SelectedSection
     {
-        get => _selectedSectionId == "nexus" ? Texts.GUISettingsNexus : Texts.GUISettingsGeneral;
+        get => _selectedSectionId switch
+        {
+            "updates" => Texts.GUISettingsUpdates,
+            "nexus" => Texts.GUISettingsNexus,
+            _ => Texts.GUISettingsGeneral
+        };
         set
         {
-            var newId = value == Texts.GUISettingsNexus ? "nexus" : "general";
+            var newId = value == Texts.GUISettingsUpdates ? "updates"
+                : value == Texts.GUISettingsNexus ? "nexus"
+                : "general";
             if (_selectedSectionId == newId) return;
             _selectedSectionId = newId;
             OnPropertyChanged();
             OnPropertyChanged(nameof(IsGeneralSelected));
+            OnPropertyChanged(nameof(IsUpdatesSelected));
             OnPropertyChanged(nameof(IsNexusSelected));
         }
     }
 
     public bool IsGeneralSelected => _selectedSectionId == "general";
+    public bool IsUpdatesSelected => _selectedSectionId == "updates";
     public bool IsNexusSelected => _selectedSectionId == "nexus";
     public NexusDownloadsViewModel Nexus => _nexus;
     public string NexusAccountStatus => Nexus.NexusAccountStatusText;
@@ -43,6 +56,7 @@ public partial class SettingsPageViewModel : PageViewBase
             OnPropertyChanged(nameof(Sections));
             OnPropertyChanged(nameof(SelectedSection));
             OnPropertyChanged(nameof(IsGeneralSelected));
+            OnPropertyChanged(nameof(IsUpdatesSelected));
             OnPropertyChanged(nameof(IsNexusSelected));
             OnPropertyChanged(nameof(NexusAccountStatus));
         };
@@ -59,6 +73,30 @@ public partial class SettingsPageViewModel : PageViewBase
 
     [RelayCommand]
     private async Task ManageNexusAccount() => await _nexus.ManageNexusAccountAsync();
+
+    [RelayCommand]
+    private async Task CheckForAimUpdates()
+    {
+        IsCheckingForAimUpdates = true;
+        AimUpdateCheckStatus = Texts.GUISettingsCheckingForUpdates;
+        try
+        {
+            var app = Application.Current as App;
+            var result = app is null
+                ? App.UpdateCheckResult.Failed
+                : await app.CheckForUpdatesNowAsync();
+            AimUpdateCheckStatus = result switch
+            {
+                App.UpdateCheckResult.Available => Texts.GUISettingsUpdateAvailable,
+                App.UpdateCheckResult.UpToDate => Texts.GUISettingsUpToDate,
+                _ => Texts.GUISettingsUpdateCheckFailed
+            };
+        }
+        finally
+        {
+            IsCheckingForAimUpdates = false;
+        }
+    }
 
     [RelayCommand]
     private async Task SelectModsLocation()

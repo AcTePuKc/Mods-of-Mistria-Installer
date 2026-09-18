@@ -72,6 +72,36 @@ public class ShippedCatalogTest
     }
 
     [Test]
+    public void ShouldReplaceTheObsoleteSideRoomChanceLocatorWithTheRangeContract()
+    {
+        // This is a breaking 0.16.x migration. The old symbols named a
+        // chance decision in a previous engine implementation; the current
+        // function chooses a floor from start_floor + range instead.
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
+        Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
+
+        var hook = _catalog.Hook("dungeon.side_room_range");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("floor range"));
+        Assert.That(hook.Doc, Does.Contain("start_floor"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "dungeon_side_room_range");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Dungeon/DungeonRunner.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "dungeon.side_room_range" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Filter));
+        Assert.That(seam.TargetFn, Is.EqualTo("try_create_side_room"));
+        Assert.That(seam.TargetAt, Is.EqualTo("head"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_dungeon_run_side_room_range_filters"));
+        Assert.That(seam.Replace, Does.Contain(
+            "mmapi_apply_filters(\"dungeon.side_room_range\", range, { impl: impl, is_ritual: impl == DungeonImpl.Ritual, start_floor: start_floor })"));
+        Assert.That(seam.Replace, Does.Not.Contain("chance_val"));
+        Assert.That(seam.Replace, Does.Not.Contain("max_flr"));
+    }
+
+    [Test]
     public void ShouldDeclareTheFishSelectionEventAtTheFishingHubBoundary()
     {
         var hook = _catalog.Hook("fishing.fish_selected");
@@ -99,6 +129,235 @@ public class ShippedCatalogTest
         Assert.That(seam.Hooks, Is.EqualTo(new[] { "museum.donation_attempted" }));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_museum_run_donation_attempted_callbacks"));
         Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+    }
+
+    [Test]
+    public void ShouldEmitMuseumDonationAfterRegistrationWhilePreservingTheAttemptEvent()
+    {
+        var hook = _catalog.Hook("museum.donate_item");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Doc, Does.Contain("after the item is registered"));
+        Assert.That(hook.Doc, Does.Contain("museum.donation_attempted"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "museum_donate_item");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/Museum.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "museum.donate_item" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.TargetFn, Is.EqualTo("donate_item_to_museum"));
+        Assert.That(seam.TargetAt, Is.EqualTo("after"));
+        Assert.That(seam.TargetAnchor, Is.EqualTo("register_item_to_museum(item_id);"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_museum_donate_item"));
+    }
+
+    [Test]
+    public void ShouldDeclarePostStatePerkAcquiredAlongsideTheExistingPreStateEvent()
+    {
+        var preState = _catalog.Hook("player.acquire_perk");
+        Assert.That(preState, Is.Not.Null);
+
+        var hook = _catalog.Hook("player.perk_acquired");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Doc, Does.Contain("after the perk is flagged owned and active"));
+        Assert.That(hook.Doc, Does.Contain("player.acquire_perk"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "player_perk_acquired");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Player/Ari.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "player.perk_acquired" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.TargetFn, Is.EqualTo("acquire_perk"));
+        Assert.That(seam.TargetAt, Is.EqualTo("after"));
+        Assert.That(seam.TargetAnchor, Is.EqualTo(
+            "refresh_achievements([Requirement.HasAtLeastOneTierFivePerkPerCategory]);"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_player_perk_acquired"));
+    }
+
+    [Test]
+    public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
+    {
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+
+        var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
+        Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
+        Assert.That(fix.Anchor, Does.Contain("ItemId.AnimalCosmetic"));
+        Assert.That(fix.Anchor, Does.Contain("Failed to parse an item"));
+        Assert.That(fix.Replace, Does.Contain("entry[$ \"pet_cosmetic\"] != undefined"));
+        Assert.That(fix.Replace, Does.Contain("PET_PROTOTYPE.cosmetic_sets.contains_key"));
+        Assert.That(fix.Replace, Does.Contain("ItemId.PetCosmetic"));
+        Assert.That(fix.Marker, Is.EqualTo("mmapi_store_pet_cosmetic_entry"));
+    }
+
+    [Test]
+    public void ShouldRejectAmbiguousRecipeComponentSelectorsBeforeVanillaParsesThem()
+    {
+        var fix = _catalog.EngineFixes.Single(f => f.Id == "recipe_component_schema_validation");
+        Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Items/Items.gml"));
+        Assert.That(fix.Anchor, Does.Contain("if component[$ \"item\"] != undefined"));
+        Assert.That(fix.Replace, Does.Contain("expected exactly one selector key"));
+        Assert.That(fix.Replace, Does.Contain("minutes requires hours"));
+        Assert.That(fix.Replace, Does.Contain("level requires skill"));
+        Assert.That(fix.Replace, Does.Contain("skill requires level"));
+        Assert.That(fix.Replace, Does.Contain("count is only valid with item or tag"));
+        Assert.That(fix.Marker, Is.EqualTo("mmapi_recipe_component_schema_validation"));
+    }
+
+    [Test]
+    public void ShouldSupportHonestTagRecipePresentationAndSymmetricFulfilment()
+    {
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+
+        var presentation = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_component_presentation");
+        Assert.That(presentation.Replace, Does.Contain("requires display_item"));
+        Assert.That(presentation.Replace, Does.Contain("requires display_name"));
+        Assert.That(presentation.Replace, Does.Contain("requires display_description"));
+
+        var availability = _catalog.EngineFixes.Single(f => f.Id == "crafting_tag_chest_availability");
+        Assert.That(availability.Replace, Does.Contain("node.use_in_crafting"));
+        Assert.That(availability.Replace, Does.Contain("node.inventory"));
+
+        var payment = _catalog.EngineFixes.Single(f => f.Id == "crafting_tag_symmetric_payment");
+        Assert.That(payment.Replace, Does.Not.Contain("get_modified_component_count"));
+        Assert.That(payment.Replace, Does.Contain("Failed to fulfill tag component costs"));
+        Assert.That(payment.Replace, Does.Contain("node.use_in_crafting"));
+
+        var tooltip = _catalog.EngineFixes.Single(f => f.Id == "crafting_tag_display_tooltip");
+        Assert.That(tooltip.Replace, Does.Contain("component.display_name"));
+        Assert.That(tooltip.Replace, Does.Contain("component.display_description"));
+        Assert.That(tooltip.Replace, Does.Contain("gold_icon.disable"));
+
+        var scroll = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_scroll_preview");
+        Assert.That(scroll.Replace, Does.Contain("comp.display_item_id"));
+    }
+
+    [Test]
+    public void ShouldFilterFactoryProductsWithoutBypassingTheDropPipeline()
+    {
+        var hook = _catalog.Hook("factory.product_drops");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("apiary or terrarium"));
+        Assert.That(hook.Doc, Does.Contain("items.dropped"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "factory_product_drops");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "factory.product_drops" }));
+        Assert.That(seam.Op, Is.Null);
+        Assert.That(seam.Replace, Does.Contain("mmapi_apply_filters(\"factory.product_drops\""));
+        Assert.That(seam.Replace, Does.Contain("if (!is_array(__mmapi_factory_products))"));
+        Assert.That(seam.Replace, Does.Contain("drop_item("));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_factory_run_product_drops_filters"));
+    }
+
+    [Test]
+    public void ShouldFilterEodCalendarEventsAndRenderCustomEntries()
+    {
+        var hook = _catalog.Hook("ui.eod_calendar_events");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("menu.events"));
+        Assert.That(hook.Doc, Does.Contain("custom entry"));
+
+        var filter = _catalog.Seams.Single(s => s.Id == "ui_eod_calendar_events");
+        Assert.That(filter.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/EodMenu.gml"));
+        Assert.That(filter.Hooks, Is.EqualTo(new[] { "ui.eod_calendar_events" }));
+        Assert.That(filter.Replace, Does.Contain("mmapi_apply_filters(\"ui.eod_calendar_events\""));
+        Assert.That(filter.Replace, Does.Contain("is_numeric(__mmapi_eod_events.count())"));
+        Assert.That(filter.Marker, Is.EqualTo("mmapi_ui_eod_calendar_events_filter"));
+
+        var fallback = _catalog.Seams.Single(s => s.Id == "ui_eod_notification_custom_entry");
+        Assert.That(fallback.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/EodMenu.gml"));
+        Assert.That(fallback.Hooks, Is.EqualTo(new[] { "ui.eod_calendar_events" }));
+        Assert.That(fallback.Replace, Does.Contain("default: // mmapi_ui_eod_notification_custom_entry"));
+        Assert.That(fallback.Replace, Does.Contain("icon = event[$ \"icon\"]"));
+        Assert.That(fallback.Marker, Is.EqualTo("mmapi_ui_eod_notification_custom_entry"));
+    }
+
+    [Test]
+    public void ShouldFilterFurniturePreviewSpritesAtBothGhostSites()
+    {
+        var hook = _catalog.Hook("furniture.preview_sprite");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("every frame"));
+        Assert.That(hook.Doc, Does.Contain("source"));
+
+        var main = _catalog.Seams.Single(s => s.Id == "furniture_preview_sprite");
+        Assert.That(main.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"));
+        Assert.That(main.Hooks, Is.EqualTo(new[] { "furniture.preview_sprite" }));
+        Assert.That(main.Op, Is.EqualTo(DispatchOp.Filter));
+        Assert.That(main.Replace, Does.Contain("source: \"main_sprite\""));
+        Assert.That(main.Replace, Does.Contain("mmapi_apply_filters(\"furniture.preview_sprite\", spr"));
+
+        var floor = _catalog.Seams.Single(s => s.Id == "furniture_preview_floor_sprite");
+        Assert.That(floor.Hooks, Is.EqualTo(new[] { "furniture.preview_sprite" }));
+        Assert.That(floor.Replace, Does.Contain("source: \"floor_sprite\""));
+        Assert.That(floor.Replace, Does.Not.Contain("winter_floor_sprite"));
+        Assert.That(floor.Marker, Is.EqualTo("mmapi_furniture_preview_floor_sprite"));
+    }
+
+    [Test]
+    public void ShouldBridgeTheLegacyRomancePromptGuardWithoutChangingTheNewLockContract()
+    {
+        var legacy = _catalog.Hook("dialogue.romance_prompt_guard");
+        Assert.That(legacy, Is.Not.Null);
+        Assert.That(legacy!.Kind, Is.EqualTo(HookKind.Guard));
+        Assert.That(legacy.Doc, Does.Contain("Legacy compatibility"));
+        Assert.That(legacy.Doc, Does.Contain("dialogue.prompt_lock"));
+
+        var modern = _catalog.Hook("dialogue.prompt_lock");
+        Assert.That(modern, Is.Not.Null);
+        Assert.That(modern!.Kind, Is.EqualTo(HookKind.Filter));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "dialogue_prompt_lock");
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "dialogue.prompt_lock", "dialogue.romance_prompt_guard" }));
+        Assert.That(seam.Replace, Does.Contain("mmapi_check_guards(\"dialogue.romance_prompt_guard\""));
+        Assert.That(seam.Replace, Does.Contain("self.blackboard.get(\"pink\") == true && __mmapi_prompt_vanilla_locked == false"));
+    }
+
+    [Test]
+    public void ShouldEmitDialogueFinishedAfterNativeEndActionsAndStateTransition()
+    {
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+
+        var hook = _catalog.Hook("dialogue.finished");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Aliases, Does.Contain("dialogue.finish"));
+        Assert.That(hook.Doc, Does.Contain("engine conversation completion"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "dialogue_finished");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/GameplaySystems/Dialogue/ConversationDriver.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "dialogue.finished" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.TargetFn, Is.EqualTo("finish_conversation"));
+        Assert.That(seam.TargetAt, Is.EqualTo("after"));
+        Assert.That(seam.TargetAnchor, Is.EqualTo("self.state = ConversationDriverState.Finished;"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_dialogue_finished"));
+    }
+
+    [Test]
+    public void ShouldFilterTheStoreBasketCostBeforeUiAndPaymentUseIt()
+    {
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+
+        var hook = _catalog.Hook("store.basket_cost");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("final gold deduction"));
+        Assert.That(hook.Doc, Does.Contain("non-negative"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "store_basket_cost");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/StoreMenu.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "store.basket_cost" }));
+        Assert.That(seam.Replace, Does.Contain("mmapi_apply_filters(\"store.basket_cost\""));
+        Assert.That(seam.Replace, Does.Contain("basket: self.basket"));
+        Assert.That(seam.Replace, Does.Contain("store: self.store"));
+        Assert.That(seam.Replace, Does.Contain("is_numeric(__mmapi_basket_cost)"));
+        Assert.That(seam.Replace, Does.Contain("max(0, __mmapi_basket_cost)"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_store_run_basket_cost_filters"));
     }
 
     [Test]

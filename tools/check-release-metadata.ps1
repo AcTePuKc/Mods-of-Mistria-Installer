@@ -12,10 +12,18 @@ if ([string]::IsNullOrWhiteSpace($version)) {
 
 $checks = @(
     @{ Path = 'README.md'; Pattern = "(?m)^# AIM .* $([regex]::Escape($version))$"; Description = 'README heading' },
-    @{ Path = 'CHANGELOG.md'; Pattern = "(?m)^## $([regex]::Escape($version)) - "; Description = 'current changelog heading' },
-    @{ Path = 'ROADMAP.md'; Pattern = "(?m)^## Current release: $([regex]::Escape($version))$"; Description = 'roadmap current release' },
-    @{ Path = 'docs/NEXUS_DESCRIPTION.bbcode'; Pattern = "AIM $([regex]::Escape($version))"; Description = 'Nexus description' }
+    @{ Path = 'CHANGELOG.md'; Pattern = "(?m)^## $([regex]::Escape($version)) - "; Description = 'current changelog heading' }
 )
+
+# A GitHub preview is deliberately not a new stable Nexus release. Its README and changelog must
+# identify the exact build, while the roadmap and Nexus description continue to name the current
+# stable release until the final release-preparation PR changes them together.
+if ($version -notmatch '-') {
+    $checks += @(
+        @{ Path = 'ROADMAP.md'; Pattern = "(?m)^## Current release: $([regex]::Escape($version))$"; Description = 'roadmap current release' },
+        @{ Path = 'docs/NEXUS_DESCRIPTION.bbcode'; Pattern = "AIM $([regex]::Escape($version))"; Description = 'Nexus description' }
+    )
+}
 
 $failed = [System.Collections.Generic.List[string]]::new()
 foreach ($check in $checks) {

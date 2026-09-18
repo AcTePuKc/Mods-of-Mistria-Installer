@@ -28,6 +28,23 @@
                             <TextBlock Text="{Binding Texts.GUISettingsModsFolderNote}" TextWrapping="Wrap" Foreground="{DynamicResource AIMMutedForegroundBrush}" />
                         </StackPanel>
 
+                        <StackPanel IsVisible="{Binding IsUpdatesSelected}" Spacing="8">
+                            <TextBlock Text="{Binding Texts.GUISettingsUpdates}" FontSize="22" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Texts.GUISettingsUpdatesDescription}" TextWrapping="Wrap" />
+                            <CheckBox Content="{Binding Texts.GUISettingsIncludePrereleaseUpdates}"
+                                      IsChecked="{Binding Settings.IncludePrereleaseUpdates, Mode=TwoWay}" />
+                            <TextBlock Text="{Binding Texts.GUISettingsIncludePrereleaseUpdatesNote}"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource AIMMutedForegroundBrush}" />
+                            <Button Content="{Binding Texts.GUISettingsCheckForUpdates}"
+                                    Command="{Binding CheckForAimUpdatesCommand}"
+                                    IsEnabled="{Binding !IsCheckingForAimUpdates}"
+                                    HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding AimUpdateCheckStatus}"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource AIMMutedForegroundBrush}" />
+                        </StackPanel>
+
                         <StackPanel IsVisible="{Binding IsNexusSelected}" Spacing="8">
                             <TextBlock Text="{Binding Texts.GUISettingsNexus}" FontSize="22" FontWeight="Bold" />
                             <TextBlock Text="{Binding Texts.GUISettingsNexusDescription}" TextWrapping="Wrap" />

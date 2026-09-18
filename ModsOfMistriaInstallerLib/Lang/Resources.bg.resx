@@ -837,4 +837,13 @@
   <data name="GUIThemeRoseGarden" xml:space="preserve"><value>Розова градина</value></data>
   <data name="GUIDecreaseFontSize" xml:space="preserve"><value>Намали размера на текста</value></data>
   <data name="GUIIncreaseFontSize" xml:space="preserve"><value>Увеличи размера на текста</value></data>
+  <data name="GUISettingsUpdates" xml:space="preserve"><value>Обновявания</value></data>
+  <data name="GUISettingsUpdatesDescription" xml:space="preserve"><value>Изберете кои издания на AIM да се показват при проверка за обновяване.</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdates" xml:space="preserve"><value>Включи предварителни издания</value></data>
+  <data name="GUISettingsIncludePrereleaseUpdatesNote" xml:space="preserve"><value>Предварителните издания може да съдържат незавършени функции. Оставете това изключено, за да получавате само стабилни издания на AIM.</value></data>
+  <data name="GUISettingsCheckForUpdates" xml:space="preserve"><value>Провери за обновления на AIM</value></data>
+  <data name="GUISettingsCheckingForUpdates" xml:space="preserve"><value>Проверка за обновления на AIM...</value></data>
+  <data name="GUISettingsUpToDate" xml:space="preserve"><value>AIM е актуален.</value></data>
+  <data name="GUISettingsUpdateAvailable" xml:space="preserve"><value>Налично е обновление за AIM. Използвайте известието отдолу, за да отворите страницата му.</value></data>
+  <data name="GUISettingsUpdateCheckFailed" xml:space="preserve"><value>Проверката за обновления на AIM не бе успешна.</value></data>
 </root>

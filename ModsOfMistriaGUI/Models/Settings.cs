@@ -39,6 +39,10 @@ public partial class Settings : ObservableObject
     // release remains visible instead of being hidden permanently.
     [ObservableProperty] private string? _dismissedUpdateVersion;
 
+    // Stable releases are the normal update channel. Preview builds are opt-in because they are
+    // deliberately published for testing before a stable AIM release.
+    [ObservableProperty] private bool _includePrereleaseUpdates;
+
     /// <summary>
     /// Folders AIM watches for mods downloaded by hand - normally the browser's downloads folder.
     ///
@@ -85,6 +89,9 @@ public partial class Settings : ObservableObject
     partial void OnDismissedUpdateVersionChanged(string? value)
         => SavePreferences();
 
+    partial void OnIncludePrereleaseUpdatesChanged(bool value)
+        => SavePreferences();
+
     private void SavePreferences()
     {
         try
@@ -92,7 +99,8 @@ public partial class Settings : ObservableObject
             var directory = Path.GetDirectoryName(PreferencesPath);
             if (!string.IsNullOrEmpty(directory)) Directory.CreateDirectory(directory);
             File.WriteAllText(PreferencesPath, JsonSerializer.Serialize(
-                new LaunchPreferences(LaunchGameDirectly, UiLanguage, DismissedUpdateVersion, DropFolders, UiTheme, UiFontSize)));
+                new LaunchPreferences(LaunchGameDirectly, UiLanguage, DismissedUpdateVersion, DropFolders, UiTheme, UiFontSize,
+                    IncludePrereleaseUpdates)));
         }
         catch
         {
@@ -114,6 +122,7 @@ public partial class Settings : ObservableObject
                 UiTheme = NormalizeTheme(preferences.UiTheme);
                 UiFontSize = NormalizeUiFontSize(preferences.UiFontSize);
                 DismissedUpdateVersion = preferences.DismissedUpdateVersion;
+                IncludePrereleaseUpdates = preferences.IncludePrereleaseUpdates;
                 DropFolders = preferences.DropFolders ?? [];
             }
         }
@@ -185,7 +194,8 @@ public partial class Settings : ObservableObject
         string? DismissedUpdateVersion = null,
         List<string>? DropFolders = null,
         string UiTheme = "system",
-        double UiFontSize = DefaultUiFontSize);
+        double UiFontSize = DefaultUiFontSize,
+        bool IncludePrereleaseUpdates = false);
 
     public bool ValidMistriaLocation() => !string.IsNullOrEmpty(MistriaLocation) &&
                                           Directory.Exists(MistriaLocation) &&

@@ -39,9 +39,9 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 133
-seams = 146
-engine_fixes = 7
+hooks = 140
+seams = 154
+engine_fixes = 17
 call_rewrites = 1
 
 # --- hook declarations -------------------------------------------------------------
@@ -167,14 +167,30 @@ kind = "filter"
 doc  = "Fires in create_furniture_renderer(node) as a furniture node's floor sprite is resolved, after the engine's native winter_floor_sprite override and before the floor renderer instance is created. The filtered value is the floor sprite. ctx is the furniture node (read ctx.object_id, ctx.prototype, ctx.cardinal_index). Return the replacement sprite, or undefined to keep the current value. Fires once per furniture render BUILD (placement, room/grid load), not per frame, so a changed decision (e.g. a season change) applies on the node's next build, not instantly on a live world. Furniture floor sprites never route through obj_node_renderer.set_sprite, so object.node_sprite cannot reach them."
 
 [[hook]]
+name = "furniture.preview_sprite"
+kind = "filter"
+doc  = "Fires in create_test_placement_furniture_draw_info() as the furniture placement preview resolves each sprite for its translucent ghost under the cursor. ctx.source is main_sprite (after the engine's {Season}_sprite override) or floor_sprite (read raw; the preview has no winter_floor_sprite override). The filtered value is that sprite. ctx is { object_id, prototype, cardinal_index, x, y, source }: object_id and prototype describe the piece after any house-stairs pairing swap, cardinal_index is the resolved rotation, and x/y are its centred anchor cell. There is no node because nothing is placed yet. Return a replacement sprite or undefined to keep it. Fires every frame while a placeable is held, once per available site, so handlers must cheaply return undefined for pieces they do not own."
+
+[[hook]]
 name = "dialogue.line"
 kind = "filter"
 doc  = "Fires in ConversationDriver.deliver_line(), before the textbox shows the line. The filtered value is the localized line text. ctx is { driver, line, conversation_name, npc_id, speaker, is_info_line }. npc_id is the driver's npc_owner, the NPC the conversation belongs to. speaker is the textbox speaker the line's own Speaker action has already assigned, and it is undefined for info lines. Cutscene conversations rotate speakers independently of the owner, so read speaker for the character delivering the line. Return the replacement string, or undefined to keep the current value."
 
 [[hook]]
+name = "dialogue.finished"
+kind = "event"
+aliases = ["dialogue.finish"]
+doc  = "Fires in ConversationDriver.finish_conversation(), after all T2 conversation-end actions have run, the textbox has been told to close, and the driver state is Finished. ctx is { driver, conversation_name, npc_id }. This means engine conversation completion, not that the textbox close animation has already disappeared; use ui.menu_closed when the UI close itself is what matters. dialogue.finish is a compatibility alias."
+
+[[hook]]
 name = "dialogue.prompt_lock"
 kind = "filter"
 doc  = "Fires while each dialogue prompt option is prepared for display, after the vanilla lock decision is known and before the option becomes interactive. The filtered value is the effective boolean lock state, seeded from vanilla. ctx is { driver, line, conversation_name, npc_id, prompt_index, prompt_key, vanilla_locked, is_pink }. prompt_index is the original zero-based T2 selection index and prompt_key is the raw localization key; conversation/NPC fields are best-effort and may be undefined for non-NPC or incomplete contexts. Return true to add a lock; undefined, false, or any other value leaves the current state unchanged. This hook is monotonic: a handler cannot clear a vanilla lock or a lock requested by another handler, and handler failures are isolated. The engine applies the grey sprite, stay_locked marker, tab state, and soft lock. It does not hide, add, rewrite, or semantically veto options."
+
+[[hook]]
+name = "dialogue.romance_prompt_guard"
+kind = "guard"
+doc  = "Legacy compatibility hook for MMAPI 0.16 mods. Fires only while a pink romance prompt is styled, after the vanilla spouse/fiance lock is evaluated and only when that vanilla rule leaves the prompt selectable. ctx is { npc_id, speaker, path }: npc_id is the live textbox speaker's NpcId (undefined for a cameo or absent speaker), speaker is the live Speaker struct or undefined, and path is the T2 conversation name or undefined. Return false to grey and soft-lock the prompt; undefined or true keeps it selectable. New mods should use dialogue.prompt_lock instead, which has stable option metadata and monotonic multi-mod composition."
 
 [[hook]]
 name = "dialogue.npc_blip"
@@ -227,9 +243,9 @@ kind = "event"
 doc  = "Fires in the dungeon breakables logic when a treasure chest starts its drop chain. ctx is { node, object_id, x, y }, with x and y read from the node renderer."
 
 [[hook]]
-name = "dungeon.side_room_chance"
+name = "dungeon.side_room_range"
 kind = "filter"
-doc  = "Filters the spawn chance passed to try_create_side_room() at the head of that function, before the per-floor roll. ctx is { impl, is_ritual, max_flr }; is_ritual is true when impl == DungeonImpl.Ritual (the pre-computed convenience flag so consumers need not reference the DungeonImpl enum). Return an adjusted chance (0-100) to raise/lower the odds of a treasure/ritual side room; return the value unchanged (or undefined) to defer. Fires for every side-room impl the runner attempts."
+doc  = "Filters the floor range passed to try_create_side_room() at the head of that function, before the runner picks a side-room floor. ctx is { impl, is_ritual, start_floor }; is_ritual is true when impl == DungeonImpl.Ritual (the pre-computed convenience flag so consumers need not reference the DungeonImpl enum). Return an adjusted range to change how far ahead a treasure/ritual side room may be placed; return the value unchanged (or undefined) to defer. Fires for every side-room impl the runner attempts."
 
 [[hook]]
 name = "fishing.should_reel"
@@ -407,7 +423,7 @@ doc  = "Fires when a monster dies, just before its instance is destroyed. ctx is
 [[hook]]
 name = "monster.draw"
 kind = "event"
-doc  = "Fires at the end of par_monster's draw() method, after the monster sprite and its status overlays (venom/frozen) are drawn, once per visible monster per frame in the world-draw pass. ctx is the monster instance: read x, y, z, health, and so on, and draw in world space (e.g. a health bar on top). Observation only. Hot path (every visible monster, every frame). Keep handlers cheap."
+doc  = "Fires from each visible par_monster's draw_end event, after the normal world-draw pass (including the monster sprite and status renderables), once per visible monster per frame. ctx is the monster instance: read x, y, z, health, and so on, and draw in world space (e.g. a health bar on top). Observation only. Hot path (every visible monster, every frame). Keep handlers cheap."
 
 [[hook]]
 name = "monster.shroom.should_hide"
@@ -432,12 +448,17 @@ doc  = "Fires every frame for every monster in par_monster's begin step, right a
 [[hook]]
 name = "museum.donate_item"
 kind = "event"
-doc  = "Fires at the top of donate_item_to_museum(), before the item is registered to the collection and before the pending renown entry is pushed. ctx is { item_id }. Observation only - the DonationResult the function goes on to compute (progress, completed set, rewards) is decided after the emit. Fires once per donated item, from the museum donation menu and the engine's test suite; save load and the ALL_UNLOCKS new-game path write donations through register_item_to_museum() directly and never fire this hook."
+doc  = "Fires in donate_item_to_museum(), after the item is registered to the collection and before the pending renown entry is pushed. ctx is { item_id }. Observation only - handlers see the updated museum progress, while the DonationResult the function goes on to compute (progress, completed set, rewards) is decided later. Fires once per donated item, from the museum donation menu and the engine's test suite; save load and the ALL_UNLOCKS new-game path write donations through register_item_to_museum() directly and never fire this hook. Use museum.donation_attempted for the distinct pre-registration event."
 
 [[hook]]
 name = "player.acquire_perk"
 kind = "event"
 doc  = "Fires at the top of Ari.acquire_perk(perk), before the perk is flagged owned and active and before its acquisition side effects (the Guardian's Shield extra invulnerable hit, the Ancient Inspiration timer reset) run. ctx is { perk }, the Perk enum id. Observation only. Fires on every acquisition path - the Dragonshrine purchase (the essence is already spent when the emit runs), the debug CLI grant, and the ALL_UNLOCKS new-game grant-all loop - but never on save load, which restores the perk arrays directly. Toggling an owned perk on or off never fires either: the shrine menu and the debug CLI flip perks_active directly, without entering acquire_perk."
+
+[[hook]]
+name = "player.perk_acquired"
+kind = "event"
+doc  = "Fires at the end of Ari.acquire_perk(perk), after the perk is flagged owned and active, its acquisition side effects run, the stats entry is pushed, and achievements refresh. ctx is { perk }, the Perk enum id. Observation only. Fires on every acquisition path - the Dragonshrine purchase, the debug CLI grant, and the ALL_UNLOCKS new-game grant-all loop - but never on save load, which restores the perk arrays directly. Toggling an owned perk on or off never fires either. Use player.acquire_perk for the distinct pre-state event."
 
 [[hook]]
 name = "player.died"
@@ -658,9 +679,19 @@ kind = "event"
 doc  = "Fires in StoreMenu right after a shelf tap adds an item to the shopping basket (self.basket.add(item)), before the ghost and price update. ctx is { menu, item }: menu is the StoreMenu (menu.basket is the Inventory cart with .can_add(item)/.add(item), menu.update_prices() refreshes the totals), item is the LiveItem just added. Adding more from a handler via menu.basket.add does not re-fire this event (the emit is at the tap site, not at basket.add), so no re-entry guard is needed: a bulk-buy handler can add extra copies freely."
 
 [[hook]]
+name = "store.basket_cost"
+kind = "filter"
+doc  = "Fires in StoreMenu.update_prices(), after the native basket total is calculated and before it controls the total label, affordability colours, Buy button, and final gold deduction. The filtered value is the whole basket cost. ctx is { menu, basket, store, price_markup }. Return a numeric non-negative replacement cost; undefined, an error, or a non-numeric result keeps the native total. A zero cost is valid as a display value but vanilla still disables Buy for an empty-or-zero basket, so this hook cannot create a free purchase path."
+
+[[hook]]
 name = "ui.menu_refreshed"
 kind = "event"
 doc  = "Fires after a menu rebuilds its content from game state, at the tail of the rebuild function. Emitting menus today: ToolbarMenu.update() (slot items re-resolved from the inventory: subscriber pull, page flips, tab taps, forced rebuilds, constructor) and VitalsMenu.refresh_statuses() (status icon strip rebuilt: register, cancel, and the expiry poll). ctx is { menu, kind }, with kind read from menu.type. Emits only on rebuild edges, never per idle frame, including during the menu's constructor before ui.menu_opened fires for it (ctx.menu is not yet in ANCHOR.open_menus then). Handlers must be idempotent and must not unconditionally force another rebuild from inside the handler."
+
+[[hook]]
+name = "ui.eod_calendar_events"
+kind = "filter"
+doc  = "Fires in EodMenu.play_calendar_sequence(), after the engine gathers tomorrow's calendar events and before build_notifications() renders them. The filtered value is menu.events, a List of event structs (count()/get()/push()/insert(), not an array). ctx is { menu, target_date }, where target_date is the calendar timestamp for the day about to begin. Mutate the List in place, return a replacement List, or return undefined to keep it; a non-List return is dropped. A custom entry is { type, key, icon, npcs }: type must not match a vanilla CalendarEvent case (CalendarEvent.LEN is the convention), key is a localization key or ANCHOR.wrap_for_local() literal, icon is the left sprite, and npcs is an optional Boolean array indexed by NpcId. The companion seam reads those fields only in the switch default branch, so vanilla entries retain their engine rendering. Fires once per end-of-day sequence."
 
 [[hook]]
 name = "ui.relationship_row_built"
@@ -701,6 +732,11 @@ doc  = "Fires in Stable.on_new_day() for each breeding pair, after the engine ro
 name = "animal.product_drops"
 kind = "filter"
 doc  = "Fires in Stable.on_new_day()'s drop block, after the normal and golden product lists are rolled and the Eggstra perk may add its extra product, and before the production stats record and the drops land in the stable grid. The filtered value is the struct { normal_products, golden_products }, and both fields are Lists of LiveItem (count()/get()), not arrays. Mutate the Lists in place, return a replacement struct, or return undefined to keep the current lists. The seam re-reads both fields defensively, so a non-struct return or a partial struct keeps the engine lists. ctx is { animal, stable, production, production_tier }: production is the production struct for the animal's sex from its prototype, and production_tier is the tier entry the animal's heart level resolved. Emptying both lists suppresses the drops and their stats records, because the engine's push blocks test is_empty(). The CurrencyOfCareTwo bead roll and the bonus gather item roll sit outside this value and still run."
+
+[[hook]]
+name = "factory.product_drops"
+kind = "filter"
+doc  = "Fires when an apiary or terrarium completes a factory collection, after the requested item is removed from the player's hand and the tier reward and apiary honeycomb bonus are rolled, and before items drop. The filtered value is an array of item ids or LiveItems that drop_item() accepts. ctx is { node, production_request, production_tier }. Return a replacement array, mutate the array in place, or return undefined to keep the current products. A non-array return is dropped and the rolled list stands. An empty array suppresses item drops but leaves the completed collection's hand pop, bounce animation, reward sound, and request reset intact. Each final element drops through drop_item(), so items.dropped fires once per element."
 
 [[hook]]
 name = "animal.adoption_variant_unlocked"
@@ -1100,18 +1136,17 @@ provides = ["request_board.fetch_pool_ready"]
 [[seam]]
 id      = "monster_draw"
 file    = "gml/objects/Combat/par_monster.gml"
-context_before = '''
-                    gpu_reset_extra();
-                }
+anchor  = '''
+        animation_end: function() {
 '''
-context_after = '''
-            }
+replace = '''
+        draw_end: function() {
+            try { mmapi_emit("monster.draw", self); } catch (__mmapi_monster_draw) {} // mmapi_monster_run_draw_callbacks
+        },
+        animation_end: function() {
 '''
-op      = "emit"
-hook    = "monster.draw"
-ctx     = "self"
-indent  = 16
 marker  = "mmapi_monster_run_draw_callbacks"
+provides = ["monster.draw"]
 
 [[seam]]
 id      = "combat_tarball_grid"
@@ -1197,7 +1232,7 @@ context_before = '''
 '''
 context_after = '''
 
-        node.renderer.floor_renderer = instance_create_layer(node.renderer.x, node.renderer.y, "Instances", obj_node_renderer_top);
+        node.renderer.floor_renderer = node.renderer.create_renderable(sprite_to_use);
 '''
 op      = "filter"
 hook    = "furniture.floor_sprite"
@@ -1372,12 +1407,12 @@ marker  = "mmapi_ui_run_button_sprites_filters"
 id      = "obj_item_outline_sprite"
 file    = "gml/objects/objects/obj_item.gml"
 anchor  = '''
-                item_data.prototype.icon_sprite_outline,
-                image_index,
+            self.outline.animation = item_data.prototype.icon_sprite_outline;
+            self.outline.animation_frame = self.image_index;
 '''
 replace = '''
-                outline_sprite,
-                image_index,
+            self.outline.animation = outline_sprite;
+            self.outline.animation_frame = self.image_index;
 '''
 marker  = "outline_sprite"
 provides = ["ui.item_icon"]
@@ -1550,6 +1585,16 @@ marker  = "mmapi_dialogue_run_local_filters"
 provides = ["dialogue.line"]
 
 [[seam]]
+id      = "dialogue_finished"
+file    = "gml/scripts/GameplaySystems/Dialogue/ConversationDriver.gml"
+target  = { fn = "finish_conversation", at = "after", anchor = "self.state = ConversationDriverState.Finished;" }
+op      = "emit"
+hook    = "dialogue.finished"
+ctx     = "{ driver: self, conversation_name: self.conversation_name, npc_id: self.npc_owner }"
+indent  = 8
+marker  = "mmapi_dialogue_finished"
+
+[[seam]]
 id      = "dialogue_prompt_metadata"
 file    = "gml/scripts/UI/Anchor/Menus/TextboxMenu.gml"
 anchor  = '''
@@ -1616,6 +1661,16 @@ replace = '''
                     is_pink: self.blackboard.get("pink") == true,
                 });
             } catch (__mmapi_dialogue_prompt_lock) {}
+            if self.blackboard.get("pink") == true && __mmapi_prompt_vanilla_locked == false {
+                try {
+                    var __mmapi_romance_speaker = self.requested_speaker ?? self.current_speaker;
+                    var __mmapi_romance_npc = (__mmapi_romance_speaker == undefined) ? undefined : try_string_to_npc_id(__mmapi_romance_speaker.identity);
+                    var __mmapi_romance_path = self.driver == undefined ? undefined : self.driver.conversation_name;
+                    if mmapi_check_guards("dialogue.romance_prompt_guard", { npc_id: __mmapi_romance_npc, speaker: __mmapi_romance_speaker, path: __mmapi_romance_path }) == false {
+                        __mmapi_prompt_locked = true;
+                    } // mmapi_dialogue_run_romance_prompt_guards
+                } catch (__mmapi_dialogue_romance_prompt_guard) {}
+            }
             if __mmapi_prompt_locked == true && __mmapi_prompt_vanilla_locked == false {
                 self.set_sprites_from_key("spr_ui_dialogue_box_grey");
                 self.blackboard.insert("stay_locked", true);
@@ -1626,7 +1681,7 @@ replace = '''
 
             self.locked_sprite = self.enabled_sprite;'''
 marker  = "mmapi_dialogue_prompt_lock"
-provides = ["dialogue.prompt_lock"]
+provides = ["dialogue.prompt_lock", "dialogue.romance_prompt_guard"]
 
 [[seam]]
 id      = "dialogue_speaker"
@@ -2322,15 +2377,15 @@ indent  = 8
 marker  = "mmapi_dungeon_run_ladder_spawn_guards"
 
 [[seam]]
-id      = "dungeon_side_room_chance"
+id      = "dungeon_side_room_range"
 file    = "gml/scripts/GameplaySystems/Dungeon/DungeonRunner.gml"
 target  = { fn = "try_create_side_room", at = "head" }
 op      = "filter"
-hook    = "dungeon.side_room_chance"
-ctx     = "{ impl: impl, is_ritual: impl == DungeonImpl.Ritual, max_flr: max_flr }"
-var     = "chance_val"
+hook    = "dungeon.side_room_range"
+ctx     = "{ impl: impl, is_ritual: impl == DungeonImpl.Ritual, start_floor: start_floor }"
+var     = "range"
 indent  = 4
-marker  = "mmapi_dungeon_run_side_room_chance_filters"
+marker  = "mmapi_dungeon_run_side_room_range_filters"
 
 [[seam]]
 id      = "dungeon_treasure_chest"
@@ -2882,6 +2937,351 @@ replace = '''
 '''
 marker  = "mmapi_fish_chest_custom_rarity"
 
+# Store entries already support animal cosmetics but have no branch for pet
+# cosmetic sets. The reward parser accepts the same key, so this mirrors the
+# sibling data contract at the store parser. Vanilla stock never carries the
+# key, leaving pristine store setup unchanged.
+[[engine_fix]]
+name    = "store_pet_cosmetic_entry"
+file    = "gml/scripts/Stores.gml"
+anchor  = '''
+        item = new LiveItem(ItemId.AnimalCosmetic);
+        item.animal_cosmetic = { animal: animal, cosmetic: entry.animal_cosmetic };
+    }
+
+    assert_neq(item, undefined, "Failed to parse an item out of '{}'", entry);
+'''
+replace = '''
+        item = new LiveItem(ItemId.AnimalCosmetic);
+        item.animal_cosmetic = { animal: animal, cosmetic: entry.animal_cosmetic };
+    }
+
+    if entry[$ "pet_cosmetic"] != undefined { // mmapi_store_pet_cosmetic_entry
+        assert(
+            PET_PROTOTYPE.cosmetic_sets.contains_key(entry.pet_cosmetic),
+            "Pet cosmetic '{}' does not exist", entry.pet_cosmetic
+        );
+
+        item = new LiveItem(ItemId.PetCosmetic);
+        item.pet_cosmetic_set_name = entry.pet_cosmetic;
+    }
+
+    assert_neq(item, undefined, "Failed to parse an item out of '{}'", entry);
+'''
+marker  = "mmapi_store_pet_cosmetic_entry"
+
+# Recipe components are selected by an ordered vanilla if/else chain. Without
+# validation a malformed component such as { item = "wood", tag = "ore" }
+# silently becomes an Item component and drops the tag. Validate the selector
+# schema before that chain, while leaving every valid vanilla component byte
+# for byte on its original parse path.
+[[engine_fix]]
+name    = "recipe_component_schema_validation"
+file    = "gml/scripts/GameplaySystems/Items/Items.gml"
+anchor  = '''
+            var components = [];
+            for (var j = 0; j < array_length(fiddle_data.recipe); j++) {
+                var component = fiddle_data.recipe[j];
+                if component[$ "item"] != undefined {'''
+replace = '''
+            var components = [];
+            for (var j = 0; j < array_length(fiddle_data.recipe); j++) {
+                var component = fiddle_data.recipe[j];
+
+                var __mmapi_recipe_has_item = component[$ "item"] != undefined;
+                var __mmapi_recipe_has_tag = component[$ "tag"] != undefined;
+                var __mmapi_recipe_has_hours = component[$ "hours"] != undefined;
+                var __mmapi_recipe_has_gold = component[$ "gold"] != undefined;
+                var __mmapi_recipe_has_skill = component[$ "skill"] != undefined;
+                var __mmapi_recipe_has_essence = component[$ "essence"] != undefined;
+                var __mmapi_recipe_selector_count = 0;
+                var __mmapi_recipe_selector_names = "";
+                if __mmapi_recipe_has_item { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "item "; }
+                if __mmapi_recipe_has_tag { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "tag "; }
+                if __mmapi_recipe_has_hours { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "hours "; }
+                if __mmapi_recipe_has_gold { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "gold "; }
+                if __mmapi_recipe_has_skill { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "skill "; }
+                if __mmapi_recipe_has_essence { __mmapi_recipe_selector_count++; __mmapi_recipe_selector_names += "essence "; }
+
+                if __mmapi_recipe_selector_count != 1 {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): expected exactly one selector key (item, tag, hours, gold, skill, or essence); found {}", item_id, j, __mmapi_recipe_selector_names); // mmapi_recipe_component_schema_validation
+                }
+                if component[$ "minutes"] != undefined && !__mmapi_recipe_has_hours {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): minutes requires hours", item_id, j);
+                }
+                if component[$ "level"] != undefined && !__mmapi_recipe_has_skill {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): level requires skill", item_id, j);
+                }
+                if __mmapi_recipe_has_skill && component[$ "level"] == undefined {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): skill requires level", item_id, j);
+                }
+                if component[$ "count"] != undefined && !(__mmapi_recipe_has_item || __mmapi_recipe_has_tag) {
+                    crash("Invalid recipe component in {ItemId} (recipe component number {}): count is only valid with item or tag", item_id, j);
+                }
+
+                if component[$ "item"] != undefined {'''
+marker  = "mmapi_recipe_component_schema_validation"
+
+[[engine_fix]]
+name    = "recipe_tag_component_presentation"
+file    = "gml/scripts/GameplaySystems/Items/Items.gml"
+anchor  = '''
+                } else if component[$ "tag"] != undefined {
+                    array_push(components, RecipeComponent.Tag(
+                        component.tag,
+                        component[$ "count"] ?? 1,
+                    ));
+'''
+replace = '''
+                } else if component[$ "tag"] != undefined {
+                    var __mmapi_tag_display_item = component[$ "display_item"];
+                    var __mmapi_tag_display_name = component[$ "display_name"];
+                    var __mmapi_tag_display_description = component[$ "display_description"];
+                    assert_neq(__mmapi_tag_display_item, undefined, "Tag recipe component in {ItemId} (recipe component number {}) requires display_item", item_id, j);
+                    assert_neq(__mmapi_tag_display_name, undefined, "Tag recipe component in {ItemId} (recipe component number {}) requires display_name", item_id, j);
+                    assert_neq(__mmapi_tag_display_description, undefined, "Tag recipe component in {ItemId} (recipe component number {}) requires display_description", item_id, j);
+                    array_push(components, RecipeComponent.Tag(
+                        component.tag,
+                        component[$ "count"] ?? 1,
+                        string_to_item_id(__mmapi_tag_display_item),
+                        __mmapi_tag_display_name,
+                        __mmapi_tag_display_description,
+                    )); // mmapi_recipe_tag_component_presentation
+'''
+marker  = "mmapi_recipe_tag_component_presentation"
+
+[[engine_fix]]
+name    = "recipe_tag_component_factory"
+file    = "gml/scripts/GameplaySystems/Recipe.gml"
+anchor  = '''
+    static Tag = function(tag, count) {
+        return {
+            type: RecipeComponentType.Tag,
+            tag: tag,
+            count: count,
+        }
+    }
+'''
+replace = '''
+    static Tag = function(tag, count, display_item_id, display_name, display_description) {
+        return {
+            type: RecipeComponentType.Tag,
+            tag: tag,
+            count: count,
+            display_item_id: display_item_id,
+            display_name: display_name,
+            display_description: display_description,
+        }
+    } // mmapi_recipe_tag_component_factory
+'''
+marker  = "mmapi_recipe_tag_component_factory"
+
+[[engine_fix]]
+name    = "crafting_tag_chest_availability"
+file    = "gml/scripts/GameplaySystems/Recipe.gml"
+anchor  = '''
+        case RecipeComponentType.Tag: return ARI.inventory
+            .slots_with_item_tag(component.tag)
+            .sum_with(function(x) {
+                return x.count();
+            });
+'''
+replace = '''
+        case RecipeComponentType.Tag:
+            var tag_count = ARI.inventory
+                .slots_with_item_tag(component.tag)
+                .sum_with(function(x) {
+                    return x.count();
+                });
+            if use_chests {
+                for (var i = 0; i < STORAGE_NODES.count(); i++) {
+                    var node = STORAGE_NODES.get(i);
+                    if node.use_in_crafting {
+                        tag_count += node.inventory
+                            .slots_with_item_tag(component.tag)
+                            .sum_with(function(x) {
+                                return x.count();
+                            });
+                    }
+                }
+            }
+            return tag_count; // mmapi_crafting_tag_chest_availability
+'''
+marker  = "mmapi_crafting_tag_chest_availability"
+
+[[engine_fix]]
+name    = "crafting_tag_symmetric_payment"
+file    = "gml/scripts/GameplaySystems/Recipe.gml"
+anchor  = '''
+            case RecipeComponentType.Tag:
+                var slots = ARI.inventory.slots_with_item_tag(component.tag);
+                var left_to_remove = component.count;
+                for (var j = 0; j < slots.count(); j++) {
+                    var slot = slots.get(j);
+                    var amount_to_remove = min(slot.count(), left_to_remove);
+                    slot.remove(amount_to_remove);
+                    left_to_remove -= amount_to_remove;
+                    if left_to_remove == 0 {
+                        break;
+                    }
+                }
+                break;
+'''
+replace = '''
+            case RecipeComponentType.Tag:
+                var slots = ARI.inventory.slots_with_item_tag(component.tag);
+                for (var j = 0; j < slots.count(); j++) {
+                    var slot = slots.get(j);
+                    var amount_to_remove = min(slot.count(), count);
+                    slot.remove(amount_to_remove);
+                    count -= amount_to_remove;
+                    if count == 0 {
+                        break;
+                    }
+                }
+                if count != 0 {
+                    for (var j = 0; j < STORAGE_NODES.count(); j++) {
+                        var node = STORAGE_NODES.get(j);
+                        if !node.use_in_crafting {
+                            continue;
+                        }
+                        var slots = node.inventory.slots_with_item_tag(component.tag);
+                        for (var k = 0; k < slots.count(); k++) {
+                            var slot = slots.get(k);
+                            var amount_to_remove = min(slot.count(), count);
+                            slot.remove(amount_to_remove);
+                            count -= amount_to_remove;
+                            if count == 0 {
+                                break;
+                            }
+                        }
+                        if count == 0 {
+                            break;
+                        }
+                    }
+                }
+                assert_eq(count, 0, "Failed to fulfill tag component costs!"); // mmapi_crafting_tag_symmetric_payment
+                break;
+'''
+marker  = "mmapi_crafting_tag_symmetric_payment"
+
+[[engine_fix]]
+name    = "crafting_tag_display_item"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+            var this_item = undefined;
+            switch component.type {
+                case RecipeComponentType.Item:
+                    this_item = new LiveItem(component.item_id);
+                    break;
+                case RecipeComponentType.Essence:
+                    this_item = new LiveItem(ItemId.FakeEssence);
+                    break;
+                default: break;
+            }
+'''
+replace = '''
+            var this_item = undefined;
+            switch component.type {
+                case RecipeComponentType.Item:
+                    this_item = new LiveItem(component.item_id);
+                    break;
+                case RecipeComponentType.Tag:
+                    this_item = new LiveItem(component.display_item_id);
+                    break;
+                case RecipeComponentType.Essence:
+                    this_item = new LiveItem(ItemId.FakeEssence);
+                    break;
+                default: break;
+            } // mmapi_crafting_tag_display_item
+'''
+marker  = "mmapi_crafting_tag_display_item"
+
+[[engine_fix]]
+name    = "crafting_tag_display_tooltip"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+            if this_item != undefined {
+                box.set_think_callback(function(this_item, box) {
+                    if box.hover_duration() >= 30 {
+                        if self.tooltip == undefined {
+                            self.tooltip = create_tooltip(this_item, box);
+                        }
+                    } else if self.tooltip != undefined && self.tooltip.source_node == box {
+                        self.tooltip.close();
+                        self.tooltip = undefined;
+                    }
+                }, [this_item, box])
+            }
+'''
+replace = '''
+            if this_item != undefined {
+                box.set_think_callback(function(this_item, box, component) {
+                    if box.hover_duration() >= 30 {
+                        if self.tooltip == undefined {
+                            self.tooltip = create_tooltip(this_item, box);
+                            if component.type == RecipeComponentType.Tag {
+                                self.tooltip.title
+                                    .set_ghost_key(component.display_name)
+                                    .set_text(local_get(component.display_name));
+                                self.tooltip.body_text
+                                    .set_ghost_key(component.display_description)
+                                    .set_text(local_get(component.display_description));
+                                var __mmapi_tag_old_body_height = self.tooltip.body.get_height();
+                                var __mmapi_tag_new_body_height = self.tooltip.body_text.measure().y + 12;
+                                self.tooltip.body.set_height(__mmapi_tag_new_body_height);
+                                self.tooltip.backplate.add_height(__mmapi_tag_new_body_height - __mmapi_tag_old_body_height);
+                                self.tooltip.refresh_title_height();
+                                if self.tooltip.gold_icon != undefined { self.tooltip.gold_icon.disable(); }
+                                if self.tooltip.gold_text != undefined { self.tooltip.gold_text.disable(); }
+                                if self.tooltip.stat_root != undefined { self.tooltip.stat_root.disable(); }
+                            }
+                        }
+                    } else if self.tooltip != undefined && self.tooltip.source_node == box {
+                        self.tooltip.close();
+                        self.tooltip = undefined;
+                    }
+                }, [this_item, box, component]) // mmapi_crafting_tag_display_tooltip
+            }
+'''
+marker  = "mmapi_crafting_tag_display_tooltip"
+
+[[engine_fix]]
+name    = "crafting_tag_display_quantity"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+            switch component.type {
+                case RecipeComponentType.Item:
+                    icon.set_sprite(this_item.get_ui_icon());
+'''
+replace = '''
+            switch component.type {
+                case RecipeComponentType.Item:
+                case RecipeComponentType.Tag:
+                    icon.set_sprite(this_item.get_ui_icon()); // mmapi_crafting_tag_display_quantity
+'''
+marker  = "mmapi_crafting_tag_display_quantity"
+
+[[engine_fix]]
+name    = "recipe_tag_scroll_preview"
+file    = "gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"
+anchor  = '''
+                switch comp.type {
+                    case RecipeComponentType.Item: return [comp.item_id, comp.count];
+                    case RecipeComponentType.Essence: return [ItemId.FakeEssence, comp.count];
+                    default: return undefined;
+                }
+'''
+replace = '''
+                switch comp.type {
+                    case RecipeComponentType.Item: return [comp.item_id, comp.count];
+                    case RecipeComponentType.Tag: return [comp.display_item_id, comp.count];
+                    case RecipeComponentType.Essence: return [ItemId.FakeEssence, comp.count];
+                    default: return undefined;
+                } // mmapi_recipe_tag_scroll_preview
+'''
+marker  = "mmapi_recipe_tag_scroll_preview"
+
 # The remaining entries are appended after the earlier ones on purpose. Catalog
 # order is apply order, and two of them stack onto files already seamed above
 # (dialogue_play_guard onto ConversationDriver.gml after dialogue_path, and
@@ -3160,6 +3560,37 @@ marker  = "mmapi_store_run_item_added"
 provides = ["store.item_added"]
 
 [[seam]]
+id      = "store_basket_cost"
+file    = "gml/scripts/UI/Anchor/Menus/StoreMenu.gml"
+anchor  = '''
+    function update_prices() {
+        self.basket_total = self.basket.slots.sum_with(function(slot) {
+            if slot.count == 0 {
+                return 0;
+            } else {
+                return (slot.item.store_value() * self.price_markup) * slot.count;
+            }
+        });
+        self.total_count'''
+replace = '''
+    function update_prices() {
+        self.basket_total = self.basket.slots.sum_with(function(slot) {
+            if slot.count == 0 {
+                return 0;
+            } else {
+                return (slot.item.store_value() * self.price_markup) * slot.count;
+            }
+        });
+        var __mmapi_basket_cost = self.basket_total;
+        try { __mmapi_basket_cost = mmapi_apply_filters("store.basket_cost", __mmapi_basket_cost, { menu: self, basket: self.basket, store: self.store, price_markup: self.price_markup }); } catch (__mmapi_store_basket_cost) {} // mmapi_store_run_basket_cost_filters
+        if is_numeric(__mmapi_basket_cost) {
+            self.basket_total = max(0, __mmapi_basket_cost);
+        }
+        self.total_count'''
+marker  = "mmapi_store_run_basket_cost_filters"
+provides = ["store.basket_cost"]
+
+[[seam]]
 id      = "ui_menu_closed_drain"
 file    = "gml/scripts/UI/Anchor/Anchor.gml"
 context_before = '''
@@ -3349,12 +3780,23 @@ indent  = 8
 marker  = "mmapi_player_acquire_perk"
 
 [[seam]]
+id      = "player_perk_acquired"
+file    = "gml/scripts/GameplaySystems/Player/Ari.gml"
+target  = { fn = "acquire_perk", at = "after", anchor = "refresh_achievements([Requirement.HasAtLeastOneTierFivePerkPerCategory]);" }
+op      = "emit"
+hook    = "player.perk_acquired"
+ctx     = "{ perk: perk }"
+indent  = 8
+marker  = "mmapi_player_perk_acquired"
+
+[[seam]]
 id      = "museum_donate_item"
 file    = "gml/scripts/Museum.gml"
-target  = { fn = "donate_item_to_museum", at = "head" }
+target  = { fn = "donate_item_to_museum", at = "after", anchor = "register_item_to_museum(item_id);" }
 op      = "emit"
 hook    = "museum.donate_item"
 ctx     = "{ item_id: item_id }"
+indent  = 4
 marker  = "mmapi_museum_donate_item"
 
 [[seam]]
@@ -3720,6 +4162,55 @@ marker  = "mmapi_stable_run_product_drops_filters"
 provides = ["animal.product_drops"]
 
 [[seam]]
+id      = "factory_product_drops"
+file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
+anchor  = '''
+                    var arr = self.prototype.factory.rewards_map[self.production_tier];
+                    ARI.inventory.slot(ARI.held_item_index).pop();
+                    drop_item(
+                        arr[irandom(array_length(arr) - 1)],
+                        self.renderer.x,
+                        self.renderer.y
+                    );
+
+                    if self.prototype.object_id == ObjectId.Apiary && chance_percent(15) {
+                        drop_item(
+                            ItemId.Honeycomb,
+                            self.renderer.x,
+                            self.renderer.y
+                        );
+                    }
+
+                    TANGO.play("SoundEffects/Inventory/RewardDropAddition");
+'''
+replace = '''
+                    var arr = self.prototype.factory.rewards_map[self.production_tier];
+                    ARI.inventory.slot(ARI.held_item_index).pop();
+                    var __mmapi_factory_rolled = [arr[irandom(array_length(arr) - 1)]];
+                    if self.prototype.object_id == ObjectId.Apiary && chance_percent(15) {
+                        array_push(__mmapi_factory_rolled, ItemId.Honeycomb);
+                    }
+                    var __mmapi_factory_products = __mmapi_factory_rolled;
+                    try {
+                        __mmapi_factory_products = mmapi_apply_filters("factory.product_drops", __mmapi_factory_products, { node: self, production_request: self.production_request, production_tier: self.production_tier }); // mmapi_factory_run_product_drops_filters
+                    } catch (__mmapi_factory_product_drops) {}
+                    if (!is_array(__mmapi_factory_products)) {
+                        __mmapi_factory_products = __mmapi_factory_rolled;
+                    }
+                    for (var __mmapi_factory_i = 0; __mmapi_factory_i < array_length(__mmapi_factory_products); __mmapi_factory_i++) {
+                        drop_item(
+                            __mmapi_factory_products[__mmapi_factory_i],
+                            self.renderer.x,
+                            self.renderer.y
+                        );
+                    }
+
+                    TANGO.play("SoundEffects/Inventory/RewardDropAddition");
+'''
+marker  = "mmapi_factory_run_product_drops_filters"
+provides = ["factory.product_drops"]
+
+[[seam]]
 id      = "adoption_variant_unlocked"
 file    = "gml/scripts/UI/Anchor/Menus/AdoptionMenu.gml"
 anchor  = '''
@@ -3816,3 +4307,101 @@ replace = '''
 '''
 marker  = "mmapi_ui_relationship_row_built"
 provides = ["ui.relationship_row_built"]
+
+# EodMenu first collects the next day's vanilla event structs, then converts
+# each one to a notification row. The filter sits exactly between those two
+# phases. The fallback below is deliberately limited to the switch default:
+# every known CalendarEvent continues through its untouched vanilla case.
+[[seam]]
+id      = "ui_eod_calendar_events"
+file    = "gml/scripts/UI/Anchor/Menus/EodMenu.gml"
+anchor  = '''
+        self.set_calendar_time(CALENDAR.time);
+
+        self.build_notifications(target_date);
+'''
+replace = '''
+        self.set_calendar_time(CALENDAR.time);
+
+        var __mmapi_eod_events = self.events;
+        try {
+            __mmapi_eod_events = mmapi_apply_filters("ui.eod_calendar_events", __mmapi_eod_events, { menu: self, target_date: target_date }); // mmapi_ui_eod_calendar_events_filter
+        } catch (__mmapi_ui_eod_calendar_events) {}
+        var __mmapi_eod_events_ok = false;
+        try {
+            __mmapi_eod_events_ok = is_struct(__mmapi_eod_events) && is_numeric(__mmapi_eod_events.count());
+        } catch (__mmapi_ui_eod_calendar_events_count) {}
+        if (__mmapi_eod_events_ok) {
+            self.events = __mmapi_eod_events;
+        }
+        self.build_notifications(target_date);
+'''
+marker  = "mmapi_ui_eod_calendar_events_filter"
+provides = ["ui.eod_calendar_events"]
+
+[[seam]]
+id      = "ui_eod_notification_custom_entry"
+file    = "gml/scripts/UI/Anchor/Menus/EodMenu.gml"
+anchor  = '''
+                    break;
+            }
+
+
+            var text = ANCHOR.text(self.notification_root)
+'''
+replace = '''
+                    break;
+                default: // mmapi_ui_eod_notification_custom_entry
+                    icon = event[$ "icon"];
+                    key = event[$ "key"];
+                    npcs = event[$ "npcs"];
+                    break;
+            }
+
+
+            var text = ANCHOR.text(self.notification_root)
+'''
+marker  = "mmapi_ui_eod_notification_custom_entry"
+provides = ["ui.eod_calendar_events"]
+
+# The placement ghost has no node yet, so it does not pass through the normal
+# furniture renderer or object-node sprite hooks. These two edits expose the
+# exact main and floor sprites it will draw. Preview generation runs every
+# frame while an item is held; handlers must remain a cheap lookup.
+[[seam]]
+id      = "furniture_preview_sprite"
+file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
+context_before = '''
+    if seasonal_override != undefined {
+        spr = seasonal_override;
+    }
+'''
+context_after = '''
+    furniture_renderer.sprite_index = spr;
+'''
+op      = "filter"
+hook    = "furniture.preview_sprite"
+ctx     = '{ object_id: object_id, prototype: proto, cardinal_index: calc_rot, x: xx, y: yy, source: "main_sprite" }'
+var     = "spr"
+indent  = 4
+try_catch = true
+catch_var = "__mmapi_preview_sprite"
+marker  = "mmapi_furniture_preview_sprite"
+
+[[seam]]
+id      = "furniture_preview_floor_sprite"
+file    = "gml/scripts/GameplaySystems/Data/Grid/Furniture.gml"
+anchor  = '''
+    if proto.cardinal_data[calc_rot].floor_sprite != undefined {
+        furniture_renderer.bottom.animation = proto.cardinal_data[calc_rot].floor_sprite;
+    }
+'''
+replace = '''
+    if proto.cardinal_data[calc_rot].floor_sprite != undefined {
+        var __mmapi_preview_floor = proto.cardinal_data[calc_rot].floor_sprite; // mmapi_furniture_preview_floor_sprite
+        try { __mmapi_preview_floor = mmapi_apply_filters("furniture.preview_sprite", __mmapi_preview_floor, { object_id: object_id, prototype: proto, cardinal_index: calc_rot, x: xx, y: yy, source: "floor_sprite" }); } catch (__mmapi_preview_floor_filter) {}
+        furniture_renderer.bottom.animation = __mmapi_preview_floor;
+    }
+'''
+marker  = "mmapi_furniture_preview_floor_sprite"
+provides = ["furniture.preview_sprite"]

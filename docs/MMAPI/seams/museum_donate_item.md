@@ -9,7 +9,7 @@ Emits the moment an item is donated to the museum.
 | | |
 | --- | --- |
 | **File** | `gml/scripts/Museum.gml` |
-| **Locator** | structural target: `donate_item_to_museum`, at head |
+| **Locator** | structural target: after `register_item_to_museum(item_id)` in `donate_item_to_museum` |
 | **Op** | `emit` |
 | **Feeds** | [`museum.donate_item`](../hooks/museum.donate_item.md) |
 | **ctx built** | `{ item_id: item_id }` |
@@ -17,9 +17,11 @@ Emits the moment an item is donated to the museum.
 
 ## The Edit
 
-The generated emit lands at the head of `donate_item_to_museum()`. It calls `mmapi_emit("museum.donate_item", { item_id: item_id })` in the uniform try/catch shape. The head placement puts the emit before everything the donation does: `register_item_to_museum()` (the progress write and its `T2R` fact), the pending renown entry push, and the set-progress scan that decides the `DonationResult`.
+The generated emit lands immediately after `register_item_to_museum(item_id)`. It calls `mmapi_emit("museum.donate_item", { item_id: item_id })` in the uniform try/catch shape. The placement gives handlers the updated museum progress while keeping the pending renown entry push and the set-progress scan that decides the `DonationResult` engine-owned and still ahead.
 
 `donate_item_to_museum()` is the donation menu's single entry point, so the hook sees exactly the player's donations (plus those of the engine's test suite). The engine's two other progress writers, save load and the `ALL_UNLOCKS` new-game path, call `register_item_to_museum()` directly, below this seam's reach. That is what keeps load-time restoration from replaying as donations. With zero handlers the seam is behaviorally identical to pristine.
+
+For a pre-registration observation point, use the separate [museum.donation_attempted](../hooks/museum.donation_attempted.md) hook. It remains before this seam and is not an alias for `museum.donate_item`.
 
 ## See Also
 

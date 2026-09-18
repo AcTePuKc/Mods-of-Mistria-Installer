@@ -229,7 +229,7 @@ public class App : Application
 
             // This runs after the window exists and never blocks startup. A stable build only
             // considers stable GitHub releases, so a future RC cannot prompt ordinary users.
-            _ = CheckForUpdatesAsync(_updateCheckCancellation.Token);
+            _ = CheckForUpdatesAsync(_updateCheckCancellation.Token, manual: false);
         }
 
         PerformanceDiagnostics.Log($"Startup: framework initialization={stopwatch.ElapsedMilliseconds} ms");
@@ -245,47 +245,80 @@ public class App : Application
         _ = _mainViewModel.HandleNxmLinkAsync(link);
     }
 
-    private async Task CheckForUpdatesAsync(CancellationToken cancellationToken)
+    /// <summary>
+    /// Checks immediately, including a version the user previously dismissed. Dismissal only
+    /// suppresses the passive startup notice; it must never prevent a deliberate re-check.
+    /// </summary>
+    public Task<UpdateCheckResult> CheckForUpdatesNowAsync() =>
+        _updateCheckCancellation is null
+            ? Task.FromResult(UpdateCheckResult.Failed)
+            : CheckForUpdatesAsync(_updateCheckCancellation.Token, manual: true);
+
+    private async Task<UpdateCheckResult> CheckForUpdatesAsync(CancellationToken cancellationToken, bool manual)
     {
         try
         {
-            var currentVersion = Version.Parse(AppInfo.Version);
+            if (!AppInfo.TryParseReleaseVersion(AppInfo.Version, out var currentVersion))
+                return UpdateCheckResult.Failed;
+            var includePrereleases = _mainViewModel.Settings.IncludePrereleaseUpdates;
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "AIM");
             using var response = await client.GetAsync(AppInfo.ReleaseApiUrl, cancellationToken);
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync(cancellationToken);
             var releases = JArray.Parse(json);
-            Version? latestVersion = null;
+            UpdateRelease? latestRelease = null;
             foreach (var release in releases)
             {
-                if (release["draft"]?.Value<bool>() == true || release["prerelease"]?.Value<bool>() == true)
+                var isPrerelease = release["prerelease"]?.Value<bool>() == true;
+                if (release["draft"]?.Value<bool>() == true || (isPrerelease && !includePrereleases))
+                    continue;
+
+                // This repository retains the pre-fork MOMI release history. Only AIM-branded
+                // releases belong to AIM's update channel; otherwise MOMI 0.15.x appears newer
+                // than every AIM 0.2.x build.
+                if (!AppInfo.IsAimRelease(release["name"]?.ToString()))
                     continue;
 
                 var tagName = release["tag_name"]?.ToString();
-                if (!Version.TryParse(tagName?.TrimStart('v'), out var candidate))
+                if (!AppInfo.TryParseReleaseVersion(tagName, out var candidateVersion))
                     continue;
 
-                if (latestVersion is null || candidate > latestVersion)
-                    latestVersion = candidate;
+                var displayVersion = tagName!.TrimStart('v', 'V');
+                var releaseUrl = release["html_url"]?.ToString();
+                if (!Uri.TryCreate(releaseUrl, UriKind.Absolute, out _))
+                    releaseUrl = AppInfo.ReleaseUrlForTag(tagName);
+
+                var candidate = new UpdateRelease(candidateVersion, displayVersion, releaseUrl, isPrerelease);
+                if (latestRelease is null
+                    || candidate.Version > latestRelease.Version
+                    || (candidate.Version == latestRelease.Version && !candidate.IsPrerelease && latestRelease.IsPrerelease))
+                    latestRelease = candidate;
             }
 
-            if (latestVersion is null || latestVersion <= currentVersion || cancellationToken.IsCancellationRequested)
-                return;
+            if (latestRelease is null || latestRelease.Version <= currentVersion || cancellationToken.IsCancellationRequested)
+                return UpdateCheckResult.UpToDate;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 if (!cancellationToken.IsCancellationRequested)
-                    _mainViewModel.ShowUpdateAvailable(latestVersion.ToString(3));
+                    _mainViewModel.ShowUpdateAvailable(latestRelease.DisplayVersion, latestRelease.Url, ignoreDismissal: manual);
             });
+            return UpdateCheckResult.Available;
         }
         catch (OperationCanceledException)
         {
             // Expected when the main window closes during the request.
+            return UpdateCheckResult.Failed;
         }
         catch (Exception)
         {
             // Update checks are advisory and must never prevent startup.
+            return UpdateCheckResult.Failed;
         }
     }
+
+    public enum UpdateCheckResult { UpToDate, Available, Failed }
+
+    private sealed record UpdateRelease(Version Version, string DisplayVersion, string Url, bool IsPrerelease);
 }
