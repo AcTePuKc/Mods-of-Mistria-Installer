@@ -1,6 +1,20 @@
 # Changelog
 
-## 0.2.2-rc.1 - 2026-09-17
+## 0.2.2 - 2026-09-18
+
+### Fields of Mistria 1.0.5 support
+
+- AIM's complete seam catalog now stages against the pristine Fields of Mistria 1.0.5 archive:
+  all 154 seams, 17 engine fixes, and the localization call rewrite were checked before release.
+- The game now uses renderable objects for furniture floors, held-furniture floor previews, item
+  outlines, and monster status overlays. AIM preserves the relevant filter hooks on those new
+  renderer fields instead of relying on the removed sprite-instance fields.
+- The old custom monster `draw()` method no longer exists in 1.0.5. `monster.draw` now dispatches
+  from the monster's `draw_end` event, after the normal world draw, without taking over native
+  monster rendering.
+- A disposable full install, mandatory GML compile check, and uninstall were run against the
+  pristine 1.0.5 archive. The call-rewrite regression test now correctly permits localization
+  calls injected by an AIM seam while still requiring every native game call to be rewritten.
 
 ### AIM updates are now deliberate and useful
 
