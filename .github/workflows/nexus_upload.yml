@@ -126,10 +126,16 @@ jobs:
       - name: Test
         run: dotnet test
 
-      - name: Get Assembly Version
+      - name: Get release version
+        shell: bash
         run: |
-          VERSION=$(dotnet msbuild -nologo -verbosity:quiet -getProperty:AssemblyVersion ModsOfMistriaGUI)
-          echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+          set -euo pipefail
+          VERSION=$(sed -n 's:.*<Version>\([^<]*\)</Version>.*:\1:p' Directory.Build.props | head -n 1)
+          if [ -z "$VERSION" ]; then
+            echo "::error::Could not read the release version from Directory.Build.props."
+            exit 1
+          fi
+          echo "APP_VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Verify tag and built version agree
         shell: bash
