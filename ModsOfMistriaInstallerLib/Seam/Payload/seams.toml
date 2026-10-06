@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 140
-seams = 154
+hooks = 141
+seams = 156
 engine_fixes = 17
 call_rewrites = 1
 
@@ -494,6 +494,11 @@ doc  = "Fires at the top of Ari.modify_health(), before the delta is applied. Th
 name = "player.incoming_damage"
 kind = "filter"
 doc  = "Fires in the player's damage drain in obj_ari, after mitigation is applied. The filtered value is the final signed damage (health only changes while it is negative). ctx is { player, receiver, tarball }. Return the replacement damage or undefined to keep the current value. A combat.damage filter can set the ctx.tarball fields __mmapi_player_show_damage_popup and __mmapi_player_should_flinch to false to suppress the damage popup and flinch, and with both false and non-negative damage the hit is skipped entirely. mmapi_deal_damage()'s show_popup and flinch opts ride the same two fields."
+
+[[hook]]
+name = "player.jump_attack_landing"
+kind = "filter"
+doc  = "Fires inside the Jump Attack perk's landing test, once per tested bounding-box corner on each frame after a jump's peak while attack is buffered. The filtered value is whether that corner may land: vanilla permits only non-collideable, non-water nodes. ctx is { x, y, node, collideable, water }. Return a replacement boolean, or undefined to keep the vanilla value. Every tested corner must pass before the attack lands. A handler that permits water sends the completed DownSmash into Swim through the companion seam, rather than leaving the player walking on water."
 
 [[hook]]
 name = "player.mana_delta"
@@ -1751,6 +1756,55 @@ ctx     = "{ player: ARI, amount: live_item.prototype.max_health_modifier, live_
 indent  = 36
 catch_var = "__mmapi_player_max_health_delta"
 marker  = "mmapi_player_run_max_health_delta_callbacks"
+
+# The landing decision happens once per bounding-box corner. Keeping the
+# engine's out-of-grid early return intact means filters only see real nodes.
+[[seam]]
+id      = "player_jump_attack_landing"
+file    = "gml/scripts/Player/AriFsm.gml"
+anchor  = '''
+                return owner.check_bbox_at_point(xx, yy, function(xx, yy) {
+                    var ni = GRID.node_index_for_room_position(xx, yy);
+                    if ni == undefined {
+                        return false;
+                    }
+
+                    return GRID.node_collideable[ni] == false && GRID.node_terrain_kind[ni] != TerrainKind.Water;
+                });'''
+replace = '''
+                return owner.check_bbox_at_point(xx, yy, function(xx, yy) {
+                    var ni = GRID.node_index_for_room_position(xx, yy);
+                    if ni == undefined {
+                        return false;
+                    }
+
+                    var __mmapi_landing_ok = GRID.node_collideable[ni] == false && GRID.node_terrain_kind[ni] != TerrainKind.Water;
+                    try { __mmapi_landing_ok = mmapi_apply_filters("player.jump_attack_landing", __mmapi_landing_ok, { x: xx, y: yy, node: ni, collideable: GRID.node_collideable[ni], water: GRID.node_terrain_kind[ni] == TerrainKind.Water }); } catch (__mmapi_jump_attack_landing_error) {} // mmapi_player_run_jump_attack_landing_filters
+                    return __mmapi_landing_ok;
+                });'''
+marker   = "mmapi_player_run_jump_attack_landing_filters"
+provides = ["player.jump_attack_landing"]
+
+# Vanilla cannot reach DownSmash over water. Once the landing filter allows it,
+# preserve the Jump state's water behaviour by exiting to Swim rather than
+# Default, which would let the player stand on water until the next transition.
+[[seam]]
+id      = "player_jump_attack_water_exit"
+file    = "gml/scripts/Player/AriFsm.gml"
+anchor  = '''
+            self.owner.set_animation(AnimationName.DownAttack);
+            self.owner.par.tool_effect = owner.current_tool_effect(false);
+            self.owner.on_animation_complete = PlayerState.Default;'''
+replace = '''
+            self.owner.set_animation(AnimationName.DownAttack);
+            self.owner.par.tool_effect = owner.current_tool_effect(false);
+            self.owner.on_animation_complete = PlayerState.Default;
+            var __mmapi_landing_node = GRID.try_node_index_for_room_position(self.owner.x, self.owner.y); // mmapi_player_jump_attack_water_exit
+            if (__mmapi_landing_node != undefined && GRID.node_terrain_kind[__mmapi_landing_node] == TerrainKind.Water) {
+                self.owner.on_animation_complete = PlayerState.Swim;
+            }'''
+marker   = "mmapi_player_jump_attack_water_exit"
+provides = ["player.jump_attack_landing"]
 
 [[seam]]
 id      = "items_dropped"

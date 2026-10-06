@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **140 hooks**, fed by **154 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **141 hooks**, fed by **156 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -64,6 +64,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [player.health_delta](hooks/player.health_delta.md) | filter | Change every player health gain or loss before it applies. |
 | [player.stamina_delta](hooks/player.stamina_delta.md) | filter | Change every stamina cost or gain before it applies. |
 | [player.incoming_damage](hooks/player.incoming_damage.md) | filter | Change the final damage a hit deals the player. |
+| [player.jump_attack_landing](hooks/player.jump_attack_landing.md) | filter | Change where a Jump Attack may land. |
 | [player.move_speed](hooks/player.move_speed.md) | filter | Change the player's move speed after every engine modifier. |
 | [player.mount_speed](hooks/player.mount_speed.md) | filter | Change the mounted base speed before the shared status multipliers. |
 | [player.swim_speed](hooks/player.swim_speed.md) | filter | Change the player's swim speed after every engine modifier. |
@@ -232,6 +233,8 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [player_gold_delta](seams/player_gold_delta.md) | Filters the signed gold delta at the top of `Ari.modify_gold()`. |
 | [player_mana_delta](seams/player_mana_delta.md) | Filters the signed mana delta at the top of `Ari.modify_mana()`. |
 | [player_mana_item_delta](seams/player_mana_item_delta.md) | Reroutes the mana potion's direct `set_mana` call through `modify_mana`, so item restores fire the mana filter. |
+| [player_jump_attack_landing](seams/player_jump_attack_landing.md) | Filters the Jump Attack landing decision for each valid bounding-box corner. |
+| [player_jump_attack_water_exit](seams/player_jump_attack_water_exit.md) | Makes an explicitly permitted water landing enter `Swim` after DownSmash. |
 | [player_xp_delta](seams/player_xp_delta.md) | Filters the XP delta at the head of `gain_xp()`, floors the total at zero, narrows the level celebration to genuine gains, and emits the skill level-up. |
 | [player_renown_delta](seams/player_renown_delta.md) | Filters the renown delta at the top of `Ari.modify_renown()`, once per pending entry at day rollover. |
 | [player_incoming_damage](seams/player_incoming_damage.md) | Rewrites the player's damage drain so mods filter the final damage and its popup and flinch side effects. |

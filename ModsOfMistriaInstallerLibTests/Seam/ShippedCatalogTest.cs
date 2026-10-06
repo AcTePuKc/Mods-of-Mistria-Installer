@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(141));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(156));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -114,6 +114,31 @@ public class ShippedCatalogTest
         Assert.That(seam.Hooks, Is.EqualTo(new[] { "fishing.fish_selected" }));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_fishing_run_fish_selected_callbacks"));
         Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+    }
+
+    [Test]
+    public void ShouldFilterJumpAttackLandingsAndSwimAfterAnAllowedWaterLanding()
+    {
+        var hook = _catalog.Hook("player.jump_attack_landing");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("bounding-box corner"));
+        Assert.That(hook.Doc, Does.Contain("Swim"));
+
+        var landing = _catalog.Seams.Single(s => s.Id == "player_jump_attack_landing");
+        Assert.That(landing.File, Is.EqualTo("assets/gml/scripts/Player/AriFsm.gml"));
+        Assert.That(landing.Hooks, Is.EqualTo(new[] { "player.jump_attack_landing" }));
+        Assert.That(landing.Replace, Does.Contain("GRID.node_index_for_room_position"));
+        Assert.That(landing.Replace, Does.Contain("mmapi_apply_filters(\"player.jump_attack_landing\""));
+        Assert.That(landing.Replace, Does.Contain("water: GRID.node_terrain_kind[ni] == TerrainKind.Water"));
+        Assert.That(landing.Marker, Is.EqualTo("mmapi_player_run_jump_attack_landing_filters"));
+
+        var waterExit = _catalog.Seams.Single(s => s.Id == "player_jump_attack_water_exit");
+        Assert.That(waterExit.File, Is.EqualTo(landing.File));
+        Assert.That(waterExit.Hooks, Is.EqualTo(new[] { "player.jump_attack_landing" }));
+        Assert.That(waterExit.Replace, Does.Contain("GRID.try_node_index_for_room_position"));
+        Assert.That(waterExit.Replace, Does.Contain("PlayerState.Swim"));
+        Assert.That(waterExit.Marker, Is.EqualTo("mmapi_player_jump_attack_water_exit"));
     }
 
     [Test]
@@ -318,8 +343,8 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldEmitDialogueFinishedAfterNativeEndActionsAndStateTransition()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(141));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(156));
 
         var hook = _catalog.Hook("dialogue.finished");
         Assert.That(hook, Is.Not.Null);
@@ -340,8 +365,8 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldFilterTheStoreBasketCostBeforeUiAndPaymentUseIt()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(141));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(156));
 
         var hook = _catalog.Hook("store.basket_cost");
         Assert.That(hook, Is.Not.Null);
