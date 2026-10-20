@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 141
-seams = 156
+hooks = 142
+seams = 157
 engine_fixes = 17
 call_rewrites = 1
 
@@ -677,6 +677,11 @@ doc  = "Fires when a menu leaves ANCHOR.open_menus: in the per-frame free-reques
 name = "ui.menu_opened"
 kind = "event"
 doc  = "Fires right after ANCHOR spawns a menu and pushes it onto open_menus. ctx is { menu, kind }, with kind being the menu id passed to spawn."
+
+[[hook]]
+name = "ui.tooltip_opened"
+kind = "event"
+doc  = "Fires once after create_tooltip() has built and spawned an item tooltip. ctx is { tooltip, item, source_node }. Handlers may update the constructed tooltip's text nodes; return values are ignored."
 
 [[hook]]
 name = "store.item_added"
@@ -3601,6 +3606,20 @@ hook    = "ui.menu_opened"
 ctx     = "{ menu: menu, kind: menu_id }"
 indent  = 8
 marker  = "mmapi_ui_run_menu_opened"
+
+[[seam]]
+id      = "ui_tooltip_opened"
+file    = "gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"
+context_before = '''
+    popup.spawn();
+'''
+context_after = '''
+    return popup;'''
+op      = "emit"
+hook    = "ui.tooltip_opened"
+ctx     = "{ tooltip: popup, item: item, source_node: source_node }"
+indent  = 4
+marker  = "mmapi_ui_run_tooltip_opened"
 
 [[seam]]
 id      = "store_item_added"

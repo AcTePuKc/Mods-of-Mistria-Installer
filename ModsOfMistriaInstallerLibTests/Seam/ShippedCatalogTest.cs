@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(141));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(156));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(142));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(157));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -341,10 +341,27 @@ public class ShippedCatalogTest
     }
 
     [Test]
+    public void ShouldEmitTheConstructedItemTooltipAfterItIsSpawned()
+    {
+        var hook = _catalog.Hook("ui.tooltip_opened");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Doc, Does.Contain("built and spawned"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "ui_tooltip_opened");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "ui.tooltip_opened" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.Anchor, Is.EqualTo("    popup.spawn();\n    return popup;"));
+        Assert.That(seam.Replace, Does.Contain("mmapi_emit(\"ui.tooltip_opened\", { tooltip: popup, item: item, source_node: source_node })"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_ui_run_tooltip_opened"));
+    }
+
+    [Test]
     public void ShouldEmitDialogueFinishedAfterNativeEndActionsAndStateTransition()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(141));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(156));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(142));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(157));
 
         var hook = _catalog.Hook("dialogue.finished");
         Assert.That(hook, Is.Not.Null);
@@ -365,8 +382,8 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldFilterTheStoreBasketCostBeforeUiAndPaymentUseIt()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(141));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(156));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(142));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(157));
 
         var hook = _catalog.Hook("store.basket_cost");
         Assert.That(hook, Is.Not.Null);

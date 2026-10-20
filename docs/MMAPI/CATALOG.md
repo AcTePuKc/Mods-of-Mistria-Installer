@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **141 hooks**, fed by **156 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **142 hooks**, fed by **157 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -147,6 +147,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | Name | Kind | Description |
 | ---- | ---- | ----------- |
 | [ui.menu_opened](hooks/ui.menu_opened.md) | event | Know the moment a menu opens. |
+| [ui.tooltip_opened](hooks/ui.tooltip_opened.md) | event | React once after an item tooltip is fully constructed. |
 | [font.styles_loaded](hooks/font.styles_loaded.md) | filter | Customize the resolved text-style mapping after the engine loads font assets. |
 | [ui.menu_closed](hooks/ui.menu_closed.md) | event | Know when a menu closes. |
 | [ui.menu_refreshed](hooks/ui.menu_refreshed.md) | event | React when a menu rebuilds its content. |
@@ -321,6 +322,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | Name | Description |
 | ---- | ----------- |
 | [ui_menu_opened](seams/ui_menu_opened.md) | Emits the moment the anchor spawns a menu onto `open_menus`. |
+| [ui_tooltip_opened](seams/ui_tooltip_opened.md) | Emits once after an item tooltip is built and spawned. |
 | [ui_menu_closed_drain](seams/ui_menu_closed_drain.md) | Emits when the per-frame drain removes a free-requested menu. |
 | [ui_menu_closed_shutdown](seams/ui_menu_closed_shutdown.md) | Emits per menu as the anchor shuts down and closes everything. |
 | [ui_toolbar_refreshed](seams/ui_toolbar_refreshed.md) | Emits at the tail of `ToolbarMenu.update()`, after the slots re-resolve from the inventory. |
