@@ -1,15 +1,4 @@
-- Added verified Fields of Mistria 1.0.5 support: all AIM seams, engine fixes, and the localization rewrite stage against the pristine 1.0.5 archive, and a full disposable install, compile check, and uninstall passed.
-- Updated renderer-aware MMAPI wiring for furniture floors and previews, item outlines, and monster visual callbacks after the game's 1.0.5 rendering changes.
-- Completed every shipped AIM translation, including Nexus, update, watched-folder, crash, conflict, and settings flows.
-- Redesigned the mod-list toolbar to use wide windows efficiently while still wrapping cleanly on compact screens.
-- Added system Light/Dark following, four optional Mistria-inspired colour palettes, and remembered A-/A+ text-size controls.
-- Made dialogs consistently wrap long paths and translated text instead of growing past the screen.
-- Made NXM ownership reporting honest: AIM explains when Windows still has another default and can open Default Apps on Windows.
-- Restores the previous mod automatically when an update or multi-mod Nexus download fails partway through.
-- Watch any download folder: AIM moves recognised mod archives or folders into the selected Mods folder, skips unrelated files, and imports safely so a half-copied mod is never installed.
-- Prevents duplicate installs of the same mod by manifest identity rather than only its folder name.
-- Keeps dismissed issues dismissed across ordinary mod updates, and makes Nexus update matching more reliable.
-- Improved update questions, warning badges, load-order suggestions, conflict reports, keybind management, and config editing.
-- Expanded crash diagnosis and its guided fixes, including clearer results for large mod lists.
-- Added mod-author tooling: edit TOML or JSON manifests and mod config files from AIM, plus CLI lint, dry-run, doctor, seam validation, JSON/TOML reports, and the opt-in MMAPI debug agent.
-- Refreshed Fields of Mistria 1.0.x/MMAPI compatibility data and release validation across old-GML, MMAPI/GML, content mods, and NXM workflows.
+Fixed archive-install progress messages falling back to English instead of following AIM's selected language, including non-Latin languages.
+Fixed leftover settings from an uninstalled mod being reported as an active keybind conflict, following a report from Nexus user peachpetite.
+Added a modder hook for deciding whether the Jump Attack perk may land on a valid tile, including safe water-transition handling.
+Added a modder event after an item tooltip has been built and opened.

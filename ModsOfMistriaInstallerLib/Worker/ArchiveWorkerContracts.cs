@@ -10,7 +10,8 @@ public sealed record ArchiveWorkerRequest(
     string ResponsePath,
     string GateMode = "auto",
     bool StrictLints = false,
-    bool FailOnSkip = false);
+    bool FailOnSkip = false,
+    string UiCulture = "");
 
 public sealed record ArchiveWorkerResponse(
     bool Success,
