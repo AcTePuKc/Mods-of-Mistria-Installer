@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 140
-seams = 154
+hooks = 142
+seams = 157
 engine_fixes = 17
 call_rewrites = 1
 
@@ -496,6 +496,11 @@ kind = "filter"
 doc  = "Fires in the player's damage drain in obj_ari, after mitigation is applied. The filtered value is the final signed damage (health only changes while it is negative). ctx is { player, receiver, tarball }. Return the replacement damage or undefined to keep the current value. A combat.damage filter can set the ctx.tarball fields __mmapi_player_show_damage_popup and __mmapi_player_should_flinch to false to suppress the damage popup and flinch, and with both false and non-negative damage the hit is skipped entirely. mmapi_deal_damage()'s show_popup and flinch opts ride the same two fields."
 
 [[hook]]
+name = "player.jump_attack_landing"
+kind = "filter"
+doc  = "Fires inside the Jump Attack perk's landing test, once per tested bounding-box corner on each frame after a jump's peak while attack is buffered. The filtered value is whether that corner may land: vanilla permits only non-collideable, non-water nodes. ctx is { x, y, node, collideable, water }. Return a replacement boolean, or undefined to keep the vanilla value. Every tested corner must pass before the attack lands. A handler that permits water sends the completed DownSmash into Swim through the companion seam, rather than leaving the player walking on water."
+
+[[hook]]
 name = "player.mana_delta"
 kind = "filter"
 doc  = "Fires at the top of Ari.modify_mana(), before the delta is applied. The filtered value is the signed mana delta: cast deductions negative, restores positive. ctx is { player }. Return the replacement delta (0 makes the call a no-op), or undefined to keep the current value. set_mana clamps the result to [0, mana_max], so any replacement is safe. A companion seam reroutes the mana potion's direct set_mana call through modify_mana, so item restores fire this hook too; cutscene absolute sets and save load do not. Composes with spells.cost: a cast's deduction arrives here as the negative of the already-filtered cost, so prefer spells.cost for spell pricing and this hook for everything else."
@@ -672,6 +677,11 @@ doc  = "Fires when a menu leaves ANCHOR.open_menus: in the per-frame free-reques
 name = "ui.menu_opened"
 kind = "event"
 doc  = "Fires right after ANCHOR spawns a menu and pushes it onto open_menus. ctx is { menu, kind }, with kind being the menu id passed to spawn."
+
+[[hook]]
+name = "ui.tooltip_opened"
+kind = "event"
+doc  = "Fires once after create_tooltip() has built and spawned an item tooltip. ctx is { tooltip, item, source_node }. Handlers may update the constructed tooltip's text nodes; return values are ignored."
 
 [[hook]]
 name = "store.item_added"
@@ -1751,6 +1761,55 @@ ctx     = "{ player: ARI, amount: live_item.prototype.max_health_modifier, live_
 indent  = 36
 catch_var = "__mmapi_player_max_health_delta"
 marker  = "mmapi_player_run_max_health_delta_callbacks"
+
+# The landing decision happens once per bounding-box corner. Keeping the
+# engine's out-of-grid early return intact means filters only see real nodes.
+[[seam]]
+id      = "player_jump_attack_landing"
+file    = "gml/scripts/Player/AriFsm.gml"
+anchor  = '''
+                return owner.check_bbox_at_point(xx, yy, function(xx, yy) {
+                    var ni = GRID.node_index_for_room_position(xx, yy);
+                    if ni == undefined {
+                        return false;
+                    }
+
+                    return GRID.node_collideable[ni] == false && GRID.node_terrain_kind[ni] != TerrainKind.Water;
+                });'''
+replace = '''
+                return owner.check_bbox_at_point(xx, yy, function(xx, yy) {
+                    var ni = GRID.node_index_for_room_position(xx, yy);
+                    if ni == undefined {
+                        return false;
+                    }
+
+                    var __mmapi_landing_ok = GRID.node_collideable[ni] == false && GRID.node_terrain_kind[ni] != TerrainKind.Water;
+                    try { __mmapi_landing_ok = mmapi_apply_filters("player.jump_attack_landing", __mmapi_landing_ok, { x: xx, y: yy, node: ni, collideable: GRID.node_collideable[ni], water: GRID.node_terrain_kind[ni] == TerrainKind.Water }); } catch (__mmapi_jump_attack_landing_error) {} // mmapi_player_run_jump_attack_landing_filters
+                    return __mmapi_landing_ok;
+                });'''
+marker   = "mmapi_player_run_jump_attack_landing_filters"
+provides = ["player.jump_attack_landing"]
+
+# Vanilla cannot reach DownSmash over water. Once the landing filter allows it,
+# preserve the Jump state's water behaviour by exiting to Swim rather than
+# Default, which would let the player stand on water until the next transition.
+[[seam]]
+id      = "player_jump_attack_water_exit"
+file    = "gml/scripts/Player/AriFsm.gml"
+anchor  = '''
+            self.owner.set_animation(AnimationName.DownAttack);
+            self.owner.par.tool_effect = owner.current_tool_effect(false);
+            self.owner.on_animation_complete = PlayerState.Default;'''
+replace = '''
+            self.owner.set_animation(AnimationName.DownAttack);
+            self.owner.par.tool_effect = owner.current_tool_effect(false);
+            self.owner.on_animation_complete = PlayerState.Default;
+            var __mmapi_landing_node = GRID.try_node_index_for_room_position(self.owner.x, self.owner.y); // mmapi_player_jump_attack_water_exit
+            if (__mmapi_landing_node != undefined && GRID.node_terrain_kind[__mmapi_landing_node] == TerrainKind.Water) {
+                self.owner.on_animation_complete = PlayerState.Swim;
+            }'''
+marker   = "mmapi_player_jump_attack_water_exit"
+provides = ["player.jump_attack_landing"]
 
 [[seam]]
 id      = "items_dropped"
@@ -3547,6 +3606,20 @@ hook    = "ui.menu_opened"
 ctx     = "{ menu: menu, kind: menu_id }"
 indent  = 8
 marker  = "mmapi_ui_run_menu_opened"
+
+[[seam]]
+id      = "ui_tooltip_opened"
+file    = "gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"
+context_before = '''
+    popup.spawn();
+'''
+context_after = '''
+    return popup;'''
+op      = "emit"
+hook    = "ui.tooltip_opened"
+ctx     = "{ tooltip: popup, item: item, source_node: source_node }"
+indent  = 4
+marker  = "mmapi_ui_run_tooltip_opened"
 
 [[seam]]
 id      = "store_item_added"

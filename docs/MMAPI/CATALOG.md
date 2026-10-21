@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **140 hooks**, fed by **154 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **142 hooks**, fed by **157 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -64,6 +64,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [player.health_delta](hooks/player.health_delta.md) | filter | Change every player health gain or loss before it applies. |
 | [player.stamina_delta](hooks/player.stamina_delta.md) | filter | Change every stamina cost or gain before it applies. |
 | [player.incoming_damage](hooks/player.incoming_damage.md) | filter | Change the final damage a hit deals the player. |
+| [player.jump_attack_landing](hooks/player.jump_attack_landing.md) | filter | Change where a Jump Attack may land. |
 | [player.move_speed](hooks/player.move_speed.md) | filter | Change the player's move speed after every engine modifier. |
 | [player.mount_speed](hooks/player.mount_speed.md) | filter | Change the mounted base speed before the shared status multipliers. |
 | [player.swim_speed](hooks/player.swim_speed.md) | filter | Change the player's swim speed after every engine modifier. |
@@ -146,6 +147,7 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | Name | Kind | Description |
 | ---- | ---- | ----------- |
 | [ui.menu_opened](hooks/ui.menu_opened.md) | event | Know the moment a menu opens. |
+| [ui.tooltip_opened](hooks/ui.tooltip_opened.md) | event | React once after an item tooltip is fully constructed. |
 | [font.styles_loaded](hooks/font.styles_loaded.md) | filter | Customize the resolved text-style mapping after the engine loads font assets. |
 | [ui.menu_closed](hooks/ui.menu_closed.md) | event | Know when a menu closes. |
 | [ui.menu_refreshed](hooks/ui.menu_refreshed.md) | event | React when a menu rebuilds its content. |
@@ -232,6 +234,8 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | [player_gold_delta](seams/player_gold_delta.md) | Filters the signed gold delta at the top of `Ari.modify_gold()`. |
 | [player_mana_delta](seams/player_mana_delta.md) | Filters the signed mana delta at the top of `Ari.modify_mana()`. |
 | [player_mana_item_delta](seams/player_mana_item_delta.md) | Reroutes the mana potion's direct `set_mana` call through `modify_mana`, so item restores fire the mana filter. |
+| [player_jump_attack_landing](seams/player_jump_attack_landing.md) | Filters the Jump Attack landing decision for each valid bounding-box corner. |
+| [player_jump_attack_water_exit](seams/player_jump_attack_water_exit.md) | Makes an explicitly permitted water landing enter `Swim` after DownSmash. |
 | [player_xp_delta](seams/player_xp_delta.md) | Filters the XP delta at the head of `gain_xp()`, floors the total at zero, narrows the level celebration to genuine gains, and emits the skill level-up. |
 | [player_renown_delta](seams/player_renown_delta.md) | Filters the renown delta at the top of `Ari.modify_renown()`, once per pending entry at day rollover. |
 | [player_incoming_damage](seams/player_incoming_damage.md) | Rewrites the player's damage drain so mods filter the final damage and its popup and flinch side effects. |
@@ -318,6 +322,7 @@ The anchored engine edits that make the hooks fire. Mod authors never write seam
 | Name | Description |
 | ---- | ----------- |
 | [ui_menu_opened](seams/ui_menu_opened.md) | Emits the moment the anchor spawns a menu onto `open_menus`. |
+| [ui_tooltip_opened](seams/ui_tooltip_opened.md) | Emits once after an item tooltip is built and spawned. |
 | [ui_menu_closed_drain](seams/ui_menu_closed_drain.md) | Emits when the per-frame drain removes a free-requested menu. |
 | [ui_menu_closed_shutdown](seams/ui_menu_closed_shutdown.md) | Emits per menu as the anchor shuts down and closes everything. |
 | [ui_toolbar_refreshed](seams/ui_toolbar_refreshed.md) | Emits at the tail of `ToolbarMenu.update()`, after the slots re-resolve from the inventory. |

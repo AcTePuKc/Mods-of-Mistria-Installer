@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.3-rc.1 - 2026-10-21
+
+### Test release fixes and modder hooks
+
+- Archive install, uninstall, and recovery progress now follows AIM's selected language, including
+  non-Latin languages sent from the archive worker process.
+- Removed phantom keybind conflicts from settings left behind by an uninstalled mod. Thanks to
+  Nexus user peachpetite for reporting this case.
+- Added `player.jump_attack_landing`, allowing a mod to decide whether the Jump Attack perk may
+  land on each valid tile while preserving the game's normal water transition.
+- Added `ui.tooltip_opened`, an event after an item tooltip has been built and spawned.
+
 ## 0.2.2 - 2026-09-18
 
 ### Fields of Mistria 1.0.5 support

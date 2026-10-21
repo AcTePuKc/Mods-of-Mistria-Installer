@@ -1,4 +1,4 @@
-# AIM — Alternative Installer for Mistria 0.2.2
+# AIM — Alternative Installer for Mistria 0.2.3-rc.1
 
 This is an independently maintained alternative installer for **Fields of Mistria 1.0.x**, based on the open-source **Mods of Mistria Installer (MOMI)** project.
 
