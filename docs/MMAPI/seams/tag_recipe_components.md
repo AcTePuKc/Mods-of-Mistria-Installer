@@ -1,6 +1,6 @@
 # Engine Fixes: Tag Recipe Components
 
-Tag recipe components let a recipe require a quantity of **any item carrying a tag**. They are data support, not a hook: nothing dispatches. The eight coordinated engine fixes keep the parser, UI, tooltip, availability, craft ceiling, and payment on one contract.
+Tag recipe components let a recipe require a quantity of **any item carrying a tag**. They are data support, not a hook: nothing dispatches. The nine coordinated engine fixes keep the parser, UI, tooltip, availability, craft ceiling, payment, learned-recipe popup, and return perks on one contract.
 
 ## Data Contract
 
@@ -32,5 +32,6 @@ This also makes the normal storage icon truthful: it appears precisely when the 
 - `recipe_tag_component_presentation` and `recipe_tag_component_factory` parse and retain presentation data.
 - `crafting_tag_chest_availability` and `crafting_tag_symmetric_payment` make counting and payment symmetric.
 - `crafting_tag_display_item`, `crafting_tag_display_tooltip`, `crafting_tag_display_quantity`, and `recipe_tag_scroll_preview` make every visible recipe surface use the declared presentation.
+- `recipe_tag_perk_return` leaves a successful ingredient-return perk with nothing to return when a recipe has no ordinary Item component, rather than building an invalid item from an empty list.
 
 See [Recipes](../RECIPES.md#tag-crafting-components), [crafting.component_count](../hooks/crafting.component_count.md), and [recipe_component_schema_validation](recipe_component_schema_validation.md).
