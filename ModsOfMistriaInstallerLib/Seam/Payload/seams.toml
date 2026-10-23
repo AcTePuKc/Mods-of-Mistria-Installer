@@ -41,7 +41,7 @@ version = 2
 [counts]
 hooks = 142
 seams = 157
-engine_fixes = 17
+engine_fixes = 18
 call_rewrites = 1
 
 # --- hook declarations -------------------------------------------------------------
@@ -3340,6 +3340,26 @@ replace = '''
                 } // mmapi_recipe_tag_scroll_preview
 '''
 marker  = "mmapi_recipe_tag_scroll_preview"
+
+# Ingredient-return perks build a list from only ordinary Item components. A
+# tag-only recipe therefore has no native return candidate; constructing a
+# LiveItem from choose_random() on that empty list crashes. The chance and perk
+# counters retain their vanilla path, but no fictitious representative item is
+# returned for a category cost.
+[[engine_fix]]
+name    = "recipe_tag_perk_return"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+                items_to_yield.push(new LiveItem(temp_list.choose_random()));
+                GAME_STATS.perks[$ perk_to_string(triggered_perk)] += 1;
+'''
+replace = '''
+                if !temp_list.is_empty() { // mmapi_recipe_tag_perk_return
+                    items_to_yield.push(new LiveItem(temp_list.choose_random()));
+                }
+                GAME_STATS.perks[$ perk_to_string(triggered_perk)] += 1;
+'''
+marker  = "mmapi_recipe_tag_perk_return"
 
 # The remaining entries are appended after the earlier ones on purpose. Catalog
 # order is apply order, and two of them stack onto files already seamed above
