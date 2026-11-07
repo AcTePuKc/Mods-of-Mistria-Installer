@@ -201,7 +201,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(18));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(19));
 
         var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
         Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
@@ -230,7 +230,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldSupportHonestTagRecipePresentationAndSymmetricFulfilment()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(18));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(19));
 
         var presentation = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_component_presentation");
         Assert.That(presentation.Replace, Does.Contain("requires display_item"));
@@ -257,6 +257,19 @@ public class ShippedCatalogTest
         var perkReturn = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_perk_return");
         Assert.That(perkReturn.Replace, Does.Contain("if !temp_list.is_empty()"));
         Assert.That(perkReturn.Replace, Does.Contain("GAME_STATS.perks"));
+    }
+
+    [Test]
+    public void ShouldShowTheAimBuildThatInstalledTheArchiveOnTheTitleScreen()
+    {
+        var fix = _catalog.EngineFixes.Single(f => f.Id == "title_aim_version");
+
+        Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/TitleMenu.gml"));
+        Assert.That(fix.Anchor, Does.Contain("self.sha_text.set_text(display)"));
+        Assert.That(fix.Replace, Does.Contain("global[$ \"__aim_installer_version\"]"));
+        Assert.That(fix.Replace, Does.Contain(".set_text(\"AIM \" + aim_version)"));
+        Assert.That(fix.Replace, Does.Contain("DEBUG_ASSERTIONS ? 3 : (DEBUG_TOOLS ? 2 : 1)"));
+        Assert.That(fix.Marker, Is.EqualTo("mmapi_title_aim_version"));
     }
 
     [Test]

@@ -13,6 +13,9 @@ public class GmlLayerOptions
     public bool StrictLints { get; init; }
 
     public bool FailOnSkip { get; init; }
+
+    /// <summary>The AIM release to stamp into the archive, or the running build's release.</summary>
+    public string? InstallerVersion { get; init; }
 }
 
 // Stages the whole GML layer in memory: the mmapi framework, each behavioural
@@ -69,6 +72,14 @@ public static class GmlLayer
         var stage = SeamStager.StageAll(catalog, pristine);
         plan.Seamed = stage.Files;
         plan.Added[SeamStager.HookCatalogRel] = Encoding.UTF8.GetBytes(stage.HookCatalogGml);
+
+        // The title stamp names the AIM build that produced this archive. It
+        // is intentionally an added file: archives built by older AIM releases
+        // simply have no value for the title seam to display.
+        var installerVersion = options.InstallerVersion ?? Utils.InstallerBuildVersion.Current();
+        if (installerVersion is not null)
+            plan.Added[SeamStager.InstallStampRel] = Encoding.UTF8.GetBytes(
+                InstallStampRenderer.Render(installerVersion));
 
         // 4. The skip pass over the future tree
         var symbols = live.ToDictionary(m => m.Id, GmlModLint.ScanSymbols);
