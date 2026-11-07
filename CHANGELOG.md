@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.4 - 2026-11-07
+
+### Security maintenance
+
+- Updated SixLabors.ImageSharp to 4.1.3, resolving published image-processing vulnerabilities in
+  a dependency AIM uses when handling mod images.
+- Explicitly updated System.Security.Cryptography.Pkcs to 10.0.14, resolving its current published
+  advisory in AIM's resolved dependency graph.
+
 ## 0.2.3 - 2026-11-07
 
 ### Reliable current-mod installs
