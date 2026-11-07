@@ -1,4 +1,7 @@
 Fixed archive-install progress messages falling back to English instead of following AIM's selected language, including non-Latin languages.
 Fixed leftover settings from an uninstalled mod being reported as an active keybind conflict, following a report from Nexus user peachpetite.
-Added a modder hook for deciding whether the Jump Attack perk may land on a valid tile, including safe water-transition handling.
-Added a modder event after an item tooltip has been built and opened.
+Fixed mod-provided MIST cutscenes missing their required game resource metadata during installation.
+Added a title-screen AIM version stamp to identify which installer rebuilt the current archive.
+Added new modder hooks for jump-attack landing, item tooltips, instance creation, completed store purchases, and completed dialogue compatibility.
+Improved tag-only recipe handling while preserving normal perk-return behavior.
+Updated current game support for Fields of Mistria 1.0.8.
