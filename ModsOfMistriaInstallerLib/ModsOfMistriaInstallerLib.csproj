@@ -14,7 +14,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Esprima" Version="3.0.5" />
+      <PackageReference Include="Esprima" Version="3.0.6" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
       <PackageReference Include="Newtonsoft.Json.Schema" Version="4.0.1" />
       <PackageReference Include="PeNet" Version="5.1.0" />
