@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **142 hooks**, fed by **157 seams**, **17 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **142 hooks**, fed by **157 seams**, **18 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -380,6 +380,7 @@ Hook-less edits the catalog also carries:
 | [crafting_tag_display_tooltip](seams/tag_recipe_components.md) | engine fix | Replaces representative-item tooltip text with the tag's own localized label and explanation. |
 | [crafting_tag_display_quantity](seams/tag_recipe_components.md) | engine fix | Shows tag availability and required quantity in the normal crafting-grid count UI. |
 | [recipe_tag_scroll_preview](seams/tag_recipe_components.md) | engine fix | Includes tag components in recipe-scroll previews using their declared representative icon. |
+| [recipe_tag_perk_return](seams/tag_recipe_components.md) | engine fix | Avoids creating an item from an empty Item-only return list for a tag-only recipe. |
 | [local_get_dispatch](seams/local_get_dispatch.md) | call rewrite | Reroutes every direct GML `local_get()` call through the framework's localisation waist, feeding [local.get](hooks/local.get.md) and [local.missing](hooks/local.missing.md). |
 
 ## Growing The Catalog

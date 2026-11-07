@@ -201,7 +201,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(18));
 
         var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
         Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
@@ -230,7 +230,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldSupportHonestTagRecipePresentationAndSymmetricFulfilment()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(18));
 
         var presentation = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_component_presentation");
         Assert.That(presentation.Replace, Does.Contain("requires display_item"));
@@ -253,6 +253,10 @@ public class ShippedCatalogTest
 
         var scroll = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_scroll_preview");
         Assert.That(scroll.Replace, Does.Contain("comp.display_item_id"));
+
+        var perkReturn = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_perk_return");
+        Assert.That(perkReturn.Replace, Does.Contain("if !temp_list.is_empty()"));
+        Assert.That(perkReturn.Replace, Does.Contain("GAME_STATS.perks"));
     }
 
     [Test]
