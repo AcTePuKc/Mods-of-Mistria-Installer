@@ -1,7 +1,2 @@
-Fixed archive-install progress messages falling back to English instead of following AIM's selected language, including non-Latin languages.
-Fixed leftover settings from an uninstalled mod being reported as an active keybind conflict, following a report from Nexus user peachpetite.
-Fixed mod-provided MIST cutscenes missing their required game resource metadata during installation.
-Added a title-screen AIM version stamp to identify which installer rebuilt the current archive.
-Added new modder hooks for jump-attack landing, item tooltips, instance creation, completed store purchases, and completed dialogue compatibility.
-Improved tag-only recipe handling while preserving normal perk-return behavior.
-Updated current game support for Fields of Mistria 1.0.8.
+Updated ImageSharp to 4.1.3 to resolve published security advisories in image processing.
+Updated System.Security.Cryptography.Pkcs to 10.0.14 to resolve its current published security advisory.
