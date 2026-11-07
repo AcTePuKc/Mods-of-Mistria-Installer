@@ -41,9 +41,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.2.5" />
+        <PackageReference Include="Avalonia" Version="12.1.5" />
         <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.1.5" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.2.5" />
+        <PackageReference Include="Avalonia.Desktop" Version="12.1.5" />
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.5" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.5" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
