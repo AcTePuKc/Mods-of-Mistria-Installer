@@ -1,5 +1,7 @@
-﻿using Garethp.ModsOfMistriaInstallerLib.ModTypes;
+﻿using Garethp.ModsOfMistriaInstallerLib.Models.SDK;
+using Garethp.ModsOfMistriaInstallerLib.ModTypes;
 using Garethp.ModsOfMistriaInstallerLib.Utils;
+using Tomlyn;
 
 namespace Garethp.ModsOfMistriaInstallerLib.Installer;
 
@@ -28,6 +30,12 @@ public class MISTInstaller(
 
         var source = mod.ReadFile(relPath);
         _fileModifier.Write(dest, source);
+
+        var directory = Path.GetDirectoryName(dest)!;
+        var name = Path.GetFileNameWithoutExtension(dest);
+        _fileModifier.Write(
+            Path.Combine(directory, $"{name}.meta.toml"),
+            TomlSerializer.Serialize(new MistMetaFile()));
 
         reportStatus($"Installed: {relPath}", "");
     }
