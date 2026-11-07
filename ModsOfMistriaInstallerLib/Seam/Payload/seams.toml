@@ -41,7 +41,7 @@ version = 2
 [counts]
 hooks = 142
 seams = 157
-engine_fixes = 18
+engine_fixes = 19
 call_rewrites = 1
 
 # --- hook declarations -------------------------------------------------------------
@@ -4498,3 +4498,31 @@ replace = '''
 '''
 marker  = "mmapi_furniture_preview_floor_sprite"
 provides = ["furniture.preview_sprite"]
+
+# The title screen already labels a changed archive as modified, but that does
+# not identify the AIM release that built it. The generated install stamp is
+# present only in new AIM installs, so older archives retain vanilla title
+# behavior. The row sits above the game's own version/debug rows.
+[[engine_fix]]
+name    = "title_aim_version"
+file    = "gml/scripts/UI/Anchor/Menus/TitleMenu.gml"
+anchor  = '''
+                self.sha_text.set_text(display);
+            })
+'''
+replace = '''
+                self.sha_text.set_text(display);
+            })
+
+        var aim_version = global[$ "__aim_installer_version"];
+        if aim_version != undefined {
+            var aim_row = DEBUG_ASSERTIONS ? 3 : (DEBUG_TOOLS ? 2 : 1);
+            ANCHOR.text(self.canvas)
+                .set_text("AIM " + aim_version)
+                .set_align(Align.LeftIn, Align.BottomIn)
+                .set_xy(2, -12 * aim_row)
+                .set_lut(COMMON_LUT, CommonLutIndex.WhiteOnGreen)
+                .force_font(fnt_mistria_birdseed);
+        } // mmapi_title_aim_version
+'''
+marker  = "mmapi_title_aim_version"
