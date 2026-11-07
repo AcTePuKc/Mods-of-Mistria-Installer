@@ -11,6 +11,7 @@ It fires once from `ConversationDriver.finish_conversation()` after the engine h
     driver,             // the finished ConversationDriver
     conversation_name,  // the T2 path that completed
     npc_id,             // the driver's NPC owner; may be undefined for non-NPC dialogue
+    end_actions,        // completed T2 conversation-end actions
 }
 ```
 
@@ -28,7 +29,7 @@ function my_mod_dialogue_finished(ctx) {
 mmapi_on("dialogue.finished", my_mod_dialogue_finished);
 ```
 
-`dialogue.finish` is an alias for compatibility with the upstream request. New mods should require and register `dialogue.finished`.
+`dialogue.finish` and upstream `dialogue.conversation_finished` are aliases. New mods should require and register `dialogue.finished`.
 
 ## Implementation
 

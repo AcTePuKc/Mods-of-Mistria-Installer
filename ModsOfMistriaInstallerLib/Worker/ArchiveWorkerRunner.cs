@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Store;
 using Garethp.ModsOfMistriaInstallerLib.Tools;
@@ -15,12 +16,14 @@ public static class ArchiveWorkerRunner
     public static async Task<int> RunAsync(IReadOnlyList<string> args)
     {
         if (!IsWorkerInvocation(args)) return 2;
+        Console.OutputEncoding = Encoding.UTF8;
         var requestPath = Path.GetFullPath(args[2]);
         try
         {
             var request = JsonSerializer.Deserialize<ArchiveWorkerRequest>(
                               await File.ReadAllTextAsync(requestPath), ArchiveWorkerJson.Options)
                           ?? throw new InvalidDataException("Worker request is empty.");
+            ArchiveWorkerCulture.Apply(request.UiCulture);
             var response = request.Operation.ToLowerInvariant() switch
             {
                 "uninstall" => RunUninstall(request),

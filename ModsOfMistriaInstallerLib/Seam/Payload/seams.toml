@@ -39,9 +39,9 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 140
-seams = 154
-engine_fixes = 17
+hooks = 144
+seams = 158
+engine_fixes = 19
 call_rewrites = 1
 
 # --- hook declarations -------------------------------------------------------------
@@ -118,6 +118,12 @@ kind = "filter"
 doc  = "Fires at the return of get_gossip_selections(), the NPCs offered for the day's gossip. The filtered value is that selection list. ctx is undefined. Return a replacement list (for example an empty list to suppress gossip), or undefined to keep the current value."
 
 [[hook]]
+name = "instance.created"
+kind = "event"
+provider = "runtime"
+doc  = "Fires from the framework's begin-step instance poll for every live instance of the object named in opts.object, once per instance per handler, after the instance's create chain has completed. ctx is the instance. Passing no opts.object is refused. This covers room placement, room-start construction, mid-room spawns, and room reloads, but is not synchronous with creation. Use the narrower npc.created, pet.created, or animal.created events where available. The broad obj_node_renderer and par_interactable roots are refused because polling either every frame is too expensive."
+
+[[hook]]
 name = "combat.damage"
 kind = "filter"
 doc  = "Fires in the obj_damage_receiver drain loop, after iframe and rockstack checks and before the hit resolves. The filtered value is the damage tarball instance. ctx is the receiver. Return the replacement tarball or undefined to keep the current one. The seam skips the hit if the tarball comes back destroyed, and fields set on the tarball here are read later by the player.incoming_damage seam. Hits injected via mmapi_deal_damage() carry __mmapi_injected with the injecting mod's name; engine hits do not."
@@ -179,8 +185,8 @@ doc  = "Fires in ConversationDriver.deliver_line(), before the textbox shows the
 [[hook]]
 name = "dialogue.finished"
 kind = "event"
-aliases = ["dialogue.finish"]
-doc  = "Fires in ConversationDriver.finish_conversation(), after all T2 conversation-end actions have run, the textbox has been told to close, and the driver state is Finished. ctx is { driver, conversation_name, npc_id }. This means engine conversation completion, not that the textbox close animation has already disappeared; use ui.menu_closed when the UI close itself is what matters. dialogue.finish is a compatibility alias."
+aliases = ["dialogue.finish", "dialogue.conversation_finished"]
+doc  = "Fires in ConversationDriver.finish_conversation(), after all T2 conversation-end actions have run, the textbox has been told to close, and the driver state is Finished. ctx is { driver, conversation_name, npc_id, end_actions }; end_actions is the completed array returned by T2R.conversation_end(). This means engine conversation completion, not that the textbox close animation has already disappeared; use ui.menu_closed when the UI close itself is what matters. dialogue.finish and the upstream dialogue.conversation_finished are compatibility aliases."
 
 [[hook]]
 name = "dialogue.prompt_lock"
@@ -496,6 +502,11 @@ kind = "filter"
 doc  = "Fires in the player's damage drain in obj_ari, after mitigation is applied. The filtered value is the final signed damage (health only changes while it is negative). ctx is { player, receiver, tarball }. Return the replacement damage or undefined to keep the current value. A combat.damage filter can set the ctx.tarball fields __mmapi_player_show_damage_popup and __mmapi_player_should_flinch to false to suppress the damage popup and flinch, and with both false and non-negative damage the hit is skipped entirely. mmapi_deal_damage()'s show_popup and flinch opts ride the same two fields."
 
 [[hook]]
+name = "player.jump_attack_landing"
+kind = "filter"
+doc  = "Fires inside the Jump Attack perk's landing test, once per tested bounding-box corner on each frame after a jump's peak while attack is buffered. The filtered value is whether that corner may land: vanilla permits only non-collideable, non-water nodes. ctx is { x, y, node, collideable, water }. Return a replacement boolean, or undefined to keep the vanilla value. Every tested corner must pass before the attack lands. A handler that permits water sends the completed DownSmash into Swim through the companion seam, rather than leaving the player walking on water."
+
+[[hook]]
 name = "player.mana_delta"
 kind = "filter"
 doc  = "Fires at the top of Ari.modify_mana(), before the delta is applied. The filtered value is the signed mana delta: cast deductions negative, restores positive. ctx is { player }. Return the replacement delta (0 makes the call a no-op), or undefined to keep the current value. set_mana clamps the result to [0, mana_max], so any replacement is safe. A companion seam reroutes the mana potion's direct set_mana call through modify_mana, so item restores fire this hook too; cutscene absolute sets and save load do not. Composes with spells.cost: a cast's deduction arrives here as the negative of the already-filtered cost, so prefer spells.cost for spell pricing and this hook for everything else."
@@ -674,6 +685,11 @@ kind = "event"
 doc  = "Fires right after ANCHOR spawns a menu and pushes it onto open_menus. ctx is { menu, kind }, with kind being the menu id passed to spawn."
 
 [[hook]]
+name = "ui.tooltip_opened"
+kind = "event"
+doc  = "Fires once after create_tooltip() has built and spawned an item tooltip. ctx is { tooltip, item, source_node }. Handlers may update the constructed tooltip's text nodes; return values are ignored."
+
+[[hook]]
 name = "store.item_added"
 kind = "event"
 doc  = "Fires in StoreMenu right after a shelf tap adds an item to the shopping basket (self.basket.add(item)), before the ghost and price update. ctx is { menu, item }: menu is the StoreMenu (menu.basket is the Inventory cart with .can_add(item)/.add(item), menu.update_prices() refreshes the totals), item is the LiveItem just added. Adding more from a handler via menu.basket.add does not re-fire this event (the emit is at the tap site, not at basket.add), so no re-entry guard is needed: a bulk-buy handler can add extra copies freely."
@@ -682,6 +698,11 @@ doc  = "Fires in StoreMenu right after a shelf tap adds an item to the shopping 
 name = "store.basket_cost"
 kind = "filter"
 doc  = "Fires in StoreMenu.update_prices(), after the native basket total is calculated and before it controls the total label, affordability colours, Buy button, and final gold deduction. The filtered value is the whole basket cost. ctx is { menu, basket, store, price_markup }. Return a numeric non-negative replacement cost; undefined, an error, or a non-numeric result keeps the native total. A zero cost is valid as a display value but vanilla still disables Buy for an empty-or-zero basket, so this hook cannot create a free purchase path."
+
+[[hook]]
+name = "store.purchase"
+kind = "event"
+doc  = "Fires in StoreMenu's Buy callback after the basket has been drained and purchase bookkeeping has completed, immediately before the engine gives the purchased stacks and charges the final basket total. ctx is { menu, items, total }: items is the engine's List of purchase stacks and total is the gold about to be charged after store.basket_cost. Observation only: handlers cannot abort the native settlement, and must not mutate items."
 
 [[hook]]
 name = "ui.menu_refreshed"
@@ -1590,7 +1611,7 @@ file    = "gml/scripts/GameplaySystems/Dialogue/ConversationDriver.gml"
 target  = { fn = "finish_conversation", at = "after", anchor = "self.state = ConversationDriverState.Finished;" }
 op      = "emit"
 hook    = "dialogue.finished"
-ctx     = "{ driver: self, conversation_name: self.conversation_name, npc_id: self.npc_owner }"
+ctx     = "{ driver: self, conversation_name: self.conversation_name, npc_id: self.npc_owner, end_actions: end_actions }"
 indent  = 8
 marker  = "mmapi_dialogue_finished"
 
@@ -1751,6 +1772,55 @@ ctx     = "{ player: ARI, amount: live_item.prototype.max_health_modifier, live_
 indent  = 36
 catch_var = "__mmapi_player_max_health_delta"
 marker  = "mmapi_player_run_max_health_delta_callbacks"
+
+# The landing decision happens once per bounding-box corner. Keeping the
+# engine's out-of-grid early return intact means filters only see real nodes.
+[[seam]]
+id      = "player_jump_attack_landing"
+file    = "gml/scripts/Player/AriFsm.gml"
+anchor  = '''
+                return owner.check_bbox_at_point(xx, yy, function(xx, yy) {
+                    var ni = GRID.node_index_for_room_position(xx, yy);
+                    if ni == undefined {
+                        return false;
+                    }
+
+                    return GRID.node_collideable[ni] == false && GRID.node_terrain_kind[ni] != TerrainKind.Water;
+                });'''
+replace = '''
+                return owner.check_bbox_at_point(xx, yy, function(xx, yy) {
+                    var ni = GRID.node_index_for_room_position(xx, yy);
+                    if ni == undefined {
+                        return false;
+                    }
+
+                    var __mmapi_landing_ok = GRID.node_collideable[ni] == false && GRID.node_terrain_kind[ni] != TerrainKind.Water;
+                    try { __mmapi_landing_ok = mmapi_apply_filters("player.jump_attack_landing", __mmapi_landing_ok, { x: xx, y: yy, node: ni, collideable: GRID.node_collideable[ni], water: GRID.node_terrain_kind[ni] == TerrainKind.Water }); } catch (__mmapi_jump_attack_landing_error) {} // mmapi_player_run_jump_attack_landing_filters
+                    return __mmapi_landing_ok;
+                });'''
+marker   = "mmapi_player_run_jump_attack_landing_filters"
+provides = ["player.jump_attack_landing"]
+
+# Vanilla cannot reach DownSmash over water. Once the landing filter allows it,
+# preserve the Jump state's water behaviour by exiting to Swim rather than
+# Default, which would let the player stand on water until the next transition.
+[[seam]]
+id      = "player_jump_attack_water_exit"
+file    = "gml/scripts/Player/AriFsm.gml"
+anchor  = '''
+            self.owner.set_animation(AnimationName.DownAttack);
+            self.owner.par.tool_effect = owner.current_tool_effect(false);
+            self.owner.on_animation_complete = PlayerState.Default;'''
+replace = '''
+            self.owner.set_animation(AnimationName.DownAttack);
+            self.owner.par.tool_effect = owner.current_tool_effect(false);
+            self.owner.on_animation_complete = PlayerState.Default;
+            var __mmapi_landing_node = GRID.try_node_index_for_room_position(self.owner.x, self.owner.y); // mmapi_player_jump_attack_water_exit
+            if (__mmapi_landing_node != undefined && GRID.node_terrain_kind[__mmapi_landing_node] == TerrainKind.Water) {
+                self.owner.on_animation_complete = PlayerState.Swim;
+            }'''
+marker   = "mmapi_player_jump_attack_water_exit"
+provides = ["player.jump_attack_landing"]
 
 [[seam]]
 id      = "items_dropped"
@@ -3282,6 +3352,26 @@ replace = '''
 '''
 marker  = "mmapi_recipe_tag_scroll_preview"
 
+# Ingredient-return perks build a list from only ordinary Item components. A
+# tag-only recipe therefore has no native return candidate; constructing a
+# LiveItem from choose_random() on that empty list crashes. The chance and perk
+# counters retain their vanilla path, but no fictitious representative item is
+# returned for a category cost.
+[[engine_fix]]
+name    = "recipe_tag_perk_return"
+file    = "gml/scripts/UI/Anchor/Menus/CraftingMenu.gml"
+anchor  = '''
+                items_to_yield.push(new LiveItem(temp_list.choose_random()));
+                GAME_STATS.perks[$ perk_to_string(triggered_perk)] += 1;
+'''
+replace = '''
+                if !temp_list.is_empty() { // mmapi_recipe_tag_perk_return
+                    items_to_yield.push(new LiveItem(temp_list.choose_random()));
+                }
+                GAME_STATS.perks[$ perk_to_string(triggered_perk)] += 1;
+'''
+marker  = "mmapi_recipe_tag_perk_return"
+
 # The remaining entries are appended after the earlier ones on purpose. Catalog
 # order is apply order, and two of them stack onto files already seamed above
 # (dialogue_play_guard onto ConversationDriver.gml after dialogue_path, and
@@ -3549,6 +3639,20 @@ indent  = 8
 marker  = "mmapi_ui_run_menu_opened"
 
 [[seam]]
+id      = "ui_tooltip_opened"
+file    = "gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"
+context_before = '''
+    popup.spawn();
+'''
+context_after = '''
+    return popup;'''
+op      = "emit"
+hook    = "ui.tooltip_opened"
+ctx     = "{ tooltip: popup, item: item, source_node: source_node }"
+indent  = 4
+marker  = "mmapi_ui_run_tooltip_opened"
+
+[[seam]]
 id      = "store_item_added"
 file    = "gml/scripts/UI/Anchor/Menus/StoreMenu.gml"
 anchor  = '''
@@ -3589,6 +3693,30 @@ replace = '''
         self.total_count'''
 marker  = "mmapi_store_run_basket_cost_filters"
 provides = ["store.basket_cost"]
+
+[[seam]]
+id      = "store_purchase"
+file    = "gml/scripts/UI/Anchor/Menus/StoreMenu.gml"
+context_before = '''
+                if idx == undefined {
+                    item_list_of_lists.push(List(item));
+                } else {
+                    item_list_of_lists.get(idx).push(item);
+                }
+            }
+
+'''
+context_after = '''
+            item_list_of_lists.for_each(function(item_data) {
+                ARI.give_item(item_data.first(), item_data.count(), true, false);
+            });
+            ARI.modify_gold(-self.basket_total);
+'''
+op      = "emit"
+hook    = "store.purchase"
+ctx     = "{ menu: self, items: item_list_of_lists, total: self.basket_total }"
+indent  = 12
+marker  = "mmapi_store_run_purchase"
 
 [[seam]]
 id      = "ui_menu_closed_drain"
@@ -4405,3 +4533,31 @@ replace = '''
 '''
 marker  = "mmapi_furniture_preview_floor_sprite"
 provides = ["furniture.preview_sprite"]
+
+# The title screen already labels a changed archive as modified, but that does
+# not identify the AIM release that built it. The generated install stamp is
+# present only in new AIM installs, so older archives retain vanilla title
+# behavior. The row sits above the game's own version/debug rows.
+[[engine_fix]]
+name    = "title_aim_version"
+file    = "gml/scripts/UI/Anchor/Menus/TitleMenu.gml"
+anchor  = '''
+                self.sha_text.set_text(display);
+            })
+'''
+replace = '''
+                self.sha_text.set_text(display);
+            })
+
+        var aim_version = global[$ "__aim_installer_version"];
+        if aim_version != undefined {
+            var aim_row = DEBUG_ASSERTIONS ? 3 : (DEBUG_TOOLS ? 2 : 1);
+            ANCHOR.text(self.canvas)
+                .set_text("AIM " + aim_version)
+                .set_align(Align.LeftIn, Align.BottomIn)
+                .set_xy(2, -12 * aim_row)
+                .set_lut(COMMON_LUT, CommonLutIndex.WhiteOnGreen)
+                .force_font(fnt_mistria_birdseed);
+        } // mmapi_title_aim_version
+'''
+marker  = "mmapi_title_aim_version"

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text;
 using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.GmlMods;
 using Garethp.ModsOfMistriaInstallerLib.Tools;
@@ -10,8 +11,10 @@ if (args.Length != 2 || !string.Equals(args[0], "--request", StringComparison.Or
 var requestPath = Path.GetFullPath(args[1]);
 try
 {
+    Console.OutputEncoding = Encoding.UTF8;
     var request = JsonSerializer.Deserialize<ArchiveWorkerRequest>(await File.ReadAllTextAsync(requestPath), ArchiveWorkerJson.Options)
         ?? throw new InvalidDataException("Worker request is empty.");
+    ArchiveWorkerCulture.Apply(request.UiCulture);
     var response = request.Operation.Equals("uninstall", StringComparison.OrdinalIgnoreCase)
         ? RunUninstall(request)
         : RunInstall(request);

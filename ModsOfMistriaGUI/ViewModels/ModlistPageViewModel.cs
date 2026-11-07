@@ -4181,7 +4181,8 @@ public partial class ModlistPageViewModel : PageViewBase
         try
         {
             var request = new ArchiveWorkerRequest(
-                "uninstall", MistriaLocation, ModsLocation, [], "", GateMode: "auto");
+                "uninstall", MistriaLocation, ModsLocation, [], "", GateMode: "auto",
+                UiCulture: CultureInfo.CurrentUICulture.Name);
             await new ArchiveWorkerClient().RunAsync(
                 request,
                 status => Dispatcher.UIThread.Post(() =>
@@ -4257,7 +4258,8 @@ public partial class ModlistPageViewModel : PageViewBase
                 ModsLocation,
                 modsToInstall.Select(mod => mod.GetSourcePath()).ToArray(),
                 "",
-                GateMode: "auto");
+                GateMode: "auto",
+                UiCulture: CultureInfo.CurrentUICulture.Name);
             var result = await new ArchiveWorkerClient().RunAsync(
                 request,
                 status =>
@@ -4388,7 +4390,8 @@ public partial class ModlistPageViewModel : PageViewBase
         {
             await new ArchiveWorkerClient().RunAsync(
                 new ArchiveWorkerRequest(
-                    "recover", MistriaLocation, ModsLocation, [], "", GateMode: "off"),
+                    "recover", MistriaLocation, ModsLocation, [], "", GateMode: "off",
+                    UiCulture: CultureInfo.CurrentUICulture.Name),
                 status =>
                 {
                     if (IsInstalling) InstallStatus = status;

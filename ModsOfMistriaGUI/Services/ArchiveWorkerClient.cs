@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 using Garethp.ModsOfMistriaInstallerLib;
 using Garethp.ModsOfMistriaInstallerLib.Worker;
@@ -87,6 +88,8 @@ public sealed class ArchiveWorkerClient
         startInfo.CreateNoWindow = true;
         startInfo.RedirectStandardOutput = true;
         startInfo.RedirectStandardError = true;
+        startInfo.StandardOutputEncoding = Encoding.UTF8;
+        startInfo.StandardErrorEncoding = Encoding.UTF8;
         var process = Process.Start(startInfo) ?? throw new InvalidOperationException("Could not start AIM.ArchiveWorker.");
         return process;
     }

@@ -77,8 +77,8 @@ public class ShippedCatalogTest
         // This is a breaking 0.16.x migration. The old symbols named a
         // chance decision in a previous engine implementation; the current
         // function chooses a floor from start_floor + range instead.
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(144));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(158));
         Assert.That(_catalog.Hook("dungeon.side_room_chance"), Is.Null);
         Assert.That(_catalog.Seams.Any(s => s.Id == "dungeon_side_room_chance"), Is.False);
 
@@ -114,6 +114,31 @@ public class ShippedCatalogTest
         Assert.That(seam.Hooks, Is.EqualTo(new[] { "fishing.fish_selected" }));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_fishing_run_fish_selected_callbacks"));
         Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+    }
+
+    [Test]
+    public void ShouldFilterJumpAttackLandingsAndSwimAfterAnAllowedWaterLanding()
+    {
+        var hook = _catalog.Hook("player.jump_attack_landing");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Filter));
+        Assert.That(hook.Doc, Does.Contain("bounding-box corner"));
+        Assert.That(hook.Doc, Does.Contain("Swim"));
+
+        var landing = _catalog.Seams.Single(s => s.Id == "player_jump_attack_landing");
+        Assert.That(landing.File, Is.EqualTo("assets/gml/scripts/Player/AriFsm.gml"));
+        Assert.That(landing.Hooks, Is.EqualTo(new[] { "player.jump_attack_landing" }));
+        Assert.That(landing.Replace, Does.Contain("GRID.node_index_for_room_position"));
+        Assert.That(landing.Replace, Does.Contain("mmapi_apply_filters(\"player.jump_attack_landing\""));
+        Assert.That(landing.Replace, Does.Contain("water: GRID.node_terrain_kind[ni] == TerrainKind.Water"));
+        Assert.That(landing.Marker, Is.EqualTo("mmapi_player_run_jump_attack_landing_filters"));
+
+        var waterExit = _catalog.Seams.Single(s => s.Id == "player_jump_attack_water_exit");
+        Assert.That(waterExit.File, Is.EqualTo(landing.File));
+        Assert.That(waterExit.Hooks, Is.EqualTo(new[] { "player.jump_attack_landing" }));
+        Assert.That(waterExit.Replace, Does.Contain("GRID.try_node_index_for_room_position"));
+        Assert.That(waterExit.Replace, Does.Contain("PlayerState.Swim"));
+        Assert.That(waterExit.Marker, Is.EqualTo("mmapi_player_jump_attack_water_exit"));
     }
 
     [Test]
@@ -176,7 +201,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldAcceptPetCosmeticStoreEntriesWithoutChangingVanillaStock()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(19));
 
         var fix = _catalog.EngineFixes.Single(f => f.Id == "store_pet_cosmetic_entry");
         Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/Stores.gml"));
@@ -205,7 +230,7 @@ public class ShippedCatalogTest
     [Test]
     public void ShouldSupportHonestTagRecipePresentationAndSymmetricFulfilment()
     {
-        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(17));
+        Assert.That(_catalog.DeclaredCounts!.EngineFixes, Is.EqualTo(19));
 
         var presentation = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_component_presentation");
         Assert.That(presentation.Replace, Does.Contain("requires display_item"));
@@ -228,6 +253,23 @@ public class ShippedCatalogTest
 
         var scroll = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_scroll_preview");
         Assert.That(scroll.Replace, Does.Contain("comp.display_item_id"));
+
+        var perkReturn = _catalog.EngineFixes.Single(f => f.Id == "recipe_tag_perk_return");
+        Assert.That(perkReturn.Replace, Does.Contain("if !temp_list.is_empty()"));
+        Assert.That(perkReturn.Replace, Does.Contain("GAME_STATS.perks"));
+    }
+
+    [Test]
+    public void ShouldShowTheAimBuildThatInstalledTheArchiveOnTheTitleScreen()
+    {
+        var fix = _catalog.EngineFixes.Single(f => f.Id == "title_aim_version");
+
+        Assert.That(fix.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/TitleMenu.gml"));
+        Assert.That(fix.Anchor, Does.Contain("self.sha_text.set_text(display)"));
+        Assert.That(fix.Replace, Does.Contain("global[$ \"__aim_installer_version\"]"));
+        Assert.That(fix.Replace, Does.Contain(".set_text(\"AIM \" + aim_version)"));
+        Assert.That(fix.Replace, Does.Contain("DEBUG_ASSERTIONS ? 3 : (DEBUG_TOOLS ? 2 : 1)"));
+        Assert.That(fix.Marker, Is.EqualTo("mmapi_title_aim_version"));
     }
 
     [Test]
@@ -316,15 +358,33 @@ public class ShippedCatalogTest
     }
 
     [Test]
+    public void ShouldEmitTheConstructedItemTooltipAfterItIsSpawned()
+    {
+        var hook = _catalog.Hook("ui.tooltip_opened");
+        Assert.That(hook, Is.Not.Null);
+        Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
+        Assert.That(hook.Doc, Does.Contain("built and spawned"));
+
+        var seam = _catalog.Seams.Single(s => s.Id == "ui_tooltip_opened");
+        Assert.That(seam.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/TooltipMenu.gml"));
+        Assert.That(seam.Hooks, Is.EqualTo(new[] { "ui.tooltip_opened" }));
+        Assert.That(seam.Op, Is.EqualTo(DispatchOp.Emit));
+        Assert.That(seam.Anchor, Is.EqualTo("    popup.spawn();\n    return popup;"));
+        Assert.That(seam.Replace, Does.Contain("mmapi_emit(\"ui.tooltip_opened\", { tooltip: popup, item: item, source_node: source_node })"));
+        Assert.That(seam.Marker, Is.EqualTo("mmapi_ui_run_tooltip_opened"));
+    }
+
+    [Test]
     public void ShouldEmitDialogueFinishedAfterNativeEndActionsAndStateTransition()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(144));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(158));
 
         var hook = _catalog.Hook("dialogue.finished");
         Assert.That(hook, Is.Not.Null);
         Assert.That(hook!.Kind, Is.EqualTo(HookKind.Event));
         Assert.That(hook.Aliases, Does.Contain("dialogue.finish"));
+        Assert.That(hook.Aliases, Does.Contain("dialogue.conversation_finished"));
         Assert.That(hook.Doc, Does.Contain("engine conversation completion"));
 
         var seam = _catalog.Seams.Single(s => s.Id == "dialogue_finished");
@@ -334,14 +394,37 @@ public class ShippedCatalogTest
         Assert.That(seam.TargetFn, Is.EqualTo("finish_conversation"));
         Assert.That(seam.TargetAt, Is.EqualTo("after"));
         Assert.That(seam.TargetAnchor, Is.EqualTo("self.state = ConversationDriverState.Finished;"));
+        Assert.That(seam.Replace, Does.Contain("end_actions"));
         Assert.That(seam.Marker, Is.EqualTo("mmapi_dialogue_finished"));
+    }
+
+    [Test]
+    public void ShouldProvideTheNarrowStorePurchaseEventAndScopedInstancePoll()
+    {
+        var purchase = _catalog.Hook("store.purchase");
+        Assert.That(purchase, Is.Not.Null);
+        Assert.That(purchase!.Kind, Is.EqualTo(HookKind.Event));
+        var purchaseSeam = _catalog.Seams.Single(s => s.Id == "store_purchase");
+        Assert.That(purchaseSeam.File, Is.EqualTo("assets/gml/scripts/UI/Anchor/Menus/StoreMenu.gml"));
+        Assert.That(purchaseSeam.Hooks, Is.EqualTo(new[] { "store.purchase" }));
+        Assert.That(purchaseSeam.Replace, Does.Contain("items: item_list_of_lists"));
+        Assert.That(purchaseSeam.Marker, Is.EqualTo("mmapi_store_run_purchase"));
+
+        var created = _catalog.Hook("instance.created");
+        Assert.That(created, Is.Not.Null);
+        Assert.That(created!.Provider, Is.EqualTo(HookProvider.Runtime));
+
+        var framework = File.ReadAllText(Path.Combine(PayloadDir, "mmapi", "mmapi_instances.gml"));
+        Assert.That(framework, Does.Contain("function mmapi_instances_poll()"));
+        Assert.That(framework, Does.Contain("with (watched)"));
+        Assert.That(framework, Does.Contain("record.fn(self)"));
     }
 
     [Test]
     public void ShouldFilterTheStoreBasketCostBeforeUiAndPaymentUseIt()
     {
-        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(140));
-        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(154));
+        Assert.That(_catalog.DeclaredCounts!.Hooks, Is.EqualTo(144));
+        Assert.That(_catalog.DeclaredCounts.Seams, Is.EqualTo(158));
 
         var hook = _catalog.Hook("store.basket_cost");
         Assert.That(hook, Is.Not.Null);

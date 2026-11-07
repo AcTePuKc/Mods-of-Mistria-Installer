@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.2.3 - 2026-11-07
+
+### Reliable current-mod installs
+
+- Archive install, uninstall, and recovery progress now follows AIM's selected language, including
+  non-Latin languages sent from the archive worker process.
+- Removed phantom keybind conflicts from settings left behind by an uninstalled mod. Thanks to
+  Nexus user peachpetite for reporting this case.
+- MIST cutscene files now receive their required game resource metadata and unique IDs during
+  installation, so a mod-provided scene can be loaded by the game instead of failing at startup.
+- The title screen records the exact AIM version that rebuilt the archive, making a support report
+  or a mixed-installer setup easier to identify.
+
+### New hooks and safer compatibility
+
+- Added `player.jump_attack_landing`, allowing a mod to decide whether the Jump Attack perk may
+  land on each valid tile while preserving the game's normal water transition.
+- Added `ui.tooltip_opened`, an event after an item tooltip has been built and spawned.
+- Added `instance.created` and `store.purchase` events for narrowly scoped mod integrations.
+- `dialogue.conversation_finished` is now accepted as a compatibility alias of AIM's completed
+  dialogue event, with the completed end actions included in its context.
+- Tag-only recipe components now preserve the game's normal perk-return rules.
+
+### Current game support
+
+- AIM 0.2.3 has been exercised with Fields of Mistria 1.0.8, including archive rebuilding and
+  current mod installation.
+
 ## 0.2.2 - 2026-09-18
 
 ### Fields of Mistria 1.0.5 support

@@ -195,4 +195,28 @@ public class BindingScannerTest
             Assert.That(entries[0].Binding, Is.Null, "the game would reject this");
         });
     }
+
+    // MMAPI keeps a removed mod's settings under mod_data so reinstalling it can preserve the
+    // player's choices. That is not evidence that the mod is currently installed; in particular,
+    // it must not make a stale shortcut clash appear beside a real mod.
+    [Test]
+    public void ShouldIgnoreBindingsFromAnUninstalledModsLeftoverSettings()
+    {
+        var mod = Mod("CheatsMenu", "cheats_menu", """
+            #macro CHEATS_KEY "GAMEPAD_LEFT_SHOULDER+GAMEPAD_LEFT_TRIGGER"
+            mmapi_mod_declare("cheats_menu", CHEATS_VERSION);
+
+            """);
+        StoreWith("stack_splitter", """{"gamepad_hotkey": "GAMEPAD_LEFT_SHOULDER+GAMEPAD_LEFT_TRIGGER"}""");
+        var store = StoreWith("cheats_menu", """{"gamepad_hotkey": "GAMEPAD_LEFT_SHOULDER+GAMEPAD_LEFT_TRIGGER"}""");
+
+        var entries = BindingScanner.Scan([mod], store);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(entries, Has.Exactly(1).Items);
+            Assert.That(entries[0].ModId, Is.EqualTo(mod.GetId()));
+            Assert.That(BindingScanner.FindOverlaps(entries), Is.Empty);
+        });
+    }
 }

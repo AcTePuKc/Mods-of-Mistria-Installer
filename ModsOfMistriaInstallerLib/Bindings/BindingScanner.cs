@@ -111,7 +111,14 @@ public static class BindingScanner
         foreach (var file in configured)
         {
             var owner = byName.GetValueOrDefault(file.ModId);
-            var name = owner?.GetName() ?? file.ModId;
+
+            // The game deliberately retains mod_data after a mod is removed: it is the user's
+            // settings, not part of the mod archive. It must not turn into a phantom mod in AIM's
+            // shortcut report. Only a folder that maps to one of the mods being scanned can tell
+            // us what is currently bound.
+            if (owner is null) continue;
+
+            var name = owner.GetName();
 
             foreach (var property in file.Content.Properties())
             {
@@ -128,13 +135,13 @@ public static class BindingScanner
                 if (!LooksLikeBindingField(property.Name, binding is not null)) continue;
 
                 entries.Add(new ModBindingEntry(
-                    owner?.GetId() ?? file.ModId, name, property.Name, value, BindingSource.Configured)
+                    owner.GetId(), name, property.Name, value, BindingSource.Configured)
                 {
                     File = file,
                     Binding = binding
                 });
 
-                if (owner is not null) modsWithConfig.Add(owner);
+                modsWithConfig.Add(owner);
             }
         }
 
