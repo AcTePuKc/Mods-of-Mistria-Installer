@@ -39,8 +39,8 @@ version = 2
 # hook surface. Keep them in step when adding or removing entries; the
 # shipped-catalog test also holds the docs' count sentences to these numbers.
 [counts]
-hooks = 142
-seams = 157
+hooks = 144
+seams = 158
 engine_fixes = 19
 call_rewrites = 1
 
@@ -118,6 +118,12 @@ kind = "filter"
 doc  = "Fires at the return of get_gossip_selections(), the NPCs offered for the day's gossip. The filtered value is that selection list. ctx is undefined. Return a replacement list (for example an empty list to suppress gossip), or undefined to keep the current value."
 
 [[hook]]
+name = "instance.created"
+kind = "event"
+provider = "runtime"
+doc  = "Fires from the framework's begin-step instance poll for every live instance of the object named in opts.object, once per instance per handler, after the instance's create chain has completed. ctx is the instance. Passing no opts.object is refused. This covers room placement, room-start construction, mid-room spawns, and room reloads, but is not synchronous with creation. Use the narrower npc.created, pet.created, or animal.created events where available. The broad obj_node_renderer and par_interactable roots are refused because polling either every frame is too expensive."
+
+[[hook]]
 name = "combat.damage"
 kind = "filter"
 doc  = "Fires in the obj_damage_receiver drain loop, after iframe and rockstack checks and before the hit resolves. The filtered value is the damage tarball instance. ctx is the receiver. Return the replacement tarball or undefined to keep the current one. The seam skips the hit if the tarball comes back destroyed, and fields set on the tarball here are read later by the player.incoming_damage seam. Hits injected via mmapi_deal_damage() carry __mmapi_injected with the injecting mod's name; engine hits do not."
@@ -179,8 +185,8 @@ doc  = "Fires in ConversationDriver.deliver_line(), before the textbox shows the
 [[hook]]
 name = "dialogue.finished"
 kind = "event"
-aliases = ["dialogue.finish"]
-doc  = "Fires in ConversationDriver.finish_conversation(), after all T2 conversation-end actions have run, the textbox has been told to close, and the driver state is Finished. ctx is { driver, conversation_name, npc_id }. This means engine conversation completion, not that the textbox close animation has already disappeared; use ui.menu_closed when the UI close itself is what matters. dialogue.finish is a compatibility alias."
+aliases = ["dialogue.finish", "dialogue.conversation_finished"]
+doc  = "Fires in ConversationDriver.finish_conversation(), after all T2 conversation-end actions have run, the textbox has been told to close, and the driver state is Finished. ctx is { driver, conversation_name, npc_id, end_actions }; end_actions is the completed array returned by T2R.conversation_end(). This means engine conversation completion, not that the textbox close animation has already disappeared; use ui.menu_closed when the UI close itself is what matters. dialogue.finish and the upstream dialogue.conversation_finished are compatibility aliases."
 
 [[hook]]
 name = "dialogue.prompt_lock"
@@ -692,6 +698,11 @@ doc  = "Fires in StoreMenu right after a shelf tap adds an item to the shopping 
 name = "store.basket_cost"
 kind = "filter"
 doc  = "Fires in StoreMenu.update_prices(), after the native basket total is calculated and before it controls the total label, affordability colours, Buy button, and final gold deduction. The filtered value is the whole basket cost. ctx is { menu, basket, store, price_markup }. Return a numeric non-negative replacement cost; undefined, an error, or a non-numeric result keeps the native total. A zero cost is valid as a display value but vanilla still disables Buy for an empty-or-zero basket, so this hook cannot create a free purchase path."
+
+[[hook]]
+name = "store.purchase"
+kind = "event"
+doc  = "Fires in StoreMenu's Buy callback after the basket has been drained and purchase bookkeeping has completed, immediately before the engine gives the purchased stacks and charges the final basket total. ctx is { menu, items, total }: items is the engine's List of purchase stacks and total is the gold about to be charged after store.basket_cost. Observation only: handlers cannot abort the native settlement, and must not mutate items."
 
 [[hook]]
 name = "ui.menu_refreshed"
@@ -1600,7 +1611,7 @@ file    = "gml/scripts/GameplaySystems/Dialogue/ConversationDriver.gml"
 target  = { fn = "finish_conversation", at = "after", anchor = "self.state = ConversationDriverState.Finished;" }
 op      = "emit"
 hook    = "dialogue.finished"
-ctx     = "{ driver: self, conversation_name: self.conversation_name, npc_id: self.npc_owner }"
+ctx     = "{ driver: self, conversation_name: self.conversation_name, npc_id: self.npc_owner, end_actions: end_actions }"
 indent  = 8
 marker  = "mmapi_dialogue_finished"
 
@@ -3682,6 +3693,30 @@ replace = '''
         self.total_count'''
 marker  = "mmapi_store_run_basket_cost_filters"
 provides = ["store.basket_cost"]
+
+[[seam]]
+id      = "store_purchase"
+file    = "gml/scripts/UI/Anchor/Menus/StoreMenu.gml"
+context_before = '''
+                if idx == undefined {
+                    item_list_of_lists.push(List(item));
+                } else {
+                    item_list_of_lists.get(idx).push(item);
+                }
+            }
+
+'''
+context_after = '''
+            item_list_of_lists.for_each(function(item_data) {
+                ARI.give_item(item_data.first(), item_data.count(), true, false);
+            });
+            ARI.modify_gold(-self.basket_total);
+'''
+op      = "emit"
+hook    = "store.purchase"
+ctx     = "{ menu: self, items: item_list_of_lists, total: self.basket_total }"
+indent  = 12
+marker  = "mmapi_store_run_purchase"
 
 [[seam]]
 id      = "ui_menu_closed_drain"

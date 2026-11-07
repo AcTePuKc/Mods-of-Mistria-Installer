@@ -23,7 +23,7 @@
 //   guard    | mmapi_guard(name, fn, opts)   | if (mmapi_check_guards(name, ctx)) ... | any false return vetoes
 //   override | mmapi_override(name, fn, opts)| r = mmapi_run_override(name, ctx)      | first non-undefined wins
 //
-// opts is an optional struct { priority, mod_name, before, after }. Priority
+// opts is an optional struct { priority, mod_name, before, after, object }. Priority
 // defaults to 0 and lower runs first; equal priorities keep registration order.
 // before/after are mod-relative edges, taking a mod name or an array of them.
 // Example: { after: "example_mod" } → run mine after example_mod's handlers.
@@ -81,16 +81,26 @@ function __mmapi_hook_register(kind, hook_name, handler, opts) {
     var mod_name = mmapi_current_mod();
     var before = undefined;
     var after = undefined;
+    var watched = undefined;
     if (opts != undefined) {
         if (opts[$ "priority"] != undefined) { priority = opts.priority; }
         if (opts[$ "mod_name"] != undefined) { mod_name = opts.mod_name; }
         if (opts[$ "before"] != undefined) { before = __mmapi_hook_mod_list(opts.before); }
         if (opts[$ "after"] != undefined) { after = __mmapi_hook_mod_list(opts.after); }
+        if (opts[$ "object"] != undefined) { watched = opts.object; }
     }
 
     hook_name = __mmapi_hook_resolve_alias(hook_name, mod_name);
     __mmapi_hook_warn_if_uncataloged(hook_name, mod_name);
     __mmapi_hook_warn_if_kind_mismatch(kind, hook_name, mod_name);
+
+    if (hook_name == "instance.created" && watched == undefined) {
+        mmapi_warn_rate_limited(
+            "hook_unscoped:" + string(mod_name), mod_name,
+            "mmapi hook instance.created: registration from " + string(mod_name)
+            + " names no object and is skipped. Pass { object: obj_x }");
+        return;
+    }
 
     var handlers = registry[$ hook_name];
     if (handlers == undefined) {
@@ -103,7 +113,8 @@ function __mmapi_hook_register(kind, hook_name, handler, opts) {
     // first, so the per-frame duplicate path reaches no other warning below.
     for (var i = 0; i < array_length(handlers); i++) {
         var existing = handlers[i];
-        if (existing.fn == handler && existing.mod_name == mod_name && existing.kind == kind) {
+        if (existing.fn == handler && existing.mod_name == mod_name && existing.kind == kind
+            && existing[$ "object"] == watched) {
             mmapi_warn_rate_limited(
                 "hook_dup:" + string(hook_name) + ":" + string(mod_name),
                 mod_name,
@@ -156,6 +167,8 @@ function __mmapi_hook_register(kind, hook_name, handler, opts) {
         seq: global.__mmapi_hook_seq,
         before: before,
         after: after,
+        object: watched,
+        marker: "__mmapi_seen_" + string(global.__mmapi_hook_seq),
     });
     __mmapi_hook_resort(hook_name, handlers);
 }

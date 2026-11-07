@@ -3,7 +3,7 @@
 [← MMAPI](MMAPI.md)
 
 <!-- merge: keep both catalog entries -->
-Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **142 hooks**, fed by **157 seams**, **19 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
+Every named hook the seam catalog declares has its own page, as does every seam, engine fix, and call rewrite behind them. The catalog currently declares **144 hooks**, fed by **158 seams**, **19 engine fixes**, and **1 call rewrite**. The authoritative source for all of it is the seam catalog itself, `ModsOfMistriaInstallerLib/Seam/Payload/seams.toml`. See [Seams](SEAMS.md).
 
 Each hook has exactly one kind, and each kind has one registration directive. A handler registered with the wrong directive never runs and produces only a warning in the MMAPI log. See [Hooks](HOOKS.md).
 
@@ -53,7 +53,9 @@ Each hook has exactly one kind, and each kind has one registration directive. A 
 | [factory.product_drops](hooks/factory.product_drops.md) | filter | Change the products an apiary or terrarium drops on collection. |
 | [object.interact](hooks/object.interact.md) | override | Take over any grid object's interaction. |
 | [object.node_sprite](hooks/object.node_sprite.md) | filter | Swap the sprite of any world node before it draws. |
+| [instance.created](hooks/instance.created.md) | event | React once to each instance of a selected object after it is created. |
 | [store.item_added](hooks/store.item_added.md) | event | Know when an item lands in the shopping basket. |
+| [store.purchase](hooks/store.purchase.md) | event | Observe a committed store purchase before items and gold settle. |
 | [museum.donate_item](hooks/museum.donate_item.md) | event | Know when an item is donated to the museum. |
 | [museum.donation_attempted](hooks/museum.donation_attempted.md) | event | Know when a museum donation is attempted, before the museum records it. |
 
